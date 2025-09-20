@@ -36,7 +36,7 @@ Advanced Flight Computer with Triple MCU Architecture
 - **Advanced Sensors**: Triple ICM-45686 IMUs, LIS2MDLTR magnetometer, ICP-20100 & BMP388 barometers
 - **GNSS & Communication**: NEO-M8U-06B GPS, LoRa RA-02 telemetry, Bluetooth DA14531MOD
 - **Storage**: SD Card + Winbond W25Q256JV flash memory
-- **Power Management**: 7.4V LiPo battery with BQ25703ARSNR charger, USB-C PD support
+- **Power Management**: 7.4-12V LiPo battery with BQ25703ARSNR charger, USB-C PD support
 - **6-Layer PCB**: Dedicated power planes and signal routing
 
 ## Board Overview
