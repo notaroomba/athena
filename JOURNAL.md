@@ -168,3 +168,9 @@ Here is the final board front and back
 ![SENSORS](assets/board_back.png)
 
 **Total Time:** 2 hours
+
+# October 10 - Start of CAD
+
+I wanted to learn Inventor and 3D modeling so I decided to start work on the rocket using Openrocket and then passing it on to inventor.
+
+For the TVC I want to use MG995 servos because of their high torque and high speed.
