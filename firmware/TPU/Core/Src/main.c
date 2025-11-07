@@ -18,9 +18,12 @@
 /* USER CODE END Header */
 /* Includes ------------------------------------------------------------------*/
 #include "main.h"
+#include "usb_device.h"
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
+#include "usbd_cdc_if.h"
+#include "athena.h"
 
 /* USER CODE END Includes */
 
@@ -45,7 +48,7 @@ FDCAN_HandleTypeDef hfdcan2;
 
 QSPI_HandleTypeDef hqspi;
 
-MMC_HandleTypeDef hmmc1;
+SD_HandleTypeDef hsd1;
 
 SPI_HandleTypeDef hspi1;
 SPI_HandleTypeDef hspi3;
@@ -57,8 +60,6 @@ UART_HandleTypeDef huart7;
 UART_HandleTypeDef huart8;
 UART_HandleTypeDef huart1;
 
-PCD_HandleTypeDef hpcd_USB_OTG_FS;
-
 /* USER CODE BEGIN PV */
 
 /* USER CODE END PV */
@@ -69,21 +70,22 @@ static void MPU_Config(void);
 static void MX_GPIO_Init(void);
 static void MX_QUADSPI_Init(void);
 static void MX_SPI1_Init(void);
-static void MX_SDMMC1_MMC_Init(void);
 static void MX_SPI3_Init(void);
 static void MX_SPI4_Init(void);
 static void MX_UART7_Init(void);
 static void MX_UART8_Init(void);
-static void MX_USB_OTG_FS_PCD_Init(void);
 static void MX_FDCAN2_Init(void);
 static void MX_USART1_UART_Init(void);
 static void MX_TIM2_Init(void);
+static void MX_SDMMC1_SD_Init(void);
 /* USER CODE BEGIN PFP */
 
 /* USER CODE END PFP */
 
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
+
+
 
 /* USER CODE END 0 */
 
@@ -115,29 +117,33 @@ int main(void)
 
   /* USER CODE BEGIN SysInit */
 
+  Set_LED_Color(LED_BLUE);
+
   /* USER CODE END SysInit */
 
   /* Initialize all configured peripherals */
   MX_GPIO_Init();
   MX_QUADSPI_Init();
   MX_SPI1_Init();
-  MX_SDMMC1_MMC_Init();
   MX_SPI3_Init();
   MX_SPI4_Init();
   MX_UART7_Init();
   MX_UART8_Init();
-  MX_USB_OTG_FS_PCD_Init();
   MX_FDCAN2_Init();
   MX_USART1_UART_Init();
   MX_TIM2_Init();
+  MX_USB_DEVICE_Init();
+  MX_SDMMC1_SD_Init();
   /* USER CODE BEGIN 2 */
-
+// MX_USB_DEVICE_Init();
   /* USER CODE END 2 */
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
+
   while (1)
   {
+    CDC_Transmit_FS((uint8_t *)"Hello from TPU!\r\n", 22);
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
@@ -296,7 +302,7 @@ static void MX_QUADSPI_Init(void)
   * @param None
   * @retval None
   */
-static void MX_SDMMC1_MMC_Init(void)
+static void MX_SDMMC1_SD_Init(void)
 {
 
   /* USER CODE BEGIN SDMMC1_Init 0 */
@@ -306,13 +312,13 @@ static void MX_SDMMC1_MMC_Init(void)
   /* USER CODE BEGIN SDMMC1_Init 1 */
 
   /* USER CODE END SDMMC1_Init 1 */
-  hmmc1.Instance = SDMMC1;
-  hmmc1.Init.ClockEdge = SDMMC_CLOCK_EDGE_RISING;
-  hmmc1.Init.ClockPowerSave = SDMMC_CLOCK_POWER_SAVE_DISABLE;
-  hmmc1.Init.BusWide = SDMMC_BUS_WIDE_4B;
-  hmmc1.Init.HardwareFlowControl = SDMMC_HARDWARE_FLOW_CONTROL_DISABLE;
-  hmmc1.Init.ClockDiv = 0;
-  if (HAL_MMC_Init(&hmmc1) != HAL_OK)
+  hsd1.Instance = SDMMC1;
+  hsd1.Init.ClockEdge = SDMMC_CLOCK_EDGE_RISING;
+  hsd1.Init.ClockPowerSave = SDMMC_CLOCK_POWER_SAVE_DISABLE;
+  hsd1.Init.BusWide = SDMMC_BUS_WIDE_4B;
+  hsd1.Init.HardwareFlowControl = SDMMC_HARDWARE_FLOW_CONTROL_DISABLE;
+  hsd1.Init.ClockDiv = 0;
+  if (HAL_SD_Init(&hsd1) != HAL_OK)
   {
     Error_Handler();
   }
@@ -658,42 +664,6 @@ static void MX_USART1_UART_Init(void)
 }
 
 /**
-  * @brief USB_OTG_FS Initialization Function
-  * @param None
-  * @retval None
-  */
-static void MX_USB_OTG_FS_PCD_Init(void)
-{
-
-  /* USER CODE BEGIN USB_OTG_FS_Init 0 */
-
-  /* USER CODE END USB_OTG_FS_Init 0 */
-
-  /* USER CODE BEGIN USB_OTG_FS_Init 1 */
-
-  /* USER CODE END USB_OTG_FS_Init 1 */
-  hpcd_USB_OTG_FS.Instance = USB_OTG_FS;
-  hpcd_USB_OTG_FS.Init.dev_endpoints = 9;
-  hpcd_USB_OTG_FS.Init.speed = PCD_SPEED_FULL;
-  hpcd_USB_OTG_FS.Init.dma_enable = DISABLE;
-  hpcd_USB_OTG_FS.Init.phy_itface = PCD_PHY_EMBEDDED;
-  hpcd_USB_OTG_FS.Init.Sof_enable = DISABLE;
-  hpcd_USB_OTG_FS.Init.low_power_enable = DISABLE;
-  hpcd_USB_OTG_FS.Init.lpm_enable = DISABLE;
-  hpcd_USB_OTG_FS.Init.battery_charging_enable = DISABLE;
-  hpcd_USB_OTG_FS.Init.vbus_sensing_enable = DISABLE;
-  hpcd_USB_OTG_FS.Init.use_dedicated_ep1 = DISABLE;
-  if (HAL_PCD_Init(&hpcd_USB_OTG_FS) != HAL_OK)
-  {
-    Error_Handler();
-  }
-  /* USER CODE BEGIN USB_OTG_FS_Init 2 */
-
-  /* USER CODE END USB_OTG_FS_Init 2 */
-
-}
-
-/**
   * @brief GPIO Initialization Function
   * @param None
   * @retval None
@@ -720,15 +690,20 @@ static void MX_GPIO_Init(void)
   HAL_GPIO_WritePin(GPIOC, RF_DIO3_Pin|RF_DIO2_Pin, GPIO_PIN_RESET);
 
   /*Configure GPIO pin Output Level */
-  HAL_GPIO_WritePin(GPIOB, RF_DIO1_Pin|RF_DIO0_Pin|TPU_CAN_S_Pin|TPU_R_Pin
-                          |GPS_RESET_Pin, GPIO_PIN_RESET);
+  HAL_GPIO_WritePin(GPIOB, RF_DIO1_Pin|RF_DIO0_Pin|TPU_CAN_S_Pin|GPS_RESET_Pin, GPIO_PIN_RESET);
 
   /*Configure GPIO pin Output Level */
   HAL_GPIO_WritePin(BT_RESET_GPIO_Port, BT_RESET_Pin, GPIO_PIN_RESET);
 
   /*Configure GPIO pin Output Level */
-  HAL_GPIO_WritePin(GPIOD, TPU_G_Pin|TPU_B_Pin|SD_CD_Pin|GPS_SEL_Pin
-                          |GPS_SAFEBOOT_Pin|GPS_LNA_EN_Pin|GPS_CS_Pin, GPIO_PIN_RESET);
+  HAL_GPIO_WritePin(TPU_R_GPIO_Port, TPU_R_Pin, GPIO_PIN_SET);
+
+  /*Configure GPIO pin Output Level */
+  HAL_GPIO_WritePin(GPIOD, TPU_G_Pin|TPU_B_Pin, GPIO_PIN_SET);
+
+  /*Configure GPIO pin Output Level */
+  HAL_GPIO_WritePin(GPIOD, SD_CD_Pin|GPS_SEL_Pin|GPS_SAFEBOOT_Pin|GPS_LNA_EN_Pin
+                          |GPS_CS_Pin, GPIO_PIN_RESET);
 
   /*Configure GPIO pins : RF_RESET_Pin RF_DIO4_Pin RF_DIO5_Pin RF_CS_Pin */
   GPIO_InitStruct.Pin = RF_RESET_Pin|RF_DIO4_Pin|RF_DIO5_Pin|RF_CS_Pin;

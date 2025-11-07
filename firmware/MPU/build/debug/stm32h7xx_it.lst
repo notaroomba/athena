@@ -1,4 +1,4 @@
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccLNNbwl.s 			page 1
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc2y9pe7.s 			page 1
 
 
    1              		.cpu cortex-m7
@@ -58,7 +58,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccLNNbwl.s 			page 1
   29:Core/Src/stm32h7xx_it.c **** 
   30:Core/Src/stm32h7xx_it.c **** /* USER CODE END TD */
   31:Core/Src/stm32h7xx_it.c **** 
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccLNNbwl.s 			page 2
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc2y9pe7.s 			page 2
 
 
   32:Core/Src/stm32h7xx_it.c **** /* Private define ------------------------------------------------------------*/
@@ -87,7 +87,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccLNNbwl.s 			page 1
   55:Core/Src/stm32h7xx_it.c **** /* USER CODE END 0 */
   56:Core/Src/stm32h7xx_it.c **** 
   57:Core/Src/stm32h7xx_it.c **** /* External variables --------------------------------------------------------*/
-  58:Core/Src/stm32h7xx_it.c **** 
+  58:Core/Src/stm32h7xx_it.c **** extern PCD_HandleTypeDef hpcd_USB_OTG_FS;
   59:Core/Src/stm32h7xx_it.c **** /* USER CODE BEGIN EV */
   60:Core/Src/stm32h7xx_it.c **** 
   61:Core/Src/stm32h7xx_it.c **** /* USER CODE END EV */
@@ -118,7 +118,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccLNNbwl.s 			page 1
   36              		.loc 1 77 3 view .LVU2
   75:Core/Src/stm32h7xx_it.c ****   {
   37              		.loc 1 75 10 view .LVU3
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccLNNbwl.s 			page 3
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc2y9pe7.s 			page 3
 
 
   38 0000 FEE7     		b	.L2
@@ -178,7 +178,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccLNNbwl.s 			page 1
   99:Core/Src/stm32h7xx_it.c **** void MemManage_Handler(void)
  100:Core/Src/stm32h7xx_it.c **** {
   74              		.loc 1 100 1 view -0
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccLNNbwl.s 			page 4
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc2y9pe7.s 			page 4
 
 
   75              		.cfi_startproc
@@ -238,7 +238,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccLNNbwl.s 			page 1
  106              		.loc 1 119 9 view .LVU15
  107 0000 FEE7     		b	.L8
  108              		.cfi_endproc
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccLNNbwl.s 			page 5
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc2y9pe7.s 			page 5
 
 
  109              	.LFE147:
@@ -298,7 +298,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccLNNbwl.s 			page 1
  144              		.cfi_startproc
  145              		@ args = 0, pretend = 0, frame = 0
  146              		@ frame_needed = 0, uses_anonymous_args = 0
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccLNNbwl.s 			page 6
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc2y9pe7.s 			page 6
 
 
  147              		@ link register save eliminated.
@@ -358,7 +358,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccLNNbwl.s 			page 1
  170:Core/Src/stm32h7xx_it.c **** void PendSV_Handler(void)
  171:Core/Src/stm32h7xx_it.c **** {
  181              		.loc 1 171 1 view -0
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccLNNbwl.s 			page 7
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc2y9pe7.s 			page 7
 
 
  182              		.cfi_startproc
@@ -413,32 +413,95 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccLNNbwl.s 			page 1
  212 0006 08BD     		pop	{r3, pc}
  213              		.cfi_endproc
  214              	.LFE152:
- 216              		.text
- 217              	.Letext0:
- 218              		.file 2 "Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal.h"
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccLNNbwl.s 			page 8
+ 216              		.section	.text.OTG_FS_IRQHandler,"ax",%progbits
+ 217              		.align	1
+ 218              		.global	OTG_FS_IRQHandler
+ 219              		.syntax unified
+ 220              		.thumb
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc2y9pe7.s 			page 8
+
+
+ 221              		.thumb_func
+ 223              	OTG_FS_IRQHandler:
+ 224              	.LFB153:
+ 193:Core/Src/stm32h7xx_it.c **** 
+ 194:Core/Src/stm32h7xx_it.c **** /******************************************************************************/
+ 195:Core/Src/stm32h7xx_it.c **** /* STM32H7xx Peripheral Interrupt Handlers                                    */
+ 196:Core/Src/stm32h7xx_it.c **** /* Add here the Interrupt Handlers for the used peripherals.                  */
+ 197:Core/Src/stm32h7xx_it.c **** /* For the available peripheral interrupt handler names,                      */
+ 198:Core/Src/stm32h7xx_it.c **** /* please refer to the startup file (startup_stm32h7xx.s).                    */
+ 199:Core/Src/stm32h7xx_it.c **** /******************************************************************************/
+ 200:Core/Src/stm32h7xx_it.c **** 
+ 201:Core/Src/stm32h7xx_it.c **** /**
+ 202:Core/Src/stm32h7xx_it.c ****   * @brief This function handles USB On The Go FS global interrupt.
+ 203:Core/Src/stm32h7xx_it.c ****   */
+ 204:Core/Src/stm32h7xx_it.c **** void OTG_FS_IRQHandler(void)
+ 205:Core/Src/stm32h7xx_it.c **** {
+ 225              		.loc 1 205 1 is_stmt 1 view -0
+ 226              		.cfi_startproc
+ 227              		@ args = 0, pretend = 0, frame = 0
+ 228              		@ frame_needed = 0, uses_anonymous_args = 0
+ 229 0000 08B5     		push	{r3, lr}
+ 230              		.cfi_def_cfa_offset 8
+ 231              		.cfi_offset 3, -8
+ 232              		.cfi_offset 14, -4
+ 206:Core/Src/stm32h7xx_it.c ****   /* USER CODE BEGIN OTG_FS_IRQn 0 */
+ 207:Core/Src/stm32h7xx_it.c **** 
+ 208:Core/Src/stm32h7xx_it.c ****   /* USER CODE END OTG_FS_IRQn 0 */
+ 209:Core/Src/stm32h7xx_it.c ****   HAL_PCD_IRQHandler(&hpcd_USB_OTG_FS);
+ 233              		.loc 1 209 3 view .LVU30
+ 234 0002 0248     		ldr	r0, .L18
+ 235 0004 FFF7FEFF 		bl	HAL_PCD_IRQHandler
+ 236              	.LVL1:
+ 210:Core/Src/stm32h7xx_it.c ****   /* USER CODE BEGIN OTG_FS_IRQn 1 */
+ 211:Core/Src/stm32h7xx_it.c **** 
+ 212:Core/Src/stm32h7xx_it.c ****   /* USER CODE END OTG_FS_IRQn 1 */
+ 213:Core/Src/stm32h7xx_it.c **** }
+ 237              		.loc 1 213 1 is_stmt 0 view .LVU31
+ 238 0008 08BD     		pop	{r3, pc}
+ 239              	.L19:
+ 240 000a 00BF     		.align	2
+ 241              	.L18:
+ 242 000c 00000000 		.word	hpcd_USB_OTG_FS
+ 243              		.cfi_endproc
+ 244              	.LFE153:
+ 246              		.text
+ 247              	.Letext0:
+ 248              		.file 2 "C:/Users/Nathan/AppData/Roaming/Code/User/globalStorage/bmd.stm32-for-vscode/@xpack-dev-t
+ 249              		.file 3 "C:/Users/Nathan/AppData/Roaming/Code/User/globalStorage/bmd.stm32-for-vscode/@xpack-dev-t
+ 250              		.file 4 "Drivers/CMSIS/Device/ST/STM32H7xx/Include/stm32h753xx.h"
+ 251              		.file 5 "Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_def.h"
+ 252              		.file 6 "Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_ll_usb.h"
+ 253              		.file 7 "Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_pcd.h"
+ 254              		.file 8 "Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal.h"
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc2y9pe7.s 			page 9
 
 
 DEFINED SYMBOLS
                             *ABS*:00000000 stm32h7xx_it.c
-C:\Users\Nathan\AppData\Local\Temp\ccLNNbwl.s:20     .text.NMI_Handler:00000000 $t
-C:\Users\Nathan\AppData\Local\Temp\ccLNNbwl.s:26     .text.NMI_Handler:00000000 NMI_Handler
-C:\Users\Nathan\AppData\Local\Temp\ccLNNbwl.s:43     .text.HardFault_Handler:00000000 $t
-C:\Users\Nathan\AppData\Local\Temp\ccLNNbwl.s:49     .text.HardFault_Handler:00000000 HardFault_Handler
-C:\Users\Nathan\AppData\Local\Temp\ccLNNbwl.s:66     .text.MemManage_Handler:00000000 $t
-C:\Users\Nathan\AppData\Local\Temp\ccLNNbwl.s:72     .text.MemManage_Handler:00000000 MemManage_Handler
-C:\Users\Nathan\AppData\Local\Temp\ccLNNbwl.s:89     .text.BusFault_Handler:00000000 $t
-C:\Users\Nathan\AppData\Local\Temp\ccLNNbwl.s:95     .text.BusFault_Handler:00000000 BusFault_Handler
-C:\Users\Nathan\AppData\Local\Temp\ccLNNbwl.s:112    .text.UsageFault_Handler:00000000 $t
-C:\Users\Nathan\AppData\Local\Temp\ccLNNbwl.s:118    .text.UsageFault_Handler:00000000 UsageFault_Handler
-C:\Users\Nathan\AppData\Local\Temp\ccLNNbwl.s:135    .text.SVC_Handler:00000000 $t
-C:\Users\Nathan\AppData\Local\Temp\ccLNNbwl.s:141    .text.SVC_Handler:00000000 SVC_Handler
-C:\Users\Nathan\AppData\Local\Temp\ccLNNbwl.s:154    .text.DebugMon_Handler:00000000 $t
-C:\Users\Nathan\AppData\Local\Temp\ccLNNbwl.s:160    .text.DebugMon_Handler:00000000 DebugMon_Handler
-C:\Users\Nathan\AppData\Local\Temp\ccLNNbwl.s:173    .text.PendSV_Handler:00000000 $t
-C:\Users\Nathan\AppData\Local\Temp\ccLNNbwl.s:179    .text.PendSV_Handler:00000000 PendSV_Handler
-C:\Users\Nathan\AppData\Local\Temp\ccLNNbwl.s:192    .text.SysTick_Handler:00000000 $t
-C:\Users\Nathan\AppData\Local\Temp\ccLNNbwl.s:198    .text.SysTick_Handler:00000000 SysTick_Handler
+C:\Users\Nathan\AppData\Local\Temp\cc2y9pe7.s:20     .text.NMI_Handler:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\cc2y9pe7.s:26     .text.NMI_Handler:00000000 NMI_Handler
+C:\Users\Nathan\AppData\Local\Temp\cc2y9pe7.s:43     .text.HardFault_Handler:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\cc2y9pe7.s:49     .text.HardFault_Handler:00000000 HardFault_Handler
+C:\Users\Nathan\AppData\Local\Temp\cc2y9pe7.s:66     .text.MemManage_Handler:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\cc2y9pe7.s:72     .text.MemManage_Handler:00000000 MemManage_Handler
+C:\Users\Nathan\AppData\Local\Temp\cc2y9pe7.s:89     .text.BusFault_Handler:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\cc2y9pe7.s:95     .text.BusFault_Handler:00000000 BusFault_Handler
+C:\Users\Nathan\AppData\Local\Temp\cc2y9pe7.s:112    .text.UsageFault_Handler:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\cc2y9pe7.s:118    .text.UsageFault_Handler:00000000 UsageFault_Handler
+C:\Users\Nathan\AppData\Local\Temp\cc2y9pe7.s:135    .text.SVC_Handler:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\cc2y9pe7.s:141    .text.SVC_Handler:00000000 SVC_Handler
+C:\Users\Nathan\AppData\Local\Temp\cc2y9pe7.s:154    .text.DebugMon_Handler:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\cc2y9pe7.s:160    .text.DebugMon_Handler:00000000 DebugMon_Handler
+C:\Users\Nathan\AppData\Local\Temp\cc2y9pe7.s:173    .text.PendSV_Handler:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\cc2y9pe7.s:179    .text.PendSV_Handler:00000000 PendSV_Handler
+C:\Users\Nathan\AppData\Local\Temp\cc2y9pe7.s:192    .text.SysTick_Handler:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\cc2y9pe7.s:198    .text.SysTick_Handler:00000000 SysTick_Handler
+C:\Users\Nathan\AppData\Local\Temp\cc2y9pe7.s:217    .text.OTG_FS_IRQHandler:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\cc2y9pe7.s:223    .text.OTG_FS_IRQHandler:00000000 OTG_FS_IRQHandler
+C:\Users\Nathan\AppData\Local\Temp\cc2y9pe7.s:242    .text.OTG_FS_IRQHandler:0000000c $d
 
 UNDEFINED SYMBOLS
 HAL_IncTick
+HAL_PCD_IRQHandler
+hpcd_USB_OTG_FS

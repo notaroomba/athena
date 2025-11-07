@@ -33,26 +33,25 @@ cxxDefinitionsFile:
 asDefinitionsFile:
 
 # Compiler flags
-cFlags: 
+cFlags:
   - -Wall
   - -fdata-sections
   - -ffunction-sections
 
-cxxFlags: 
+cxxFlags:
   - -fno-rtti
   - -fno-exceptions
 
-assemblyFlags: 
+assemblyFlags:
   - -Wall
   - -fdata-sections
   - -ffunction-sections
 
-linkerFlags: 
+linkerFlags:
   - -Wl,--print-memory-usage
 
-
 # libraries to be included. The -l prefix to the library will be automatically added.
-libraries: 
+libraries:
   - c
   - m
 
@@ -63,35 +62,36 @@ libraryDirectories: []
 # Glob patterns (https://www.wikiwand.com/en/Glob_(programming)) can be used.
 # Do mind that double stars are reserved in yaml
 # these should be escaped with a: \ or the name should be in double quotes e.g. "**.test.**"
-excludes: 
+excludes:
   - "**/Examples/**"
   - "**/examples/**"
   - "**/Example/**"
   - "**/example/**"
   - "**_template.*"
 
-
 # Include directories (directories containing .h or .hpp files)
 # If a CubeMX makefile is present it will automatically include the include directories from that makefile.
-includeDirectories: 
+includeDirectories:
   - Inc/**
   - Core/Inc/**
   - Core/Lib/**
   - Src/**
   - Core/Src/**
   - Core/Lib/**
-
+  - USB_Device/App/**
+  - USB_Device/Target/**
 
 # Files that should be included in the compilation.
 # If a CubeMX makefile is present it will automatically include the  c and cpp/cxx files from that makefile.
 # Glob patterns (https://www.wikiwand.com/en/Glob_(programming)) can be used.
 # Do mind that double stars are reserved in yaml
 # these should be escaped with a: \ or the name should be in double quotes e.g. "HARDWARE_DRIVER*.c"
-sourceFiles:  
+sourceFiles:
   - Src/**
   - Core/Src/**
   - Core/Lib/**
-
+  - USB_Device/App/**
+  - USB_Device/Target/**
 
 # When no makefile is present it will show a warning pop-up.
 # However when compilation without the CubeMX Makefile is desired, this can be turned of.
@@ -103,10 +103,9 @@ suppressMakefileWarning: false
 customMakefileRules:
 # - command: sayhello
 #   rule: echo "hello"
-#   dependsOn: $(BUILD_DIR)/$(TARGET).elf # can be left out    
+#   dependsOn: $(BUILD_DIR)/$(TARGET).elf # can be left out
 
 # Additional flags which will be used when invoking the make command
 makeFlags:
 # - -O  # use this option when the output of make is mixed up only works for make version 4.0 and upwards
 # - --silent # use this option to silence the output of the build
-    
