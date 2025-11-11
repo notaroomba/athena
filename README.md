@@ -27,6 +27,7 @@ Advanced Flight Computer with Triple MCU Architecture
   <a href="#credits">Credits</a> •
   <a href="#license">License</a>
 </p>
+<img src="https://raw.githubusercontent.com/NotARoomba/Athena/main/assets/pcb_physical.jpg" alt="Athena Flight Computer Physical" width="500"/>
 
 ## Key Features
 
