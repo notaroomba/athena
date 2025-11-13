@@ -125,7 +125,6 @@ int main(void)
       .pin_b = TPU_B_Pin
   };
   Athena_Init(&led_pins);
-  Set_LED_Color(LED_BLUE);
 
   /* USER CODE END SysInit */
 
@@ -151,14 +150,10 @@ int main(void)
 
   while (1)
   {
-    CDC_Transmit_FS((uint8_t *)"Hello from TPU!\r\n", 22);
-    HAL_Delay(1000);
-    Set_LED_Color(LED_RED);
-    HAL_Delay(500);
-    Set_LED_Color(LED_GREEN);
-    HAL_Delay(500);
-    Set_LED_Color(LED_BLUE);
-    HAL_Delay(500);
+    // CDC_Transmit_FS((uint8_t *)"Hello from TPU!\r\n", 22);
+    // HAL_Delay(1000);
+    LED_Test_Sequence();
+    // HAL_Delay(500);
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */

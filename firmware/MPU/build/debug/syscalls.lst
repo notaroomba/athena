@@ -1,4 +1,4 @@
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccalrfnr.s 			page 1
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cczsquAO.s 			page 1
 
 
    1              		.cpu cortex-m7
@@ -58,7 +58,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccalrfnr.s 			page 1
   29:Core/Src/syscalls.c **** #include <time.h>
   30:Core/Src/syscalls.c **** #include <sys/time.h>
   31:Core/Src/syscalls.c **** #include <sys/times.h>
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccalrfnr.s 			page 2
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cczsquAO.s 			page 2
 
 
   32:Core/Src/syscalls.c **** 
@@ -118,7 +118,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccalrfnr.s 			page 1
   66              	_kill:
   67              	.LVL0:
   68              	.LFB27:
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccalrfnr.s 			page 3
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cczsquAO.s 			page 3
 
 
   52:Core/Src/syscalls.c **** 
@@ -178,7 +178,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccalrfnr.s 			page 1
  113              		.loc 1 63 3 is_stmt 1 view .LVU15
  114 0002 4FF0FF31 		mov	r1, #-1
  115 0006 FFF7FEFF 		bl	_kill
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccalrfnr.s 			page 4
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cczsquAO.s 			page 4
 
 
  116              	.LVL3:
@@ -238,7 +238,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccalrfnr.s 			page 1
  161              	.LVL7:
  162              		.loc 1 74 9 discriminator 1 view .LVU28
  163 000e 2146     		mov	r1, r4
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccalrfnr.s 			page 5
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cczsquAO.s 			page 5
 
 
  164              	.LVL8:
@@ -298,7 +298,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccalrfnr.s 			page 1
   83:Core/Src/syscalls.c ****   int DataIdx;
  210              		.loc 1 83 3 view .LVU39
   84:Core/Src/syscalls.c **** 
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccalrfnr.s 			page 6
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cczsquAO.s 			page 6
 
 
   85:Core/Src/syscalls.c ****   for (DataIdx = 0; DataIdx < len; DataIdx++)
@@ -358,7 +358,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccalrfnr.s 			page 1
   94:Core/Src/syscalls.c ****   (void)file;
  256              		.loc 1 94 3 view .LVU52
   95:Core/Src/syscalls.c ****   return -1;
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccalrfnr.s 			page 7
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cczsquAO.s 			page 7
 
 
  257              		.loc 1 95 3 view .LVU53
@@ -418,7 +418,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccalrfnr.s 			page 1
  106:Core/Src/syscalls.c **** int _isatty(int file)
  107:Core/Src/syscalls.c **** {
  305              		.loc 1 107 1 is_stmt 1 view -0
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccalrfnr.s 			page 8
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cczsquAO.s 			page 8
 
 
  306              		.cfi_startproc
@@ -478,7 +478,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccalrfnr.s 			page 1
  352              		.thumb_func
  354              	_open:
  355              	.LVL26:
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccalrfnr.s 			page 9
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cczsquAO.s 			page 9
 
 
  356              	.LFB35:
@@ -538,7 +538,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccalrfnr.s 			page 1
  401              		.cfi_offset 3, -8
  402              		.cfi_offset 14, -4
  130:Core/Src/syscalls.c ****   (void)status;
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccalrfnr.s 			page 10
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cczsquAO.s 			page 10
 
 
  403              		.loc 1 130 3 is_stmt 1 view .LVU84
@@ -598,7 +598,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccalrfnr.s 			page 1
  450              		.section	.text._times,"ax",%progbits
  451              		.align	1
  452              		.global	_times
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccalrfnr.s 			page 11
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cczsquAO.s 			page 11
 
 
  453              		.syntax unified
@@ -658,7 +658,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccalrfnr.s 			page 1
  497 0006 0020     		movs	r0, #0
  498              	.LVL35:
  499              		.loc 1 153 1 view .LVU107
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccalrfnr.s 			page 12
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cczsquAO.s 			page 12
 
 
  500 0008 7047     		bx	lr
@@ -718,7 +718,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccalrfnr.s 			page 1
  547              		.loc 1 164 1 is_stmt 1 view -0
  548              		.cfi_startproc
  549              		@ args = 0, pretend = 0, frame = 0
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccalrfnr.s 			page 13
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cczsquAO.s 			page 13
 
 
  550              		@ frame_needed = 0, uses_anonymous_args = 0
@@ -778,7 +778,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccalrfnr.s 			page 1
  175:Core/Src/syscalls.c ****   return -1;
  596              		.loc 1 175 3 is_stmt 1 view .LVU128
  176:Core/Src/syscalls.c **** }
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccalrfnr.s 			page 14
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cczsquAO.s 			page 14
 
 
  597              		.loc 1 176 1 is_stmt 0 view .LVU129
@@ -808,51 +808,51 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccalrfnr.s 			page 1
  626              		.file 7 "C:/Users/Nathan/AppData/Roaming/Code/User/globalStorage/bmd.stm32-for-vscode/@xpack-dev-t
  627              		.file 8 "C:/Users/Nathan/AppData/Roaming/Code/User/globalStorage/bmd.stm32-for-vscode/@xpack-dev-t
  628              		.file 9 "C:/Users/Nathan/AppData/Roaming/Code/User/globalStorage/bmd.stm32-for-vscode/@xpack-dev-t
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccalrfnr.s 			page 15
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cczsquAO.s 			page 15
 
 
 DEFINED SYMBOLS
                             *ABS*:00000000 syscalls.c
-C:\Users\Nathan\AppData\Local\Temp\ccalrfnr.s:20     .text.initialise_monitor_handles:00000000 $t
-C:\Users\Nathan\AppData\Local\Temp\ccalrfnr.s:26     .text.initialise_monitor_handles:00000000 initialise_monitor_handles
-C:\Users\Nathan\AppData\Local\Temp\ccalrfnr.s:39     .text._getpid:00000000 $t
-C:\Users\Nathan\AppData\Local\Temp\ccalrfnr.s:45     .text._getpid:00000000 _getpid
-C:\Users\Nathan\AppData\Local\Temp\ccalrfnr.s:60     .text._kill:00000000 $t
-C:\Users\Nathan\AppData\Local\Temp\ccalrfnr.s:66     .text._kill:00000000 _kill
-C:\Users\Nathan\AppData\Local\Temp\ccalrfnr.s:94     .text._exit:00000000 $t
-C:\Users\Nathan\AppData\Local\Temp\ccalrfnr.s:100    .text._exit:00000000 _exit
-C:\Users\Nathan\AppData\Local\Temp\ccalrfnr.s:126    .text._read:00000000 $t
-C:\Users\Nathan\AppData\Local\Temp\ccalrfnr.s:132    .text._read:00000000 _read
-C:\Users\Nathan\AppData\Local\Temp\ccalrfnr.s:187    .text._write:00000000 $t
-C:\Users\Nathan\AppData\Local\Temp\ccalrfnr.s:193    .text._write:00000000 _write
-C:\Users\Nathan\AppData\Local\Temp\ccalrfnr.s:242    .text._close:00000000 $t
-C:\Users\Nathan\AppData\Local\Temp\ccalrfnr.s:248    .text._close:00000000 _close
-C:\Users\Nathan\AppData\Local\Temp\ccalrfnr.s:267    .text._fstat:00000000 $t
-C:\Users\Nathan\AppData\Local\Temp\ccalrfnr.s:273    .text._fstat:00000000 _fstat
-C:\Users\Nathan\AppData\Local\Temp\ccalrfnr.s:296    .text._isatty:00000000 $t
-C:\Users\Nathan\AppData\Local\Temp\ccalrfnr.s:302    .text._isatty:00000000 _isatty
-C:\Users\Nathan\AppData\Local\Temp\ccalrfnr.s:321    .text._lseek:00000000 $t
-C:\Users\Nathan\AppData\Local\Temp\ccalrfnr.s:327    .text._lseek:00000000 _lseek
-C:\Users\Nathan\AppData\Local\Temp\ccalrfnr.s:348    .text._open:00000000 $t
-C:\Users\Nathan\AppData\Local\Temp\ccalrfnr.s:354    .text._open:00000000 _open
-C:\Users\Nathan\AppData\Local\Temp\ccalrfnr.s:385    .text._wait:00000000 $t
-C:\Users\Nathan\AppData\Local\Temp\ccalrfnr.s:391    .text._wait:00000000 _wait
-C:\Users\Nathan\AppData\Local\Temp\ccalrfnr.s:418    .text._unlink:00000000 $t
-C:\Users\Nathan\AppData\Local\Temp\ccalrfnr.s:424    .text._unlink:00000000 _unlink
-C:\Users\Nathan\AppData\Local\Temp\ccalrfnr.s:451    .text._times:00000000 $t
-C:\Users\Nathan\AppData\Local\Temp\ccalrfnr.s:457    .text._times:00000000 _times
-C:\Users\Nathan\AppData\Local\Temp\ccalrfnr.s:476    .text._stat:00000000 $t
-C:\Users\Nathan\AppData\Local\Temp\ccalrfnr.s:482    .text._stat:00000000 _stat
-C:\Users\Nathan\AppData\Local\Temp\ccalrfnr.s:505    .text._link:00000000 $t
-C:\Users\Nathan\AppData\Local\Temp\ccalrfnr.s:511    .text._link:00000000 _link
-C:\Users\Nathan\AppData\Local\Temp\ccalrfnr.s:539    .text._fork:00000000 $t
-C:\Users\Nathan\AppData\Local\Temp\ccalrfnr.s:545    .text._fork:00000000 _fork
-C:\Users\Nathan\AppData\Local\Temp\ccalrfnr.s:569    .text._execve:00000000 $t
-C:\Users\Nathan\AppData\Local\Temp\ccalrfnr.s:575    .text._execve:00000000 _execve
-C:\Users\Nathan\AppData\Local\Temp\ccalrfnr.s:608    .data.environ:00000000 environ
-C:\Users\Nathan\AppData\Local\Temp\ccalrfnr.s:605    .data.environ:00000000 $d
-C:\Users\Nathan\AppData\Local\Temp\ccalrfnr.s:615    .bss.__env:00000000 __env
-C:\Users\Nathan\AppData\Local\Temp\ccalrfnr.s:612    .bss.__env:00000000 $d
+C:\Users\Nathan\AppData\Local\Temp\cczsquAO.s:20     .text.initialise_monitor_handles:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\cczsquAO.s:26     .text.initialise_monitor_handles:00000000 initialise_monitor_handles
+C:\Users\Nathan\AppData\Local\Temp\cczsquAO.s:39     .text._getpid:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\cczsquAO.s:45     .text._getpid:00000000 _getpid
+C:\Users\Nathan\AppData\Local\Temp\cczsquAO.s:60     .text._kill:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\cczsquAO.s:66     .text._kill:00000000 _kill
+C:\Users\Nathan\AppData\Local\Temp\cczsquAO.s:94     .text._exit:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\cczsquAO.s:100    .text._exit:00000000 _exit
+C:\Users\Nathan\AppData\Local\Temp\cczsquAO.s:126    .text._read:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\cczsquAO.s:132    .text._read:00000000 _read
+C:\Users\Nathan\AppData\Local\Temp\cczsquAO.s:187    .text._write:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\cczsquAO.s:193    .text._write:00000000 _write
+C:\Users\Nathan\AppData\Local\Temp\cczsquAO.s:242    .text._close:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\cczsquAO.s:248    .text._close:00000000 _close
+C:\Users\Nathan\AppData\Local\Temp\cczsquAO.s:267    .text._fstat:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\cczsquAO.s:273    .text._fstat:00000000 _fstat
+C:\Users\Nathan\AppData\Local\Temp\cczsquAO.s:296    .text._isatty:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\cczsquAO.s:302    .text._isatty:00000000 _isatty
+C:\Users\Nathan\AppData\Local\Temp\cczsquAO.s:321    .text._lseek:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\cczsquAO.s:327    .text._lseek:00000000 _lseek
+C:\Users\Nathan\AppData\Local\Temp\cczsquAO.s:348    .text._open:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\cczsquAO.s:354    .text._open:00000000 _open
+C:\Users\Nathan\AppData\Local\Temp\cczsquAO.s:385    .text._wait:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\cczsquAO.s:391    .text._wait:00000000 _wait
+C:\Users\Nathan\AppData\Local\Temp\cczsquAO.s:418    .text._unlink:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\cczsquAO.s:424    .text._unlink:00000000 _unlink
+C:\Users\Nathan\AppData\Local\Temp\cczsquAO.s:451    .text._times:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\cczsquAO.s:457    .text._times:00000000 _times
+C:\Users\Nathan\AppData\Local\Temp\cczsquAO.s:476    .text._stat:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\cczsquAO.s:482    .text._stat:00000000 _stat
+C:\Users\Nathan\AppData\Local\Temp\cczsquAO.s:505    .text._link:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\cczsquAO.s:511    .text._link:00000000 _link
+C:\Users\Nathan\AppData\Local\Temp\cczsquAO.s:539    .text._fork:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\cczsquAO.s:545    .text._fork:00000000 _fork
+C:\Users\Nathan\AppData\Local\Temp\cczsquAO.s:569    .text._execve:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\cczsquAO.s:575    .text._execve:00000000 _execve
+C:\Users\Nathan\AppData\Local\Temp\cczsquAO.s:608    .data.environ:00000000 environ
+C:\Users\Nathan\AppData\Local\Temp\cczsquAO.s:605    .data.environ:00000000 $d
+C:\Users\Nathan\AppData\Local\Temp\cczsquAO.s:615    .bss.__env:00000000 __env
+C:\Users\Nathan\AppData\Local\Temp\cczsquAO.s:612    .bss.__env:00000000 $d
 
 UNDEFINED SYMBOLS
 __errno

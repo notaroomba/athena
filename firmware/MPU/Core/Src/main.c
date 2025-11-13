@@ -25,6 +25,8 @@
 
 #include "usbd_cdc_if.h"
 
+#include "athena.h"
+
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -113,7 +115,15 @@ int main(void)
   SystemClock_Config();
 
   /* USER CODE BEGIN SysInit */
-
+Athena_LED_PinConfig led_pins = {
+      .port_r = MPU_R_GPIO_Port,
+      .pin_r = MPU_R_Pin,
+      .port_g = MPU_G_GPIO_Port,
+      .pin_g = MPU_G_Pin,
+      .port_b = MPU_B_GPIO_Port,
+      .pin_b = MPU_B_Pin
+  };
+  Athena_Init(&led_pins);
   /* USER CODE END SysInit */
 
   /* Initialize all configured peripherals */
@@ -130,9 +140,9 @@ int main(void)
   MX_TIM1_Init();
   MX_USB_DEVICE_Init();
   /* USER CODE BEGIN 2 */
-  MX_USB_DEVICE_Init();
+  // MX_USB_DEVICE_Init();
 
-  HAL_Delay(2000);
+  // HAL_Delay(2000);
   // HAL_GPIO_WritePin(MPU_B_GPIO_Port, MPU_B_Pin, GPIO_PIN_SET);
   // HAL_Delay(500);
   // HAL_GPIO_WritePin(MPU_B_GPIO_Port, MPU_B_Pin, GPIO_PIN_RESET);
@@ -144,7 +154,8 @@ int main(void)
   while (1)
   {
   uint8_t cdc_message[] = "MPU Initialized\r\n";
-  CDC_Transmit_FS(cdc_message, sizeof(cdc_message) - 1);
+  CDC_Transmit_FS(cdc_message, sizeof(cdc_message));
+  LED_Test_Sequence();
     // HAL_GPIO_WritePin(MPU_B_GPIO_Port, MPU_B_Pin, GPIO_PIN_SET);
     // HAL_Delay(1000);
     // HAL_GPIO_WritePin(MPU_B_GPIO_Port, MPU_B_Pin, GPIO_PIN_RESET);
@@ -729,11 +740,13 @@ static void MX_GPIO_Init(void)
   HAL_GPIO_WritePin(TPU_SELECT_GPIO_Port, TPU_SELECT_Pin, GPIO_PIN_RESET);
 
   /*Configure GPIO pin Output Level */
-  HAL_GPIO_WritePin(GPIOB, MAG_CS_Pin|MPU_R_Pin|MPU_G_Pin|MPU_B_Pin
-                          |SPU_SELECT_Pin, GPIO_PIN_RESET);
+  HAL_GPIO_WritePin(GPIOB, MAG_CS_Pin|SPU_SELECT_Pin, GPIO_PIN_RESET);
 
   /*Configure GPIO pin Output Level */
   HAL_GPIO_WritePin(GPIOE, IMU1_INT_Pin|IMU1_CS_Pin|IMU2_INT_Pin, GPIO_PIN_RESET);
+
+  /*Configure GPIO pin Output Level */
+  HAL_GPIO_WritePin(GPIOB, MPU_R_Pin|MPU_G_Pin|MPU_B_Pin, GPIO_PIN_SET);
 
   /*Configure GPIO pin Output Level */
   HAL_GPIO_WritePin(GPIOD, MPU_CAN_S_Pin|BMP_CS_Pin|BMP_INT_Pin|ICP_CS_Pin
@@ -746,8 +759,10 @@ static void MX_GPIO_Init(void)
   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
   HAL_GPIO_Init(TPU_SELECT_GPIO_Port, &GPIO_InitStruct);
 
-  /*Configure GPIO pins : MAG_CS_Pin MPU_B_Pin SPU_SELECT_Pin */
-  GPIO_InitStruct.Pin = MAG_CS_Pin|MPU_B_Pin|SPU_SELECT_Pin;
+  /*Configure GPIO pins : MAG_CS_Pin MPU_R_Pin MPU_G_Pin MPU_B_Pin
+                           SPU_SELECT_Pin */
+  GPIO_InitStruct.Pin = MAG_CS_Pin|MPU_R_Pin|MPU_G_Pin|MPU_B_Pin
+                          |SPU_SELECT_Pin;
   GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
   GPIO_InitStruct.Pull = GPIO_NOPULL;
   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
@@ -765,13 +780,6 @@ static void MX_GPIO_Init(void)
   GPIO_InitStruct.Mode = GPIO_MODE_IT_RISING;
   GPIO_InitStruct.Pull = GPIO_NOPULL;
   HAL_GPIO_Init(GPIOE, &GPIO_InitStruct);
-
-  /*Configure GPIO pins : MPU_R_Pin MPU_G_Pin */
-  GPIO_InitStruct.Pin = MPU_R_Pin|MPU_G_Pin;
-  GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_OD;
-  GPIO_InitStruct.Pull = GPIO_NOPULL;
-  GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
-  HAL_GPIO_Init(GPIOB, &GPIO_InitStruct);
 
   /*Configure GPIO pins : MPU_CAN_S_Pin BMP_CS_Pin BMP_INT_Pin ICP_CS_Pin
                            ICP_INT_Pin */

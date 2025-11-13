@@ -34,8 +34,9 @@ typedef struct  {
 
 
 
-static void Athena_Init(Athena_LED_PinConfig* config);
-static void Set_LED_Color(LED_ColorTypeDef color);
+void Athena_Init(Athena_LED_PinConfig* config);
+void Set_LED_Color(LED_ColorTypeDef color);
+void LED_Test_Sequence(void);
 
 #ifdef __cplusplus
 }

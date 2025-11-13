@@ -3,6 +3,7 @@
     {
       "name": "STM32",
       "includePath": [
+        "../Athena",
         "Core/Inc",
         "Drivers/CMSIS/Device/ST/STM32H7xx/Include",
         "Drivers/CMSIS/Include",

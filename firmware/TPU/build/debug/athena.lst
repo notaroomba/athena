@@ -1,0 +1,553 @@
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccnMJmaf.s 			page 1
+
+
+   1              		.cpu cortex-m7
+   2              		.arch armv7e-m
+   3              		.fpu fpv5-d16
+   4              		.eabi_attribute 28, 1
+   5              		.eabi_attribute 20, 1
+   6              		.eabi_attribute 21, 1
+   7              		.eabi_attribute 23, 3
+   8              		.eabi_attribute 24, 1
+   9              		.eabi_attribute 25, 1
+  10              		.eabi_attribute 26, 1
+  11              		.eabi_attribute 30, 1
+  12              		.eabi_attribute 34, 1
+  13              		.eabi_attribute 18, 4
+  14              		.file	"athena.c"
+  15              		.text
+  16              	.Ltext0:
+  17              		.cfi_sections	.debug_frame
+  18              		.file 1 "../Athena/athena.c"
+  19              		.section	.text.Athena_Init,"ax",%progbits
+  20              		.align	1
+  21              		.global	Athena_Init
+  22              		.syntax unified
+  23              		.thumb
+  24              		.thumb_func
+  26              	Athena_Init:
+  27              	.LVL0:
+  28              	.LFB0:
+   1:../Athena/athena.c **** /* VERSION 1*/
+   2:../Athena/athena.c **** 
+   3:../Athena/athena.c **** #include "athena.h"
+   4:../Athena/athena.c **** 
+   5:../Athena/athena.c **** /* Forward Declaration Start */
+   6:../Athena/athena.c **** extern void HAL_GPIO_WritePin(void* GPIOx, uint16_t GPIO_Pin, int PinState);
+   7:../Athena/athena.c **** extern void HAL_Delay(uint32_t Delay);
+   8:../Athena/athena.c **** /* Forward Declaration End */
+   9:../Athena/athena.c **** 
+  10:../Athena/athena.c **** Athena_LED_PinConfig led_config;
+  11:../Athena/athena.c **** 
+  12:../Athena/athena.c **** void Athena_Init(Athena_LED_PinConfig* config) {
+  29              		.loc 1 12 48 view -0
+  30              		.cfi_startproc
+  31              		@ args = 0, pretend = 0, frame = 0
+  32              		@ frame_needed = 0, uses_anonymous_args = 0
+  33              		@ link register save eliminated.
+  34              		.loc 1 12 48 is_stmt 0 view .LVU1
+  35 0000 10B4     		push	{r4}
+  36              		.cfi_def_cfa_offset 4
+  37              		.cfi_offset 4, -4
+  13:../Athena/athena.c ****     led_config = *config;
+  38              		.loc 1 13 5 is_stmt 1 view .LVU2
+  39              		.loc 1 13 16 is_stmt 0 view .LVU3
+  40 0002 064C     		ldr	r4, .L3
+  41 0004 8446     		mov	ip, r0
+  42 0006 BCE80F00 		ldmia	ip!, {r0, r1, r2, r3}
+  43              	.LVL1:
+  44              		.loc 1 13 16 view .LVU4
+  45 000a 0FC4     		stmia	r4!, {r0, r1, r2, r3}
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccnMJmaf.s 			page 2
+
+
+  46 000c 9CE80300 		ldm	ip, {r0, r1}
+  47 0010 84E80300 		stm	r4, {r0, r1}
+  14:../Athena/athena.c **** }
+  48              		.loc 1 14 1 view .LVU5
+  49 0014 5DF8044B 		ldr	r4, [sp], #4
+  50              		.cfi_restore 4
+  51              		.cfi_def_cfa_offset 0
+  52 0018 7047     		bx	lr
+  53              	.L4:
+  54 001a 00BF     		.align	2
+  55              	.L3:
+  56 001c 00000000 		.word	led_config
+  57              		.cfi_endproc
+  58              	.LFE0:
+  60              		.section	.text.Set_LED_Color,"ax",%progbits
+  61              		.align	1
+  62              		.global	Set_LED_Color
+  63              		.syntax unified
+  64              		.thumb
+  65              		.thumb_func
+  67              	Set_LED_Color:
+  68              	.LVL2:
+  69              	.LFB1:
+  15:../Athena/athena.c **** 
+  16:../Athena/athena.c **** void Set_LED_Color(LED_ColorTypeDef color) {
+  70              		.loc 1 16 44 is_stmt 1 view -0
+  71              		.cfi_startproc
+  72              		@ args = 0, pretend = 0, frame = 0
+  73              		@ frame_needed = 0, uses_anonymous_args = 0
+  74              		.loc 1 16 44 is_stmt 0 view .LVU7
+  75 0000 10B5     		push	{r4, lr}
+  76              		.cfi_def_cfa_offset 8
+  77              		.cfi_offset 4, -8
+  78              		.cfi_offset 14, -4
+  17:../Athena/athena.c ****     switch (color) {
+  79              		.loc 1 17 5 is_stmt 1 view .LVU8
+  80 0002 0728     		cmp	r0, #7
+  81 0004 15D8     		bhi	.L5
+  82 0006 DFE800F0 		tbb	[pc, r0]
+  83              	.L8:
+  84 000a 04       		.byte	(.L15-.L8)/2
+  85 000b 15       		.byte	(.L14-.L8)/2
+  86 000c 26       		.byte	(.L13-.L8)/2
+  87 000d 37       		.byte	(.L12-.L8)/2
+  88 000e 48       		.byte	(.L11-.L8)/2
+  89 000f 59       		.byte	(.L10-.L8)/2
+  90 0010 6A       		.byte	(.L9-.L8)/2
+  91 0011 7B       		.byte	(.L7-.L8)/2
+  92              		.p2align 1
+  93              	.L15:
+  18:../Athena/athena.c ****         case LED_OFF:
+  19:../Athena/athena.c ****             HAL_GPIO_WritePin(led_config.port_r, led_config.pin_r, 1);
+  94              		.loc 1 19 13 view .LVU9
+  95 0012 444C     		ldr	r4, .L18
+  96 0014 0122     		movs	r2, #1
+  97 0016 A188     		ldrh	r1, [r4, #4]
+  98 0018 2068     		ldr	r0, [r4]
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccnMJmaf.s 			page 3
+
+
+  99              	.LVL3:
+ 100              		.loc 1 19 13 is_stmt 0 view .LVU10
+ 101 001a FFF7FEFF 		bl	HAL_GPIO_WritePin
+ 102              	.LVL4:
+  20:../Athena/athena.c ****             HAL_GPIO_WritePin(led_config.port_g, led_config.pin_g, 1);
+ 103              		.loc 1 20 13 is_stmt 1 view .LVU11
+ 104 001e 0122     		movs	r2, #1
+ 105 0020 A189     		ldrh	r1, [r4, #12]
+ 106 0022 A068     		ldr	r0, [r4, #8]
+ 107 0024 FFF7FEFF 		bl	HAL_GPIO_WritePin
+ 108              	.LVL5:
+  21:../Athena/athena.c ****             HAL_GPIO_WritePin(led_config.port_b, led_config.pin_b, 1);
+ 109              		.loc 1 21 13 view .LVU12
+ 110 0028 0122     		movs	r2, #1
+ 111 002a A18A     		ldrh	r1, [r4, #20]
+ 112 002c 2069     		ldr	r0, [r4, #16]
+ 113 002e FFF7FEFF 		bl	HAL_GPIO_WritePin
+ 114              	.LVL6:
+  22:../Athena/athena.c ****             break;
+ 115              		.loc 1 22 13 view .LVU13
+ 116              	.L5:
+  23:../Athena/athena.c ****         case LED_RED:
+  24:../Athena/athena.c ****             HAL_GPIO_WritePin(led_config.port_r, led_config.pin_r, 0);
+  25:../Athena/athena.c ****             HAL_GPIO_WritePin(led_config.port_g, led_config.pin_g, 1);
+  26:../Athena/athena.c ****             HAL_GPIO_WritePin(led_config.port_b, led_config.pin_b, 1);
+  27:../Athena/athena.c ****             break;
+  28:../Athena/athena.c ****         case LED_GREEN:
+  29:../Athena/athena.c ****             HAL_GPIO_WritePin(led_config.port_r, led_config.pin_r, 1);
+  30:../Athena/athena.c ****             HAL_GPIO_WritePin(led_config.port_g, led_config.pin_g, 0);
+  31:../Athena/athena.c ****             HAL_GPIO_WritePin(led_config.port_b, led_config.pin_b, 1);
+  32:../Athena/athena.c ****             break;
+  33:../Athena/athena.c ****         case LED_BLUE:
+  34:../Athena/athena.c ****             HAL_GPIO_WritePin(led_config.port_r, led_config.pin_r, 1);
+  35:../Athena/athena.c ****             HAL_GPIO_WritePin(led_config.port_g, led_config.pin_g, 1);
+  36:../Athena/athena.c ****             HAL_GPIO_WritePin(led_config.port_b, led_config.pin_b, 0);
+  37:../Athena/athena.c ****             break;
+  38:../Athena/athena.c ****         case LED_YELLOW:
+  39:../Athena/athena.c ****             HAL_GPIO_WritePin(led_config.port_r, led_config.pin_r, 0);
+  40:../Athena/athena.c ****             HAL_GPIO_WritePin(led_config.port_g, led_config.pin_g, 0);
+  41:../Athena/athena.c ****             HAL_GPIO_WritePin(led_config.port_b, led_config.pin_b, 1);
+  42:../Athena/athena.c ****             break;
+  43:../Athena/athena.c ****         case LED_CYAN:
+  44:../Athena/athena.c ****             HAL_GPIO_WritePin(led_config.port_r, led_config.pin_r, 1);
+  45:../Athena/athena.c ****             HAL_GPIO_WritePin(led_config.port_g, led_config.pin_g, 0);
+  46:../Athena/athena.c ****             HAL_GPIO_WritePin(led_config.port_b, led_config.pin_b, 0);
+  47:../Athena/athena.c ****             break;
+  48:../Athena/athena.c ****         case LED_MAGENTA:
+  49:../Athena/athena.c ****             HAL_GPIO_WritePin(led_config.port_r, led_config.pin_r, 0);
+  50:../Athena/athena.c ****             HAL_GPIO_WritePin(led_config.port_g, led_config.pin_g, 1);
+  51:../Athena/athena.c ****             HAL_GPIO_WritePin(led_config.port_b, led_config.pin_b, 0);
+  52:../Athena/athena.c ****             break;
+  53:../Athena/athena.c ****         case LED_WHITE:
+  54:../Athena/athena.c ****             HAL_GPIO_WritePin(led_config.port_r, led_config.pin_r, 0);
+  55:../Athena/athena.c ****             HAL_GPIO_WritePin(led_config.port_g, led_config.pin_g, 0);
+  56:../Athena/athena.c ****             HAL_GPIO_WritePin(led_config.port_b, led_config.pin_b, 0);
+  57:../Athena/athena.c ****             break;
+  58:../Athena/athena.c ****         default:
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccnMJmaf.s 			page 4
+
+
+  59:../Athena/athena.c ****             break;
+  60:../Athena/athena.c ****     }
+  61:../Athena/athena.c **** }
+ 117              		.loc 1 61 1 is_stmt 0 view .LVU14
+ 118 0032 10BD     		pop	{r4, pc}
+ 119              	.LVL7:
+ 120              	.L14:
+  24:../Athena/athena.c ****             HAL_GPIO_WritePin(led_config.port_g, led_config.pin_g, 1);
+ 121              		.loc 1 24 13 is_stmt 1 view .LVU15
+ 122 0034 3B4C     		ldr	r4, .L18
+ 123 0036 0022     		movs	r2, #0
+ 124 0038 A188     		ldrh	r1, [r4, #4]
+ 125 003a 2068     		ldr	r0, [r4]
+ 126              	.LVL8:
+  24:../Athena/athena.c ****             HAL_GPIO_WritePin(led_config.port_g, led_config.pin_g, 1);
+ 127              		.loc 1 24 13 is_stmt 0 view .LVU16
+ 128 003c FFF7FEFF 		bl	HAL_GPIO_WritePin
+ 129              	.LVL9:
+  25:../Athena/athena.c ****             HAL_GPIO_WritePin(led_config.port_b, led_config.pin_b, 1);
+ 130              		.loc 1 25 13 is_stmt 1 view .LVU17
+ 131 0040 0122     		movs	r2, #1
+ 132 0042 A189     		ldrh	r1, [r4, #12]
+ 133 0044 A068     		ldr	r0, [r4, #8]
+ 134 0046 FFF7FEFF 		bl	HAL_GPIO_WritePin
+ 135              	.LVL10:
+  26:../Athena/athena.c ****             break;
+ 136              		.loc 1 26 13 view .LVU18
+ 137 004a 0122     		movs	r2, #1
+ 138 004c A18A     		ldrh	r1, [r4, #20]
+ 139 004e 2069     		ldr	r0, [r4, #16]
+ 140 0050 FFF7FEFF 		bl	HAL_GPIO_WritePin
+ 141              	.LVL11:
+  27:../Athena/athena.c ****         case LED_GREEN:
+ 142              		.loc 1 27 13 view .LVU19
+ 143 0054 EDE7     		b	.L5
+ 144              	.LVL12:
+ 145              	.L13:
+  29:../Athena/athena.c ****             HAL_GPIO_WritePin(led_config.port_g, led_config.pin_g, 0);
+ 146              		.loc 1 29 13 view .LVU20
+ 147 0056 334C     		ldr	r4, .L18
+ 148 0058 0122     		movs	r2, #1
+ 149 005a A188     		ldrh	r1, [r4, #4]
+ 150 005c 2068     		ldr	r0, [r4]
+ 151              	.LVL13:
+  29:../Athena/athena.c ****             HAL_GPIO_WritePin(led_config.port_g, led_config.pin_g, 0);
+ 152              		.loc 1 29 13 is_stmt 0 view .LVU21
+ 153 005e FFF7FEFF 		bl	HAL_GPIO_WritePin
+ 154              	.LVL14:
+  30:../Athena/athena.c ****             HAL_GPIO_WritePin(led_config.port_b, led_config.pin_b, 1);
+ 155              		.loc 1 30 13 is_stmt 1 view .LVU22
+ 156 0062 0022     		movs	r2, #0
+ 157 0064 A189     		ldrh	r1, [r4, #12]
+ 158 0066 A068     		ldr	r0, [r4, #8]
+ 159 0068 FFF7FEFF 		bl	HAL_GPIO_WritePin
+ 160              	.LVL15:
+  31:../Athena/athena.c ****             break;
+ 161              		.loc 1 31 13 view .LVU23
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccnMJmaf.s 			page 5
+
+
+ 162 006c 0122     		movs	r2, #1
+ 163 006e A18A     		ldrh	r1, [r4, #20]
+ 164 0070 2069     		ldr	r0, [r4, #16]
+ 165 0072 FFF7FEFF 		bl	HAL_GPIO_WritePin
+ 166              	.LVL16:
+  32:../Athena/athena.c ****         case LED_BLUE:
+ 167              		.loc 1 32 13 view .LVU24
+ 168 0076 DCE7     		b	.L5
+ 169              	.LVL17:
+ 170              	.L12:
+  34:../Athena/athena.c ****             HAL_GPIO_WritePin(led_config.port_g, led_config.pin_g, 1);
+ 171              		.loc 1 34 13 view .LVU25
+ 172 0078 2A4C     		ldr	r4, .L18
+ 173 007a 0122     		movs	r2, #1
+ 174 007c A188     		ldrh	r1, [r4, #4]
+ 175 007e 2068     		ldr	r0, [r4]
+ 176              	.LVL18:
+  34:../Athena/athena.c ****             HAL_GPIO_WritePin(led_config.port_g, led_config.pin_g, 1);
+ 177              		.loc 1 34 13 is_stmt 0 view .LVU26
+ 178 0080 FFF7FEFF 		bl	HAL_GPIO_WritePin
+ 179              	.LVL19:
+  35:../Athena/athena.c ****             HAL_GPIO_WritePin(led_config.port_b, led_config.pin_b, 0);
+ 180              		.loc 1 35 13 is_stmt 1 view .LVU27
+ 181 0084 0122     		movs	r2, #1
+ 182 0086 A189     		ldrh	r1, [r4, #12]
+ 183 0088 A068     		ldr	r0, [r4, #8]
+ 184 008a FFF7FEFF 		bl	HAL_GPIO_WritePin
+ 185              	.LVL20:
+  36:../Athena/athena.c ****             break;
+ 186              		.loc 1 36 13 view .LVU28
+ 187 008e 0022     		movs	r2, #0
+ 188 0090 A18A     		ldrh	r1, [r4, #20]
+ 189 0092 2069     		ldr	r0, [r4, #16]
+ 190 0094 FFF7FEFF 		bl	HAL_GPIO_WritePin
+ 191              	.LVL21:
+  37:../Athena/athena.c ****         case LED_YELLOW:
+ 192              		.loc 1 37 13 view .LVU29
+ 193 0098 CBE7     		b	.L5
+ 194              	.LVL22:
+ 195              	.L11:
+  39:../Athena/athena.c ****             HAL_GPIO_WritePin(led_config.port_g, led_config.pin_g, 0);
+ 196              		.loc 1 39 13 view .LVU30
+ 197 009a 224C     		ldr	r4, .L18
+ 198 009c 0022     		movs	r2, #0
+ 199 009e A188     		ldrh	r1, [r4, #4]
+ 200 00a0 2068     		ldr	r0, [r4]
+ 201              	.LVL23:
+  39:../Athena/athena.c ****             HAL_GPIO_WritePin(led_config.port_g, led_config.pin_g, 0);
+ 202              		.loc 1 39 13 is_stmt 0 view .LVU31
+ 203 00a2 FFF7FEFF 		bl	HAL_GPIO_WritePin
+ 204              	.LVL24:
+  40:../Athena/athena.c ****             HAL_GPIO_WritePin(led_config.port_b, led_config.pin_b, 1);
+ 205              		.loc 1 40 13 is_stmt 1 view .LVU32
+ 206 00a6 0022     		movs	r2, #0
+ 207 00a8 A189     		ldrh	r1, [r4, #12]
+ 208 00aa A068     		ldr	r0, [r4, #8]
+ 209 00ac FFF7FEFF 		bl	HAL_GPIO_WritePin
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccnMJmaf.s 			page 6
+
+
+ 210              	.LVL25:
+  41:../Athena/athena.c ****             break;
+ 211              		.loc 1 41 13 view .LVU33
+ 212 00b0 0122     		movs	r2, #1
+ 213 00b2 A18A     		ldrh	r1, [r4, #20]
+ 214 00b4 2069     		ldr	r0, [r4, #16]
+ 215 00b6 FFF7FEFF 		bl	HAL_GPIO_WritePin
+ 216              	.LVL26:
+  42:../Athena/athena.c ****         case LED_CYAN:
+ 217              		.loc 1 42 13 view .LVU34
+ 218 00ba BAE7     		b	.L5
+ 219              	.LVL27:
+ 220              	.L10:
+  44:../Athena/athena.c ****             HAL_GPIO_WritePin(led_config.port_g, led_config.pin_g, 0);
+ 221              		.loc 1 44 13 view .LVU35
+ 222 00bc 194C     		ldr	r4, .L18
+ 223 00be 0122     		movs	r2, #1
+ 224 00c0 A188     		ldrh	r1, [r4, #4]
+ 225 00c2 2068     		ldr	r0, [r4]
+ 226              	.LVL28:
+  44:../Athena/athena.c ****             HAL_GPIO_WritePin(led_config.port_g, led_config.pin_g, 0);
+ 227              		.loc 1 44 13 is_stmt 0 view .LVU36
+ 228 00c4 FFF7FEFF 		bl	HAL_GPIO_WritePin
+ 229              	.LVL29:
+  45:../Athena/athena.c ****             HAL_GPIO_WritePin(led_config.port_b, led_config.pin_b, 0);
+ 230              		.loc 1 45 13 is_stmt 1 view .LVU37
+ 231 00c8 0022     		movs	r2, #0
+ 232 00ca A189     		ldrh	r1, [r4, #12]
+ 233 00cc A068     		ldr	r0, [r4, #8]
+ 234 00ce FFF7FEFF 		bl	HAL_GPIO_WritePin
+ 235              	.LVL30:
+  46:../Athena/athena.c ****             break;
+ 236              		.loc 1 46 13 view .LVU38
+ 237 00d2 0022     		movs	r2, #0
+ 238 00d4 A18A     		ldrh	r1, [r4, #20]
+ 239 00d6 2069     		ldr	r0, [r4, #16]
+ 240 00d8 FFF7FEFF 		bl	HAL_GPIO_WritePin
+ 241              	.LVL31:
+  47:../Athena/athena.c ****         case LED_MAGENTA:
+ 242              		.loc 1 47 13 view .LVU39
+ 243 00dc A9E7     		b	.L5
+ 244              	.LVL32:
+ 245              	.L9:
+  49:../Athena/athena.c ****             HAL_GPIO_WritePin(led_config.port_g, led_config.pin_g, 1);
+ 246              		.loc 1 49 13 view .LVU40
+ 247 00de 114C     		ldr	r4, .L18
+ 248 00e0 0022     		movs	r2, #0
+ 249 00e2 A188     		ldrh	r1, [r4, #4]
+ 250 00e4 2068     		ldr	r0, [r4]
+ 251              	.LVL33:
+  49:../Athena/athena.c ****             HAL_GPIO_WritePin(led_config.port_g, led_config.pin_g, 1);
+ 252              		.loc 1 49 13 is_stmt 0 view .LVU41
+ 253 00e6 FFF7FEFF 		bl	HAL_GPIO_WritePin
+ 254              	.LVL34:
+  50:../Athena/athena.c ****             HAL_GPIO_WritePin(led_config.port_b, led_config.pin_b, 0);
+ 255              		.loc 1 50 13 is_stmt 1 view .LVU42
+ 256 00ea 0122     		movs	r2, #1
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccnMJmaf.s 			page 7
+
+
+ 257 00ec A189     		ldrh	r1, [r4, #12]
+ 258 00ee A068     		ldr	r0, [r4, #8]
+ 259 00f0 FFF7FEFF 		bl	HAL_GPIO_WritePin
+ 260              	.LVL35:
+  51:../Athena/athena.c ****             break;
+ 261              		.loc 1 51 13 view .LVU43
+ 262 00f4 0022     		movs	r2, #0
+ 263 00f6 A18A     		ldrh	r1, [r4, #20]
+ 264 00f8 2069     		ldr	r0, [r4, #16]
+ 265 00fa FFF7FEFF 		bl	HAL_GPIO_WritePin
+ 266              	.LVL36:
+  52:../Athena/athena.c ****         case LED_WHITE:
+ 267              		.loc 1 52 13 view .LVU44
+ 268 00fe 98E7     		b	.L5
+ 269              	.LVL37:
+ 270              	.L7:
+  54:../Athena/athena.c ****             HAL_GPIO_WritePin(led_config.port_g, led_config.pin_g, 0);
+ 271              		.loc 1 54 13 view .LVU45
+ 272 0100 084C     		ldr	r4, .L18
+ 273 0102 0022     		movs	r2, #0
+ 274 0104 A188     		ldrh	r1, [r4, #4]
+ 275 0106 2068     		ldr	r0, [r4]
+ 276              	.LVL38:
+  54:../Athena/athena.c ****             HAL_GPIO_WritePin(led_config.port_g, led_config.pin_g, 0);
+ 277              		.loc 1 54 13 is_stmt 0 view .LVU46
+ 278 0108 FFF7FEFF 		bl	HAL_GPIO_WritePin
+ 279              	.LVL39:
+  55:../Athena/athena.c ****             HAL_GPIO_WritePin(led_config.port_b, led_config.pin_b, 0);
+ 280              		.loc 1 55 13 is_stmt 1 view .LVU47
+ 281 010c 0022     		movs	r2, #0
+ 282 010e A189     		ldrh	r1, [r4, #12]
+ 283 0110 A068     		ldr	r0, [r4, #8]
+ 284 0112 FFF7FEFF 		bl	HAL_GPIO_WritePin
+ 285              	.LVL40:
+  56:../Athena/athena.c ****             break;
+ 286              		.loc 1 56 13 view .LVU48
+ 287 0116 0022     		movs	r2, #0
+ 288 0118 A18A     		ldrh	r1, [r4, #20]
+ 289 011a 2069     		ldr	r0, [r4, #16]
+ 290 011c FFF7FEFF 		bl	HAL_GPIO_WritePin
+ 291              	.LVL41:
+  57:../Athena/athena.c ****         default:
+ 292              		.loc 1 57 13 view .LVU49
+ 293              		.loc 1 61 1 is_stmt 0 view .LVU50
+ 294 0120 87E7     		b	.L5
+ 295              	.L19:
+ 296 0122 00BF     		.align	2
+ 297              	.L18:
+ 298 0124 00000000 		.word	led_config
+ 299              		.cfi_endproc
+ 300              	.LFE1:
+ 302              		.section	.text.LED_Test_Sequence,"ax",%progbits
+ 303              		.align	1
+ 304              		.global	LED_Test_Sequence
+ 305              		.syntax unified
+ 306              		.thumb
+ 307              		.thumb_func
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccnMJmaf.s 			page 8
+
+
+ 309              	LED_Test_Sequence:
+ 310              	.LFB2:
+  62:../Athena/athena.c **** 
+  63:../Athena/athena.c **** void LED_Test_Sequence() {
+ 311              		.loc 1 63 26 is_stmt 1 view -0
+ 312              		.cfi_startproc
+ 313              		@ args = 0, pretend = 0, frame = 0
+ 314              		@ frame_needed = 0, uses_anonymous_args = 0
+ 315 0000 08B5     		push	{r3, lr}
+ 316              		.cfi_def_cfa_offset 8
+ 317              		.cfi_offset 3, -8
+ 318              		.cfi_offset 14, -4
+  64:../Athena/athena.c ****     Set_LED_Color(LED_RED);
+ 319              		.loc 1 64 5 view .LVU52
+ 320 0002 0120     		movs	r0, #1
+ 321 0004 FFF7FEFF 		bl	Set_LED_Color
+ 322              	.LVL42:
+  65:../Athena/athena.c ****     HAL_Delay(500);
+ 323              		.loc 1 65 5 view .LVU53
+ 324 0008 4FF4FA70 		mov	r0, #500
+ 325 000c FFF7FEFF 		bl	HAL_Delay
+ 326              	.LVL43:
+  66:../Athena/athena.c ****     Set_LED_Color(LED_GREEN);
+ 327              		.loc 1 66 5 view .LVU54
+ 328 0010 0220     		movs	r0, #2
+ 329 0012 FFF7FEFF 		bl	Set_LED_Color
+ 330              	.LVL44:
+  67:../Athena/athena.c ****     HAL_Delay(500);
+ 331              		.loc 1 67 5 view .LVU55
+ 332 0016 4FF4FA70 		mov	r0, #500
+ 333 001a FFF7FEFF 		bl	HAL_Delay
+ 334              	.LVL45:
+  68:../Athena/athena.c ****     Set_LED_Color(LED_BLUE);
+ 335              		.loc 1 68 5 view .LVU56
+ 336 001e 0320     		movs	r0, #3
+ 337 0020 FFF7FEFF 		bl	Set_LED_Color
+ 338              	.LVL46:
+  69:../Athena/athena.c ****     HAL_Delay(500);
+ 339              		.loc 1 69 5 view .LVU57
+ 340 0024 4FF4FA70 		mov	r0, #500
+ 341 0028 FFF7FEFF 		bl	HAL_Delay
+ 342              	.LVL47:
+  70:../Athena/athena.c ****     Set_LED_Color(LED_YELLOW);
+ 343              		.loc 1 70 5 view .LVU58
+ 344 002c 0420     		movs	r0, #4
+ 345 002e FFF7FEFF 		bl	Set_LED_Color
+ 346              	.LVL48:
+  71:../Athena/athena.c ****     HAL_Delay(500);
+ 347              		.loc 1 71 5 view .LVU59
+ 348 0032 4FF4FA70 		mov	r0, #500
+ 349 0036 FFF7FEFF 		bl	HAL_Delay
+ 350              	.LVL49:
+  72:../Athena/athena.c ****     Set_LED_Color(LED_CYAN);
+ 351              		.loc 1 72 5 view .LVU60
+ 352 003a 0520     		movs	r0, #5
+ 353 003c FFF7FEFF 		bl	Set_LED_Color
+ 354              	.LVL50:
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccnMJmaf.s 			page 9
+
+
+  73:../Athena/athena.c ****     HAL_Delay(500);
+ 355              		.loc 1 73 5 view .LVU61
+ 356 0040 4FF4FA70 		mov	r0, #500
+ 357 0044 FFF7FEFF 		bl	HAL_Delay
+ 358              	.LVL51:
+  74:../Athena/athena.c ****     Set_LED_Color(LED_MAGENTA);
+ 359              		.loc 1 74 5 view .LVU62
+ 360 0048 0620     		movs	r0, #6
+ 361 004a FFF7FEFF 		bl	Set_LED_Color
+ 362              	.LVL52:
+  75:../Athena/athena.c ****     HAL_Delay(500);
+ 363              		.loc 1 75 5 view .LVU63
+ 364 004e 4FF4FA70 		mov	r0, #500
+ 365 0052 FFF7FEFF 		bl	HAL_Delay
+ 366              	.LVL53:
+  76:../Athena/athena.c ****     Set_LED_Color(LED_WHITE);
+ 367              		.loc 1 76 5 view .LVU64
+ 368 0056 0720     		movs	r0, #7
+ 369 0058 FFF7FEFF 		bl	Set_LED_Color
+ 370              	.LVL54:
+  77:../Athena/athena.c ****     HAL_Delay(500);
+ 371              		.loc 1 77 5 view .LVU65
+ 372 005c 4FF4FA70 		mov	r0, #500
+ 373 0060 FFF7FEFF 		bl	HAL_Delay
+ 374              	.LVL55:
+  78:../Athena/athena.c ****     Set_LED_Color(LED_OFF);
+ 375              		.loc 1 78 5 view .LVU66
+ 376 0064 0020     		movs	r0, #0
+ 377 0066 FFF7FEFF 		bl	Set_LED_Color
+ 378              	.LVL56:
+  79:../Athena/athena.c **** }...
+ 379              		.loc 1 79 1 is_stmt 0 view .LVU67
+ 380 006a 08BD     		pop	{r3, pc}
+ 381              		.cfi_endproc
+ 382              	.LFE2:
+ 384              		.global	led_config
+ 385              		.section	.bss.led_config,"aw",%nobits
+ 386              		.align	2
+ 389              	led_config:
+ 390 0000 00000000 		.space	24
+ 390      00000000 
+ 390      00000000 
+ 390      00000000 
+ 390      00000000 
+ 391              		.text
+ 392              	.Letext0:
+ 393              		.file 2 "C:/Users/Nathan/AppData/Roaming/Code/User/globalStorage/bmd.stm32-for-vscode/@xpack-dev-t
+ 394              		.file 3 "C:/Users/Nathan/AppData/Roaming/Code/User/globalStorage/bmd.stm32-for-vscode/@xpack-dev-t
+ 395              		.file 4 "../Athena/athena.h"
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccnMJmaf.s 			page 10
+
+
+DEFINED SYMBOLS
+                            *ABS*:00000000 athena.c
+C:\Users\Nathan\AppData\Local\Temp\ccnMJmaf.s:20     .text.Athena_Init:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccnMJmaf.s:26     .text.Athena_Init:00000000 Athena_Init
+C:\Users\Nathan\AppData\Local\Temp\ccnMJmaf.s:56     .text.Athena_Init:0000001c $d
+C:\Users\Nathan\AppData\Local\Temp\ccnMJmaf.s:389    .bss.led_config:00000000 led_config
+C:\Users\Nathan\AppData\Local\Temp\ccnMJmaf.s:61     .text.Set_LED_Color:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccnMJmaf.s:67     .text.Set_LED_Color:00000000 Set_LED_Color
+C:\Users\Nathan\AppData\Local\Temp\ccnMJmaf.s:84     .text.Set_LED_Color:0000000a $d
+C:\Users\Nathan\AppData\Local\Temp\ccnMJmaf.s:92     .text.Set_LED_Color:00000012 $t
+C:\Users\Nathan\AppData\Local\Temp\ccnMJmaf.s:298    .text.Set_LED_Color:00000124 $d
+C:\Users\Nathan\AppData\Local\Temp\ccnMJmaf.s:303    .text.LED_Test_Sequence:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccnMJmaf.s:309    .text.LED_Test_Sequence:00000000 LED_Test_Sequence
+C:\Users\Nathan\AppData\Local\Temp\ccnMJmaf.s:386    .bss.led_config:00000000 $d
+
+UNDEFINED SYMBOLS
+HAL_GPIO_WritePin
+HAL_Delay

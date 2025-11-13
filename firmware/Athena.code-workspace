@@ -1,0 +1,39 @@
+{
+    "folders": [
+        {
+            "name": "MPU",
+            "path": "MPU"
+        },
+        {
+            "name": "SPU",
+            "path": "SPU"
+        },
+        {
+            "name": "TPU",
+            "path": "TPU"
+        },
+        {
+            "name": "Athena (Shared)",
+            "path": "Athena"
+        },
+        {
+            "name": "Root",
+            "path": "."
+        }
+    ],
+    "settings": {
+        "files.associations": {
+            "*.h": "c",
+            "*.c": "c"
+        },
+        "C_Cpp.default.configurationProvider": "ms-vscode.makefile-tools",
+        "terminal.integrated.defaultProfile.windows": "PowerShell"
+    },
+    "extensions": {
+        "recommendations": [
+            "ms-vscode.cpptools",
+            "ms-vscode.makefile-tools",
+            "bmd.stm32-for-vscode"
+        ]
+    }
+}

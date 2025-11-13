@@ -1,15 +1,64 @@
 {
     "configurations": [
         {
-            "name": "Win32",
+            "name": "STM32-MPU",
             "includePath": [
-                "${workspaceFolder}/**"
+                "${workspaceFolder}/Athena",
+                "${workspaceFolder}/MPU/Core/Inc",
+                "${workspaceFolder}/MPU/Drivers/CMSIS/Device/ST/STM32H7xx/Include",
+                "${workspaceFolder}/MPU/Drivers/CMSIS/Include",
+                "${workspaceFolder}/MPU/Drivers/STM32H7xx_HAL_Driver/Inc",
+                "${workspaceFolder}/MPU/Drivers/STM32H7xx_HAL_Driver/Inc/Legacy",
+                "${workspaceFolder}/MPU/Middlewares/ST/STM32_USB_Device_Library/Class/CDC/Inc",
+                "${workspaceFolder}/MPU/Middlewares/ST/STM32_USB_Device_Library/Core/Inc",
+                "${workspaceFolder}/MPU/USB_DEVICE/App",
+                "${workspaceFolder}/MPU/USB_DEVICE/Target",
+                "${workspaceFolder}/MPU/USB_Device/App",
+                "${workspaceFolder}/MPU/USB_Device/Target"
             ],
             "defines": [
-                "_DEBUG",
-                "UNICODE",
-                "_UNICODE"
-            ]
+                "STM32H753xx",
+                "USE_HAL_DRIVER",
+                "USE_PWR_LDO_SUPPLY"
+            ],
+            "compilerPath": "c:\\Users\\Nathan\\AppData\\Roaming\\Code\\User\\globalStorage\\bmd.stm32-for-vscode\\@xpack-dev-tools\\arm-none-eabi-gcc\\14.2.1-1.1.1\\.content\\bin\\arm-none-eabi-gcc.EXE"
+        },
+        {
+            "name": "STM32-SPU",
+            "includePath": [
+                "${workspaceFolder}/Athena",
+                "${workspaceFolder}/SPU/Core/Inc",
+                "${workspaceFolder}/SPU/Drivers/CMSIS/Device/ST/STM32G4xx/Include",
+                "${workspaceFolder}/SPU/Drivers/CMSIS/Include",
+                "${workspaceFolder}/SPU/Drivers/STM32G4xx_HAL_Driver/Inc",
+                "${workspaceFolder}/SPU/Drivers/STM32G4xx_HAL_Driver/Inc/Legacy"
+            ],
+            "defines": [
+                "STM32G474xx",
+                "USE_HAL_DRIVER"
+            ],
+            "compilerPath": "c:\\Users\\Nathan\\AppData\\Roaming\\Code\\User\\globalStorage\\bmd.stm32-for-vscode\\@xpack-dev-tools\\arm-none-eabi-gcc\\14.2.1-1.1.1\\.content\\bin\\arm-none-eabi-gcc.EXE"
+        },
+        {
+            "name": "STM32-TPU",
+            "includePath": [
+                "${workspaceFolder}/Athena",
+                "${workspaceFolder}/TPU/Core/Inc",
+                "${workspaceFolder}/TPU/Drivers/CMSIS/Device/ST/STM32H7xx/Include",
+                "${workspaceFolder}/TPU/Drivers/CMSIS/Include",
+                "${workspaceFolder}/TPU/Drivers/STM32H7xx_HAL_Driver/Inc",
+                "${workspaceFolder}/TPU/Drivers/STM32H7xx_HAL_Driver/Inc/Legacy",
+                "${workspaceFolder}/TPU/Middlewares/ST/STM32_USB_Device_Library/Class/CDC/Inc",
+                "${workspaceFolder}/TPU/Middlewares/ST/STM32_USB_Device_Library/Core/Inc",
+                "${workspaceFolder}/TPU/USB_DEVICE/App",
+                "${workspaceFolder}/TPU/USB_DEVICE/Target"
+            ],
+            "defines": [
+                "STM32H743xx",
+                "USE_HAL_DRIVER",
+                "USE_PWR_LDO_SUPPLY"
+            ],
+            "compilerPath": "c:\\Users\\Nathan\\AppData\\Roaming\\Code\\User\\globalStorage\\bmd.stm32-for-vscode\\@xpack-dev-tools\\arm-none-eabi-gcc\\14.2.1-1.1.1\\.content\\bin\\arm-none-eabi-gcc.EXE"
         }
     ],
     "version": 4

@@ -2,13 +2,18 @@
 
 #include "athena.h"
 
+/* Forward Declaration Start */
+extern void HAL_GPIO_WritePin(void* GPIOx, uint16_t GPIO_Pin, int PinState);
+extern void HAL_Delay(uint32_t Delay);
+/* Forward Declaration End */
+
 Athena_LED_PinConfig led_config;
 
-static void Athena_Init(Athena_LED_PinConfig* config) {
+void Athena_Init(Athena_LED_PinConfig* config) {
     led_config = *config;
 }
 
-static void Set_LED_Color(LED_ColorTypeDef color) {
+void Set_LED_Color(LED_ColorTypeDef color) {
     switch (color) {
         case LED_OFF:
             HAL_GPIO_WritePin(led_config.port_r, led_config.pin_r, 1);
@@ -53,4 +58,22 @@ static void Set_LED_Color(LED_ColorTypeDef color) {
         default:
             break;
     }
+}
+
+void LED_Test_Sequence() {
+    Set_LED_Color(LED_RED);
+    HAL_Delay(500);
+    Set_LED_Color(LED_GREEN);
+    HAL_Delay(500);
+    Set_LED_Color(LED_BLUE);
+    HAL_Delay(500);
+    Set_LED_Color(LED_YELLOW);
+    HAL_Delay(500);
+    Set_LED_Color(LED_CYAN);
+    HAL_Delay(500);
+    Set_LED_Color(LED_MAGENTA);
+    HAL_Delay(500);
+    Set_LED_Color(LED_WHITE);
+    HAL_Delay(500);
+    Set_LED_Color(LED_OFF);
 }

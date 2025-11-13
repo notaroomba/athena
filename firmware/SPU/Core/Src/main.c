@@ -21,6 +21,7 @@
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
+#include "athena.h"
 
 /* USER CODE END Includes */
 
@@ -102,19 +103,27 @@ int main(void)
   SystemClock_Config();
 
   /* USER CODE BEGIN SysInit */
-
+Athena_LED_PinConfig led_pins = {
+      .port_r = SPU_R_GPIO_Port,
+      .pin_r = SPU_R_Pin,
+      .port_g = SPU_G_GPIO_Port,
+      .pin_g = SPU_G_Pin,
+      .port_b = SPU_B_GPIO_Port,
+      .pin_b = SPU_B_Pin
+  };
+  Athena_Init(&led_pins);
   /* USER CODE END SysInit */
 
   /* Initialize all configured peripherals */
   MX_GPIO_Init();
-  MX_I2C1_Init();
-  MX_SPI1_Init();
-  MX_TIM1_Init();
-  MX_TIM2_Init();
-  MX_UART5_Init();
-  MX_USB_PCD_Init();
-  MX_FDCAN2_Init();
-  MX_USART1_UART_Init();
+  // MX_I2C1_Init();
+  // MX_SPI1_Init();
+  // MX_TIM1_Init();
+  // MX_TIM2_Init();
+  // MX_UART5_Init();
+  // MX_USB_PCD_Init();
+  // MX_FDCAN2_Init();
+  // MX_USART1_UART_Init();
   /* USER CODE BEGIN 2 */
 
   /* USER CODE END 2 */
@@ -123,6 +132,7 @@ int main(void)
   /* USER CODE BEGIN WHILE */
   while (1)
   {
+    LED_Test_Sequence();
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
@@ -595,9 +605,12 @@ static void MX_GPIO_Init(void)
                           |PYRO_1_Pin, GPIO_PIN_RESET);
 
   /*Configure GPIO pin Output Level */
-  HAL_GPIO_WritePin(GPIOB, SERVO1_EN_Pin|SERVO2_EN_Pin|SERVO3_EN_Pin|SPU_B_Pin
-                          |SPU_G_Pin|SPU_R_Pin|SERVO4_EN_Pin|SERVO5_EN_Pin
-                          |EN_OTG_Pin|CHRG_OK_Pin|SPU_CAN_S_Pin|RESET_MPU_Pin, GPIO_PIN_RESET);
+  HAL_GPIO_WritePin(GPIOB, SERVO1_EN_Pin|SERVO2_EN_Pin|SERVO3_EN_Pin|SERVO4_EN_Pin
+                          |SERVO5_EN_Pin|EN_OTG_Pin|CHRG_OK_Pin|SPU_CAN_S_Pin
+                          |RESET_MPU_Pin, GPIO_PIN_RESET);
+
+  /*Configure GPIO pin Output Level */
+  HAL_GPIO_WritePin(GPIOB, SPU_B_Pin|SPU_G_Pin|SPU_R_Pin, GPIO_PIN_SET);
 
   /*Configure GPIO pin Output Level */
   HAL_GPIO_WritePin(GPIOC, SERVO6_EN_Pin|PYRO_6_Pin|PYRO_5_Pin|PYRO_4_Pin

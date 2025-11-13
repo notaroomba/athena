@@ -1,4 +1,4 @@
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s 			page 1
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccAqLAAe.s 			page 1
 
 
    1              		.cpu cortex-m7
@@ -58,7 +58,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s 			page 1
   29:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_sd.c ****     This driver implements a high level communication layer for read and write from/to
   30:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_sd.c ****     this memory. The needed STM32 hardware resources (SDMMC and GPIO) are performed by
   31:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_sd.c ****     the user in HAL_SD_MspInit() function (MSP layer).
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s 			page 2
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccAqLAAe.s 			page 2
 
 
   32:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_sd.c ****     Basically, the MSP layer configuration should be the same as we provide in the
@@ -118,7 +118,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s 			page 1
   86:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_sd.c **** 
   87:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_sd.c ****     (#) Configure the SD Card Data transfer frequency. You can change or adapt this
   88:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_sd.c ****         frequency by adjusting the "ClockDiv" field.
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s 			page 3
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccAqLAAe.s 			page 3
 
 
   89:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_sd.c ****         In transfer mode and according to the SD Card standard, make sure that the
@@ -178,7 +178,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s 			page 1
  143:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_sd.c ****         You could also check the DMA transfer process through the SD Tx interrupt event.
  144:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_sd.c **** 
  145:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_sd.c ****     (+) You can write to SD card in Interrupt mode by using function HAL_SD_WriteBlocks_IT().
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s 			page 4
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccAqLAAe.s 			page 4
 
 
  146:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_sd.c ****         This function support only 512-bytes block length (the block size should be
@@ -238,7 +238,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s 			page 1
  200:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_sd.c ****       (+) AbortCpltCallback : callback when abort is completed.
  201:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_sd.c ****       (+) Read_DMADblBuf0CpltCallback : callback when the DMA reception of first buffer is complete
  202:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_sd.c ****       (+) Read_DMADblBuf1CpltCallback : callback when the DMA reception of second buffer is complet
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s 			page 5
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccAqLAAe.s 			page 5
 
 
  203:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_sd.c ****       (+) Write_DMADblBuf0CpltCallback : callback when the DMA transmission of first buffer is comp
@@ -298,7 +298,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s 			page 1
  257:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_sd.c ****   */
  258:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_sd.c **** 
  259:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_sd.c **** /** @addtogroup SD
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s 			page 6
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccAqLAAe.s 			page 6
 
 
  260:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_sd.c ****   * @{
@@ -358,7 +358,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s 			page 1
  314:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_sd.c ****   * @{
  315:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_sd.c ****   */
  316:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_sd.c **** 
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s 			page 7
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccAqLAAe.s 			page 7
 
 
  317:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_sd.c **** /** @addtogroup SD_Exported_Functions_Group1
@@ -418,7 +418,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s 			page 1
  371:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_sd.c **** #if defined (USE_HAL_SD_REGISTER_CALLBACKS) && (USE_HAL_SD_REGISTER_CALLBACKS == 1U)
  372:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_sd.c ****     /* Reset Callback pointers in HAL_SD_STATE_RESET only */
  373:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_sd.c ****     hsd->TxCpltCallback    = HAL_SD_TxCpltCallback;
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s 			page 8
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccAqLAAe.s 			page 8
 
 
  374:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_sd.c ****     hsd->RxCpltCallback    = HAL_SD_RxCpltCallback;
@@ -478,7 +478,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s 			page 1
  428:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_sd.c ****       hsd->SdCard.CardSpeed  = CARD_NORMAL_SPEED;
  429:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_sd.c ****     }
  430:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_sd.c **** 
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s 			page 9
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccAqLAAe.s 			page 9
 
 
  431:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_sd.c ****   }
@@ -538,7 +538,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s 			page 1
  485:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_sd.c ****     hsd->State = HAL_SD_STATE_READY;
  486:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_sd.c ****     hsd->ErrorCode = SDMMC_ERROR_INVALID_PARAMETER;
  487:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_sd.c ****     return HAL_ERROR;
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s 			page 10
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccAqLAAe.s 			page 10
 
 
  488:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_sd.c ****   }
@@ -598,7 +598,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s 			page 1
  542:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_sd.c ****   if (errorstate != HAL_SD_ERROR_NONE)
  543:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_sd.c ****   {
  544:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_sd.c ****     /* Clear all the static flags */
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s 			page 11
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccAqLAAe.s 			page 11
 
 
  545:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_sd.c ****     __HAL_SD_CLEAR_FLAG(hsd, SDMMC_STATIC_FLAGS);
@@ -658,7 +658,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s 			page 1
  599:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_sd.c **** #else
  600:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_sd.c ****   /* De-Initialize the MSP layer */
  601:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_sd.c ****   HAL_SD_MspDeInit(hsd);
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s 			page 12
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccAqLAAe.s 			page 12
 
 
  602:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_sd.c **** #endif /* USE_HAL_SD_REGISTER_CALLBACKS */
@@ -718,7 +718,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s 			page 1
  656:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_sd.c ****   * @{
  657:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_sd.c ****   */
  658:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_sd.c **** 
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s 			page 13
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccAqLAAe.s 			page 13
 
 
  659:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_sd.c **** /**
@@ -778,7 +778,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s 			page 1
  713:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_sd.c ****     config.TransferDir   = SDMMC_TRANSFER_DIR_TO_SDMMC;
  714:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_sd.c ****     config.TransferMode  = SDMMC_TRANSFER_MODE_BLOCK;
  715:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_sd.c ****     config.DPSM          = SDMMC_DPSM_DISABLE;
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s 			page 14
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccAqLAAe.s 			page 14
 
 
  716:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_sd.c ****     (void)SDMMC_ConfigData(hsd->Instance, &config);
@@ -838,7 +838,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s 			page 1
  770:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_sd.c ****         hsd->ErrorCode |= HAL_SD_ERROR_TIMEOUT;
  771:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_sd.c ****         hsd->State = HAL_SD_STATE_READY;
  772:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_sd.c ****         hsd->Context = SD_CONTEXT_NONE;
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s 			page 15
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccAqLAAe.s 			page 15
 
 
  773:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_sd.c ****         return HAL_TIMEOUT;
@@ -898,7 +898,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s 			page 1
  827:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_sd.c ****       /* Nothing to do */
  828:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_sd.c ****     }
  829:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_sd.c **** 
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s 			page 16
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccAqLAAe.s 			page 16
 
 
  830:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_sd.c ****     /* Clear all the static flags */
@@ -958,7 +958,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s 			page 1
  884:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_sd.c ****     hsd->State = HAL_SD_STATE_BUSY;
  885:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_sd.c **** 
  886:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_sd.c ****     /* Initialize data control register */
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s 			page 17
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccAqLAAe.s 			page 17
 
 
  887:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_sd.c ****     hsd->Instance->DCTRL = 0U;
@@ -1018,7 +1018,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s 			page 1
  941:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_sd.c ****           data |= ((uint32_t)(*tempbuff) << 8U);
  942:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_sd.c ****           tempbuff++;
  943:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_sd.c ****           data |= ((uint32_t)(*tempbuff) << 16U);
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s 			page 18
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccAqLAAe.s 			page 18
 
 
  944:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_sd.c ****           tempbuff++;
@@ -1078,7 +1078,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s 			page 1
  998:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_sd.c ****       hsd->State = HAL_SD_STATE_READY;
  999:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_sd.c ****       hsd->Context = SD_CONTEXT_NONE;
 1000:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_sd.c ****       return HAL_ERROR;
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s 			page 19
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccAqLAAe.s 			page 19
 
 
 1001:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_sd.c ****     }
@@ -1138,7 +1138,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s 			page 1
 1055:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_sd.c **** 
 1056:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_sd.c ****   if (hsd->State == HAL_SD_STATE_READY)
 1057:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_sd.c ****   {
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s 			page 20
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccAqLAAe.s 			page 20
 
 
 1058:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_sd.c ****     hsd->ErrorCode = HAL_SD_ERROR_NONE;
@@ -1198,7 +1198,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s 			page 1
 1112:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_sd.c ****     }
 1113:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_sd.c **** 
 1114:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_sd.c ****     __HAL_SD_ENABLE_IT(hsd, (SDMMC_IT_DCRCFAIL | SDMMC_IT_DTIMEOUT | SDMMC_IT_RXOVERR | SDMMC_IT_DA
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s 			page 21
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccAqLAAe.s 			page 21
 
 
 1115:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_sd.c ****                              SDMMC_FLAG_RXFIFOHF));
@@ -1258,7 +1258,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s 			page 1
 1169:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_sd.c ****     if (hsd->SdCard.CardType != CARD_SDHC_SDXC)
 1170:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_sd.c ****     {
 1171:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_sd.c ****       add *= BLOCKSIZE;
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s 			page 22
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccAqLAAe.s 			page 22
 
 
 1172:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_sd.c ****     }
@@ -1318,7 +1318,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s 			page 1
 1226:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_sd.c ****   *         HAL_SD_GetCardState().
 1227:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_sd.c ****   * @note   You could also check the DMA transfer process through the SD Rx
 1228:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_sd.c ****   *         interrupt event.
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s 			page 23
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccAqLAAe.s 			page 23
 
 
 1229:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_sd.c ****   * @param  hsd: Pointer SD handle
@@ -1378,7 +1378,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s 			page 1
 1283:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_sd.c **** 
 1284:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_sd.c ****     /* Read Blocks in DMA mode */
 1285:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_sd.c ****     if (NumberOfBlocks > 1U)
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s 			page 24
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccAqLAAe.s 			page 24
 
 
 1286:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_sd.c ****     {
@@ -1438,7 +1438,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s 			page 1
 1340:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_sd.c ****   if (NULL == pData)
 1341:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_sd.c ****   {
 1342:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_sd.c ****     hsd->ErrorCode |= HAL_SD_ERROR_PARAM;
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s 			page 25
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccAqLAAe.s 			page 25
 
 
 1343:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_sd.c ****     return HAL_ERROR;
@@ -1498,7 +1498,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s 			page 1
 1397:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_sd.c ****     }
 1398:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_sd.c ****     if (errorstate != HAL_SD_ERROR_NONE)
 1399:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_sd.c ****     {
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s 			page 26
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccAqLAAe.s 			page 26
 
 
 1400:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_sd.c ****       /* Clear all the static flags */
@@ -1558,7 +1558,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s 			page 1
 1454:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_sd.c ****     {
 1455:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_sd.c ****       /* Clear all the static flags */
 1456:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_sd.c ****       __HAL_SD_CLEAR_FLAG(hsd, SDMMC_STATIC_FLAGS);
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s 			page 27
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccAqLAAe.s 			page 27
 
 
 1457:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_sd.c ****       hsd->ErrorCode |= HAL_SD_ERROR_REQUEST_NOT_APPLICABLE;
@@ -1618,7 +1618,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s 			page 1
 1511:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_sd.c ****       hsd->State = HAL_SD_STATE_READY;
 1512:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_sd.c ****       return HAL_ERROR;
 1513:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_sd.c ****     }
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s 			page 28
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccAqLAAe.s 			page 28
 
 
 1514:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_sd.c **** 
@@ -1678,7 +1678,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s 			page 1
 1568:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_sd.c ****       /* Clear all the static flags */
 1569:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_sd.c ****       __HAL_SD_CLEAR_FLAG(hsd, SDMMC_STATIC_DATA_FLAGS);
 1570:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_sd.c **** 
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s 			page 29
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccAqLAAe.s 			page 29
 
 
 1571:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_sd.c ****       hsd->State = HAL_SD_STATE_READY;
@@ -1738,7 +1738,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s 			page 1
 1625:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_sd.c **** #else
 1626:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_sd.c ****         HAL_SD_RxCpltCallback(hsd);
 1627:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_sd.c **** #endif /* USE_HAL_SD_REGISTER_CALLBACKS */
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s 			page 30
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccAqLAAe.s 			page 30
 
 
 1628:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_sd.c ****       }
@@ -1798,7 +1798,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s 			page 1
 1682:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_sd.c ****       hsd->ErrorCallback(hsd);
 1683:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_sd.c **** #else
 1684:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_sd.c ****       HAL_SD_ErrorCallback(hsd);
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s 			page 31
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccAqLAAe.s 			page 31
 
 
 1685:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_sd.c **** #endif /* USE_HAL_SD_REGISTER_CALLBACKS */
@@ -1858,7 +1858,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s 			page 1
 1739:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_sd.c ****         hsd->Write_DMADblBuf0CpltCallback(hsd);
 1740:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_sd.c **** #else
 1741:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_sd.c ****         HAL_SDEx_Write_DMADoubleBuf0CpltCallback(hsd);
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s 			page 32
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccAqLAAe.s 			page 32
 
 
 1742:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_sd.c **** #endif /* USE_HAL_SD_REGISTER_CALLBACKS */
@@ -1918,7 +1918,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s 			page 1
 1796:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_sd.c **** /**
 1797:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_sd.c ****   * @brief Rx Transfer completed callbacks
 1798:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_sd.c ****   * @param hsd: Pointer SD handle
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s 			page 33
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccAqLAAe.s 			page 33
 
 
 1799:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_sd.c ****   * @retval None
@@ -1978,7 +1978,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s 			page 1
 1853:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_sd.c ****    */
 1854:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_sd.c **** }
 1855:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_sd.c **** #endif /* USE_SD_TRANSCEIVER  */
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s 			page 34
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccAqLAAe.s 			page 34
 
 
 1856:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_sd.c **** 
@@ -2038,7 +2038,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s 			page 1
 1910:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_sd.c ****         break;
 1911:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_sd.c ****       case HAL_SD_READ_DMA_DBL_BUF1_CPLT_CB_ID :
 1912:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_sd.c ****         hsd->Read_DMADblBuf1CpltCallback = pCallback;
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s 			page 35
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccAqLAAe.s 			page 35
 
 
 1913:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_sd.c ****         break;
@@ -2098,7 +2098,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s 			page 1
 1967:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_sd.c ****   *         HAL_SD_STATE_RESET to register callbacks for HAL_SD_MSP_INIT_CB_ID
 1968:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_sd.c ****   *         and HAL_SD_MSP_DEINIT_CB_ID.
 1969:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_sd.c ****   * @param hsd : SD handle
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s 			page 36
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccAqLAAe.s 			page 36
 
 
 1970:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_sd.c ****   * @param CallbackID : ID of the callback to be unregistered
@@ -2158,7 +2158,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s 			page 1
 2024:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_sd.c ****         hsd->ErrorCode |= HAL_SD_ERROR_INVALID_CALLBACK;
 2025:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_sd.c ****         /* update return status */
 2026:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_sd.c ****         status =  HAL_ERROR;
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s 			page 37
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccAqLAAe.s 			page 37
 
 
 2027:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_sd.c ****         break;
@@ -2218,7 +2218,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s 			page 1
 2081:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_sd.c ****   if (hsd->State == HAL_SD_STATE_READY)
 2082:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_sd.c ****   {
 2083:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_sd.c ****     hsd->DriveTransceiver_1_8V_Callback = pCallback;
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s 			page 38
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccAqLAAe.s 			page 38
 
 
 2084:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_sd.c ****   }
@@ -2278,7 +2278,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s 			page 1
 2138:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_sd.c ****   ==============================================================================
 2139:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_sd.c ****                       ##### Peripheral Control functions #####
 2140:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_sd.c ****   ==============================================================================
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s 			page 39
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccAqLAAe.s 			page 39
 
 
 2141:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_sd.c ****   [..]
@@ -2338,7 +2338,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s 			page 1
 2195:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_sd.c **** 
 2196:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_sd.c ****   pCSD->Reserved1 = (uint8_t)((hsd->CSD[0] & 0x03000000U) >> 24U);
 2197:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_sd.c **** 
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s 			page 40
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccAqLAAe.s 			page 40
 
 
 2198:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_sd.c ****   pCSD->TAAC = (uint8_t)((hsd->CSD[0] & 0x00FF0000U) >> 16U);
@@ -2398,7 +2398,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s 			page 1
 2252:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_sd.c ****     __HAL_SD_CLEAR_FLAG(hsd, SDMMC_STATIC_FLAGS);
 2253:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_sd.c ****     hsd->ErrorCode |= HAL_SD_ERROR_UNSUPPORTED_FEATURE;
 2254:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_sd.c ****     hsd->State = HAL_SD_STATE_READY;
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s 			page 41
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccAqLAAe.s 			page 41
 
 
 2255:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_sd.c ****     return HAL_ERROR;
@@ -2458,7 +2458,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s 			page 1
 2309:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_sd.c **** 
 2310:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_sd.c ****   if (hsd->State == HAL_SD_STATE_BUSY)
 2311:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_sd.c ****   {
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s 			page 42
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccAqLAAe.s 			page 42
 
 
 2312:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_sd.c ****     return HAL_ERROR;
@@ -2518,7 +2518,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s 			page 1
 2366:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_sd.c **** /**
 2367:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_sd.c ****   * @brief  Gets the SD card info.
 2368:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_sd.c ****   * @param  hsd: Pointer to SD handle
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s 			page 43
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccAqLAAe.s 			page 43
 
 
 2369:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_sd.c ****   * @param  pCardInfo: Pointer to the HAL_SD_CardInfoTypeDef structure that
@@ -2578,7 +2578,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s 			page 1
 2423:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_sd.c ****     }
 2424:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_sd.c ****     else if (WideMode == SDMMC_BUS_WIDE_1B)
 2425:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_sd.c ****     {
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s 			page 44
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccAqLAAe.s 			page 44
 
 
 2426:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_sd.c ****       errorstate = SD_WideBus_Disable(hsd);
@@ -2638,7 +2638,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s 			page 1
 2480:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_sd.c ****             Init.ClockDiv = hsd->Init.ClockDiv;
 2481:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_sd.c ****           }
 2482:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_sd.c ****         }
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s 			page 45
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccAqLAAe.s 			page 45
 
 
 2483:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_sd.c ****         else
@@ -2698,7 +2698,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s 			page 1
 2537:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_sd.c ****   if (errorstate != HAL_SD_ERROR_NONE)
 2538:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_sd.c ****   {
 2539:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_sd.c ****     /* Clear all the static flags */
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s 			page 46
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccAqLAAe.s 			page 46
 
 
 2540:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_sd.c ****     __HAL_SD_CLEAR_FLAG(hsd, SDMMC_STATIC_FLAGS);
@@ -2758,7 +2758,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s 			page 1
 2594:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_sd.c ****         }
 2595:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_sd.c ****         else if (hsd->SdCard.CardSpeed  == CARD_HIGH_SPEED)
 2596:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_sd.c ****         {
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s 			page 47
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccAqLAAe.s 			page 47
 
 
 2597:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_sd.c ****           /* Enable High Speed */
@@ -2818,7 +2818,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s 			page 1
 2651:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_sd.c ****       {
 2652:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_sd.c ****         if ((hsd->SdCard.CardSpeed  == CARD_ULTRA_HIGH_SPEED) ||
 2653:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_sd.c ****             (hsd->SdCard.CardType == CARD_SDHC_SDXC))
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s 			page 48
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccAqLAAe.s 			page 48
 
 
 2654:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_sd.c ****         {
@@ -2878,7 +2878,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s 			page 1
 2708:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_sd.c ****   {
 2709:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_sd.c ****     switch (SpeedMode)
 2710:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_sd.c ****     {
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s 			page 49
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccAqLAAe.s 			page 49
 
 
 2711:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_sd.c ****       case SDMMC_SPEED_MODE_AUTO:
@@ -2938,7 +2938,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s 			page 1
 2765:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_sd.c ****         break;
 2766:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_sd.c ****     }
 2767:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_sd.c ****   }
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s 			page 50
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccAqLAAe.s 			page 50
 
 
 2768:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_sd.c **** #else
@@ -2998,7 +2998,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s 			page 1
 2822:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_sd.c ****     default:
 2823:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_sd.c ****       hsd->ErrorCode |= HAL_SD_ERROR_PARAM;
 2824:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_sd.c ****       status = HAL_ERROR;
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s 			page 51
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccAqLAAe.s 			page 51
 
 
 2825:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_sd.c ****       break;
@@ -3058,7 +3058,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s 			page 1
 2879:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_sd.c ****   * @brief  Abort the current transfer and disable the SD.
 2880:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_sd.c ****   * @param  hsd: pointer to a SD_HandleTypeDef structure that contains
 2881:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_sd.c ****   *                the configuration information for SD module.
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s 			page 52
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccAqLAAe.s 			page 52
 
 
 2882:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_sd.c ****   * @retval HAL status
@@ -3118,7 +3118,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s 			page 1
 2936:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_sd.c ****       }
 2937:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_sd.c ****     }
 2938:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_sd.c ****     else if ((hsd->Instance->DCTRL & SDMMC_DCTRL_DTDIR) == SDMMC_TRANSFER_DIR_TO_SDMMC)
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s 			page 53
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccAqLAAe.s 			page 53
 
 
 2939:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_sd.c ****     {
@@ -3178,7 +3178,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s 			page 1
 2993:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_sd.c **** 
 2994:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_sd.c ****   CardState = HAL_SD_GetCardState(hsd);
 2995:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_sd.c ****   hsd->State = HAL_SD_STATE_READY;
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s 			page 54
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccAqLAAe.s 			page 54
 
 
 2996:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_sd.c **** 
@@ -3238,7 +3238,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s 			page 1
 3050:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_sd.c ****   if (hsd->SdCard.CardType != CARD_SECURED)
 3051:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_sd.c ****   {
 3052:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_sd.c ****     /* Send CMD2 ALL_SEND_CID */
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s 			page 55
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccAqLAAe.s 			page 55
 
 
 3053:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_sd.c ****     errorstate = SDMMC_CmdSendCID(hsd->Instance);
@@ -3298,7 +3298,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s 			page 1
 3107:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_sd.c ****   hsd->SdCard.Class = (SDMMC_GetResponse(hsd->Instance, SDMMC_RESP2) >> 20U);
 3108:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_sd.c **** 
 3109:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_sd.c ****   /* Get CSD parameters */
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s 			page 56
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccAqLAAe.s 			page 56
 
 
 3110:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_sd.c ****   if (HAL_SD_GetCardCSD(hsd, &CSD) != HAL_OK)
@@ -3358,7 +3358,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s 			page 1
 3142:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_sd.c **** 
 3143:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_sd.c ****   /* CMD0: GO_IDLE_STATE */
 3144:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_sd.c ****   errorstate = SDMMC_CmdGoIdleState(hsd->Instance);
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s 			page 57
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccAqLAAe.s 			page 57
 
 
   50              		.loc 1 3144 3 view .LVU7
@@ -3418,7 +3418,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s 			page 1
 3186:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_sd.c ****     }
 3187:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_sd.c **** 
 3188:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_sd.c ****     /* Send CMD41 */
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s 			page 58
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccAqLAAe.s 			page 58
 
 
 3189:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_sd.c ****     errorstate = SDMMC_CmdAppOperCommand(hsd->Instance, SDMMC_VOLTAGE_WINDOW_SD | SDMMC_HIGH_CAPACI
@@ -3478,7 +3478,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s 			page 1
 3243:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_sd.c ****         hsd->Instance->ICR = SDMMC_FLAG_CKSTOP;
 3244:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_sd.c **** 
 3245:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_sd.c ****         /* Check to BusyD0 */
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s 			page 59
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccAqLAAe.s 			page 59
 
 
 3246:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_sd.c ****         if ((hsd->Instance->STA & SDMMC_FLAG_BUSYD0) != SDMMC_FLAG_BUSYD0)
@@ -3538,7 +3538,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s 			page 1
   67              		.cfi_def_cfa_offset 16
   68              		@ sp needed
   69 0018 70BD     		pop	{r4, r5, r6, pc}
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s 			page 60
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccAqLAAe.s 			page 60
 
 
   70              	.LVL5:
@@ -3598,7 +3598,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s 			page 1
 3156:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_sd.c ****     if (errorstate != HAL_SD_ERROR_NONE)
  109              		.loc 1 3156 18 is_stmt 0 view .LVU28
  110 003a 2068     		ldr	r0, [r4]
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s 			page 61
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccAqLAAe.s 			page 61
 
 
  111              	.LVL10:
@@ -3658,7 +3658,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s 			page 1
  150              		.loc 1 3179 41 view .LVU43
  151 0062 4FF6FE73 		movw	r3, #65534
  152 0066 9A42     		cmp	r2, r3
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s 			page 62
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccAqLAAe.s 			page 62
 
 
  153 0068 13D8     		bhi	.L8
@@ -3718,7 +3718,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s 			page 1
  190              		.loc 1 3200 52 is_stmt 0 view .LVU60
  191 008a C30F     		lsrs	r3, r0, #31
  192 008c E5D0     		beq	.L6
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s 			page 63
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccAqLAAe.s 			page 63
 
 
 3200:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_sd.c **** 
@@ -3778,7 +3778,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s 			page 1
  233 00b6 4FF08075 		mov	r5, #16777216
  234 00ba ABE7     		b	.L1
  235              	.L15:
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s 			page 64
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccAqLAAe.s 			page 64
 
 
 3294:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_sd.c **** }
@@ -3838,7 +3838,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s 			page 1
  282              	SD_Read_IT:
  283              	.LVL31:
  284              	.LFB180:
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s 			page 65
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccAqLAAe.s 			page 65
 
 
 3307:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_sd.c **** 
@@ -3898,7 +3898,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s 			page 1
 3361:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_sd.c **** 
 3362:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_sd.c ****   /* Get status data */
 3363:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_sd.c ****   while (!__HAL_SD_GET_FLAG(hsd, SDMMC_FLAG_RXOVERR | SDMMC_FLAG_DCRCFAIL | SDMMC_FLAG_DTIMEOUT | S
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s 			page 66
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccAqLAAe.s 			page 66
 
 
 3364:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_sd.c ****   {
@@ -3958,7 +3958,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s 			page 1
 3418:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_sd.c ****   *         status (Card Status register)
 3419:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_sd.c ****   * @retval error state
 3420:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_sd.c ****   */
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s 			page 67
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccAqLAAe.s 			page 67
 
 
 3421:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_sd.c **** static uint32_t SD_SendStatus(SD_HandleTypeDef *hsd, uint32_t *pCardStatus)
@@ -4018,7 +4018,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s 			page 1
 3475:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_sd.c ****     /* Send ACMD6 APP_CMD with argument as 2 for wide bus mode */
 3476:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_sd.c ****     errorstate = SDMMC_CmdBusWidth(hsd->Instance, 2U);
 3477:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_sd.c ****     if (errorstate != HAL_SD_ERROR_NONE)
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s 			page 68
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccAqLAAe.s 			page 68
 
 
 3478:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_sd.c ****     {
@@ -4078,7 +4078,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s 			page 1
 3532:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_sd.c ****   {
 3533:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_sd.c ****     return HAL_SD_ERROR_REQUEST_NOT_APPLICABLE;
 3534:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_sd.c ****   }
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s 			page 69
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccAqLAAe.s 			page 69
 
 
 3535:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_sd.c **** }
@@ -4138,7 +4138,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s 			page 1
 3589:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_sd.c ****     }
 3590:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_sd.c **** 
 3591:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_sd.c ****     if ((HAL_GetTick() - tickstart) >=  SDMMC_SWDATATIMEOUT)
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s 			page 70
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccAqLAAe.s 			page 70
 
 
 3592:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_sd.c ****     {
@@ -4198,7 +4198,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s 			page 1
  291              		.cfi_def_cfa_offset 16
  292              		.cfi_offset 4, -16
  293              		.cfi_offset 5, -12
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s 			page 71
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccAqLAAe.s 			page 71
 
 
  294              		.cfi_offset 6, -8
@@ -4258,7 +4258,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s 			page 1
 3652:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_sd.c ****       tmp++;
  320              		.loc 1 3652 7 is_stmt 1 view .LVU95
 3652:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_sd.c ****       tmp++;
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s 			page 72
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccAqLAAe.s 			page 72
 
 
  321              		.loc 1 3652 12 is_stmt 0 view .LVU96
@@ -4318,7 +4318,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s 			page 1
  357              		.loc 1 3662 21 is_stmt 0 view .LVU114
  358 002c 7462     		str	r4, [r6, #36]
 3663:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_sd.c ****   }
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s 			page 73
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccAqLAAe.s 			page 73
 
 
  359              		.loc 1 3663 5 is_stmt 1 view .LVU115
@@ -4378,7 +4378,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s 			page 1
 3677:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_sd.c ****   const uint8_t *tmp;
  401              		.loc 1 3677 3 view .LVU125
 3678:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_sd.c **** 
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s 			page 74
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccAqLAAe.s 			page 74
 
 
 3679:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_sd.c ****   tmp = hsd->pTxBuffPtr;
@@ -4438,7 +4438,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s 			page 1
 3688:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_sd.c ****       tmp++;
  430              		.loc 1 3688 7 view .LVU136
 3688:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_sd.c ****       tmp++;
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s 			page 75
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccAqLAAe.s 			page 75
 
 
  431              		.loc 1 3688 27 is_stmt 0 view .LVU137
@@ -4498,7 +4498,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s 			page 1
  469              		.loc 1 3697 5 view .LVU153
 3697:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_sd.c ****     hsd->TxXferSize -= SDMMC_FIFO_SIZE;
  470              		.loc 1 3697 21 is_stmt 0 view .LVU154
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s 			page 76
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccAqLAAe.s 			page 76
 
 
  471 003c F461     		str	r4, [r6, #28]
@@ -4558,7 +4558,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s 			page 1
 3319:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_sd.c ****   uint32_t count;
  518              		.loc 1 3319 24 is_stmt 0 view .LVU166
  519 0008 FFF7FEFF 		bl	HAL_GetTick
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s 			page 77
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccAqLAAe.s 			page 77
 
 
  520              	.LVL55:
@@ -4618,7 +4618,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s 			page 1
 3338:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_sd.c ****   if (errorstate != HAL_SD_ERROR_NONE)
  557              		.loc 1 3338 73 is_stmt 0 view .LVU184
  558 002e 696C     		ldr	r1, [r5, #68]
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s 			page 78
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccAqLAAe.s 			page 78
 
 
 3338:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_sd.c ****   if (errorstate != HAL_SD_ERROR_NONE)
@@ -4678,7 +4678,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s 			page 1
  595              		.loc 1 3350 3 is_stmt 1 view .LVU202
 3350:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_sd.c ****   config.DPSM          = SDMMC_DPSM_ENABLE;
  596              		.loc 1 3350 24 is_stmt 0 view .LVU203
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s 			page 79
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccAqLAAe.s 			page 79
 
 
  597 0054 0023     		movs	r3, #0
@@ -4738,7 +4738,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s 			page 1
 3369:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_sd.c ****         pData++;
  635              		.loc 1 3369 16 discriminator 1 view .LVU220
  636 007a 46F8040B 		str	r0, [r6], #4
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s 			page 80
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccAqLAAe.s 			page 80
 
 
  637              	.LVL67:
@@ -4798,7 +4798,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s 			page 1
 3380:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_sd.c ****   {
  676              		.loc 1 3380 6 view .LVU236
  677 00a6 12F0080F 		tst	r2, #8
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s 			page 81
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccAqLAAe.s 			page 81
 
 
  678 00aa 24D1     		bne	.L49
@@ -4858,7 +4858,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s 			page 1
  716 00de 04E0     		b	.L36
  717              	.L56:
 3409:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_sd.c **** 
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s 			page 82
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccAqLAAe.s 			page 82
 
 
  718              		.loc 1 3409 3 is_stmt 1 view .LVU253
@@ -4918,7 +4918,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s 			page 1
  765              		.thumb
  766              		.thumb_func
  768              	SD_FindSCR:
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s 			page 83
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccAqLAAe.s 			page 83
 
 
  769              	.LVL77:
@@ -4978,7 +4978,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s 			page 1
  809              		.loc 1 3553 16 view .LVU275
  810 0018 FFF7FEFF 		bl	SDMMC_CmdBlockLength
  811              	.LVL82:
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s 			page 84
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccAqLAAe.s 			page 84
 
 
 3554:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_sd.c ****   {
@@ -5038,7 +5038,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s 			page 1
 3568:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_sd.c ****   config.TransferDir   = SDMMC_TRANSFER_DIR_TO_SDMMC;
  852              		.loc 1 3568 24 is_stmt 0 view .LVU290
  853 0040 3023     		movs	r3, #48
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s 			page 85
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccAqLAAe.s 			page 85
 
 
  854 0042 0493     		str	r3, [sp, #16]
@@ -5098,7 +5098,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s 			page 1
  892 0068 431B     		subs	r3, r0, r5
 3591:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_sd.c ****     {
  893              		.loc 1 3591 8 discriminator 1 view .LVU307
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s 			page 86
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccAqLAAe.s 			page 86
 
 
  894 006a B3F1FF3F 		cmp	r3, #-1
@@ -5158,7 +5158,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s 			page 1
  932              		.loc 1 3588 12 view .LVU323
  933 0098 E4E7     		b	.L62
  934              	.LVL96:
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s 			page 87
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccAqLAAe.s 			page 87
 
 
  935              	.L70:
@@ -5218,7 +5218,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s 			page 1
  972 00ca 43EA1263 		orr	r3, r3, r2, lsr #24
 3621:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_sd.c ****             ((tempscr[1] & SDMMC_16TO23BITS) >> 8U) | ((tempscr[1] & SDMMC_24TO31BITS) >> 24U));
  973              		.loc 1 3621 10 view .LVU341
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s 			page 88
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccAqLAAe.s 			page 88
 
 
  974 00ce 3B60     		str	r3, [r7]
@@ -5278,7 +5278,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s 			page 1
 3605:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_sd.c **** 
  1012              		.loc 1 3605 5 is_stmt 0 view .LVU358
  1013 00f4 8663     		str	r6, [r0, #56]
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s 			page 89
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccAqLAAe.s 			page 89
 
 
 3607:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_sd.c ****   }
@@ -5338,7 +5338,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s 			page 1
 3450:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_sd.c ****   uint32_t errorstate;
  1060              		.loc 1 3450 12 is_stmt 0 view .LVU369
  1061 0006 0021     		movs	r1, #0
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s 			page 90
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccAqLAAe.s 			page 90
 
 
  1062 0008 0091     		str	r1, [sp]
@@ -5398,7 +5398,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s 			page 1
 3470:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_sd.c ****     {
  1100              		.loc 1 3470 8 is_stmt 0 view .LVU386
  1101 0034 30B9     		cbnz	r0, .L76
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s 			page 91
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccAqLAAe.s 			page 91
 
 
 3476:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_sd.c ****     if (errorstate != HAL_SD_ERROR_NONE)
@@ -5458,7 +5458,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s 			page 1
  1148 0000 10B5     		push	{r4, lr}
  1149              		.cfi_def_cfa_offset 8
  1150              		.cfi_offset 4, -8
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s 			page 92
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccAqLAAe.s 			page 92
 
 
  1151              		.cfi_offset 14, -4
@@ -5518,7 +5518,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s 			page 1
  1189 002c 0904     		lsls	r1, r1, #16
  1190 002e 2068     		ldr	r0, [r4]
  1191              	.LVL120:
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s 			page 93
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccAqLAAe.s 			page 93
 
 
 3516:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_sd.c ****     if (errorstate != HAL_SD_ERROR_NONE)
@@ -5578,7 +5578,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s 			page 1
  1237              	.LVL127:
  1238              	.LFB182:
 3701:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_sd.c **** 
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s 			page 94
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccAqLAAe.s 			page 94
 
 
 3702:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_sd.c **** /**
@@ -5638,7 +5638,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s 			page 1
  1276              	.LVL132:
 3719:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_sd.c **** 
 3720:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_sd.c ****   if (hsd->SdCard.CardSpeed == CARD_NORMAL_SPEED)
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s 			page 95
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccAqLAAe.s 			page 95
 
 
  1277              		.loc 1 3720 3 is_stmt 1 view .LVU436
@@ -5698,7 +5698,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s 			page 1
 3759:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_sd.c ****         {
 3760:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_sd.c ****           SD_hs[(8U * loop) + count]  = SDMMC_ReadFIFO(hsd->Instance);
 3761:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_sd.c ****         }
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s 			page 96
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccAqLAAe.s 			page 96
 
 
 3762:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_sd.c ****         loop ++;
@@ -5758,7 +5758,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s 			page 1
  1296              		.cfi_def_cfa_offset 28
  1297              		@ sp needed
  1298 002c BDE8F083 		pop	{r4, r5, r6, r7, r8, r9, pc}
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s 			page 97
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccAqLAAe.s 			page 97
 
 
  1299              	.LVL134:
@@ -5818,7 +5818,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s 			page 1
 3742:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_sd.c ****     sdmmc_datainitstructure.DPSM          = SDMMC_DPSM_ENABLE;
  1337              		.loc 1 3742 5 is_stmt 1 view .LVU459
 3742:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_sd.c ****     sdmmc_datainitstructure.DPSM          = SDMMC_DPSM_ENABLE;
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s 			page 98
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccAqLAAe.s 			page 98
 
 
  1338              		.loc 1 3742 43 is_stmt 0 view .LVU460
@@ -5878,7 +5878,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s 			page 1
  1378 0084 03EB8606 		add	r6, r3, r6, lsl #2
  1379 0088 46F8580C 		str	r0, [r6, #-88]
 3758:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_sd.c ****         {
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s 			page 99
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccAqLAAe.s 			page 99
 
 
  1380              		.loc 1 3758 43 is_stmt 1 discriminator 3 view .LVU475
@@ -5938,7 +5938,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s 			page 1
 3766:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_sd.c ****         hsd->State = HAL_SD_STATE_READY;
  1420              		.loc 1 3766 24 is_stmt 0 view .LVU490
  1421 00b8 4FF00043 		mov	r3, #-2147483648
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s 			page 100
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccAqLAAe.s 			page 100
 
 
  1422 00bc 6B63     		str	r3, [r5, #52]
@@ -5998,7 +5998,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s 			page 1
  1458              		.loc 1 3803 28 is_stmt 0 view .LVU508
  1459 00e4 9DF80D30 		ldrb	r3, [sp, #13]	@ zero_extendqisi2
 3803:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_sd.c ****     {
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s 			page 101
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccAqLAAe.s 			page 101
 
 
  1460              		.loc 1 3803 8 view .LVU509
@@ -6058,7 +6058,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s 			page 1
  1500 010a 4FF08068 		mov	r8, #67108864
  1501 010e 8BE7     		b	.L86
  1502              	.L107:
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s 			page 102
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccAqLAAe.s 			page 102
 
 
  1503              		.align	2
@@ -6118,7 +6118,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s 			page 1
  1548 0012 0546     		mov	r5, r0
  1549 0014 08B1     		cbz	r0, .L112
  1550              	.LVL158:
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s 			page 103
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccAqLAAe.s 			page 103
 
 
  1551              	.L108:
@@ -6178,7 +6178,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s 			page 1
  1596              		.cfi_endproc
  1597              	.LFE147:
  1599              		.section	.text.HAL_SD_MspDeInit,"ax",%progbits
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s 			page 104
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccAqLAAe.s 			page 104
 
 
  1600              		.align	1
@@ -6238,7 +6238,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s 			page 1
  1647 0008 80F83030 		strb	r3, [r0, #48]
  589:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_sd.c **** 
  1648              		.loc 1 589 3 is_stmt 1 view .LVU556
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s 			page 105
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccAqLAAe.s 			page 105
 
 
  1649 000c FFF7FEFF 		bl	SD_PowerOFF
@@ -6298,7 +6298,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s 			page 1
  1694              		.cfi_def_cfa_offset 36
  1695              		.cfi_offset 4, -36
  1696              		.cfi_offset 5, -32
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s 			page 106
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccAqLAAe.s 			page 106
 
 
  1697              		.cfi_offset 6, -28
@@ -6358,7 +6358,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s 			page 1
  1735              		.loc 1 691 20 is_stmt 0 view .LVU583
  1736 002a 0023     		movs	r3, #0
  1737 002c 6B63     		str	r3, [r5, #52]
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s 			page 107
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccAqLAAe.s 			page 107
 
 
  693:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_sd.c ****     {
@@ -6418,7 +6418,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s 			page 1
  711:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_sd.c ****     config.DataBlockSize = SDMMC_DATABLOCK_SIZE_512B;
  1774              		.loc 1 711 26 view .LVU602
  1775 0056 0193     		str	r3, [sp, #4]
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s 			page 108
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccAqLAAe.s 			page 108
 
 
  712:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_sd.c ****     config.TransferDir   = SDMMC_TRANSFER_DIR_TO_SDMMC;
@@ -6478,7 +6478,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s 			page 1
  725:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_sd.c ****     }
  1813              		.loc 1 725 20 is_stmt 0 view .LVU620
  1814 0082 3146     		mov	r1, r6
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s 			page 109
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccAqLAAe.s 			page 109
 
 
  1815 0084 2868     		ldr	r0, [r5]
@@ -6538,7 +6538,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s 			page 1
  729:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_sd.c **** 
  1853              		.loc 1 729 7 is_stmt 1 view .LVU637
  729:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_sd.c **** 
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s 			page 110
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccAqLAAe.s 			page 110
 
 
  1854              		.loc 1 729 20 is_stmt 0 view .LVU638
@@ -6598,7 +6598,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s 			page 1
  766:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_sd.c ****       {
  1894              		.loc 1 766 7 is_stmt 1 view .LVU653
  766:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_sd.c ****       {
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s 			page 111
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccAqLAAe.s 			page 111
 
 
  1895              		.loc 1 766 13 is_stmt 0 view .LVU654
@@ -6658,7 +6658,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s 			page 1
  1934              		.loc 1 754 21 is_stmt 0 view .LVU669
  1935 0106 2070     		strb	r0, [r4]
  755:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_sd.c ****           *tempbuff = (uint8_t)((data >> 8U) & 0xFFU);
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s 			page 112
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccAqLAAe.s 			page 112
 
 
  1936              		.loc 1 755 11 is_stmt 1 view .LVU670
@@ -6718,7 +6718,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s 			page 1
  1973              		.loc 1 770 9 view .LVU687
  770:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_sd.c ****         hsd->State = HAL_SD_STATE_READY;
  1974              		.loc 1 770 12 is_stmt 0 view .LVU688
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s 			page 113
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccAqLAAe.s 			page 113
 
 
  1975 0124 6B6B     		ldr	r3, [r5, #52]
@@ -6778,7 +6778,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s 			page 1
  798:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_sd.c ****     {
  2014              		.loc 1 798 5 is_stmt 1 view .LVU704
  798:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_sd.c ****     {
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s 			page 114
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccAqLAAe.s 			page 114
 
 
  2015              		.loc 1 798 9 is_stmt 0 view .LVU705
@@ -6838,7 +6838,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s 			page 1
  2052 018a 36E0     		b	.L124
  2053              	.LVL194:
  2054              	.L147:
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s 			page 115
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccAqLAAe.s 			page 115
 
 
  784:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_sd.c ****         if (errorstate != HAL_SD_ERROR_NONE)
@@ -6898,7 +6898,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s 			page 1
  2092 01b2 6B6B     		ldr	r3, [r5, #52]
  802:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_sd.c ****       hsd->State = HAL_SD_STATE_READY;
  2093              		.loc 1 802 22 view .LVU740
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s 			page 116
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccAqLAAe.s 			page 116
 
 
  2094 01b4 43F00803 		orr	r3, r3, #8
@@ -6958,7 +6958,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s 			page 1
  2130              		.loc 1 831 5 view .LVU758
  2131 01de 0A4A     		ldr	r2, .L150+4
  2132 01e0 9A63     		str	r2, [r3, #56]
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s 			page 117
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccAqLAAe.s 			page 117
 
 
  833:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_sd.c **** 
@@ -7018,7 +7018,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s 			page 1
  2178              	.LVL200:
  2179              	.LFB150:
  858:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_sd.c ****   SDMMC_DataInitTypeDef config;
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s 			page 118
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccAqLAAe.s 			page 118
 
 
  2180              		.loc 1 858 1 is_stmt 1 view -0
@@ -7078,7 +7078,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s 			page 1
  2220              		.loc 1 874 10 is_stmt 0 view .LVU784
  2221 001c 95F83030 		ldrb	r3, [r5, #48]	@ zero_extendqisi2
  2222 0020 5FFA83FA 		uxtb	r10, r3
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s 			page 119
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccAqLAAe.s 			page 119
 
 
  874:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_sd.c ****   {
@@ -7138,7 +7138,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s 			page 1
  2259              		.loc 1 895 5 is_stmt 1 view .LVU802
  895:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_sd.c ****     config.DataLength    = NumberOfBlocks * BLOCKSIZE;
  2260              		.loc 1 895 26 is_stmt 0 view .LVU803
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s 			page 120
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccAqLAAe.s 			page 120
 
 
  2261 004c 4FF0FF33 		mov	r3, #-1
@@ -7198,7 +7198,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s 			page 1
  2298 007a 17D9     		bls	.L158
  907:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_sd.c **** 
  2299              		.loc 1 907 7 is_stmt 1 view .LVU821
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s 			page 121
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccAqLAAe.s 			page 121
 
 
  907:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_sd.c **** 
@@ -7258,7 +7258,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s 			page 1
  2338 00a2 6B6B     		ldr	r3, [r5, #52]
  880:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_sd.c ****       return HAL_ERROR;
  2339              		.loc 1 880 22 view .LVU838
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s 			page 122
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccAqLAAe.s 			page 122
 
 
  2340 00a4 43F00073 		orr	r3, r3, #33554432
@@ -7318,7 +7318,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s 			page 1
  2379              		.loc 1 925 20 is_stmt 0 view .LVU853
  2380 00d0 0023     		movs	r3, #0
  2381 00d2 EB62     		str	r3, [r5, #44]
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s 			page 123
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccAqLAAe.s 			page 123
 
 
  926:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_sd.c ****     }
@@ -7378,7 +7378,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s 			page 1
  2420 0100 EBD9     		bls	.L162
  2421              	.L163:
  2422              	.LVL216:
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s 			page 124
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccAqLAAe.s 			page 124
 
 
  937:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_sd.c ****         {
@@ -7438,7 +7438,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s 			page 1
  947:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_sd.c ****         }
  2459              		.loc 1 947 11 is_stmt 1 view .LVU888
  947:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_sd.c ****         }
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s 			page 125
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccAqLAAe.s 			page 125
 
 
  2460              		.loc 1 947 17 is_stmt 0 view .LVU889
@@ -7498,7 +7498,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s 			page 1
  2500              		.loc 1 965 5 view .LVU903
  965:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_sd.c ****     {
  2501              		.loc 1 965 9 is_stmt 0 view .LVU904
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s 			page 126
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccAqLAAe.s 			page 126
 
 
  2502 0156 2868     		ldr	r0, [r5]
@@ -7558,7 +7558,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s 			page 1
  2540              		.loc 1 1006 7 view .LVU920
 1006:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_sd.c ****       hsd->State = HAL_SD_STATE_READY;
  2541              		.loc 1 1006 10 is_stmt 0 view .LVU921
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s 			page 127
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccAqLAAe.s 			page 127
 
 
  2542 018a 6B6B     		ldr	r3, [r5, #52]
@@ -7618,7 +7618,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s 			page 1
  2579              		.loc 1 976 22 is_stmt 0 view .LVU938
  2580 01b4 0123     		movs	r3, #1
  2581 01b6 85F83030 		strb	r3, [r5, #48]
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s 			page 128
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccAqLAAe.s 			page 128
 
 
  977:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_sd.c ****           return HAL_ERROR;
@@ -7678,7 +7678,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s 			page 1
  2618              		.loc 1 997 22 view .LVU956
  2619 01de 43F00203 		orr	r3, r3, #2
  2620 01e2 6B63     		str	r3, [r5, #52]
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s 			page 129
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccAqLAAe.s 			page 129
 
 
  998:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_sd.c ****       hsd->Context = SD_CONTEXT_NONE;
@@ -7738,7 +7738,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s 			page 1
 1028:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_sd.c **** 
  2658              		.loc 1 1028 1 view .LVU974
  2659 020c 5046     		mov	r0, r10
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s 			page 130
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccAqLAAe.s 			page 130
 
 
  2660 020e 0BB0     		add	sp, sp, #44
@@ -7798,7 +7798,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s 			page 1
  2708 000c 1E46     		mov	r6, r3
  2709 000e 0A46     		mov	r2, r1
  2710              	.LVL233:
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s 			page 131
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccAqLAAe.s 			page 131
 
 
 1056:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_sd.c ****   {
@@ -7858,7 +7858,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s 			page 1
 1072:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_sd.c **** 
  2747              		.loc 1 1072 33 is_stmt 0 view .LVU1001
  2748 0034 7302     		lsls	r3, r6, #9
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s 			page 132
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccAqLAAe.s 			page 132
 
 
 1072:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_sd.c **** 
@@ -7918,7 +7918,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s 			page 1
 1086:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_sd.c ****     __SDMMC_CMDTRANS_ENABLE(hsd->Instance);
  2785              		.loc 1 1086 5 is_stmt 1 view .LVU1020
 1086:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_sd.c ****     __SDMMC_CMDTRANS_ENABLE(hsd->Instance);
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s 			page 133
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccAqLAAe.s 			page 133
 
 
  2786              		.loc 1 1086 11 is_stmt 0 view .LVU1021
@@ -7978,7 +7978,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s 			page 1
 1109:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_sd.c ****       hsd->Context = SD_CONTEXT_NONE;
  2826              		.loc 1 1109 7 is_stmt 1 view .LVU1036
 1109:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_sd.c ****       hsd->Context = SD_CONTEXT_NONE;
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s 			page 134
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccAqLAAe.s 			page 134
 
 
  2827              		.loc 1 1109 18 is_stmt 0 view .LVU1037
@@ -8038,7 +8038,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s 			page 1
  2865 00a8 0923     		movs	r3, #9
  2866 00aa E362     		str	r3, [r4, #44]
 1102:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_sd.c ****     }
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s 			page 135
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccAqLAAe.s 			page 135
 
 
  2867              		.loc 1 1102 7 is_stmt 1 view .LVU1054
@@ -8098,7 +8098,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s 			page 1
  2916              	.LFB152:
 1140:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_sd.c ****   SDMMC_DataInitTypeDef config;
  2917              		.loc 1 1140 1 is_stmt 1 view -0
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s 			page 136
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccAqLAAe.s 			page 136
 
 
  2918              		.cfi_startproc
@@ -8158,7 +8158,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s 			page 1
  2958              		.loc 1 1155 14 is_stmt 0 view .LVU1076
  2959 001e AB19     		adds	r3, r5, r6
 1155:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_sd.c ****     {
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s 			page 137
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccAqLAAe.s 			page 137
 
 
  2960              		.loc 1 1155 46 view .LVU1077
@@ -8218,7 +8218,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s 			page 1
 1175:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_sd.c ****     config.DataLength    = BLOCKSIZE * NumberOfBlocks;
  2997              		.loc 1 1175 26 is_stmt 0 view .LVU1095
  2998 0040 4FF0FF32 		mov	r2, #-1
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s 			page 138
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccAqLAAe.s 			page 138
 
 
  2999 0044 0092     		str	r2, [sp]
@@ -8278,7 +8278,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s 			page 1
  3035              		.loc 1 1188 20 is_stmt 0 view .LVU1113
  3036 006a 2823     		movs	r3, #40
  3037 006c E362     		str	r3, [r4, #44]
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s 			page 139
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccAqLAAe.s 			page 139
 
 
 1191:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_sd.c ****     }
@@ -8338,7 +8338,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s 			page 1
  3075              		.loc 1 1147 20 view .LVU1130
  3076 0092 43F00063 		orr	r3, r3, #134217728
  3077 0096 4363     		str	r3, [r0, #52]
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s 			page 140
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccAqLAAe.s 			page 140
 
 
 1148:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_sd.c ****   }
@@ -8398,7 +8398,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s 			page 1
  3118              	.LVL266:
  3119              	.L204:
 1218:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_sd.c ****   }
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s 			page 141
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccAqLAAe.s 			page 141
 
 
  3120              		.loc 1 1218 12 view .LVU1145
@@ -8458,7 +8458,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s 			page 1
 1242:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_sd.c ****   {
  3169              		.loc 1 1242 3 view .LVU1153
 1242:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_sd.c ****   {
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s 			page 142
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccAqLAAe.s 			page 142
 
 
  3170              		.loc 1 1242 6 is_stmt 0 view .LVU1154
@@ -8518,7 +8518,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s 			page 1
  3208              		.loc 1 1263 5 is_stmt 1 view .LVU1170
 1263:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_sd.c ****     hsd->RxXferSize = BLOCKSIZE * NumberOfBlocks;
  3209              		.loc 1 1263 21 is_stmt 0 view .LVU1171
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s 			page 143
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccAqLAAe.s 			page 143
 
 
  3210 0034 6162     		str	r1, [r4, #36]
@@ -8578,7 +8578,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s 			page 1
 1277:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_sd.c ****     (void)SDMMC_ConfigData(hsd->Instance, &config);
  3246              		.loc 1 1277 5 is_stmt 1 view .LVU1190
 1277:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_sd.c ****     (void)SDMMC_ConfigData(hsd->Instance, &config);
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s 			page 144
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccAqLAAe.s 			page 144
 
 
  3247              		.loc 1 1277 26 is_stmt 0 view .LVU1191
@@ -8638,7 +8638,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s 			page 1
  3284              		.loc 1 1290 20 is_stmt 0 view .LVU1208
  3285 007e 2946     		mov	r1, r5
  3286 0080 2068     		ldr	r0, [r4]
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s 			page 145
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccAqLAAe.s 			page 145
 
 
  3287 0082 FFF7FEFF 		bl	SDMMC_CmdReadMultiBlock
@@ -8698,7 +8698,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s 			page 1
  3324              		.loc 1 1245 12 is_stmt 0 view .LVU1225
  3325 00a8 0127     		movs	r7, #1
  3326 00aa 13E0     		b	.L212
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s 			page 146
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccAqLAAe.s 			page 146
 
 
  3327              	.LVL280:
@@ -8758,7 +8758,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s 			page 1
 1318:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_sd.c **** 
  3368              		.loc 1 1318 1 view .LVU1239
  3369 00d4 3846     		mov	r0, r7
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s 			page 147
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccAqLAAe.s 			page 147
 
 
  3370 00d6 06B0     		add	sp, sp, #24
@@ -8818,7 +8818,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s 			page 1
  3418 000e 1E46     		mov	r6, r3
  3419 0010 8846     		mov	r8, r1
 1346:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_sd.c ****   {
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s 			page 148
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccAqLAAe.s 			page 148
 
 
  3420              		.loc 1 1346 3 is_stmt 1 view .LVU1248
@@ -8878,7 +8878,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s 			page 1
  3456              		.loc 1 1362 33 is_stmt 0 view .LVU1266
  3457 0036 7302     		lsls	r3, r6, #9
 1362:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_sd.c **** 
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s 			page 149
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccAqLAAe.s 			page 149
 
 
  3458              		.loc 1 1362 21 view .LVU1267
@@ -8938,7 +8938,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s 			page 1
  3493              		.loc 1 1376 11 is_stmt 0 view .LVU1286
  3494 0056 6946     		mov	r1, sp
  3495              	.LVL292:
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s 			page 150
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccAqLAAe.s 			page 150
 
 
 1376:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_sd.c **** 
@@ -8998,7 +8998,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s 			page 1
 1398:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_sd.c ****     {
  3534              		.loc 1 1398 8 is_stmt 0 view .LVU1303
  3535 0084 E8B1     		cbz	r0, .L231
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s 			page 151
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccAqLAAe.s 			page 151
 
 
 1401:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_sd.c ****       hsd->ErrorCode |= errorstate;
@@ -9058,7 +9058,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s 			page 1
  3573              		.loc 1 1352 10 is_stmt 0 view .LVU1320
  3574 00aa 436B     		ldr	r3, [r0, #52]
 1352:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_sd.c ****       return HAL_ERROR;
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s 			page 152
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccAqLAAe.s 			page 152
 
 
  3575              		.loc 1 1352 22 view .LVU1321
@@ -9118,7 +9118,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s 			page 1
  3618              	.L237:
 1417:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_sd.c **** 
  3619              		.loc 1 1417 1 view .LVU1333
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s 			page 153
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccAqLAAe.s 			page 153
 
 
  3620 00da 00BF     		.align	2
@@ -9178,7 +9178,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s 			page 1
  3666 0014 4363     		str	r3, [r0, #52]
 1438:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_sd.c ****     {
  3667              		.loc 1 1438 5 is_stmt 1 view .LVU1344
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s 			page 154
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccAqLAAe.s 			page 154
 
 
 1438:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_sd.c ****     {
@@ -9238,7 +9238,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s 			page 1
  3704              		.loc 1 1459 14 is_stmt 0 view .LVU1362
  3705 0042 55E0     		b	.L239
  3706              	.LVL308:
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s 			page 155
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccAqLAAe.s 			page 155
 
 
  3707              	.L250:
@@ -9298,7 +9298,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s 			page 1
 1472:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_sd.c ****     {
  3744              		.loc 1 1472 8 view .LVU1380
  3745 0068 012B     		cmp	r3, #1
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s 			page 156
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccAqLAAe.s 			page 156
 
 
  3746 006a 01D0     		beq	.L244
@@ -9358,7 +9358,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s 			page 1
  3783              		.loc 1 1489 9 is_stmt 1 view .LVU1397
 1489:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_sd.c ****       }
  3784              		.loc 1 1489 16 is_stmt 0 view .LVU1398
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s 			page 157
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccAqLAAe.s 			page 157
 
 
  3785 0090 2EE0     		b	.L239
@@ -9418,7 +9418,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s 			page 1
  3824 00b6 FFF7FEFF 		bl	SDMMC_CmdErase
  3825              	.LVL320:
 1506:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_sd.c ****     {
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s 			page 158
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccAqLAAe.s 			page 158
 
 
  3826              		.loc 1 1506 5 is_stmt 1 view .LVU1414
@@ -9478,7 +9478,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s 			page 1
  3863 00e2 05E0     		b	.L239
  3864              	.L247:
 1515:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_sd.c **** 
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s 			page 159
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccAqLAAe.s 			page 159
 
 
  3865              		.loc 1 1515 5 is_stmt 1 view .LVU1432
@@ -9538,7 +9538,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s 			page 1
  3913              		.section	.text.HAL_SD_GetError,"ax",%progbits
  3914              		.align	1
  3915              		.global	HAL_SD_GetError
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s 			page 160
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccAqLAAe.s 			page 160
 
 
  3916              		.syntax unified
@@ -9598,7 +9598,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s 			page 1
 1802:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_sd.c ****   /* Prevent unused argument(s) compilation warning */
  3968              		.loc 1 1802 1 is_stmt 1 view -0
  3969              		.cfi_startproc
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s 			page 161
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccAqLAAe.s 			page 161
 
 
  3970              		@ args = 0, pretend = 0, frame = 0
@@ -9658,7 +9658,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s 			page 1
  4021              		.section	.text.HAL_SD_GetCardCID,"ax",%progbits
  4022              		.align	1
  4023              		.global	HAL_SD_GetCardCID
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s 			page 162
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccAqLAAe.s 			page 162
 
 
  4024              		.syntax unified
@@ -9718,7 +9718,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s 			page 1
  4062              		.loc 1 2165 19 view .LVU1474
  4063 001e 0B72     		strb	r3, [r1, #8]
 2167:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_sd.c **** 
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s 			page 163
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccAqLAAe.s 			page 163
 
 
  4064              		.loc 1 2167 3 is_stmt 1 view .LVU1475
@@ -9778,7 +9778,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s 			page 1
 2177:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_sd.c **** 
  4099              		.loc 1 2177 3 is_stmt 1 view .LVU1495
 2177:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_sd.c **** 
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s 			page 164
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccAqLAAe.s 			page 164
 
 
  4100              		.loc 1 2177 19 is_stmt 0 view .LVU1496
@@ -9838,7 +9838,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s 			page 1
 2196:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_sd.c **** 
  4143              		.loc 1 2196 3 is_stmt 1 view .LVU1510
 2196:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_sd.c **** 
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s 			page 165
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccAqLAAe.s 			page 165
 
 
  4144              		.loc 1 2196 59 is_stmt 0 view .LVU1511
@@ -9898,7 +9898,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s 			page 1
 2208:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_sd.c **** 
  4179              		.loc 1 2208 3 is_stmt 1 view .LVU1531
 2208:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_sd.c **** 
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s 			page 166
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccAqLAAe.s 			page 166
 
 
  4180              		.loc 1 2208 46 is_stmt 0 view .LVU1532
@@ -9958,7 +9958,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s 			page 1
  4215 0062 002A     		cmp	r2, #0
  4216 0064 40F08680 		bne	.L264
 2220:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_sd.c **** 
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s 			page 167
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccAqLAAe.s 			page 167
 
 
  4217              		.loc 1 2220 5 is_stmt 1 view .LVU1552
@@ -10018,7 +10018,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s 			page 1
  4252              		.loc 1 2228 51 is_stmt 0 view .LVU1571
  4253 0094 5A6E     		ldr	r2, [r3, #100]
 2228:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_sd.c **** 
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s 			page 168
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccAqLAAe.s 			page 168
 
 
  4254              		.loc 1 2228 32 view .LVU1572
@@ -10078,7 +10078,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s 			page 1
 2234:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_sd.c **** 
  4290              		.loc 1 2234 27 view .LVU1591
  4291 00c4 D864     		str	r0, [r3, #76]
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s 			page 169
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccAqLAAe.s 			page 169
 
 
 2236:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_sd.c ****     hsd->SdCard.LogBlockSize = BLOCKSIZE;
@@ -10138,7 +10138,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s 			page 1
  4326              		.loc 1 2264 48 is_stmt 0 view .LVU1611
  4327 00ec 9A6E     		ldr	r2, [r3, #104]
 2264:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_sd.c **** 
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s 			page 170
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccAqLAAe.s 			page 170
 
 
  4328              		.loc 1 2264 29 view .LVU1612
@@ -10198,7 +10198,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s 			page 1
  4363 0116 81F82100 		strb	r0, [r1, #33]
 2276:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_sd.c **** 
  4364              		.loc 1 2276 3 is_stmt 1 view .LVU1632
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s 			page 171
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccAqLAAe.s 			page 171
 
 
 2276:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_sd.c **** 
@@ -10258,7 +10258,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s 			page 1
  4399              		.loc 1 2286 3 is_stmt 1 view .LVU1652
 2286:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_sd.c **** 
  4400              		.loc 1 2286 41 is_stmt 0 view .LVU1653
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s 			page 172
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccAqLAAe.s 			page 172
 
 
  4401 014e 9A6E     		ldr	r2, [r3, #104]
@@ -10318,7 +10318,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s 			page 1
 2242:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_sd.c **** 
  4437              		.loc 1 2242 54 view .LVU1672
  4438 017a 1204     		lsls	r2, r2, #16
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s 			page 173
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccAqLAAe.s 			page 173
 
 
  4439 017c 02F47C12 		and	r2, r2, #4128768
@@ -10378,7 +10378,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s 			page 1
 2253:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_sd.c ****     hsd->State = HAL_SD_STATE_READY;
  4476              		.loc 1 2253 8 is_stmt 0 view .LVU1690
  4477 01a2 426B     		ldr	r2, [r0, #52]
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s 			page 174
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccAqLAAe.s 			page 174
 
 
 2253:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_sd.c ****     hsd->State = HAL_SD_STATE_READY;
@@ -10438,7 +10438,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s 			page 1
  4522              		.loc 1 3040 12 is_stmt 0 view .LVU1702
  4523 0006 0023     		movs	r3, #0
  4524 0008 ADF80230 		strh	r3, [sp, #2]	@ movhi
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s 			page 175
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccAqLAAe.s 			page 175
 
 
 3041:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_sd.c **** 
@@ -10498,7 +10498,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s 			page 1
  4563 0034 FFF7FEFF 		bl	SDMMC_CmdSetRelAdd
  4564              	.LVL346:
 3075:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_sd.c ****       {
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s 			page 176
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccAqLAAe.s 			page 176
 
 
  4565              		.loc 1 3075 7 is_stmt 1 view .LVU1719
@@ -10558,7 +10558,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s 			page 1
 3062:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_sd.c ****       hsd->CID[2U] = SDMMC_GetResponse(hsd->Instance, SDMMC_RESP3);
  4605              		.loc 1 3062 7 is_stmt 1 view .LVU1734
 3062:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_sd.c ****       hsd->CID[2U] = SDMMC_GetResponse(hsd->Instance, SDMMC_RESP3);
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s 			page 177
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccAqLAAe.s 			page 177
 
 
  4606              		.loc 1 3062 22 is_stmt 0 view .LVU1735
@@ -10618,7 +10618,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s 			page 1
  4646 0098 FFF7FEFF 		bl	SDMMC_CmdSendCSD
  4647              	.LVL356:
 3092:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_sd.c ****     {
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s 			page 178
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccAqLAAe.s 			page 178
 
 
  4648              		.loc 1 3092 5 is_stmt 1 view .LVU1750
@@ -10678,7 +10678,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s 			page 1
 3107:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_sd.c **** 
  4688              		.loc 1 3107 3 is_stmt 1 view .LVU1765
 3107:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_sd.c **** 
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s 			page 179
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccAqLAAe.s 			page 179
 
 
  4689              		.loc 1 3107 24 is_stmt 0 view .LVU1766
@@ -10738,7 +10738,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s 			page 1
  4732              		.cfi_restore_state
 3112:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_sd.c ****   }
  4733              		.loc 1 3112 12 view .LVU1778
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s 			page 180
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccAqLAAe.s 			page 180
 
 
  4734 00f6 4FF08053 		mov	r3, #268435456
@@ -10798,7 +10798,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s 			page 1
  4777              		.loc 1 479 28 is_stmt 0 view .LVU1791
  4778 000e 0693     		str	r3, [sp, #24]
  482:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_sd.c ****   if (sdmmc_clk == 0U)
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s 			page 181
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccAqLAAe.s 			page 181
 
 
  4779              		.loc 1 482 3 is_stmt 1 view .LVU1792
@@ -10858,7 +10858,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s 			page 1
  4819 0036 2D09     		lsrs	r5, r5, #4
  489:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_sd.c **** 
  4820              		.loc 1 489 17 view .LVU1807
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s 			page 182
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccAqLAAe.s 			page 182
 
 
  4821 0038 0795     		str	r5, [sp, #28]
@@ -10918,7 +10918,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s 			page 1
  4860              		.loc 1 524 3 is_stmt 1 view .LVU1822
  524:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_sd.c ****   {
  4861              		.loc 1 524 6 is_stmt 0 view .LVU1823
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s 			page 183
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccAqLAAe.s 			page 183
 
 
  4862 0068 0246     		mov	r2, r0
@@ -10978,7 +10978,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s 			page 1
  4900              		.loc 1 533 6 is_stmt 0 view .LVU1839
  4901 008e 0246     		mov	r2, r0
  4902 0090 30B1     		cbz	r0, .L288
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s 			page 184
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccAqLAAe.s 			page 184
 
 
  535:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_sd.c ****     hsd->ErrorCode |= errorstate;
@@ -11038,7 +11038,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s 			page 1
  4941 00b4 9963     		str	r1, [r3, #56]
  546:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_sd.c ****     hsd->State = HAL_SD_STATE_READY;
  4942              		.loc 1 546 5 view .LVU1856
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s 			page 185
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccAqLAAe.s 			page 185
 
 
  546:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_sd.c ****     hsd->State = HAL_SD_STATE_READY;
@@ -11098,7 +11098,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s 			page 1
  4989              		.loc 1 2306 3 is_stmt 1 view .LVU1866
 2307:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_sd.c ****   HAL_StatusTypeDef status = HAL_OK;
  4990              		.loc 1 2307 3 view .LVU1867
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s 			page 186
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccAqLAAe.s 			page 186
 
 
 2308:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_sd.c **** 
@@ -11158,7 +11158,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s 			page 1
  5028              	.LVL398:
  5029              	.L298:
 2353:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_sd.c ****   if (errorstate != HAL_SD_ERROR_NONE)
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s 			page 187
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccAqLAAe.s 			page 187
 
 
  5030              		.loc 1 2353 3 view .LVU1885
@@ -11218,7 +11218,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s 			page 1
 2328:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_sd.c **** 
  5068              		.loc 1 2328 5 is_stmt 1 view .LVU1902
 2328:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_sd.c **** 
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s 			page 188
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccAqLAAe.s 			page 188
 
 
  5069              		.loc 1 2328 28 is_stmt 0 view .LVU1903
@@ -11278,7 +11278,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s 			page 1
 2337:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_sd.c **** 
  5106              		.loc 1 2337 5 is_stmt 1 view .LVU1921
 2337:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_sd.c **** 
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s 			page 189
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccAqLAAe.s 			page 189
 
 
  5107              		.loc 1 2337 32 is_stmt 0 view .LVU1922
@@ -11338,7 +11338,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s 			page 1
  5142 00ae 2B74     		strb	r3, [r5, #16]
 2348:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_sd.c ****     pStatus->VideoSpeedClass = (uint8_t)((sd_status[4] & 0xFF000000U) >> 24U);
  5143              		.loc 1 2348 5 is_stmt 1 view .LVU1942
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s 			page 190
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccAqLAAe.s 			page 190
 
 
 2348:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_sd.c ****     pStatus->VideoSpeedClass = (uint8_t)((sd_status[4] & 0xFF000000U) >> 24U);
@@ -11398,7 +11398,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s 			page 1
  5190              		@ frame_needed = 0, uses_anonymous_args = 0
  5191              		@ link register save eliminated.
 2375:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_sd.c ****   pCardInfo->CardVersion  = (uint32_t)(hsd->SdCard.CardVersion);
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s 			page 191
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccAqLAAe.s 			page 191
 
 
  5192              		.loc 1 2375 3 view .LVU1953
@@ -11458,7 +11458,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s 			page 1
  5226 001a 8B61     		str	r3, [r1, #24]
 2382:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_sd.c **** 
  5227              		.loc 1 2382 3 is_stmt 1 view .LVU1974
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s 			page 192
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccAqLAAe.s 			page 192
 
 
 2382:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_sd.c **** 
@@ -11518,7 +11518,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s 			page 1
  5271              		.loc 1 2410 3 view .LVU1987
 2410:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_sd.c **** 
  5272              		.loc 1 2410 14 is_stmt 0 view .LVU1988
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s 			page 193
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccAqLAAe.s 			page 193
 
 
  5273 0008 0323     		movs	r3, #3
@@ -11578,7 +11578,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s 			page 1
  5310 0036 FFF7FEFF 		bl	SD_WideBus_Enable
  5311              	.LVL411:
 2422:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_sd.c ****     }
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s 			page 194
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccAqLAAe.s 			page 194
 
 
  5312              		.loc 1 2422 7 is_stmt 1 view .LVU2006
@@ -11638,7 +11638,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s 			page 1
  5351              		.loc 1 2446 5 view .LVU2021
  5352              	.LVL416:
 2446:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_sd.c ****   }
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s 			page 195
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccAqLAAe.s 			page 195
 
 
  5353              		.loc 1 2446 12 is_stmt 0 view .LVU2022
@@ -11698,7 +11698,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s 			page 1
  5392              		.cfi_remember_state
  5393              		.cfi_def_cfa_offset 12
  5394              		@ sp needed
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s 			page 196
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccAqLAAe.s 			page 196
 
 
  5395 0086 30BD     		pop	{r4, r5, pc}
@@ -11758,7 +11758,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s 			page 1
  5431              		.loc 1 2460 44 view .LVU2055
  5432 00a8 284B     		ldr	r3, .L330+4
  5433 00aa A3FB0203 		umull	r0, r3, r3, r2
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s 			page 197
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccAqLAAe.s 			page 197
 
 
  5434              	.LVL424:
@@ -11818,7 +11818,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s 			page 1
  5473              		.loc 1 2498 12 is_stmt 0 view .LVU2070
  5474 00de 11BB     		cbnz	r1, .L320
 2500:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_sd.c ****           {
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s 			page 198
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccAqLAAe.s 			page 198
 
 
  5475              		.loc 1 2500 11 is_stmt 1 view .LVU2071
@@ -11878,7 +11878,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s 			page 1
  5514              	.L317:
 2485:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_sd.c ****           {
  5515              		.loc 1 2485 11 is_stmt 1 view .LVU2087
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s 			page 199
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccAqLAAe.s 			page 199
 
 
 2485:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_sd.c ****           {
@@ -11938,7 +11938,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s 			page 1
  5555 0130 01D9     		bls	.L322
 2513:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_sd.c ****           }
  5556              		.loc 1 2513 13 is_stmt 1 view .LVU2103
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s 			page 200
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccAqLAAe.s 			page 200
 
 
 2513:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_sd.c ****           }
@@ -11998,7 +11998,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s 			page 1
  5603              		@ frame_needed = 0, uses_anonymous_args = 0
 2862:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_sd.c ****   uint32_t cardstate;
  5604              		.loc 1 2862 1 is_stmt 0 view .LVU2114
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s 			page 201
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccAqLAAe.s 			page 201
 
 
  5605 0000 10B5     		push	{r4, lr}
@@ -12058,7 +12058,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s 			page 1
  5643 001e 02B0     		add	sp, sp, #8
  5644              		.cfi_def_cfa_offset 8
  5645              		@ sp needed
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s 			page 202
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccAqLAAe.s 			page 202
 
 
  5646 0020 10BD     		pop	{r4, pc}
@@ -12118,7 +12118,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s 			page 1
  357:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_sd.c **** 
  5688              		.loc 1 357 3 view .LVU2145
  359:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_sd.c ****   {
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s 			page 203
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccAqLAAe.s 			page 203
 
 
  5689              		.loc 1 359 3 view .LVU2146
@@ -12178,7 +12178,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s 			page 1
  409:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_sd.c ****   {
  5730              		.loc 1 409 3 is_stmt 1 view .LVU2160
  409:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_sd.c ****   {
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s 			page 204
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccAqLAAe.s 			page 204
 
 
  5731              		.loc 1 409 7 is_stmt 0 view .LVU2161
@@ -12238,7 +12238,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s 			page 1
  5771              	.LVL452:
  433:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_sd.c ****   {
  5772              		.loc 1 433 6 discriminator 1 view .LVU2176
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s 			page 205
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccAqLAAe.s 			page 205
 
 
  5773 005c 0546     		mov	r5, r0
@@ -12298,7 +12298,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s 			page 1
  442:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_sd.c ****     {
  5814              		.loc 1 442 5 is_stmt 1 view .LVU2190
  442:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_sd.c ****     {
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s 			page 206
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccAqLAAe.s 			page 206
 
 
  5815              		.loc 1 442 10 is_stmt 0 view .LVU2191
@@ -12358,7 +12358,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s 			page 1
  5852              		.loc 1 348 12 view .LVU2208
  5853 00b2 0125     		movs	r5, #1
  5854 00b4 B4E7     		b	.L336
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s 			page 207
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccAqLAAe.s 			page 207
 
 
  5855              	.LVL461:
@@ -12418,7 +12418,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s 			page 1
 2773:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_sd.c ****           (hsd->SdCard.CardSpeed  == CARD_HIGH_SPEED) ||
  5901              		.loc 1 2773 7 view .LVU2219
 2773:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_sd.c ****           (hsd->SdCard.CardSpeed  == CARD_HIGH_SPEED) ||
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s 			page 208
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccAqLAAe.s 			page 208
 
 
  5902              		.loc 1 2773 23 is_stmt 0 view .LVU2220
@@ -12478,7 +12478,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s 			page 1
  5942              	.LVL468:
  5943              	.L356:
 2792:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_sd.c ****           (hsd->SdCard.CardSpeed  == CARD_HIGH_SPEED) ||
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s 			page 209
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccAqLAAe.s 			page 209
 
 
  5944              		.loc 1 2792 7 is_stmt 1 view .LVU2235
@@ -12538,7 +12538,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s 			page 1
 2799:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_sd.c ****           status = HAL_ERROR;
  5983              		.loc 1 2799 14 is_stmt 0 view .LVU2251
  5984 0070 636B     		ldr	r3, [r4, #52]
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s 			page 210
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccAqLAAe.s 			page 210
 
 
 2799:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_sd.c ****           status = HAL_ERROR;
@@ -12598,7 +12598,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s 			page 1
  6023              		.loc 1 2824 7 is_stmt 1 view .LVU2267
  6024              	.LVL480:
 2825:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_sd.c ****   }
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s 			page 211
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccAqLAAe.s 			page 211
 
 
  6025              		.loc 1 2825 7 view .LVU2268
@@ -12658,7 +12658,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s 			page 1
  6063              		.loc 1 2837 7 is_stmt 1 view .LVU2284
 2837:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_sd.c ****     }
  6064              		.loc 1 2837 14 is_stmt 0 view .LVU2285
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s 			page 212
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccAqLAAe.s 			page 212
 
 
  6065 00c2 0326     		movs	r6, #3
@@ -12718,7 +12718,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s 			page 1
  6105              		.loc 1 2848 12 is_stmt 0 view .LVU2299
  6106 00ea 0126     		movs	r6, #1
  6107              	.LVL491:
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s 			page 213
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccAqLAAe.s 			page 213
 
 
  6108              	.L365:
@@ -12778,7 +12778,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s 			page 1
 2889:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_sd.c ****   {
  6154              		.loc 1 2889 10 is_stmt 0 view .LVU2310
  6155 0002 90F83030 		ldrb	r3, [r0, #48]	@ zero_extendqisi2
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s 			page 214
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccAqLAAe.s 			page 214
 
 
 2889:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_sd.c ****   {
@@ -12838,7 +12838,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s 			page 1
  6196 0032 002B     		cmp	r3, #0
  6197 0034 18BF     		it	ne
  6198 0036 042B     		cmpne	r3, #4
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s 			page 215
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccAqLAAe.s 			page 215
 
 
  6199 0038 01D0     		beq	.L389
@@ -12898,7 +12898,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s 			page 1
 2927:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_sd.c ****         {
  6237              		.loc 1 2927 16 view .LVU2341
  6238 005c 13F4807F 		tst	r3, #256
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s 			page 216
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccAqLAAe.s 			page 216
 
 
  6239 0060 22D1     		bne	.L381
@@ -12958,7 +12958,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s 			page 1
  6276 008c B3F1FF3F 		cmp	r3, #-1
  6277 0090 F4D1     		bne	.L377
 2918:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_sd.c ****             hsd->State = HAL_SD_STATE_READY;
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s 			page 217
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccAqLAAe.s 			page 217
 
 
  6278              		.loc 1 2918 13 is_stmt 1 view .LVU2359
@@ -13018,7 +13018,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s 			page 1
  6316 00bc 0123     		movs	r3, #1
  6317 00be 84F83030 		strb	r3, [r4, #48]
 2969:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_sd.c ****   }
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s 			page 218
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccAqLAAe.s 			page 218
 
 
  6318              		.loc 1 2969 5 is_stmt 1 view .LVU2376
@@ -13078,7 +13078,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s 			page 1
  6359              		.align	1
  6360              		.global	HAL_SD_Abort_IT
  6361              		.syntax unified
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s 			page 219
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccAqLAAe.s 			page 219
 
 
  6362              		.thumb
@@ -13138,7 +13138,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s 			page 1
  6403              		.loc 1 2997 44 is_stmt 0 view .LVU2404
  6404 0024 0538     		subs	r0, r0, #5
  6405              	.LVL510:
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s 			page 220
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccAqLAAe.s 			page 220
 
 
 2997:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_sd.c ****   {
@@ -13198,7 +13198,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s 			page 1
  6447              	.LFE171:
  6449              		.section	.text.HAL_SDEx_Read_DMADoubleBuf0CpltCallback,"ax",%progbits
  6450              		.align	1
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s 			page 221
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccAqLAAe.s 			page 221
 
 
  6451              		.weak	HAL_SDEx_Read_DMADoubleBuf0CpltCallback
@@ -13258,7 +13258,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s 			page 1
 3859:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_sd.c ****       return (HAL_SD_ERROR_GENERAL_UNKNOWN_ERR);
 3860:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_sd.c ****     }
 3861:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_sd.c **** 
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s 			page 222
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccAqLAAe.s 			page 222
 
 
 3862:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_sd.c ****     errorstate = SDMMC_CmdSwitch(hsd->Instance, UltraHighSpeedMode);
@@ -13318,7 +13318,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s 			page 1
 3916:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_sd.c ****     __HAL_SD_CLEAR_FLAG(hsd, SDMMC_STATIC_DATA_FLAGS);
 3917:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_sd.c **** 
 3918:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_sd.c ****     /* Test if the switch mode HS is ok */
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s 			page 223
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccAqLAAe.s 			page 223
 
 
 3919:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_sd.c ****     if ((((uint8_t *)SD_hs)[13] & 2U) != 2U)
@@ -13378,7 +13378,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s 			page 1
 3973:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_sd.c **** 
 3974:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_sd.c ****     if (errorstate != HAL_SD_ERROR_NONE)
 3975:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_sd.c ****     {
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s 			page 224
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccAqLAAe.s 			page 224
 
 
 3976:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_sd.c ****       return errorstate;
@@ -13438,7 +13438,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s 			page 1
 4030:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_sd.c ****       return errorstate;
 4031:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_sd.c ****     }
 4032:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_sd.c ****     else if (__HAL_SD_GET_FLAG(hsd, SDMMC_FLAG_RXOVERR))
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s 			page 225
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccAqLAAe.s 			page 225
 
 
 4033:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_sd.c ****     {
@@ -13498,7 +13498,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s 			page 1
  6462              		@ frame_needed = 0, uses_anonymous_args = 0
  6463              		@ link register save eliminated.
 4084:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_sd.c ****   /* Prevent unused argument(s) compilation warning */
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s 			page 226
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccAqLAAe.s 			page 226
 
 
 4085:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_sd.c ****   UNUSED(hsd);
@@ -13558,7 +13558,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s 			page 1
 4106:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_sd.c **** 
 4107:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_sd.c **** /**
 4108:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_sd.c ****   * @brief Write DMA Buffer 0 Transfer completed callbacks
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s 			page 227
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccAqLAAe.s 			page 227
 
 
 4109:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_sd.c ****   * @param hsd: SD handle
@@ -13618,7 +13618,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s 			page 1
  6530              		.cfi_endproc
  6531              	.LFE186:
  6533              		.section	.text.HAL_SD_IRQHandler,"ax",%progbits
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s 			page 228
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccAqLAAe.s 			page 228
 
 
  6534              		.align	1
@@ -13678,7 +13678,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s 			page 1
 1543:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_sd.c **** 
  6577              		.loc 1 1543 5 is_stmt 1 view .LVU2442
  6578 001e 4FF48072 		mov	r2, #256
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s 			page 229
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccAqLAAe.s 			page 229
 
 
  6579 0022 9A63     		str	r2, [r3, #56]
@@ -13738,7 +13738,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s 			page 1
  6619              		.loc 1 1573 10 is_stmt 0 view .LVU2456
  6620 005e 15F0030F 		tst	r5, #3
  6621 0062 13D0     		beq	.L411
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s 			page 230
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccAqLAAe.s 			page 230
 
 
 1578:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_sd.c **** #endif /* USE_HAL_SD_REGISTER_CALLBACKS */
@@ -13798,7 +13798,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s 			page 1
  6663              	.L411:
 1586:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_sd.c **** #endif /* USE_HAL_SD_REGISTER_CALLBACKS */
  6664              		.loc 1 1586 9 is_stmt 1 view .LVU2470
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s 			page 231
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccAqLAAe.s 			page 231
 
 
  6665 008c 2046     		mov	r0, r4
@@ -13858,7 +13858,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s 			page 1
  6702              		.loc 1 1612 20 is_stmt 0 view .LVU2487
  6703 00b4 0023     		movs	r3, #0
  6704 00b6 E362     		str	r3, [r4, #44]
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s 			page 232
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccAqLAAe.s 			page 232
 
 
 1613:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_sd.c ****       {
@@ -13918,7 +13918,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s 			page 1
  6744              	.LVL540:
  6745 00e4 E3E7     		b	.L412
  6746              	.LVL541:
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s 			page 233
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccAqLAAe.s 			page 233
 
 
  6747              	.L428:
@@ -13978,7 +13978,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s 			page 1
  6785              		.loc 1 1649 9 is_stmt 0 view .LVU2518
  6786 0114 5A6B     		ldr	r2, [r3, #52]
 1649:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_sd.c ****     {
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s 			page 234
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccAqLAAe.s 			page 234
 
 
  6787              		.loc 1 1649 8 view .LVU2519
@@ -14038,7 +14038,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s 			page 1
  6825 0146 9A63     		str	r2, [r3, #56]
 1666:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_sd.c ****                         SDMMC_IT_TXUNDERR | SDMMC_IT_RXOVERR);
  6826              		.loc 1 1666 5 view .LVU2536
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s 			page 235
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccAqLAAe.s 			page 235
 
 
  6827 0148 2268     		ldr	r2, [r4]
@@ -14098,7 +14098,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s 			page 1
  6865              		.loc 1 1673 8 is_stmt 0 view .LVU2552
  6866 017c 2268     		ldr	r2, [r4]
 1673:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_sd.c ****     __HAL_SD_CLEAR_FLAG(hsd, SDMMC_FLAG_DABORT);
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s 			page 236
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccAqLAAe.s 			page 236
 
 
  6867              		.loc 1 1673 18 view .LVU2553
@@ -14158,7 +14158,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s 			page 1
  6905              		.loc 1 1700 9 is_stmt 1 view .LVU2569
  6906 01ba 2046     		mov	r0, r4
  6907 01bc FFF7FEFF 		bl	HAL_SD_ErrorCallback
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s 			page 237
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccAqLAAe.s 			page 237
 
 
  6908              	.LVL546:
@@ -14218,7 +14218,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s 			page 1
  6948              		.loc 1 1713 8 view .LVU2583
  6949 01f0 13F0040F 		tst	r3, #4
  6950 01f4 0AD1     		bne	.L421
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s 			page 238
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccAqLAAe.s 			page 238
 
 
 1716:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_sd.c ****       {
@@ -14278,7 +14278,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s 			page 1
  6992              		.loc 1 1757 3 is_stmt 1 view .LVU2596
 1758:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_sd.c **** 
  6993              		.loc 1 1758 1 is_stmt 0 view .LVU2597
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s 			page 239
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccAqLAAe.s 			page 239
 
 
  6994 0220 26E7     		b	.L405
@@ -14301,119 +14301,119 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s 			page 1
  7012              		.file 9 "Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_rcc_ex.h"
  7013              		.file 10 "Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal.h"
  7014              		.file 11 "<built-in>"
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s 			page 240
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccAqLAAe.s 			page 240
 
 
 DEFINED SYMBOLS
                             *ABS*:00000000 stm32h7xx_hal_sd.c
-C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s:20     .text.SD_PowerON:00000000 $t
-C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s:25     .text.SD_PowerON:00000000 SD_PowerON
-C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s:242    .text.SD_PowerON:000000c0 $d
-C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s:247    .text.SD_PowerOFF:00000000 $t
-C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s:252    .text.SD_PowerOFF:00000000 SD_PowerOFF
-C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s:277    .text.SD_Read_IT:00000000 $t
-C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s:282    .text.SD_Read_IT:00000000 SD_Read_IT
-C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s:378    .text.SD_Write_IT:00000000 $t
-C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s:383    .text.SD_Write_IT:00000000 SD_Write_IT
-C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s:491    .text.SD_SendSDStatus:00000000 $t
-C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s:496    .text.SD_SendSDStatus:00000000 SD_SendSDStatus
-C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s:758    .text.SD_SendSDStatus:00000104 $d
-C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s:763    .text.SD_FindSCR:00000000 $t
-C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s:768    .text.SD_FindSCR:00000000 SD_FindSCR
-C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s:1034   .text.SD_FindSCR:00000104 $d
-C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s:1039   .text.SD_WideBus_Enable:00000000 $t
-C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s:1044   .text.SD_WideBus_Enable:00000000 SD_WideBus_Enable
-C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s:1135   .text.SD_WideBus_Disable:00000000 $t
-C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s:1140   .text.SD_WideBus_Disable:00000000 SD_WideBus_Disable
-C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s:1231   .text.SD_SwitchSpeed:00000000 $t
-C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s:1236   .text.SD_SwitchSpeed:00000000 SD_SwitchSpeed
-C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s:1505   .text.SD_SwitchSpeed:00000110 $d
-C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s:1510   .text.SD_SendStatus:00000000 $t
-C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s:1515   .text.SD_SendStatus:00000000 SD_SendStatus
-C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s:1579   .text.HAL_SD_MspInit:00000000 $t
-C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s:1585   .text.HAL_SD_MspInit:00000000 HAL_SD_MspInit
-C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s:1600   .text.HAL_SD_MspDeInit:00000000 $t
-C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s:1606   .text.HAL_SD_MspDeInit:00000000 HAL_SD_MspDeInit
-C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s:1621   .text.HAL_SD_DeInit:00000000 $t
-C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s:1627   .text.HAL_SD_DeInit:00000000 HAL_SD_DeInit
-C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s:1679   .text.HAL_SD_ReadBlocks:00000000 $t
-C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s:1685   .text.HAL_SD_ReadBlocks:00000000 HAL_SD_ReadBlocks
-C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s:2165   .text.HAL_SD_ReadBlocks:00000204 $d
-C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s:2171   .text.HAL_SD_WriteBlocks:00000000 $t
-C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s:2177   .text.HAL_SD_WriteBlocks:00000000 HAL_SD_WriteBlocks
-C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s:2669   .text.HAL_SD_WriteBlocks:00000214 $d
-C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s:2675   .text.HAL_SD_ReadBlocks_IT:00000000 $t
-C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s:2681   .text.HAL_SD_ReadBlocks_IT:00000000 HAL_SD_ReadBlocks_IT
-C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s:2903   .text.HAL_SD_ReadBlocks_IT:000000d0 $d
-C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s:2908   .text.HAL_SD_WriteBlocks_IT:00000000 $t
-C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s:2914   .text.HAL_SD_WriteBlocks_IT:00000000 HAL_SD_WriteBlocks_IT
-C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s:3135   .text.HAL_SD_WriteBlocks_IT:000000cc $d
-C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s:3140   .text.HAL_SD_ReadBlocks_DMA:00000000 $t
-C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s:3146   .text.HAL_SD_ReadBlocks_DMA:00000000 HAL_SD_ReadBlocks_DMA
-C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s:3379   .text.HAL_SD_ReadBlocks_DMA:000000dc $d
-C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s:3384   .text.HAL_SD_WriteBlocks_DMA:00000000 $t
-C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s:3390   .text.HAL_SD_WriteBlocks_DMA:00000000 HAL_SD_WriteBlocks_DMA
-C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s:3622   .text.HAL_SD_WriteBlocks_DMA:000000dc $d
-C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s:3627   .text.HAL_SD_Erase:00000000 $t
-C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s:3633   .text.HAL_SD_Erase:00000000 HAL_SD_Erase
-C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s:3885   .text.HAL_SD_Erase:000000f4 $d
-C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s:3890   .text.HAL_SD_GetState:00000000 $t
-C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s:3896   .text.HAL_SD_GetState:00000000 HAL_SD_GetState
-C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s:3914   .text.HAL_SD_GetError:00000000 $t
-C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s:3920   .text.HAL_SD_GetError:00000000 HAL_SD_GetError
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s 			page 241
+C:\Users\Nathan\AppData\Local\Temp\ccAqLAAe.s:20     .text.SD_PowerON:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccAqLAAe.s:25     .text.SD_PowerON:00000000 SD_PowerON
+C:\Users\Nathan\AppData\Local\Temp\ccAqLAAe.s:242    .text.SD_PowerON:000000c0 $d
+C:\Users\Nathan\AppData\Local\Temp\ccAqLAAe.s:247    .text.SD_PowerOFF:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccAqLAAe.s:252    .text.SD_PowerOFF:00000000 SD_PowerOFF
+C:\Users\Nathan\AppData\Local\Temp\ccAqLAAe.s:277    .text.SD_Read_IT:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccAqLAAe.s:282    .text.SD_Read_IT:00000000 SD_Read_IT
+C:\Users\Nathan\AppData\Local\Temp\ccAqLAAe.s:378    .text.SD_Write_IT:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccAqLAAe.s:383    .text.SD_Write_IT:00000000 SD_Write_IT
+C:\Users\Nathan\AppData\Local\Temp\ccAqLAAe.s:491    .text.SD_SendSDStatus:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccAqLAAe.s:496    .text.SD_SendSDStatus:00000000 SD_SendSDStatus
+C:\Users\Nathan\AppData\Local\Temp\ccAqLAAe.s:758    .text.SD_SendSDStatus:00000104 $d
+C:\Users\Nathan\AppData\Local\Temp\ccAqLAAe.s:763    .text.SD_FindSCR:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccAqLAAe.s:768    .text.SD_FindSCR:00000000 SD_FindSCR
+C:\Users\Nathan\AppData\Local\Temp\ccAqLAAe.s:1034   .text.SD_FindSCR:00000104 $d
+C:\Users\Nathan\AppData\Local\Temp\ccAqLAAe.s:1039   .text.SD_WideBus_Enable:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccAqLAAe.s:1044   .text.SD_WideBus_Enable:00000000 SD_WideBus_Enable
+C:\Users\Nathan\AppData\Local\Temp\ccAqLAAe.s:1135   .text.SD_WideBus_Disable:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccAqLAAe.s:1140   .text.SD_WideBus_Disable:00000000 SD_WideBus_Disable
+C:\Users\Nathan\AppData\Local\Temp\ccAqLAAe.s:1231   .text.SD_SwitchSpeed:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccAqLAAe.s:1236   .text.SD_SwitchSpeed:00000000 SD_SwitchSpeed
+C:\Users\Nathan\AppData\Local\Temp\ccAqLAAe.s:1505   .text.SD_SwitchSpeed:00000110 $d
+C:\Users\Nathan\AppData\Local\Temp\ccAqLAAe.s:1510   .text.SD_SendStatus:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccAqLAAe.s:1515   .text.SD_SendStatus:00000000 SD_SendStatus
+C:\Users\Nathan\AppData\Local\Temp\ccAqLAAe.s:1579   .text.HAL_SD_MspInit:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccAqLAAe.s:1585   .text.HAL_SD_MspInit:00000000 HAL_SD_MspInit
+C:\Users\Nathan\AppData\Local\Temp\ccAqLAAe.s:1600   .text.HAL_SD_MspDeInit:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccAqLAAe.s:1606   .text.HAL_SD_MspDeInit:00000000 HAL_SD_MspDeInit
+C:\Users\Nathan\AppData\Local\Temp\ccAqLAAe.s:1621   .text.HAL_SD_DeInit:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccAqLAAe.s:1627   .text.HAL_SD_DeInit:00000000 HAL_SD_DeInit
+C:\Users\Nathan\AppData\Local\Temp\ccAqLAAe.s:1679   .text.HAL_SD_ReadBlocks:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccAqLAAe.s:1685   .text.HAL_SD_ReadBlocks:00000000 HAL_SD_ReadBlocks
+C:\Users\Nathan\AppData\Local\Temp\ccAqLAAe.s:2165   .text.HAL_SD_ReadBlocks:00000204 $d
+C:\Users\Nathan\AppData\Local\Temp\ccAqLAAe.s:2171   .text.HAL_SD_WriteBlocks:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccAqLAAe.s:2177   .text.HAL_SD_WriteBlocks:00000000 HAL_SD_WriteBlocks
+C:\Users\Nathan\AppData\Local\Temp\ccAqLAAe.s:2669   .text.HAL_SD_WriteBlocks:00000214 $d
+C:\Users\Nathan\AppData\Local\Temp\ccAqLAAe.s:2675   .text.HAL_SD_ReadBlocks_IT:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccAqLAAe.s:2681   .text.HAL_SD_ReadBlocks_IT:00000000 HAL_SD_ReadBlocks_IT
+C:\Users\Nathan\AppData\Local\Temp\ccAqLAAe.s:2903   .text.HAL_SD_ReadBlocks_IT:000000d0 $d
+C:\Users\Nathan\AppData\Local\Temp\ccAqLAAe.s:2908   .text.HAL_SD_WriteBlocks_IT:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccAqLAAe.s:2914   .text.HAL_SD_WriteBlocks_IT:00000000 HAL_SD_WriteBlocks_IT
+C:\Users\Nathan\AppData\Local\Temp\ccAqLAAe.s:3135   .text.HAL_SD_WriteBlocks_IT:000000cc $d
+C:\Users\Nathan\AppData\Local\Temp\ccAqLAAe.s:3140   .text.HAL_SD_ReadBlocks_DMA:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccAqLAAe.s:3146   .text.HAL_SD_ReadBlocks_DMA:00000000 HAL_SD_ReadBlocks_DMA
+C:\Users\Nathan\AppData\Local\Temp\ccAqLAAe.s:3379   .text.HAL_SD_ReadBlocks_DMA:000000dc $d
+C:\Users\Nathan\AppData\Local\Temp\ccAqLAAe.s:3384   .text.HAL_SD_WriteBlocks_DMA:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccAqLAAe.s:3390   .text.HAL_SD_WriteBlocks_DMA:00000000 HAL_SD_WriteBlocks_DMA
+C:\Users\Nathan\AppData\Local\Temp\ccAqLAAe.s:3622   .text.HAL_SD_WriteBlocks_DMA:000000dc $d
+C:\Users\Nathan\AppData\Local\Temp\ccAqLAAe.s:3627   .text.HAL_SD_Erase:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccAqLAAe.s:3633   .text.HAL_SD_Erase:00000000 HAL_SD_Erase
+C:\Users\Nathan\AppData\Local\Temp\ccAqLAAe.s:3885   .text.HAL_SD_Erase:000000f4 $d
+C:\Users\Nathan\AppData\Local\Temp\ccAqLAAe.s:3890   .text.HAL_SD_GetState:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccAqLAAe.s:3896   .text.HAL_SD_GetState:00000000 HAL_SD_GetState
+C:\Users\Nathan\AppData\Local\Temp\ccAqLAAe.s:3914   .text.HAL_SD_GetError:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccAqLAAe.s:3920   .text.HAL_SD_GetError:00000000 HAL_SD_GetError
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccAqLAAe.s 			page 241
 
 
-C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s:3938   .text.HAL_SD_TxCpltCallback:00000000 $t
-C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s:3944   .text.HAL_SD_TxCpltCallback:00000000 HAL_SD_TxCpltCallback
-C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s:3959   .text.HAL_SD_RxCpltCallback:00000000 $t
-C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s:3965   .text.HAL_SD_RxCpltCallback:00000000 HAL_SD_RxCpltCallback
-C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s:3980   .text.HAL_SD_ErrorCallback:00000000 $t
-C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s:3986   .text.HAL_SD_ErrorCallback:00000000 HAL_SD_ErrorCallback
-C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s:4001   .text.HAL_SD_AbortCallback:00000000 $t
-C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s:4007   .text.HAL_SD_AbortCallback:00000000 HAL_SD_AbortCallback
-C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s:4022   .text.HAL_SD_GetCardCID:00000000 $t
-C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s:4028   .text.HAL_SD_GetCardCID:00000000 HAL_SD_GetCardCID
-C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s:4113   .text.HAL_SD_GetCardCSD:00000000 $t
-C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s:4119   .text.HAL_SD_GetCardCSD:00000000 HAL_SD_GetCardCSD
-C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s:4493   .text.HAL_SD_GetCardCSD:000001b4 $d
-C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s:4498   .text.SD_InitCard:00000000 $t
-C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s:4503   .text.SD_InitCard:00000000 SD_InitCard
-C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s:4740   .text.HAL_SD_InitCard:00000000 $t
-C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s:4746   .text.HAL_SD_InitCard:00000000 HAL_SD_InitCard
-C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s:4960   .text.HAL_SD_InitCard:000000c4 $d
-C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s:4968   .text.HAL_SD_GetCardStatus:00000000 $t
-C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s:4974   .text.HAL_SD_GetCardStatus:00000000 HAL_SD_GetCardStatus
-C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s:5173   .text.HAL_SD_GetCardStatus:000000c8 $d
-C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s:5178   .text.HAL_SD_GetCardInfo:00000000 $t
-C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s:5184   .text.HAL_SD_GetCardInfo:00000000 HAL_SD_GetCardInfo
-C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s:5242   .text.HAL_SD_ConfigWideBusOperation:00000000 $t
-C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s:5248   .text.HAL_SD_ConfigWideBusOperation:00000000 HAL_SD_ConfigWideBusOperation
-C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s:5583   .text.HAL_SD_ConfigWideBusOperation:00000148 $d
-C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s:5591   .text.HAL_SD_GetCardState:00000000 $t
-C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s:5597   .text.HAL_SD_GetCardState:00000000 HAL_SD_GetCardState
-C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s:5652   .text.HAL_SD_Init:00000000 $t
-C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s:5658   .text.HAL_SD_Init:00000000 HAL_SD_Init
-C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s:5864   .text.HAL_SD_ConfigSpeedBusOperation:00000000 $t
-C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s:5870   .text.HAL_SD_ConfigSpeedBusOperation:00000000 HAL_SD_ConfigSpeedBusOperation
-C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s:6124   .text.HAL_SD_ConfigSpeedBusOperation:000000f8 $d
-C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s:6131   .text.HAL_SD_Abort:00000000 $t
-C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s:6137   .text.HAL_SD_Abort:00000000 HAL_SD_Abort
-C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s:6353   .text.HAL_SD_Abort:000000ec $d
-C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s:6359   .text.HAL_SD_Abort_IT:00000000 $t
-C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s:6365   .text.HAL_SD_Abort_IT:00000000 HAL_SD_Abort_IT
-C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s:6445   .text.HAL_SD_Abort_IT:00000048 $d
-C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s:6450   .text.HAL_SDEx_Read_DMADoubleBuf0CpltCallback:00000000 $t
-C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s:6456   .text.HAL_SDEx_Read_DMADoubleBuf0CpltCallback:00000000 HAL_SDEx_Read_DMADoubleBuf0CpltCallback
-C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s:6471   .text.HAL_SDEx_Read_DMADoubleBuf1CpltCallback:00000000 $t
-C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s:6477   .text.HAL_SDEx_Read_DMADoubleBuf1CpltCallback:00000000 HAL_SDEx_Read_DMADoubleBuf1CpltCallback
-C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s:6492   .text.HAL_SDEx_Write_DMADoubleBuf0CpltCallback:00000000 $t
-C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s:6498   .text.HAL_SDEx_Write_DMADoubleBuf0CpltCallback:00000000 HAL_SDEx_Write_DMADoubleBuf0CpltCallback
-C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s:6513   .text.HAL_SDEx_Write_DMADoubleBuf1CpltCallback:00000000 $t
-C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s:6519   .text.HAL_SDEx_Write_DMADoubleBuf1CpltCallback:00000000 HAL_SDEx_Write_DMADoubleBuf1CpltCallback
-C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s:6534   .text.HAL_SD_IRQHandler:00000000 $t
-C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s:6540   .text.HAL_SD_IRQHandler:00000000 HAL_SD_IRQHandler
-C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s:6998   .text.HAL_SD_IRQHandler:00000224 $d
+C:\Users\Nathan\AppData\Local\Temp\ccAqLAAe.s:3938   .text.HAL_SD_TxCpltCallback:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccAqLAAe.s:3944   .text.HAL_SD_TxCpltCallback:00000000 HAL_SD_TxCpltCallback
+C:\Users\Nathan\AppData\Local\Temp\ccAqLAAe.s:3959   .text.HAL_SD_RxCpltCallback:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccAqLAAe.s:3965   .text.HAL_SD_RxCpltCallback:00000000 HAL_SD_RxCpltCallback
+C:\Users\Nathan\AppData\Local\Temp\ccAqLAAe.s:3980   .text.HAL_SD_ErrorCallback:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccAqLAAe.s:3986   .text.HAL_SD_ErrorCallback:00000000 HAL_SD_ErrorCallback
+C:\Users\Nathan\AppData\Local\Temp\ccAqLAAe.s:4001   .text.HAL_SD_AbortCallback:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccAqLAAe.s:4007   .text.HAL_SD_AbortCallback:00000000 HAL_SD_AbortCallback
+C:\Users\Nathan\AppData\Local\Temp\ccAqLAAe.s:4022   .text.HAL_SD_GetCardCID:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccAqLAAe.s:4028   .text.HAL_SD_GetCardCID:00000000 HAL_SD_GetCardCID
+C:\Users\Nathan\AppData\Local\Temp\ccAqLAAe.s:4113   .text.HAL_SD_GetCardCSD:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccAqLAAe.s:4119   .text.HAL_SD_GetCardCSD:00000000 HAL_SD_GetCardCSD
+C:\Users\Nathan\AppData\Local\Temp\ccAqLAAe.s:4493   .text.HAL_SD_GetCardCSD:000001b4 $d
+C:\Users\Nathan\AppData\Local\Temp\ccAqLAAe.s:4498   .text.SD_InitCard:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccAqLAAe.s:4503   .text.SD_InitCard:00000000 SD_InitCard
+C:\Users\Nathan\AppData\Local\Temp\ccAqLAAe.s:4740   .text.HAL_SD_InitCard:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccAqLAAe.s:4746   .text.HAL_SD_InitCard:00000000 HAL_SD_InitCard
+C:\Users\Nathan\AppData\Local\Temp\ccAqLAAe.s:4960   .text.HAL_SD_InitCard:000000c4 $d
+C:\Users\Nathan\AppData\Local\Temp\ccAqLAAe.s:4968   .text.HAL_SD_GetCardStatus:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccAqLAAe.s:4974   .text.HAL_SD_GetCardStatus:00000000 HAL_SD_GetCardStatus
+C:\Users\Nathan\AppData\Local\Temp\ccAqLAAe.s:5173   .text.HAL_SD_GetCardStatus:000000c8 $d
+C:\Users\Nathan\AppData\Local\Temp\ccAqLAAe.s:5178   .text.HAL_SD_GetCardInfo:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccAqLAAe.s:5184   .text.HAL_SD_GetCardInfo:00000000 HAL_SD_GetCardInfo
+C:\Users\Nathan\AppData\Local\Temp\ccAqLAAe.s:5242   .text.HAL_SD_ConfigWideBusOperation:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccAqLAAe.s:5248   .text.HAL_SD_ConfigWideBusOperation:00000000 HAL_SD_ConfigWideBusOperation
+C:\Users\Nathan\AppData\Local\Temp\ccAqLAAe.s:5583   .text.HAL_SD_ConfigWideBusOperation:00000148 $d
+C:\Users\Nathan\AppData\Local\Temp\ccAqLAAe.s:5591   .text.HAL_SD_GetCardState:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccAqLAAe.s:5597   .text.HAL_SD_GetCardState:00000000 HAL_SD_GetCardState
+C:\Users\Nathan\AppData\Local\Temp\ccAqLAAe.s:5652   .text.HAL_SD_Init:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccAqLAAe.s:5658   .text.HAL_SD_Init:00000000 HAL_SD_Init
+C:\Users\Nathan\AppData\Local\Temp\ccAqLAAe.s:5864   .text.HAL_SD_ConfigSpeedBusOperation:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccAqLAAe.s:5870   .text.HAL_SD_ConfigSpeedBusOperation:00000000 HAL_SD_ConfigSpeedBusOperation
+C:\Users\Nathan\AppData\Local\Temp\ccAqLAAe.s:6124   .text.HAL_SD_ConfigSpeedBusOperation:000000f8 $d
+C:\Users\Nathan\AppData\Local\Temp\ccAqLAAe.s:6131   .text.HAL_SD_Abort:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccAqLAAe.s:6137   .text.HAL_SD_Abort:00000000 HAL_SD_Abort
+C:\Users\Nathan\AppData\Local\Temp\ccAqLAAe.s:6353   .text.HAL_SD_Abort:000000ec $d
+C:\Users\Nathan\AppData\Local\Temp\ccAqLAAe.s:6359   .text.HAL_SD_Abort_IT:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccAqLAAe.s:6365   .text.HAL_SD_Abort_IT:00000000 HAL_SD_Abort_IT
+C:\Users\Nathan\AppData\Local\Temp\ccAqLAAe.s:6445   .text.HAL_SD_Abort_IT:00000048 $d
+C:\Users\Nathan\AppData\Local\Temp\ccAqLAAe.s:6450   .text.HAL_SDEx_Read_DMADoubleBuf0CpltCallback:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccAqLAAe.s:6456   .text.HAL_SDEx_Read_DMADoubleBuf0CpltCallback:00000000 HAL_SDEx_Read_DMADoubleBuf0CpltCallback
+C:\Users\Nathan\AppData\Local\Temp\ccAqLAAe.s:6471   .text.HAL_SDEx_Read_DMADoubleBuf1CpltCallback:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccAqLAAe.s:6477   .text.HAL_SDEx_Read_DMADoubleBuf1CpltCallback:00000000 HAL_SDEx_Read_DMADoubleBuf1CpltCallback
+C:\Users\Nathan\AppData\Local\Temp\ccAqLAAe.s:6492   .text.HAL_SDEx_Write_DMADoubleBuf0CpltCallback:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccAqLAAe.s:6498   .text.HAL_SDEx_Write_DMADoubleBuf0CpltCallback:00000000 HAL_SDEx_Write_DMADoubleBuf0CpltCallback
+C:\Users\Nathan\AppData\Local\Temp\ccAqLAAe.s:6513   .text.HAL_SDEx_Write_DMADoubleBuf1CpltCallback:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccAqLAAe.s:6519   .text.HAL_SDEx_Write_DMADoubleBuf1CpltCallback:00000000 HAL_SDEx_Write_DMADoubleBuf1CpltCallback
+C:\Users\Nathan\AppData\Local\Temp\ccAqLAAe.s:6534   .text.HAL_SD_IRQHandler:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccAqLAAe.s:6540   .text.HAL_SD_IRQHandler:00000000 HAL_SD_IRQHandler
+C:\Users\Nathan\AppData\Local\Temp\ccAqLAAe.s:6998   .text.HAL_SD_IRQHandler:00000224 $d
 
 UNDEFINED SYMBOLS
 SDMMC_CmdGoIdleState
@@ -14421,7 +14421,7 @@ SDMMC_CmdOperCond
 SDMMC_CmdAppCommand
 SDMMC_CmdAppOperCommand
 SDMMC_GetResponse
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccgzvRMZ.s 			page 242
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccAqLAAe.s 			page 242
 
 
 SDMMC_PowerState_OFF

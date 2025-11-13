@@ -75,6 +75,7 @@ endif
 ######################################
 # C sources
 C_SOURCES =  \
+../Athena/athena.c \
 Core/Src/main.c \
 Core/Src/stm32h7xx_hal_msp.c \
 Core/Src/stm32h7xx_it.c \
@@ -214,6 +215,7 @@ AS_INCLUDES = \
 
 # C includes
 C_INCLUDES =  \
+-I../Athena \
 -ICore/Inc \
 -IDrivers/CMSIS/Device/ST/STM32H7xx/Include \
 -IDrivers/CMSIS/Include \
