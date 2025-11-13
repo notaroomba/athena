@@ -1,4 +1,5 @@
 
+/* VERSION 1*/
 #ifndef __ATHENA_H
 #define __ATHENA_H
 
@@ -7,6 +8,7 @@ extern "C" {
 #endif
 
 #include <stdint.h>
+
 
 typedef enum {
     LED_OFF = 0,
@@ -20,12 +22,13 @@ typedef enum {
 } LED_ColorTypeDef;
 
 
+
 typedef struct  {
-    uint16_t* port_r;
+    void* port_r;
     uint16_t pin_r;
-    uint16_t* port_g;
+    void* port_g;
     uint16_t pin_g;
-    uint16_t* port_b;
+    void* port_b;
     uint16_t pin_b;
 } Athena_LED_PinConfig;
 

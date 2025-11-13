@@ -1,4 +1,4 @@
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccDNLFnv.s 			page 1
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccoD7aVb.s 			page 1
 
 
    1              		.cpu cortex-m7
@@ -58,7 +58,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccDNLFnv.s 			page 1
   28:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_gpio.c ****         configured by software in several modes:
   29:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_gpio.c ****         (++) Input mode
   30:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_gpio.c ****         (++) Analog mode
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccDNLFnv.s 			page 2
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccoD7aVb.s 			page 2
 
 
   31:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_gpio.c ****         (++) Output mode
@@ -118,7 +118,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccDNLFnv.s 			page 1
   85:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_gpio.c ****         HAL_GPIO_WritePin()/HAL_GPIO_TogglePin().
   86:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_gpio.c **** 
   87:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_gpio.c ****    (#) To lock pin configuration until next reset use HAL_GPIO_LockPin().
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccDNLFnv.s 			page 3
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccoD7aVb.s 			page 3
 
 
   88:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_gpio.c **** 
@@ -178,7 +178,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccDNLFnv.s 			page 1
  142:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_gpio.c **** 
  143:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_gpio.c **** /** @defgroup GPIO_Exported_Functions_Group1 Initialization and de-initialization functions
  144:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_gpio.c ****  *  @brief    Initialization and Configuration functions
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccDNLFnv.s 			page 4
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccoD7aVb.s 			page 4
 
 
  145:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_gpio.c ****  *
@@ -238,7 +238,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccDNLFnv.s 			page 1
  179:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_gpio.c ****   assert_param(IS_GPIO_ALL_INSTANCE(GPIOx));
   49              		.loc 1 179 3 view .LVU7
  180:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_gpio.c ****   assert_param(IS_GPIO_PIN(GPIO_Init->Pin));
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccDNLFnv.s 			page 5
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccoD7aVb.s 			page 5
 
 
   50              		.loc 1 180 3 view .LVU8
@@ -298,7 +298,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccDNLFnv.s 			page 1
   81              		.loc 1 202 9 is_stmt 1 view .LVU24
   82              		.loc 1 202 24 is_stmt 0 view .LVU25
   83 001a 8460     		str	r4, [r0, #8]
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccDNLFnv.s 			page 6
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccoD7aVb.s 			page 6
 
 
  203:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_gpio.c **** 
@@ -358,7 +358,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccDNLFnv.s 			page 1
  231:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_gpio.c ****         temp = GPIOx->AFR[position >> 3U];
  110              		.loc 1 231 9 view .LVU39
  111              		.loc 1 231 36 is_stmt 0 view .LVU40
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccDNLFnv.s 			page 7
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccoD7aVb.s 			page 7
 
 
  112 0030 DD08     		lsrs	r5, r3, #3
@@ -418,7 +418,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccDNLFnv.s 			page 1
  145              	.L13:
  146              		.loc 1 252 18 discriminator 2 view .LVU54
  147 0060 0024     		movs	r4, #0
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccDNLFnv.s 			page 8
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccoD7aVb.s 			page 8
 
 
  148              	.L7:
@@ -478,7 +478,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccDNLFnv.s 			page 1
  265:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_gpio.c ****         temp &= ~(iocurrent);
  190              		.loc 1 265 9 is_stmt 1 view .LVU73
  191              		.loc 1 265 14 is_stmt 0 view .LVU74
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccDNLFnv.s 			page 9
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccoD7aVb.s 			page 9
 
 
  192 0092 04EA0506 		and	r6, r4, r5
@@ -538,7 +538,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccDNLFnv.s 			page 1
  230              		.loc 1 281 9 is_stmt 1 view .LVU91
  231              		.loc 1 281 14 is_stmt 0 view .LVU92
  232 00c4 D5F88050 		ldr	r5, [r5, #128]
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccDNLFnv.s 			page 10
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccoD7aVb.s 			page 10
 
 
  233              	.LVL25:
@@ -598,7 +598,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccDNLFnv.s 			page 1
  272              	.LVL31:
  189:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_gpio.c ****     {
  273              		.loc 1 189 5 is_stmt 1 view .LVU110
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccDNLFnv.s 			page 11
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccoD7aVb.s 			page 11
 
 
  189:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_gpio.c ****     {
@@ -658,7 +658,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccDNLFnv.s 			page 1
  310 011a 24EA0C0C 		bic	ip, r4, ip
  311              	.LVL34:
  219:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_gpio.c ****       GPIOx->PUPDR = temp;
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccDNLFnv.s 			page 12
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccoD7aVb.s 			page 12
 
 
  312              		.loc 1 219 7 is_stmt 1 view .LVU129
@@ -718,7 +718,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccDNLFnv.s 			page 1
  349 0146 4C68     		ldr	r4, [r1, #4]
  240:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_gpio.c ****       GPIOx->MODER = temp;
  350              		.loc 1 240 33 view .LVU147
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccDNLFnv.s 			page 13
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccoD7aVb.s 			page 13
 
 
  351 0148 04F00304 		and	r4, r4, #3
@@ -778,7 +778,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccDNLFnv.s 			page 1
  389 0180 244C     		ldr	r4, .L28
  390 0182 54F82550 		ldr	r5, [r4, r5, lsl #2]
  391              	.LVL42:
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccDNLFnv.s 			page 14
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccoD7aVb.s 			page 14
 
 
  251:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_gpio.c ****         temp |= (GPIO_GET_INDEX(GPIOx) << (4U * (position & 0x03U)));
@@ -838,7 +838,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccDNLFnv.s 			page 1
  432              		.loc 1 252 18 discriminator 13 view .LVU177
  433 01d0 04F58064 		add	r4, r4, #1024
  434 01d4 A042     		cmp	r0, r4
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccDNLFnv.s 			page 15
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccoD7aVb.s 			page 15
 
 
  435 01d6 16D0     		beq	.L20
@@ -898,7 +898,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccDNLFnv.s 			page 1
  478 020c 29E7     		b	.L7
  479              	.LVL44:
  480              	.L24:
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccDNLFnv.s 			page 16
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccoD7aVb.s 			page 16
 
 
  292:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_gpio.c ****   }
@@ -958,7 +958,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccDNLFnv.s 			page 1
  315:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_gpio.c ****   /* Check the parameters */
  316:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_gpio.c ****   assert_param(IS_GPIO_ALL_INSTANCE(GPIOx));
  514              		.loc 1 316 3 view .LVU196
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccDNLFnv.s 			page 17
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccoD7aVb.s 			page 17
 
 
  317:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_gpio.c ****   assert_param(IS_GPIO_PIN(GPIO_Pin));
@@ -1018,7 +1018,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccDNLFnv.s 			page 1
  336:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_gpio.c **** 
  337:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_gpio.c ****         /* Clear Rising Falling edge configuration */
  338:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_gpio.c ****         EXTI->FTSR1 &= ~(iocurrent);
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccDNLFnv.s 			page 18
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccoD7aVb.s 			page 18
 
 
  339:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_gpio.c ****         EXTI->RTSR1 &= ~(iocurrent);
@@ -1078,7 +1078,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccDNLFnv.s 			page 1
  584 0054 4468     		ldr	r4, [r0, #4]
  585              		.loc 1 356 22 view .LVU223
  586 0056 24EA0202 		bic	r2, r4, r2
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccDNLFnv.s 			page 19
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccoD7aVb.s 			page 19
 
 
  587              	.LVL50:
@@ -1138,7 +1138,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccDNLFnv.s 			page 1
  625              		.loc 1 330 7 is_stmt 1 view .LVU239
  330:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_gpio.c ****       if (tmp == (GPIO_GET_INDEX(GPIOx) << (4U * (position & 0x03U))))
  626              		.loc 1 330 41 is_stmt 0 view .LVU240
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccDNLFnv.s 			page 20
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccoD7aVb.s 			page 20
 
 
  627 0080 03F0030C 		and	ip, r3, #3
@@ -1198,7 +1198,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccDNLFnv.s 			page 1
  331:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_gpio.c ****       {
  669              		.loc 1 331 19 discriminator 15 view .LVU253
  670 00ce 05F58065 		add	r5, r5, #1024
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccDNLFnv.s 			page 21
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccoD7aVb.s 			page 21
 
 
  671 00d2 A842     		cmp	r0, r5
@@ -1258,7 +1258,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccDNLFnv.s 			page 1
  334:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_gpio.c ****         EXTI_CurrentCPU->EMR1 &= ~(iocurrent);
  714              		.loc 1 334 24 is_stmt 0 view .LVU265
  715 0102 4FF0B044 		mov	r4, #1476395008
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccDNLFnv.s 			page 22
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccoD7aVb.s 			page 22
 
 
  716              	.LVL57:
@@ -1318,7 +1318,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccDNLFnv.s 			page 1
  753              		.loc 1 364 1 view .LVU281
  754 0142 F0BD     		pop	{r4, r5, r6, r7, pc}
  755              	.LVL60:
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccDNLFnv.s 			page 23
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccoD7aVb.s 			page 23
 
 
  756              	.L49:
@@ -1378,7 +1378,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccDNLFnv.s 			page 1
  786              		@ frame_needed = 0, uses_anonymous_args = 0
  787              		@ link register save eliminated.
  391:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_gpio.c ****   GPIO_PinState bitstatus;
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccDNLFnv.s 			page 24
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccoD7aVb.s 			page 24
 
 
  788              		.loc 1 391 3 view .LVU284
@@ -1438,7 +1438,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccDNLFnv.s 			page 1
  414:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_gpio.c ****   * @param  GPIOx: where x can be (A..K) to select the GPIO peripheral.
  415:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_gpio.c ****   * @param  GPIO_Pin: specifies the port bit to be written.
  416:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_gpio.c ****   *          This parameter can be one of GPIO_PIN_x where x can be (0..15).
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccDNLFnv.s 			page 25
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccoD7aVb.s 			page 25
 
 
  417:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_gpio.c ****   * @param  PinState: specifies the value to be written to the selected bit.
@@ -1498,7 +1498,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccDNLFnv.s 			page 1
  857              	.LFB148:
  438:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_gpio.c **** 
  439:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_gpio.c **** /**
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccDNLFnv.s 			page 26
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccoD7aVb.s 			page 26
 
 
  440:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_gpio.c ****   * @brief  Toggles the specified GPIO pins.
@@ -1558,7 +1558,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccDNLFnv.s 			page 1
  460:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_gpio.c ****   * @brief  Locks GPIO Pins configuration registers.
  461:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_gpio.c ****   * @note   The locked registers are GPIOx_MODER, GPIOx_OTYPER, GPIOx_OSPEEDR,
  462:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_gpio.c ****   *         GPIOx_PUPDR, GPIOx_AFRL and GPIOx_AFRH.
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccDNLFnv.s 			page 27
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccoD7aVb.s 			page 27
 
 
  463:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_gpio.c ****   * @note   The configuration of the locked GPIO pins can no longer be modified
@@ -1618,7 +1618,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccDNLFnv.s 			page 1
  487:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_gpio.c ****   tmp = GPIOx->LCKR;
  924              		.loc 1 487 3 is_stmt 1 view .LVU330
  925              		.loc 1 487 14 is_stmt 0 view .LVU331
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccDNLFnv.s 			page 28
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccoD7aVb.s 			page 28
 
 
  926 0018 C369     		ldr	r3, [r0, #28]
@@ -1678,7 +1678,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccDNLFnv.s 			page 1
  502:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_gpio.c ****   * @param  GPIO_Pin: Specifies the port pin connected to corresponding EXTI line.
  503:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_gpio.c ****   * @retval None
  504:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_gpio.c ****   */
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccDNLFnv.s 			page 29
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccoD7aVb.s 			page 29
 
 
  505:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_gpio.c **** void HAL_GPIO_EXTI_IRQHandler(uint16_t GPIO_Pin)
@@ -1738,7 +1738,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccDNLFnv.s 			page 1
  989              		@ args = 0, pretend = 0, frame = 0
  990              		@ frame_needed = 0, uses_anonymous_args = 0
  506:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_gpio.c **** #if defined(DUAL_CORE) && defined(CORE_CM4)
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccDNLFnv.s 			page 30
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccoD7aVb.s 			page 30
 
 
  991              		.loc 1 506 1 is_stmt 0 view .LVU344
@@ -1783,28 +1783,28 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccDNLFnv.s 			page 1
  1024              		.file 4 "Drivers/CMSIS/Device/ST/STM32H7xx/Include/stm32h743xx.h"
  1025              		.file 5 "Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_def.h"
  1026              		.file 6 "Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_gpio.h"
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccDNLFnv.s 			page 31
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccoD7aVb.s 			page 31
 
 
 DEFINED SYMBOLS
                             *ABS*:00000000 stm32h7xx_hal_gpio.c
-C:\Users\Nathan\AppData\Local\Temp\ccDNLFnv.s:20     .text.HAL_GPIO_Init:00000000 $t
-C:\Users\Nathan\AppData\Local\Temp\ccDNLFnv.s:26     .text.HAL_GPIO_Init:00000000 HAL_GPIO_Init
-C:\Users\Nathan\AppData\Local\Temp\ccDNLFnv.s:489    .text.HAL_GPIO_Init:00000214 $d
-C:\Users\Nathan\AppData\Local\Temp\ccDNLFnv.s:496    .text.HAL_GPIO_DeInit:00000000 $t
-C:\Users\Nathan\AppData\Local\Temp\ccDNLFnv.s:502    .text.HAL_GPIO_DeInit:00000000 HAL_GPIO_DeInit
-C:\Users\Nathan\AppData\Local\Temp\ccDNLFnv.s:768    .text.HAL_GPIO_DeInit:00000148 $d
-C:\Users\Nathan\AppData\Local\Temp\ccDNLFnv.s:774    .text.HAL_GPIO_ReadPin:00000000 $t
-C:\Users\Nathan\AppData\Local\Temp\ccDNLFnv.s:780    .text.HAL_GPIO_ReadPin:00000000 HAL_GPIO_ReadPin
-C:\Users\Nathan\AppData\Local\Temp\ccDNLFnv.s:813    .text.HAL_GPIO_WritePin:00000000 $t
-C:\Users\Nathan\AppData\Local\Temp\ccDNLFnv.s:819    .text.HAL_GPIO_WritePin:00000000 HAL_GPIO_WritePin
-C:\Users\Nathan\AppData\Local\Temp\ccDNLFnv.s:849    .text.HAL_GPIO_TogglePin:00000000 $t
-C:\Users\Nathan\AppData\Local\Temp\ccDNLFnv.s:855    .text.HAL_GPIO_TogglePin:00000000 HAL_GPIO_TogglePin
-C:\Users\Nathan\AppData\Local\Temp\ccDNLFnv.s:885    .text.HAL_GPIO_LockPin:00000000 $t
-C:\Users\Nathan\AppData\Local\Temp\ccDNLFnv.s:891    .text.HAL_GPIO_LockPin:00000000 HAL_GPIO_LockPin
-C:\Users\Nathan\AppData\Local\Temp\ccDNLFnv.s:957    .text.HAL_GPIO_EXTI_Callback:00000000 $t
-C:\Users\Nathan\AppData\Local\Temp\ccDNLFnv.s:963    .text.HAL_GPIO_EXTI_Callback:00000000 HAL_GPIO_EXTI_Callback
-C:\Users\Nathan\AppData\Local\Temp\ccDNLFnv.s:978    .text.HAL_GPIO_EXTI_IRQHandler:00000000 $t
-C:\Users\Nathan\AppData\Local\Temp\ccDNLFnv.s:984    .text.HAL_GPIO_EXTI_IRQHandler:00000000 HAL_GPIO_EXTI_IRQHandler
+C:\Users\Nathan\AppData\Local\Temp\ccoD7aVb.s:20     .text.HAL_GPIO_Init:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccoD7aVb.s:26     .text.HAL_GPIO_Init:00000000 HAL_GPIO_Init
+C:\Users\Nathan\AppData\Local\Temp\ccoD7aVb.s:489    .text.HAL_GPIO_Init:00000214 $d
+C:\Users\Nathan\AppData\Local\Temp\ccoD7aVb.s:496    .text.HAL_GPIO_DeInit:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccoD7aVb.s:502    .text.HAL_GPIO_DeInit:00000000 HAL_GPIO_DeInit
+C:\Users\Nathan\AppData\Local\Temp\ccoD7aVb.s:768    .text.HAL_GPIO_DeInit:00000148 $d
+C:\Users\Nathan\AppData\Local\Temp\ccoD7aVb.s:774    .text.HAL_GPIO_ReadPin:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccoD7aVb.s:780    .text.HAL_GPIO_ReadPin:00000000 HAL_GPIO_ReadPin
+C:\Users\Nathan\AppData\Local\Temp\ccoD7aVb.s:813    .text.HAL_GPIO_WritePin:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccoD7aVb.s:819    .text.HAL_GPIO_WritePin:00000000 HAL_GPIO_WritePin
+C:\Users\Nathan\AppData\Local\Temp\ccoD7aVb.s:849    .text.HAL_GPIO_TogglePin:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccoD7aVb.s:855    .text.HAL_GPIO_TogglePin:00000000 HAL_GPIO_TogglePin
+C:\Users\Nathan\AppData\Local\Temp\ccoD7aVb.s:885    .text.HAL_GPIO_LockPin:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccoD7aVb.s:891    .text.HAL_GPIO_LockPin:00000000 HAL_GPIO_LockPin
+C:\Users\Nathan\AppData\Local\Temp\ccoD7aVb.s:957    .text.HAL_GPIO_EXTI_Callback:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccoD7aVb.s:963    .text.HAL_GPIO_EXTI_Callback:00000000 HAL_GPIO_EXTI_Callback
+C:\Users\Nathan\AppData\Local\Temp\ccoD7aVb.s:978    .text.HAL_GPIO_EXTI_IRQHandler:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccoD7aVb.s:984    .text.HAL_GPIO_EXTI_IRQHandler:00000000 HAL_GPIO_EXTI_IRQHandler
 
 NO UNDEFINED SYMBOLS

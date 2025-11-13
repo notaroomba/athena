@@ -116,7 +116,15 @@ int main(void)
   SystemClock_Config();
 
   /* USER CODE BEGIN SysInit */
-
+  Athena_LED_PinConfig led_pins = {
+      .port_r = TPU_R_GPIO_Port,
+      .pin_r = TPU_R_Pin,
+      .port_g = TPU_G_GPIO_Port,
+      .pin_g = TPU_G_Pin,
+      .port_b = TPU_B_GPIO_Port,
+      .pin_b = TPU_B_Pin
+  };
+  Athena_Init(&led_pins);
   Set_LED_Color(LED_BLUE);
 
   /* USER CODE END SysInit */
@@ -144,6 +152,13 @@ int main(void)
   while (1)
   {
     CDC_Transmit_FS((uint8_t *)"Hello from TPU!\r\n", 22);
+    HAL_Delay(1000);
+    Set_LED_Color(LED_RED);
+    HAL_Delay(500);
+    Set_LED_Color(LED_GREEN);
+    HAL_Delay(500);
+    Set_LED_Color(LED_BLUE);
+    HAL_Delay(500);
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
