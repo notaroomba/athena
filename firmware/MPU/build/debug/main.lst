@@ -1,4 +1,4 @@
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccNYoCWV.s 			page 1
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccq0szuV.s 			page 1
 
 
    1              		.cpu cortex-m7
@@ -58,7 +58,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccNYoCWV.s 			page 1
   30:Core/Src/main.c **** /* USER CODE END Includes */
   31:Core/Src/main.c **** 
   32:Core/Src/main.c **** /* Private typedef -----------------------------------------------------------*/
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccNYoCWV.s 			page 2
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccq0szuV.s 			page 2
 
 
   33:Core/Src/main.c **** /* USER CODE BEGIN PTD */
@@ -118,7 +118,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccNYoCWV.s 			page 1
   87:Core/Src/main.c **** /* USER CODE BEGIN 0 */
   88:Core/Src/main.c **** 
   89:Core/Src/main.c **** /* USER CODE END 0 */
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccNYoCWV.s 			page 3
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccq0szuV.s 			page 3
 
 
   90:Core/Src/main.c **** 
@@ -178,7 +178,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccNYoCWV.s 			page 1
  144:Core/Src/main.c **** 
  145:Core/Src/main.c ****   // HAL_Delay(2000);
  146:Core/Src/main.c ****   // HAL_GPIO_WritePin(MPU_B_GPIO_Port, MPU_B_Pin, GPIO_PIN_SET);
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccNYoCWV.s 			page 4
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccq0szuV.s 			page 4
 
 
  147:Core/Src/main.c ****   // HAL_Delay(500);
@@ -190,8 +190,8 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccNYoCWV.s 			page 1
  153:Core/Src/main.c ****   /* USER CODE BEGIN WHILE */
  154:Core/Src/main.c ****   while (1)
  155:Core/Src/main.c ****   {
- 156:Core/Src/main.c ****   uint8_t cdc_message[] = "MPU Initialized\r\n";
- 157:Core/Src/main.c ****   CDC_Transmit_FS(cdc_message, sizeof(cdc_message));
+ 156:Core/Src/main.c ****   // uint8_t cdc_message[] = "MPU Initialized\r\n";
+ 157:Core/Src/main.c ****   // CDC_Transmit_FS(cdc_message, sizeof(cdc_message) - 1);
  158:Core/Src/main.c ****   LED_Test_Sequence();
  159:Core/Src/main.c ****     // HAL_GPIO_WritePin(MPU_B_GPIO_Port, MPU_B_Pin, GPIO_PIN_SET);
  160:Core/Src/main.c ****     // HAL_Delay(1000);
@@ -238,7 +238,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccNYoCWV.s 			page 1
  201:Core/Src/main.c ****   RCC_OscInitStruct.PLL.PLLQ = 18;
  202:Core/Src/main.c ****   RCC_OscInitStruct.PLL.PLLR = 2;
  203:Core/Src/main.c ****   RCC_OscInitStruct.PLL.PLLRGE = RCC_PLL1VCIRANGE_3;
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccNYoCWV.s 			page 5
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccq0szuV.s 			page 5
 
 
  204:Core/Src/main.c ****   RCC_OscInitStruct.PLL.PLLVCOSEL = RCC_PLL1VCOMEDIUM;
@@ -298,7 +298,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccNYoCWV.s 			page 1
  258:Core/Src/main.c ****   hfdcan1.Init.DataTimeSeg2 = 1;
  259:Core/Src/main.c ****   hfdcan1.Init.MessageRAMOffset = 0;
  260:Core/Src/main.c ****   hfdcan1.Init.StdFiltersNbr = 0;
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccNYoCWV.s 			page 6
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccq0szuV.s 			page 6
 
 
  261:Core/Src/main.c ****   hfdcan1.Init.ExtFiltersNbr = 0;
@@ -358,7 +358,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccNYoCWV.s 			page 1
  315:Core/Src/main.c ****   hspi1.Init.RxCRCInitializationPattern = SPI_CRC_INITIALIZATION_ALL_ZERO_PATTERN;
  316:Core/Src/main.c ****   hspi1.Init.MasterSSIdleness = SPI_MASTER_SS_IDLENESS_00CYCLE;
  317:Core/Src/main.c ****   hspi1.Init.MasterInterDataIdleness = SPI_MASTER_INTERDATA_IDLENESS_00CYCLE;
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccNYoCWV.s 			page 7
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccq0szuV.s 			page 7
 
 
  318:Core/Src/main.c ****   hspi1.Init.MasterReceiverAutoSusp = SPI_MASTER_RX_AUTOSUSP_DISABLE;
@@ -418,7 +418,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccNYoCWV.s 			page 1
  372:Core/Src/main.c ****   }
  373:Core/Src/main.c ****   /* USER CODE BEGIN SPI3_Init 2 */
  374:Core/Src/main.c **** 
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccNYoCWV.s 			page 8
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccq0szuV.s 			page 8
 
 
  375:Core/Src/main.c ****   /* USER CODE END SPI3_Init 2 */
@@ -478,7 +478,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccNYoCWV.s 			page 1
  429:Core/Src/main.c ****   * @param None
  430:Core/Src/main.c ****   * @retval None
  431:Core/Src/main.c ****   */
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccNYoCWV.s 			page 9
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccq0szuV.s 			page 9
 
 
  432:Core/Src/main.c **** static void MX_SPI6_Init(void)
@@ -538,7 +538,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccNYoCWV.s 			page 1
  486:Core/Src/main.c **** 
  487:Core/Src/main.c ****   TIM_MasterConfigTypeDef sMasterConfig = {0};
  488:Core/Src/main.c ****   TIM_OC_InitTypeDef sConfigOC = {0};
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccNYoCWV.s 			page 10
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccq0szuV.s 			page 10
 
 
  489:Core/Src/main.c ****   TIM_BreakDeadTimeConfigTypeDef sBreakDeadTimeConfig = {0};
@@ -598,7 +598,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccNYoCWV.s 			page 1
  543:Core/Src/main.c **** }
  544:Core/Src/main.c **** 
  545:Core/Src/main.c **** /**
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccNYoCWV.s 			page 11
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccq0szuV.s 			page 11
 
 
  546:Core/Src/main.c ****   * @brief UART4 Initialization Function
@@ -658,7 +658,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccNYoCWV.s 			page 1
  600:Core/Src/main.c **** 
  601:Core/Src/main.c ****   /* USER CODE BEGIN UART8_Init 0 */
  602:Core/Src/main.c **** 
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccNYoCWV.s 			page 12
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccq0szuV.s 			page 12
 
 
  603:Core/Src/main.c ****   /* USER CODE END UART8_Init 0 */
@@ -718,7 +718,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccNYoCWV.s 			page 1
  657:Core/Src/main.c ****   huart1.Init.BaudRate = 115200;
  658:Core/Src/main.c ****   huart1.Init.WordLength = UART_WORDLENGTH_8B;
  659:Core/Src/main.c ****   huart1.Init.StopBits = UART_STOPBITS_1;
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccNYoCWV.s 			page 13
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccq0szuV.s 			page 13
 
 
  660:Core/Src/main.c ****   huart1.Init.Parity = UART_PARITY_NONE;
@@ -778,7 +778,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccNYoCWV.s 			page 1
  714:Core/Src/main.c **** 
  715:Core/Src/main.c ****   /* USER CODE END WWDG1_Init 2 */
  716:Core/Src/main.c **** 
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccNYoCWV.s 			page 14
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccq0szuV.s 			page 14
 
 
  717:Core/Src/main.c **** }
@@ -838,7 +838,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccNYoCWV.s 			page 1
  771:Core/Src/main.c ****   /*Configure GPIO pins : IMU1_INT_Pin IMU1_CS_Pin IMU2_INT_Pin */
  772:Core/Src/main.c ****   GPIO_InitStruct.Pin = IMU1_INT_Pin|IMU1_CS_Pin|IMU2_INT_Pin;
  773:Core/Src/main.c ****   GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccNYoCWV.s 			page 15
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccq0szuV.s 			page 15
 
 
  774:Core/Src/main.c ****   GPIO_InitStruct.Pull = GPIO_NOPULL;
@@ -898,7 +898,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccNYoCWV.s 			page 1
   45              		.loc 1 809 3 is_stmt 1 view .LVU3
   46 000e FFF7FEFF 		bl	HAL_MPU_Disable
   47              	.LVL0:
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccNYoCWV.s 			page 16
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccq0szuV.s 			page 16
 
 
  810:Core/Src/main.c **** 
@@ -958,7 +958,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccNYoCWV.s 			page 1
   86 0044 FFF7FEFF 		bl	HAL_MPU_ConfigRegion
   87              	.LVL1:
  826:Core/Src/main.c ****   /* Enables the MPU */
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccNYoCWV.s 			page 17
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccq0szuV.s 			page 17
 
 
  827:Core/Src/main.c ****   HAL_MPU_Enable(MPU_PRIVILEGED_DEFAULT);
@@ -1018,7 +1018,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccNYoCWV.s 			page 1
  732:Core/Src/main.c ****   __HAL_RCC_GPIOC_CLK_ENABLE();
  136              		.loc 1 732 3 view .LVU34
  137 0014 504B     		ldr	r3, .L5
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccNYoCWV.s 			page 18
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccq0szuV.s 			page 18
 
 
  138 0016 D3F8E020 		ldr	r2, [r3, #224]
@@ -1078,7 +1078,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccNYoCWV.s 			page 1
  734:Core/Src/main.c ****   __HAL_RCC_GPIOA_CLK_ENABLE();
  178              		.loc 1 734 3 view .LVU49
  735:Core/Src/main.c ****   __HAL_RCC_GPIOB_CLK_ENABLE();
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccNYoCWV.s 			page 19
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccq0szuV.s 			page 19
 
 
  179              		.loc 1 735 3 view .LVU50
@@ -1138,7 +1138,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccNYoCWV.s 			page 1
  218 009e 03F00803 		and	r3, r3, #8
  219 00a2 0693     		str	r3, [sp, #24]
  737:Core/Src/main.c **** 
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccNYoCWV.s 			page 20
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccq0szuV.s 			page 20
 
 
  220              		.loc 1 737 3 view .LVU66
@@ -1198,7 +1198,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccNYoCWV.s 			page 1
  264 00f0 0126     		movs	r6, #1
  265 00f2 0896     		str	r6, [sp, #32]
  758:Core/Src/main.c ****   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccNYoCWV.s 			page 21
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccq0szuV.s 			page 21
 
 
  266              		.loc 1 758 3 is_stmt 1 view .LVU77
@@ -1258,7 +1258,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccNYoCWV.s 			page 1
  302              		.loc 1 774 3 is_stmt 1 view .LVU95
  774:Core/Src/main.c ****   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
  303              		.loc 1 774 24 is_stmt 0 view .LVU96
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccNYoCWV.s 			page 22
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccq0szuV.s 			page 22
 
 
  304 011c 0994     		str	r4, [sp, #36]
@@ -1318,7 +1318,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccNYoCWV.s 			page 1
  340              		.loc 1 790 25 is_stmt 0 view .LVU114
  341 0146 0A94     		str	r4, [sp, #40]
  791:Core/Src/main.c **** 
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccNYoCWV.s 			page 23
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccq0szuV.s 			page 23
 
 
  342              		.loc 1 791 3 is_stmt 1 view .LVU115
@@ -1378,7 +1378,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccNYoCWV.s 			page 1
    6:Drivers/CMSIS/Include/cmsis_gcc.h ****  ******************************************************************************/
    7:Drivers/CMSIS/Include/cmsis_gcc.h **** /*
    8:Drivers/CMSIS/Include/cmsis_gcc.h ****  * Copyright (c) 2009-2019 Arm Limited. All rights reserved.
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccNYoCWV.s 			page 24
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccq0szuV.s 			page 24
 
 
    9:Drivers/CMSIS/Include/cmsis_gcc.h ****  *
@@ -1438,7 +1438,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccNYoCWV.s 			page 1
   63:Drivers/CMSIS/Include/cmsis_gcc.h **** #endif
   64:Drivers/CMSIS/Include/cmsis_gcc.h **** #ifndef   __PACKED_STRUCT
   65:Drivers/CMSIS/Include/cmsis_gcc.h ****   #define __PACKED_STRUCT                        struct __attribute__((packed, aligned(1)))
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccNYoCWV.s 			page 25
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccq0szuV.s 			page 25
 
 
   66:Drivers/CMSIS/Include/cmsis_gcc.h **** #endif
@@ -1498,7 +1498,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccNYoCWV.s 			page 1
  120:Drivers/CMSIS/Include/cmsis_gcc.h **** /* #########################  Startup and Lowlevel Init  ######################## */
  121:Drivers/CMSIS/Include/cmsis_gcc.h **** 
  122:Drivers/CMSIS/Include/cmsis_gcc.h **** #ifndef __PROGRAM_START
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccNYoCWV.s 			page 26
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccq0szuV.s 			page 26
 
 
  123:Drivers/CMSIS/Include/cmsis_gcc.h **** 
@@ -1558,7 +1558,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccNYoCWV.s 			page 1
  177:Drivers/CMSIS/Include/cmsis_gcc.h **** #ifndef __VECTOR_TABLE
  178:Drivers/CMSIS/Include/cmsis_gcc.h **** #define __VECTOR_TABLE            __Vectors
  179:Drivers/CMSIS/Include/cmsis_gcc.h **** #endif
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccNYoCWV.s 			page 27
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccq0szuV.s 			page 27
 
 
  180:Drivers/CMSIS/Include/cmsis_gcc.h **** 
@@ -1618,7 +1618,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccNYoCWV.s 			page 1
  403              		.syntax unified
  404              		.thumb
  405              		.thumb_func
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccNYoCWV.s 			page 28
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccq0szuV.s 			page 28
 
 
  407              	MX_SPI1_Init:
@@ -1678,7 +1678,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccNYoCWV.s 			page 1
  306:Core/Src/main.c ****   hspi1.Init.FirstBit = SPI_FIRSTBIT_MSB;
  445              		.loc 1 306 32 is_stmt 0 view .LVU140
  446 0020 C361     		str	r3, [r0, #28]
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccNYoCWV.s 			page 29
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccq0szuV.s 			page 29
 
 
  307:Core/Src/main.c ****   hspi1.Init.TIMode = SPI_TIMODE_DISABLE;
@@ -1738,7 +1738,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccNYoCWV.s 			page 1
  479              		.loc 1 317 38 is_stmt 0 view .LVU162
  480 003a C364     		str	r3, [r0, #76]
  318:Core/Src/main.c ****   hspi1.Init.MasterKeepIOState = SPI_MASTER_KEEP_IO_STATE_DISABLE;
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccNYoCWV.s 			page 30
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccq0szuV.s 			page 30
 
 
  481              		.loc 1 318 3 is_stmt 1 view .LVU163
@@ -1798,7 +1798,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccNYoCWV.s 			page 1
  347:Core/Src/main.c ****   hspi3.Init.Mode = SPI_MODE_MASTER;
  526              		.loc 1 347 3 view .LVU175
  347:Core/Src/main.c ****   hspi3.Init.Mode = SPI_MODE_MASTER;
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccNYoCWV.s 			page 31
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccq0szuV.s 			page 31
 
 
  527              		.loc 1 347 18 is_stmt 0 view .LVU176
@@ -1858,7 +1858,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccNYoCWV.s 			page 1
  562              		.loc 1 357 3 is_stmt 1 view .LVU195
  357:Core/Src/main.c ****   hspi3.Init.CRCPolynomial = 0x0;
  563              		.loc 1 357 29 is_stmt 0 view .LVU196
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccNYoCWV.s 			page 32
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccq0szuV.s 			page 32
 
 
  564 0026 8362     		str	r3, [r0, #40]
@@ -1918,7 +1918,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccNYoCWV.s 			page 1
  368:Core/Src/main.c ****   if (HAL_SPI_Init(&hspi3) != HAL_OK)
  597              		.loc 1 368 21 is_stmt 0 view .LVU218
  598 0040 8365     		str	r3, [r0, #88]
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccNYoCWV.s 			page 33
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccq0szuV.s 			page 33
 
 
  369:Core/Src/main.c ****   {
@@ -1978,7 +1978,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccNYoCWV.s 			page 1
  644              		.loc 1 397 3 is_stmt 1 view .LVU229
  397:Core/Src/main.c ****   hspi4.Init.DataSize = SPI_DATASIZE_4BIT;
  645              		.loc 1 397 24 is_stmt 0 view .LVU230
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccNYoCWV.s 			page 34
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccq0szuV.s 			page 34
 
 
  646 000e 0023     		movs	r3, #0
@@ -2038,7 +2038,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccNYoCWV.s 			page 1
  680 002e 4263     		str	r2, [r0, #52]
  408:Core/Src/main.c ****   hspi4.Init.FifoThreshold = SPI_FIFO_THRESHOLD_01DATA;
  681              		.loc 1 408 3 is_stmt 1 view .LVU251
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccNYoCWV.s 			page 35
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccq0szuV.s 			page 35
 
 
  408:Core/Src/main.c ****   hspi4.Init.FifoThreshold = SPI_FIFO_THRESHOLD_01DATA;
@@ -2098,7 +2098,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccNYoCWV.s 			page 1
  715 0048 08BD     		pop	{r3, pc}
  716              	.L24:
  419:Core/Src/main.c ****   }
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccNYoCWV.s 			page 36
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccq0szuV.s 			page 36
 
 
  717              		.loc 1 419 5 is_stmt 1 view .LVU273
@@ -2158,7 +2158,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccNYoCWV.s 			page 1
  762              		.loc 1 447 26 is_stmt 0 view .LVU284
  763 0016 0361     		str	r3, [r0, #16]
  448:Core/Src/main.c ****   hspi6.Init.NSS = SPI_NSS_SOFT;
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccNYoCWV.s 			page 37
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccq0szuV.s 			page 37
 
 
  764              		.loc 1 448 3 is_stmt 1 view .LVU285
@@ -2218,7 +2218,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccNYoCWV.s 			page 1
  797              		.loc 1 458 41 is_stmt 0 view .LVU306
  798 0034 0364     		str	r3, [r0, #64]
  459:Core/Src/main.c ****   hspi6.Init.MasterSSIdleness = SPI_MASTER_SS_IDLENESS_00CYCLE;
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccNYoCWV.s 			page 38
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccq0szuV.s 			page 38
 
 
  799              		.loc 1 459 3 is_stmt 1 view .LVU307
@@ -2278,7 +2278,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccNYoCWV.s 			page 1
  838              		.align	1
  839              		.syntax unified
  840              		.thumb
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccNYoCWV.s 			page 39
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccq0szuV.s 			page 39
 
 
  841              		.thumb_func
@@ -2338,7 +2338,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccNYoCWV.s 			page 1
  615:Core/Src/main.c ****   huart8.Init.OneBitSampling = UART_ONE_BIT_SAMPLE_DISABLE;
  880              		.loc 1 615 28 is_stmt 0 view .LVU340
  881 001c C161     		str	r1, [r0, #28]
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccNYoCWV.s 			page 40
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccq0szuV.s 			page 40
 
 
  616:Core/Src/main.c ****   huart8.Init.ClockPrescaler = UART_PRESCALER_DIV1;
@@ -2398,7 +2398,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccNYoCWV.s 			page 1
  631:Core/Src/main.c ****   {
  919              		.loc 1 631 6 discriminator 1 view .LVU358
  920 0046 30B9     		cbnz	r0, .L42
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccNYoCWV.s 			page 41
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccq0szuV.s 			page 41
 
 
  639:Core/Src/main.c **** 
@@ -2458,7 +2458,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccNYoCWV.s 			page 1
  968              		.loc 1 705 3 is_stmt 1 view .LVU367
  705:Core/Src/main.c ****   hwwdg1.Init.Window = 64;
  969              		.loc 1 705 25 is_stmt 0 view .LVU368
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccNYoCWV.s 			page 42
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccq0szuV.s 			page 42
 
 
  970 0008 0023     		movs	r3, #0
@@ -2518,7 +2518,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccNYoCWV.s 			page 1
  1014 0000 08B5     		push	{r3, lr}
  1015              		.cfi_def_cfa_offset 8
  1016              		.cfi_offset 3, -8
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccNYoCWV.s 			page 43
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccq0szuV.s 			page 43
 
 
  1017              		.cfi_offset 14, -4
@@ -2578,7 +2578,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccNYoCWV.s 			page 1
  1051              		.loc 1 569 30 is_stmt 0 view .LVU400
  1052 0020 4162     		str	r1, [r0, #36]
  570:Core/Src/main.c ****   if (HAL_MultiProcessor_Init(&huart4, 0, UART_WAKEUPMETHOD_IDLELINE) != HAL_OK)
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccNYoCWV.s 			page 44
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccq0szuV.s 			page 44
 
 
  1053              		.loc 1 570 3 is_stmt 1 view .LVU401
@@ -2638,7 +2638,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccNYoCWV.s 			page 1
  1092              	.L58:
  577:Core/Src/main.c ****   }
  1093              		.loc 1 577 5 view .LVU417
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccNYoCWV.s 			page 45
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccq0szuV.s 			page 45
 
 
  1094 004e FFF7FEFF 		bl	Error_Handler
@@ -2698,7 +2698,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccNYoCWV.s 			page 1
  1140              		.loc 1 248 3 is_stmt 1 view .LVU427
  248:Core/Src/main.c ****   hfdcan1.Init.TransmitPause = DISABLE;
  1141              		.loc 1 248 35 is_stmt 0 view .LVU428
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccNYoCWV.s 			page 46
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccq0szuV.s 			page 46
 
 
  1142 000e 0374     		strb	r3, [r0, #16]
@@ -2758,7 +2758,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccNYoCWV.s 			page 1
  1175              		.loc 1 259 3 is_stmt 1 view .LVU449
  259:Core/Src/main.c ****   hfdcan1.Init.StdFiltersNbr = 0;
  1176              		.loc 1 259 33 is_stmt 0 view .LVU450
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccNYoCWV.s 			page 47
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccq0szuV.s 			page 47
 
 
  1177 0028 4363     		str	r3, [r0, #52]
@@ -2818,7 +2818,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccNYoCWV.s 			page 1
  270:Core/Src/main.c ****   hfdcan1.Init.TxFifoQueueMode = FDCAN_TX_FIFO_OPERATION;
  1210              		.loc 1 270 36 is_stmt 0 view .LVU472
  1211 0040 0366     		str	r3, [r0, #96]
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccNYoCWV.s 			page 48
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccq0szuV.s 			page 48
 
 
  271:Core/Src/main.c ****   hfdcan1.Init.TxElmtSize = FDCAN_DATA_BYTES_8;
@@ -2878,7 +2878,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccNYoCWV.s 			page 1
  1256 0002 1548     		ldr	r0, .L79
  1257 0004 154B     		ldr	r3, .L79+4
  1258 0006 0360     		str	r3, [r0]
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccNYoCWV.s 			page 49
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccq0szuV.s 			page 49
 
 
  657:Core/Src/main.c ****   huart1.Init.WordLength = UART_WORDLENGTH_8B;
@@ -2938,7 +2938,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccNYoCWV.s 			page 1
  1292              		.loc 1 667 3 is_stmt 1 view .LVU505
  667:Core/Src/main.c ****   {
  1293              		.loc 1 667 7 is_stmt 0 view .LVU506
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccNYoCWV.s 			page 50
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccq0szuV.s 			page 50
 
 
  1294 0024 FFF7FEFF 		bl	HAL_UART_Init
@@ -2998,7 +2998,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccNYoCWV.s 			page 1
  1334              	.LVL47:
  1335              	.L78:
  681:Core/Src/main.c ****   }
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccNYoCWV.s 			page 51
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccq0szuV.s 			page 51
 
 
  1336              		.loc 1 681 5 view .LVU521
@@ -3058,7 +3058,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccNYoCWV.s 			page 1
  1385 0020 FFF7FEFF 		bl	memset
  1386              	.LVL49:
  494:Core/Src/main.c ****   htim1.Init.Prescaler = 0;
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccNYoCWV.s 			page 52
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccq0szuV.s 			page 52
 
 
  1387              		.loc 1 494 3 is_stmt 1 view .LVU529
@@ -3118,7 +3118,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccNYoCWV.s 			page 1
  1422              		.loc 1 506 3 is_stmt 1 view .LVU548
  506:Core/Src/main.c ****   sMasterConfig.MasterSlaveMode = TIM_MASTERSLAVEMODE_DISABLE;
  1423              		.loc 1 506 38 is_stmt 0 view .LVU549
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccNYoCWV.s 			page 53
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccq0szuV.s 			page 53
 
 
  1424 0046 1493     		str	r3, [sp, #80]
@@ -3178,7 +3178,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccNYoCWV.s 			page 1
  1459 0066 1292     		str	r2, [sp, #72]
  519:Core/Src/main.c ****   {
  1460              		.loc 1 519 3 is_stmt 1 view .LVU569
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccNYoCWV.s 			page 54
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccq0szuV.s 			page 54
 
 
  519:Core/Src/main.c ****   {
@@ -3238,7 +3238,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccNYoCWV.s 			page 1
  1495              		.loc 1 531 39 is_stmt 0 view .LVU589
  1496 0088 4FF00072 		mov	r2, #33554432
  1497 008c 0992     		str	r2, [sp, #36]
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccNYoCWV.s 			page 55
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccq0szuV.s 			page 55
 
 
  532:Core/Src/main.c ****   sBreakDeadTimeConfig.AutomaticOutput = TIM_AUTOMATICOUTPUT_DISABLE;
@@ -3298,7 +3298,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccNYoCWV.s 			page 1
  1539              	.L92:
  1540 00b6 00BF     		.align	2
  1541              	.L91:
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccNYoCWV.s 			page 56
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccq0szuV.s 			page 56
 
 
  1542 00b8 00000000 		.word	htim1
@@ -3358,7 +3358,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccNYoCWV.s 			page 1
  185:Core/Src/main.c **** 
  1589              		.loc 1 185 3 discriminator 2 view .LVU612
  1590 0022 274B     		ldr	r3, .L100
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccNYoCWV.s 			page 57
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccq0szuV.s 			page 57
 
 
  1591 0024 DA6A     		ldr	r2, [r3, #44]
@@ -3418,7 +3418,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccNYoCWV.s 			page 1
  1629              		.loc 1 193 3 is_stmt 1 view .LVU628
  193:Core/Src/main.c ****   RCC_OscInitStruct.HSICalibrationValue = RCC_HSICALIBRATION_DEFAULT;
  1630              		.loc 1 193 30 is_stmt 0 view .LVU629
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccNYoCWV.s 			page 58
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccq0szuV.s 			page 58
 
 
  1631 005a 0123     		movs	r3, #1
@@ -3478,7 +3478,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccNYoCWV.s 			page 1
  1666              		.loc 1 203 3 is_stmt 1 view .LVU648
  203:Core/Src/main.c ****   RCC_OscInitStruct.PLL.PLLVCOSEL = RCC_PLL1VCOMEDIUM;
  1667              		.loc 1 203 32 is_stmt 0 view .LVU649
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccNYoCWV.s 			page 59
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccq0szuV.s 			page 59
 
 
  1668 007c 0C21     		movs	r1, #12
@@ -3538,7 +3538,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccNYoCWV.s 			page 1
  1703 009c 4023     		movs	r3, #64
  1704 009e 0693     		str	r3, [sp, #24]
  221:Core/Src/main.c ****   RCC_ClkInitStruct.APB4CLKDivider = RCC_APB4_DIV2;
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccNYoCWV.s 			page 60
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccq0szuV.s 			page 60
 
 
  1705              		.loc 1 221 3 is_stmt 1 view .LVU669
@@ -3587,359 +3587,327 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccNYoCWV.s 			page 1
  1739 00c4 00480258 		.word	1476544512
  1740              		.cfi_endproc
  1741              	.LFE149:
- 1743              		.section	.rodata.main.str1.4,"aMS",%progbits,1
- 1744              		.align	2
- 1745              	.LC1:
- 1746 0000 4D505520 		.ascii	"MPU Initialized\015\012\000"
- 1746      496E6974 
- 1746      69616C69 
- 1746      7A65640D 
- 1746      0A00
- 1747              		.section	.text.main,"ax",%progbits
- 1748              		.align	1
- 1749              		.global	main
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccNYoCWV.s 			page 61
-
-
- 1750              		.syntax unified
- 1751              		.thumb
- 1752              		.thumb_func
- 1754              	main:
- 1755              	.LFB148:
+ 1743              		.section	.text.main,"ax",%progbits
+ 1744              		.align	1
+ 1745              		.global	main
+ 1746              		.syntax unified
+ 1747              		.thumb
+ 1748              		.thumb_func
+ 1750              	main:
+ 1751              	.LFB148:
   96:Core/Src/main.c **** 
- 1756              		.loc 1 96 1 view -0
- 1757              		.cfi_startproc
- 1758              		@ Volatile: function does not return.
- 1759              		@ args = 0, pretend = 0, frame = 48
- 1760              		@ frame_needed = 0, uses_anonymous_args = 0
- 1761 0000 00B5     		push	{lr}
- 1762              		.cfi_def_cfa_offset 4
- 1763              		.cfi_offset 14, -4
- 1764 0002 8DB0     		sub	sp, sp, #52
- 1765              		.cfi_def_cfa_offset 56
+ 1752              		.loc 1 96 1 view -0
+ 1753              		.cfi_startproc
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccq0szuV.s 			page 61
+
+
+ 1754              		@ Volatile: function does not return.
+ 1755              		@ args = 0, pretend = 0, frame = 24
+ 1756              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1757 0000 00B5     		push	{lr}
+ 1758              		.cfi_def_cfa_offset 4
+ 1759              		.cfi_offset 14, -4
+ 1760 0002 87B0     		sub	sp, sp, #28
+ 1761              		.cfi_def_cfa_offset 32
  103:Core/Src/main.c **** 
- 1766              		.loc 1 103 3 view .LVU680
- 1767 0004 FFF7FEFF 		bl	MPU_Config
- 1768              	.LVL66:
+ 1762              		.loc 1 103 3 view .LVU680
+ 1763 0004 FFF7FEFF 		bl	MPU_Config
+ 1764              	.LVL66:
  108:Core/Src/main.c **** 
- 1769              		.loc 1 108 3 view .LVU681
- 1770 0008 FFF7FEFF 		bl	HAL_Init
- 1771              	.LVL67:
+ 1765              		.loc 1 108 3 view .LVU681
+ 1766 0008 FFF7FEFF 		bl	HAL_Init
+ 1767              	.LVL67:
  115:Core/Src/main.c **** 
- 1772              		.loc 1 115 3 view .LVU682
- 1773 000c FFF7FEFF 		bl	SystemClock_Config
- 1774              	.LVL68:
+ 1768              		.loc 1 115 3 view .LVU682
+ 1769 000c FFF7FEFF 		bl	SystemClock_Config
+ 1770              	.LVL68:
  118:Core/Src/main.c ****       .port_r = MPU_R_GPIO_Port,
- 1775              		.loc 1 118 1 view .LVU683
+ 1771              		.loc 1 118 1 view .LVU683
  118:Core/Src/main.c ****       .port_r = MPU_R_GPIO_Port,
- 1776              		.loc 1 118 22 is_stmt 0 view .LVU684
- 1777 0010 06AC     		add	r4, sp, #24
- 1778 0012 DFF86CC0 		ldr	ip, .L105+4
- 1779 0016 BCE80F00 		ldmia	ip!, {r0, r1, r2, r3}
- 1780 001a 0FC4     		stmia	r4!, {r0, r1, r2, r3}
- 1781 001c 9CE80300 		ldm	ip, {r0, r1}
- 1782 0020 84E80300 		stm	r4, {r0, r1}
+ 1772              		.loc 1 118 22 is_stmt 0 view .LVU684
+ 1773 0010 EC46     		mov	ip, sp
+ 1774 0012 DFF850E0 		ldr	lr, .L105
+ 1775 0016 BEE80F00 		ldmia	lr!, {r0, r1, r2, r3}
+ 1776 001a ACE80F00 		stmia	ip!, {r0, r1, r2, r3}
+ 1777 001e 9EE80300 		ldm	lr, {r0, r1}
+ 1778 0022 8CE80300 		stm	ip, {r0, r1}
  126:Core/Src/main.c ****   /* USER CODE END SysInit */
- 1783              		.loc 1 126 3 is_stmt 1 view .LVU685
- 1784 0024 06A8     		add	r0, sp, #24
- 1785 0026 FFF7FEFF 		bl	Athena_Init
- 1786              	.LVL69:
+ 1779              		.loc 1 126 3 is_stmt 1 view .LVU685
+ 1780 0026 6846     		mov	r0, sp
+ 1781 0028 FFF7FEFF 		bl	Athena_Init
+ 1782              	.LVL69:
  130:Core/Src/main.c ****   MX_SPI1_Init();
- 1787              		.loc 1 130 3 view .LVU686
- 1788 002a FFF7FEFF 		bl	MX_GPIO_Init
- 1789              	.LVL70:
+ 1783              		.loc 1 130 3 view .LVU686
+ 1784 002c FFF7FEFF 		bl	MX_GPIO_Init
+ 1785              	.LVL70:
  131:Core/Src/main.c ****   MX_SPI3_Init();
- 1790              		.loc 1 131 3 view .LVU687
- 1791 002e FFF7FEFF 		bl	MX_SPI1_Init
- 1792              	.LVL71:
+ 1786              		.loc 1 131 3 view .LVU687
+ 1787 0030 FFF7FEFF 		bl	MX_SPI1_Init
+ 1788              	.LVL71:
  132:Core/Src/main.c ****   MX_SPI4_Init();
- 1793              		.loc 1 132 3 view .LVU688
- 1794 0032 FFF7FEFF 		bl	MX_SPI3_Init
- 1795              	.LVL72:
+ 1789              		.loc 1 132 3 view .LVU688
+ 1790 0034 FFF7FEFF 		bl	MX_SPI3_Init
+ 1791              	.LVL72:
  133:Core/Src/main.c ****   MX_SPI6_Init();
- 1796              		.loc 1 133 3 view .LVU689
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccNYoCWV.s 			page 62
-
-
- 1797 0036 FFF7FEFF 		bl	MX_SPI4_Init
- 1798              	.LVL73:
+ 1792              		.loc 1 133 3 view .LVU689
+ 1793 0038 FFF7FEFF 		bl	MX_SPI4_Init
+ 1794              	.LVL73:
  134:Core/Src/main.c ****   MX_UART8_Init();
- 1799              		.loc 1 134 3 view .LVU690
- 1800 003a FFF7FEFF 		bl	MX_SPI6_Init
- 1801              	.LVL74:
+ 1795              		.loc 1 134 3 view .LVU690
+ 1796 003c FFF7FEFF 		bl	MX_SPI6_Init
+ 1797              	.LVL74:
  135:Core/Src/main.c ****   MX_WWDG1_Init();
- 1802              		.loc 1 135 3 view .LVU691
- 1803 003e FFF7FEFF 		bl	MX_UART8_Init
- 1804              	.LVL75:
+ 1798              		.loc 1 135 3 view .LVU691
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccq0szuV.s 			page 62
+
+
+ 1799 0040 FFF7FEFF 		bl	MX_UART8_Init
+ 1800              	.LVL75:
  136:Core/Src/main.c ****   MX_UART4_Init();
- 1805              		.loc 1 136 3 view .LVU692
- 1806 0042 FFF7FEFF 		bl	MX_WWDG1_Init
- 1807              	.LVL76:
+ 1801              		.loc 1 136 3 view .LVU692
+ 1802 0044 FFF7FEFF 		bl	MX_WWDG1_Init
+ 1803              	.LVL76:
  137:Core/Src/main.c ****   MX_FDCAN1_Init();
- 1808              		.loc 1 137 3 view .LVU693
- 1809 0046 FFF7FEFF 		bl	MX_UART4_Init
- 1810              	.LVL77:
+ 1804              		.loc 1 137 3 view .LVU693
+ 1805 0048 FFF7FEFF 		bl	MX_UART4_Init
+ 1806              	.LVL77:
  138:Core/Src/main.c ****   MX_USART1_UART_Init();
- 1811              		.loc 1 138 3 view .LVU694
- 1812 004a FFF7FEFF 		bl	MX_FDCAN1_Init
- 1813              	.LVL78:
+ 1807              		.loc 1 138 3 view .LVU694
+ 1808 004c FFF7FEFF 		bl	MX_FDCAN1_Init
+ 1809              	.LVL78:
  139:Core/Src/main.c ****   MX_TIM1_Init();
- 1814              		.loc 1 139 3 view .LVU695
- 1815 004e FFF7FEFF 		bl	MX_USART1_UART_Init
- 1816              	.LVL79:
+ 1810              		.loc 1 139 3 view .LVU695
+ 1811 0050 FFF7FEFF 		bl	MX_USART1_UART_Init
+ 1812              	.LVL79:
  140:Core/Src/main.c ****   MX_USB_DEVICE_Init();
- 1817              		.loc 1 140 3 view .LVU696
- 1818 0052 FFF7FEFF 		bl	MX_TIM1_Init
- 1819              	.LVL80:
+ 1813              		.loc 1 140 3 view .LVU696
+ 1814 0054 FFF7FEFF 		bl	MX_TIM1_Init
+ 1815              	.LVL80:
  141:Core/Src/main.c ****   /* USER CODE BEGIN 2 */
- 1820              		.loc 1 141 3 view .LVU697
- 1821 0056 FFF7FEFF 		bl	MX_USB_DEVICE_Init
- 1822              	.LVL81:
- 1823              	.L103:
+ 1816              		.loc 1 141 3 view .LVU697
+ 1817 0058 FFF7FEFF 		bl	MX_USB_DEVICE_Init
+ 1818              	.LVL81:
+ 1819              	.L103:
  154:Core/Src/main.c ****   {
- 1824              		.loc 1 154 3 view .LVU698
- 1825              	.LBB13:
- 156:Core/Src/main.c ****   CDC_Transmit_FS(cdc_message, sizeof(cdc_message));
- 1826              		.loc 1 156 3 view .LVU699
- 156:Core/Src/main.c ****   CDC_Transmit_FS(cdc_message, sizeof(cdc_message));
- 1827              		.loc 1 156 11 is_stmt 0 view .LVU700
- 1828 005a 0DF1040C 		add	ip, sp, #4
- 1829 005e 074C     		ldr	r4, .L105
- 1830 0060 0FCC     		ldmia	r4!, {r0, r1, r2, r3}
- 1831 0062 ACE80F00 		stmia	ip!, {r0, r1, r2, r3}
- 1832 0066 2368     		ldr	r3, [r4]
- 1833 0068 ACF80030 		strh	r3, [ip]	@ movhi
- 157:Core/Src/main.c ****   LED_Test_Sequence();
- 1834              		.loc 1 157 3 is_stmt 1 view .LVU701
- 1835 006c 1221     		movs	r1, #18
- 1836 006e 01A8     		add	r0, sp, #4
- 1837 0070 FFF7FEFF 		bl	CDC_Transmit_FS
- 1838              	.LVL82:
+ 1820              		.loc 1 154 3 view .LVU698
  158:Core/Src/main.c ****     // HAL_GPIO_WritePin(MPU_B_GPIO_Port, MPU_B_Pin, GPIO_PIN_SET);
- 1839              		.loc 1 158 3 view .LVU702
- 1840 0074 FFF7FEFF 		bl	LED_Test_Sequence
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccNYoCWV.s 			page 63
-
-
- 1841              	.LVL83:
- 1842              	.LBE13:
+ 1821              		.loc 1 158 3 discriminator 1 view .LVU699
+ 1822 005c FFF7FEFF 		bl	LED_Test_Sequence
+ 1823              	.LVL82:
  154:Core/Src/main.c ****   {
- 1843              		.loc 1 154 9 view .LVU703
- 1844 0078 EFE7     		b	.L103
- 1845              	.L106:
- 1846 007a 00BF     		.align	2
- 1847              	.L105:
- 1848 007c 00000000 		.word	.LC1
- 1849 0080 00000000 		.word	.LANCHOR0
- 1850              		.cfi_endproc
- 1851              	.LFE148:
- 1853              		.global	hwwdg1
- 1854              		.section	.bss.hwwdg1,"aw",%nobits
- 1855              		.align	2
- 1858              	hwwdg1:
- 1859 0000 00000000 		.space	20
- 1859      00000000 
- 1859      00000000 
- 1859      00000000 
- 1859      00000000 
- 1860              		.global	huart1
- 1861              		.section	.bss.huart1,"aw",%nobits
- 1862              		.align	2
- 1865              	huart1:
- 1866 0000 00000000 		.space	148
- 1866      00000000 
- 1866      00000000 
- 1866      00000000 
- 1866      00000000 
- 1867              		.global	huart8
- 1868              		.section	.bss.huart8,"aw",%nobits
- 1869              		.align	2
- 1872              	huart8:
- 1873 0000 00000000 		.space	148
- 1873      00000000 
- 1873      00000000 
- 1873      00000000 
- 1873      00000000 
- 1874              		.global	huart4
- 1875              		.section	.bss.huart4,"aw",%nobits
- 1876              		.align	2
- 1879              	huart4:
- 1880 0000 00000000 		.space	148
- 1880      00000000 
- 1880      00000000 
- 1880      00000000 
- 1880      00000000 
- 1881              		.global	htim1
- 1882              		.section	.bss.htim1,"aw",%nobits
- 1883              		.align	2
- 1886              	htim1:
- 1887 0000 00000000 		.space	76
- 1887      00000000 
- 1887      00000000 
- 1887      00000000 
- 1887      00000000 
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccNYoCWV.s 			page 64
+ 1824              		.loc 1 154 9 view .LVU700
+ 1825 0060 FCE7     		b	.L103
+ 1826              	.L106:
+ 1827 0062 00BF     		.align	2
+ 1828              	.L105:
+ 1829 0064 00000000 		.word	.LANCHOR0
+ 1830              		.cfi_endproc
+ 1831              	.LFE148:
+ 1833              		.global	hwwdg1
+ 1834              		.section	.bss.hwwdg1,"aw",%nobits
+ 1835              		.align	2
+ 1838              	hwwdg1:
+ 1839 0000 00000000 		.space	20
+ 1839      00000000 
+ 1839      00000000 
+ 1839      00000000 
+ 1839      00000000 
+ 1840              		.global	huart1
+ 1841              		.section	.bss.huart1,"aw",%nobits
+ 1842              		.align	2
+ 1845              	huart1:
+ 1846 0000 00000000 		.space	148
+ 1846      00000000 
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccq0szuV.s 			page 63
 
 
- 1888              		.global	hspi6
- 1889              		.section	.bss.hspi6,"aw",%nobits
- 1890              		.align	2
- 1893              	hspi6:
- 1894 0000 00000000 		.space	136
- 1894      00000000 
- 1894      00000000 
- 1894      00000000 
- 1894      00000000 
- 1895              		.global	hspi4
- 1896              		.section	.bss.hspi4,"aw",%nobits
- 1897              		.align	2
- 1900              	hspi4:
- 1901 0000 00000000 		.space	136
- 1901      00000000 
- 1901      00000000 
- 1901      00000000 
- 1901      00000000 
- 1902              		.global	hspi3
- 1903              		.section	.bss.hspi3,"aw",%nobits
+ 1846      00000000 
+ 1846      00000000 
+ 1846      00000000 
+ 1847              		.global	huart8
+ 1848              		.section	.bss.huart8,"aw",%nobits
+ 1849              		.align	2
+ 1852              	huart8:
+ 1853 0000 00000000 		.space	148
+ 1853      00000000 
+ 1853      00000000 
+ 1853      00000000 
+ 1853      00000000 
+ 1854              		.global	huart4
+ 1855              		.section	.bss.huart4,"aw",%nobits
+ 1856              		.align	2
+ 1859              	huart4:
+ 1860 0000 00000000 		.space	148
+ 1860      00000000 
+ 1860      00000000 
+ 1860      00000000 
+ 1860      00000000 
+ 1861              		.global	htim1
+ 1862              		.section	.bss.htim1,"aw",%nobits
+ 1863              		.align	2
+ 1866              	htim1:
+ 1867 0000 00000000 		.space	76
+ 1867      00000000 
+ 1867      00000000 
+ 1867      00000000 
+ 1867      00000000 
+ 1868              		.global	hspi6
+ 1869              		.section	.bss.hspi6,"aw",%nobits
+ 1870              		.align	2
+ 1873              	hspi6:
+ 1874 0000 00000000 		.space	136
+ 1874      00000000 
+ 1874      00000000 
+ 1874      00000000 
+ 1874      00000000 
+ 1875              		.global	hspi4
+ 1876              		.section	.bss.hspi4,"aw",%nobits
+ 1877              		.align	2
+ 1880              	hspi4:
+ 1881 0000 00000000 		.space	136
+ 1881      00000000 
+ 1881      00000000 
+ 1881      00000000 
+ 1881      00000000 
+ 1882              		.global	hspi3
+ 1883              		.section	.bss.hspi3,"aw",%nobits
+ 1884              		.align	2
+ 1887              	hspi3:
+ 1888 0000 00000000 		.space	136
+ 1888      00000000 
+ 1888      00000000 
+ 1888      00000000 
+ 1888      00000000 
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccq0szuV.s 			page 64
+
+
+ 1889              		.global	hspi1
+ 1890              		.section	.bss.hspi1,"aw",%nobits
+ 1891              		.align	2
+ 1894              	hspi1:
+ 1895 0000 00000000 		.space	136
+ 1895      00000000 
+ 1895      00000000 
+ 1895      00000000 
+ 1895      00000000 
+ 1896              		.global	hfdcan1
+ 1897              		.section	.bss.hfdcan1,"aw",%nobits
+ 1898              		.align	2
+ 1901              	hfdcan1:
+ 1902 0000 00000000 		.space	160
+ 1902      00000000 
+ 1902      00000000 
+ 1902      00000000 
+ 1902      00000000 
+ 1903              		.section	.rodata
  1904              		.align	2
- 1907              	hspi3:
- 1908 0000 00000000 		.space	136
- 1908      00000000 
- 1908      00000000 
- 1908      00000000 
- 1908      00000000 
- 1909              		.global	hspi1
- 1910              		.section	.bss.hspi1,"aw",%nobits
- 1911              		.align	2
- 1914              	hspi1:
- 1915 0000 00000000 		.space	136
- 1915      00000000 
- 1915      00000000 
- 1915      00000000 
- 1915      00000000 
- 1916              		.global	hfdcan1
- 1917              		.section	.bss.hfdcan1,"aw",%nobits
- 1918              		.align	2
- 1921              	hfdcan1:
- 1922 0000 00000000 		.space	160
- 1922      00000000 
- 1922      00000000 
- 1922      00000000 
- 1922      00000000 
- 1923              		.section	.rodata
- 1924              		.align	2
- 1925              		.set	.LANCHOR0,. + 0
- 1926              	.LC0:
- 1927 0000 00040258 		.word	1476527104
- 1928 0004 0010     		.short	4096
- 1929 0006 0000     		.space	2
- 1930 0008 00040258 		.word	1476527104
- 1931 000c 0020     		.short	8192
- 1932 000e 0000     		.space	2
- 1933 0010 00040258 		.word	1476527104
- 1934 0014 0040     		.short	16384
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccNYoCWV.s 			page 65
-
-
- 1935 0016 0000     		.space	2
- 1936              		.text
- 1937              	.Letext0:
- 1938              		.file 3 "C:/Users/Nathan/AppData/Roaming/Code/User/globalStorage/bmd.stm32-for-vscode/@xpack-dev-t
- 1939              		.file 4 "C:/Users/Nathan/AppData/Roaming/Code/User/globalStorage/bmd.stm32-for-vscode/@xpack-dev-t
- 1940              		.file 5 "Drivers/CMSIS/Device/ST/STM32H7xx/Include/stm32h753xx.h"
- 1941              		.file 6 "Drivers/CMSIS/Device/ST/STM32H7xx/Include/stm32h7xx.h"
- 1942              		.file 7 "Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_def.h"
- 1943              		.file 8 "Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_rcc.h"
- 1944              		.file 9 "Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_gpio.h"
- 1945              		.file 10 "Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_dma.h"
- 1946              		.file 11 "Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_cortex.h"
- 1947              		.file 12 "Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_fdcan.h"
- 1948              		.file 13 "Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_spi.h"
- 1949              		.file 14 "Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_tim.h"
- 1950              		.file 15 "Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_uart.h"
- 1951              		.file 16 "Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_wwdg.h"
- 1952              		.file 17 "../Athena/athena.h"
- 1953              		.file 18 "Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_pwr_ex.h"
- 1954              		.file 19 "Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_tim_ex.h"
- 1955              		.file 20 "Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_uart_ex.h"
- 1956              		.file 21 "Core/Inc/main.h"
- 1957              		.file 22 "USB_DEVICE/App/usbd_cdc_if.h"
- 1958              		.file 23 "USB_DEVICE/App/usb_device.h"
- 1959              		.file 24 "Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal.h"
- 1960              		.file 25 "<built-in>"
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccNYoCWV.s 			page 66
+ 1905              		.set	.LANCHOR0,. + 0
+ 1906              	.LC0:
+ 1907 0000 00040258 		.word	1476527104
+ 1908 0004 0010     		.short	4096
+ 1909 0006 0000     		.space	2
+ 1910 0008 00040258 		.word	1476527104
+ 1911 000c 0020     		.short	8192
+ 1912 000e 0000     		.space	2
+ 1913 0010 00040258 		.word	1476527104
+ 1914 0014 0040     		.short	16384
+ 1915 0016 0000     		.space	2
+ 1916              		.text
+ 1917              	.Letext0:
+ 1918              		.file 3 "C:/Users/Nathan/AppData/Roaming/Code/User/globalStorage/bmd.stm32-for-vscode/@xpack-dev-t
+ 1919              		.file 4 "C:/Users/Nathan/AppData/Roaming/Code/User/globalStorage/bmd.stm32-for-vscode/@xpack-dev-t
+ 1920              		.file 5 "Drivers/CMSIS/Device/ST/STM32H7xx/Include/stm32h753xx.h"
+ 1921              		.file 6 "Drivers/CMSIS/Device/ST/STM32H7xx/Include/stm32h7xx.h"
+ 1922              		.file 7 "Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_def.h"
+ 1923              		.file 8 "Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_rcc.h"
+ 1924              		.file 9 "Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_gpio.h"
+ 1925              		.file 10 "Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_dma.h"
+ 1926              		.file 11 "Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_cortex.h"
+ 1927              		.file 12 "Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_fdcan.h"
+ 1928              		.file 13 "Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_spi.h"
+ 1929              		.file 14 "Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_tim.h"
+ 1930              		.file 15 "Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_uart.h"
+ 1931              		.file 16 "Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_wwdg.h"
+ 1932              		.file 17 "../Athena/athena.h"
+ 1933              		.file 18 "Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_pwr_ex.h"
+ 1934              		.file 19 "Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_tim_ex.h"
+ 1935              		.file 20 "Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_uart_ex.h"
+ 1936              		.file 21 "Core/Inc/main.h"
+ 1937              		.file 22 "USB_DEVICE/App/usb_device.h"
+ 1938              		.file 23 "Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal.h"
+ 1939              		.file 24 "<built-in>"
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccq0szuV.s 			page 65
 
 
 DEFINED SYMBOLS
                             *ABS*:00000000 main.c
-C:\Users\Nathan\AppData\Local\Temp\ccNYoCWV.s:20     .text.MPU_Config:00000000 $t
-C:\Users\Nathan\AppData\Local\Temp\ccNYoCWV.s:25     .text.MPU_Config:00000000 MPU_Config
-C:\Users\Nathan\AppData\Local\Temp\ccNYoCWV.s:101    .text.MX_GPIO_Init:00000000 $t
-C:\Users\Nathan\AppData\Local\Temp\ccNYoCWV.s:106    .text.MX_GPIO_Init:00000000 MX_GPIO_Init
-C:\Users\Nathan\AppData\Local\Temp\ccNYoCWV.s:355    .text.MX_GPIO_Init:00000158 $d
-C:\Users\Nathan\AppData\Local\Temp\ccNYoCWV.s:364    .text.Error_Handler:00000000 $t
-C:\Users\Nathan\AppData\Local\Temp\ccNYoCWV.s:370    .text.Error_Handler:00000000 Error_Handler
-C:\Users\Nathan\AppData\Local\Temp\ccNYoCWV.s:402    .text.MX_SPI1_Init:00000000 $t
-C:\Users\Nathan\AppData\Local\Temp\ccNYoCWV.s:407    .text.MX_SPI1_Init:00000000 MX_SPI1_Init
-C:\Users\Nathan\AppData\Local\Temp\ccNYoCWV.s:505    .text.MX_SPI1_Init:00000050 $d
-C:\Users\Nathan\AppData\Local\Temp\ccNYoCWV.s:1914   .bss.hspi1:00000000 hspi1
-C:\Users\Nathan\AppData\Local\Temp\ccNYoCWV.s:511    .text.MX_SPI3_Init:00000000 $t
-C:\Users\Nathan\AppData\Local\Temp\ccNYoCWV.s:516    .text.MX_SPI3_Init:00000000 MX_SPI3_Init
-C:\Users\Nathan\AppData\Local\Temp\ccNYoCWV.s:614    .text.MX_SPI3_Init:00000050 $d
-C:\Users\Nathan\AppData\Local\Temp\ccNYoCWV.s:1907   .bss.hspi3:00000000 hspi3
-C:\Users\Nathan\AppData\Local\Temp\ccNYoCWV.s:620    .text.MX_SPI4_Init:00000000 $t
-C:\Users\Nathan\AppData\Local\Temp\ccNYoCWV.s:625    .text.MX_SPI4_Init:00000000 MX_SPI4_Init
-C:\Users\Nathan\AppData\Local\Temp\ccNYoCWV.s:723    .text.MX_SPI4_Init:00000050 $d
-C:\Users\Nathan\AppData\Local\Temp\ccNYoCWV.s:1900   .bss.hspi4:00000000 hspi4
-C:\Users\Nathan\AppData\Local\Temp\ccNYoCWV.s:729    .text.MX_SPI6_Init:00000000 $t
-C:\Users\Nathan\AppData\Local\Temp\ccNYoCWV.s:734    .text.MX_SPI6_Init:00000000 MX_SPI6_Init
-C:\Users\Nathan\AppData\Local\Temp\ccNYoCWV.s:832    .text.MX_SPI6_Init:00000050 $d
-C:\Users\Nathan\AppData\Local\Temp\ccNYoCWV.s:1893   .bss.hspi6:00000000 hspi6
-C:\Users\Nathan\AppData\Local\Temp\ccNYoCWV.s:838    .text.MX_UART8_Init:00000000 $t
-C:\Users\Nathan\AppData\Local\Temp\ccNYoCWV.s:843    .text.MX_UART8_Init:00000000 MX_UART8_Init
-C:\Users\Nathan\AppData\Local\Temp\ccNYoCWV.s:942    .text.MX_UART8_Init:0000005c $d
-C:\Users\Nathan\AppData\Local\Temp\ccNYoCWV.s:1872   .bss.huart8:00000000 huart8
-C:\Users\Nathan\AppData\Local\Temp\ccNYoCWV.s:948    .text.MX_WWDG1_Init:00000000 $t
-C:\Users\Nathan\AppData\Local\Temp\ccNYoCWV.s:953    .text.MX_WWDG1_Init:00000000 MX_WWDG1_Init
-C:\Users\Nathan\AppData\Local\Temp\ccNYoCWV.s:997    .text.MX_WWDG1_Init:00000020 $d
-C:\Users\Nathan\AppData\Local\Temp\ccNYoCWV.s:1858   .bss.hwwdg1:00000000 hwwdg1
-C:\Users\Nathan\AppData\Local\Temp\ccNYoCWV.s:1003   .text.MX_UART4_Init:00000000 $t
-C:\Users\Nathan\AppData\Local\Temp\ccNYoCWV.s:1008   .text.MX_UART4_Init:00000000 MX_UART4_Init
-C:\Users\Nathan\AppData\Local\Temp\ccNYoCWV.s:1107   .text.MX_UART4_Init:0000005c $d
-C:\Users\Nathan\AppData\Local\Temp\ccNYoCWV.s:1879   .bss.huart4:00000000 huart4
-C:\Users\Nathan\AppData\Local\Temp\ccNYoCWV.s:1113   .text.MX_FDCAN1_Init:00000000 $t
-C:\Users\Nathan\AppData\Local\Temp\ccNYoCWV.s:1118   .text.MX_FDCAN1_Init:00000000 MX_FDCAN1_Init
-C:\Users\Nathan\AppData\Local\Temp\ccNYoCWV.s:1233   .text.MX_FDCAN1_Init:00000054 $d
-C:\Users\Nathan\AppData\Local\Temp\ccNYoCWV.s:1921   .bss.hfdcan1:00000000 hfdcan1
-C:\Users\Nathan\AppData\Local\Temp\ccNYoCWV.s:1239   .text.MX_USART1_UART_Init:00000000 $t
-C:\Users\Nathan\AppData\Local\Temp\ccNYoCWV.s:1244   .text.MX_USART1_UART_Init:00000000 MX_USART1_UART_Init
-C:\Users\Nathan\AppData\Local\Temp\ccNYoCWV.s:1342   .text.MX_USART1_UART_Init:00000058 $d
-C:\Users\Nathan\AppData\Local\Temp\ccNYoCWV.s:1865   .bss.huart1:00000000 huart1
-C:\Users\Nathan\AppData\Local\Temp\ccNYoCWV.s:1348   .text.MX_TIM1_Init:00000000 $t
-C:\Users\Nathan\AppData\Local\Temp\ccNYoCWV.s:1353   .text.MX_TIM1_Init:00000000 MX_TIM1_Init
-C:\Users\Nathan\AppData\Local\Temp\ccNYoCWV.s:1542   .text.MX_TIM1_Init:000000b8 $d
-C:\Users\Nathan\AppData\Local\Temp\ccNYoCWV.s:1886   .bss.htim1:00000000 htim1
-C:\Users\Nathan\AppData\Local\Temp\ccNYoCWV.s:1548   .text.SystemClock_Config:00000000 $t
-C:\Users\Nathan\AppData\Local\Temp\ccNYoCWV.s:1554   .text.SystemClock_Config:00000000 SystemClock_Config
-C:\Users\Nathan\AppData\Local\Temp\ccNYoCWV.s:1738   .text.SystemClock_Config:000000c0 $d
-C:\Users\Nathan\AppData\Local\Temp\ccNYoCWV.s:1744   .rodata.main.str1.4:00000000 $d
-C:\Users\Nathan\AppData\Local\Temp\ccNYoCWV.s:1748   .text.main:00000000 $t
-C:\Users\Nathan\AppData\Local\Temp\ccNYoCWV.s:1754   .text.main:00000000 main
-C:\Users\Nathan\AppData\Local\Temp\ccNYoCWV.s:1848   .text.main:0000007c $d
-C:\Users\Nathan\AppData\Local\Temp\ccNYoCWV.s:1855   .bss.hwwdg1:00000000 $d
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccNYoCWV.s 			page 67
+C:\Users\Nathan\AppData\Local\Temp\ccq0szuV.s:20     .text.MPU_Config:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccq0szuV.s:25     .text.MPU_Config:00000000 MPU_Config
+C:\Users\Nathan\AppData\Local\Temp\ccq0szuV.s:101    .text.MX_GPIO_Init:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccq0szuV.s:106    .text.MX_GPIO_Init:00000000 MX_GPIO_Init
+C:\Users\Nathan\AppData\Local\Temp\ccq0szuV.s:355    .text.MX_GPIO_Init:00000158 $d
+C:\Users\Nathan\AppData\Local\Temp\ccq0szuV.s:364    .text.Error_Handler:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccq0szuV.s:370    .text.Error_Handler:00000000 Error_Handler
+C:\Users\Nathan\AppData\Local\Temp\ccq0szuV.s:402    .text.MX_SPI1_Init:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccq0szuV.s:407    .text.MX_SPI1_Init:00000000 MX_SPI1_Init
+C:\Users\Nathan\AppData\Local\Temp\ccq0szuV.s:505    .text.MX_SPI1_Init:00000050 $d
+C:\Users\Nathan\AppData\Local\Temp\ccq0szuV.s:1894   .bss.hspi1:00000000 hspi1
+C:\Users\Nathan\AppData\Local\Temp\ccq0szuV.s:511    .text.MX_SPI3_Init:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccq0szuV.s:516    .text.MX_SPI3_Init:00000000 MX_SPI3_Init
+C:\Users\Nathan\AppData\Local\Temp\ccq0szuV.s:614    .text.MX_SPI3_Init:00000050 $d
+C:\Users\Nathan\AppData\Local\Temp\ccq0szuV.s:1887   .bss.hspi3:00000000 hspi3
+C:\Users\Nathan\AppData\Local\Temp\ccq0szuV.s:620    .text.MX_SPI4_Init:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccq0szuV.s:625    .text.MX_SPI4_Init:00000000 MX_SPI4_Init
+C:\Users\Nathan\AppData\Local\Temp\ccq0szuV.s:723    .text.MX_SPI4_Init:00000050 $d
+C:\Users\Nathan\AppData\Local\Temp\ccq0szuV.s:1880   .bss.hspi4:00000000 hspi4
+C:\Users\Nathan\AppData\Local\Temp\ccq0szuV.s:729    .text.MX_SPI6_Init:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccq0szuV.s:734    .text.MX_SPI6_Init:00000000 MX_SPI6_Init
+C:\Users\Nathan\AppData\Local\Temp\ccq0szuV.s:832    .text.MX_SPI6_Init:00000050 $d
+C:\Users\Nathan\AppData\Local\Temp\ccq0szuV.s:1873   .bss.hspi6:00000000 hspi6
+C:\Users\Nathan\AppData\Local\Temp\ccq0szuV.s:838    .text.MX_UART8_Init:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccq0szuV.s:843    .text.MX_UART8_Init:00000000 MX_UART8_Init
+C:\Users\Nathan\AppData\Local\Temp\ccq0szuV.s:942    .text.MX_UART8_Init:0000005c $d
+C:\Users\Nathan\AppData\Local\Temp\ccq0szuV.s:1852   .bss.huart8:00000000 huart8
+C:\Users\Nathan\AppData\Local\Temp\ccq0szuV.s:948    .text.MX_WWDG1_Init:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccq0szuV.s:953    .text.MX_WWDG1_Init:00000000 MX_WWDG1_Init
+C:\Users\Nathan\AppData\Local\Temp\ccq0szuV.s:997    .text.MX_WWDG1_Init:00000020 $d
+C:\Users\Nathan\AppData\Local\Temp\ccq0szuV.s:1838   .bss.hwwdg1:00000000 hwwdg1
+C:\Users\Nathan\AppData\Local\Temp\ccq0szuV.s:1003   .text.MX_UART4_Init:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccq0szuV.s:1008   .text.MX_UART4_Init:00000000 MX_UART4_Init
+C:\Users\Nathan\AppData\Local\Temp\ccq0szuV.s:1107   .text.MX_UART4_Init:0000005c $d
+C:\Users\Nathan\AppData\Local\Temp\ccq0szuV.s:1859   .bss.huart4:00000000 huart4
+C:\Users\Nathan\AppData\Local\Temp\ccq0szuV.s:1113   .text.MX_FDCAN1_Init:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccq0szuV.s:1118   .text.MX_FDCAN1_Init:00000000 MX_FDCAN1_Init
+C:\Users\Nathan\AppData\Local\Temp\ccq0szuV.s:1233   .text.MX_FDCAN1_Init:00000054 $d
+C:\Users\Nathan\AppData\Local\Temp\ccq0szuV.s:1901   .bss.hfdcan1:00000000 hfdcan1
+C:\Users\Nathan\AppData\Local\Temp\ccq0szuV.s:1239   .text.MX_USART1_UART_Init:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccq0szuV.s:1244   .text.MX_USART1_UART_Init:00000000 MX_USART1_UART_Init
+C:\Users\Nathan\AppData\Local\Temp\ccq0szuV.s:1342   .text.MX_USART1_UART_Init:00000058 $d
+C:\Users\Nathan\AppData\Local\Temp\ccq0szuV.s:1845   .bss.huart1:00000000 huart1
+C:\Users\Nathan\AppData\Local\Temp\ccq0szuV.s:1348   .text.MX_TIM1_Init:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccq0szuV.s:1353   .text.MX_TIM1_Init:00000000 MX_TIM1_Init
+C:\Users\Nathan\AppData\Local\Temp\ccq0szuV.s:1542   .text.MX_TIM1_Init:000000b8 $d
+C:\Users\Nathan\AppData\Local\Temp\ccq0szuV.s:1866   .bss.htim1:00000000 htim1
+C:\Users\Nathan\AppData\Local\Temp\ccq0szuV.s:1548   .text.SystemClock_Config:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccq0szuV.s:1554   .text.SystemClock_Config:00000000 SystemClock_Config
+C:\Users\Nathan\AppData\Local\Temp\ccq0szuV.s:1738   .text.SystemClock_Config:000000c0 $d
+C:\Users\Nathan\AppData\Local\Temp\ccq0szuV.s:1744   .text.main:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccq0szuV.s:1750   .text.main:00000000 main
+C:\Users\Nathan\AppData\Local\Temp\ccq0szuV.s:1829   .text.main:00000064 $d
+C:\Users\Nathan\AppData\Local\Temp\ccq0szuV.s:1835   .bss.hwwdg1:00000000 $d
+C:\Users\Nathan\AppData\Local\Temp\ccq0szuV.s:1842   .bss.huart1:00000000 $d
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccq0szuV.s 			page 66
 
 
-C:\Users\Nathan\AppData\Local\Temp\ccNYoCWV.s:1862   .bss.huart1:00000000 $d
-C:\Users\Nathan\AppData\Local\Temp\ccNYoCWV.s:1869   .bss.huart8:00000000 $d
-C:\Users\Nathan\AppData\Local\Temp\ccNYoCWV.s:1876   .bss.huart4:00000000 $d
-C:\Users\Nathan\AppData\Local\Temp\ccNYoCWV.s:1883   .bss.htim1:00000000 $d
-C:\Users\Nathan\AppData\Local\Temp\ccNYoCWV.s:1890   .bss.hspi6:00000000 $d
-C:\Users\Nathan\AppData\Local\Temp\ccNYoCWV.s:1897   .bss.hspi4:00000000 $d
-C:\Users\Nathan\AppData\Local\Temp\ccNYoCWV.s:1904   .bss.hspi3:00000000 $d
-C:\Users\Nathan\AppData\Local\Temp\ccNYoCWV.s:1911   .bss.hspi1:00000000 $d
-C:\Users\Nathan\AppData\Local\Temp\ccNYoCWV.s:1918   .bss.hfdcan1:00000000 $d
-C:\Users\Nathan\AppData\Local\Temp\ccNYoCWV.s:1924   .rodata:00000000 $d
+C:\Users\Nathan\AppData\Local\Temp\ccq0szuV.s:1849   .bss.huart8:00000000 $d
+C:\Users\Nathan\AppData\Local\Temp\ccq0szuV.s:1856   .bss.huart4:00000000 $d
+C:\Users\Nathan\AppData\Local\Temp\ccq0szuV.s:1863   .bss.htim1:00000000 $d
+C:\Users\Nathan\AppData\Local\Temp\ccq0szuV.s:1870   .bss.hspi6:00000000 $d
+C:\Users\Nathan\AppData\Local\Temp\ccq0szuV.s:1877   .bss.hspi4:00000000 $d
+C:\Users\Nathan\AppData\Local\Temp\ccq0szuV.s:1884   .bss.hspi3:00000000 $d
+C:\Users\Nathan\AppData\Local\Temp\ccq0szuV.s:1891   .bss.hspi1:00000000 $d
+C:\Users\Nathan\AppData\Local\Temp\ccq0szuV.s:1898   .bss.hfdcan1:00000000 $d
+C:\Users\Nathan\AppData\Local\Temp\ccq0szuV.s:1904   .rodata:00000000 $d
 
 UNDEFINED SYMBOLS
 HAL_MPU_Disable
@@ -3967,5 +3935,4 @@ HAL_RCC_ClockConfig
 HAL_Init
 Athena_Init
 MX_USB_DEVICE_Init
-CDC_Transmit_FS
 LED_Test_Sequence

@@ -12,6 +12,11 @@ REM Define paths
 set PROGRAMMER="c:\Program Files\STMicroelectronics\STM32Cube\STM32CubeProgrammer\bin\STM32_Programmer_CLI.exe"
 set BUILD_DIR=build
 
+REM USB port assignments for each MCU
+set SPU_USB=usb1
+set MPU_USB=usb1
+set TPU_USB=usb1
+
 REM Serial numbers for each MCU
 set SPU_SN=206831725843
 set MPU_SN=200364500000
@@ -86,7 +91,7 @@ if not exist "%ELF_FILE%" (
     exit /b 1
 )
 echo Connecting to MPU (SN: %MPU_SN%)...
-%PROGRAMMER% -c port=usb2 -w "%ELF_FILE%" -v 
+%PROGRAMMER% -c port=%MPU_USB% -w "%ELF_FILE%" -v -s
 if errorlevel 1 (
     echo ERROR: Failed to flash MPU
     exit /b 1
@@ -106,7 +111,7 @@ if not exist "%ELF_FILE%" (
     exit /b 1
 )
 echo Connecting to SPU (SN: %SPU_SN%)...
-%PROGRAMMER% -c port=usb1 -w "%ELF_FILE%" -v 
+%PROGRAMMER% -c port=%SPU_USB% -w "%ELF_FILE%" -v -s
 if errorlevel 1 (
     echo ERROR: Failed to flash SPU
     exit /b 1
@@ -126,7 +131,7 @@ if not exist "%ELF_FILE%" (
     exit /b 1
 )
 echo Connecting to TPU (SN: %TPU_SN%)...
-%PROGRAMMER% -c port=usb3 -w "%ELF_FILE%" -v 
+%PROGRAMMER% -c port=%TPU_USB% -w "%ELF_FILE%" -v -s
 if errorlevel 1 (
     echo ERROR: Failed to flash TPU
     exit /b 1
@@ -136,9 +141,9 @@ if "%TARGET%"=="tpu" exit /b 0
 goto :eof
 
 :flash_all
-call :flash_tpu
-call :flash_mpu
 call :flash_spu
+call :flash_mpu
+call :flash_tpu
 echo.
 echo ========================================
 echo All MCUs flashed successfully!

@@ -153,8 +153,8 @@ Athena_LED_PinConfig led_pins = {
   /* USER CODE BEGIN WHILE */
   while (1)
   {
-  uint8_t cdc_message[] = "MPU Initialized\r\n";
-  CDC_Transmit_FS(cdc_message, sizeof(cdc_message));
+  // uint8_t cdc_message[] = "MPU Initialized\r\n";
+  // CDC_Transmit_FS(cdc_message, sizeof(cdc_message) - 1);
   LED_Test_Sequence();
     // HAL_GPIO_WritePin(MPU_B_GPIO_Port, MPU_B_Pin, GPIO_PIN_SET);
     // HAL_Delay(1000);

@@ -132,6 +132,7 @@ Athena_LED_PinConfig led_pins = {
   /* USER CODE BEGIN WHILE */
   while (1)
   {
+    //I2C PD ADDRESS IS #1 CONFIG with ADCIN1 being #7 adn ADCIN2 beintg #5: 0100000
     LED_Test_Sequence();
     /* USER CODE END WHILE */
 
