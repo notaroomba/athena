@@ -1,4 +1,4 @@
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccG5DO26.s 			page 1
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccjCd4ns.s 			page 1
 
 
    1              		.cpu cortex-m4
@@ -58,7 +58,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccG5DO26.s 			page 1
   28:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_pwr_ex.c ****   * @{
   29:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_pwr_ex.c ****   */
   30:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_pwr_ex.c **** 
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccG5DO26.s 			page 2
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccjCd4ns.s 			page 2
 
 
   31:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_pwr_ex.c **** /** @defgroup PWREx PWREx
@@ -118,7 +118,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccG5DO26.s 			page 1
   85:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_pwr_ex.c **** 
   86:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_pwr_ex.c **** /** @defgroup PWREx_Exported_Functions PWR Extended Exported Functions
   87:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_pwr_ex.c ****   * @{
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccG5DO26.s 			page 3
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccjCd4ns.s 			page 3
 
 
   88:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_pwr_ex.c ****   */
@@ -178,7 +178,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccG5DO26.s 			page 1
  122:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_pwr_ex.c ****     return PWR_REGULATOR_VOLTAGE_SCALE1_BOOST;
  123:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_pwr_ex.c ****   }
  124:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_pwr_ex.c **** }
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccG5DO26.s 			page 4
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccjCd4ns.s 			page 4
 
 
   49              		.loc 1 124 1 view .LVU7
@@ -238,7 +238,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccG5DO26.s 			page 1
   74              		@ args = 0, pretend = 0, frame = 0
   75              		@ frame_needed = 0, uses_anonymous_args = 0
   76              		@ link register save eliminated.
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccG5DO26.s 			page 5
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccjCd4ns.s 			page 5
 
 
  155:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_pwr_ex.c ****   uint32_t wait_loop_index;
@@ -298,7 +298,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccG5DO26.s 			page 1
  190:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_pwr_ex.c ****     /* If current range is range 2 */
  191:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_pwr_ex.c ****     if (READ_BIT(PWR->CR1, PWR_CR1_VOS) == PWR_REGULATOR_VOLTAGE_SCALE2)
  192:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_pwr_ex.c ****     {
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccG5DO26.s 			page 6
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccjCd4ns.s 			page 6
 
 
  193:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_pwr_ex.c ****       /* Make sure Range 1 Boost is disabled */
@@ -358,7 +358,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccG5DO26.s 			page 1
  171:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_pwr_ex.c ****       while ((HAL_IS_BIT_SET(PWR->SR2, PWR_SR2_VOSF)) && (wait_loop_index != 0U))
  114              		.loc 1 171 53 is_stmt 0 view .LVU23
  115 003e 314B     		ldr	r3, .L23+4
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccG5DO26.s 			page 7
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccjCd4ns.s 			page 7
 
 
  116 0040 1B68     		ldr	r3, [r3]
@@ -418,7 +418,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccG5DO26.s 			page 1
  156 006e 0020     		movs	r0, #0
  157              	.LVL6:
  158              		.loc 1 225 10 view .LVU39
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccG5DO26.s 			page 8
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccjCd4ns.s 			page 8
 
 
  159 0070 7047     		bx	lr
@@ -478,7 +478,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccG5DO26.s 			page 1
  204              		.loc 1 197 7 view .LVU52
  205 00b8 1368     		ldr	r3, [r2]
  206 00ba 23F4C063 		bic	r3, r3, #1536
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccG5DO26.s 			page 9
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccjCd4ns.s 			page 9
 
 
  207 00be 43F40073 		orr	r3, r3, #512
@@ -538,7 +538,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccG5DO26.s 			page 1
  246              		.loc 1 205 11 view .LVU67
  247 00ec 5B69     		ldr	r3, [r3, #20]
  205:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_pwr_ex.c ****       {
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccG5DO26.s 			page 10
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccjCd4ns.s 			page 10
 
 
  248              		.loc 1 205 10 view .LVU68
@@ -598,7 +598,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccG5DO26.s 			page 1
  238:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_pwr_ex.c **** void HAL_PWREx_EnableBatteryCharging(uint32_t ResistorSelection)
  239:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_pwr_ex.c **** {
  289              		.loc 1 239 1 is_stmt 1 view -0
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccG5DO26.s 			page 11
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccjCd4ns.s 			page 11
 
 
  290              		.cfi_startproc
@@ -658,7 +658,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccG5DO26.s 			page 1
  329 0000 024A     		ldr	r2, .L29
  330 0002 D368     		ldr	r3, [r2, #12]
  331 0004 23F48073 		bic	r3, r3, #256
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccG5DO26.s 			page 12
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccjCd4ns.s 			page 12
 
 
  332 0008 D360     		str	r3, [r2, #12]
@@ -718,7 +718,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccG5DO26.s 			page 1
  268:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_pwr_ex.c **** 
  269:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_pwr_ex.c **** 
  270:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_pwr_ex.c **** /**
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccG5DO26.s 			page 13
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccjCd4ns.s 			page 13
 
 
  271:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_pwr_ex.c ****   * @brief Disable Internal Wake-up Line.
@@ -778,7 +778,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccG5DO26.s 			page 1
  298:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_pwr_ex.c ****   *         I/O pins are available) or the logical OR of several of them to set
  299:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_pwr_ex.c ****   *         several bits for a given port in a single API call.
  300:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_pwr_ex.c ****   * @retval HAL Status
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccG5DO26.s 			page 14
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccjCd4ns.s 			page 14
 
 
  301:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_pwr_ex.c ****   */
@@ -838,7 +838,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccG5DO26.s 			page 1
  447 0028 0020     		movs	r0, #0
  448              		.loc 1 314 8 view .LVU100
  449 002a 7047     		bx	lr
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccG5DO26.s 			page 15
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccjCd4ns.s 			page 15
 
 
  450              	.LVL24:
@@ -898,7 +898,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccG5DO26.s 			page 1
  492 005c 0A43     		orrs	r2, r2, r1
  493 005e 9A63     		str	r2, [r3, #56]
  325:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_pwr_ex.c ****        CLEAR_BIT(PWR->PDCRD, GPIONumber);
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccG5DO26.s 			page 16
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccjCd4ns.s 			page 16
 
 
  494              		.loc 1 325 8 view .LVU113
@@ -958,7 +958,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccG5DO26.s 			page 1
  536              		.loc 1 304 21 is_stmt 0 view .LVU126
  537 0092 0020     		movs	r0, #0
  538              	.LVL35:
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccG5DO26.s 			page 17
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccjCd4ns.s 			page 17
 
 
  539              		.loc 1 334 8 view .LVU127
@@ -1018,7 +1018,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccG5DO26.s 			page 1
  581              		.syntax unified
  582              		.thumb
  583              		.thumb_func
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccG5DO26.s 			page 18
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccjCd4ns.s 			page 18
 
 
  585              	HAL_PWREx_DisableGPIOPullUp:
@@ -1078,7 +1078,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccG5DO26.s 			page 1
  611 0010 1B4A     		ldr	r2, .L61
  612 0012 136A     		ldr	r3, [r2, #32]
  613 0014 21F48041 		bic	r1, r1, #16384
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccG5DO26.s 			page 19
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccjCd4ns.s 			page 19
 
 
  614              	.LVL42:
@@ -1138,7 +1138,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccG5DO26.s 			page 1
  656 0046 9363     		str	r3, [r2, #56]
  383:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_pwr_ex.c ****        break;
  657              		.loc 1 383 8 view .LVU157
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccG5DO26.s 			page 20
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccjCd4ns.s 			page 20
 
 
  365:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_pwr_ex.c **** 
@@ -1198,7 +1198,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccG5DO26.s 			page 1
  701 0076 1365     		str	r3, [r2, #80]
  392:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_pwr_ex.c ****        break;
  702              		.loc 1 392 8 is_stmt 1 view .LVU171
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccG5DO26.s 			page 21
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccjCd4ns.s 			page 21
 
 
  365:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_pwr_ex.c **** 
@@ -1258,7 +1258,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccG5DO26.s 			page 1
  417:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_pwr_ex.c ****   * @param  GPIONumber: Specify the I/O pins numbers.
  418:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_pwr_ex.c ****   *         This parameter can be one of the following values:
  419:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_pwr_ex.c ****   *         PWR_GPIO_BIT_0, ..., PWR_GPIO_BIT_15 (except for the port where less
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccG5DO26.s 			page 22
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccjCd4ns.s 			page 22
 
 
  420:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_pwr_ex.c ****   *         I/O pins are available) or the logical OR of several of them to set
@@ -1318,7 +1318,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccG5DO26.s 			page 1
  770              		.loc 1 436 8 is_stmt 1 view .LVU186
  426:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_pwr_ex.c **** 
  771              		.loc 1 426 21 is_stmt 0 view .LVU187
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccG5DO26.s 			page 23
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccjCd4ns.s 			page 23
 
 
  772 0028 0020     		movs	r0, #0
@@ -1378,7 +1378,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccG5DO26.s 			page 1
  814 0058 174B     		ldr	r3, .L74
  815 005a DA6B     		ldr	r2, [r3, #60]
  816 005c 0A43     		orrs	r2, r2, r1
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccG5DO26.s 			page 24
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccjCd4ns.s 			page 24
 
 
  817 005e DA63     		str	r2, [r3, #60]
@@ -1438,7 +1438,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccG5DO26.s 			page 1
  859              		.loc 1 456 8 view .LVU213
  426:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_pwr_ex.c **** 
  860              		.loc 1 426 21 is_stmt 0 view .LVU214
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccG5DO26.s 			page 25
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccjCd4ns.s 			page 25
 
 
  861 0092 0020     		movs	r0, #0
@@ -1498,7 +1498,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccG5DO26.s 			page 1
  903              		.align	1
  904              		.global	HAL_PWREx_DisableGPIOPullDown
  905              		.syntax unified
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccG5DO26.s 			page 26
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccjCd4ns.s 			page 26
 
 
  906              		.thumb
@@ -1558,7 +1558,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccG5DO26.s 			page 1
  495:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_pwr_ex.c ****        CLEAR_BIT(PWR->PDCRA, (GPIONumber & (~(PWR_GPIO_BIT_13|PWR_GPIO_BIT_15))));
  934              		.loc 1 495 8 view .LVU231
  935 0010 1C4A     		ldr	r2, .L87
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccG5DO26.s 			page 27
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccjCd4ns.s 			page 27
 
 
  936 0012 536A     		ldr	r3, [r2, #36]
@@ -1618,7 +1618,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccG5DO26.s 			page 1
  504:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_pwr_ex.c ****        CLEAR_BIT(PWR->PDCRD, GPIONumber);
  979              		.loc 1 504 8 is_stmt 1 view .LVU245
  980 0042 104A     		ldr	r2, .L87
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccG5DO26.s 			page 28
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccjCd4ns.s 			page 28
 
 
  981 0044 D36B     		ldr	r3, [r2, #60]
@@ -1678,7 +1678,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccG5DO26.s 			page 1
  1023 0070 536D     		ldr	r3, [r2, #84]
  1024 0072 C1F30901 		ubfx	r1, r1, #0, #10
  1025              	.LVL95:
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccG5DO26.s 			page 29
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccjCd4ns.s 			page 29
 
 
  1026              		.loc 1 513 8 is_stmt 0 view .LVU259
@@ -1738,7 +1738,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccG5DO26.s 			page 1
  535:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_pwr_ex.c **** void HAL_PWREx_EnablePullUpPullDownConfig(void)
  536:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_pwr_ex.c **** {
  1059              		.loc 1 536 1 is_stmt 1 view -0
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccG5DO26.s 			page 30
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccjCd4ns.s 			page 30
 
 
  1060              		.cfi_startproc
@@ -1798,7 +1798,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccG5DO26.s 			page 1
  1102 000c 00700040 		.word	1073770496
  1103              		.cfi_endproc
  1104              	.LFE143:
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccG5DO26.s 			page 31
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccjCd4ns.s 			page 31
 
 
  1106              		.section	.text.HAL_PWREx_EnableSRAM2ContentRetention,"ax",%progbits
@@ -1858,7 +1858,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccG5DO26.s 			page 1
  571:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_pwr_ex.c ****   */
  572:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_pwr_ex.c **** void HAL_PWREx_DisableSRAM2ContentRetention(void)
  573:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_pwr_ex.c **** {
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccG5DO26.s 			page 32
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccjCd4ns.s 			page 32
 
 
  1143              		.loc 1 573 1 is_stmt 1 view -0
@@ -1918,7 +1918,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccG5DO26.s 			page 1
  1184              		.align	2
  1185              	.L102:
  1186 000c 00700040 		.word	1073770496
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccG5DO26.s 			page 33
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccjCd4ns.s 			page 33
 
 
  1187              		.cfi_endproc
@@ -1978,7 +1978,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccG5DO26.s 			page 1
  607:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_pwr_ex.c **** {
  1227              		.loc 1 607 1 is_stmt 1 view -0
  1228              		.cfi_startproc
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccG5DO26.s 			page 34
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccjCd4ns.s 			page 34
 
 
  1229              		@ args = 0, pretend = 0, frame = 0
@@ -2038,7 +2038,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccG5DO26.s 			page 1
  1275              		.align	1
  1276              		.global	HAL_PWREx_EnablePVM3
  1277              		.syntax unified
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccG5DO26.s 			page 35
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccjCd4ns.s 			page 35
 
 
  1278              		.thumb
@@ -2098,7 +2098,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccG5DO26.s 			page 1
  1316              		.loc 1 637 3 view .LVU294
  1317 0000 024A     		ldr	r2, .L117
  1318 0002 5368     		ldr	r3, [r2, #4]
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccG5DO26.s 			page 36
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccjCd4ns.s 			page 36
 
 
  1319 0004 23F04003 		bic	r3, r3, #64
@@ -2158,7 +2158,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccG5DO26.s 			page 1
  1366              	.LFB153:
  649:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_pwr_ex.c **** 
  650:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_pwr_ex.c **** /**
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccG5DO26.s 			page 37
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccjCd4ns.s 			page 37
 
 
  651:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_pwr_ex.c ****   * @brief Disable the Power Voltage Monitoring 4: VDDA versus OPAMP/DAC minimum voltage 1.8V.
@@ -2218,7 +2218,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccG5DO26.s 			page 1
  1398              		@ args = 0, pretend = 0, frame = 0
  1399              		@ frame_needed = 0, uses_anonymous_args = 0
  1400              		@ link register save eliminated.
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccG5DO26.s 			page 38
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccjCd4ns.s 			page 38
 
 
  676:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_pwr_ex.c ****   HAL_StatusTypeDef status = HAL_OK;
@@ -2278,7 +2278,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccG5DO26.s 			page 1
  716:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_pwr_ex.c ****         __HAL_PWR_PVM1_EXTI_ENABLE_FALLING_EDGE();
  717:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_pwr_ex.c ****       }
  718:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_pwr_ex.c ****       break;
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccG5DO26.s 			page 39
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccjCd4ns.s 			page 39
 
 
  719:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_pwr_ex.c **** #endif /* PWR_CR2_PVME1 */
@@ -2338,7 +2338,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccG5DO26.s 			page 1
  738:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_pwr_ex.c ****         __HAL_PWR_PVM2_EXTI_ENABLE_EVENT();
  1450              		.loc 1 738 9 is_stmt 1 view .LVU320
  1451 004e 664A     		ldr	r2, .L150
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccG5DO26.s 			page 40
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccjCd4ns.s 			page 40
 
 
  1452 0050 536A     		ldr	r3, [r2, #36]
@@ -2398,7 +2398,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccG5DO26.s 			page 1
  1491              	.LVL103:
  1492              	.L127:
  686:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_pwr_ex.c ****   {
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccG5DO26.s 			page 41
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccjCd4ns.s 			page 41
 
 
  1493              		.loc 1 686 3 view .LVU333
@@ -2458,7 +2458,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccG5DO26.s 			page 1
  1507 009e 22F04002 		bic	r2, r2, #64
  1508 00a2 DA62     		str	r2, [r3, #44]
  790:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_pwr_ex.c ****       __HAL_PWR_PVM4_EXTI_DISABLE_RISING_EDGE();
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccG5DO26.s 			page 42
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccjCd4ns.s 			page 42
 
 
  1509              		.loc 1 790 7 view .LVU337
@@ -2518,7 +2518,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccG5DO26.s 			page 1
  1546 00dc 43F04003 		orr	r3, r3, #64
  1547 00e0 9362     		str	r3, [r2, #40]
  1548              	.L143:
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccG5DO26.s 			page 43
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccjCd4ns.s 			page 43
 
 
  808:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_pwr_ex.c ****       }
@@ -2578,7 +2578,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccG5DO26.s 			page 1
  1590 011c 9A62     		str	r2, [r3, #40]
  697:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_pwr_ex.c ****       {
  1591              		.loc 1 697 7 view .LVU362
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccG5DO26.s 			page 44
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccjCd4ns.s 			page 44
 
 
  697:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_pwr_ex.c ****       {
@@ -2638,7 +2638,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccG5DO26.s 			page 1
  1632 015a 3DD0     		beq	.L144
  716:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_pwr_ex.c ****       }
  1633              		.loc 1 716 9 is_stmt 1 view .LVU377
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccG5DO26.s 			page 45
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccjCd4ns.s 			page 45
 
 
  1634 015c 224A     		ldr	r2, .L150
@@ -2698,7 +2698,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccG5DO26.s 			page 1
  1676 019e 4368     		ldr	r3, [r0, #4]
  768:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_pwr_ex.c ****       {
  1677              		.loc 1 768 9 view .LVU390
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccG5DO26.s 			page 46
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccjCd4ns.s 			page 46
 
 
  1678 01a0 13F4003F 		tst	r3, #131072
@@ -2758,7 +2758,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccG5DO26.s 			page 1
  1719              		.loc 1 676 21 view .LVU403
  1720 01da 7047     		bx	lr
  1721              	.LVL113:
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccG5DO26.s 			page 47
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccjCd4ns.s 			page 47
 
 
  1722              	.L145:
@@ -2818,7 +2818,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccG5DO26.s 			page 1
  827:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_pwr_ex.c ****   * @note  In Low-power Run mode, all I/O pins keep the same state as in Run mode.
  828:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_pwr_ex.c ****   * @note  When Regulator is set to PWR_LOWPOWERREGULATOR_ON, the user can optionally configure the
  829:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_pwr_ex.c ****   *        Flash in power-down monde in setting the RUN_PD bit in FLASH_ACR register.
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccG5DO26.s 			page 48
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccjCd4ns.s 			page 48
 
 
  830:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_pwr_ex.c ****   *        Additionally, the clock frequency must be reduced below 2 MHz.
@@ -2878,7 +2878,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccG5DO26.s 			page 1
  1792              		.loc 1 852 3 view .LVU415
  853:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_pwr_ex.c **** 
  854:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_pwr_ex.c ****   /* Clear LPR bit */
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccG5DO26.s 			page 49
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccjCd4ns.s 			page 49
 
 
  855:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_pwr_ex.c ****   CLEAR_BIT(PWR->CR1, PWR_CR1_LPR);
@@ -2938,7 +2938,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccG5DO26.s 			page 1
  1834              	.LVL121:
  1835              		.loc 1 863 7 view .LVU430
  1836 003a 5B69     		ldr	r3, [r3, #20]
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccG5DO26.s 			page 50
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccjCd4ns.s 			page 50
 
 
  1837              		.loc 1 863 6 view .LVU431
@@ -2998,7 +2998,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccG5DO26.s 			page 1
  890:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_pwr_ex.c ****   *            @arg @ref PWR_STOPENTRY_WFI  Enter Stop mode with WFI instruction
  891:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_pwr_ex.c ****   *            @arg @ref PWR_STOPENTRY_WFE  Enter Stop mode with WFE instruction
  892:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_pwr_ex.c ****   * @retval None
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccG5DO26.s 			page 51
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccjCd4ns.s 			page 51
 
 
  893:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_pwr_ex.c ****   */
@@ -3058,7 +3058,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccG5DO26.s 			page 1
  1896              	@ 916 "Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_pwr_ex.c" 1
  1897 001c 20BF     		wfe
  1898              	@ 0 "" 2
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccG5DO26.s 			page 52
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccjCd4ns.s 			page 52
 
 
  1899              		.thumb
@@ -3118,7 +3118,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccG5DO26.s 			page 1
  935:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_pwr_ex.c ****   * @note  When exiting Stop 1 mode by issuing an interrupt or a wakeup event,
  936:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_pwr_ex.c ****   *         the HSI RC oscillator is selected as system clock if STOPWUCK bit in RCC_CFGR register
  937:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_pwr_ex.c ****   *         is set.
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccG5DO26.s 			page 53
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccjCd4ns.s 			page 53
 
 
  938:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_pwr_ex.c ****   * @note  Due to low power mode, an additional startup delay is incurred when waking up from Stop 
@@ -3178,7 +3178,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccG5DO26.s 			page 1
  966:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_pwr_ex.c ****     __WFE();
  1962              		.loc 1 966 5 view .LVU454
  1963              	@ 966 "Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_pwr_ex.c" 1
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccG5DO26.s 			page 54
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccjCd4ns.s 			page 54
 
 
  1964 001e 20BF     		wfe
@@ -3238,7 +3238,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccG5DO26.s 			page 1
  980:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_pwr_ex.c ****   *        off. The voltage regulator is disabled and Vcore domain is powered off.
  981:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_pwr_ex.c ****   *        SRAM1, SRAM2 and registers contents are lost except for registers in the Backup domain.
  982:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_pwr_ex.c ****   *        The BOR is not available.
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccG5DO26.s 			page 55
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccjCd4ns.s 			page 55
 
 
  983:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_pwr_ex.c ****   * @note  The I/Os can be configured either with a pull-up or pull-down or can be kept in analog s
@@ -3298,7 +3298,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccG5DO26.s 			page 1
  2042              		.syntax unified
  2043              		.thumb
  2044              		.thumb_func
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccG5DO26.s 			page 56
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccjCd4ns.s 			page 56
 
 
  2046              	HAL_PWREx_PVM1Callback:
@@ -3358,7 +3358,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccG5DO26.s 			page 1
 1054:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_pwr_ex.c ****     HAL_PWREx_PVM4Callback();
 1055:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_pwr_ex.c **** 
 1056:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_pwr_ex.c ****     /* Clear PVM4 exti pending bit */
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccG5DO26.s 			page 57
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccjCd4ns.s 			page 57
 
 
 1057:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_pwr_ex.c ****     __HAL_PWR_PVM4_EXTI_CLEAR_FLAG();
@@ -3418,7 +3418,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccG5DO26.s 			page 1
  2075              	.LFE162:
  2077              		.section	.text.HAL_PWREx_PVM3Callback,"ax",%progbits
  2078              		.align	1
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccG5DO26.s 			page 58
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccjCd4ns.s 			page 58
 
 
  2079              		.weak	HAL_PWREx_PVM3Callback
@@ -3478,7 +3478,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccG5DO26.s 			page 1
  2113              	.LFE164:
  2115              		.section	.text.HAL_PWREx_PVD_PVM_IRQHandler,"ax",%progbits
  2116              		.align	1
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccG5DO26.s 			page 59
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccjCd4ns.s 			page 59
 
 
  2117              		.global	HAL_PWREx_PVD_PVM_IRQHandler
@@ -3538,7 +3538,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccG5DO26.s 			page 1
 1043:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_pwr_ex.c ****   {
  2160              		.loc 1 1043 5 view .LVU484
  2161 0024 13F0200F 		tst	r3, #32
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccG5DO26.s 			page 60
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccjCd4ns.s 			page 60
 
 
  2162 0028 18D1     		bne	.L192
@@ -3598,7 +3598,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccG5DO26.s 			page 1
 1049:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_pwr_ex.c ****   }
  2205              		.loc 1 1049 5 view .LVU496
  2206 0060 044B     		ldr	r3, .L194
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccG5DO26.s 			page 61
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccjCd4ns.s 			page 61
 
 
  2207 0062 2022     		movs	r2, #32
@@ -3658,7 +3658,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccG5DO26.s 			page 1
  2249              		.align	2
  2250              	.L197:
  2251 000c 00700040 		.word	1073770496
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccG5DO26.s 			page 62
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccjCd4ns.s 			page 62
 
 
  2252              		.cfi_endproc
@@ -3718,7 +3718,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccG5DO26.s 			page 1
 1138:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_pwr_ex.c ****   *        on UCPDx_CC1 and UCPDx_CC2 pins
 1139:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_pwr_ex.c ****   * @retval None
 1140:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_pwr_ex.c ****   */
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccG5DO26.s 			page 63
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccjCd4ns.s 			page 63
 
 
 1141:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_pwr_ex.c **** void HAL_PWREx_EnableUCPDDeadBattery(void)
@@ -3778,7 +3778,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccG5DO26.s 			page 1
  2328 0004 43F48043 		orr	r3, r3, #16384
  2329 0008 9360     		str	r3, [r2, #8]
 1161:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_pwr_ex.c **** }
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccG5DO26.s 			page 64
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccjCd4ns.s 			page 64
 
 
  2330              		.loc 1 1161 1 is_stmt 0 view .LVU511
@@ -3799,136 +3799,136 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccG5DO26.s 			page 1
  2346              		.file 7 "Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_pwr_ex.h"
  2347              		.file 8 "Drivers/CMSIS/Device/ST/STM32G4xx/Include/system_stm32g4xx.h"
  2348              		.file 9 "Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_pwr.h"
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccG5DO26.s 			page 65
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccjCd4ns.s 			page 65
 
 
 DEFINED SYMBOLS
                             *ABS*:00000000 stm32g4xx_hal_pwr_ex.c
-C:\Users\Nathan\AppData\Local\Temp\ccG5DO26.s:21     .text.HAL_PWREx_GetVoltageRange:00000000 $t
-C:\Users\Nathan\AppData\Local\Temp\ccG5DO26.s:27     .text.HAL_PWREx_GetVoltageRange:00000000 HAL_PWREx_GetVoltageRange
-C:\Users\Nathan\AppData\Local\Temp\ccG5DO26.s:58     .text.HAL_PWREx_GetVoltageRange:00000020 $d
-C:\Users\Nathan\AppData\Local\Temp\ccG5DO26.s:63     .text.HAL_PWREx_ControlVoltageScaling:00000000 $t
-C:\Users\Nathan\AppData\Local\Temp\ccG5DO26.s:69     .text.HAL_PWREx_ControlVoltageScaling:00000000 HAL_PWREx_ControlVoltageScaling
-C:\Users\Nathan\AppData\Local\Temp\ccG5DO26.s:273    .text.HAL_PWREx_ControlVoltageScaling:00000100 $d
-C:\Users\Nathan\AppData\Local\Temp\ccG5DO26.s:280    .text.HAL_PWREx_EnableBatteryCharging:00000000 $t
-C:\Users\Nathan\AppData\Local\Temp\ccG5DO26.s:286    .text.HAL_PWREx_EnableBatteryCharging:00000000 HAL_PWREx_EnableBatteryCharging
-C:\Users\Nathan\AppData\Local\Temp\ccG5DO26.s:310    .text.HAL_PWREx_EnableBatteryCharging:00000018 $d
-C:\Users\Nathan\AppData\Local\Temp\ccG5DO26.s:315    .text.HAL_PWREx_DisableBatteryCharging:00000000 $t
-C:\Users\Nathan\AppData\Local\Temp\ccG5DO26.s:321    .text.HAL_PWREx_DisableBatteryCharging:00000000 HAL_PWREx_DisableBatteryCharging
-C:\Users\Nathan\AppData\Local\Temp\ccG5DO26.s:338    .text.HAL_PWREx_DisableBatteryCharging:0000000c $d
-C:\Users\Nathan\AppData\Local\Temp\ccG5DO26.s:343    .text.HAL_PWREx_EnableInternalWakeUpLine:00000000 $t
-C:\Users\Nathan\AppData\Local\Temp\ccG5DO26.s:349    .text.HAL_PWREx_EnableInternalWakeUpLine:00000000 HAL_PWREx_EnableInternalWakeUpLine
-C:\Users\Nathan\AppData\Local\Temp\ccG5DO26.s:366    .text.HAL_PWREx_EnableInternalWakeUpLine:0000000c $d
-C:\Users\Nathan\AppData\Local\Temp\ccG5DO26.s:371    .text.HAL_PWREx_DisableInternalWakeUpLine:00000000 $t
-C:\Users\Nathan\AppData\Local\Temp\ccG5DO26.s:377    .text.HAL_PWREx_DisableInternalWakeUpLine:00000000 HAL_PWREx_DisableInternalWakeUpLine
-C:\Users\Nathan\AppData\Local\Temp\ccG5DO26.s:394    .text.HAL_PWREx_DisableInternalWakeUpLine:0000000c $d
-C:\Users\Nathan\AppData\Local\Temp\ccG5DO26.s:399    .text.HAL_PWREx_EnableGPIOPullUp:00000000 $t
-C:\Users\Nathan\AppData\Local\Temp\ccG5DO26.s:405    .text.HAL_PWREx_EnableGPIOPullUp:00000000 HAL_PWREx_EnableGPIOPullUp
-C:\Users\Nathan\AppData\Local\Temp\ccG5DO26.s:421    .text.HAL_PWREx_EnableGPIOPullUp:00000008 $d
-C:\Users\Nathan\AppData\Local\Temp\ccG5DO26.s:574    .text.HAL_PWREx_EnableGPIOPullUp:000000b8 $d
-C:\Users\Nathan\AppData\Local\Temp\ccG5DO26.s:579    .text.HAL_PWREx_DisableGPIOPullUp:00000000 $t
-C:\Users\Nathan\AppData\Local\Temp\ccG5DO26.s:585    .text.HAL_PWREx_DisableGPIOPullUp:00000000 HAL_PWREx_DisableGPIOPullUp
-C:\Users\Nathan\AppData\Local\Temp\ccG5DO26.s:601    .text.HAL_PWREx_DisableGPIOPullUp:00000008 $d
-C:\Users\Nathan\AppData\Local\Temp\ccG5DO26.s:719    .text.HAL_PWREx_DisableGPIOPullUp:00000080 $d
-C:\Users\Nathan\AppData\Local\Temp\ccG5DO26.s:724    .text.HAL_PWREx_EnableGPIOPullDown:00000000 $t
-C:\Users\Nathan\AppData\Local\Temp\ccG5DO26.s:730    .text.HAL_PWREx_EnableGPIOPullDown:00000000 HAL_PWREx_EnableGPIOPullDown
-C:\Users\Nathan\AppData\Local\Temp\ccG5DO26.s:746    .text.HAL_PWREx_EnableGPIOPullDown:00000008 $d
-C:\Users\Nathan\AppData\Local\Temp\ccG5DO26.s:898    .text.HAL_PWREx_EnableGPIOPullDown:000000b8 $d
-C:\Users\Nathan\AppData\Local\Temp\ccG5DO26.s:903    .text.HAL_PWREx_DisableGPIOPullDown:00000000 $t
-C:\Users\Nathan\AppData\Local\Temp\ccG5DO26.s:909    .text.HAL_PWREx_DisableGPIOPullDown:00000000 HAL_PWREx_DisableGPIOPullDown
-C:\Users\Nathan\AppData\Local\Temp\ccG5DO26.s:925    .text.HAL_PWREx_DisableGPIOPullDown:00000008 $d
-C:\Users\Nathan\AppData\Local\Temp\ccG5DO26.s:1046   .text.HAL_PWREx_DisableGPIOPullDown:00000084 $d
-C:\Users\Nathan\AppData\Local\Temp\ccG5DO26.s:1051   .text.HAL_PWREx_EnablePullUpPullDownConfig:00000000 $t
-C:\Users\Nathan\AppData\Local\Temp\ccG5DO26.s:1057   .text.HAL_PWREx_EnablePullUpPullDownConfig:00000000 HAL_PWREx_EnablePullUpPullDownConfig
-C:\Users\Nathan\AppData\Local\Temp\ccG5DO26.s:1074   .text.HAL_PWREx_EnablePullUpPullDownConfig:0000000c $d
-C:\Users\Nathan\AppData\Local\Temp\ccG5DO26.s:1079   .text.HAL_PWREx_DisablePullUpPullDownConfig:00000000 $t
-C:\Users\Nathan\AppData\Local\Temp\ccG5DO26.s:1085   .text.HAL_PWREx_DisablePullUpPullDownConfig:00000000 HAL_PWREx_DisablePullUpPullDownConfig
-C:\Users\Nathan\AppData\Local\Temp\ccG5DO26.s:1102   .text.HAL_PWREx_DisablePullUpPullDownConfig:0000000c $d
-C:\Users\Nathan\AppData\Local\Temp\ccG5DO26.s:1107   .text.HAL_PWREx_EnableSRAM2ContentRetention:00000000 $t
-C:\Users\Nathan\AppData\Local\Temp\ccG5DO26.s:1113   .text.HAL_PWREx_EnableSRAM2ContentRetention:00000000 HAL_PWREx_EnableSRAM2ContentRetention
-C:\Users\Nathan\AppData\Local\Temp\ccG5DO26.s:1130   .text.HAL_PWREx_EnableSRAM2ContentRetention:0000000c $d
-C:\Users\Nathan\AppData\Local\Temp\ccG5DO26.s:1135   .text.HAL_PWREx_DisableSRAM2ContentRetention:00000000 $t
-C:\Users\Nathan\AppData\Local\Temp\ccG5DO26.s:1141   .text.HAL_PWREx_DisableSRAM2ContentRetention:00000000 HAL_PWREx_DisableSRAM2ContentRetention
-C:\Users\Nathan\AppData\Local\Temp\ccG5DO26.s:1158   .text.HAL_PWREx_DisableSRAM2ContentRetention:0000000c $d
-C:\Users\Nathan\AppData\Local\Temp\ccG5DO26.s:1163   .text.HAL_PWREx_EnablePVM1:00000000 $t
-C:\Users\Nathan\AppData\Local\Temp\ccG5DO26.s:1169   .text.HAL_PWREx_EnablePVM1:00000000 HAL_PWREx_EnablePVM1
-C:\Users\Nathan\AppData\Local\Temp\ccG5DO26.s:1186   .text.HAL_PWREx_EnablePVM1:0000000c $d
-C:\Users\Nathan\AppData\Local\Temp\ccG5DO26.s:1191   .text.HAL_PWREx_DisablePVM1:00000000 $t
-C:\Users\Nathan\AppData\Local\Temp\ccG5DO26.s:1197   .text.HAL_PWREx_DisablePVM1:00000000 HAL_PWREx_DisablePVM1
-C:\Users\Nathan\AppData\Local\Temp\ccG5DO26.s:1214   .text.HAL_PWREx_DisablePVM1:0000000c $d
-C:\Users\Nathan\AppData\Local\Temp\ccG5DO26.s:1219   .text.HAL_PWREx_EnablePVM2:00000000 $t
-C:\Users\Nathan\AppData\Local\Temp\ccG5DO26.s:1225   .text.HAL_PWREx_EnablePVM2:00000000 HAL_PWREx_EnablePVM2
-C:\Users\Nathan\AppData\Local\Temp\ccG5DO26.s:1242   .text.HAL_PWREx_EnablePVM2:0000000c $d
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccG5DO26.s 			page 66
+C:\Users\Nathan\AppData\Local\Temp\ccjCd4ns.s:21     .text.HAL_PWREx_GetVoltageRange:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccjCd4ns.s:27     .text.HAL_PWREx_GetVoltageRange:00000000 HAL_PWREx_GetVoltageRange
+C:\Users\Nathan\AppData\Local\Temp\ccjCd4ns.s:58     .text.HAL_PWREx_GetVoltageRange:00000020 $d
+C:\Users\Nathan\AppData\Local\Temp\ccjCd4ns.s:63     .text.HAL_PWREx_ControlVoltageScaling:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccjCd4ns.s:69     .text.HAL_PWREx_ControlVoltageScaling:00000000 HAL_PWREx_ControlVoltageScaling
+C:\Users\Nathan\AppData\Local\Temp\ccjCd4ns.s:273    .text.HAL_PWREx_ControlVoltageScaling:00000100 $d
+C:\Users\Nathan\AppData\Local\Temp\ccjCd4ns.s:280    .text.HAL_PWREx_EnableBatteryCharging:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccjCd4ns.s:286    .text.HAL_PWREx_EnableBatteryCharging:00000000 HAL_PWREx_EnableBatteryCharging
+C:\Users\Nathan\AppData\Local\Temp\ccjCd4ns.s:310    .text.HAL_PWREx_EnableBatteryCharging:00000018 $d
+C:\Users\Nathan\AppData\Local\Temp\ccjCd4ns.s:315    .text.HAL_PWREx_DisableBatteryCharging:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccjCd4ns.s:321    .text.HAL_PWREx_DisableBatteryCharging:00000000 HAL_PWREx_DisableBatteryCharging
+C:\Users\Nathan\AppData\Local\Temp\ccjCd4ns.s:338    .text.HAL_PWREx_DisableBatteryCharging:0000000c $d
+C:\Users\Nathan\AppData\Local\Temp\ccjCd4ns.s:343    .text.HAL_PWREx_EnableInternalWakeUpLine:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccjCd4ns.s:349    .text.HAL_PWREx_EnableInternalWakeUpLine:00000000 HAL_PWREx_EnableInternalWakeUpLine
+C:\Users\Nathan\AppData\Local\Temp\ccjCd4ns.s:366    .text.HAL_PWREx_EnableInternalWakeUpLine:0000000c $d
+C:\Users\Nathan\AppData\Local\Temp\ccjCd4ns.s:371    .text.HAL_PWREx_DisableInternalWakeUpLine:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccjCd4ns.s:377    .text.HAL_PWREx_DisableInternalWakeUpLine:00000000 HAL_PWREx_DisableInternalWakeUpLine
+C:\Users\Nathan\AppData\Local\Temp\ccjCd4ns.s:394    .text.HAL_PWREx_DisableInternalWakeUpLine:0000000c $d
+C:\Users\Nathan\AppData\Local\Temp\ccjCd4ns.s:399    .text.HAL_PWREx_EnableGPIOPullUp:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccjCd4ns.s:405    .text.HAL_PWREx_EnableGPIOPullUp:00000000 HAL_PWREx_EnableGPIOPullUp
+C:\Users\Nathan\AppData\Local\Temp\ccjCd4ns.s:421    .text.HAL_PWREx_EnableGPIOPullUp:00000008 $d
+C:\Users\Nathan\AppData\Local\Temp\ccjCd4ns.s:574    .text.HAL_PWREx_EnableGPIOPullUp:000000b8 $d
+C:\Users\Nathan\AppData\Local\Temp\ccjCd4ns.s:579    .text.HAL_PWREx_DisableGPIOPullUp:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccjCd4ns.s:585    .text.HAL_PWREx_DisableGPIOPullUp:00000000 HAL_PWREx_DisableGPIOPullUp
+C:\Users\Nathan\AppData\Local\Temp\ccjCd4ns.s:601    .text.HAL_PWREx_DisableGPIOPullUp:00000008 $d
+C:\Users\Nathan\AppData\Local\Temp\ccjCd4ns.s:719    .text.HAL_PWREx_DisableGPIOPullUp:00000080 $d
+C:\Users\Nathan\AppData\Local\Temp\ccjCd4ns.s:724    .text.HAL_PWREx_EnableGPIOPullDown:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccjCd4ns.s:730    .text.HAL_PWREx_EnableGPIOPullDown:00000000 HAL_PWREx_EnableGPIOPullDown
+C:\Users\Nathan\AppData\Local\Temp\ccjCd4ns.s:746    .text.HAL_PWREx_EnableGPIOPullDown:00000008 $d
+C:\Users\Nathan\AppData\Local\Temp\ccjCd4ns.s:898    .text.HAL_PWREx_EnableGPIOPullDown:000000b8 $d
+C:\Users\Nathan\AppData\Local\Temp\ccjCd4ns.s:903    .text.HAL_PWREx_DisableGPIOPullDown:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccjCd4ns.s:909    .text.HAL_PWREx_DisableGPIOPullDown:00000000 HAL_PWREx_DisableGPIOPullDown
+C:\Users\Nathan\AppData\Local\Temp\ccjCd4ns.s:925    .text.HAL_PWREx_DisableGPIOPullDown:00000008 $d
+C:\Users\Nathan\AppData\Local\Temp\ccjCd4ns.s:1046   .text.HAL_PWREx_DisableGPIOPullDown:00000084 $d
+C:\Users\Nathan\AppData\Local\Temp\ccjCd4ns.s:1051   .text.HAL_PWREx_EnablePullUpPullDownConfig:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccjCd4ns.s:1057   .text.HAL_PWREx_EnablePullUpPullDownConfig:00000000 HAL_PWREx_EnablePullUpPullDownConfig
+C:\Users\Nathan\AppData\Local\Temp\ccjCd4ns.s:1074   .text.HAL_PWREx_EnablePullUpPullDownConfig:0000000c $d
+C:\Users\Nathan\AppData\Local\Temp\ccjCd4ns.s:1079   .text.HAL_PWREx_DisablePullUpPullDownConfig:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccjCd4ns.s:1085   .text.HAL_PWREx_DisablePullUpPullDownConfig:00000000 HAL_PWREx_DisablePullUpPullDownConfig
+C:\Users\Nathan\AppData\Local\Temp\ccjCd4ns.s:1102   .text.HAL_PWREx_DisablePullUpPullDownConfig:0000000c $d
+C:\Users\Nathan\AppData\Local\Temp\ccjCd4ns.s:1107   .text.HAL_PWREx_EnableSRAM2ContentRetention:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccjCd4ns.s:1113   .text.HAL_PWREx_EnableSRAM2ContentRetention:00000000 HAL_PWREx_EnableSRAM2ContentRetention
+C:\Users\Nathan\AppData\Local\Temp\ccjCd4ns.s:1130   .text.HAL_PWREx_EnableSRAM2ContentRetention:0000000c $d
+C:\Users\Nathan\AppData\Local\Temp\ccjCd4ns.s:1135   .text.HAL_PWREx_DisableSRAM2ContentRetention:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccjCd4ns.s:1141   .text.HAL_PWREx_DisableSRAM2ContentRetention:00000000 HAL_PWREx_DisableSRAM2ContentRetention
+C:\Users\Nathan\AppData\Local\Temp\ccjCd4ns.s:1158   .text.HAL_PWREx_DisableSRAM2ContentRetention:0000000c $d
+C:\Users\Nathan\AppData\Local\Temp\ccjCd4ns.s:1163   .text.HAL_PWREx_EnablePVM1:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccjCd4ns.s:1169   .text.HAL_PWREx_EnablePVM1:00000000 HAL_PWREx_EnablePVM1
+C:\Users\Nathan\AppData\Local\Temp\ccjCd4ns.s:1186   .text.HAL_PWREx_EnablePVM1:0000000c $d
+C:\Users\Nathan\AppData\Local\Temp\ccjCd4ns.s:1191   .text.HAL_PWREx_DisablePVM1:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccjCd4ns.s:1197   .text.HAL_PWREx_DisablePVM1:00000000 HAL_PWREx_DisablePVM1
+C:\Users\Nathan\AppData\Local\Temp\ccjCd4ns.s:1214   .text.HAL_PWREx_DisablePVM1:0000000c $d
+C:\Users\Nathan\AppData\Local\Temp\ccjCd4ns.s:1219   .text.HAL_PWREx_EnablePVM2:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccjCd4ns.s:1225   .text.HAL_PWREx_EnablePVM2:00000000 HAL_PWREx_EnablePVM2
+C:\Users\Nathan\AppData\Local\Temp\ccjCd4ns.s:1242   .text.HAL_PWREx_EnablePVM2:0000000c $d
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccjCd4ns.s 			page 66
 
 
-C:\Users\Nathan\AppData\Local\Temp\ccG5DO26.s:1247   .text.HAL_PWREx_DisablePVM2:00000000 $t
-C:\Users\Nathan\AppData\Local\Temp\ccG5DO26.s:1253   .text.HAL_PWREx_DisablePVM2:00000000 HAL_PWREx_DisablePVM2
-C:\Users\Nathan\AppData\Local\Temp\ccG5DO26.s:1270   .text.HAL_PWREx_DisablePVM2:0000000c $d
-C:\Users\Nathan\AppData\Local\Temp\ccG5DO26.s:1275   .text.HAL_PWREx_EnablePVM3:00000000 $t
-C:\Users\Nathan\AppData\Local\Temp\ccG5DO26.s:1281   .text.HAL_PWREx_EnablePVM3:00000000 HAL_PWREx_EnablePVM3
-C:\Users\Nathan\AppData\Local\Temp\ccG5DO26.s:1298   .text.HAL_PWREx_EnablePVM3:0000000c $d
-C:\Users\Nathan\AppData\Local\Temp\ccG5DO26.s:1303   .text.HAL_PWREx_DisablePVM3:00000000 $t
-C:\Users\Nathan\AppData\Local\Temp\ccG5DO26.s:1309   .text.HAL_PWREx_DisablePVM3:00000000 HAL_PWREx_DisablePVM3
-C:\Users\Nathan\AppData\Local\Temp\ccG5DO26.s:1326   .text.HAL_PWREx_DisablePVM3:0000000c $d
-C:\Users\Nathan\AppData\Local\Temp\ccG5DO26.s:1331   .text.HAL_PWREx_EnablePVM4:00000000 $t
-C:\Users\Nathan\AppData\Local\Temp\ccG5DO26.s:1337   .text.HAL_PWREx_EnablePVM4:00000000 HAL_PWREx_EnablePVM4
-C:\Users\Nathan\AppData\Local\Temp\ccG5DO26.s:1354   .text.HAL_PWREx_EnablePVM4:0000000c $d
-C:\Users\Nathan\AppData\Local\Temp\ccG5DO26.s:1359   .text.HAL_PWREx_DisablePVM4:00000000 $t
-C:\Users\Nathan\AppData\Local\Temp\ccG5DO26.s:1365   .text.HAL_PWREx_DisablePVM4:00000000 HAL_PWREx_DisablePVM4
-C:\Users\Nathan\AppData\Local\Temp\ccG5DO26.s:1382   .text.HAL_PWREx_DisablePVM4:0000000c $d
-C:\Users\Nathan\AppData\Local\Temp\ccG5DO26.s:1387   .text.HAL_PWREx_ConfigPVM:00000000 $t
-C:\Users\Nathan\AppData\Local\Temp\ccG5DO26.s:1393   .text.HAL_PWREx_ConfigPVM:00000000 HAL_PWREx_ConfigPVM
-C:\Users\Nathan\AppData\Local\Temp\ccG5DO26.s:1746   .text.HAL_PWREx_ConfigPVM:000001e8 $d
-C:\Users\Nathan\AppData\Local\Temp\ccG5DO26.s:1751   .text.HAL_PWREx_EnableLowPowerRunMode:00000000 $t
-C:\Users\Nathan\AppData\Local\Temp\ccG5DO26.s:1757   .text.HAL_PWREx_EnableLowPowerRunMode:00000000 HAL_PWREx_EnableLowPowerRunMode
-C:\Users\Nathan\AppData\Local\Temp\ccG5DO26.s:1774   .text.HAL_PWREx_EnableLowPowerRunMode:0000000c $d
-C:\Users\Nathan\AppData\Local\Temp\ccG5DO26.s:1779   .text.HAL_PWREx_DisableLowPowerRunMode:00000000 $t
-C:\Users\Nathan\AppData\Local\Temp\ccG5DO26.s:1785   .text.HAL_PWREx_DisableLowPowerRunMode:00000000 HAL_PWREx_DisableLowPowerRunMode
-C:\Users\Nathan\AppData\Local\Temp\ccG5DO26.s:1851   .text.HAL_PWREx_DisableLowPowerRunMode:0000004c $d
-C:\Users\Nathan\AppData\Local\Temp\ccG5DO26.s:1857   .text.HAL_PWREx_EnterSTOP0Mode:00000000 $t
-C:\Users\Nathan\AppData\Local\Temp\ccG5DO26.s:1863   .text.HAL_PWREx_EnterSTOP0Mode:00000000 HAL_PWREx_EnterSTOP0Mode
-C:\Users\Nathan\AppData\Local\Temp\ccG5DO26.s:1921   .text.HAL_PWREx_EnterSTOP0Mode:00000030 $d
-C:\Users\Nathan\AppData\Local\Temp\ccG5DO26.s:1927   .text.HAL_PWREx_EnterSTOP1Mode:00000000 $t
-C:\Users\Nathan\AppData\Local\Temp\ccG5DO26.s:1933   .text.HAL_PWREx_EnterSTOP1Mode:00000000 HAL_PWREx_EnterSTOP1Mode
-C:\Users\Nathan\AppData\Local\Temp\ccG5DO26.s:1992   .text.HAL_PWREx_EnterSTOP1Mode:00000034 $d
-C:\Users\Nathan\AppData\Local\Temp\ccG5DO26.s:1998   .text.HAL_PWREx_EnterSHUTDOWNMode:00000000 $t
-C:\Users\Nathan\AppData\Local\Temp\ccG5DO26.s:2004   .text.HAL_PWREx_EnterSHUTDOWNMode:00000000 HAL_PWREx_EnterSHUTDOWNMode
-C:\Users\Nathan\AppData\Local\Temp\ccG5DO26.s:2034   .text.HAL_PWREx_EnterSHUTDOWNMode:0000001c $d
-C:\Users\Nathan\AppData\Local\Temp\ccG5DO26.s:2040   .text.HAL_PWREx_PVM1Callback:00000000 $t
-C:\Users\Nathan\AppData\Local\Temp\ccG5DO26.s:2046   .text.HAL_PWREx_PVM1Callback:00000000 HAL_PWREx_PVM1Callback
-C:\Users\Nathan\AppData\Local\Temp\ccG5DO26.s:2059   .text.HAL_PWREx_PVM2Callback:00000000 $t
-C:\Users\Nathan\AppData\Local\Temp\ccG5DO26.s:2065   .text.HAL_PWREx_PVM2Callback:00000000 HAL_PWREx_PVM2Callback
-C:\Users\Nathan\AppData\Local\Temp\ccG5DO26.s:2078   .text.HAL_PWREx_PVM3Callback:00000000 $t
-C:\Users\Nathan\AppData\Local\Temp\ccG5DO26.s:2084   .text.HAL_PWREx_PVM3Callback:00000000 HAL_PWREx_PVM3Callback
-C:\Users\Nathan\AppData\Local\Temp\ccG5DO26.s:2097   .text.HAL_PWREx_PVM4Callback:00000000 $t
-C:\Users\Nathan\AppData\Local\Temp\ccG5DO26.s:2103   .text.HAL_PWREx_PVM4Callback:00000000 HAL_PWREx_PVM4Callback
-C:\Users\Nathan\AppData\Local\Temp\ccG5DO26.s:2116   .text.HAL_PWREx_PVD_PVM_IRQHandler:00000000 $t
-C:\Users\Nathan\AppData\Local\Temp\ccG5DO26.s:2122   .text.HAL_PWREx_PVD_PVM_IRQHandler:00000000 HAL_PWREx_PVD_PVM_IRQHandler
-C:\Users\Nathan\AppData\Local\Temp\ccG5DO26.s:2223   .text.HAL_PWREx_PVD_PVM_IRQHandler:00000074 $d
-C:\Users\Nathan\AppData\Local\Temp\ccG5DO26.s:2228   .text.HAL_PWREx_EnableUCPDStandbyMode:00000000 $t
-C:\Users\Nathan\AppData\Local\Temp\ccG5DO26.s:2234   .text.HAL_PWREx_EnableUCPDStandbyMode:00000000 HAL_PWREx_EnableUCPDStandbyMode
-C:\Users\Nathan\AppData\Local\Temp\ccG5DO26.s:2251   .text.HAL_PWREx_EnableUCPDStandbyMode:0000000c $d
-C:\Users\Nathan\AppData\Local\Temp\ccG5DO26.s:2256   .text.HAL_PWREx_DisableUCPDStandbyMode:00000000 $t
-C:\Users\Nathan\AppData\Local\Temp\ccG5DO26.s:2262   .text.HAL_PWREx_DisableUCPDStandbyMode:00000000 HAL_PWREx_DisableUCPDStandbyMode
-C:\Users\Nathan\AppData\Local\Temp\ccG5DO26.s:2279   .text.HAL_PWREx_DisableUCPDStandbyMode:0000000c $d
-C:\Users\Nathan\AppData\Local\Temp\ccG5DO26.s:2284   .text.HAL_PWREx_EnableUCPDDeadBattery:00000000 $t
-C:\Users\Nathan\AppData\Local\Temp\ccG5DO26.s:2290   .text.HAL_PWREx_EnableUCPDDeadBattery:00000000 HAL_PWREx_EnableUCPDDeadBattery
-C:\Users\Nathan\AppData\Local\Temp\ccG5DO26.s:2307   .text.HAL_PWREx_EnableUCPDDeadBattery:0000000c $d
-C:\Users\Nathan\AppData\Local\Temp\ccG5DO26.s:2312   .text.HAL_PWREx_DisableUCPDDeadBattery:00000000 $t
-C:\Users\Nathan\AppData\Local\Temp\ccG5DO26.s:2318   .text.HAL_PWREx_DisableUCPDDeadBattery:00000000 HAL_PWREx_DisableUCPDDeadBattery
-C:\Users\Nathan\AppData\Local\Temp\ccG5DO26.s:2335   .text.HAL_PWREx_DisableUCPDDeadBattery:0000000c $d
-C:\Users\Nathan\AppData\Local\Temp\ccG5DO26.s:428    .text.HAL_PWREx_EnableGPIOPullUp:0000000f $d
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccG5DO26.s 			page 67
+C:\Users\Nathan\AppData\Local\Temp\ccjCd4ns.s:1247   .text.HAL_PWREx_DisablePVM2:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccjCd4ns.s:1253   .text.HAL_PWREx_DisablePVM2:00000000 HAL_PWREx_DisablePVM2
+C:\Users\Nathan\AppData\Local\Temp\ccjCd4ns.s:1270   .text.HAL_PWREx_DisablePVM2:0000000c $d
+C:\Users\Nathan\AppData\Local\Temp\ccjCd4ns.s:1275   .text.HAL_PWREx_EnablePVM3:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccjCd4ns.s:1281   .text.HAL_PWREx_EnablePVM3:00000000 HAL_PWREx_EnablePVM3
+C:\Users\Nathan\AppData\Local\Temp\ccjCd4ns.s:1298   .text.HAL_PWREx_EnablePVM3:0000000c $d
+C:\Users\Nathan\AppData\Local\Temp\ccjCd4ns.s:1303   .text.HAL_PWREx_DisablePVM3:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccjCd4ns.s:1309   .text.HAL_PWREx_DisablePVM3:00000000 HAL_PWREx_DisablePVM3
+C:\Users\Nathan\AppData\Local\Temp\ccjCd4ns.s:1326   .text.HAL_PWREx_DisablePVM3:0000000c $d
+C:\Users\Nathan\AppData\Local\Temp\ccjCd4ns.s:1331   .text.HAL_PWREx_EnablePVM4:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccjCd4ns.s:1337   .text.HAL_PWREx_EnablePVM4:00000000 HAL_PWREx_EnablePVM4
+C:\Users\Nathan\AppData\Local\Temp\ccjCd4ns.s:1354   .text.HAL_PWREx_EnablePVM4:0000000c $d
+C:\Users\Nathan\AppData\Local\Temp\ccjCd4ns.s:1359   .text.HAL_PWREx_DisablePVM4:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccjCd4ns.s:1365   .text.HAL_PWREx_DisablePVM4:00000000 HAL_PWREx_DisablePVM4
+C:\Users\Nathan\AppData\Local\Temp\ccjCd4ns.s:1382   .text.HAL_PWREx_DisablePVM4:0000000c $d
+C:\Users\Nathan\AppData\Local\Temp\ccjCd4ns.s:1387   .text.HAL_PWREx_ConfigPVM:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccjCd4ns.s:1393   .text.HAL_PWREx_ConfigPVM:00000000 HAL_PWREx_ConfigPVM
+C:\Users\Nathan\AppData\Local\Temp\ccjCd4ns.s:1746   .text.HAL_PWREx_ConfigPVM:000001e8 $d
+C:\Users\Nathan\AppData\Local\Temp\ccjCd4ns.s:1751   .text.HAL_PWREx_EnableLowPowerRunMode:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccjCd4ns.s:1757   .text.HAL_PWREx_EnableLowPowerRunMode:00000000 HAL_PWREx_EnableLowPowerRunMode
+C:\Users\Nathan\AppData\Local\Temp\ccjCd4ns.s:1774   .text.HAL_PWREx_EnableLowPowerRunMode:0000000c $d
+C:\Users\Nathan\AppData\Local\Temp\ccjCd4ns.s:1779   .text.HAL_PWREx_DisableLowPowerRunMode:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccjCd4ns.s:1785   .text.HAL_PWREx_DisableLowPowerRunMode:00000000 HAL_PWREx_DisableLowPowerRunMode
+C:\Users\Nathan\AppData\Local\Temp\ccjCd4ns.s:1851   .text.HAL_PWREx_DisableLowPowerRunMode:0000004c $d
+C:\Users\Nathan\AppData\Local\Temp\ccjCd4ns.s:1857   .text.HAL_PWREx_EnterSTOP0Mode:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccjCd4ns.s:1863   .text.HAL_PWREx_EnterSTOP0Mode:00000000 HAL_PWREx_EnterSTOP0Mode
+C:\Users\Nathan\AppData\Local\Temp\ccjCd4ns.s:1921   .text.HAL_PWREx_EnterSTOP0Mode:00000030 $d
+C:\Users\Nathan\AppData\Local\Temp\ccjCd4ns.s:1927   .text.HAL_PWREx_EnterSTOP1Mode:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccjCd4ns.s:1933   .text.HAL_PWREx_EnterSTOP1Mode:00000000 HAL_PWREx_EnterSTOP1Mode
+C:\Users\Nathan\AppData\Local\Temp\ccjCd4ns.s:1992   .text.HAL_PWREx_EnterSTOP1Mode:00000034 $d
+C:\Users\Nathan\AppData\Local\Temp\ccjCd4ns.s:1998   .text.HAL_PWREx_EnterSHUTDOWNMode:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccjCd4ns.s:2004   .text.HAL_PWREx_EnterSHUTDOWNMode:00000000 HAL_PWREx_EnterSHUTDOWNMode
+C:\Users\Nathan\AppData\Local\Temp\ccjCd4ns.s:2034   .text.HAL_PWREx_EnterSHUTDOWNMode:0000001c $d
+C:\Users\Nathan\AppData\Local\Temp\ccjCd4ns.s:2040   .text.HAL_PWREx_PVM1Callback:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccjCd4ns.s:2046   .text.HAL_PWREx_PVM1Callback:00000000 HAL_PWREx_PVM1Callback
+C:\Users\Nathan\AppData\Local\Temp\ccjCd4ns.s:2059   .text.HAL_PWREx_PVM2Callback:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccjCd4ns.s:2065   .text.HAL_PWREx_PVM2Callback:00000000 HAL_PWREx_PVM2Callback
+C:\Users\Nathan\AppData\Local\Temp\ccjCd4ns.s:2078   .text.HAL_PWREx_PVM3Callback:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccjCd4ns.s:2084   .text.HAL_PWREx_PVM3Callback:00000000 HAL_PWREx_PVM3Callback
+C:\Users\Nathan\AppData\Local\Temp\ccjCd4ns.s:2097   .text.HAL_PWREx_PVM4Callback:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccjCd4ns.s:2103   .text.HAL_PWREx_PVM4Callback:00000000 HAL_PWREx_PVM4Callback
+C:\Users\Nathan\AppData\Local\Temp\ccjCd4ns.s:2116   .text.HAL_PWREx_PVD_PVM_IRQHandler:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccjCd4ns.s:2122   .text.HAL_PWREx_PVD_PVM_IRQHandler:00000000 HAL_PWREx_PVD_PVM_IRQHandler
+C:\Users\Nathan\AppData\Local\Temp\ccjCd4ns.s:2223   .text.HAL_PWREx_PVD_PVM_IRQHandler:00000074 $d
+C:\Users\Nathan\AppData\Local\Temp\ccjCd4ns.s:2228   .text.HAL_PWREx_EnableUCPDStandbyMode:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccjCd4ns.s:2234   .text.HAL_PWREx_EnableUCPDStandbyMode:00000000 HAL_PWREx_EnableUCPDStandbyMode
+C:\Users\Nathan\AppData\Local\Temp\ccjCd4ns.s:2251   .text.HAL_PWREx_EnableUCPDStandbyMode:0000000c $d
+C:\Users\Nathan\AppData\Local\Temp\ccjCd4ns.s:2256   .text.HAL_PWREx_DisableUCPDStandbyMode:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccjCd4ns.s:2262   .text.HAL_PWREx_DisableUCPDStandbyMode:00000000 HAL_PWREx_DisableUCPDStandbyMode
+C:\Users\Nathan\AppData\Local\Temp\ccjCd4ns.s:2279   .text.HAL_PWREx_DisableUCPDStandbyMode:0000000c $d
+C:\Users\Nathan\AppData\Local\Temp\ccjCd4ns.s:2284   .text.HAL_PWREx_EnableUCPDDeadBattery:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccjCd4ns.s:2290   .text.HAL_PWREx_EnableUCPDDeadBattery:00000000 HAL_PWREx_EnableUCPDDeadBattery
+C:\Users\Nathan\AppData\Local\Temp\ccjCd4ns.s:2307   .text.HAL_PWREx_EnableUCPDDeadBattery:0000000c $d
+C:\Users\Nathan\AppData\Local\Temp\ccjCd4ns.s:2312   .text.HAL_PWREx_DisableUCPDDeadBattery:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccjCd4ns.s:2318   .text.HAL_PWREx_DisableUCPDDeadBattery:00000000 HAL_PWREx_DisableUCPDDeadBattery
+C:\Users\Nathan\AppData\Local\Temp\ccjCd4ns.s:2335   .text.HAL_PWREx_DisableUCPDDeadBattery:0000000c $d
+C:\Users\Nathan\AppData\Local\Temp\ccjCd4ns.s:428    .text.HAL_PWREx_EnableGPIOPullUp:0000000f $d
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccjCd4ns.s 			page 67
 
 
-C:\Users\Nathan\AppData\Local\Temp\ccG5DO26.s:428    .text.HAL_PWREx_EnableGPIOPullUp:00000010 $t
-C:\Users\Nathan\AppData\Local\Temp\ccG5DO26.s:608    .text.HAL_PWREx_DisableGPIOPullUp:0000000f $d
-C:\Users\Nathan\AppData\Local\Temp\ccG5DO26.s:608    .text.HAL_PWREx_DisableGPIOPullUp:00000010 $t
-C:\Users\Nathan\AppData\Local\Temp\ccG5DO26.s:753    .text.HAL_PWREx_EnableGPIOPullDown:0000000f $d
-C:\Users\Nathan\AppData\Local\Temp\ccG5DO26.s:753    .text.HAL_PWREx_EnableGPIOPullDown:00000010 $t
-C:\Users\Nathan\AppData\Local\Temp\ccG5DO26.s:932    .text.HAL_PWREx_DisableGPIOPullDown:0000000f $d
-C:\Users\Nathan\AppData\Local\Temp\ccG5DO26.s:932    .text.HAL_PWREx_DisableGPIOPullDown:00000010 $t
+C:\Users\Nathan\AppData\Local\Temp\ccjCd4ns.s:428    .text.HAL_PWREx_EnableGPIOPullUp:00000010 $t
+C:\Users\Nathan\AppData\Local\Temp\ccjCd4ns.s:608    .text.HAL_PWREx_DisableGPIOPullUp:0000000f $d
+C:\Users\Nathan\AppData\Local\Temp\ccjCd4ns.s:608    .text.HAL_PWREx_DisableGPIOPullUp:00000010 $t
+C:\Users\Nathan\AppData\Local\Temp\ccjCd4ns.s:753    .text.HAL_PWREx_EnableGPIOPullDown:0000000f $d
+C:\Users\Nathan\AppData\Local\Temp\ccjCd4ns.s:753    .text.HAL_PWREx_EnableGPIOPullDown:00000010 $t
+C:\Users\Nathan\AppData\Local\Temp\ccjCd4ns.s:932    .text.HAL_PWREx_DisableGPIOPullDown:0000000f $d
+C:\Users\Nathan\AppData\Local\Temp\ccjCd4ns.s:932    .text.HAL_PWREx_DisableGPIOPullDown:00000010 $t
 
 UNDEFINED SYMBOLS
 SystemCoreClock

@@ -119,6 +119,7 @@ void Error_Handler(void);
 #define BMP_CS_GPIO_Port GPIOD
 #define BMP_INT_Pin GPIO_PIN_4
 #define BMP_INT_GPIO_Port GPIOD
+#define BMP_INT_EXTI_IRQn EXTI4_IRQn
 #define ICP_CS_Pin GPIO_PIN_5
 #define ICP_CS_GPIO_Port GPIOD
 #define ICP_INT_Pin GPIO_PIN_6

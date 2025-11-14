@@ -48,7 +48,7 @@ assemblyFlags:
   - -ffunction-sections
 
 linkerFlags:
-  - -Wl,--print-memory-usage
+  - -Wl,--print-memory-usage,-u _printf_float
 
 # libraries to be included. The -l prefix to the library will be automatically added.
 libraries:
@@ -80,7 +80,9 @@ includeDirectories:
   - Core/Lib/**
   - USB_Device/App/**
   - USB_Device/Target/**
-  - ../Athena
+  - ../Athena/**
+  - Drivers/BMP388/**
+  - Drivers/ICP201xx/**
 
 # Files that should be included in the compilation.
 # If a CubeMX makefile is present it will automatically include the  c and cpp/cxx files from that makefile.
@@ -94,6 +96,8 @@ sourceFiles:
   - USB_Device/App/**
   - USB_Device/Target/**
   - ../Athena/**
+  - Drivers/BMP388/**
+  - Drivers/ICP201xx/**
 
 # When no makefile is present it will show a warning pop-up.
 # However when compilation without the CubeMX Makefile is desired, this can be turned of.

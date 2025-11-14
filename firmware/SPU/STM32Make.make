@@ -76,6 +76,17 @@ endif
 # C sources
 C_SOURCES =  \
 ../Athena/athena.c \
+Core/Src/pd.c \
+Core/Src/athena_pd_lr.c \
+Core/Src/athena_pd_ff.c \
+USB_Device/Target/usbd_conf.c \
+USB_Device/App/usb_device.c \
+USB_Device/App/usbd_desc.c \
+USB_Device/App/usbd_cdc_if.c \
+Middlewares/ST/STM32_USB_Device_Library/Core/Src/usbd_core.c \
+Middlewares/ST/STM32_USB_Device_Library/Core/Src/usbd_ctlreq.c \
+Middlewares/ST/STM32_USB_Device_Library/Core/Src/usbd_ioreq.c \
+Middlewares/ST/STM32_USB_Device_Library/Class/CDC/Src/usbd_cdc.c \
 Core/Src/main.c \
 Core/Src/stm32g4xx_hal_msp.c \
 Core/Src/stm32g4xx_it.c \
@@ -209,7 +220,11 @@ C_INCLUDES =  \
 -IDrivers/CMSIS/Include \
 -IDrivers/STM32G4xx_HAL_Driver/Inc \
 -IDrivers/STM32G4xx_HAL_Driver/Inc/Legacy \
--I../Athena
+-I../Athena \
+-IUSB_Device/App \
+-IUSB_Device/Target \
+-IMiddlewares/ST/STM32_USB_Device_Library/Core/Inc \
+-IMiddlewares/ST/STM32_USB_Device_Library/Class/CDC/Inc
 
 
 

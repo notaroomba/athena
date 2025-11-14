@@ -1,0 +1,188 @@
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc2PzcY0.s 			page 1
+
+
+   1              		.cpu cortex-m7
+   2              		.arch armv7e-m
+   3              		.fpu fpv5-d16
+   4              		.eabi_attribute 28, 1
+   5              		.eabi_attribute 20, 1
+   6              		.eabi_attribute 21, 1
+   7              		.eabi_attribute 23, 3
+   8              		.eabi_attribute 24, 1
+   9              		.eabi_attribute 25, 1
+  10              		.eabi_attribute 26, 1
+  11              		.eabi_attribute 30, 1
+  12              		.eabi_attribute 34, 1
+  13              		.eabi_attribute 18, 4
+  14              		.file	"conversion_helper.c"
+  15              		.text
+  16              	.Ltext0:
+  17              		.cfi_sections	.debug_frame
+  18              		.file 1 "Drivers/ICP201xx/conversion_helper.c"
+  19              		.section	.text.convertToHeight,"ax",%progbits
+  20              		.align	1
+  21              		.global	convertToHeight
+  22              		.syntax unified
+  23              		.thumb
+  24              		.thumb_func
+  26              	convertToHeight:
+  27              	.LVL0:
+  28              	.LFB0:
+   1:Drivers/ICP201xx/conversion_helper.c **** /*
+   2:Drivers/ICP201xx/conversion_helper.c ****  *
+   3:Drivers/ICP201xx/conversion_helper.c ****  * Copyright (c) [2024] by InvenSense, Inc.
+   4:Drivers/ICP201xx/conversion_helper.c ****  * 
+   5:Drivers/ICP201xx/conversion_helper.c ****  * Permission to use, copy, modify, and/or distribute this software for any
+   6:Drivers/ICP201xx/conversion_helper.c ****  * purpose with or without fee is hereby granted.
+   7:Drivers/ICP201xx/conversion_helper.c ****  * 
+   8:Drivers/ICP201xx/conversion_helper.c ****  * THE SOFTWARE IS PROVIDED "AS IS" AND THE AUTHOR DISCLAIMS ALL WARRANTIES
+   9:Drivers/ICP201xx/conversion_helper.c ****  * WITH REGARD TO THIS SOFTWARE INCLUDING ALL IMPLIED WARRANTIES OF
+  10:Drivers/ICP201xx/conversion_helper.c ****  * MERCHANTABILITY AND FITNESS. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR ANY
+  11:Drivers/ICP201xx/conversion_helper.c ****  * SPECIAL, DIRECT, INDIRECT, OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES
+  12:Drivers/ICP201xx/conversion_helper.c ****  * WHATSOEVER RESULTING FROM LOSS OF USE, DATA OR PROFITS, WHETHER IN AN ACTION
+  13:Drivers/ICP201xx/conversion_helper.c ****  * OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF OR IN
+  14:Drivers/ICP201xx/conversion_helper.c ****  * CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
+  15:Drivers/ICP201xx/conversion_helper.c ****  *
+  16:Drivers/ICP201xx/conversion_helper.c ****  */
+  17:Drivers/ICP201xx/conversion_helper.c **** #include <math.h>
+  18:Drivers/ICP201xx/conversion_helper.c **** #include "conversion_helper.h"
+  19:Drivers/ICP201xx/conversion_helper.c **** 
+  20:Drivers/ICP201xx/conversion_helper.c **** #define TO_KELVIN(temp_C) (273.15 + temp_C)
+  21:Drivers/ICP201xx/conversion_helper.c **** #define HEIGHT_TO_PRESSURE_COEFF 0.03424 // M*g/R = (0,0289644 * 9,80665 / 8,31432)
+  22:Drivers/ICP201xx/conversion_helper.c **** 
+  23:Drivers/ICP201xx/conversion_helper.c **** #define PRESSURE_TO_HEIGHT_COEFF 29.27127 // R / (M*g) = 8,31432 / (0,0289644 * 9,80665)
+  24:Drivers/ICP201xx/conversion_helper.c **** #define LOG_ATMOSPHERICAL_PRESSURE 4.61833 // ln(101.325)
+  25:Drivers/ICP201xx/conversion_helper.c **** 
+  26:Drivers/ICP201xx/conversion_helper.c **** float convertToHeight(float pressure_kp, float temperature_C)
+  27:Drivers/ICP201xx/conversion_helper.c **** {
+  29              		.loc 1 27 1 view -0
+  30              		.cfi_startproc
+  31              		@ args = 0, pretend = 0, frame = 0
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc2PzcY0.s 			page 2
+
+
+  32              		@ frame_needed = 0, uses_anonymous_args = 0
+  33              		.loc 1 27 1 is_stmt 0 view .LVU1
+  34 0000 08B5     		push	{r3, lr}
+  35              		.cfi_def_cfa_offset 8
+  36              		.cfi_offset 3, -8
+  37              		.cfi_offset 14, -4
+  38 0002 2DED028B 		vpush.64	{d8}
+  39              		.cfi_def_cfa_offset 16
+  40              		.cfi_offset 80, -16
+  41              		.cfi_offset 81, -12
+  28:Drivers/ICP201xx/conversion_helper.c ****     return PRESSURE_TO_HEIGHT_COEFF * TO_KELVIN(temperature_C) * (LOG_ATMOSPHERICAL_PRESSURE - log(
+  42              		.loc 1 28 5 is_stmt 1 view .LVU2
+  43              		.loc 1 28 39 is_stmt 0 view .LVU3
+  44 0006 B7EEE08A 		vcvt.f64.f32	d8, s1
+  45 000a 9FED0B7B 		vldr.64	d7, .L3
+  46 000e 38EE078B 		vadd.f64	d8, d8, d7
+  47              		.loc 1 28 37 view .LVU4
+  48 0012 9FED0B7B 		vldr.64	d7, .L3+8
+  49 0016 28EE078B 		vmul.f64	d8, d8, d7
+  50              		.loc 1 28 96 view .LVU5
+  51 001a B7EEC00A 		vcvt.f64.f32	d0, s0
+  52              	.LVL1:
+  53              		.loc 1 28 96 view .LVU6
+  54 001e FFF7FEFF 		bl	log
+  55              	.LVL2:
+  56              		.loc 1 28 94 discriminator 1 view .LVU7
+  57 0022 9FED097B 		vldr.64	d7, .L3+16
+  58 0026 37EE400B 		vsub.f64	d0, d7, d0
+  59              		.loc 1 28 64 discriminator 1 view .LVU8
+  60 002a 28EE000B 		vmul.f64	d0, d8, d0
+  29:Drivers/ICP201xx/conversion_helper.c **** }
+  61              		.loc 1 29 1 view .LVU9
+  62 002e B7EEC00B 		vcvt.f32.f64	s0, d0
+  63 0032 BDEC028B 		vldm	sp!, {d8}
+  64              		.cfi_restore 80
+  65              		.cfi_restore 81
+  66              		.cfi_def_cfa_offset 8
+  67 0036 08BD     		pop	{r3, pc}
+  68              	.L4:
+  69              		.align	3
+  70              	.L3:
+  71 0038 66666666 		.word	1717986918
+  72 003c 66127140 		.word	1081152102
+  73 0040 CC6262F3 		.word	-211655988
+  74 0044 71453D40 		.word	1077757297
+  75 0048 F08AE07F 		.word	2145422064
+  76 004c 2B791240 		.word	1074952491
+  77              		.cfi_endproc
+  78              	.LFE0:
+  80              		.section	.text.convertToPressure,"ax",%progbits
+  81              		.align	1
+  82              		.global	convertToPressure
+  83              		.syntax unified
+  84              		.thumb
+  85              		.thumb_func
+  87              	convertToPressure:
+  88              	.LVL3:
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc2PzcY0.s 			page 3
+
+
+  89              	.LFB1:
+  30:Drivers/ICP201xx/conversion_helper.c **** 
+  31:Drivers/ICP201xx/conversion_helper.c **** float convertToPressure(float height_m, float temperature_C)
+  32:Drivers/ICP201xx/conversion_helper.c **** {
+  90              		.loc 1 32 1 is_stmt 1 view -0
+  91              		.cfi_startproc
+  92              		@ args = 0, pretend = 0, frame = 0
+  93              		@ frame_needed = 0, uses_anonymous_args = 0
+  94              		.loc 1 32 1 is_stmt 0 view .LVU11
+  95 0000 08B5     		push	{r3, lr}
+  96              		.cfi_def_cfa_offset 8
+  97              		.cfi_offset 3, -8
+  98              		.cfi_offset 14, -4
+  33:Drivers/ICP201xx/conversion_helper.c ****     return ATMOSPHERICAL_PRESSURE_KPA * exp(-HEIGHT_TO_PRESSURE_COEFF*height_m/TO_KELVIN(temperatur
+  99              		.loc 1 33 5 is_stmt 1 view .LVU12
+ 100              		.loc 1 33 70 is_stmt 0 view .LVU13
+ 101 0002 B7EEC06A 		vcvt.f64.f32	d6, s0
+ 102 0006 9FED0A7B 		vldr.64	d7, .L7
+ 103 000a 26EE076B 		vmul.f64	d6, d6, d7
+ 104              		.loc 1 33 80 view .LVU14
+ 105 000e B7EEE07A 		vcvt.f64.f32	d7, s1
+ 106 0012 9FED095B 		vldr.64	d5, .L7+8
+ 107 0016 37EE057B 		vadd.f64	d7, d7, d5
+ 108              		.loc 1 33 41 view .LVU15
+ 109 001a 86EE070B 		vdiv.f64	d0, d6, d7
+ 110              	.LVL4:
+ 111              		.loc 1 33 41 view .LVU16
+ 112 001e FFF7FEFF 		bl	exp
+ 113              	.LVL5:
+ 114              		.loc 1 33 39 discriminator 1 view .LVU17
+ 115 0022 9FED077B 		vldr.64	d7, .L7+16
+ 116 0026 20EE070B 		vmul.f64	d0, d0, d7
+  34:Drivers/ICP201xx/conversion_helper.c **** }
+ 117              		.loc 1 34 1 view .LVU18
+ 118 002a B7EEC00B 		vcvt.f32.f64	s0, d0
+ 119 002e 08BD     		pop	{r3, pc}
+ 120              	.L8:
+ 121              		.align	3
+ 122              	.L7:
+ 123 0030 B9196EC0 		.word	-1066526279
+ 124 0034 E787A1BF 		.word	-1079932953
+ 125 0038 66666666 		.word	1717986918
+ 126 003c 66127140 		.word	1081152102
+ 127 0040 CDCCCCCC 		.word	-858993459
+ 128 0044 CC545940 		.word	1079596236
+ 129              		.cfi_endproc
+ 130              	.LFE1:
+ 132              		.text
+ 133              	.Letext0:
+ 134              		.file 2 "C:/Users/Nathan/AppData/Roaming/Code/User/globalStorage/bmd.stm32-for-vscode/@xpack-dev-t
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc2PzcY0.s 			page 4
+
+
+DEFINED SYMBOLS
+                            *ABS*:00000000 conversion_helper.c
+C:\Users\Nathan\AppData\Local\Temp\cc2PzcY0.s:20     .text.convertToHeight:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\cc2PzcY0.s:26     .text.convertToHeight:00000000 convertToHeight
+C:\Users\Nathan\AppData\Local\Temp\cc2PzcY0.s:71     .text.convertToHeight:00000038 $d
+C:\Users\Nathan\AppData\Local\Temp\cc2PzcY0.s:81     .text.convertToPressure:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\cc2PzcY0.s:87     .text.convertToPressure:00000000 convertToPressure
+C:\Users\Nathan\AppData\Local\Temp\cc2PzcY0.s:123    .text.convertToPressure:00000030 $d
+
+UNDEFINED SYMBOLS
+log
+exp

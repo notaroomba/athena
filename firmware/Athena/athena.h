@@ -37,6 +37,7 @@ typedef struct  {
 void Athena_Init(Athena_LED_PinConfig* config);
 void Set_LED_Color(LED_ColorTypeDef color);
 void LED_Test_Sequence(void);
+void print(const char* format, ...) __attribute__((format(printf, 1, 2)));
 
 #ifdef __cplusplus
 }

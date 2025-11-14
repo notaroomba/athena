@@ -1,4 +1,4 @@
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc7sv3vz.s 			page 1
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccyJNqjv.s 			page 1
 
 
    1              		.cpu cortex-m4
@@ -58,7 +58,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc7sv3vz.s 			page 1
   27:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_ll_usb.c ****                     ##### How to use this driver #####
   28:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_ll_usb.c ****   ==============================================================================
   29:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_ll_usb.c ****     [..]
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc7sv3vz.s 			page 2
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccyJNqjv.s 			page 2
 
 
   30:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_ll_usb.c ****       (#) Fill parameters of Init structure in USB_CfgTypeDef structure.
@@ -118,7 +118,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc7sv3vz.s 			page 1
   72:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_ll_usb.c ****             - This function is added to ensure compatibility across platforms.
   73:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_ll_usb.c ****    */
   74:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_ll_usb.c **** 
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc7sv3vz.s 			page 3
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccyJNqjv.s 			page 3
 
 
   75:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_ll_usb.c ****   return HAL_OK;
@@ -178,7 +178,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc7sv3vz.s 			page 1
   93:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_ll_usb.c ****                    USB_CNTR_SUSPM | USB_CNTR_ERRM |
   94:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_ll_usb.c ****                    USB_CNTR_SOFM | USB_CNTR_ESOFM |
   95:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_ll_usb.c ****                    USB_CNTR_RESETM | USB_CNTR_L1REQM;
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc7sv3vz.s 			page 4
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccyJNqjv.s 			page 4
 
 
   96:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_ll_usb.c **** 
@@ -238,7 +238,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc7sv3vz.s 			page 1
  111 0004 23F47E53 		bic	r3, r3, #16256
  112 0008 5B04     		lsls	r3, r3, #17
  113 000a 5B0C     		lsrs	r3, r3, #17
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc7sv3vz.s 			page 5
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccyJNqjv.s 			page 5
 
 
  114 000c A0F84030 		strh	r3, [r0, #64]	@ movhi
@@ -298,7 +298,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc7sv3vz.s 			page 1
  146 0002 7047     		bx	lr
  147              		.cfi_endproc
  148              	.LFE135:
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc7sv3vz.s 			page 6
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccyJNqjv.s 			page 6
 
 
  150              		.section	.text.USB_DevInit,"ax",%progbits
@@ -358,7 +358,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc7sv3vz.s 			page 1
  182              		.loc 1 167 3 is_stmt 1 view .LVU41
  183              		.loc 1 167 14 is_stmt 0 view .LVU42
  184 0016 A3F84400 		strh	r0, [r3, #68]	@ movhi
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc7sv3vz.s 			page 7
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccyJNqjv.s 			page 7
 
 
  168:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_ll_usb.c **** 
@@ -418,7 +418,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc7sv3vz.s 			page 1
  214              		.loc 1 194 3 view .LVU50
  195:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_ll_usb.c **** }
  215              		.loc 1 195 1 is_stmt 0 view .LVU51
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc7sv3vz.s 			page 8
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccyJNqjv.s 			page 8
 
 
  216 0000 0020     		movs	r0, #0
@@ -478,7 +478,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc7sv3vz.s 			page 1
  256              	.LVL15:
  257              	.LFB139:
  214:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_ll_usb.c **** 
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc7sv3vz.s 			page 9
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccyJNqjv.s 			page 9
 
 
  215:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_ll_usb.c **** 
@@ -538,7 +538,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc7sv3vz.s 			page 1
  295              		.p2align 1
  296              	.L14:
  297 0026 0020     		movs	r0, #0
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc7sv3vz.s 			page 10
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccyJNqjv.s 			page 10
 
 
  298              	.L11:
@@ -598,7 +598,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc7sv3vz.s 			page 1
  325              		.loc 1 258 9 is_stmt 0 view .LVU78
  326 0052 0A7B     		ldrb	r2, [r1, #12]	@ zero_extendqisi2
  327              		.loc 1 258 6 view .LVU79
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc7sv3vz.s 			page 11
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccyJNqjv.s 			page 11
 
 
  328 0054 002A     		cmp	r2, #0
@@ -658,7 +658,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc7sv3vz.s 			page 1
  376 0094 22F07002 		bic	r2, r2, #112
  377              	.LVL28:
  378              		.loc 1 264 7 is_stmt 1 view .LVU99
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc7sv3vz.s 			page 12
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccyJNqjv.s 			page 12
 
 
  379              		.loc 1 264 7 is_stmt 0 discriminator 1 view .LVU100
@@ -718,7 +718,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc7sv3vz.s 			page 1
  234:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_ll_usb.c ****       break;
  427              		.loc 1 234 17 is_stmt 0 view .LVU119
  428 00cc 42F40072 		orr	r2, r2, #512
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc7sv3vz.s 			page 13
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccyJNqjv.s 			page 13
 
 
  429              	.LVL36:
@@ -778,7 +778,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc7sv3vz.s 			page 1
  466 00ec 92B2     		uxth	r2, r2
  467 00ee 22F4E042 		bic	r2, r2, #28672
  468 00f2 22F04002 		bic	r2, r2, #64
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc7sv3vz.s 			page 14
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccyJNqjv.s 			page 14
 
 
  469              	.LVL41:
@@ -838,7 +838,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc7sv3vz.s 			page 1
  514              		.loc 1 283 7 is_stmt 1 view .LVU154
  515 012a 0C78     		ldrb	r4, [r1]	@ zero_extendqisi2
  516              		.loc 1 283 7 is_stmt 0 view .LVU155
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc7sv3vz.s 			page 15
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccyJNqjv.s 			page 15
 
 
  517 012c 02EBC402 		add	r2, r2, r4, lsl #3
@@ -898,7 +898,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc7sv3vz.s 			page 1
  570              	.L27:
  571              		.loc 1 284 7 discriminator 1 view .LVU175
  572              	.LBE13:
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc7sv3vz.s 			page 16
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccyJNqjv.s 			page 16
 
 
  573              		.loc 1 284 7 is_stmt 1 discriminator 3 view .LVU176
@@ -958,7 +958,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc7sv3vz.s 			page 1
  283:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_ll_usb.c ****       PCD_CLEAR_RX_DTOG(USBx, ep->num);
  618              		.loc 1 283 7 is_stmt 0 discriminator 4 view .LVU195
  619 01a6 14F0010F 		tst	r4, #1
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc7sv3vz.s 			page 17
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccyJNqjv.s 			page 17
 
 
  620 01aa 01D0     		beq	.L25
@@ -1018,7 +1018,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc7sv3vz.s 			page 1
  283:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_ll_usb.c ****       PCD_CLEAR_RX_DTOG(USBx, ep->num);
  663              		.loc 1 283 7 discriminator 12 view .LVU207
  664              	.LBE11:
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc7sv3vz.s 			page 18
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccyJNqjv.s 			page 18
 
 
  665              	.LBE15:
@@ -1078,7 +1078,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc7sv3vz.s 			page 1
  698              	.LBB17:
  699              		.loc 1 310 7 view .LVU221
  700              		.loc 1 310 7 view .LVU222
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc7sv3vz.s 			page 19
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccyJNqjv.s 			page 19
 
 
  701 0218 91F800C0 		ldrb	ip, [r1]	@ zero_extendqisi2
@@ -1138,7 +1138,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc7sv3vz.s 			page 1
  751 025a 13FA82F2 		uxtah	r2, r3, r2
  752              	.LVL79:
  753              		.loc 1 314 5 is_stmt 1 view .LVU244
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc7sv3vz.s 			page 20
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccyJNqjv.s 			page 20
 
 
  754 025e 91F800C0 		ldrb	ip, [r1]	@ zero_extendqisi2
@@ -1198,7 +1198,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc7sv3vz.s 			page 1
  803              		.loc 1 319 7 discriminator 1 view .LVU263
  804              	.LBE21:
  805              		.loc 1 319 7 is_stmt 1 discriminator 3 view .LVU264
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc7sv3vz.s 			page 21
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccyJNqjv.s 			page 21
 
 
  806              	.LBE20:
@@ -1258,7 +1258,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc7sv3vz.s 			page 1
  856 02d0 B3F85020 		ldrh	r2, [r3, #80]
  857 02d4 13FA82F2 		uxtah	r2, r3, r2
  858              	.LVL93:
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc7sv3vz.s 			page 22
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccyJNqjv.s 			page 22
 
 
  859              		.loc 1 323 7 is_stmt 1 view .LVU288
@@ -1318,7 +1318,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc7sv3vz.s 			page 1
  907              	.LVL98:
  908              	.L35:
  909              	.LBB28:
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc7sv3vz.s 			page 23
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccyJNqjv.s 			page 23
 
 
  910              	.LBB26:
@@ -1378,7 +1378,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc7sv3vz.s 			page 1
  964              		.loc 1 323 7 discriminator 14 view .LVU320
  965              	.LBE26:
  966              	.LBE28:
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc7sv3vz.s 			page 24
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccyJNqjv.s 			page 24
 
 
  967              		.loc 1 323 7 is_stmt 1 discriminator 2 view .LVU321
@@ -1438,7 +1438,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc7sv3vz.s 			page 1
  1021              	.LBE30:
  1022              	.LBE29:
  1023              		.loc 1 323 7 is_stmt 1 discriminator 16 view .LVU344
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc7sv3vz.s 			page 25
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccyJNqjv.s 			page 25
 
 
  1024              	.LBB34:
@@ -1498,7 +1498,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc7sv3vz.s 			page 1
  1078              		.loc 1 323 7 discriminator 25 view .LVU364
  1079 03f0 4FEA541C 		lsr	ip, r4, #5
  1080              	.LVL119:
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc7sv3vz.s 			page 26
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccyJNqjv.s 			page 26
 
 
  1081              		.loc 1 323 7 view .LVU365
@@ -1558,7 +1558,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc7sv3vz.s 			page 1
  1132 0438 2243     		orrs	r2, r2, r4
  1133              	.LVL126:
  1134              		.loc 1 326 7 is_stmt 0 discriminator 6 view .LVU383
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc7sv3vz.s 			page 27
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccyJNqjv.s 			page 27
 
 
  1135 043a 23F82C20 		strh	r2, [r3, ip, lsl #2]	@ movhi
@@ -1618,7 +1618,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc7sv3vz.s 			page 1
  1163              		.loc 1 352 1 is_stmt 0 view .LVU396
  1164 0454 10BD     		pop	{r4, pc}
  1165              	.LVL131:
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc7sv3vz.s 			page 28
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccyJNqjv.s 			page 28
 
 
  1166              	.L54:
@@ -1678,7 +1678,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc7sv3vz.s 			page 1
  1206              	.LVL137:
  332:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_ll_usb.c ****       PCD_CLEAR_TX_DTOG(USBx, ep->num);
  1207              		.loc 1 332 7 is_stmt 1 view .LVU411
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc7sv3vz.s 			page 29
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccyJNqjv.s 			page 29
 
 
  332:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_ll_usb.c ****       PCD_CLEAR_TX_DTOG(USBx, ep->num);
@@ -1738,7 +1738,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc7sv3vz.s 			page 1
  1246              		.loc 1 333 7 discriminator 1 view .LVU427
  1247 04b0 42F0C002 		orr	r2, r2, #192
  1248 04b4 23F82420 		strh	r2, [r3, r4, lsl #2]	@ movhi
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc7sv3vz.s 			page 30
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccyJNqjv.s 			page 30
 
 
  1249              	.LVL144:
@@ -1798,7 +1798,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc7sv3vz.s 			page 1
  1287              		.loc 1 343 9 discriminator 7 view .LVU443
  346:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_ll_usb.c ****     }
  1288              		.loc 1 346 7 view .LVU444
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc7sv3vz.s 			page 31
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccyJNqjv.s 			page 31
 
 
  1289              	.LBB44:
@@ -1858,7 +1858,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc7sv3vz.s 			page 1
  1328              		.loc 1 343 9 is_stmt 0 discriminator 6 view .LVU459
  1329 0510 42F08002 		orr	r2, r2, #128
  1330 0514 23F82420 		strh	r2, [r3, r4, lsl #2]	@ movhi
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc7sv3vz.s 			page 32
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccyJNqjv.s 			page 32
 
 
  1331 0518 E1E7     		b	.L49
@@ -1918,7 +1918,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc7sv3vz.s 			page 1
  1373              	.LBB47:
  1374              		.loc 1 366 7 discriminator 1 view .LVU472
  1375              		.loc 1 366 7 discriminator 1 view .LVU473
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc7sv3vz.s 			page 33
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccyJNqjv.s 			page 33
 
 
  1376 0016 30F82230 		ldrh	r3, [r0, r2, lsl #2]
@@ -1978,7 +1978,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc7sv3vz.s 			page 1
  378:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_ll_usb.c ****     }
  379:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_ll_usb.c ****   }
  380:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_ll_usb.c **** #if (USE_USB_DOUBLE_BUFFER == 1U)
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc7sv3vz.s 			page 34
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccyJNqjv.s 			page 34
 
 
  381:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_ll_usb.c ****   /* Double Buffer */
@@ -2038,7 +2038,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc7sv3vz.s 			page 1
  374:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_ll_usb.c **** 
  1438              		.loc 1 374 7 discriminator 1 view .LVU497
  1439              	.LBB50:
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc7sv3vz.s 			page 35
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccyJNqjv.s 			page 35
 
 
  374:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_ll_usb.c **** 
@@ -2098,7 +2098,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc7sv3vz.s 			page 1
  1478              		.loc 1 377 7 is_stmt 0 discriminator 6 view .LVU513
  1479 008a 43F08003 		orr	r3, r3, #128
  1480 008e 20F82230 		strh	r3, [r0, r2, lsl #2]	@ movhi
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc7sv3vz.s 			page 36
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccyJNqjv.s 			page 36
 
 
  1481 0092 DBE7     		b	.L59
@@ -2158,7 +2158,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc7sv3vz.s 			page 1
  1520              	.LVL178:
  1521              	.L62:
  387:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_ll_usb.c ****       PCD_CLEAR_TX_DTOG(USBx, ep->num);
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc7sv3vz.s 			page 37
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccyJNqjv.s 			page 37
 
 
  1522              		.loc 1 387 7 discriminator 1 view .LVU529
@@ -2218,7 +2218,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc7sv3vz.s 			page 1
  388:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_ll_usb.c **** 
  1561              		.loc 1 388 7 discriminator 3 view .LVU545
  391:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_ll_usb.c **** 
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc7sv3vz.s 			page 38
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccyJNqjv.s 			page 38
 
 
  1562              		.loc 1 391 7 view .LVU546
@@ -2278,7 +2278,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc7sv3vz.s 			page 1
  394:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_ll_usb.c ****     }
  1602              		.loc 1 394 7 view .LVU561
  394:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_ll_usb.c ****     }
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc7sv3vz.s 			page 39
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccyJNqjv.s 			page 39
 
 
  1603              		.loc 1 394 7 view .LVU562
@@ -2338,7 +2338,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc7sv3vz.s 			page 1
  1643              		.loc 1 399 7 is_stmt 1 view .LVU576
  399:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_ll_usb.c ****       PCD_CLEAR_TX_DTOG(USBx, ep->num);
  1644              		.loc 1 399 7 is_stmt 0 discriminator 1 view .LVU577
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc7sv3vz.s 			page 40
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccyJNqjv.s 			page 40
 
 
  1645 0152 43F44043 		orr	r3, r3, #49152
@@ -2398,7 +2398,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc7sv3vz.s 			page 1
  1684 0180 20F82230 		strh	r3, [r0, r2, lsl #2]	@ movhi
  1685              	.LVL200:
  1686              	.L65:
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc7sv3vz.s 			page 41
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccyJNqjv.s 			page 41
 
 
  400:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_ll_usb.c ****       PCD_RX_DTOG(USBx, ep->num);
@@ -2458,7 +2458,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc7sv3vz.s 			page 1
  404:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_ll_usb.c ****       PCD_SET_EP_RX_STATUS(USBx, ep->num, USB_EP_RX_DIS);
  1726              		.loc 1 404 7 is_stmt 0 discriminator 6 view .LVU608
  1727 01b8 20F82230 		strh	r3, [r0, r2, lsl #2]	@ movhi
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc7sv3vz.s 			page 42
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccyJNqjv.s 			page 42
 
 
  1728              	.LBE64:
@@ -2518,7 +2518,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc7sv3vz.s 			page 1
  426:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_ll_usb.c **** 
  427:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_ll_usb.c ****   /* IN endpoint */
  428:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_ll_usb.c ****   if (ep->is_in == 1U)
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc7sv3vz.s 			page 43
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccyJNqjv.s 			page 43
 
 
  429:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_ll_usb.c ****   {
@@ -2578,7 +2578,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc7sv3vz.s 			page 1
  483:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_ll_usb.c ****             pmabuffer = ep->pmaaddr0;
  484:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_ll_usb.c **** 
  485:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_ll_usb.c ****             /* Write the user buffer to USB PMA */
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc7sv3vz.s 			page 44
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccyJNqjv.s 			page 44
 
 
  486:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_ll_usb.c ****             USB_WritePMA(USBx, ep->xfer_buff, pmabuffer, (uint16_t)len);
@@ -2638,7 +2638,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc7sv3vz.s 			page 1
  540:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_ll_usb.c ****           /* Set the Double buffer counter for pmabuffer1 */
  541:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_ll_usb.c ****           PCD_SET_EP_DBUF1_CNT(USBx, ep->num, ep->is_in, len);
  542:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_ll_usb.c ****           pmabuffer = ep->pmaaddr1;
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc7sv3vz.s 			page 45
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccyJNqjv.s 			page 45
 
 
  543:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_ll_usb.c **** 
@@ -2698,7 +2698,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc7sv3vz.s 			page 1
  597:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_ll_usb.c ****           wEPVal = PCD_GET_ENDPOINT(USBx, ep->num);
  598:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_ll_usb.c **** 
  599:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_ll_usb.c ****           /* Blocking State */
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc7sv3vz.s 			page 46
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccyJNqjv.s 			page 46
 
 
  600:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_ll_usb.c ****           if ((((wEPVal & USB_EP_DTOG_RX) != 0U) && ((wEPVal & USB_EP_DTOG_TX) != 0U)) ||
@@ -2758,7 +2758,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc7sv3vz.s 			page 1
  1778 000a 9BB2     		uxth	r3, r3
  1779 000c 23F4E043 		bic	r3, r3, #28672
  1780 0010 23F04003 		bic	r3, r3, #64
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc7sv3vz.s 			page 47
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccyJNqjv.s 			page 47
 
 
  1781              	.LVL208:
@@ -2818,7 +2818,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc7sv3vz.s 			page 1
  641:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_ll_usb.c ****   }
  1821              		.loc 1 641 5 discriminator 6 view .LVU640
  1822 003c 43F40043 		orr	r3, r3, #32768
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc7sv3vz.s 			page 48
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccyJNqjv.s 			page 48
 
 
  1823              	.LVL216:
@@ -2878,7 +2878,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc7sv3vz.s 			page 1
  1866 0010 30F82230 		ldrh	r3, [r0, r2, lsl #2]
  1867              	.LVL219:
  1868              		.loc 1 657 5 is_stmt 0 discriminator 1 view .LVU653
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc7sv3vz.s 			page 49
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccyJNqjv.s 			page 49
 
 
  1869 0014 9BB2     		uxth	r3, r3
@@ -2938,7 +2938,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc7sv3vz.s 			page 1
  1918              	.LBE70:
  663:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_ll_usb.c ****     }
  664:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_ll_usb.c ****   }
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc7sv3vz.s 			page 50
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccyJNqjv.s 			page 50
 
 
  665:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_ll_usb.c ****   else
@@ -2998,7 +2998,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc7sv3vz.s 			page 1
  1967              		.loc 1 670 5 discriminator 4 view .LVU692
  1968 0088 83F44053 		eor	r3, r3, #12288
  1969              	.LVL233:
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc7sv3vz.s 			page 51
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccyJNqjv.s 			page 51
 
 
  1970              		.loc 1 670 5 discriminator 6 view .LVU693
@@ -3058,7 +3058,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc7sv3vz.s 			page 1
  686:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_ll_usb.c ****   {
  687:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_ll_usb.c ****     if (ep->doublebuffer == 0U)
  688:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_ll_usb.c ****     {
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc7sv3vz.s 			page 52
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccyJNqjv.s 			page 52
 
 
  689:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_ll_usb.c ****       if (ep->type != EP_TYPE_ISOC)
@@ -3118,7 +3118,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc7sv3vz.s 			page 1
  2045              	.LVL241:
  2046              	.L76:
  709:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_ll_usb.c ****       }
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc7sv3vz.s 			page 53
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccyJNqjv.s 			page 53
 
 
  710:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_ll_usb.c ****       else
@@ -3178,7 +3178,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc7sv3vz.s 			page 1
  692:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_ll_usb.c ****       }
  2080              		.loc 1 692 9 discriminator 4 view .LVU734
  2081 0050 83F02003 		eor	r3, r3, #32
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc7sv3vz.s 			page 54
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccyJNqjv.s 			page 54
 
 
  2082              	.LVL245:
@@ -3238,7 +3238,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc7sv3vz.s 			page 1
  2122 0082 30F82230 		ldrh	r3, [r0, r2, lsl #2]
  2123 0086 9BB2     		uxth	r3, r3
  2124 0088 23F48043 		bic	r3, r3, #16384
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc7sv3vz.s 			page 55
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccyJNqjv.s 			page 55
 
 
  2125 008c 23F07003 		bic	r3, r3, #112
@@ -3298,7 +3298,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc7sv3vz.s 			page 1
  2163 0008 0020     		movs	r0, #0
  2164              	.LVL254:
  2165              		.loc 1 733 14 view .LVU759
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc7sv3vz.s 			page 56
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccyJNqjv.s 			page 56
 
 
  2166 000a A3F84400 		strh	r0, [r3, #68]	@ movhi
@@ -3358,7 +3358,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc7sv3vz.s 			page 1
  756:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_ll_usb.c ****   return HAL_OK;
  2200              		.loc 1 756 3 is_stmt 1 view .LVU769
  757:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_ll_usb.c **** }
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc7sv3vz.s 			page 57
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccyJNqjv.s 			page 57
 
 
  2201              		.loc 1 757 1 is_stmt 0 view .LVU770
@@ -3418,7 +3418,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc7sv3vz.s 			page 1
  2245              		.thumb
  2246              		.thumb_func
  2248              	USB_DevDisconnect:
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc7sv3vz.s 			page 58
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccyJNqjv.s 			page 58
 
 
  2249              	.LVL259:
@@ -3478,7 +3478,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc7sv3vz.s 			page 1
  2284              		@ frame_needed = 0, uses_anonymous_args = 0
  2285              		@ link register save eliminated.
  792:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_ll_usb.c ****   uint32_t tmpreg;
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc7sv3vz.s 			page 59
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccyJNqjv.s 			page 59
 
 
  2286              		.loc 1 792 3 view .LVU787
@@ -3538,7 +3538,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc7sv3vz.s 			page 1
  2326              		.loc 1 808 1 view .LVU799
  2327 0010 7047     		bx	lr
  2328              		.cfi_endproc
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc7sv3vz.s 			page 60
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccyJNqjv.s 			page 60
 
 
  2329              	.LFE150:
@@ -3598,7 +3598,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc7sv3vz.s 			page 1
  823:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_ll_usb.c ****   * @brief Copy a buffer from user memory area to packet memory area (PMA)
  824:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_ll_usb.c ****   * @param   USBx USB peripheral instance register address.
  825:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_ll_usb.c ****   * @param   pbUsrBuf pointer to user memory area.
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc7sv3vz.s 			page 61
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccyJNqjv.s 			page 61
 
 
  826:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_ll_usb.c ****   * @param   wPMABufAddr address into PMA.
@@ -3658,7 +3658,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc7sv3vz.s 			page 1
  2408 000e 91F801C0 		ldrb	ip, [r1, #1]	@ zero_extendqisi2
  2409              		.loc 1 844 11 view .LVU825
  2410 0012 40EA0C20 		orr	r0, r0, ip, lsl #8
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc7sv3vz.s 			page 62
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccyJNqjv.s 			page 62
 
 
  2411              	.LVL275:
@@ -3718,7 +3718,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc7sv3vz.s 			page 1
  2452              		.cfi_offset 5, -12
  2453              		.cfi_offset 6, -8
  2454              		.cfi_offset 14, -4
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc7sv3vz.s 			page 63
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccyJNqjv.s 			page 63
 
 
  2455 0002 0546     		mov	r5, r0
@@ -3778,7 +3778,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc7sv3vz.s 			page 1
  2492              	.LVL280:
  569:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_ll_usb.c ****       }
  2493              		.loc 1 569 9 view .LVU854
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc7sv3vz.s 			page 64
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccyJNqjv.s 			page 64
 
 
  2494 0034 43F40143 		orr	r3, r3, #33024
@@ -3838,7 +3838,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc7sv3vz.s 			page 1
  2532 0058 921B     		subs	r2, r2, r6
  2533 005a 2262     		str	r2, [r4, #32]
  538:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_ll_usb.c ****         {
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc7sv3vz.s 			page 65
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccyJNqjv.s 			page 65
 
 
  2534              		.loc 1 538 9 is_stmt 1 view .LVU871
@@ -3898,7 +3898,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc7sv3vz.s 			page 1
  2570              		.loc 1 541 11 discriminator 1 view .LVU889
  2571 0080 C3F30903 		ubfx	r3, r3, #0, #10
  2572 0084 A2F80634 		strh	r3, [r2, #1030]	@ movhi
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc7sv3vz.s 			page 66
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccyJNqjv.s 			page 66
 
 
  541:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_ll_usb.c ****           pmabuffer = ep->pmaaddr1;
@@ -3958,7 +3958,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc7sv3vz.s 			page 1
  2614              		.loc 1 444 7 view .LVU902
  2615 00be A3F80264 		strh	r6, [r3, #1026]	@ movhi
  2616              	.LBE84:
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc7sv3vz.s 			page 67
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccyJNqjv.s 			page 67
 
 
  444:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_ll_usb.c ****     }
@@ -4018,7 +4018,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc7sv3vz.s 			page 1
  2655              		.loc 1 455 11 is_stmt 1 view .LVU918
  2656              	.LBB86:
  455:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_ll_usb.c **** 
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc7sv3vz.s 			page 68
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccyJNqjv.s 			page 68
 
 
  2657              		.loc 1 455 11 view .LVU919
@@ -4078,7 +4078,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc7sv3vz.s 			page 1
  464:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_ll_usb.c ****             pmabuffer = ep->pmaaddr1;
  2696              		.loc 1 464 13 discriminator 1 view .LVU935
  2697              	.LVL304:
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc7sv3vz.s 			page 69
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccyJNqjv.s 			page 69
 
 
  464:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_ll_usb.c ****             pmabuffer = ep->pmaaddr1;
@@ -4138,7 +4138,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc7sv3vz.s 			page 1
  464:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_ll_usb.c ****             pmabuffer = ep->pmaaddr1;
  2736              		.loc 1 464 13 view .LVU952
  464:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_ll_usb.c ****             pmabuffer = ep->pmaaddr1;
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc7sv3vz.s 			page 70
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccyJNqjv.s 			page 70
 
 
  2737              		.loc 1 464 13 is_stmt 0 discriminator 6 view .LVU953
@@ -4198,7 +4198,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc7sv3vz.s 			page 1
  2780              	.LVL315:
  2781              	.L99:
  464:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_ll_usb.c ****             pmabuffer = ep->pmaaddr1;
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc7sv3vz.s 			page 71
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccyJNqjv.s 			page 71
 
 
  2782              		.loc 1 464 13 discriminator 14 view .LVU965
@@ -4258,7 +4258,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc7sv3vz.s 			page 1
  2821              	.L106:
  482:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_ll_usb.c ****             pmabuffer = ep->pmaaddr0;
  2822              		.loc 1 482 13 is_stmt 1 view .LVU981
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc7sv3vz.s 			page 72
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccyJNqjv.s 			page 72
 
 
  482:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_ll_usb.c ****             pmabuffer = ep->pmaaddr0;
@@ -4318,7 +4318,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc7sv3vz.s 			page 1
  482:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_ll_usb.c ****             pmabuffer = ep->pmaaddr0;
  2862              		.loc 1 482 13 is_stmt 0 discriminator 3 view .LVU997
  2863              	.LBE91:
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc7sv3vz.s 			page 73
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccyJNqjv.s 			page 73
 
 
  2864              	.LBE90:
@@ -4378,7 +4378,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc7sv3vz.s 			page 1
  482:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_ll_usb.c ****             pmabuffer = ep->pmaaddr0;
  2904              		.loc 1 482 13 view .LVU1012
  482:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_ll_usb.c ****             pmabuffer = ep->pmaaddr0;
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc7sv3vz.s 			page 74
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccyJNqjv.s 			page 74
 
 
  2905              		.loc 1 482 13 is_stmt 0 discriminator 6 view .LVU1013
@@ -4438,7 +4438,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc7sv3vz.s 			page 1
  2948              	.LVL335:
  2949              	.L107:
  482:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_ll_usb.c ****             pmabuffer = ep->pmaaddr0;
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc7sv3vz.s 			page 75
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccyJNqjv.s 			page 75
 
 
  2950              		.loc 1 482 13 discriminator 14 view .LVU1025
@@ -4498,7 +4498,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc7sv3vz.s 			page 1
  2989 0266 A3F80224 		strh	r2, [r3, #1026]	@ movhi
  2990 026a EDE7     		b	.L109
  2991              	.LVL341:
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc7sv3vz.s 			page 76
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccyJNqjv.s 			page 76
 
 
  2992              	.L98:
@@ -4558,7 +4558,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc7sv3vz.s 			page 1
  3028 028e 6FEA4242 		mvn	r2, r2, lsl #17
  3029 0292 6FEA5242 		mvn	r2, r2, lsr #17
  3030 0296 92B2     		uxth	r2, r2
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc7sv3vz.s 			page 77
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccyJNqjv.s 			page 77
 
 
  3031 0298 A3F80224 		strh	r2, [r3, #1026]	@ movhi
@@ -4618,7 +4618,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc7sv3vz.s 			page 1
  3071 02c6 0139     		subs	r1, r1, #1
  3072              	.LVL351:
  3073              	.L118:
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc7sv3vz.s 			page 78
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccyJNqjv.s 			page 78
 
 
  491:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_ll_usb.c ****             pmabuffer = ep->pmaaddr0;
@@ -4678,7 +4678,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc7sv3vz.s 			page 1
  3114              		.loc 1 498 19 is_stmt 0 view .LVU1086
  3115 02f4 236A     		ldr	r3, [r4, #32]
  498:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_ll_usb.c ****             {
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc7sv3vz.s 			page 79
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccyJNqjv.s 			page 79
 
 
  3116              		.loc 1 498 37 view .LVU1087
@@ -4738,7 +4738,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc7sv3vz.s 			page 1
  3153              		.loc 1 509 13 view .LVU1104
  509:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_ll_usb.c ****             pmabuffer = ep->pmaaddr1;
  3154              		.loc 1 509 13 is_stmt 0 discriminator 1 view .LVU1105
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc7sv3vz.s 			page 80
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccyJNqjv.s 			page 80
 
 
  3155 0314 B3F80624 		ldrh	r2, [r3, #1030]
@@ -4798,7 +4798,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc7sv3vz.s 			page 1
  3195              	.L119:
  491:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_ll_usb.c ****             pmabuffer = ep->pmaaddr0;
  3196              		.loc 1 491 13 discriminator 16 view .LVU1120
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc7sv3vz.s 			page 81
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccyJNqjv.s 			page 81
 
 
  3197              	.LBE103:
@@ -4858,7 +4858,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc7sv3vz.s 			page 1
  3238              	.L124:
  509:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_ll_usb.c ****             pmabuffer = ep->pmaaddr1;
  3239              		.loc 1 509 13 discriminator 7 view .LVU1134
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc7sv3vz.s 			page 82
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccyJNqjv.s 			page 82
 
 
  509:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_ll_usb.c ****             pmabuffer = ep->pmaaddr1;
@@ -4918,7 +4918,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc7sv3vz.s 			page 1
  3282              	.LVL376:
  513:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_ll_usb.c ****           }
  3283              		.loc 1 513 13 is_stmt 0 view .LVU1147
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc7sv3vz.s 			page 83
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccyJNqjv.s 			page 83
 
 
  3284 03a2 8EE6     		b	.L95
@@ -4978,7 +4978,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc7sv3vz.s 			page 1
  525:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_ll_usb.c ****           pmabuffer = ep->pmaaddr0;
  3325              		.loc 1 525 11 view .LVU1161
  3326              	.LBB107:
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc7sv3vz.s 			page 84
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccyJNqjv.s 			page 84
 
 
  525:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_ll_usb.c ****           pmabuffer = ep->pmaaddr0;
@@ -5038,7 +5038,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc7sv3vz.s 			page 1
  3367 03f8 0DD8     		bhi	.L131
  541:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_ll_usb.c ****           pmabuffer = ep->pmaaddr1;
  3368              		.loc 1 541 11 discriminator 6 view .LVU1176
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc7sv3vz.s 			page 85
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccyJNqjv.s 			page 85
 
 
  541:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_ll_usb.c ****           pmabuffer = ep->pmaaddr1;
@@ -5098,7 +5098,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc7sv3vz.s 			page 1
  541:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_ll_usb.c ****           pmabuffer = ep->pmaaddr1;
  3410              		.loc 1 541 11 is_stmt 0 discriminator 14 view .LVU1190
  3411 0428 89B2     		uxth	r1, r1
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc7sv3vz.s 			page 86
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccyJNqjv.s 			page 86
 
 
  3412 042a 0B43     		orrs	r3, r3, r1
@@ -5158,7 +5158,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc7sv3vz.s 			page 1
  550:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_ll_usb.c ****           pmabuffer = ep->pmaaddr0;
  3453              		.loc 1 550 11 is_stmt 1 view .LVU1204
  550:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_ll_usb.c ****           pmabuffer = ep->pmaaddr0;
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc7sv3vz.s 			page 87
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccyJNqjv.s 			page 87
 
 
  3454              		.loc 1 550 11 view .LVU1205
@@ -5218,7 +5218,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc7sv3vz.s 			page 1
  3492 0486 3E2E     		cmp	r6, #62
  3493 0488 0DD8     		bhi	.L137
  550:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_ll_usb.c ****           pmabuffer = ep->pmaaddr0;
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc7sv3vz.s 			page 88
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccyJNqjv.s 			page 88
 
 
  3494              		.loc 1 550 11 discriminator 6 view .LVU1222
@@ -5278,7 +5278,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc7sv3vz.s 			page 1
  3535              	.LVL416:
  550:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_ll_usb.c ****           pmabuffer = ep->pmaaddr0;
  3536              		.loc 1 550 11 is_stmt 0 discriminator 14 view .LVU1236
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc7sv3vz.s 			page 89
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccyJNqjv.s 			page 89
 
 
  3537 04b8 89B2     		uxth	r1, r1
@@ -5338,7 +5338,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc7sv3vz.s 			page 1
  3575 04dc 6169     		ldr	r1, [r4, #20]
  3576 04de 2846     		mov	r0, r5
  3577              	.LVL421:
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc7sv3vz.s 			page 90
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccyJNqjv.s 			page 90
 
 
  554:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_ll_usb.c ****         }
@@ -5398,7 +5398,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc7sv3vz.s 			page 1
  3617 050c A361     		str	r3, [r4, #24]
  3618              	.LVL427:
  3619              	.L145:
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc7sv3vz.s 			page 91
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccyJNqjv.s 			page 91
 
 
  620:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_ll_usb.c ****   }
@@ -5458,7 +5458,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc7sv3vz.s 			page 1
  3659 0538 CB78     		ldrb	r3, [r1, #3]	@ zero_extendqisi2
  591:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_ll_usb.c ****       {
  3660              		.loc 1 591 10 view .LVU1283
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc7sv3vz.s 			page 92
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccyJNqjv.s 			page 92
 
 
  3661 053a 022B     		cmp	r3, #2
@@ -5518,7 +5518,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc7sv3vz.s 			page 1
  3698              		.loc 1 603 13 discriminator 1 view .LVU1300
  603:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_ll_usb.c ****           }
  3699              		.loc 1 603 13 discriminator 1 view .LVU1301
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc7sv3vz.s 			page 93
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccyJNqjv.s 			page 93
 
 
  3700 0562 35F82230 		ldrh	r3, [r5, r2, lsl #2]
@@ -5578,7 +5578,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc7sv3vz.s 			page 1
  864:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_ll_usb.c ****   */
  865:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_ll_usb.c **** void USB_ReadPMA(USB_TypeDef const *USBx, uint8_t *pbUsrBuf, uint16_t wPMABufAddr, uint16_t wNBytes
  866:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_ll_usb.c **** {
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc7sv3vz.s 			page 94
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccyJNqjv.s 			page 94
 
 
  3741              		.loc 1 866 1 is_stmt 1 view -0
@@ -5638,7 +5638,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc7sv3vz.s 			page 1
  3780              	.LVL445:
  882:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_ll_usb.c ****     *pBuf = (uint8_t)((RdVal >> 8) & 0xFFU);
  3781              		.loc 1 882 5 view .LVU1329
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc7sv3vz.s 			page 95
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccyJNqjv.s 			page 95
 
 
  3782              		.loc 1 882 13 is_stmt 0 view .LVU1330
@@ -5698,62 +5698,62 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc7sv3vz.s 			page 1
  3822              	.Letext0:
  3823              		.file 2 "C:/Users/Nathan/AppData/Roaming/Code/User/globalStorage/bmd.stm32-for-vscode/@xpack-dev-t
  3824              		.file 3 "C:/Users/Nathan/AppData/Roaming/Code/User/globalStorage/bmd.stm32-for-vscode/@xpack-dev-t
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc7sv3vz.s 			page 96
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccyJNqjv.s 			page 96
 
 
  3825              		.file 4 "Drivers/CMSIS/Device/ST/STM32G4xx/Include/stm32g474xx.h"
  3826              		.file 5 "Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_def.h"
  3827              		.file 6 "Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_ll_usb.h"
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc7sv3vz.s 			page 97
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccyJNqjv.s 			page 97
 
 
 DEFINED SYMBOLS
                             *ABS*:00000000 stm32g4xx_ll_usb.c
-C:\Users\Nathan\AppData\Local\Temp\cc7sv3vz.s:21     .text.USB_CoreInit:00000000 $t
-C:\Users\Nathan\AppData\Local\Temp\cc7sv3vz.s:27     .text.USB_CoreInit:00000000 USB_CoreInit
-C:\Users\Nathan\AppData\Local\Temp\cc7sv3vz.s:55     .text.USB_EnableGlobalInt:00000000 $t
-C:\Users\Nathan\AppData\Local\Temp\cc7sv3vz.s:61     .text.USB_EnableGlobalInt:00000000 USB_EnableGlobalInt
-C:\Users\Nathan\AppData\Local\Temp\cc7sv3vz.s:91     .text.USB_DisableGlobalInt:00000000 $t
-C:\Users\Nathan\AppData\Local\Temp\cc7sv3vz.s:97     .text.USB_DisableGlobalInt:00000000 USB_DisableGlobalInt
-C:\Users\Nathan\AppData\Local\Temp\cc7sv3vz.s:125    .text.USB_SetCurrentMode:00000000 $t
-C:\Users\Nathan\AppData\Local\Temp\cc7sv3vz.s:131    .text.USB_SetCurrentMode:00000000 USB_SetCurrentMode
-C:\Users\Nathan\AppData\Local\Temp\cc7sv3vz.s:151    .text.USB_DevInit:00000000 $t
-C:\Users\Nathan\AppData\Local\Temp\cc7sv3vz.s:157    .text.USB_DevInit:00000000 USB_DevInit
-C:\Users\Nathan\AppData\Local\Temp\cc7sv3vz.s:198    .text.USB_FlushTxFifo:00000000 $t
-C:\Users\Nathan\AppData\Local\Temp\cc7sv3vz.s:204    .text.USB_FlushTxFifo:00000000 USB_FlushTxFifo
-C:\Users\Nathan\AppData\Local\Temp\cc7sv3vz.s:224    .text.USB_FlushRxFifo:00000000 $t
-C:\Users\Nathan\AppData\Local\Temp\cc7sv3vz.s:230    .text.USB_FlushRxFifo:00000000 USB_FlushRxFifo
-C:\Users\Nathan\AppData\Local\Temp\cc7sv3vz.s:249    .text.USB_ActivateEndpoint:00000000 $t
-C:\Users\Nathan\AppData\Local\Temp\cc7sv3vz.s:255    .text.USB_ActivateEndpoint:00000000 USB_ActivateEndpoint
-C:\Users\Nathan\AppData\Local\Temp\cc7sv3vz.s:291    .text.USB_ActivateEndpoint:00000022 $d
-C:\Users\Nathan\AppData\Local\Temp\cc7sv3vz.s:295    .text.USB_ActivateEndpoint:00000026 $t
-C:\Users\Nathan\AppData\Local\Temp\cc7sv3vz.s:1337   .text.USB_DeactivateEndpoint:00000000 $t
-C:\Users\Nathan\AppData\Local\Temp\cc7sv3vz.s:1343   .text.USB_DeactivateEndpoint:00000000 USB_DeactivateEndpoint
-C:\Users\Nathan\AppData\Local\Temp\cc7sv3vz.s:1753   .text.USB_EPSetStall:00000000 $t
-C:\Users\Nathan\AppData\Local\Temp\cc7sv3vz.s:1759   .text.USB_EPSetStall:00000000 USB_EPSetStall
-C:\Users\Nathan\AppData\Local\Temp\cc7sv3vz.s:1833   .text.USB_EPClearStall:00000000 $t
-C:\Users\Nathan\AppData\Local\Temp\cc7sv3vz.s:1839   .text.USB_EPClearStall:00000000 USB_EPClearStall
-C:\Users\Nathan\AppData\Local\Temp\cc7sv3vz.s:1991   .text.USB_EPStopXfer:00000000 $t
-C:\Users\Nathan\AppData\Local\Temp\cc7sv3vz.s:1997   .text.USB_EPStopXfer:00000000 USB_EPStopXfer
-C:\Users\Nathan\AppData\Local\Temp\cc7sv3vz.s:2141   .text.USB_StopDevice:00000000 $t
-C:\Users\Nathan\AppData\Local\Temp\cc7sv3vz.s:2147   .text.USB_StopDevice:00000000 USB_StopDevice
-C:\Users\Nathan\AppData\Local\Temp\cc7sv3vz.s:2178   .text.USB_SetDevAddress:00000000 $t
-C:\Users\Nathan\AppData\Local\Temp\cc7sv3vz.s:2184   .text.USB_SetDevAddress:00000000 USB_SetDevAddress
-C:\Users\Nathan\AppData\Local\Temp\cc7sv3vz.s:2210   .text.USB_DevConnect:00000000 $t
-C:\Users\Nathan\AppData\Local\Temp\cc7sv3vz.s:2216   .text.USB_DevConnect:00000000 USB_DevConnect
-C:\Users\Nathan\AppData\Local\Temp\cc7sv3vz.s:2242   .text.USB_DevDisconnect:00000000 $t
-C:\Users\Nathan\AppData\Local\Temp\cc7sv3vz.s:2248   .text.USB_DevDisconnect:00000000 USB_DevDisconnect
-C:\Users\Nathan\AppData\Local\Temp\cc7sv3vz.s:2272   .text.USB_ReadInterrupts:00000000 $t
-C:\Users\Nathan\AppData\Local\Temp\cc7sv3vz.s:2278   .text.USB_ReadInterrupts:00000000 USB_ReadInterrupts
-C:\Users\Nathan\AppData\Local\Temp\cc7sv3vz.s:2301   .text.USB_ActivateRemoteWakeup:00000000 $t
-C:\Users\Nathan\AppData\Local\Temp\cc7sv3vz.s:2307   .text.USB_ActivateRemoteWakeup:00000000 USB_ActivateRemoteWakeup
-C:\Users\Nathan\AppData\Local\Temp\cc7sv3vz.s:2332   .text.USB_DeActivateRemoteWakeup:00000000 $t
-C:\Users\Nathan\AppData\Local\Temp\cc7sv3vz.s:2338   .text.USB_DeActivateRemoteWakeup:00000000 USB_DeActivateRemoteWakeup
-C:\Users\Nathan\AppData\Local\Temp\cc7sv3vz.s:2364   .text.USB_WritePMA:00000000 $t
-C:\Users\Nathan\AppData\Local\Temp\cc7sv3vz.s:2370   .text.USB_WritePMA:00000000 USB_WritePMA
-C:\Users\Nathan\AppData\Local\Temp\cc7sv3vz.s:2435   .text.USB_EPStartXfer:00000000 $t
-C:\Users\Nathan\AppData\Local\Temp\cc7sv3vz.s:2441   .text.USB_EPStartXfer:00000000 USB_EPStartXfer
-C:\Users\Nathan\AppData\Local\Temp\cc7sv3vz.s:3732   .text.USB_ReadPMA:00000000 $t
-C:\Users\Nathan\AppData\Local\Temp\cc7sv3vz.s:3738   .text.USB_ReadPMA:00000000 USB_ReadPMA
+C:\Users\Nathan\AppData\Local\Temp\ccyJNqjv.s:21     .text.USB_CoreInit:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccyJNqjv.s:27     .text.USB_CoreInit:00000000 USB_CoreInit
+C:\Users\Nathan\AppData\Local\Temp\ccyJNqjv.s:55     .text.USB_EnableGlobalInt:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccyJNqjv.s:61     .text.USB_EnableGlobalInt:00000000 USB_EnableGlobalInt
+C:\Users\Nathan\AppData\Local\Temp\ccyJNqjv.s:91     .text.USB_DisableGlobalInt:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccyJNqjv.s:97     .text.USB_DisableGlobalInt:00000000 USB_DisableGlobalInt
+C:\Users\Nathan\AppData\Local\Temp\ccyJNqjv.s:125    .text.USB_SetCurrentMode:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccyJNqjv.s:131    .text.USB_SetCurrentMode:00000000 USB_SetCurrentMode
+C:\Users\Nathan\AppData\Local\Temp\ccyJNqjv.s:151    .text.USB_DevInit:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccyJNqjv.s:157    .text.USB_DevInit:00000000 USB_DevInit
+C:\Users\Nathan\AppData\Local\Temp\ccyJNqjv.s:198    .text.USB_FlushTxFifo:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccyJNqjv.s:204    .text.USB_FlushTxFifo:00000000 USB_FlushTxFifo
+C:\Users\Nathan\AppData\Local\Temp\ccyJNqjv.s:224    .text.USB_FlushRxFifo:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccyJNqjv.s:230    .text.USB_FlushRxFifo:00000000 USB_FlushRxFifo
+C:\Users\Nathan\AppData\Local\Temp\ccyJNqjv.s:249    .text.USB_ActivateEndpoint:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccyJNqjv.s:255    .text.USB_ActivateEndpoint:00000000 USB_ActivateEndpoint
+C:\Users\Nathan\AppData\Local\Temp\ccyJNqjv.s:291    .text.USB_ActivateEndpoint:00000022 $d
+C:\Users\Nathan\AppData\Local\Temp\ccyJNqjv.s:295    .text.USB_ActivateEndpoint:00000026 $t
+C:\Users\Nathan\AppData\Local\Temp\ccyJNqjv.s:1337   .text.USB_DeactivateEndpoint:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccyJNqjv.s:1343   .text.USB_DeactivateEndpoint:00000000 USB_DeactivateEndpoint
+C:\Users\Nathan\AppData\Local\Temp\ccyJNqjv.s:1753   .text.USB_EPSetStall:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccyJNqjv.s:1759   .text.USB_EPSetStall:00000000 USB_EPSetStall
+C:\Users\Nathan\AppData\Local\Temp\ccyJNqjv.s:1833   .text.USB_EPClearStall:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccyJNqjv.s:1839   .text.USB_EPClearStall:00000000 USB_EPClearStall
+C:\Users\Nathan\AppData\Local\Temp\ccyJNqjv.s:1991   .text.USB_EPStopXfer:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccyJNqjv.s:1997   .text.USB_EPStopXfer:00000000 USB_EPStopXfer
+C:\Users\Nathan\AppData\Local\Temp\ccyJNqjv.s:2141   .text.USB_StopDevice:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccyJNqjv.s:2147   .text.USB_StopDevice:00000000 USB_StopDevice
+C:\Users\Nathan\AppData\Local\Temp\ccyJNqjv.s:2178   .text.USB_SetDevAddress:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccyJNqjv.s:2184   .text.USB_SetDevAddress:00000000 USB_SetDevAddress
+C:\Users\Nathan\AppData\Local\Temp\ccyJNqjv.s:2210   .text.USB_DevConnect:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccyJNqjv.s:2216   .text.USB_DevConnect:00000000 USB_DevConnect
+C:\Users\Nathan\AppData\Local\Temp\ccyJNqjv.s:2242   .text.USB_DevDisconnect:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccyJNqjv.s:2248   .text.USB_DevDisconnect:00000000 USB_DevDisconnect
+C:\Users\Nathan\AppData\Local\Temp\ccyJNqjv.s:2272   .text.USB_ReadInterrupts:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccyJNqjv.s:2278   .text.USB_ReadInterrupts:00000000 USB_ReadInterrupts
+C:\Users\Nathan\AppData\Local\Temp\ccyJNqjv.s:2301   .text.USB_ActivateRemoteWakeup:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccyJNqjv.s:2307   .text.USB_ActivateRemoteWakeup:00000000 USB_ActivateRemoteWakeup
+C:\Users\Nathan\AppData\Local\Temp\ccyJNqjv.s:2332   .text.USB_DeActivateRemoteWakeup:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccyJNqjv.s:2338   .text.USB_DeActivateRemoteWakeup:00000000 USB_DeActivateRemoteWakeup
+C:\Users\Nathan\AppData\Local\Temp\ccyJNqjv.s:2364   .text.USB_WritePMA:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccyJNqjv.s:2370   .text.USB_WritePMA:00000000 USB_WritePMA
+C:\Users\Nathan\AppData\Local\Temp\ccyJNqjv.s:2435   .text.USB_EPStartXfer:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccyJNqjv.s:2441   .text.USB_EPStartXfer:00000000 USB_EPStartXfer
+C:\Users\Nathan\AppData\Local\Temp\ccyJNqjv.s:3732   .text.USB_ReadPMA:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccyJNqjv.s:3738   .text.USB_ReadPMA:00000000 USB_ReadPMA
 
 NO UNDEFINED SYMBOLS

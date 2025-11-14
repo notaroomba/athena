@@ -82,6 +82,16 @@ Core/Src/stm32h7xx_it.c \
 Core/Src/syscalls.c \
 Core/Src/sysmem.c \
 Core/Src/system_stm32h7xx.c \
+Drivers/BMP388/driver_bmp388.c \
+Drivers/BMP388/driver_bmp388_basic.c \
+Drivers/BMP388/driver_bmp388_fifo.c \
+Drivers/BMP388/driver_bmp388_interface.c \
+Drivers/ICP201xx/Icp201xx.c \
+Drivers/ICP201xx/Icp201xxDriver.c \
+Drivers/ICP201xx/Icp201xxSerif.c \
+Drivers/ICP201xx/conversion_helper.c \
+Drivers/ICP201xx/icp201xx_interface.c \
+Drivers/ICP201xx/inv_time.c \
 Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal.c \
 Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_cortex.c \
 Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_dma.c \
@@ -107,7 +117,6 @@ Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_tim.c \
 Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_tim_ex.c \
 Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_uart.c \
 Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_uart_ex.c \
-Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_wwdg.c \
 Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_ll_usb.c \
 Middlewares/ST/STM32_USB_Device_Library/Class/CDC/Src/usbd_cdc.c \
 Middlewares/ST/STM32_USB_Device_Library/Core/Src/usbd_core.c \
@@ -217,8 +226,10 @@ AS_INCLUDES = \
 C_INCLUDES =  \
 -I../Athena \
 -ICore/Inc \
+-IDrivers/BMP388 \
 -IDrivers/CMSIS/Device/ST/STM32H7xx/Include \
 -IDrivers/CMSIS/Include \
+-IDrivers/ICP201xx \
 -IDrivers/STM32H7xx_HAL_Driver/Inc \
 -IDrivers/STM32H7xx_HAL_Driver/Inc/Legacy \
 -IMiddlewares/ST/STM32_USB_Device_Library/Class/CDC/Inc \
@@ -264,7 +275,7 @@ LIBDIR = \
 
 
 # Additional LD Flags from config file
-ADDITIONALLDFLAGS = -Wl,--print-memory-usage -specs=nano.specs 
+ADDITIONALLDFLAGS = -Wl,--print-memory-usage,-u _printf_float -specs=nano.specs 
 
 LDFLAGS = $(MCU) $(ADDITIONALLDFLAGS) -T$(LDSCRIPT) $(LIBDIR) $(LIBS) -Wl,-Map=$(BUILD_DIRECTORY)/$(TARGET).map,--cref -Wl,--gc-sections
 

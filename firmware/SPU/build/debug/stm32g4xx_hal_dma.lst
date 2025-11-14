@@ -1,4 +1,4 @@
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccJKgaEv.s 			page 1
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccg3eK6z.s 			page 1
 
 
    1              		.cpu cortex-m4
@@ -58,7 +58,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccJKgaEv.s 			page 1
   28:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_dma.c ****    (#) Enable and configure the peripheral to be connected to the DMA Channel
   29:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_dma.c ****        (except for internal SRAM / FLASH memories: no initialization is
   30:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_dma.c ****        necessary). Please refer to the Reference manual for connection between peripherals
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccJKgaEv.s 			page 2
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccg3eK6z.s 			page 2
 
 
   31:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_dma.c ****        and DMA requests.
@@ -118,7 +118,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccJKgaEv.s 			page 1
   85:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_dma.c **** 
   86:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_dma.c ****   @endverbatim
   87:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_dma.c ****   */
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccJKgaEv.s 			page 3
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccg3eK6z.s 			page 3
 
 
   88:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_dma.c **** 
@@ -178,7 +178,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccJKgaEv.s 			page 1
  142:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_dma.c ****   * @{
  143:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_dma.c ****   */
  144:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_dma.c **** 
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccJKgaEv.s 			page 4
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccg3eK6z.s 			page 4
 
 
  145:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_dma.c **** /**
@@ -238,7 +238,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccJKgaEv.s 			page 1
  199:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_dma.c ****   /* Prepare the DMA Channel configuration */
  200:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_dma.c ****   tmp |=  hdma->Init.Direction        |
  201:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_dma.c ****           hdma->Init.PeriphInc           | hdma->Init.MemInc           |
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccJKgaEv.s 			page 5
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccg3eK6z.s 			page 5
 
 
  202:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_dma.c ****           hdma->Init.PeriphDataAlignment | hdma->Init.MemDataAlignment |
@@ -298,7 +298,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccJKgaEv.s 			page 1
  256:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_dma.c **** 
  257:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_dma.c **** /**
  258:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_dma.c ****   * @brief  DeInitialize the DMA peripheral.
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccJKgaEv.s 			page 6
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccg3eK6z.s 			page 6
 
 
  259:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_dma.c ****   * @param  hdma pointer to a DMA_HandleTypeDef structure that contains
@@ -358,7 +358,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccJKgaEv.s 			page 1
  313:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_dma.c ****        DMAmuxRequestGen, DMAmuxRequestGenStatus and DMAmuxRequestGenStatusMask
  314:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_dma.c ****     */
  315:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_dma.c ****     DMA_CalcDMAMUXRequestGenBaseAndMask(hdma);
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccJKgaEv.s 			page 7
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccg3eK6z.s 			page 7
 
 
  316:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_dma.c **** 
@@ -418,7 +418,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccJKgaEv.s 			page 1
  370:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_dma.c ****   * @brief  Start the DMA Transfer.
  371:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_dma.c ****   * @param  hdma pointer to a DMA_HandleTypeDef structure that contains
  372:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_dma.c ****   *               the configuration information for the specified DMA Channel.
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccJKgaEv.s 			page 8
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccg3eK6z.s 			page 8
 
 
  373:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_dma.c ****   * @param  SrcAddress The source memory Buffer address
@@ -478,7 +478,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccJKgaEv.s 			page 1
  427:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_dma.c ****   assert_param(IS_DMA_BUFFER_SIZE(DataLength));
  428:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_dma.c **** 
  429:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_dma.c ****   /* Process locked */
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccJKgaEv.s 			page 9
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccg3eK6z.s 			page 9
 
 
  430:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_dma.c ****   __HAL_LOCK(hdma);
@@ -538,7 +538,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccJKgaEv.s 			page 1
  484:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_dma.c **** 
  485:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_dma.c **** /**
  486:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_dma.c ****   * @brief  Abort the DMA Transfer.
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccJKgaEv.s 			page 10
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccg3eK6z.s 			page 10
 
 
  487:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_dma.c ****   * @param  hdma pointer to a DMA_HandleTypeDef structure that contains
@@ -598,7 +598,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccJKgaEv.s 			page 1
  541:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_dma.c ****   *              the configuration information for the specified DMA Channel.
  542:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_dma.c ****   * @retval HAL status
  543:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_dma.c ****   */
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccJKgaEv.s 			page 11
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccg3eK6z.s 			page 11
 
 
  544:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_dma.c **** HAL_StatusTypeDef HAL_DMA_Abort_IT(DMA_HandleTypeDef *hdma)
@@ -658,7 +658,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccJKgaEv.s 			page 1
  598:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_dma.c ****     }
  599:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_dma.c ****   }
  600:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_dma.c ****   return status;
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccJKgaEv.s 			page 12
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccg3eK6z.s 			page 12
 
 
  601:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_dma.c **** }
@@ -718,7 +718,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccJKgaEv.s 			page 1
  655:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_dma.c ****       hdma->DmaBaseAddress->IFCR = ((uint32_t)DMA_ISR_GIF1 << (hdma->ChannelIndex & 0x1FU));
  656:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_dma.c **** 
  657:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_dma.c ****       /* Update error code */
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccJKgaEv.s 			page 13
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccg3eK6z.s 			page 13
 
 
  658:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_dma.c ****       hdma->ErrorCode = HAL_DMA_ERROR_TE;
@@ -778,7 +778,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccJKgaEv.s 			page 1
  712:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_dma.c ****   }
  713:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_dma.c **** 
  714:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_dma.c ****   if (HAL_DMA_FULL_TRANSFER == CompleteLevel)
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccJKgaEv.s 			page 14
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccg3eK6z.s 			page 14
 
 
  715:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_dma.c ****   {
@@ -838,7 +838,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccJKgaEv.s 			page 1
  769:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_dma.c ****            && (0U != (source_it & DMA_IT_TC)))
  770:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_dma.c ****   {
  771:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_dma.c ****     if ((hdma->Instance->CCR & DMA_CCR_CIRC) == 0U)
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccJKgaEv.s 			page 15
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccg3eK6z.s 			page 15
 
 
  772:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_dma.c ****     {
@@ -898,7 +898,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccJKgaEv.s 			page 1
  826:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_dma.c ****   * @brief  Register callbacks
  827:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_dma.c ****   * @param  hdma                 pointer to a DMA_HandleTypeDef structure that contains
  828:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_dma.c ****   *                               the configuration information for the specified DMA Channel.
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccJKgaEv.s 			page 16
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccg3eK6z.s 			page 16
 
 
  829:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_dma.c ****   * @param  CallbackID           User Callback identifier
@@ -958,7 +958,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccJKgaEv.s 			page 1
  883:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_dma.c ****   *                               a HAL_DMA_CallbackIDTypeDef ENUM as parameter.
  884:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_dma.c ****   * @retval HAL status
  885:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_dma.c ****   */
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccJKgaEv.s 			page 17
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccg3eK6z.s 			page 17
 
 
  886:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_dma.c **** HAL_StatusTypeDef HAL_DMA_UnRegisterCallback(DMA_HandleTypeDef *hdma, HAL_DMA_CallbackIDTypeDef Cal
@@ -1018,7 +1018,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccJKgaEv.s 			page 1
  940:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_dma.c **** 
  941:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_dma.c **** 
  942:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_dma.c **** /** @defgroup DMA_Exported_Functions_Group3 Peripheral State and Errors functions
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccJKgaEv.s 			page 18
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccg3eK6z.s 			page 18
 
 
  943:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_dma.c ****   *  @brief    Peripheral State and Errors functions
@@ -1078,7 +1078,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccJKgaEv.s 			page 1
  997:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_dma.c ****   * @param  SrcAddress The source memory Buffer address
  998:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_dma.c ****   * @param  DstAddress The destination memory Buffer address
  999:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_dma.c ****   * @param  DataLength The length of data to be transferred from source to destination
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccJKgaEv.s 			page 19
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccg3eK6z.s 			page 19
 
 
 1000:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_dma.c ****   * @retval HAL status
@@ -1138,7 +1138,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccJKgaEv.s 			page 1
 1015:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_dma.c **** 
 1016:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_dma.c ****   /* Configure DMA Channel data length */
 1017:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_dma.c ****   hdma->Instance->CNDTR = DataLength;
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccJKgaEv.s 			page 20
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccg3eK6z.s 			page 20
 
 
   68              		.loc 1 1017 3 is_stmt 1 view .LVU16
@@ -1198,7 +1198,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccJKgaEv.s 			page 1
 1023:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_dma.c **** 
  102              		.loc 1 1023 5 is_stmt 1 view .LVU29
 1023:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_dma.c **** 
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccJKgaEv.s 			page 21
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccg3eK6z.s 			page 21
 
 
  103              		.loc 1 1023 9 is_stmt 0 view .LVU30
@@ -1258,7 +1258,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccJKgaEv.s 			page 1
  140 0006 13D8     		bhi	.L9
 1053:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_dma.c ****   {
 1054:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_dma.c ****     /* DMA1 */
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccJKgaEv.s 			page 22
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccg3eK6z.s 			page 22
 
 
 1055:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_dma.c ****     DMAMUX1_ChannelBase = DMAMUX1_Channel0;
@@ -1318,7 +1318,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccJKgaEv.s 			page 1
 1073:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_dma.c **** }
  177              		.loc 1 1073 1 view .LVU59
  178 002e 7047     		bx	lr
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccJKgaEv.s 			page 23
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccg3eK6z.s 			page 23
 
 
  179              	.LVL9:
@@ -1378,7 +1378,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccJKgaEv.s 			page 1
 1088:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_dma.c **** 
 1089:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_dma.c ****   hdma->DMAmuxRequestGenStatus = DMAMUX1_RequestGenStatus;
  220              		.loc 1 1089 3 is_stmt 1 view .LVU67
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccJKgaEv.s 			page 24
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccg3eK6z.s 			page 24
 
 
  221              		.loc 1 1089 32 is_stmt 0 view .LVU68
@@ -1438,7 +1438,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccJKgaEv.s 			page 1
  269              		.cfi_offset 14, -4
  270 0006 0446     		mov	r4, r0
  163:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_dma.c ****   assert_param(IS_DMA_DIRECTION(hdma->Init.Direction));
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccJKgaEv.s 			page 25
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccg3eK6z.s 			page 25
 
 
  271              		.loc 1 163 3 is_stmt 1 view .LVU80
@@ -1498,7 +1498,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccJKgaEv.s 			page 1
  305              		.loc 1 189 15 is_stmt 0 view .LVU100
  306 0024 0223     		movs	r3, #2
  307 0026 84F82530 		strb	r3, [r4, #37]
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccJKgaEv.s 			page 26
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccg3eK6z.s 			page 26
 
 
  192:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_dma.c **** 
@@ -1558,7 +1558,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccJKgaEv.s 			page 1
  200:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_dma.c ****           hdma->Init.PeriphInc           | hdma->Init.MemInc           |
  344              		.loc 1 200 7 view .LVU119
  345 004a 0B43     		orrs	r3, r3, r1
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccJKgaEv.s 			page 27
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccg3eK6z.s 			page 27
 
 
  346              	.LVL18:
@@ -1618,7 +1618,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccJKgaEv.s 			page 1
  382 006e 19D9     		bls	.L28
  240:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_dma.c ****     hdma->DMAmuxRequestGenStatus = 0U;
  383              		.loc 1 240 5 is_stmt 1 view .LVU138
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccJKgaEv.s 			page 28
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccg3eK6z.s 			page 28
 
 
  240:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_dma.c ****     hdma->DMAmuxRequestGenStatus = 0U;
@@ -1678,7 +1678,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccJKgaEv.s 			page 1
  420              		.loc 1 184 24 view .LVU156
  421 0096 4364     		str	r3, [r0, #68]
  185:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_dma.c ****   }
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccJKgaEv.s 			page 29
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccg3eK6z.s 			page 29
 
 
  422              		.loc 1 185 5 is_stmt 1 view .LVU157
@@ -1738,7 +1738,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccJKgaEv.s 			page 1
  463              	.L30:
  464              		.align	2
  465              	.L29:
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccJKgaEv.s 			page 30
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccg3eK6z.s 			page 30
 
 
  466 00bc 07040240 		.word	1073873927
@@ -1798,7 +1798,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccJKgaEv.s 			page 1
  513 0018 2CD8     		bhi	.L33
  282:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_dma.c ****     hdma->DmaBaseAddress = DMA1;
  514              		.loc 1 282 5 is_stmt 1 view .LVU180
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccJKgaEv.s 			page 31
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccg3eK6z.s 			page 31
 
 
  282:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_dma.c ****     hdma->DmaBaseAddress = DMA1;
@@ -1858,7 +1858,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccJKgaEv.s 			page 1
  304:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_dma.c **** 
  553              		.loc 1 304 3 is_stmt 1 view .LVU197
  304:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_dma.c **** 
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccJKgaEv.s 			page 32
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccg3eK6z.s 			page 32
 
 
  554              		.loc 1 304 7 is_stmt 0 view .LVU198
@@ -1918,7 +1918,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccJKgaEv.s 			page 1
  589 0062 2063     		str	r0, [r4, #48]
  331:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_dma.c ****   hdma->XferAbortCallback = NULL;
  590              		.loc 1 331 3 is_stmt 1 view .LVU218
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccJKgaEv.s 			page 33
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccg3eK6z.s 			page 33
 
 
  331:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_dma.c ****   hdma->XferAbortCallback = NULL;
@@ -1978,7 +1978,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccJKgaEv.s 			page 1
  626 0086 0364     		str	r3, [r0, #64]
  627 0088 D1E7     		b	.L34
  628              	.LVL29:
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccJKgaEv.s 			page 34
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccg3eK6z.s 			page 34
 
 
  629              	.L41:
@@ -2038,7 +2038,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccJKgaEv.s 			page 1
  674              		.syntax unified
  675              		.thumb
  676              		.thumb_func
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccJKgaEv.s 			page 35
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccg3eK6z.s 			page 35
 
 
  678              	HAL_DMA_Start:
@@ -2098,7 +2098,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccJKgaEv.s 			page 1
  717              		.loc 1 406 5 is_stmt 0 view .LVU262
  718 001c 84F82430 		strb	r3, [r4, #36]
  406:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_dma.c ****     status = HAL_BUSY;
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccJKgaEv.s 			page 36
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccg3eK6z.s 			page 36
 
 
  719              		.loc 1 406 5 is_stmt 1 view .LVU263
@@ -2158,7 +2158,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccJKgaEv.s 			page 1
  761              	.LFE134:
  763              		.section	.text.HAL_DMA_Start_IT,"ax",%progbits
  764              		.align	1
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccJKgaEv.s 			page 37
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccg3eK6z.s 			page 37
 
 
  765              		.global	HAL_DMA_Start_IT
@@ -2218,7 +2218,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccJKgaEv.s 			page 1
  806              		.loc 1 477 5 view .LVU289
  807 001a 0023     		movs	r3, #0
  808              	.LVL45:
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccJKgaEv.s 			page 38
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccg3eK6z.s 			page 38
 
 
  477:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_dma.c **** 
@@ -2278,7 +2278,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccJKgaEv.s 			page 1
  848 004a 1360     		str	r3, [r2]
  849              	.L54:
  458:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_dma.c ****     {
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccJKgaEv.s 			page 39
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccg3eK6z.s 			page 39
 
 
  850              		.loc 1 458 5 view .LVU305
@@ -2338,7 +2338,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccJKgaEv.s 			page 1
  889 007c 23F00403 		bic	r3, r3, #4
  890 0080 1360     		str	r3, [r2]
  454:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_dma.c ****     }
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccJKgaEv.s 			page 40
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccg3eK6z.s 			page 40
 
 
  891              		.loc 1 454 7 view .LVU321
@@ -2398,7 +2398,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccJKgaEv.s 			page 1
  936              		.loc 1 500 12 is_stmt 0 view .LVU332
  937 000e 0120     		movs	r0, #1
  938              	.LVL54:
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccJKgaEv.s 			page 41
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccg3eK6z.s 			page 41
 
 
  939              	.L62:
@@ -2458,7 +2458,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccJKgaEv.s 			page 1
  514:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_dma.c ****      
  977              		.loc 1 514 10 view .LVU349
  978 0042 006C     		ldr	r0, [r0, #64]
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccJKgaEv.s 			page 42
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccg3eK6z.s 			page 42
 
 
  979              	.LVL56:
@@ -2518,7 +2518,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccJKgaEv.s 			page 1
  1016              		.cfi_endproc
  1017              	.LFE136:
  1019              		.section	.text.HAL_DMA_Abort_IT,"ax",%progbits
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccJKgaEv.s 			page 43
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccg3eK6z.s 			page 43
 
 
  1020              		.align	1
@@ -2578,7 +2578,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccJKgaEv.s 			page 1
  559:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_dma.c ****   }
  1061              		.loc 1 559 12 is_stmt 0 view .LVU381
  1062 001a 1846     		mov	r0, r3
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccJKgaEv.s 			page 44
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccg3eK6z.s 			page 44
 
 
  1063              	.LVL60:
@@ -2638,7 +2638,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccJKgaEv.s 			page 1
  1101              		.loc 1 576 9 is_stmt 0 view .LVU397
  1102 004a C36C     		ldr	r3, [r0, #76]
  576:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_dma.c **** 
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccJKgaEv.s 			page 45
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccg3eK6z.s 			page 45
 
 
  1103              		.loc 1 576 42 view .LVU398
@@ -2698,7 +2698,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccJKgaEv.s 			page 1
  1138              		.loc 1 595 8 view .LVU417
  1139 0070 13B1     		cbz	r3, .L68
  597:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_dma.c ****     }
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccJKgaEv.s 			page 46
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccg3eK6z.s 			page 46
 
 
  1140              		.loc 1 597 7 is_stmt 1 view .LVU418
@@ -2758,7 +2758,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccJKgaEv.s 			page 1
  1186 000a 022B     		cmp	r3, #2
  1187 000c 07D0     		beq	.L71
  620:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_dma.c ****     __HAL_UNLOCK(hdma);
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccJKgaEv.s 			page 47
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccg3eK6z.s 			page 47
 
 
  1188              		.loc 1 620 5 is_stmt 1 view .LVU429
@@ -2818,7 +2818,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccJKgaEv.s 			page 1
  637:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_dma.c ****   }
  1225              		.loc 1 637 10 view .LVU447
  1226 0034 0226     		movs	r6, #2
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccJKgaEv.s 			page 48
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccg3eK6z.s 			page 48
 
 
  1227 0036 9E40     		lsls	r6, r6, r3
@@ -2878,7 +2878,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccJKgaEv.s 			page 1
  1264              		.loc 1 671 7 is_stmt 1 view .LVU464
  671:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_dma.c ****       {
  1265              		.loc 1 671 13 is_stmt 0 view .LVU465
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccJKgaEv.s 			page 49
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccg3eK6z.s 			page 49
 
 
  1266 0062 FFF7FEFF 		bl	HAL_GetTick
@@ -2938,7 +2938,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccJKgaEv.s 			page 1
  1303              		.loc 1 629 12 view .LVU482
  1304 008c C5E7     		b	.L72
  1305              	.LVL74:
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccJKgaEv.s 			page 50
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccg3eK6z.s 			page 50
 
 
  1306              	.L74:
@@ -2998,7 +2998,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccJKgaEv.s 			page 1
  688:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_dma.c ****   {
  1342              		.loc 1 688 6 view .LVU501
  1343 00b2 7BB1     		cbz	r3, .L81
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccJKgaEv.s 			page 51
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccg3eK6z.s 			page 51
 
 
  691:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_dma.c ****     {
@@ -3058,7 +3058,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccJKgaEv.s 			page 1
  1379              		.loc 1 705 45 view .LVU520
  1380 00d8 226D     		ldr	r2, [r4, #80]
  705:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_dma.c ****   {
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccJKgaEv.s 			page 52
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccg3eK6z.s 			page 52
 
 
  1381              		.loc 1 705 6 view .LVU521
@@ -3118,7 +3118,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccJKgaEv.s 			page 1
  730:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_dma.c **** 
  1418              		.loc 1 730 3 view .LVU539
  732:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_dma.c **** }
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccJKgaEv.s 			page 53
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccg3eK6z.s 			page 53
 
 
  1419              		.loc 1 732 3 view .LVU540
@@ -3178,7 +3178,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccJKgaEv.s 			page 1
  1463              		.loc 1 743 12 view .LVU552
  1464 0004 1968     		ldr	r1, [r3]
  1465              	.LVL77:
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccJKgaEv.s 			page 54
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccg3eK6z.s 			page 54
 
 
  744:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_dma.c **** 
@@ -3238,7 +3238,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccJKgaEv.s 			page 1
  1503 0034 016C     		ldr	r1, [r0, #64]
  1504              	.LVL79:
  756:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_dma.c **** 
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccJKgaEv.s 			page 55
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccg3eK6z.s 			page 55
 
 
  1505              		.loc 1 756 59 view .LVU570
@@ -3298,7 +3298,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccJKgaEv.s 			page 1
  777:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_dma.c ****     }
  1544              		.loc 1 777 19 is_stmt 0 view .LVU586
  1545 0062 0123     		movs	r3, #1
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccJKgaEv.s 			page 56
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccg3eK6z.s 			page 56
 
 
  1546 0064 80F82530 		strb	r3, [r0, #37]
@@ -3358,7 +3358,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccJKgaEv.s 			page 1
  1583              		.loc 1 792 11 view .LVU603
  1584 008c 0B42     		tst	r3, r1
  1585 008e D8D0     		beq	.L89
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccJKgaEv.s 			page 57
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccg3eK6z.s 			page 57
 
 
  793:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_dma.c ****   {
@@ -3418,7 +3418,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccJKgaEv.s 			page 1
  1622 00be C0D0     		beq	.L89
  815:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_dma.c ****     }
  1623              		.loc 1 815 7 is_stmt 1 view .LVU622
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccJKgaEv.s 			page 58
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccg3eK6z.s 			page 58
 
 
  1624 00c0 9847     		blx	r3
@@ -3478,7 +3478,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccJKgaEv.s 			page 1
  1667 0018 BCF1010F 		cmp	ip, #1
  1668 001c 04D0     		beq	.L107
  869:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_dma.c ****   }
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccJKgaEv.s 			page 59
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccg3eK6z.s 			page 59
 
 
  1669              		.loc 1 869 12 view .LVU636
@@ -3538,7 +3538,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccJKgaEv.s 			page 1
  1708              		.loc 1 852 9 is_stmt 1 view .LVU651
  837:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_dma.c **** 
  1709              		.loc 1 837 21 is_stmt 0 view .LVU652
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccJKgaEv.s 			page 60
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccg3eK6z.s 			page 60
 
 
  1710 003c 0020     		movs	r0, #0
@@ -3598,7 +3598,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccJKgaEv.s 			page 1
  1752              		@ frame_needed = 0, uses_anonymous_args = 0
  1753              		@ link register save eliminated.
  887:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_dma.c ****   HAL_StatusTypeDef status = HAL_OK;
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccJKgaEv.s 			page 61
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccg3eK6z.s 			page 61
 
 
  1754              		.loc 1 887 1 is_stmt 0 view .LVU667
@@ -3658,7 +3658,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccJKgaEv.s 			page 1
  1793              	.L112:
  1794 002c 03       		.byte	(.L116-.L112)/2
  1795 002d 07       		.byte	(.L115-.L112)/2
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccJKgaEv.s 			page 62
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccg3eK6z.s 			page 62
 
 
  1796 002e 0A       		.byte	(.L114-.L112)/2
@@ -3718,7 +3718,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccJKgaEv.s 			page 1
  1834 004c 0020     		movs	r0, #0
  1835 004e D862     		str	r0, [r3, #44]
  915:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_dma.c ****         hdma->XferErrorCallback = NULL;
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccJKgaEv.s 			page 63
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccg3eK6z.s 			page 63
 
 
  1836              		.loc 1 915 9 is_stmt 1 view .LVU699
@@ -3778,7 +3778,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccJKgaEv.s 			page 1
  1881              		.section	.text.HAL_DMA_GetError,"ax",%progbits
  1882              		.align	1
  1883              		.global	HAL_DMA_GetError
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccJKgaEv.s 			page 64
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccg3eK6z.s 			page 64
 
 
  1884              		.syntax unified
@@ -3812,50 +3812,50 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccJKgaEv.s 			page 1
  1910              		.file 5 "Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_def.h"
  1911              		.file 6 "Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_dma.h"
  1912              		.file 7 "Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal.h"
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccJKgaEv.s 			page 65
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccg3eK6z.s 			page 65
 
 
 DEFINED SYMBOLS
                             *ABS*:00000000 stm32g4xx_hal_dma.c
-C:\Users\Nathan\AppData\Local\Temp\ccJKgaEv.s:21     .text.DMA_SetConfig:00000000 $t
-C:\Users\Nathan\AppData\Local\Temp\ccJKgaEv.s:26     .text.DMA_SetConfig:00000000 DMA_SetConfig
-C:\Users\Nathan\AppData\Local\Temp\ccJKgaEv.s:118    .text.DMA_CalcDMAMUXChannelBaseAndMask:00000000 $t
-C:\Users\Nathan\AppData\Local\Temp\ccJKgaEv.s:123    .text.DMA_CalcDMAMUXChannelBaseAndMask:00000000 DMA_CalcDMAMUXChannelBaseAndMask
-C:\Users\Nathan\AppData\Local\Temp\ccJKgaEv.s:187    .text.DMA_CalcDMAMUXChannelBaseAndMask:00000034 $d
-C:\Users\Nathan\AppData\Local\Temp\ccJKgaEv.s:196    .text.DMA_CalcDMAMUXRequestGenBaseAndMask:00000000 $t
-C:\Users\Nathan\AppData\Local\Temp\ccJKgaEv.s:201    .text.DMA_CalcDMAMUXRequestGenBaseAndMask:00000000 DMA_CalcDMAMUXRequestGenBaseAndMask
-C:\Users\Nathan\AppData\Local\Temp\ccJKgaEv.s:241    .text.DMA_CalcDMAMUXRequestGenBaseAndMask:00000020 $d
-C:\Users\Nathan\AppData\Local\Temp\ccJKgaEv.s:247    .text.HAL_DMA_Init:00000000 $t
-C:\Users\Nathan\AppData\Local\Temp\ccJKgaEv.s:253    .text.HAL_DMA_Init:00000000 HAL_DMA_Init
-C:\Users\Nathan\AppData\Local\Temp\ccJKgaEv.s:466    .text.HAL_DMA_Init:000000bc $d
-C:\Users\Nathan\AppData\Local\Temp\ccJKgaEv.s:476    .text.HAL_DMA_DeInit:00000000 $t
-C:\Users\Nathan\AppData\Local\Temp\ccJKgaEv.s:482    .text.HAL_DMA_DeInit:00000000 HAL_DMA_DeInit
-C:\Users\Nathan\AppData\Local\Temp\ccJKgaEv.s:662    .text.HAL_DMA_DeInit:000000a0 $d
-C:\Users\Nathan\AppData\Local\Temp\ccJKgaEv.s:672    .text.HAL_DMA_Start:00000000 $t
-C:\Users\Nathan\AppData\Local\Temp\ccJKgaEv.s:678    .text.HAL_DMA_Start:00000000 HAL_DMA_Start
-C:\Users\Nathan\AppData\Local\Temp\ccJKgaEv.s:764    .text.HAL_DMA_Start_IT:00000000 $t
-C:\Users\Nathan\AppData\Local\Temp\ccJKgaEv.s:770    .text.HAL_DMA_Start_IT:00000000 HAL_DMA_Start_IT
-C:\Users\Nathan\AppData\Local\Temp\ccJKgaEv.s:906    .text.HAL_DMA_Abort:00000000 $t
-C:\Users\Nathan\AppData\Local\Temp\ccJKgaEv.s:912    .text.HAL_DMA_Abort:00000000 HAL_DMA_Abort
-C:\Users\Nathan\AppData\Local\Temp\ccJKgaEv.s:1020   .text.HAL_DMA_Abort_IT:00000000 $t
-C:\Users\Nathan\AppData\Local\Temp\ccJKgaEv.s:1026   .text.HAL_DMA_Abort_IT:00000000 HAL_DMA_Abort_IT
-C:\Users\Nathan\AppData\Local\Temp\ccJKgaEv.s:1157   .text.HAL_DMA_PollForTransfer:00000000 $t
-C:\Users\Nathan\AppData\Local\Temp\ccJKgaEv.s:1163   .text.HAL_DMA_PollForTransfer:00000000 HAL_DMA_PollForTransfer
-C:\Users\Nathan\AppData\Local\Temp\ccJKgaEv.s:1440   .text.HAL_DMA_IRQHandler:00000000 $t
-C:\Users\Nathan\AppData\Local\Temp\ccJKgaEv.s:1446   .text.HAL_DMA_IRQHandler:00000000 HAL_DMA_IRQHandler
-C:\Users\Nathan\AppData\Local\Temp\ccJKgaEv.s:1633   .text.HAL_DMA_RegisterCallback:00000000 $t
-C:\Users\Nathan\AppData\Local\Temp\ccJKgaEv.s:1639   .text.HAL_DMA_RegisterCallback:00000000 HAL_DMA_RegisterCallback
-C:\Users\Nathan\AppData\Local\Temp\ccJKgaEv.s:1690   .text.HAL_DMA_RegisterCallback:00000030 $d
-C:\Users\Nathan\AppData\Local\Temp\ccJKgaEv.s:1694   .text.HAL_DMA_RegisterCallback:00000034 $t
-C:\Users\Nathan\AppData\Local\Temp\ccJKgaEv.s:1740   .text.HAL_DMA_UnRegisterCallback:00000000 $t
-C:\Users\Nathan\AppData\Local\Temp\ccJKgaEv.s:1746   .text.HAL_DMA_UnRegisterCallback:00000000 HAL_DMA_UnRegisterCallback
-C:\Users\Nathan\AppData\Local\Temp\ccJKgaEv.s:1794   .text.HAL_DMA_UnRegisterCallback:0000002c $d
-C:\Users\Nathan\AppData\Local\Temp\ccJKgaEv.s:1858   .text.HAL_DMA_GetState:00000000 $t
-C:\Users\Nathan\AppData\Local\Temp\ccJKgaEv.s:1864   .text.HAL_DMA_GetState:00000000 HAL_DMA_GetState
-C:\Users\Nathan\AppData\Local\Temp\ccJKgaEv.s:1882   .text.HAL_DMA_GetError:00000000 $t
-C:\Users\Nathan\AppData\Local\Temp\ccJKgaEv.s:1888   .text.HAL_DMA_GetError:00000000 HAL_DMA_GetError
-C:\Users\Nathan\AppData\Local\Temp\ccJKgaEv.s:1799   .text.HAL_DMA_UnRegisterCallback:00000031 $d
-C:\Users\Nathan\AppData\Local\Temp\ccJKgaEv.s:1799   .text.HAL_DMA_UnRegisterCallback:00000032 $t
+C:\Users\Nathan\AppData\Local\Temp\ccg3eK6z.s:21     .text.DMA_SetConfig:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccg3eK6z.s:26     .text.DMA_SetConfig:00000000 DMA_SetConfig
+C:\Users\Nathan\AppData\Local\Temp\ccg3eK6z.s:118    .text.DMA_CalcDMAMUXChannelBaseAndMask:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccg3eK6z.s:123    .text.DMA_CalcDMAMUXChannelBaseAndMask:00000000 DMA_CalcDMAMUXChannelBaseAndMask
+C:\Users\Nathan\AppData\Local\Temp\ccg3eK6z.s:187    .text.DMA_CalcDMAMUXChannelBaseAndMask:00000034 $d
+C:\Users\Nathan\AppData\Local\Temp\ccg3eK6z.s:196    .text.DMA_CalcDMAMUXRequestGenBaseAndMask:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccg3eK6z.s:201    .text.DMA_CalcDMAMUXRequestGenBaseAndMask:00000000 DMA_CalcDMAMUXRequestGenBaseAndMask
+C:\Users\Nathan\AppData\Local\Temp\ccg3eK6z.s:241    .text.DMA_CalcDMAMUXRequestGenBaseAndMask:00000020 $d
+C:\Users\Nathan\AppData\Local\Temp\ccg3eK6z.s:247    .text.HAL_DMA_Init:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccg3eK6z.s:253    .text.HAL_DMA_Init:00000000 HAL_DMA_Init
+C:\Users\Nathan\AppData\Local\Temp\ccg3eK6z.s:466    .text.HAL_DMA_Init:000000bc $d
+C:\Users\Nathan\AppData\Local\Temp\ccg3eK6z.s:476    .text.HAL_DMA_DeInit:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccg3eK6z.s:482    .text.HAL_DMA_DeInit:00000000 HAL_DMA_DeInit
+C:\Users\Nathan\AppData\Local\Temp\ccg3eK6z.s:662    .text.HAL_DMA_DeInit:000000a0 $d
+C:\Users\Nathan\AppData\Local\Temp\ccg3eK6z.s:672    .text.HAL_DMA_Start:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccg3eK6z.s:678    .text.HAL_DMA_Start:00000000 HAL_DMA_Start
+C:\Users\Nathan\AppData\Local\Temp\ccg3eK6z.s:764    .text.HAL_DMA_Start_IT:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccg3eK6z.s:770    .text.HAL_DMA_Start_IT:00000000 HAL_DMA_Start_IT
+C:\Users\Nathan\AppData\Local\Temp\ccg3eK6z.s:906    .text.HAL_DMA_Abort:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccg3eK6z.s:912    .text.HAL_DMA_Abort:00000000 HAL_DMA_Abort
+C:\Users\Nathan\AppData\Local\Temp\ccg3eK6z.s:1020   .text.HAL_DMA_Abort_IT:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccg3eK6z.s:1026   .text.HAL_DMA_Abort_IT:00000000 HAL_DMA_Abort_IT
+C:\Users\Nathan\AppData\Local\Temp\ccg3eK6z.s:1157   .text.HAL_DMA_PollForTransfer:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccg3eK6z.s:1163   .text.HAL_DMA_PollForTransfer:00000000 HAL_DMA_PollForTransfer
+C:\Users\Nathan\AppData\Local\Temp\ccg3eK6z.s:1440   .text.HAL_DMA_IRQHandler:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccg3eK6z.s:1446   .text.HAL_DMA_IRQHandler:00000000 HAL_DMA_IRQHandler
+C:\Users\Nathan\AppData\Local\Temp\ccg3eK6z.s:1633   .text.HAL_DMA_RegisterCallback:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccg3eK6z.s:1639   .text.HAL_DMA_RegisterCallback:00000000 HAL_DMA_RegisterCallback
+C:\Users\Nathan\AppData\Local\Temp\ccg3eK6z.s:1690   .text.HAL_DMA_RegisterCallback:00000030 $d
+C:\Users\Nathan\AppData\Local\Temp\ccg3eK6z.s:1694   .text.HAL_DMA_RegisterCallback:00000034 $t
+C:\Users\Nathan\AppData\Local\Temp\ccg3eK6z.s:1740   .text.HAL_DMA_UnRegisterCallback:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccg3eK6z.s:1746   .text.HAL_DMA_UnRegisterCallback:00000000 HAL_DMA_UnRegisterCallback
+C:\Users\Nathan\AppData\Local\Temp\ccg3eK6z.s:1794   .text.HAL_DMA_UnRegisterCallback:0000002c $d
+C:\Users\Nathan\AppData\Local\Temp\ccg3eK6z.s:1858   .text.HAL_DMA_GetState:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccg3eK6z.s:1864   .text.HAL_DMA_GetState:00000000 HAL_DMA_GetState
+C:\Users\Nathan\AppData\Local\Temp\ccg3eK6z.s:1882   .text.HAL_DMA_GetError:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccg3eK6z.s:1888   .text.HAL_DMA_GetError:00000000 HAL_DMA_GetError
+C:\Users\Nathan\AppData\Local\Temp\ccg3eK6z.s:1799   .text.HAL_DMA_UnRegisterCallback:00000031 $d
+C:\Users\Nathan\AppData\Local\Temp\ccg3eK6z.s:1799   .text.HAL_DMA_UnRegisterCallback:00000032 $t
 
 UNDEFINED SYMBOLS
 HAL_GetTick

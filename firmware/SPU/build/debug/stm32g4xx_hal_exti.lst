@@ -1,4 +1,4 @@
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccNa02dj.s 			page 1
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc5uN4wb.s 			page 1
 
 
    1              		.cpu cortex-m4
@@ -58,7 +58,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccNa02dj.s 			page 1
   27:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_exti.c ****   [..]
   28:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_exti.c ****     (+) Each Exti line can be configured within this driver.
   29:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_exti.c **** 
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccNa02dj.s 			page 2
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc5uN4wb.s 			page 2
 
 
   30:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_exti.c ****     (+) Exti line can be configured in 3 different modes
@@ -118,7 +118,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccNa02dj.s 			page 1
   84:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_exti.c ****   */
   85:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_exti.c **** 
   86:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_exti.c **** /* Includes ------------------------------------------------------------------*/
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccNa02dj.s 			page 3
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc5uN4wb.s 			page 3
 
 
   87:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_exti.c **** #include "stm32g4xx_hal.h"
@@ -178,7 +178,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccNa02dj.s 			page 1
  141:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_exti.c ****   * @param  pExtiConfig Pointer on EXTI configuration to be set.
  142:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_exti.c ****   * @retval HAL Status.
  143:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_exti.c ****   */
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccNa02dj.s 			page 4
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc5uN4wb.s 			page 4
 
 
  144:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_exti.c **** HAL_StatusTypeDef HAL_EXTI_SetConfigLine(EXTI_HandleTypeDef *hexti, EXTI_ConfigTypeDef *pExtiConfig
@@ -238,7 +238,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccNa02dj.s 			page 1
  166:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_exti.c ****   offset = ((pExtiConfig->Line & EXTI_REG_MASK) >> EXTI_REG_SHIFT);
   61              		.loc 1 166 3 is_stmt 1 view .LVU15
   62              		.loc 1 166 10 is_stmt 0 view .LVU16
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccNa02dj.s 			page 5
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc5uN4wb.s 			page 5
 
 
   63 000e C2F30043 		ubfx	r3, r2, #16, #1
@@ -298,7 +298,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccNa02dj.s 			page 1
   99 0032 0543     		orrs	r5, r5, r0
  100              	.LVL7:
  101              	.L5:
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccNa02dj.s 			page 6
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc5uN4wb.s 			page 6
 
 
  185:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_exti.c ****     }
@@ -358,7 +358,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccNa02dj.s 			page 1
  128 004c 0D68     		ldr	r5, [r1]
  129              	.LVL11:
  130              		.loc 1 212 28 view .LVU49
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccNa02dj.s 			page 7
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc5uN4wb.s 			page 7
 
 
  131 004e 05F0C06C 		and	ip, r5, #100663296
@@ -418,7 +418,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccNa02dj.s 			page 1
  238:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_exti.c ****   /* Store interrupt mode */
  239:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_exti.c ****   *regaddr = regval;
  160              		.loc 1 239 3 is_stmt 1 view .LVU60
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccNa02dj.s 			page 8
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc5uN4wb.s 			page 8
 
 
  161              		.loc 1 239 12 is_stmt 0 view .LVU61
@@ -478,7 +478,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccNa02dj.s 			page 1
  195              		.cfi_restore 5
  196              		.cfi_restore 4
  197              		.cfi_def_cfa_offset 0
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccNa02dj.s 			page 9
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc5uN4wb.s 			page 9
 
 
  198              	.LVL23:
@@ -538,7 +538,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccNa02dj.s 			page 1
  237              		.loc 1 218 40 view .LVU91
  238 00a2 0725     		movs	r5, #7
  239 00a4 9540     		lsls	r5, r5, r2
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccNa02dj.s 			page 10
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc5uN4wb.s 			page 10
 
 
  218:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_exti.c ****       regval |= (pExtiConfig->GPIOSel << (SYSCFG_EXTICR1_EXTI1_Pos * (linepos & 0x03u)));
@@ -598,7 +598,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccNa02dj.s 			page 1
  280              	.LVL39:
  155:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_exti.c ****   }
  281              		.loc 1 155 12 view .LVU106
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccNa02dj.s 			page 11
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc5uN4wb.s 			page 11
 
 
  282 00c4 7047     		bx	lr
@@ -658,7 +658,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccNa02dj.s 			page 1
  319              		.loc 1 277 3 view .LVU115
  320              		.loc 1 277 6 is_stmt 0 view .LVU116
  321 0000 0028     		cmp	r0, #0
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccNa02dj.s 			page 12
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc5uN4wb.s 			page 12
 
 
  322 0002 4CD0     		beq	.L28
@@ -718,7 +718,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccNa02dj.s 			page 1
  356 0022 0CF5823C 		add	ip, ip, #66560
  357              	.LVL47:
  297:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_exti.c ****   regval = *regaddr;
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccNa02dj.s 			page 13
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc5uN4wb.s 			page 13
 
 
  358              		.loc 1 297 3 is_stmt 1 view .LVU132
@@ -778,7 +778,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccNa02dj.s 			page 1
  317:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_exti.c ****   }
  318:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_exti.c **** 
  319:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_exti.c ****   /* Get default Trigger and GPIOSel configuration */
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccNa02dj.s 			page 14
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc5uN4wb.s 			page 14
 
 
  320:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_exti.c ****   pExtiConfig->Trigger = EXTI_TRIGGER_NONE;
@@ -838,7 +838,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccNa02dj.s 			page 1
  429 005c 0059     		ldr	r0, [r0, r4]
  430              	.LVL57:
  338:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_exti.c **** 
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccNa02dj.s 			page 15
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc5uN4wb.s 			page 15
 
 
  339:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_exti.c ****     /* Check if configuration of selected line is enable */
@@ -898,7 +898,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccNa02dj.s 			page 1
  348:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_exti.c **** 
  465              		.loc 1 348 7 is_stmt 1 view .LVU180
  350:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_exti.c ****       pExtiConfig->GPIOSel = (regval >> (SYSCFG_EXTICR1_EXTI1_Pos * (linepos & 0x03u))) & SYSCFG_EX
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccNa02dj.s 			page 16
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc5uN4wb.s 			page 16
 
 
  466              		.loc 1 350 7 view .LVU181
@@ -958,7 +958,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccNa02dj.s 			page 1
  507 00a4 7047     		bx	lr
  508              	.LVL70:
  509              	.L30:
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccNa02dj.s 			page 17
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc5uN4wb.s 			page 17
 
 
  510              		.cfi_def_cfa_offset 8
@@ -1018,7 +1018,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccNa02dj.s 			page 1
  548              		.loc 1 373 3 view .LVU204
  549              		.loc 1 373 6 is_stmt 0 view .LVU205
  550 0000 0028     		cmp	r0, #0
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccNa02dj.s 			page 18
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc5uN4wb.s 			page 18
 
 
  551 0002 40D0     		beq	.L41
@@ -1078,7 +1078,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccNa02dj.s 			page 1
  587              		.loc 1 390 24 view .LVU220
  588 0024 D543     		mvns	r5, r2
  589              		.loc 1 390 10 view .LVU221
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccNa02dj.s 			page 19
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc5uN4wb.s 			page 19
 
 
  590 0026 20EA0200 		bic	r0, r0, r2
@@ -1138,7 +1138,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccNa02dj.s 			page 1
  629              		.loc 1 405 5 is_stmt 1 view .LVU241
  630              		.loc 1 405 13 is_stmt 0 view .LVU242
  631 0048 134A     		ldr	r2, .L49+8
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccNa02dj.s 			page 20
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc5uN4wb.s 			page 20
 
 
  632              	.LVL86:
@@ -1198,7 +1198,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccNa02dj.s 			page 1
  666              		.loc 1 415 7 is_stmt 1 view .LVU257
  415:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_exti.c ****       SYSCFG->EXTICR[linepos >> 2u] = regval;
  667              		.loc 1 415 80 is_stmt 0 view .LVU258
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccNa02dj.s 			page 21
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc5uN4wb.s 			page 21
 
 
  668 0070 04F00304 		and	r4, r4, #3
@@ -1258,7 +1258,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccNa02dj.s 			page 1
  714              		.cfi_endproc
  715              	.LFE134:
  717              		.section	.text.HAL_EXTI_RegisterCallback,"ax",%progbits
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccNa02dj.s 			page 22
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc5uN4wb.s 			page 22
 
 
  718              		.align	1
@@ -1318,7 +1318,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccNa02dj.s 			page 1
  447:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_exti.c ****       hexti->PendingCallback = NULL;
  747              		.loc 1 447 7 is_stmt 1 view .LVU278
  748              		.loc 1 447 30 is_stmt 0 view .LVU279
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccNa02dj.s 			page 23
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc5uN4wb.s 			page 23
 
 
  749 0008 0023     		movs	r3, #0
@@ -1378,7 +1378,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccNa02dj.s 			page 1
  470:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_exti.c ****   {
  471:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_exti.c ****     return HAL_ERROR;
  472:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_exti.c ****   }
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccNa02dj.s 			page 24
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc5uN4wb.s 			page 24
 
 
  473:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_exti.c ****   else
@@ -1438,7 +1438,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccNa02dj.s 			page 1
  499:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_exti.c **** /**
  500:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_exti.c ****   * @brief  Handle EXTI interrupt request.
  501:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_exti.c ****   * @param  hexti Exti handle.
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccNa02dj.s 			page 25
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc5uN4wb.s 			page 25
 
 
  502:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_exti.c ****   * @retval none.
@@ -1498,7 +1498,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccNa02dj.s 			page 1
  520:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_exti.c ****   if (regval != 0x00u)
  847              		.loc 1 520 3 is_stmt 1 view .LVU313
  848              		.loc 1 520 6 is_stmt 0 view .LVU314
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccNa02dj.s 			page 26
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc5uN4wb.s 			page 26
 
 
  849 0016 0C42     		tst	r4, r1
@@ -1558,7 +1558,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccNa02dj.s 			page 1
  885              		.loc 1 540 1 is_stmt 1 view -0
  886              		.cfi_startproc
  887              		@ args = 0, pretend = 0, frame = 0
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccNa02dj.s 			page 27
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc5uN4wb.s 			page 27
 
 
  888              		@ frame_needed = 0, uses_anonymous_args = 0
@@ -1618,7 +1618,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccNa02dj.s 			page 1
  563:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_exti.c ****   regval = ((*regaddr & maskline) >> linepos);
  920              		.loc 1 563 3 is_stmt 1 view .LVU342
  921              		.loc 1 563 14 is_stmt 0 view .LVU343
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccNa02dj.s 			page 28
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc5uN4wb.s 			page 28
 
 
  922 0012 0858     		ldr	r0, [r1, r0]
@@ -1678,7 +1678,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccNa02dj.s 			page 1
  959              		.loc 1 582 3 view .LVU353
  583:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_exti.c ****   UNUSED(Edge);
  960              		.loc 1 583 3 view .LVU354
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccNa02dj.s 			page 29
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc5uN4wb.s 			page 29
 
 
  584:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_exti.c **** 
@@ -1738,7 +1738,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccNa02dj.s 			page 1
  596:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_exti.c **** 
  597:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_exti.c **** 
  598:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_exti.c **** /**
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccNa02dj.s 			page 30
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc5uN4wb.s 			page 30
 
 
  599:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_exti.c ****   * @brief  Generate a software interrupt for a dedicated line.
@@ -1798,7 +1798,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccNa02dj.s 			page 1
  620:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_exti.c **** }
  1038              		.loc 1 620 1 view .LVU385
  1039 0014 7047     		bx	lr
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccNa02dj.s 			page 31
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc5uN4wb.s 			page 31
 
 
  1040              	.L70:
@@ -1814,35 +1814,35 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccNa02dj.s 			page 1
  1051              		.file 4 "Drivers/CMSIS/Device/ST/STM32G4xx/Include/stm32g474xx.h"
  1052              		.file 5 "Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_def.h"
  1053              		.file 6 "Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_exti.h"
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccNa02dj.s 			page 32
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc5uN4wb.s 			page 32
 
 
 DEFINED SYMBOLS
                             *ABS*:00000000 stm32g4xx_hal_exti.c
-C:\Users\Nathan\AppData\Local\Temp\ccNa02dj.s:21     .text.HAL_EXTI_SetConfigLine:00000000 $t
-C:\Users\Nathan\AppData\Local\Temp\ccNa02dj.s:27     .text.HAL_EXTI_SetConfigLine:00000000 HAL_EXTI_SetConfigLine
-C:\Users\Nathan\AppData\Local\Temp\ccNa02dj.s:293    .text.HAL_EXTI_SetConfigLine:000000cc $d
-C:\Users\Nathan\AppData\Local\Temp\ccNa02dj.s:301    .text.HAL_EXTI_GetConfigLine:00000000 $t
-C:\Users\Nathan\AppData\Local\Temp\ccNa02dj.s:307    .text.HAL_EXTI_GetConfigLine:00000000 HAL_EXTI_GetConfigLine
-C:\Users\Nathan\AppData\Local\Temp\ccNa02dj.s:522    .text.HAL_EXTI_GetConfigLine:000000ac $d
-C:\Users\Nathan\AppData\Local\Temp\ccNa02dj.s:530    .text.HAL_EXTI_ClearConfigLine:00000000 $t
-C:\Users\Nathan\AppData\Local\Temp\ccNa02dj.s:536    .text.HAL_EXTI_ClearConfigLine:00000000 HAL_EXTI_ClearConfigLine
-C:\Users\Nathan\AppData\Local\Temp\ccNa02dj.s:710    .text.HAL_EXTI_ClearConfigLine:00000090 $d
-C:\Users\Nathan\AppData\Local\Temp\ccNa02dj.s:718    .text.HAL_EXTI_RegisterCallback:00000000 $t
-C:\Users\Nathan\AppData\Local\Temp\ccNa02dj.s:724    .text.HAL_EXTI_RegisterCallback:00000000 HAL_EXTI_RegisterCallback
-C:\Users\Nathan\AppData\Local\Temp\ccNa02dj.s:764    .text.HAL_EXTI_GetHandle:00000000 $t
-C:\Users\Nathan\AppData\Local\Temp\ccNa02dj.s:770    .text.HAL_EXTI_GetHandle:00000000 HAL_EXTI_GetHandle
-C:\Users\Nathan\AppData\Local\Temp\ccNa02dj.s:802    .text.HAL_EXTI_IRQHandler:00000000 $t
-C:\Users\Nathan\AppData\Local\Temp\ccNa02dj.s:808    .text.HAL_EXTI_IRQHandler:00000000 HAL_EXTI_IRQHandler
-C:\Users\Nathan\AppData\Local\Temp\ccNa02dj.s:871    .text.HAL_EXTI_IRQHandler:00000024 $d
-C:\Users\Nathan\AppData\Local\Temp\ccNa02dj.s:876    .text.HAL_EXTI_GetPending:00000000 $t
-C:\Users\Nathan\AppData\Local\Temp\ccNa02dj.s:882    .text.HAL_EXTI_GetPending:00000000 HAL_EXTI_GetPending
-C:\Users\Nathan\AppData\Local\Temp\ccNa02dj.s:936    .text.HAL_EXTI_GetPending:0000001c $d
-C:\Users\Nathan\AppData\Local\Temp\ccNa02dj.s:941    .text.HAL_EXTI_ClearPending:00000000 $t
-C:\Users\Nathan\AppData\Local\Temp\ccNa02dj.s:947    .text.HAL_EXTI_ClearPending:00000000 HAL_EXTI_ClearPending
-C:\Users\Nathan\AppData\Local\Temp\ccNa02dj.s:991    .text.HAL_EXTI_ClearPending:00000018 $d
-C:\Users\Nathan\AppData\Local\Temp\ccNa02dj.s:996    .text.HAL_EXTI_GenerateSWI:00000000 $t
-C:\Users\Nathan\AppData\Local\Temp\ccNa02dj.s:1002   .text.HAL_EXTI_GenerateSWI:00000000 HAL_EXTI_GenerateSWI
-C:\Users\Nathan\AppData\Local\Temp\ccNa02dj.s:1043   .text.HAL_EXTI_GenerateSWI:00000018 $d
+C:\Users\Nathan\AppData\Local\Temp\cc5uN4wb.s:21     .text.HAL_EXTI_SetConfigLine:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\cc5uN4wb.s:27     .text.HAL_EXTI_SetConfigLine:00000000 HAL_EXTI_SetConfigLine
+C:\Users\Nathan\AppData\Local\Temp\cc5uN4wb.s:293    .text.HAL_EXTI_SetConfigLine:000000cc $d
+C:\Users\Nathan\AppData\Local\Temp\cc5uN4wb.s:301    .text.HAL_EXTI_GetConfigLine:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\cc5uN4wb.s:307    .text.HAL_EXTI_GetConfigLine:00000000 HAL_EXTI_GetConfigLine
+C:\Users\Nathan\AppData\Local\Temp\cc5uN4wb.s:522    .text.HAL_EXTI_GetConfigLine:000000ac $d
+C:\Users\Nathan\AppData\Local\Temp\cc5uN4wb.s:530    .text.HAL_EXTI_ClearConfigLine:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\cc5uN4wb.s:536    .text.HAL_EXTI_ClearConfigLine:00000000 HAL_EXTI_ClearConfigLine
+C:\Users\Nathan\AppData\Local\Temp\cc5uN4wb.s:710    .text.HAL_EXTI_ClearConfigLine:00000090 $d
+C:\Users\Nathan\AppData\Local\Temp\cc5uN4wb.s:718    .text.HAL_EXTI_RegisterCallback:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\cc5uN4wb.s:724    .text.HAL_EXTI_RegisterCallback:00000000 HAL_EXTI_RegisterCallback
+C:\Users\Nathan\AppData\Local\Temp\cc5uN4wb.s:764    .text.HAL_EXTI_GetHandle:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\cc5uN4wb.s:770    .text.HAL_EXTI_GetHandle:00000000 HAL_EXTI_GetHandle
+C:\Users\Nathan\AppData\Local\Temp\cc5uN4wb.s:802    .text.HAL_EXTI_IRQHandler:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\cc5uN4wb.s:808    .text.HAL_EXTI_IRQHandler:00000000 HAL_EXTI_IRQHandler
+C:\Users\Nathan\AppData\Local\Temp\cc5uN4wb.s:871    .text.HAL_EXTI_IRQHandler:00000024 $d
+C:\Users\Nathan\AppData\Local\Temp\cc5uN4wb.s:876    .text.HAL_EXTI_GetPending:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\cc5uN4wb.s:882    .text.HAL_EXTI_GetPending:00000000 HAL_EXTI_GetPending
+C:\Users\Nathan\AppData\Local\Temp\cc5uN4wb.s:936    .text.HAL_EXTI_GetPending:0000001c $d
+C:\Users\Nathan\AppData\Local\Temp\cc5uN4wb.s:941    .text.HAL_EXTI_ClearPending:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\cc5uN4wb.s:947    .text.HAL_EXTI_ClearPending:00000000 HAL_EXTI_ClearPending
+C:\Users\Nathan\AppData\Local\Temp\cc5uN4wb.s:991    .text.HAL_EXTI_ClearPending:00000018 $d
+C:\Users\Nathan\AppData\Local\Temp\cc5uN4wb.s:996    .text.HAL_EXTI_GenerateSWI:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\cc5uN4wb.s:1002   .text.HAL_EXTI_GenerateSWI:00000000 HAL_EXTI_GenerateSWI
+C:\Users\Nathan\AppData\Local\Temp\cc5uN4wb.s:1043   .text.HAL_EXTI_GenerateSWI:00000018 $d
 
 NO UNDEFINED SYMBOLS

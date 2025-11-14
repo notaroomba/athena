@@ -1,9 +1,13 @@
 /* VERSION 1*/
 
 #include "athena.h"
+#include <string.h>
+#include <stdarg.h>
+#include <stdio.h>
 
 /* Forward Declaration Start */
 extern void HAL_GPIO_WritePin(void* GPIOx, uint16_t GPIO_Pin, int PinState);
+extern void CDC_Transmit_FS(uint8_t* Buf, uint16_t Len);
 extern void HAL_Delay(uint32_t Delay);
 /* Forward Declaration End */
 
@@ -76,4 +80,17 @@ void LED_Test_Sequence() {
     Set_LED_Color(LED_WHITE);
     HAL_Delay(500);
     Set_LED_Color(LED_OFF);
+}
+
+void print(const char* format, ...) {
+    char buffer[256];
+    va_list args;
+    
+    va_start(args, format);
+    int len = vsnprintf(buffer, sizeof(buffer), format, args);
+    va_end(args);
+    
+    if (len > 0 && len < (int)sizeof(buffer)) {
+        CDC_Transmit_FS((uint8_t *)buffer, len);
+    }
 }

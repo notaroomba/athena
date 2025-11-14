@@ -1,4 +1,4 @@
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccvGrplS.s 			page 1
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cciCOtZa.s 			page 1
 
 
    1              		.cpu cortex-m4
@@ -58,7 +58,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccvGrplS.s 			page 1
   28:Core/Src/stm32g4xx_hal_msp.c **** /* USER CODE BEGIN TD */
   29:Core/Src/stm32g4xx_hal_msp.c **** 
   30:Core/Src/stm32g4xx_hal_msp.c **** /* USER CODE END TD */
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccvGrplS.s 			page 2
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cciCOtZa.s 			page 2
 
 
   31:Core/Src/stm32g4xx_hal_msp.c **** 
@@ -118,7 +118,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccvGrplS.s 			page 1
   41              		.loc 1 72 3 view .LVU3
   42 0004 0B4B     		ldr	r3, .L3
   43 0006 1A6E     		ldr	r2, [r3, #96]
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccvGrplS.s 			page 3
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cciCOtZa.s 			page 3
 
 
   44 0008 42F00102 		orr	r2, r2, #1
@@ -178,7 +178,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccvGrplS.s 			page 1
   87              		.syntax unified
   88              		.thumb
   89              		.thumb_func
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccvGrplS.s 			page 4
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cciCOtZa.s 			page 4
 
 
   91              	HAL_FDCAN_MspInit:
@@ -238,7 +238,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccvGrplS.s 			page 1
  100:Core/Src/stm32g4xx_hal_msp.c ****     /* USER CODE END FDCAN2_MspInit 0 */
  101:Core/Src/stm32g4xx_hal_msp.c **** 
  102:Core/Src/stm32g4xx_hal_msp.c ****   /** Initializes the peripherals clocks
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccvGrplS.s 			page 5
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cciCOtZa.s 			page 5
 
 
  103:Core/Src/stm32g4xx_hal_msp.c ****   */
@@ -298,7 +298,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccvGrplS.s 			page 1
  148              		.loc 1 106 9 is_stmt 0 view .LVU31
  149 0032 02A8     		add	r0, sp, #8
  150 0034 FFF7FEFF 		bl	HAL_RCCEx_PeriphCLKConfig
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccvGrplS.s 			page 6
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cciCOtZa.s 			page 6
 
 
  151              	.LVL5:
@@ -358,7 +358,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccvGrplS.s 			page 1
  120:Core/Src/stm32g4xx_hal_msp.c ****     GPIO_InitStruct.Pull = GPIO_NOPULL;
  190              		.loc 1 120 5 is_stmt 1 view .LVU47
  120:Core/Src/stm32g4xx_hal_msp.c ****     GPIO_InitStruct.Pull = GPIO_NOPULL;
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccvGrplS.s 			page 7
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cciCOtZa.s 			page 7
 
 
  191              		.loc 1 120 26 is_stmt 0 view .LVU48
@@ -418,7 +418,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccvGrplS.s 			page 1
  136:Core/Src/stm32g4xx_hal_msp.c ****   * This function freeze the hardware resources used in this example
  137:Core/Src/stm32g4xx_hal_msp.c ****   * @param hfdcan: FDCAN handle pointer
  138:Core/Src/stm32g4xx_hal_msp.c ****   * @retval None
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccvGrplS.s 			page 8
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cciCOtZa.s 			page 8
 
 
  139:Core/Src/stm32g4xx_hal_msp.c ****   */
@@ -478,7 +478,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccvGrplS.s 			page 1
  265 0018 0348     		ldr	r0, .L17+8
  266              	.LVL11:
  154:Core/Src/stm32g4xx_hal_msp.c **** 
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccvGrplS.s 			page 9
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cciCOtZa.s 			page 9
 
 
  267              		.loc 1 154 5 is_stmt 0 view .LVU66
@@ -538,7 +538,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccvGrplS.s 			page 1
  312              		.loc 1 172 28 is_stmt 0 view .LVU73
  313 0012 5422     		movs	r2, #84
  314 0014 02A8     		add	r0, sp, #8
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccvGrplS.s 			page 10
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cciCOtZa.s 			page 10
 
 
  315              	.LVL14:
@@ -598,7 +598,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccvGrplS.s 			page 1
  333 0024 10BD     		pop	{r4, pc}
  334              	.LVL17:
  335              	.L23:
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccvGrplS.s 			page 11
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cciCOtZa.s 			page 11
 
 
  336              		.cfi_restore_state
@@ -658,7 +658,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccvGrplS.s 			page 1
  373              		.loc 1 194 26 is_stmt 0 view .LVU95
  374 004c 1223     		movs	r3, #18
  375 004e 1893     		str	r3, [sp, #96]
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccvGrplS.s 			page 12
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cciCOtZa.s 			page 12
 
 
  195:Core/Src/stm32g4xx_hal_msp.c ****     GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
@@ -718,7 +718,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccvGrplS.s 			page 1
  416 007e 00BF     		.align	2
  417              	.L25:
  418 0080 00540040 		.word	1073763328
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccvGrplS.s 			page 13
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cciCOtZa.s 			page 13
 
 
  419 0084 00100240 		.word	1073876992
@@ -778,7 +778,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccvGrplS.s 			page 1
  233:Core/Src/stm32g4xx_hal_msp.c **** 
  234:Core/Src/stm32g4xx_hal_msp.c ****     /* USER CODE BEGIN I2C1_MspDeInit 1 */
  235:Core/Src/stm32g4xx_hal_msp.c **** 
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccvGrplS.s 			page 14
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cciCOtZa.s 			page 14
 
 
  236:Core/Src/stm32g4xx_hal_msp.c ****     /* USER CODE END I2C1_MspDeInit 1 */
@@ -838,7 +838,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccvGrplS.s 			page 1
  247:Core/Src/stm32g4xx_hal_msp.c **** void HAL_SPI_MspInit(SPI_HandleTypeDef* hspi)
  248:Core/Src/stm32g4xx_hal_msp.c **** {
  492              		.loc 1 248 1 is_stmt 1 view -0
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccvGrplS.s 			page 15
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cciCOtZa.s 			page 15
 
 
  493              		.cfi_startproc
@@ -898,7 +898,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccvGrplS.s 			page 1
  277:Core/Src/stm32g4xx_hal_msp.c **** }
  519              		.loc 1 277 1 view .LVU129
  520 0018 09B0     		add	sp, sp, #36
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccvGrplS.s 			page 16
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cciCOtZa.s 			page 16
 
 
  521              		.cfi_remember_state
@@ -958,7 +958,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccvGrplS.s 			page 1
  561 0046 E023     		movs	r3, #224
  562 0048 0393     		str	r3, [sp, #12]
  265:Core/Src/stm32g4xx_hal_msp.c ****     GPIO_InitStruct.Pull = GPIO_NOPULL;
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccvGrplS.s 			page 17
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cciCOtZa.s 			page 17
 
 
  563              		.loc 1 265 5 is_stmt 1 view .LVU144
@@ -1018,7 +1018,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccvGrplS.s 			page 1
  603              		.loc 1 286 1 is_stmt 0 view .LVU154
  604 0000 08B5     		push	{r3, lr}
  605              		.cfi_def_cfa_offset 8
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccvGrplS.s 			page 18
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cciCOtZa.s 			page 18
 
 
  606              		.cfi_offset 3, -8
@@ -1078,7 +1078,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccvGrplS.s 			page 1
  636 0022 00BF     		.align	2
  637              	.L43:
  638 0024 00300140 		.word	1073819648
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccvGrplS.s 			page 19
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cciCOtZa.s 			page 19
 
 
  639 0028 00100240 		.word	1073876992
@@ -1138,7 +1138,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccvGrplS.s 			page 1
  330:Core/Src/stm32g4xx_hal_msp.c ****     /* USER CODE BEGIN TIM2_MspInit 0 */
  331:Core/Src/stm32g4xx_hal_msp.c **** 
  332:Core/Src/stm32g4xx_hal_msp.c ****     /* USER CODE END TIM2_MspInit 0 */
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccvGrplS.s 			page 20
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cciCOtZa.s 			page 20
 
 
  333:Core/Src/stm32g4xx_hal_msp.c ****     /* Peripheral clock enable */
@@ -1198,7 +1198,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccvGrplS.s 			page 1
  709 0038 03F00103 		and	r3, r3, #1
  710 003c 0193     		str	r3, [sp, #4]
  334:Core/Src/stm32g4xx_hal_msp.c ****     /* USER CODE BEGIN TIM2_MspInit 1 */
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccvGrplS.s 			page 21
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cciCOtZa.s 			page 21
 
 
  711              		.loc 1 334 5 view .LVU181
@@ -1258,7 +1258,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccvGrplS.s 			page 1
  347:Core/Src/stm32g4xx_hal_msp.c ****     /* USER CODE BEGIN TIM1_MspPostInit 0 */
  348:Core/Src/stm32g4xx_hal_msp.c **** 
  349:Core/Src/stm32g4xx_hal_msp.c ****     /* USER CODE END TIM1_MspPostInit 0 */
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccvGrplS.s 			page 22
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cciCOtZa.s 			page 22
 
 
  350:Core/Src/stm32g4xx_hal_msp.c ****     __HAL_RCC_GPIOC_CLK_ENABLE();
@@ -1318,7 +1318,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccvGrplS.s 			page 1
  772              	.LVL42:
  773              	.L57:
  774              		.cfi_restore_state
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccvGrplS.s 			page 23
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cciCOtZa.s 			page 23
 
 
  350:Core/Src/stm32g4xx_hal_msp.c ****     /**TIM1 GPIO Configuration
@@ -1378,7 +1378,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccvGrplS.s 			page 1
  813              	.L58:
  374:Core/Src/stm32g4xx_hal_msp.c ****     /**TIM2 GPIO Configuration
  814              		.loc 1 374 5 is_stmt 1 view .LVU210
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccvGrplS.s 			page 24
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cciCOtZa.s 			page 24
 
 
  815              	.LBB13:
@@ -1438,7 +1438,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccvGrplS.s 			page 1
  854 007a 00BF     		.align	2
  855              	.L59:
  856 007c 002C0140 		.word	1073818624
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccvGrplS.s 			page 25
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cciCOtZa.s 			page 25
 
 
  857 0080 00100240 		.word	1073876992
@@ -1498,7 +1498,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccvGrplS.s 			page 1
  416:Core/Src/stm32g4xx_hal_msp.c ****     /* Peripheral clock disable */
  417:Core/Src/stm32g4xx_hal_msp.c ****     __HAL_RCC_TIM2_CLK_DISABLE();
  418:Core/Src/stm32g4xx_hal_msp.c ****     /* USER CODE BEGIN TIM2_MspDeInit 1 */
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccvGrplS.s 			page 26
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cciCOtZa.s 			page 26
 
 
  419:Core/Src/stm32g4xx_hal_msp.c **** 
@@ -1558,7 +1558,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccvGrplS.s 			page 1
  929 0000 F0B5     		push	{r4, r5, r6, r7, lr}
  930              		.cfi_def_cfa_offset 20
  931              		.cfi_offset 4, -20
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccvGrplS.s 			page 27
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cciCOtZa.s 			page 27
 
 
  932              		.cfi_offset 5, -16
@@ -1618,7 +1618,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccvGrplS.s 			page 1
  457:Core/Src/stm32g4xx_hal_msp.c ****     PD2     ------> UART5_RX
  458:Core/Src/stm32g4xx_hal_msp.c ****     */
  459:Core/Src/stm32g4xx_hal_msp.c ****     GPIO_InitStruct.Pin = SPU_RX_Pin;
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccvGrplS.s 			page 28
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cciCOtZa.s 			page 28
 
 
  460:Core/Src/stm32g4xx_hal_msp.c ****     GPIO_InitStruct.Mode = GPIO_MODE_AF_OD;
@@ -1678,7 +1678,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccvGrplS.s 			page 1
  507:Core/Src/stm32g4xx_hal_msp.c ****     /* USER CODE BEGIN USART1_MspInit 1 */
  508:Core/Src/stm32g4xx_hal_msp.c **** 
  509:Core/Src/stm32g4xx_hal_msp.c ****     /* USER CODE END USART1_MspInit 1 */
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccvGrplS.s 			page 29
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cciCOtZa.s 			page 29
 
 
  510:Core/Src/stm32g4xx_hal_msp.c ****   }
@@ -1738,7 +1738,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccvGrplS.s 			page 1
  453:Core/Src/stm32g4xx_hal_msp.c ****     __HAL_RCC_GPIOD_CLK_ENABLE();
  1008              		.loc 1 453 5 view .LVU262
  1009              	.LBB15:
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccvGrplS.s 			page 30
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cciCOtZa.s 			page 30
 
 
  453:Core/Src/stm32g4xx_hal_msp.c ****     __HAL_RCC_GPIOD_CLK_ENABLE();
@@ -1798,7 +1798,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccvGrplS.s 			page 1
  1047              		.loc 1 461 26 is_stmt 0 view .LVU279
  1048 007c 0024     		movs	r4, #0
  1049              	.LVL55:
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccvGrplS.s 			page 31
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cciCOtZa.s 			page 31
 
 
  461:Core/Src/stm32g4xx_hal_msp.c ****     GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
@@ -1858,7 +1858,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccvGrplS.s 			page 1
  1087              	.LVL58:
  1088              	.L76:
  447:Core/Src/stm32g4xx_hal_msp.c ****     }
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccvGrplS.s 			page 32
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cciCOtZa.s 			page 32
 
 
  1089              		.loc 1 447 7 view .LVU297
@@ -1918,7 +1918,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccvGrplS.s 			page 1
  1128 00ce 42F00402 		orr	r2, r2, #4
  1129 00d2 DA64     		str	r2, [r3, #76]
  495:Core/Src/stm32g4xx_hal_msp.c ****     /**USART1 GPIO Configuration
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccvGrplS.s 			page 33
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cciCOtZa.s 			page 33
 
 
  1130              		.loc 1 495 5 view .LVU313
@@ -1978,7 +1978,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccvGrplS.s 			page 1
  1170              		.align	2
  1171              	.L78:
  1172 0100 00500040 		.word	1073762304
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccvGrplS.s 			page 34
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cciCOtZa.s 			page 34
 
 
  1173 0104 00380140 		.word	1073821696
@@ -2038,7 +2038,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccvGrplS.s 			page 1
  536:Core/Src/stm32g4xx_hal_msp.c ****     HAL_GPIO_DeInit(SPU_TX_GPIO_Port, SPU_TX_Pin);
  537:Core/Src/stm32g4xx_hal_msp.c **** 
  538:Core/Src/stm32g4xx_hal_msp.c ****     /* USER CODE BEGIN UART5_MspDeInit 1 */
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccvGrplS.s 			page 35
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cciCOtZa.s 			page 35
 
 
  539:Core/Src/stm32g4xx_hal_msp.c **** 
@@ -2098,7 +2098,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccvGrplS.s 			page 1
  1233              	.LVL68:
  1234 0030 EEE7     		b	.L80
  1235              	.LVL69:
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccvGrplS.s 			page 36
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cciCOtZa.s 			page 36
 
 
  1236              	.L85:
@@ -2128,288 +2128,65 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccvGrplS.s 			page 1
  1257 0054 000C0048 		.word	1207962624
  1258              		.cfi_endproc
  1259              	.LFE143:
- 1261              		.section	.text.HAL_PCD_MspInit,"ax",%progbits
- 1262              		.align	1
- 1263              		.global	HAL_PCD_MspInit
- 1264              		.syntax unified
- 1265              		.thumb
- 1266              		.thumb_func
- 1268              	HAL_PCD_MspInit:
- 1269              	.LVL72:
- 1270              	.LFB144:
- 562:Core/Src/stm32g4xx_hal_msp.c **** 
- 563:Core/Src/stm32g4xx_hal_msp.c **** /**
- 564:Core/Src/stm32g4xx_hal_msp.c ****   * @brief PCD MSP Initialization
- 565:Core/Src/stm32g4xx_hal_msp.c ****   * This function configures the hardware resources used in this example
- 566:Core/Src/stm32g4xx_hal_msp.c ****   * @param hpcd: PCD handle pointer
- 567:Core/Src/stm32g4xx_hal_msp.c ****   * @retval None
- 568:Core/Src/stm32g4xx_hal_msp.c ****   */
- 569:Core/Src/stm32g4xx_hal_msp.c **** void HAL_PCD_MspInit(PCD_HandleTypeDef* hpcd)
- 570:Core/Src/stm32g4xx_hal_msp.c **** {
- 1271              		.loc 1 570 1 is_stmt 1 view -0
- 1272              		.cfi_startproc
- 1273              		@ args = 0, pretend = 0, frame = 88
- 1274              		@ frame_needed = 0, uses_anonymous_args = 0
- 1275              		.loc 1 570 1 is_stmt 0 view .LVU346
- 1276 0000 10B5     		push	{r4, lr}
- 1277              		.cfi_def_cfa_offset 8
- 1278              		.cfi_offset 4, -8
- 1279              		.cfi_offset 14, -4
- 1280 0002 96B0     		sub	sp, sp, #88
- 1281              		.cfi_def_cfa_offset 96
- 1282 0004 0446     		mov	r4, r0
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccvGrplS.s 			page 37
-
-
- 571:Core/Src/stm32g4xx_hal_msp.c ****   RCC_PeriphCLKInitTypeDef PeriphClkInit = {0};
- 1283              		.loc 1 571 3 is_stmt 1 view .LVU347
- 1284              		.loc 1 571 28 is_stmt 0 view .LVU348
- 1285 0006 5422     		movs	r2, #84
- 1286 0008 0021     		movs	r1, #0
- 1287 000a 01A8     		add	r0, sp, #4
- 1288              	.LVL73:
- 1289              		.loc 1 571 28 view .LVU349
- 1290 000c FFF7FEFF 		bl	memset
- 1291              	.LVL74:
- 572:Core/Src/stm32g4xx_hal_msp.c ****   if(hpcd->Instance==USB)
- 1292              		.loc 1 572 3 is_stmt 1 view .LVU350
- 1293              		.loc 1 572 10 is_stmt 0 view .LVU351
- 1294 0010 2268     		ldr	r2, [r4]
- 1295              		.loc 1 572 5 view .LVU352
- 1296 0012 0E4B     		ldr	r3, .L94
- 1297 0014 9A42     		cmp	r2, r3
- 1298 0016 01D0     		beq	.L92
- 1299              	.L88:
- 573:Core/Src/stm32g4xx_hal_msp.c ****   {
- 574:Core/Src/stm32g4xx_hal_msp.c ****     /* USER CODE BEGIN USB_MspInit 0 */
- 575:Core/Src/stm32g4xx_hal_msp.c **** 
- 576:Core/Src/stm32g4xx_hal_msp.c ****     /* USER CODE END USB_MspInit 0 */
- 577:Core/Src/stm32g4xx_hal_msp.c **** 
- 578:Core/Src/stm32g4xx_hal_msp.c ****   /** Initializes the peripherals clocks
- 579:Core/Src/stm32g4xx_hal_msp.c ****   */
- 580:Core/Src/stm32g4xx_hal_msp.c ****     PeriphClkInit.PeriphClockSelection = RCC_PERIPHCLK_USB;
- 581:Core/Src/stm32g4xx_hal_msp.c ****     PeriphClkInit.UsbClockSelection = RCC_USBCLKSOURCE_PLL;
- 582:Core/Src/stm32g4xx_hal_msp.c ****     if (HAL_RCCEx_PeriphCLKConfig(&PeriphClkInit) != HAL_OK)
- 583:Core/Src/stm32g4xx_hal_msp.c ****     {
- 584:Core/Src/stm32g4xx_hal_msp.c ****       Error_Handler();
- 585:Core/Src/stm32g4xx_hal_msp.c ****     }
- 586:Core/Src/stm32g4xx_hal_msp.c **** 
- 587:Core/Src/stm32g4xx_hal_msp.c ****     /* Peripheral clock enable */
- 588:Core/Src/stm32g4xx_hal_msp.c ****     __HAL_RCC_USB_CLK_ENABLE();
- 589:Core/Src/stm32g4xx_hal_msp.c ****     /* USER CODE BEGIN USB_MspInit 1 */
- 590:Core/Src/stm32g4xx_hal_msp.c **** 
- 591:Core/Src/stm32g4xx_hal_msp.c ****     /* USER CODE END USB_MspInit 1 */
- 592:Core/Src/stm32g4xx_hal_msp.c **** 
- 593:Core/Src/stm32g4xx_hal_msp.c ****   }
- 594:Core/Src/stm32g4xx_hal_msp.c **** 
- 595:Core/Src/stm32g4xx_hal_msp.c **** }
- 1300              		.loc 1 595 1 view .LVU353
- 1301 0018 16B0     		add	sp, sp, #88
- 1302              		.cfi_remember_state
- 1303              		.cfi_def_cfa_offset 8
- 1304              		@ sp needed
- 1305 001a 10BD     		pop	{r4, pc}
- 1306              	.LVL75:
- 1307              	.L92:
- 1308              		.cfi_restore_state
- 580:Core/Src/stm32g4xx_hal_msp.c ****     PeriphClkInit.UsbClockSelection = RCC_USBCLKSOURCE_PLL;
- 1309              		.loc 1 580 5 is_stmt 1 view .LVU354
- 580:Core/Src/stm32g4xx_hal_msp.c ****     PeriphClkInit.UsbClockSelection = RCC_USBCLKSOURCE_PLL;
- 1310              		.loc 1 580 40 is_stmt 0 view .LVU355
- 1311 001c 4FF40053 		mov	r3, #8192
- 1312 0020 0193     		str	r3, [sp, #4]
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccvGrplS.s 			page 38
-
-
- 581:Core/Src/stm32g4xx_hal_msp.c ****     if (HAL_RCCEx_PeriphCLKConfig(&PeriphClkInit) != HAL_OK)
- 1313              		.loc 1 581 5 is_stmt 1 view .LVU356
- 581:Core/Src/stm32g4xx_hal_msp.c ****     if (HAL_RCCEx_PeriphCLKConfig(&PeriphClkInit) != HAL_OK)
- 1314              		.loc 1 581 37 is_stmt 0 view .LVU357
- 1315 0022 4FF00063 		mov	r3, #134217728
- 1316 0026 1093     		str	r3, [sp, #64]
- 582:Core/Src/stm32g4xx_hal_msp.c ****     {
- 1317              		.loc 1 582 5 is_stmt 1 view .LVU358
- 582:Core/Src/stm32g4xx_hal_msp.c ****     {
- 1318              		.loc 1 582 9 is_stmt 0 view .LVU359
- 1319 0028 01A8     		add	r0, sp, #4
- 1320 002a FFF7FEFF 		bl	HAL_RCCEx_PeriphCLKConfig
- 1321              	.LVL76:
- 582:Core/Src/stm32g4xx_hal_msp.c ****     {
- 1322              		.loc 1 582 8 discriminator 1 view .LVU360
- 1323 002e 50B9     		cbnz	r0, .L93
- 1324              	.L90:
- 588:Core/Src/stm32g4xx_hal_msp.c ****     /* USER CODE BEGIN USB_MspInit 1 */
- 1325              		.loc 1 588 5 is_stmt 1 view .LVU361
- 1326              	.LBB19:
- 588:Core/Src/stm32g4xx_hal_msp.c ****     /* USER CODE BEGIN USB_MspInit 1 */
- 1327              		.loc 1 588 5 view .LVU362
- 588:Core/Src/stm32g4xx_hal_msp.c ****     /* USER CODE BEGIN USB_MspInit 1 */
- 1328              		.loc 1 588 5 view .LVU363
- 1329 0030 074B     		ldr	r3, .L94+4
- 1330 0032 9A6D     		ldr	r2, [r3, #88]
- 1331 0034 42F40002 		orr	r2, r2, #8388608
- 1332 0038 9A65     		str	r2, [r3, #88]
- 588:Core/Src/stm32g4xx_hal_msp.c ****     /* USER CODE BEGIN USB_MspInit 1 */
- 1333              		.loc 1 588 5 view .LVU364
- 1334 003a 9B6D     		ldr	r3, [r3, #88]
- 1335 003c 03F40003 		and	r3, r3, #8388608
- 1336 0040 0093     		str	r3, [sp]
- 588:Core/Src/stm32g4xx_hal_msp.c ****     /* USER CODE BEGIN USB_MspInit 1 */
- 1337              		.loc 1 588 5 view .LVU365
- 1338 0042 009B     		ldr	r3, [sp]
- 1339              	.LBE19:
- 588:Core/Src/stm32g4xx_hal_msp.c ****     /* USER CODE BEGIN USB_MspInit 1 */
- 1340              		.loc 1 588 5 discriminator 1 view .LVU366
- 1341              		.loc 1 595 1 is_stmt 0 view .LVU367
- 1342 0044 E8E7     		b	.L88
- 1343              	.L93:
- 584:Core/Src/stm32g4xx_hal_msp.c ****     }
- 1344              		.loc 1 584 7 is_stmt 1 view .LVU368
- 1345 0046 FFF7FEFF 		bl	Error_Handler
- 1346              	.LVL77:
- 1347 004a F1E7     		b	.L90
- 1348              	.L95:
- 1349              		.align	2
- 1350              	.L94:
- 1351 004c 005C0040 		.word	1073765376
- 1352 0050 00100240 		.word	1073876992
- 1353              		.cfi_endproc
- 1354              	.LFE144:
- 1356              		.section	.text.HAL_PCD_MspDeInit,"ax",%progbits
- 1357              		.align	1
- 1358              		.global	HAL_PCD_MspDeInit
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccvGrplS.s 			page 39
-
-
- 1359              		.syntax unified
- 1360              		.thumb
- 1361              		.thumb_func
- 1363              	HAL_PCD_MspDeInit:
- 1364              	.LVL78:
- 1365              	.LFB145:
- 596:Core/Src/stm32g4xx_hal_msp.c **** 
- 597:Core/Src/stm32g4xx_hal_msp.c **** /**
- 598:Core/Src/stm32g4xx_hal_msp.c ****   * @brief PCD MSP De-Initialization
- 599:Core/Src/stm32g4xx_hal_msp.c ****   * This function freeze the hardware resources used in this example
- 600:Core/Src/stm32g4xx_hal_msp.c ****   * @param hpcd: PCD handle pointer
- 601:Core/Src/stm32g4xx_hal_msp.c ****   * @retval None
- 602:Core/Src/stm32g4xx_hal_msp.c ****   */
- 603:Core/Src/stm32g4xx_hal_msp.c **** void HAL_PCD_MspDeInit(PCD_HandleTypeDef* hpcd)
- 604:Core/Src/stm32g4xx_hal_msp.c **** {
- 1366              		.loc 1 604 1 view -0
- 1367              		.cfi_startproc
- 1368              		@ args = 0, pretend = 0, frame = 0
- 1369              		@ frame_needed = 0, uses_anonymous_args = 0
- 1370              		@ link register save eliminated.
- 605:Core/Src/stm32g4xx_hal_msp.c ****   if(hpcd->Instance==USB)
- 1371              		.loc 1 605 3 view .LVU370
- 1372              		.loc 1 605 10 is_stmt 0 view .LVU371
- 1373 0000 0268     		ldr	r2, [r0]
- 1374              		.loc 1 605 5 view .LVU372
- 1375 0002 054B     		ldr	r3, .L99
- 1376 0004 9A42     		cmp	r2, r3
- 1377 0006 00D0     		beq	.L98
- 1378              	.L96:
- 606:Core/Src/stm32g4xx_hal_msp.c ****   {
- 607:Core/Src/stm32g4xx_hal_msp.c ****     /* USER CODE BEGIN USB_MspDeInit 0 */
- 608:Core/Src/stm32g4xx_hal_msp.c **** 
- 609:Core/Src/stm32g4xx_hal_msp.c ****     /* USER CODE END USB_MspDeInit 0 */
- 610:Core/Src/stm32g4xx_hal_msp.c ****     /* Peripheral clock disable */
- 611:Core/Src/stm32g4xx_hal_msp.c ****     __HAL_RCC_USB_CLK_DISABLE();
- 612:Core/Src/stm32g4xx_hal_msp.c ****     /* USER CODE BEGIN USB_MspDeInit 1 */
- 613:Core/Src/stm32g4xx_hal_msp.c **** 
- 614:Core/Src/stm32g4xx_hal_msp.c ****     /* USER CODE END USB_MspDeInit 1 */
- 615:Core/Src/stm32g4xx_hal_msp.c ****   }
- 616:Core/Src/stm32g4xx_hal_msp.c **** 
- 617:Core/Src/stm32g4xx_hal_msp.c **** }
- 1379              		.loc 1 617 1 view .LVU373
- 1380 0008 7047     		bx	lr
- 1381              	.L98:
- 611:Core/Src/stm32g4xx_hal_msp.c ****     /* USER CODE BEGIN USB_MspDeInit 1 */
- 1382              		.loc 1 611 5 is_stmt 1 view .LVU374
- 1383 000a 044A     		ldr	r2, .L99+4
- 1384 000c 936D     		ldr	r3, [r2, #88]
- 1385 000e 23F40003 		bic	r3, r3, #8388608
- 1386 0012 9365     		str	r3, [r2, #88]
- 1387              		.loc 1 617 1 is_stmt 0 view .LVU375
- 1388 0014 F8E7     		b	.L96
- 1389              	.L100:
- 1390 0016 00BF     		.align	2
- 1391              	.L99:
- 1392 0018 005C0040 		.word	1073765376
- 1393 001c 00100240 		.word	1073876992
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccvGrplS.s 			page 40
-
-
- 1394              		.cfi_endproc
- 1395              	.LFE145:
- 1397              		.text
- 1398              	.Letext0:
- 1399              		.file 2 "C:/Users/Nathan/AppData/Roaming/Code/User/globalStorage/bmd.stm32-for-vscode/@xpack-dev-t
- 1400              		.file 3 "C:/Users/Nathan/AppData/Roaming/Code/User/globalStorage/bmd.stm32-for-vscode/@xpack-dev-t
- 1401              		.file 4 "Drivers/CMSIS/Device/ST/STM32G4xx/Include/stm32g474xx.h"
- 1402              		.file 5 "Drivers/CMSIS/Device/ST/STM32G4xx/Include/stm32g4xx.h"
- 1403              		.file 6 "Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_def.h"
- 1404              		.file 7 "Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_rcc_ex.h"
- 1405              		.file 8 "Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_gpio.h"
- 1406              		.file 9 "Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_dma.h"
- 1407              		.file 10 "Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_fdcan.h"
- 1408              		.file 11 "Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_i2c.h"
- 1409              		.file 12 "Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_ll_usb.h"
- 1410              		.file 13 "Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_pcd.h"
- 1411              		.file 14 "Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_spi.h"
- 1412              		.file 15 "Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_tim.h"
- 1413              		.file 16 "Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_uart.h"
- 1414              		.file 17 "Core/Inc/main.h"
- 1415              		.file 18 "Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_pwr_ex.h"
- 1416              		.file 19 "<built-in>"
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccvGrplS.s 			page 41
+ 1261              		.text
+ 1262              	.Letext0:
+ 1263              		.file 2 "C:/Users/Nathan/AppData/Roaming/Code/User/globalStorage/bmd.stm32-for-vscode/@xpack-dev-t
+ 1264              		.file 3 "C:/Users/Nathan/AppData/Roaming/Code/User/globalStorage/bmd.stm32-for-vscode/@xpack-dev-t
+ 1265              		.file 4 "Drivers/CMSIS/Device/ST/STM32G4xx/Include/stm32g474xx.h"
+ 1266              		.file 5 "Drivers/CMSIS/Device/ST/STM32G4xx/Include/stm32g4xx.h"
+ 1267              		.file 6 "Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_def.h"
+ 1268              		.file 7 "Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_rcc_ex.h"
+ 1269              		.file 8 "Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_gpio.h"
+ 1270              		.file 9 "Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_dma.h"
+ 1271              		.file 10 "Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_fdcan.h"
+ 1272              		.file 11 "Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_i2c.h"
+ 1273              		.file 12 "Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_spi.h"
+ 1274              		.file 13 "Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_tim.h"
+ 1275              		.file 14 "Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_uart.h"
+ 1276              		.file 15 "Core/Inc/main.h"
+ 1277              		.file 16 "Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_pwr_ex.h"
+ 1278              		.file 17 "<built-in>"
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cciCOtZa.s 			page 37
 
 
 DEFINED SYMBOLS
                             *ABS*:00000000 stm32g4xx_hal_msp.c
-C:\Users\Nathan\AppData\Local\Temp\ccvGrplS.s:21     .text.HAL_MspInit:00000000 $t
-C:\Users\Nathan\AppData\Local\Temp\ccvGrplS.s:27     .text.HAL_MspInit:00000000 HAL_MspInit
-C:\Users\Nathan\AppData\Local\Temp\ccvGrplS.s:80     .text.HAL_MspInit:00000034 $d
-C:\Users\Nathan\AppData\Local\Temp\ccvGrplS.s:85     .text.HAL_FDCAN_MspInit:00000000 $t
-C:\Users\Nathan\AppData\Local\Temp\ccvGrplS.s:91     .text.HAL_FDCAN_MspInit:00000000 HAL_FDCAN_MspInit
-C:\Users\Nathan\AppData\Local\Temp\ccvGrplS.s:220    .text.HAL_FDCAN_MspInit:00000084 $d
-C:\Users\Nathan\AppData\Local\Temp\ccvGrplS.s:227    .text.HAL_FDCAN_MspDeInit:00000000 $t
-C:\Users\Nathan\AppData\Local\Temp\ccvGrplS.s:233    .text.HAL_FDCAN_MspDeInit:00000000 HAL_FDCAN_MspDeInit
-C:\Users\Nathan\AppData\Local\Temp\ccvGrplS.s:275    .text.HAL_FDCAN_MspDeInit:00000020 $d
-C:\Users\Nathan\AppData\Local\Temp\ccvGrplS.s:282    .text.HAL_I2C_MspInit:00000000 $t
-C:\Users\Nathan\AppData\Local\Temp\ccvGrplS.s:288    .text.HAL_I2C_MspInit:00000000 HAL_I2C_MspInit
-C:\Users\Nathan\AppData\Local\Temp\ccvGrplS.s:418    .text.HAL_I2C_MspInit:00000080 $d
-C:\Users\Nathan\AppData\Local\Temp\ccvGrplS.s:424    .text.HAL_I2C_MspDeInit:00000000 $t
-C:\Users\Nathan\AppData\Local\Temp\ccvGrplS.s:430    .text.HAL_I2C_MspDeInit:00000000 HAL_I2C_MspDeInit
-C:\Users\Nathan\AppData\Local\Temp\ccvGrplS.s:477    .text.HAL_I2C_MspDeInit:00000030 $d
-C:\Users\Nathan\AppData\Local\Temp\ccvGrplS.s:483    .text.HAL_SPI_MspInit:00000000 $t
-C:\Users\Nathan\AppData\Local\Temp\ccvGrplS.s:489    .text.HAL_SPI_MspInit:00000000 HAL_SPI_MspInit
-C:\Users\Nathan\AppData\Local\Temp\ccvGrplS.s:585    .text.HAL_SPI_MspInit:00000060 $d
-C:\Users\Nathan\AppData\Local\Temp\ccvGrplS.s:590    .text.HAL_SPI_MspDeInit:00000000 $t
-C:\Users\Nathan\AppData\Local\Temp\ccvGrplS.s:596    .text.HAL_SPI_MspDeInit:00000000 HAL_SPI_MspDeInit
-C:\Users\Nathan\AppData\Local\Temp\ccvGrplS.s:638    .text.HAL_SPI_MspDeInit:00000024 $d
-C:\Users\Nathan\AppData\Local\Temp\ccvGrplS.s:644    .text.HAL_TIM_PWM_MspInit:00000000 $t
-C:\Users\Nathan\AppData\Local\Temp\ccvGrplS.s:650    .text.HAL_TIM_PWM_MspInit:00000000 HAL_TIM_PWM_MspInit
-C:\Users\Nathan\AppData\Local\Temp\ccvGrplS.s:720    .text.HAL_TIM_PWM_MspInit:00000044 $d
-C:\Users\Nathan\AppData\Local\Temp\ccvGrplS.s:726    .text.HAL_TIM_MspPostInit:00000000 $t
-C:\Users\Nathan\AppData\Local\Temp\ccvGrplS.s:732    .text.HAL_TIM_MspPostInit:00000000 HAL_TIM_MspPostInit
-C:\Users\Nathan\AppData\Local\Temp\ccvGrplS.s:856    .text.HAL_TIM_MspPostInit:0000007c $d
-C:\Users\Nathan\AppData\Local\Temp\ccvGrplS.s:863    .text.HAL_TIM_PWM_MspDeInit:00000000 $t
-C:\Users\Nathan\AppData\Local\Temp\ccvGrplS.s:869    .text.HAL_TIM_PWM_MspDeInit:00000000 HAL_TIM_PWM_MspDeInit
-C:\Users\Nathan\AppData\Local\Temp\ccvGrplS.s:909    .text.HAL_TIM_PWM_MspDeInit:0000002c $d
-C:\Users\Nathan\AppData\Local\Temp\ccvGrplS.s:915    .text.HAL_UART_MspInit:00000000 $t
-C:\Users\Nathan\AppData\Local\Temp\ccvGrplS.s:921    .text.HAL_UART_MspInit:00000000 HAL_UART_MspInit
-C:\Users\Nathan\AppData\Local\Temp\ccvGrplS.s:1172   .text.HAL_UART_MspInit:00000100 $d
-C:\Users\Nathan\AppData\Local\Temp\ccvGrplS.s:1181   .text.HAL_UART_MspDeInit:00000000 $t
-C:\Users\Nathan\AppData\Local\Temp\ccvGrplS.s:1187   .text.HAL_UART_MspDeInit:00000000 HAL_UART_MspDeInit
-C:\Users\Nathan\AppData\Local\Temp\ccvGrplS.s:1254   .text.HAL_UART_MspDeInit:00000048 $d
-C:\Users\Nathan\AppData\Local\Temp\ccvGrplS.s:1262   .text.HAL_PCD_MspInit:00000000 $t
-C:\Users\Nathan\AppData\Local\Temp\ccvGrplS.s:1268   .text.HAL_PCD_MspInit:00000000 HAL_PCD_MspInit
-C:\Users\Nathan\AppData\Local\Temp\ccvGrplS.s:1351   .text.HAL_PCD_MspInit:0000004c $d
-C:\Users\Nathan\AppData\Local\Temp\ccvGrplS.s:1357   .text.HAL_PCD_MspDeInit:00000000 $t
-C:\Users\Nathan\AppData\Local\Temp\ccvGrplS.s:1363   .text.HAL_PCD_MspDeInit:00000000 HAL_PCD_MspDeInit
-C:\Users\Nathan\AppData\Local\Temp\ccvGrplS.s:1392   .text.HAL_PCD_MspDeInit:00000018 $d
+C:\Users\Nathan\AppData\Local\Temp\cciCOtZa.s:21     .text.HAL_MspInit:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\cciCOtZa.s:27     .text.HAL_MspInit:00000000 HAL_MspInit
+C:\Users\Nathan\AppData\Local\Temp\cciCOtZa.s:80     .text.HAL_MspInit:00000034 $d
+C:\Users\Nathan\AppData\Local\Temp\cciCOtZa.s:85     .text.HAL_FDCAN_MspInit:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\cciCOtZa.s:91     .text.HAL_FDCAN_MspInit:00000000 HAL_FDCAN_MspInit
+C:\Users\Nathan\AppData\Local\Temp\cciCOtZa.s:220    .text.HAL_FDCAN_MspInit:00000084 $d
+C:\Users\Nathan\AppData\Local\Temp\cciCOtZa.s:227    .text.HAL_FDCAN_MspDeInit:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\cciCOtZa.s:233    .text.HAL_FDCAN_MspDeInit:00000000 HAL_FDCAN_MspDeInit
+C:\Users\Nathan\AppData\Local\Temp\cciCOtZa.s:275    .text.HAL_FDCAN_MspDeInit:00000020 $d
+C:\Users\Nathan\AppData\Local\Temp\cciCOtZa.s:282    .text.HAL_I2C_MspInit:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\cciCOtZa.s:288    .text.HAL_I2C_MspInit:00000000 HAL_I2C_MspInit
+C:\Users\Nathan\AppData\Local\Temp\cciCOtZa.s:418    .text.HAL_I2C_MspInit:00000080 $d
+C:\Users\Nathan\AppData\Local\Temp\cciCOtZa.s:424    .text.HAL_I2C_MspDeInit:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\cciCOtZa.s:430    .text.HAL_I2C_MspDeInit:00000000 HAL_I2C_MspDeInit
+C:\Users\Nathan\AppData\Local\Temp\cciCOtZa.s:477    .text.HAL_I2C_MspDeInit:00000030 $d
+C:\Users\Nathan\AppData\Local\Temp\cciCOtZa.s:483    .text.HAL_SPI_MspInit:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\cciCOtZa.s:489    .text.HAL_SPI_MspInit:00000000 HAL_SPI_MspInit
+C:\Users\Nathan\AppData\Local\Temp\cciCOtZa.s:585    .text.HAL_SPI_MspInit:00000060 $d
+C:\Users\Nathan\AppData\Local\Temp\cciCOtZa.s:590    .text.HAL_SPI_MspDeInit:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\cciCOtZa.s:596    .text.HAL_SPI_MspDeInit:00000000 HAL_SPI_MspDeInit
+C:\Users\Nathan\AppData\Local\Temp\cciCOtZa.s:638    .text.HAL_SPI_MspDeInit:00000024 $d
+C:\Users\Nathan\AppData\Local\Temp\cciCOtZa.s:644    .text.HAL_TIM_PWM_MspInit:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\cciCOtZa.s:650    .text.HAL_TIM_PWM_MspInit:00000000 HAL_TIM_PWM_MspInit
+C:\Users\Nathan\AppData\Local\Temp\cciCOtZa.s:720    .text.HAL_TIM_PWM_MspInit:00000044 $d
+C:\Users\Nathan\AppData\Local\Temp\cciCOtZa.s:726    .text.HAL_TIM_MspPostInit:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\cciCOtZa.s:732    .text.HAL_TIM_MspPostInit:00000000 HAL_TIM_MspPostInit
+C:\Users\Nathan\AppData\Local\Temp\cciCOtZa.s:856    .text.HAL_TIM_MspPostInit:0000007c $d
+C:\Users\Nathan\AppData\Local\Temp\cciCOtZa.s:863    .text.HAL_TIM_PWM_MspDeInit:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\cciCOtZa.s:869    .text.HAL_TIM_PWM_MspDeInit:00000000 HAL_TIM_PWM_MspDeInit
+C:\Users\Nathan\AppData\Local\Temp\cciCOtZa.s:909    .text.HAL_TIM_PWM_MspDeInit:0000002c $d
+C:\Users\Nathan\AppData\Local\Temp\cciCOtZa.s:915    .text.HAL_UART_MspInit:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\cciCOtZa.s:921    .text.HAL_UART_MspInit:00000000 HAL_UART_MspInit
+C:\Users\Nathan\AppData\Local\Temp\cciCOtZa.s:1172   .text.HAL_UART_MspInit:00000100 $d
+C:\Users\Nathan\AppData\Local\Temp\cciCOtZa.s:1181   .text.HAL_UART_MspDeInit:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\cciCOtZa.s:1187   .text.HAL_UART_MspDeInit:00000000 HAL_UART_MspDeInit
+C:\Users\Nathan\AppData\Local\Temp\cciCOtZa.s:1254   .text.HAL_UART_MspDeInit:00000048 $d
 
 UNDEFINED SYMBOLS
 HAL_PWREx_DisableUCPDDeadBattery

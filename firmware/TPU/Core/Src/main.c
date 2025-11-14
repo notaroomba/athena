@@ -139,7 +139,7 @@ int main(void)
   MX_FDCAN2_Init();
   MX_USART1_UART_Init();
   MX_TIM2_Init();
-  MX_USB_DEVICE_Init();
+  // MX_USB_DEVICE_Init();
   MX_SDMMC1_SD_Init();
   /* USER CODE BEGIN 2 */
 // MX_USB_DEVICE_Init();
@@ -152,7 +152,7 @@ int main(void)
   {
     // CDC_Transmit_FS((uint8_t *)"Hello from TPU!\r\n", 22);
     // HAL_Delay(1000);
-    LED_Test_Sequence();
+    // LED_Test_Sequence();
     // HAL_Delay(500);
     /* USER CODE END WHILE */
 

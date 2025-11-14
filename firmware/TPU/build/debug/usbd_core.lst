@@ -1,4 +1,4 @@
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc3orSwj.s 			page 1
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccP8Aiiy.s 			page 1
 
 
    1              		.cpu cortex-m7
@@ -58,7 +58,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc3orSwj.s 			page 1
   16:Middlewares/ST/STM32_USB_Device_Library/Core/Src/usbd_core.c ****   ******************************************************************************
   17:Middlewares/ST/STM32_USB_Device_Library/Core/Src/usbd_core.c ****   */
   18:Middlewares/ST/STM32_USB_Device_Library/Core/Src/usbd_core.c **** 
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc3orSwj.s 			page 2
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccP8Aiiy.s 			page 2
 
 
   19:Middlewares/ST/STM32_USB_Device_Library/Core/Src/usbd_core.c **** /* Includes ------------------------------------------------------------------*/
@@ -118,7 +118,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc3orSwj.s 			page 1
   73:Middlewares/ST/STM32_USB_Device_Library/Core/Src/usbd_core.c ****   */
   74:Middlewares/ST/STM32_USB_Device_Library/Core/Src/usbd_core.c **** 
   75:Middlewares/ST/STM32_USB_Device_Library/Core/Src/usbd_core.c **** /**
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc3orSwj.s 			page 3
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccP8Aiiy.s 			page 3
 
 
   76:Middlewares/ST/STM32_USB_Device_Library/Core/Src/usbd_core.c ****   * @}
@@ -178,7 +178,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc3orSwj.s 			page 1
  116:Middlewares/ST/STM32_USB_Device_Library/Core/Src/usbd_core.c ****     pdev->NumClasses = 0;
  117:Middlewares/ST/STM32_USB_Device_Library/Core/Src/usbd_core.c ****     pdev->classId = 0;
  118:Middlewares/ST/STM32_USB_Device_Library/Core/Src/usbd_core.c ****   }
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc3orSwj.s 			page 4
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccP8Aiiy.s 			page 4
 
 
  119:Middlewares/ST/STM32_USB_Device_Library/Core/Src/usbd_core.c **** #else
@@ -238,7 +238,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc3orSwj.s 			page 1
  140:Middlewares/ST/STM32_USB_Device_Library/Core/Src/usbd_core.c ****   return ret;
   83              		.loc 1 140 3 is_stmt 1 view .LVU23
   84              	.L3:
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc3orSwj.s 			page 5
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccP8Aiiy.s 			page 5
 
 
  141:Middlewares/ST/STM32_USB_Device_Library/Core/Src/usbd_core.c **** }
@@ -298,7 +298,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc3orSwj.s 			page 1
  149:Middlewares/ST/STM32_USB_Device_Library/Core/Src/usbd_core.c **** USBD_StatusTypeDef USBD_DeInit(USBD_HandleTypeDef *pdev)
  150:Middlewares/ST/STM32_USB_Device_Library/Core/Src/usbd_core.c **** {
  126              		.loc 1 150 1 is_stmt 1 view -0
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc3orSwj.s 			page 6
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccP8Aiiy.s 			page 6
 
 
  127              		.cfi_startproc
@@ -358,7 +358,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc3orSwj.s 			page 1
  153              		.loc 1 178 5 view .LVU44
  154 0016 2179     		ldrb	r1, [r4, #4]	@ zero_extendqisi2
  155 0018 2046     		mov	r0, r4
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc3orSwj.s 			page 7
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccP8Aiiy.s 			page 7
 
 
  156 001a 9847     		blx	r3
@@ -418,7 +418,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc3orSwj.s 			page 1
  193              	.LVL13:
  194              	.LFB150:
  194:Middlewares/ST/STM32_USB_Device_Library/Core/Src/usbd_core.c **** 
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc3orSwj.s 			page 8
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccP8Aiiy.s 			page 8
 
 
  195:Middlewares/ST/STM32_USB_Device_Library/Core/Src/usbd_core.c **** /**
@@ -478,7 +478,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc3orSwj.s 			page 1
  219 0012 D0F8D432 		ldr	r3, [r0, #724]
  220              		.loc 1 224 34 view .LVU66
  221 0016 CA6A     		ldr	r2, [r1, #44]
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc3orSwj.s 			page 9
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccP8Aiiy.s 			page 9
 
 
  222              		.loc 1 224 6 view .LVU67
@@ -538,7 +538,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc3orSwj.s 			page 1
  264              	.LVL19:
  209:Middlewares/ST/STM32_USB_Device_Library/Core/Src/usbd_core.c **** #endif /* (USBD_DEBUG_LEVEL > 1U) */
  265              		.loc 1 209 5 is_stmt 1 discriminator 1 view .LVU82
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc3orSwj.s 			page 10
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccP8Aiiy.s 			page 10
 
 
  266 0042 0548     		ldr	r0, .L18+4
@@ -598,7 +598,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc3orSwj.s 			page 1
  257:Middlewares/ST/STM32_USB_Device_Library/Core/Src/usbd_core.c ****       pdev->pClass[pdev->classId] = pclass;
  258:Middlewares/ST/STM32_USB_Device_Library/Core/Src/usbd_core.c ****       ret = USBD_OK;
  259:Middlewares/ST/STM32_USB_Device_Library/Core/Src/usbd_core.c **** 
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc3orSwj.s 			page 11
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccP8Aiiy.s 			page 11
 
 
  260:Middlewares/ST/STM32_USB_Device_Library/Core/Src/usbd_core.c ****       pdev->tclasslist[pdev->classId].EpAdd = EpAddr;
@@ -658,7 +658,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc3orSwj.s 			page 1
  314:Middlewares/ST/STM32_USB_Device_Library/Core/Src/usbd_core.c ****       {
  315:Middlewares/ST/STM32_USB_Device_Library/Core/Src/usbd_core.c ****         /* Free Class Resources */
  316:Middlewares/ST/STM32_USB_Device_Library/Core/Src/usbd_core.c ****         if (pdev->pClass[pdev->classId]->DeInit(pdev, (uint8_t)pdev->dev_config) != 0U)
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc3orSwj.s 			page 12
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccP8Aiiy.s 			page 12
 
 
  317:Middlewares/ST/STM32_USB_Device_Library/Core/Src/usbd_core.c ****         {
@@ -718,7 +718,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc3orSwj.s 			page 1
  371:Middlewares/ST/STM32_USB_Device_Library/Core/Src/usbd_core.c **** {
  372:Middlewares/ST/STM32_USB_Device_Library/Core/Src/usbd_core.c ****   pdev->DevStateCallback = pUserCallback;
  373:Middlewares/ST/STM32_USB_Device_Library/Core/Src/usbd_core.c **** 
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc3orSwj.s 			page 13
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccP8Aiiy.s 			page 13
 
 
  374:Middlewares/ST/STM32_USB_Device_Library/Core/Src/usbd_core.c ****   return USBD_OK;
@@ -778,7 +778,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc3orSwj.s 			page 1
  324              		.loc 1 401 1 is_stmt 1 view -0
  325              		.cfi_startproc
  326              		@ args = 0, pretend = 0, frame = 0
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc3orSwj.s 			page 14
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccP8Aiiy.s 			page 14
 
 
  327              		@ frame_needed = 0, uses_anonymous_args = 0
@@ -838,7 +838,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc3orSwj.s 			page 1
  431:Middlewares/ST/STM32_USB_Device_Library/Core/Src/usbd_core.c ****   return USBD_OK;
  352              		.loc 1 431 3 is_stmt 1 view .LVU102
  432:Middlewares/ST/STM32_USB_Device_Library/Core/Src/usbd_core.c **** }
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc3orSwj.s 			page 15
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccP8Aiiy.s 			page 15
 
 
  353              		.loc 1 432 1 is_stmt 0 view .LVU103
@@ -898,7 +898,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc3orSwj.s 			page 1
  387              		.global	USBD_SetClassConfig
  388              		.syntax unified
  389              		.thumb
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc3orSwj.s 			page 16
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccP8Aiiy.s 			page 16
 
 
  390              		.thumb_func
@@ -958,7 +958,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc3orSwj.s 			page 1
  490:Middlewares/ST/STM32_USB_Device_Library/Core/Src/usbd_core.c ****     /* Set configuration and Start the Class */
  491:Middlewares/ST/STM32_USB_Device_Library/Core/Src/usbd_core.c ****     ret = (USBD_StatusTypeDef)pdev->pClass[0]->Init(pdev, cfgidx);
  411              		.loc 1 491 5 is_stmt 1 view .LVU116
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc3orSwj.s 			page 17
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccP8Aiiy.s 			page 17
 
 
  412              		.loc 1 491 46 is_stmt 0 view .LVU117
@@ -1018,7 +1018,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc3orSwj.s 			page 1
  450              		.loc 1 507 3 is_stmt 1 view .LVU125
  451              	.LVL35:
  508:Middlewares/ST/STM32_USB_Device_Library/Core/Src/usbd_core.c **** 
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc3orSwj.s 			page 18
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccP8Aiiy.s 			page 18
 
 
  509:Middlewares/ST/STM32_USB_Device_Library/Core/Src/usbd_core.c **** #ifdef USE_USBD_COMPOSITE
@@ -1078,7 +1078,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc3orSwj.s 			page 1
  478              		.syntax unified
  479              		.thumb
  480              		.thumb_func
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc3orSwj.s 			page 19
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccP8Aiiy.s 			page 19
 
 
  482              	USBD_LL_SetupStage:
@@ -1138,7 +1138,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc3orSwj.s 			page 1
  516 001c 94F8AA12 		ldrb	r1, [r4, #682]	@ zero_extendqisi2
  517 0020 01F01F03 		and	r3, r1, #31
  518              		.loc 1 556 3 view .LVU146
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc3orSwj.s 			page 20
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccP8Aiiy.s 			page 20
 
 
  519 0024 012B     		cmp	r3, #1
@@ -1198,7 +1198,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc3orSwj.s 			page 1
  548              		.loc 1 567 13 is_stmt 0 view .LVU156
  549 0042 2946     		mov	r1, r5
  550 0044 2046     		mov	r0, r4
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc3orSwj.s 			page 21
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccP8Aiiy.s 			page 21
 
 
  551 0046 FFF7FEFF 		bl	USBD_StdEPReq
@@ -1258,7 +1258,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc3orSwj.s 			page 1
  602:Middlewares/ST/STM32_USB_Device_Library/Core/Src/usbd_core.c **** 
  603:Middlewares/ST/STM32_USB_Device_Library/Core/Src/usbd_core.c ****         (void)USBD_CtlContinueRx(pdev, pdata, MIN(pep->rem_length, pep->maxpacket));
  604:Middlewares/ST/STM32_USB_Device_Library/Core/Src/usbd_core.c ****       }
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc3orSwj.s 			page 22
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccP8Aiiy.s 			page 22
 
 
  605:Middlewares/ST/STM32_USB_Device_Library/Core/Src/usbd_core.c ****       else
@@ -1318,7 +1318,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc3orSwj.s 			page 1
  659:Middlewares/ST/STM32_USB_Device_Library/Core/Src/usbd_core.c ****           pdev->classId = idx;
  660:Middlewares/ST/STM32_USB_Device_Library/Core/Src/usbd_core.c ****           ret = (USBD_StatusTypeDef)pdev->pClass[idx]->DataOut(pdev, epnum);
  661:Middlewares/ST/STM32_USB_Device_Library/Core/Src/usbd_core.c ****         }
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc3orSwj.s 			page 23
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccP8Aiiy.s 			page 23
 
 
  662:Middlewares/ST/STM32_USB_Device_Library/Core/Src/usbd_core.c ****       }
@@ -1378,7 +1378,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc3orSwj.s 			page 1
  716:Middlewares/ST/STM32_USB_Device_Library/Core/Src/usbd_core.c ****         else
  717:Middlewares/ST/STM32_USB_Device_Library/Core/Src/usbd_core.c ****         {
  718:Middlewares/ST/STM32_USB_Device_Library/Core/Src/usbd_core.c ****           if (pdev->dev_state == USBD_STATE_CONFIGURED)
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc3orSwj.s 			page 24
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccP8Aiiy.s 			page 24
 
 
  719:Middlewares/ST/STM32_USB_Device_Library/Core/Src/usbd_core.c ****           {
@@ -1438,7 +1438,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc3orSwj.s 			page 1
  578              		.loc 1 772 1 view -0
  579              		.cfi_startproc
  580              		@ args = 0, pretend = 0, frame = 0
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc3orSwj.s 			page 25
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccP8Aiiy.s 			page 25
 
 
  581              		@ frame_needed = 0, uses_anonymous_args = 0
@@ -1498,7 +1498,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc3orSwj.s 			page 1
  797:Middlewares/ST/STM32_USB_Device_Library/Core/Src/usbd_core.c ****           {
  798:Middlewares/ST/STM32_USB_Device_Library/Core/Src/usbd_core.c ****             ret = USBD_FAIL;
  799:Middlewares/ST/STM32_USB_Device_Library/Core/Src/usbd_core.c ****           }
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc3orSwj.s 			page 26
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccP8Aiiy.s 			page 26
 
 
  800:Middlewares/ST/STM32_USB_Device_Library/Core/Src/usbd_core.c ****         }
@@ -1558,7 +1558,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc3orSwj.s 			page 1
  822:Middlewares/ST/STM32_USB_Device_Library/Core/Src/usbd_core.c ****   pdev->ep_out[0].maxpacket = USB_MAX_EP0_SIZE;
  643              		.loc 1 822 3 is_stmt 1 view .LVU187
  644              		.loc 1 822 29 is_stmt 0 view .LVU188
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc3orSwj.s 			page 27
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccP8Aiiy.s 			page 27
 
 
  645 003e 4025     		movs	r5, #64
@@ -1618,7 +1618,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc3orSwj.s 			page 1
  690              	.LFB160:
  832:Middlewares/ST/STM32_USB_Device_Library/Core/Src/usbd_core.c **** 
  833:Middlewares/ST/STM32_USB_Device_Library/Core/Src/usbd_core.c **** /**
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc3orSwj.s 			page 28
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccP8Aiiy.s 			page 28
 
 
  834:Middlewares/ST/STM32_USB_Device_Library/Core/Src/usbd_core.c ****   * @brief  USBD_LL_SetSpeed
@@ -1678,7 +1678,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc3orSwj.s 			page 1
  725 0000 90F89C32 		ldrb	r3, [r0, #668]	@ zero_extendqisi2
  726              		.loc 1 855 6 view .LVU208
  727 0004 042B     		cmp	r3, #4
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc3orSwj.s 			page 29
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccP8Aiiy.s 			page 29
 
 
  728 0006 04D0     		beq	.L50
@@ -1738,7 +1738,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc3orSwj.s 			page 1
  766 0000 90F89C32 		ldrb	r3, [r0, #668]	@ zero_extendqisi2
  767              		.loc 1 873 6 view .LVU220
  768 0004 042B     		cmp	r3, #4
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc3orSwj.s 			page 30
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccP8Aiiy.s 			page 30
 
 
  769 0006 01D0     		beq	.L53
@@ -1798,7 +1798,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc3orSwj.s 			page 1
  807              		.cfi_offset 14, -4
  889:Middlewares/ST/STM32_USB_Device_Library/Core/Src/usbd_core.c ****   /* The SOF event can be distributed for all classes that support it */
  890:Middlewares/ST/STM32_USB_Device_Library/Core/Src/usbd_core.c ****   if (pdev->dev_state == USBD_STATE_CONFIGURED)
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc3orSwj.s 			page 31
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccP8Aiiy.s 			page 31
 
 
  808              		.loc 1 890 3 is_stmt 1 view .LVU229
@@ -1858,7 +1858,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc3orSwj.s 			page 1
  912:Middlewares/ST/STM32_USB_Device_Library/Core/Src/usbd_core.c ****       {
  828              		.loc 1 912 7 is_stmt 1 view .LVU237
  912:Middlewares/ST/STM32_USB_Device_Library/Core/Src/usbd_core.c ****       {
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc3orSwj.s 			page 32
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccP8Aiiy.s 			page 32
 
 
  829              		.loc 1 912 26 is_stmt 0 view .LVU238
@@ -1918,7 +1918,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc3orSwj.s 			page 1
  869 000c 53B1     		cbz	r3, .L60
  934:Middlewares/ST/STM32_USB_Device_Library/Core/Src/usbd_core.c ****   {
  935:Middlewares/ST/STM32_USB_Device_Library/Core/Src/usbd_core.c ****     return USBD_FAIL;
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc3orSwj.s 			page 33
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccP8Aiiy.s 			page 33
 
 
  936:Middlewares/ST/STM32_USB_Device_Library/Core/Src/usbd_core.c ****   }
@@ -1978,7 +1978,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc3orSwj.s 			page 1
  904              	.L62:
  946:Middlewares/ST/STM32_USB_Device_Library/Core/Src/usbd_core.c **** }
  905              		.loc 1 946 10 view .LVU262
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc3orSwj.s 			page 34
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccP8Aiiy.s 			page 34
 
 
  906 0028 0020     		movs	r0, #0
@@ -2038,7 +2038,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc3orSwj.s 			page 1
  944 0012 032A     		cmp	r2, #3
  945 0014 01D0     		beq	.L71
  965:Middlewares/ST/STM32_USB_Device_Library/Core/Src/usbd_core.c ****   {
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc3orSwj.s 			page 35
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccP8Aiiy.s 			page 35
 
 
  966:Middlewares/ST/STM32_USB_Device_Library/Core/Src/usbd_core.c ****     if (pdev->pClass[pdev->classId]->IsoOUTIncomplete != NULL)
@@ -2098,7 +2098,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc3orSwj.s 			page 1
  983              		.section	.text.USBD_LL_DevConnected,"ax",%progbits
  984              		.align	1
  985              		.global	USBD_LL_DevConnected
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc3orSwj.s 			page 36
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccP8Aiiy.s 			page 36
 
 
  986              		.syntax unified
@@ -2158,7 +2158,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc3orSwj.s 			page 1
  1020              		@ args = 0, pretend = 0, frame = 0
  1021              		@ frame_needed = 0, uses_anonymous_args = 0
  1022              		.loc 1 996 1 is_stmt 0 view .LVU291
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc3orSwj.s 			page 37
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccP8Aiiy.s 			page 37
 
 
  1023 0000 08B5     		push	{r3, lr}
@@ -2218,7 +2218,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc3orSwj.s 			page 1
 1025:Middlewares/ST/STM32_USB_Device_Library/Core/Src/usbd_core.c ****       ret = USBD_FAIL;
 1026:Middlewares/ST/STM32_USB_Device_Library/Core/Src/usbd_core.c ****     }
 1027:Middlewares/ST/STM32_USB_Device_Library/Core/Src/usbd_core.c ****   }
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc3orSwj.s 			page 38
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccP8Aiiy.s 			page 38
 
 
 1028:Middlewares/ST/STM32_USB_Device_Library/Core/Src/usbd_core.c **** #endif /* USE_USBD_COMPOSITE */
@@ -2278,7 +2278,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc3orSwj.s 			page 1
 1049:Middlewares/ST/STM32_USB_Device_Library/Core/Src/usbd_core.c ****       /* Parse all interfaces listed in the current class */
 1050:Middlewares/ST/STM32_USB_Device_Library/Core/Src/usbd_core.c ****       for (uint32_t j = 0U; j < pdev->tclasslist[i].NumIf; j++)
 1051:Middlewares/ST/STM32_USB_Device_Library/Core/Src/usbd_core.c ****       {
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc3orSwj.s 			page 39
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccP8Aiiy.s 			page 39
 
 
 1052:Middlewares/ST/STM32_USB_Device_Library/Core/Src/usbd_core.c ****         /* Check if requested Interface matches the current class interface */
@@ -2338,7 +2338,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc3orSwj.s 			page 1
 1082:Middlewares/ST/STM32_USB_Device_Library/Core/Src/usbd_core.c **** #ifdef USE_USBD_COMPOSITE
 1083:Middlewares/ST/STM32_USB_Device_Library/Core/Src/usbd_core.c ****   /* Parse the table of classes in use */
 1084:Middlewares/ST/STM32_USB_Device_Library/Core/Src/usbd_core.c ****   for (uint32_t i = 0U; i < USBD_MAX_SUPPORTED_CLASS; i++)
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc3orSwj.s 			page 40
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccP8Aiiy.s 			page 40
 
 
 1085:Middlewares/ST/STM32_USB_Device_Library/Core/Src/usbd_core.c ****   {
@@ -2398,7 +2398,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc3orSwj.s 			page 1
  1134              		.cfi_def_cfa_offset 16
  1135              		.cfi_offset 3, -16
  1136              		.cfi_offset 4, -12
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc3orSwj.s 			page 41
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccP8Aiiy.s 			page 41
 
 
  1137              		.cfi_offset 5, -8
@@ -2458,7 +2458,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc3orSwj.s 			page 1
  608:Middlewares/ST/STM32_USB_Device_Library/Core/Src/usbd_core.c ****         {
  1176              		.loc 1 608 9 is_stmt 1 view .LVU336
  608:Middlewares/ST/STM32_USB_Device_Library/Core/Src/usbd_core.c ****         {
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc3orSwj.s 			page 42
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccP8Aiiy.s 			page 42
 
 
  1177              		.loc 1 608 30 is_stmt 0 view .LVU337
@@ -2518,7 +2518,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc3orSwj.s 			page 1
  1218              		.loc 1 630 12 is_stmt 0 view .LVU350
  1219 0056 18B9     		cbnz	r0, .L89
  1220              	.LVL109:
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc3orSwj.s 			page 43
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccP8Aiiy.s 			page 43
 
 
  1221              	.L87:
@@ -2578,7 +2578,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc3orSwj.s 			page 1
  638:Middlewares/ST/STM32_USB_Device_Library/Core/Src/usbd_core.c ****             }
  1260              		.loc 1 638 15 is_stmt 1 view .LVU366
  638:Middlewares/ST/STM32_USB_Device_Library/Core/Src/usbd_core.c ****             }
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc3orSwj.s 			page 44
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccP8Aiiy.s 			page 44
 
 
  1261              		.loc 1 638 32 is_stmt 0 view .LVU367
@@ -2638,7 +2638,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc3orSwj.s 			page 1
  660:Middlewares/ST/STM32_USB_Device_Library/Core/Src/usbd_core.c ****         }
  1299              		.loc 1 660 54 is_stmt 0 view .LVU384
  1300 00b2 9B69     		ldr	r3, [r3, #24]
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc3orSwj.s 			page 45
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccP8Aiiy.s 			page 45
 
 
  660:Middlewares/ST/STM32_USB_Device_Library/Core/Src/usbd_core.c ****         }
@@ -2698,7 +2698,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc3orSwj.s 			page 1
  688:Middlewares/ST/STM32_USB_Device_Library/Core/Src/usbd_core.c ****   {
  1346              		.loc 1 688 6 is_stmt 0 view .LVU396
  1347 0004 0D46     		mov	r5, r1
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc3orSwj.s 			page 46
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccP8Aiiy.s 			page 46
 
 
  1348 0006 0029     		cmp	r1, #0
@@ -2758,7 +2758,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc3orSwj.s 			page 1
  1386              		.loc 1 694 10 view .LVU412
  1387 0028 8A42     		cmp	r2, r1
  1388 002a 0DD8     		bhi	.L106
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc3orSwj.s 			page 47
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccP8Aiiy.s 			page 47
 
 
  706:Middlewares/ST/STM32_USB_Device_Library/Core/Src/usbd_core.c ****             (pep->total_length >= pep->maxpacket) &&
@@ -2818,7 +2818,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc3orSwj.s 			page 1
  1428 0052 0023     		movs	r3, #0
  1429 0054 1A46     		mov	r2, r3
  1430 0056 1946     		mov	r1, r3
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc3orSwj.s 			page 48
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccP8Aiiy.s 			page 48
 
 
  1431 0058 2046     		mov	r0, r4
@@ -2878,7 +2878,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc3orSwj.s 			page 1
  720:Middlewares/ST/STM32_USB_Device_Library/Core/Src/usbd_core.c ****             {
  1472              		.loc 1 720 32 view .LVU441
  1473 008c DA68     		ldr	r2, [r3, #12]
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc3orSwj.s 			page 49
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccP8Aiiy.s 			page 49
 
 
  720:Middlewares/ST/STM32_USB_Device_Library/Core/Src/usbd_core.c ****             {
@@ -2938,7 +2938,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc3orSwj.s 			page 1
  1511 00b2 00F1AE03 		add	r3, r0, #174
  1512 00b6 54F82330 		ldr	r3, [r4, r3, lsl #2]
  748:Middlewares/ST/STM32_USB_Device_Library/Core/Src/usbd_core.c ****         {
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc3orSwj.s 			page 50
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccP8Aiiy.s 			page 50
 
 
  1513              		.loc 1 748 30 view .LVU459
@@ -2998,7 +2998,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc3orSwj.s 			page 1
 1118:Middlewares/ST/STM32_USB_Device_Library/Core/Src/usbd_core.c ****   * @param  ep_dir: USBD_EP_IN or USBD_EP_OUT
 1119:Middlewares/ST/STM32_USB_Device_Library/Core/Src/usbd_core.c ****   * @param  ep_type: USBD_EP_TYPE_CTRL, USBD_EP_TYPE_ISOC, USBD_EP_TYPE_BULK or USBD_EP_TYPE_INTR
 1120:Middlewares/ST/STM32_USB_Device_Library/Core/Src/usbd_core.c ****   * @param  ClassId: The Class ID
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc3orSwj.s 			page 51
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccP8Aiiy.s 			page 51
 
 
 1121:Middlewares/ST/STM32_USB_Device_Library/Core/Src/usbd_core.c ****   * @retval Address of the selected endpoint or 0xFFU if no endpoint found.
@@ -3058,7 +3058,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc3orSwj.s 			page 1
 1175:Middlewares/ST/STM32_USB_Device_Library/Core/Src/usbd_core.c ****         {
 1176:Middlewares/ST/STM32_USB_Device_Library/Core/Src/usbd_core.c ****           pEpDesc = NULL;
 1177:Middlewares/ST/STM32_USB_Device_Library/Core/Src/usbd_core.c ****         }
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc3orSwj.s 			page 52
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccP8Aiiy.s 			page 52
 
 
 1178:Middlewares/ST/STM32_USB_Device_Library/Core/Src/usbd_core.c ****       }
@@ -3118,7 +3118,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc3orSwj.s 			page 1
  1586              	USBD_GetEpDesc:
  1587              	.LVL153:
  1588              	.LFB170:
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc3orSwj.s 			page 53
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccP8Aiiy.s 			page 53
 
 
 1152:Middlewares/ST/STM32_USB_Device_Library/Core/Src/usbd_core.c ****   USBD_DescHeaderTypeDef *pdesc = (USBD_DescHeaderTypeDef *)(void *)pConfDesc;
@@ -3178,7 +3178,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc3orSwj.s 			page 1
  1627 001c 0AD2     		bcs	.L119
 1164:Middlewares/ST/STM32_USB_Device_Library/Core/Src/usbd_core.c **** 
  1628              		.loc 1 1164 7 is_stmt 1 view .LVU496
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc3orSwj.s 			page 54
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccP8Aiiy.s 			page 54
 
 
 1164:Middlewares/ST/STM32_USB_Device_Library/Core/Src/usbd_core.c **** 
@@ -3238,7 +3238,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc3orSwj.s 			page 1
  1670 003c 7047     		bx	lr
  1671              		.cfi_endproc
  1672              	.LFE170:
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc3orSwj.s 			page 55
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccP8Aiiy.s 			page 55
 
 
  1674              		.text
@@ -3251,67 +3251,67 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc3orSwj.s 			page 1
  1681              		.file 7 "Middlewares/ST/STM32_USB_Device_Library/Core/Inc/usbd_ctlreq.h"
  1682              		.file 8 "C:/Users/Nathan/AppData/Roaming/Code/User/globalStorage/bmd.stm32-for-vscode/@xpack-dev-t
  1683              		.file 9 "<built-in>"
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc3orSwj.s 			page 56
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccP8Aiiy.s 			page 56
 
 
 DEFINED SYMBOLS
                             *ABS*:00000000 usbd_core.c
-C:\Users\Nathan\AppData\Local\Temp\cc3orSwj.s:20     .rodata.USBD_Init.str1.4:00000000 $d
-C:\Users\Nathan\AppData\Local\Temp\cc3orSwj.s:27     .text.USBD_Init:00000000 $t
-C:\Users\Nathan\AppData\Local\Temp\cc3orSwj.s:33     .text.USBD_Init:00000000 USBD_Init
-C:\Users\Nathan\AppData\Local\Temp\cc3orSwj.s:111    .text.USBD_Init:00000040 $d
-C:\Users\Nathan\AppData\Local\Temp\cc3orSwj.s:117    .text.USBD_DeInit:00000000 $t
-C:\Users\Nathan\AppData\Local\Temp\cc3orSwj.s:123    .text.USBD_DeInit:00000000 USBD_DeInit
-C:\Users\Nathan\AppData\Local\Temp\cc3orSwj.s:182    .rodata.USBD_RegisterClass.str1.4:00000000 $d
-C:\Users\Nathan\AppData\Local\Temp\cc3orSwj.s:186    .text.USBD_RegisterClass:00000000 $t
-C:\Users\Nathan\AppData\Local\Temp\cc3orSwj.s:192    .text.USBD_RegisterClass:00000000 USBD_RegisterClass
-C:\Users\Nathan\AppData\Local\Temp\cc3orSwj.s:281    .text.USBD_RegisterClass:00000054 $d
-C:\Users\Nathan\AppData\Local\Temp\cc3orSwj.s:287    .text.USBD_Start:00000000 $t
-C:\Users\Nathan\AppData\Local\Temp\cc3orSwj.s:293    .text.USBD_Start:00000000 USBD_Start
-C:\Users\Nathan\AppData\Local\Temp\cc3orSwj.s:315    .text.USBD_Stop:00000000 $t
-C:\Users\Nathan\AppData\Local\Temp\cc3orSwj.s:321    .text.USBD_Stop:00000000 USBD_Stop
-C:\Users\Nathan\AppData\Local\Temp\cc3orSwj.s:361    .text.USBD_RunTestMode:00000000 $t
-C:\Users\Nathan\AppData\Local\Temp\cc3orSwj.s:367    .text.USBD_RunTestMode:00000000 USBD_RunTestMode
-C:\Users\Nathan\AppData\Local\Temp\cc3orSwj.s:386    .text.USBD_SetClassConfig:00000000 $t
-C:\Users\Nathan\AppData\Local\Temp\cc3orSwj.s:392    .text.USBD_SetClassConfig:00000000 USBD_SetClassConfig
-C:\Users\Nathan\AppData\Local\Temp\cc3orSwj.s:432    .text.USBD_ClrClassConfig:00000000 $t
-C:\Users\Nathan\AppData\Local\Temp\cc3orSwj.s:438    .text.USBD_ClrClassConfig:00000000 USBD_ClrClassConfig
-C:\Users\Nathan\AppData\Local\Temp\cc3orSwj.s:476    .text.USBD_LL_SetupStage:00000000 $t
-C:\Users\Nathan\AppData\Local\Temp\cc3orSwj.s:482    .text.USBD_LL_SetupStage:00000000 USBD_LL_SetupStage
-C:\Users\Nathan\AppData\Local\Temp\cc3orSwj.s:569    .text.USBD_LL_Reset:00000000 $t
-C:\Users\Nathan\AppData\Local\Temp\cc3orSwj.s:575    .text.USBD_LL_Reset:00000000 USBD_LL_Reset
-C:\Users\Nathan\AppData\Local\Temp\cc3orSwj.s:682    .text.USBD_LL_SetSpeed:00000000 $t
-C:\Users\Nathan\AppData\Local\Temp\cc3orSwj.s:688    .text.USBD_LL_SetSpeed:00000000 USBD_LL_SetSpeed
-C:\Users\Nathan\AppData\Local\Temp\cc3orSwj.s:709    .text.USBD_LL_Suspend:00000000 $t
-C:\Users\Nathan\AppData\Local\Temp\cc3orSwj.s:715    .text.USBD_LL_Suspend:00000000 USBD_LL_Suspend
-C:\Users\Nathan\AppData\Local\Temp\cc3orSwj.s:750    .text.USBD_LL_Resume:00000000 $t
-C:\Users\Nathan\AppData\Local\Temp\cc3orSwj.s:756    .text.USBD_LL_Resume:00000000 USBD_LL_Resume
-C:\Users\Nathan\AppData\Local\Temp\cc3orSwj.s:790    .text.USBD_LL_SOF:00000000 $t
-C:\Users\Nathan\AppData\Local\Temp\cc3orSwj.s:796    .text.USBD_LL_SOF:00000000 USBD_LL_SOF
-C:\Users\Nathan\AppData\Local\Temp\cc3orSwj.s:844    .text.USBD_LL_IsoINIncomplete:00000000 $t
-C:\Users\Nathan\AppData\Local\Temp\cc3orSwj.s:850    .text.USBD_LL_IsoINIncomplete:00000000 USBD_LL_IsoINIncomplete
-C:\Users\Nathan\AppData\Local\Temp\cc3orSwj.s:914    .text.USBD_LL_IsoOUTIncomplete:00000000 $t
-C:\Users\Nathan\AppData\Local\Temp\cc3orSwj.s:920    .text.USBD_LL_IsoOUTIncomplete:00000000 USBD_LL_IsoOUTIncomplete
-C:\Users\Nathan\AppData\Local\Temp\cc3orSwj.s:984    .text.USBD_LL_DevConnected:00000000 $t
-C:\Users\Nathan\AppData\Local\Temp\cc3orSwj.s:990    .text.USBD_LL_DevConnected:00000000 USBD_LL_DevConnected
-C:\Users\Nathan\AppData\Local\Temp\cc3orSwj.s:1009   .text.USBD_LL_DevDisconnected:00000000 $t
-C:\Users\Nathan\AppData\Local\Temp\cc3orSwj.s:1015   .text.USBD_LL_DevDisconnected:00000000 USBD_LL_DevDisconnected
-C:\Users\Nathan\AppData\Local\Temp\cc3orSwj.s:1067   .text.USBD_CoreFindIF:00000000 $t
-C:\Users\Nathan\AppData\Local\Temp\cc3orSwj.s:1073   .text.USBD_CoreFindIF:00000000 USBD_CoreFindIF
-C:\Users\Nathan\AppData\Local\Temp\cc3orSwj.s:1093   .text.USBD_CoreFindEP:00000000 $t
-C:\Users\Nathan\AppData\Local\Temp\cc3orSwj.s:1099   .text.USBD_CoreFindEP:00000000 USBD_CoreFindEP
-C:\Users\Nathan\AppData\Local\Temp\cc3orSwj.s:1119   .text.USBD_LL_DataOutStage:00000000 $t
-C:\Users\Nathan\AppData\Local\Temp\cc3orSwj.s:1125   .text.USBD_LL_DataOutStage:00000000 USBD_LL_DataOutStage
-C:\Users\Nathan\AppData\Local\Temp\cc3orSwj.s:1321   .text.USBD_LL_DataInStage:00000000 $t
-C:\Users\Nathan\AppData\Local\Temp\cc3orSwj.s:1327   .text.USBD_LL_DataInStage:00000000 USBD_LL_DataInStage
-C:\Users\Nathan\AppData\Local\Temp\cc3orSwj.s:1544   .text.USBD_GetNextDesc:00000000 $t
-C:\Users\Nathan\AppData\Local\Temp\cc3orSwj.s:1550   .text.USBD_GetNextDesc:00000000 USBD_GetNextDesc
-C:\Users\Nathan\AppData\Local\Temp\cc3orSwj.s:1580   .text.USBD_GetEpDesc:00000000 $t
-C:\Users\Nathan\AppData\Local\Temp\cc3orSwj.s:1586   .text.USBD_GetEpDesc:00000000 USBD_GetEpDesc
+C:\Users\Nathan\AppData\Local\Temp\ccP8Aiiy.s:20     .rodata.USBD_Init.str1.4:00000000 $d
+C:\Users\Nathan\AppData\Local\Temp\ccP8Aiiy.s:27     .text.USBD_Init:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccP8Aiiy.s:33     .text.USBD_Init:00000000 USBD_Init
+C:\Users\Nathan\AppData\Local\Temp\ccP8Aiiy.s:111    .text.USBD_Init:00000040 $d
+C:\Users\Nathan\AppData\Local\Temp\ccP8Aiiy.s:117    .text.USBD_DeInit:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccP8Aiiy.s:123    .text.USBD_DeInit:00000000 USBD_DeInit
+C:\Users\Nathan\AppData\Local\Temp\ccP8Aiiy.s:182    .rodata.USBD_RegisterClass.str1.4:00000000 $d
+C:\Users\Nathan\AppData\Local\Temp\ccP8Aiiy.s:186    .text.USBD_RegisterClass:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccP8Aiiy.s:192    .text.USBD_RegisterClass:00000000 USBD_RegisterClass
+C:\Users\Nathan\AppData\Local\Temp\ccP8Aiiy.s:281    .text.USBD_RegisterClass:00000054 $d
+C:\Users\Nathan\AppData\Local\Temp\ccP8Aiiy.s:287    .text.USBD_Start:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccP8Aiiy.s:293    .text.USBD_Start:00000000 USBD_Start
+C:\Users\Nathan\AppData\Local\Temp\ccP8Aiiy.s:315    .text.USBD_Stop:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccP8Aiiy.s:321    .text.USBD_Stop:00000000 USBD_Stop
+C:\Users\Nathan\AppData\Local\Temp\ccP8Aiiy.s:361    .text.USBD_RunTestMode:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccP8Aiiy.s:367    .text.USBD_RunTestMode:00000000 USBD_RunTestMode
+C:\Users\Nathan\AppData\Local\Temp\ccP8Aiiy.s:386    .text.USBD_SetClassConfig:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccP8Aiiy.s:392    .text.USBD_SetClassConfig:00000000 USBD_SetClassConfig
+C:\Users\Nathan\AppData\Local\Temp\ccP8Aiiy.s:432    .text.USBD_ClrClassConfig:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccP8Aiiy.s:438    .text.USBD_ClrClassConfig:00000000 USBD_ClrClassConfig
+C:\Users\Nathan\AppData\Local\Temp\ccP8Aiiy.s:476    .text.USBD_LL_SetupStage:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccP8Aiiy.s:482    .text.USBD_LL_SetupStage:00000000 USBD_LL_SetupStage
+C:\Users\Nathan\AppData\Local\Temp\ccP8Aiiy.s:569    .text.USBD_LL_Reset:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccP8Aiiy.s:575    .text.USBD_LL_Reset:00000000 USBD_LL_Reset
+C:\Users\Nathan\AppData\Local\Temp\ccP8Aiiy.s:682    .text.USBD_LL_SetSpeed:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccP8Aiiy.s:688    .text.USBD_LL_SetSpeed:00000000 USBD_LL_SetSpeed
+C:\Users\Nathan\AppData\Local\Temp\ccP8Aiiy.s:709    .text.USBD_LL_Suspend:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccP8Aiiy.s:715    .text.USBD_LL_Suspend:00000000 USBD_LL_Suspend
+C:\Users\Nathan\AppData\Local\Temp\ccP8Aiiy.s:750    .text.USBD_LL_Resume:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccP8Aiiy.s:756    .text.USBD_LL_Resume:00000000 USBD_LL_Resume
+C:\Users\Nathan\AppData\Local\Temp\ccP8Aiiy.s:790    .text.USBD_LL_SOF:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccP8Aiiy.s:796    .text.USBD_LL_SOF:00000000 USBD_LL_SOF
+C:\Users\Nathan\AppData\Local\Temp\ccP8Aiiy.s:844    .text.USBD_LL_IsoINIncomplete:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccP8Aiiy.s:850    .text.USBD_LL_IsoINIncomplete:00000000 USBD_LL_IsoINIncomplete
+C:\Users\Nathan\AppData\Local\Temp\ccP8Aiiy.s:914    .text.USBD_LL_IsoOUTIncomplete:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccP8Aiiy.s:920    .text.USBD_LL_IsoOUTIncomplete:00000000 USBD_LL_IsoOUTIncomplete
+C:\Users\Nathan\AppData\Local\Temp\ccP8Aiiy.s:984    .text.USBD_LL_DevConnected:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccP8Aiiy.s:990    .text.USBD_LL_DevConnected:00000000 USBD_LL_DevConnected
+C:\Users\Nathan\AppData\Local\Temp\ccP8Aiiy.s:1009   .text.USBD_LL_DevDisconnected:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccP8Aiiy.s:1015   .text.USBD_LL_DevDisconnected:00000000 USBD_LL_DevDisconnected
+C:\Users\Nathan\AppData\Local\Temp\ccP8Aiiy.s:1067   .text.USBD_CoreFindIF:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccP8Aiiy.s:1073   .text.USBD_CoreFindIF:00000000 USBD_CoreFindIF
+C:\Users\Nathan\AppData\Local\Temp\ccP8Aiiy.s:1093   .text.USBD_CoreFindEP:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccP8Aiiy.s:1099   .text.USBD_CoreFindEP:00000000 USBD_CoreFindEP
+C:\Users\Nathan\AppData\Local\Temp\ccP8Aiiy.s:1119   .text.USBD_LL_DataOutStage:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccP8Aiiy.s:1125   .text.USBD_LL_DataOutStage:00000000 USBD_LL_DataOutStage
+C:\Users\Nathan\AppData\Local\Temp\ccP8Aiiy.s:1321   .text.USBD_LL_DataInStage:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccP8Aiiy.s:1327   .text.USBD_LL_DataInStage:00000000 USBD_LL_DataInStage
+C:\Users\Nathan\AppData\Local\Temp\ccP8Aiiy.s:1544   .text.USBD_GetNextDesc:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccP8Aiiy.s:1550   .text.USBD_GetNextDesc:00000000 USBD_GetNextDesc
+C:\Users\Nathan\AppData\Local\Temp\ccP8Aiiy.s:1580   .text.USBD_GetEpDesc:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccP8Aiiy.s:1586   .text.USBD_GetEpDesc:00000000 USBD_GetEpDesc
 
 UNDEFINED SYMBOLS
 USBD_LL_Init
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc3orSwj.s 			page 57
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccP8Aiiy.s 			page 57
 
 
 printf

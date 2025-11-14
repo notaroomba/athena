@@ -1,4 +1,4 @@
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccaEqynx.s 			page 1
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccgnkHop.s 			page 1
 
 
    1              		.cpu cortex-m4
@@ -58,7 +58,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccaEqynx.s 			page 1
   28:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_flash_ramfunc.c ****     [..] RAM functions are defined using a specific toolchain keyword "__ramfunc".
   29:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_flash_ramfunc.c **** 
   30:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_flash_ramfunc.c ****     *** GNU Compiler ***
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccaEqynx.s 			page 2
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccgnkHop.s 			page 2
 
 
   31:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_flash_ramfunc.c ****     --------------------
@@ -118,7 +118,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccaEqynx.s 			page 1
   85:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_flash_ramfunc.c ****   */
   86:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_flash_ramfunc.c **** 
   87:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_flash_ramfunc.c **** /**
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccaEqynx.s 			page 3
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccgnkHop.s 			page 3
 
 
   88:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_flash_ramfunc.c ****   * @brief  Enable the Power down in Run Mode
@@ -178,7 +178,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccaEqynx.s 			page 1
  105:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_flash_ramfunc.c ****   */
  106:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_flash_ramfunc.c **** __RAM_FUNC HAL_StatusTypeDef HAL_FLASHEx_DisableRunPowerDown(void)
  107:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_flash_ramfunc.c **** {
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccaEqynx.s 			page 4
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccgnkHop.s 			page 4
 
 
   68              		.loc 1 107 1 is_stmt 1 view -0
@@ -238,7 +238,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccaEqynx.s 			page 1
  124:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_flash_ramfunc.c ****   *         This parameter  can be one of the following values:
  125:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_flash_ramfunc.c ****   *            @arg OB_DBANK_128_BITS: Single-bank with 128-bits data
  126:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_flash_ramfunc.c ****   *            @arg OB_DBANK_64_BITS: Dual-bank with 64-bits data
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccaEqynx.s 			page 5
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccgnkHop.s 			page 5
 
 
  127:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_flash_ramfunc.c ****   *
@@ -298,7 +298,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccaEqynx.s 			page 1
  145              		.loc 1 143 8 view .LVU32
  146 006a 9342     		cmp	r3, r2
  147 006c 80F08880 		bcs	.L9
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccaEqynx.s 			page 6
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccgnkHop.s 			page 6
 
 
  144:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_flash_ramfunc.c ****     {
@@ -358,7 +358,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccaEqynx.s 			page 1
  185 00a6 3B4B     		ldr	r3, .L19+4
  186 00a8 1A68     		ldr	r2, [r3]
  187 00aa 22F48062 		bic	r2, r2, #1024
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccaEqynx.s 			page 7
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccgnkHop.s 			page 7
 
 
  188 00ae 1A60     		str	r2, [r3]
@@ -418,7 +418,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccaEqynx.s 			page 1
  176:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_flash_ramfunc.c ****       if (((reg & FLASH_WRP1BR_WRP1B_STRT) >> FLASH_WRP1BR_WRP1B_STRT_Pos) <=
  226              		.loc 1 176 7 is_stmt 1 view .LVU60
  227              		.loc 1 176 44 is_stmt 0 view .LVU61
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccaEqynx.s 			page 8
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccgnkHop.s 			page 8
 
 
  228 00e2 03F07F02 		and	r2, r3, #127
@@ -478,7 +478,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccaEqynx.s 			page 1
  265 011a 1E4B     		ldr	r3, .L19+4
  266 011c 1B6D     		ldr	r3, [r3, #80]
  267              	.LVL10:
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccaEqynx.s 			page 9
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccgnkHop.s 			page 9
 
 
  192:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_flash_ramfunc.c ****       if (((reg & FLASH_WRP2BR_WRP2B_STRT) >> FLASH_WRP2BR_WRP2B_STRT_Pos) <=
@@ -538,7 +538,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccaEqynx.s 			page 1
  207:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_flash_ramfunc.c ****       do
  306              		.loc 1 207 7 is_stmt 1 view .LVU84
  208:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_flash_ramfunc.c ****       {
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccaEqynx.s 			page 10
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccgnkHop.s 			page 10
 
 
  209:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_flash_ramfunc.c ****         if (count == 0U)
@@ -598,7 +598,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccaEqynx.s 			page 1
  341              		.loc 1 228 3 view .LVU98
  342              		.loc 1 228 10 is_stmt 0 view .LVU99
  343 0186 0120     		movs	r0, #1
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccaEqynx.s 			page 11
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccgnkHop.s 			page 11
 
 
  344              	.LVL16:
@@ -631,20 +631,20 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccaEqynx.s 			page 1
  370              		.file 6 "Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_def.h"
  371              		.file 7 "Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_flash.h"
  372              		.file 8 "Drivers/CMSIS/Device/ST/STM32G4xx/Include/system_stm32g4xx.h"
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccaEqynx.s 			page 12
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccgnkHop.s 			page 12
 
 
 DEFINED SYMBOLS
                             *ABS*:00000000 stm32g4xx_hal_flash_ramfunc.c
-C:\Users\Nathan\AppData\Local\Temp\ccaEqynx.s:21     .RamFunc:00000000 $t
-C:\Users\Nathan\AppData\Local\Temp\ccaEqynx.s:27     .RamFunc:00000000 HAL_FLASHEx_EnableRunPowerDown
-C:\Users\Nathan\AppData\Local\Temp\ccaEqynx.s:54     .RamFunc:00000018 $d
-C:\Users\Nathan\AppData\Local\Temp\ccaEqynx.s:60     .RamFunc:00000024 $t
-C:\Users\Nathan\AppData\Local\Temp\ccaEqynx.s:66     .RamFunc:00000024 HAL_FLASHEx_DisableRunPowerDown
-C:\Users\Nathan\AppData\Local\Temp\ccaEqynx.s:93     .RamFunc:0000003c $d
-C:\Users\Nathan\AppData\Local\Temp\ccaEqynx.s:99     .RamFunc:00000048 $t
-C:\Users\Nathan\AppData\Local\Temp\ccaEqynx.s:105    .RamFunc:00000048 HAL_FLASHEx_OB_DBankConfig
-C:\Users\Nathan\AppData\Local\Temp\ccaEqynx.s:357    .RamFunc:00000190 $d
+C:\Users\Nathan\AppData\Local\Temp\ccgnkHop.s:21     .RamFunc:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccgnkHop.s:27     .RamFunc:00000000 HAL_FLASHEx_EnableRunPowerDown
+C:\Users\Nathan\AppData\Local\Temp\ccgnkHop.s:54     .RamFunc:00000018 $d
+C:\Users\Nathan\AppData\Local\Temp\ccgnkHop.s:60     .RamFunc:00000024 $t
+C:\Users\Nathan\AppData\Local\Temp\ccgnkHop.s:66     .RamFunc:00000024 HAL_FLASHEx_DisableRunPowerDown
+C:\Users\Nathan\AppData\Local\Temp\ccgnkHop.s:93     .RamFunc:0000003c $d
+C:\Users\Nathan\AppData\Local\Temp\ccgnkHop.s:99     .RamFunc:00000048 $t
+C:\Users\Nathan\AppData\Local\Temp\ccgnkHop.s:105    .RamFunc:00000048 HAL_FLASHEx_OB_DBankConfig
+C:\Users\Nathan\AppData\Local\Temp\ccgnkHop.s:357    .RamFunc:00000190 $d
 
 UNDEFINED SYMBOLS
 pFlash

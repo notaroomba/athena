@@ -1,4 +1,4 @@
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccTkIPzQ.s 			page 1
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccPIQxaa.s 			page 1
 
 
    1              		.cpu cortex-m7
@@ -58,7 +58,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccTkIPzQ.s 			page 1
   28:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_spi_ex.c ****   * @{
   29:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_spi_ex.c ****   */
   30:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_spi_ex.c **** 
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccTkIPzQ.s 			page 2
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccPIQxaa.s 			page 2
 
 
   31:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_spi_ex.c **** /** @defgroup SPIEx SPIEx
@@ -118,7 +118,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccTkIPzQ.s 			page 1
   38 0002 83B0     		sub	sp, sp, #12
   39              		.cfi_def_cfa_offset 16
   76:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_spi_ex.c ****   uint8_t  count  = 0;
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccTkIPzQ.s 			page 3
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccPIQxaa.s 			page 3
 
 
   40              		.loc 1 76 3 is_stmt 1 view .LVU2
@@ -178,7 +178,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccTkIPzQ.s 			page 1
   75              	.LVL5:
   82:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_spi_ex.c ****     tmpreg = hspi->Instance->RXDR;
   76              		.loc 1 82 11 view .LVU18
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccTkIPzQ.s 			page 4
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccPIQxaa.s 			page 4
 
 
   77 0020 DBB2     		uxtb	r3, r3
@@ -238,7 +238,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccTkIPzQ.s 			page 1
  110              		.loc 1 90 16 view .LVU30
  111 0048 0320     		movs	r0, #3
  112              	.L5:
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccTkIPzQ.s 			page 5
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccPIQxaa.s 			page 5
 
 
  102:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_spi_ex.c **** }
@@ -298,7 +298,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccTkIPzQ.s 			page 1
  152 0002 90F88020 		ldrb	r2, [r0, #128]	@ zero_extendqisi2
  153 0006 012A     		cmp	r2, #1
  154 0008 2DD0     		beq	.L19
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccTkIPzQ.s 			page 6
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccPIQxaa.s 			page 6
 
 
  155              		.loc 1 118 3 discriminator 2 view .LVU38
@@ -358,7 +358,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccTkIPzQ.s 			page 1
  146:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_spi_ex.c ****   /* Process Unlocked */
  147:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_spi_ex.c ****   __HAL_UNLOCK(hspi);
  182              		.loc 1 147 3 is_stmt 1 view .LVU50
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccTkIPzQ.s 			page 7
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccPIQxaa.s 			page 7
 
 
  183              		.loc 1 147 3 view .LVU51
@@ -418,7 +418,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccTkIPzQ.s 			page 1
  224 005e 42F00102 		orr	r2, r2, #1
  225 0062 0A60     		str	r2, [r1]
  226 0064 E1E7     		b	.L18
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccTkIPzQ.s 			page 8
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccPIQxaa.s 			page 8
 
 
  227              	.L19:
@@ -478,7 +478,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccTkIPzQ.s 			page 1
  170:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_spi_ex.c ****   if ((hspi->State != HAL_SPI_STATE_READY) || (hspi->Init.Mode != SPI_MODE_SLAVE))
  261              		.loc 1 170 3 view .LVU76
  262              		.loc 1 170 12 is_stmt 0 view .LVU77
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccTkIPzQ.s 			page 9
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccPIQxaa.s 			page 9
 
 
  263 000e 90F88130 		ldrb	r3, [r0, #129]	@ zero_extendqisi2
@@ -538,7 +538,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccTkIPzQ.s 			page 1
  298              	.LVL17:
  299              	.L26:
  189:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_spi_ex.c ****   }
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccTkIPzQ.s 			page 10
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccPIQxaa.s 			page 10
 
 
  190:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_spi_ex.c ****   else
@@ -598,7 +598,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccTkIPzQ.s 			page 1
  329              		.loc 1 175 5 view .LVU104
  176:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_spi_ex.c ****   }
  330              		.loc 1 176 5 view .LVU105
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccTkIPzQ.s 			page 11
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccPIQxaa.s 			page 11
 
 
  176:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_spi_ex.c ****   }
@@ -658,7 +658,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccTkIPzQ.s 			page 1
  376              	.LFE146:
  378              		.text
  379              	.Letext0:
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccTkIPzQ.s 			page 12
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccPIQxaa.s 			page 12
 
 
  380              		.file 2 "C:/Users/Nathan/AppData/Roaming/Code/User/globalStorage/bmd.stm32-for-vscode/@xpack-dev-t
@@ -667,17 +667,17 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccTkIPzQ.s 			page 1
  383              		.file 5 "Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_def.h"
  384              		.file 6 "Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_dma.h"
  385              		.file 7 "Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_spi.h"
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccTkIPzQ.s 			page 13
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccPIQxaa.s 			page 13
 
 
 DEFINED SYMBOLS
                             *ABS*:00000000 stm32h7xx_hal_spi_ex.c
-C:\Users\Nathan\AppData\Local\Temp\ccTkIPzQ.s:20     .text.HAL_SPIEx_FlushRxFifo:00000000 $t
-C:\Users\Nathan\AppData\Local\Temp\ccTkIPzQ.s:26     .text.HAL_SPIEx_FlushRxFifo:00000000 HAL_SPIEx_FlushRxFifo
-C:\Users\Nathan\AppData\Local\Temp\ccTkIPzQ.s:126    .text.HAL_SPIEx_FlushRxFifo:00000054 $d
-C:\Users\Nathan\AppData\Local\Temp\ccTkIPzQ.s:132    .text.HAL_SPIEx_EnableLockConfiguration:00000000 $t
-C:\Users\Nathan\AppData\Local\Temp\ccTkIPzQ.s:138    .text.HAL_SPIEx_EnableLockConfiguration:00000000 HAL_SPIEx_EnableLockConfiguration
-C:\Users\Nathan\AppData\Local\Temp\ccTkIPzQ.s:237    .text.HAL_SPIEx_ConfigureUnderrun:00000000 $t
-C:\Users\Nathan\AppData\Local\Temp\ccTkIPzQ.s:243    .text.HAL_SPIEx_ConfigureUnderrun:00000000 HAL_SPIEx_ConfigureUnderrun
+C:\Users\Nathan\AppData\Local\Temp\ccPIQxaa.s:20     .text.HAL_SPIEx_FlushRxFifo:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccPIQxaa.s:26     .text.HAL_SPIEx_FlushRxFifo:00000000 HAL_SPIEx_FlushRxFifo
+C:\Users\Nathan\AppData\Local\Temp\ccPIQxaa.s:126    .text.HAL_SPIEx_FlushRxFifo:00000054 $d
+C:\Users\Nathan\AppData\Local\Temp\ccPIQxaa.s:132    .text.HAL_SPIEx_EnableLockConfiguration:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccPIQxaa.s:138    .text.HAL_SPIEx_EnableLockConfiguration:00000000 HAL_SPIEx_EnableLockConfiguration
+C:\Users\Nathan\AppData\Local\Temp\ccPIQxaa.s:237    .text.HAL_SPIEx_ConfigureUnderrun:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccPIQxaa.s:243    .text.HAL_SPIEx_ConfigureUnderrun:00000000 HAL_SPIEx_ConfigureUnderrun
 
 NO UNDEFINED SYMBOLS

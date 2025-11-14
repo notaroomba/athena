@@ -1,26 +1,31 @@
 @echo off
 REM Athena Firmware Flash Script
-REM Flashes MPU, SPU, and TPU using their USB DFU serial numbers
-REM Serial numbers from sn.txt:
-REM   SPU (USB1): 206831725843
-REM   MPU (USB2): 200364500000
-REM   TPU (USB3): 200364500000
+REM Flashes MPU, SPU, and TPU using their USB port assignments
+REM Port assignments:
+REM   SPU: USB1
+REM   MPU: USB2
+REM   TPU: USB3
 
 setlocal
+
+REM Configuration - Set to 1 to run firmware after flashing, 0 to halt
+set RUN_AFTER_FLASH=1
 
 REM Define paths
 set PROGRAMMER="c:\Program Files\STMicroelectronics\STM32Cube\STM32CubeProgrammer\bin\STM32_Programmer_CLI.exe"
 set BUILD_DIR=build
 
-REM USB port assignments for each MCU
+REM USB port assignments for each MCU (edit these if your connections differ)
 set SPU_USB=usb1
-set MPU_USB=usb1
-set TPU_USB=usb1
+set MPU_USB=usb2
+set TPU_USB=usb3
 
-REM Serial numbers for each MCU
-set SPU_SN=206831725843
-set MPU_SN=200364500000
-set TPU_SN=200364500000
+REM Set run flag based on configuration
+if "%RUN_AFTER_FLASH%"=="1" (
+    set RUN_FLAG=-s
+) else (
+    set RUN_FLAG=
+)
 
 REM Check if programmer exists
 if not exist %PROGRAMMER% (
@@ -90,14 +95,16 @@ if not exist "%ELF_FILE%" (
     echo ERROR: %ELF_FILE% not found!
     exit /b 1
 )
-echo Connecting to MPU (SN: %MPU_SN%)...
-%PROGRAMMER% -c port=%MPU_USB% -w "%ELF_FILE%" -v -s
+echo Connecting to MPU on %MPU_USB%...
+%PROGRAMMER% -c port=%MPU_USB% -w "%ELF_FILE%" -v %RUN_FLAG%
 if errorlevel 1 (
     echo ERROR: Failed to flash MPU
     exit /b 1
 )
 echo MPU flashed successfully!
 if "%TARGET%"=="mpu" exit /b 0
+REM After MPU is flashed and disconnects, TPU moves from usb3 to usb2
+set TPU_USB=usb2
 goto :eof
 
 :flash_spu
@@ -110,14 +117,18 @@ if not exist "%ELF_FILE%" (
     echo ERROR: %ELF_FILE% not found!
     exit /b 1
 )
-echo Connecting to SPU (SN: %SPU_SN%)...
-%PROGRAMMER% -c port=%SPU_USB% -w "%ELF_FILE%" -v -s
+echo Connecting to SPU on %SPU_USB%...
+%PROGRAMMER% -c port=%SPU_USB% -w "%ELF_FILE%" -v %RUN_FLAG%
 if errorlevel 1 (
     echo ERROR: Failed to flash SPU
     exit /b 1
 )
 echo SPU flashed successfully!
 if "%TARGET%"=="spu" exit /b 0
+REM After SPU is flashed and disconnects, other devices move up
+REM MPU moves from usb2 to usb1, TPU moves from usb3 to usb2
+set MPU_USB=usb1
+set TPU_USB=usb2
 goto :eof
 
 :flash_tpu
@@ -130,8 +141,8 @@ if not exist "%ELF_FILE%" (
     echo ERROR: %ELF_FILE% not found!
     exit /b 1
 )
-echo Connecting to TPU (SN: %TPU_SN%)...
-%PROGRAMMER% -c port=%TPU_USB% -w "%ELF_FILE%" -v -s
+echo Connecting to TPU on %TPU_USB%...
+%PROGRAMMER% -c port=%TPU_USB% -w "%ELF_FILE%" -v %RUN_FLAG%
 if errorlevel 1 (
     echo ERROR: Failed to flash TPU
     exit /b 1
@@ -141,9 +152,9 @@ if "%TARGET%"=="tpu" exit /b 0
 goto :eof
 
 :flash_all
-call :flash_spu
-call :flash_mpu
 call :flash_tpu
+call :flash_mpu
+call :flash_spu
 echo.
 echo ========================================
 echo All MCUs flashed successfully!

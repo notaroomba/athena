@@ -1,4 +1,4 @@
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc4Audip.s 			page 1
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccVBSC3m.s 			page 1
 
 
    1              		.cpu cortex-m4
@@ -58,7 +58,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc4Audip.s 			page 1
   28:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_fdcan.c ****     [..]
   29:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_fdcan.c ****       (#) Initialize the FDCAN peripheral using HAL_FDCAN_Init function.
   30:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_fdcan.c **** 
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc4Audip.s 			page 2
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccVBSC3m.s 			page 2
 
 
   31:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_fdcan.c ****       (#) If needed , configure the reception filters and optional features using
@@ -118,7 +118,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc4Audip.s 			page 1
   85:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_fdcan.c ****       *** Interrupt mode operation ***
   86:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_fdcan.c ****       ================================
   87:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_fdcan.c ****       [..]
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc4Audip.s 			page 3
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccVBSC3m.s 			page 3
 
 
   88:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_fdcan.c ****         (#) There are two interrupt lines: line 0 and 1.
@@ -178,7 +178,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc4Audip.s 			page 1
  142:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_fdcan.c ****   By default, after the HAL_FDCAN_Init() and when the state is HAL_FDCAN_STATE_RESET,
  143:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_fdcan.c ****   all callbacks are set to the corresponding weak functions:
  144:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_fdcan.c ****   examples HAL_FDCAN_ErrorCallback().
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc4Audip.s 			page 4
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccVBSC3m.s 			page 4
 
 
  145:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_fdcan.c ****   Exception done for MspInit and MspDeInit functions that are
@@ -238,7 +238,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc4Audip.s 			page 1
  199:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_fdcan.c **** #define FDCAN_ELEMENT_MASK_XTD   ((uint32_t)0x40000000U) /* Extended Identifier         */
  200:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_fdcan.c **** #define FDCAN_ELEMENT_MASK_ESI   ((uint32_t)0x80000000U) /* Error State Indicator       */
  201:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_fdcan.c **** #define FDCAN_ELEMENT_MASK_TS    ((uint32_t)0x0000FFFFU) /* Timestamp                   */
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc4Audip.s 			page 5
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccVBSC3m.s 			page 5
 
 
  202:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_fdcan.c **** #define FDCAN_ELEMENT_MASK_DLC   ((uint32_t)0x000F0000U) /* Data Length Code            */
@@ -298,7 +298,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc4Audip.s 			page 1
  256:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_fdcan.c **** static void FDCAN_CopyMessageToRAM(const FDCAN_HandleTypeDef *hfdcan, const FDCAN_TxHeaderTypeDef *
  257:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_fdcan.c ****                                    const uint8_t *pTxData, uint32_t BufferIndex);
  258:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_fdcan.c **** /**
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc4Audip.s 			page 6
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccVBSC3m.s 			page 6
 
 
  259:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_fdcan.c ****   * @}
@@ -358,7 +358,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc4Audip.s 			page 1
  313:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_fdcan.c ****   assert_param(IS_FUNCTIONAL_STATE(hfdcan->Init.ProtocolException));
  314:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_fdcan.c ****   assert_param(IS_FDCAN_NOMINAL_PRESCALER(hfdcan->Init.NominalPrescaler));
  315:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_fdcan.c ****   assert_param(IS_FDCAN_NOMINAL_SJW(hfdcan->Init.NominalSyncJumpWidth));
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc4Audip.s 			page 7
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccVBSC3m.s 			page 7
 
 
  316:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_fdcan.c ****   assert_param(IS_FDCAN_NOMINAL_TSEG1(hfdcan->Init.NominalTimeSeg1));
@@ -418,7 +418,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc4Audip.s 			page 1
  370:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_fdcan.c ****   /* Get tick */
  371:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_fdcan.c ****   tickstart = HAL_GetTick();
  372:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_fdcan.c **** 
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc4Audip.s 			page 8
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccVBSC3m.s 			page 8
 
 
  373:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_fdcan.c ****   /* Check Sleep mode acknowledge */
@@ -478,7 +478,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc4Audip.s 			page 1
  427:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_fdcan.c ****     SET_BIT(hfdcan->Instance->CCCR, FDCAN_CCCR_DAR);
  428:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_fdcan.c ****   }
  429:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_fdcan.c **** 
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc4Audip.s 			page 9
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccVBSC3m.s 			page 9
 
 
  430:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_fdcan.c ****   /* Set the transmit pause feature */
@@ -538,7 +538,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc4Audip.s 			page 1
  484:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_fdcan.c ****     }
  485:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_fdcan.c ****     else
  486:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_fdcan.c ****     {
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc4Audip.s 			page 10
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccVBSC3m.s 			page 10
 
 
  487:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_fdcan.c ****       /* Enable bus monitoring mode */
@@ -598,7 +598,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc4Audip.s 			page 1
  541:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_fdcan.c ****     return HAL_ERROR;
  542:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_fdcan.c ****   }
  543:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_fdcan.c **** 
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc4Audip.s 			page 11
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccVBSC3m.s 			page 11
 
 
  544:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_fdcan.c ****   /* Check function parameters */
@@ -658,7 +658,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc4Audip.s 			page 1
  598:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_fdcan.c **** {
  599:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_fdcan.c ****   /* Prevent unused argument(s) compilation warning */
  600:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_fdcan.c ****   UNUSED(hfdcan);
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc4Audip.s 			page 12
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccVBSC3m.s 			page 12
 
 
  601:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_fdcan.c ****   /* NOTE: This function Should not be modified, when the callback is needed,
@@ -718,7 +718,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc4Audip.s 			page 1
  655:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_fdcan.c ****   tickstart = HAL_GetTick();
  656:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_fdcan.c **** 
  657:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_fdcan.c ****   /* Wait until FDCAN exits sleep mode */
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc4Audip.s 			page 13
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccVBSC3m.s 			page 13
 
 
  658:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_fdcan.c ****   while ((hfdcan->Instance->CCCR & FDCAN_CCCR_CSA) == FDCAN_CCCR_CSA)
@@ -778,7 +778,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc4Audip.s 			page 1
  712:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_fdcan.c ****     switch (CallbackID)
  713:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_fdcan.c ****     {
  714:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_fdcan.c ****       case HAL_FDCAN_TX_FIFO_EMPTY_CB_ID :
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc4Audip.s 			page 14
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccVBSC3m.s 			page 14
 
 
  715:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_fdcan.c ****         hfdcan->TxFifoEmptyCallback = pCallback;
@@ -838,7 +838,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc4Audip.s 			page 1
  769:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_fdcan.c ****         break;
  770:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_fdcan.c ****     }
  771:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_fdcan.c ****   }
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc4Audip.s 			page 15
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccVBSC3m.s 			page 15
 
 
  772:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_fdcan.c ****   else
@@ -898,7 +898,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc4Audip.s 			page 1
  826:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_fdcan.c ****         break;
  827:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_fdcan.c **** 
  828:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_fdcan.c ****       case HAL_FDCAN_MSPINIT_CB_ID :
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc4Audip.s 			page 16
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccVBSC3m.s 			page 16
 
 
  829:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_fdcan.c ****         hfdcan->MspInitCallback = HAL_FDCAN_MspInit;
@@ -958,7 +958,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc4Audip.s 			page 1
  883:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_fdcan.c ****   * @retval HAL status
  884:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_fdcan.c ****   */
  885:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_fdcan.c **** HAL_StatusTypeDef HAL_FDCAN_RegisterTxEventFifoCallback(FDCAN_HandleTypeDef *hfdcan,
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc4Audip.s 			page 17
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccVBSC3m.s 			page 17
 
 
  886:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_fdcan.c ****                                                         pFDCAN_TxEventFifoCallbackTypeDef pCallback
@@ -1018,7 +1018,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc4Audip.s 			page 1
  940:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_fdcan.c ****   * @brief  Register Rx Fifo 0 FDCAN Callback
  941:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_fdcan.c ****   *         To be used instead of the weak HAL_FDCAN_RxFifo0Callback() predefined callback
  942:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_fdcan.c ****   * @param  hfdcan FDCAN handle
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc4Audip.s 			page 18
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccVBSC3m.s 			page 18
 
 
  943:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_fdcan.c ****   * @param  pCallback pointer to the Rx Fifo 0 Callback function
@@ -1078,7 +1078,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc4Audip.s 			page 1
  997:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_fdcan.c ****   return status;
  998:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_fdcan.c **** }
  999:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_fdcan.c **** 
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc4Audip.s 			page 19
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccVBSC3m.s 			page 19
 
 
 1000:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_fdcan.c **** /**
@@ -1138,7 +1138,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc4Audip.s 			page 1
 1054:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_fdcan.c ****     /* Return error status */
 1055:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_fdcan.c ****     status =  HAL_ERROR;
 1056:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_fdcan.c ****   }
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc4Audip.s 			page 20
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccVBSC3m.s 			page 20
 
 
 1057:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_fdcan.c **** 
@@ -1198,7 +1198,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc4Audip.s 			page 1
 1111:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_fdcan.c ****   else
 1112:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_fdcan.c ****   {
 1113:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_fdcan.c ****     /* Update the error code */
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc4Audip.s 			page 21
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccVBSC3m.s 			page 21
 
 
 1114:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_fdcan.c ****     hfdcan->ErrorCode |= HAL_FDCAN_ERROR_INVALID_CALLBACK;
@@ -1258,7 +1258,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc4Audip.s 			page 1
 1168:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_fdcan.c **** 
 1169:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_fdcan.c ****   if (hfdcan->State == HAL_FDCAN_STATE_READY)
 1170:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_fdcan.c ****   {
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc4Audip.s 			page 22
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccVBSC3m.s 			page 22
 
 
 1171:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_fdcan.c ****     hfdcan->TxBufferAbortCallback = HAL_FDCAN_TxBufferAbortCallback; /* Legacy weak TxBufferAbortCa
@@ -1318,7 +1318,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc4Audip.s 			page 1
 1225:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_fdcan.c ****   */
 1226:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_fdcan.c **** HAL_StatusTypeDef HAL_FDCAN_UnRegisterErrorStatusCallback(FDCAN_HandleTypeDef *hfdcan)
 1227:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_fdcan.c **** {
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc4Audip.s 			page 23
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccVBSC3m.s 			page 23
 
 
 1228:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_fdcan.c ****   HAL_StatusTypeDef status = HAL_OK;
@@ -1378,7 +1378,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc4Audip.s 			page 1
 1282:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_fdcan.c **** 
 1283:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_fdcan.c **** @endverbatim
 1284:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_fdcan.c ****   * @{
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc4Audip.s 			page 24
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccVBSC3m.s 			page 24
 
 
 1285:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_fdcan.c ****   */
@@ -1438,7 +1438,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc4Audip.s 			page 1
 1339:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_fdcan.c **** 
 1340:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_fdcan.c ****       /* Build second word of filter element */
 1341:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_fdcan.c ****       FilterElementW2 = ((sFilterConfig->FilterType << 30U) | sFilterConfig->FilterID2);
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc4Audip.s 			page 25
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccVBSC3m.s 			page 25
 
 
 1342:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_fdcan.c **** 
@@ -1498,7 +1498,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc4Audip.s 			page 1
 1396:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_fdcan.c ****                                          FDCAN_RXGFC_ANFE |
 1397:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_fdcan.c ****                                          FDCAN_RXGFC_RRFS |
 1398:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_fdcan.c ****                                          FDCAN_RXGFC_RRFE),
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc4Audip.s 			page 26
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccVBSC3m.s 			page 26
 
 
 1399:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_fdcan.c ****                ((NonMatchingStd << FDCAN_RXGFC_ANFS_Pos)  |
@@ -1558,7 +1558,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc4Audip.s 			page 1
 1453:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_fdcan.c ****   *           @arg FDCAN_RX_FIFO1: Rx FIFO 1
 1454:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_fdcan.c ****   * @param  OperationMode operation mode.
 1455:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_fdcan.c ****   *         This parameter can be a value of @arg FDCAN_Rx_FIFO_operation_mode.
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc4Audip.s 			page 27
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccVBSC3m.s 			page 27
 
 
 1456:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_fdcan.c ****   * @retval HAL status
@@ -1618,7 +1618,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc4Audip.s 			page 1
 1510:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_fdcan.c ****   }
 1511:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_fdcan.c ****   else
 1512:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_fdcan.c ****   {
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc4Audip.s 			page 28
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccVBSC3m.s 			page 28
 
 
 1513:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_fdcan.c ****     /* Update error code */
@@ -1678,7 +1678,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc4Audip.s 			page 1
 1567:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_fdcan.c **** 
 1568:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_fdcan.c ****     /* Return function status */
 1569:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_fdcan.c ****     return HAL_OK;
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc4Audip.s 			page 29
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccVBSC3m.s 			page 29
 
 
 1570:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_fdcan.c ****   }
@@ -1738,7 +1738,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc4Audip.s 			page 1
 1624:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_fdcan.c ****   if ((hfdcan->Instance->TSCC & FDCAN_TSCC_TSS) != FDCAN_TIMESTAMP_EXTERNAL)
 1625:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_fdcan.c ****   {
 1626:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_fdcan.c ****     /* Reset timestamp counter.
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc4Audip.s 			page 30
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccVBSC3m.s 			page 30
 
 
 1627:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_fdcan.c ****        Actually any write operation to TSCV clears the counter */
@@ -1798,7 +1798,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc4Audip.s 			page 1
 1681:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_fdcan.c ****   *         the configuration information for the specified FDCAN.
 1682:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_fdcan.c ****   * @retval HAL status
 1683:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_fdcan.c ****   */
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc4Audip.s 			page 31
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccVBSC3m.s 			page 31
 
 
 1684:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_fdcan.c **** HAL_StatusTypeDef HAL_FDCAN_EnableTimeoutCounter(FDCAN_HandleTypeDef *hfdcan)
@@ -1858,7 +1858,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc4Audip.s 			page 1
 1738:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_fdcan.c **** 
 1739:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_fdcan.c **** /**
 1740:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_fdcan.c ****   * @brief  Reset the timeout counter to its start value.
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc4Audip.s 			page 32
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccVBSC3m.s 			page 32
 
 
 1741:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_fdcan.c ****   * @param  hfdcan pointer to an FDCAN_HandleTypeDef structure that contains
@@ -1918,7 +1918,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc4Audip.s 			page 1
 1795:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_fdcan.c ****     return HAL_ERROR;
 1796:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_fdcan.c ****   }
 1797:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_fdcan.c **** }
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc4Audip.s 			page 33
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccVBSC3m.s 			page 33
 
 
 1798:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_fdcan.c **** 
@@ -1978,7 +1978,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc4Audip.s 			page 1
 1852:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_fdcan.c ****   * @param  hfdcan pointer to an FDCAN_HandleTypeDef structure that contains
 1853:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_fdcan.c ****   *         the configuration information for the specified FDCAN.
 1854:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_fdcan.c ****   * @retval HAL status
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc4Audip.s 			page 34
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccVBSC3m.s 			page 34
 
 
 1855:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_fdcan.c ****   */
@@ -2038,7 +2038,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc4Audip.s 			page 1
 1909:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_fdcan.c **** {
 1910:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_fdcan.c ****   if (hfdcan->State == HAL_FDCAN_STATE_READY)
 1911:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_fdcan.c ****   {
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc4Audip.s 			page 35
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccVBSC3m.s 			page 35
 
 
 1912:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_fdcan.c ****     /* Enable edge filtering */
@@ -2098,7 +2098,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc4Audip.s 			page 1
 1966:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_fdcan.c ****       (+) HAL_FDCAN_Stop                          : Stop the FDCAN module and enable access to conf
 1967:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_fdcan.c ****       (+) HAL_FDCAN_AddMessageToTxFifoQ           : Add a message to the Tx FIFO/Queue and activate
 1968:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_fdcan.c ****                                                     transmission request
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc4Audip.s 			page 36
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccVBSC3m.s 			page 36
 
 
 1969:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_fdcan.c ****       (+) HAL_FDCAN_GetLatestTxFifoQRequestBuffer : Get Tx buffer index of latest Tx FIFO/Queue req
@@ -2158,7 +2158,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc4Audip.s 			page 1
 2023:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_fdcan.c ****   * @retval HAL status
 2024:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_fdcan.c ****   */
 2025:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_fdcan.c **** HAL_StatusTypeDef HAL_FDCAN_Stop(FDCAN_HandleTypeDef *hfdcan)
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc4Audip.s 			page 37
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccVBSC3m.s 			page 37
 
 
 2026:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_fdcan.c **** {
@@ -2218,7 +2218,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc4Audip.s 			page 1
 2080:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_fdcan.c **** 
 2081:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_fdcan.c ****     /* Reset Latest Tx FIFO/Queue Request Buffer Index */
 2082:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_fdcan.c ****     hfdcan->LatestTxFifoQRequest = 0U;
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc4Audip.s 			page 38
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccVBSC3m.s 			page 38
 
 
 2083:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_fdcan.c **** 
@@ -2278,7 +2278,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc4Audip.s 			page 1
 2137:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_fdcan.c **** 
 2138:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_fdcan.c ****       return HAL_ERROR;
 2139:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_fdcan.c ****     }
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc4Audip.s 			page 39
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccVBSC3m.s 			page 39
 
 
 2140:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_fdcan.c ****     else
@@ -2338,7 +2338,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc4Audip.s 			page 1
 2194:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_fdcan.c ****   if (hfdcan->State == HAL_FDCAN_STATE_BUSY)
 2195:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_fdcan.c ****   {
 2196:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_fdcan.c ****     /* Add cancellation request */
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc4Audip.s 			page 40
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccVBSC3m.s 			page 40
 
 
 2197:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_fdcan.c ****     hfdcan->Instance->TXBCR = BufferIndex;
@@ -2398,7 +2398,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc4Audip.s 			page 1
 2251:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_fdcan.c ****           {
 2252:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_fdcan.c ****             /* When overwrite status is on discard first message in FIFO */
 2253:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_fdcan.c ****             GetIndex = 1U;
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc4Audip.s 			page 41
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccVBSC3m.s 			page 41
 
 
 2254:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_fdcan.c ****           }
@@ -2458,7 +2458,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc4Audip.s 			page 1
 2308:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_fdcan.c **** 
 2309:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_fdcan.c ****     /* Retrieve ErrorStateIndicator */
 2310:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_fdcan.c ****     pRxHeader->ErrorStateIndicator = (*RxAddress & FDCAN_ELEMENT_MASK_ESI);
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc4Audip.s 			page 42
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccVBSC3m.s 			page 42
 
 
 2311:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_fdcan.c **** 
@@ -2518,7 +2518,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc4Audip.s 			page 1
 2365:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_fdcan.c **** 
 2366:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_fdcan.c **** /**
 2367:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_fdcan.c ****   * @brief  Get an FDCAN Tx event from the Tx Event FIFO zone into the message RAM.
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc4Audip.s 			page 43
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccVBSC3m.s 			page 43
 
 
 2368:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_fdcan.c ****   * @param  hfdcan pointer to an FDCAN_HandleTypeDef structure that contains
@@ -2578,7 +2578,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc4Audip.s 			page 1
 2422:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_fdcan.c ****     /* Retrieve BitRateSwitch */
 2423:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_fdcan.c ****     pTxEvent->BitRateSwitch = (*TxEventAddress & FDCAN_ELEMENT_MASK_BRS);
 2424:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_fdcan.c **** 
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc4Audip.s 			page 44
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccVBSC3m.s 			page 44
 
 
 2425:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_fdcan.c ****     /* Retrieve FDFormat */
@@ -2638,7 +2638,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc4Audip.s 			page 1
 2479:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_fdcan.c **** 
 2480:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_fdcan.c ****   /* Read the protocol status register */
 2481:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_fdcan.c ****   StatusReg = READ_REG(hfdcan->Instance->PSR);
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc4Audip.s 			page 45
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccVBSC3m.s 			page 45
 
 
 2482:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_fdcan.c **** 
@@ -2698,7 +2698,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc4Audip.s 			page 1
 2536:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_fdcan.c **** {
 2537:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_fdcan.c ****   /* Check function parameters */
 2538:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_fdcan.c ****   assert_param(IS_FDCAN_TX_LOCATION_LIST(TxBufferIndex));
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc4Audip.s 			page 46
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccVBSC3m.s 			page 46
 
 
 2539:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_fdcan.c **** 
@@ -2758,7 +2758,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc4Audip.s 			page 1
 2593:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_fdcan.c **** }
 2594:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_fdcan.c **** 
 2595:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_fdcan.c **** /**
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc4Audip.s 			page 47
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccVBSC3m.s 			page 47
 
 
 2596:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_fdcan.c ****   * @brief  Check if the FDCAN peripheral entered Restricted Operation Mode.
@@ -2818,7 +2818,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc4Audip.s 			page 1
 2650:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_fdcan.c ****   ==============================================================================
 2651:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_fdcan.c ****     [..]  This section provides functions allowing to:
 2652:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_fdcan.c ****       (+) HAL_FDCAN_ConfigInterruptLines      : Assign interrupts to either Interrupt line 0 or 1
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc4Audip.s 			page 48
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccVBSC3m.s 			page 48
 
 
 2653:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_fdcan.c ****       (+) HAL_FDCAN_ActivateNotification      : Enable interrupts
@@ -2878,7 +2878,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc4Audip.s 			page 1
 2707:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_fdcan.c ****   * @param  ActiveITs indicates which interrupts will be enabled.
 2708:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_fdcan.c ****   *         This parameter can be any combination of @arg FDCAN_Interrupts.
 2709:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_fdcan.c ****   * @param  BufferIndexes Tx Buffer Indexes.
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc4Audip.s 			page 49
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccVBSC3m.s 			page 49
 
 
 2710:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_fdcan.c ****   *         This parameter can be any combination of @arg FDCAN_Tx_location.
@@ -2938,7 +2938,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc4Audip.s 			page 1
 2764:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_fdcan.c ****          && (((ITs_lines_selection) & FDCAN_IT_GROUP_BIT_LINE_ERROR) != 0U)) || \
 2765:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_fdcan.c ****         (((ActiveITs & FDCAN_IT_LIST_PROTOCOL_ERROR) != 0U)
 2766:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_fdcan.c ****          && (((ITs_lines_selection) & FDCAN_IT_GROUP_PROTOCOL_ERROR) != 0U)))
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc4Audip.s 			page 50
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccVBSC3m.s 			page 50
 
 
 2767:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_fdcan.c ****     {
@@ -2998,7 +2998,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc4Audip.s 			page 1
 2821:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_fdcan.c ****     __HAL_FDCAN_DISABLE_IT(hfdcan, InactiveITs);
 2822:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_fdcan.c **** 
 2823:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_fdcan.c ****     if ((InactiveITs & FDCAN_IT_TX_COMPLETE) != 0U)
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc4Audip.s 			page 51
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccVBSC3m.s 			page 51
 
 
 2824:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_fdcan.c ****     {
@@ -3058,7 +3058,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc4Audip.s 			page 1
 2878:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_fdcan.c ****     {
 2879:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_fdcan.c ****       /* Do nothing */
 2880:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_fdcan.c ****     }
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc4Audip.s 			page 52
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccVBSC3m.s 			page 52
 
 
 2881:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_fdcan.c ****     else /* no more interrupts enabled on interrupt line 1 */
@@ -3118,7 +3118,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc4Audip.s 			page 1
 2935:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_fdcan.c ****       /* Clear the High Priority Message flag */
 2936:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_fdcan.c ****       __HAL_FDCAN_CLEAR_FLAG(hfdcan, FDCAN_FLAG_RX_HIGH_PRIORITY_MSG);
 2937:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_fdcan.c **** 
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc4Audip.s 			page 53
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccVBSC3m.s 			page 53
 
 
 2938:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_fdcan.c **** #if USE_HAL_FDCAN_REGISTER_CALLBACKS == 1
@@ -3178,7 +3178,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc4Audip.s 			page 1
 2992:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_fdcan.c ****     /* Call registered callback*/
 2993:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_fdcan.c ****     hfdcan->RxFifo0Callback(hfdcan, RxFifo0ITs);
 2994:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_fdcan.c **** #else
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc4Audip.s 			page 54
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccVBSC3m.s 			page 54
 
 
 2995:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_fdcan.c ****     /* Rx FIFO 0 Callback */
@@ -3238,7 +3238,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc4Audip.s 			page 1
 3049:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_fdcan.c ****       /* Transmission Complete Callback */
 3050:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_fdcan.c ****       HAL_FDCAN_TxBufferCompleteCallback(hfdcan, TransmittedBuffers);
 3051:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_fdcan.c **** #endif /* USE_HAL_FDCAN_REGISTER_CALLBACKS */
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc4Audip.s 			page 55
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccVBSC3m.s 			page 55
 
 
 3052:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_fdcan.c ****     }
@@ -3298,7 +3298,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc4Audip.s 			page 1
 3106:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_fdcan.c ****   {
 3107:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_fdcan.c ****     /* Clear the Error flags */
 3108:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_fdcan.c ****     __HAL_FDCAN_CLEAR_FLAG(hfdcan, ErrorStatusITs);
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc4Audip.s 			page 56
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccVBSC3m.s 			page 56
 
 
 3109:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_fdcan.c **** 
@@ -3358,7 +3358,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc4Audip.s 			page 1
 3163:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_fdcan.c ****       (+) HAL_FDCAN_ErrorCallback
 3164:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_fdcan.c ****       (+) HAL_FDCAN_ErrorStatusCallback
 3165:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_fdcan.c **** 
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc4Audip.s 			page 57
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccVBSC3m.s 			page 57
 
 
 3166:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_fdcan.c **** @endverbatim
@@ -3418,7 +3418,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc4Audip.s 			page 1
 3220:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_fdcan.c ****   UNUSED(RxFifo1ITs);
 3221:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_fdcan.c **** 
 3222:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_fdcan.c ****   /* NOTE: This function Should not be modified, when the callback is needed,
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc4Audip.s 			page 58
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccVBSC3m.s 			page 58
 
 
 3223:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_fdcan.c ****             the HAL_FDCAN_RxFifo1Callback could be implemented in the user file
@@ -3478,7 +3478,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc4Audip.s 			page 1
 3277:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_fdcan.c ****             the HAL_FDCAN_TxBufferAbortCallback could be implemented in the user file
 3278:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_fdcan.c ****    */
 3279:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_fdcan.c **** }
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc4Audip.s 			page 59
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccVBSC3m.s 			page 59
 
 
 3280:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_fdcan.c **** 
@@ -3538,7 +3538,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc4Audip.s 			page 1
 3334:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_fdcan.c ****   */
 3335:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_fdcan.c **** __weak void HAL_FDCAN_ErrorCallback(FDCAN_HandleTypeDef *hfdcan)
 3336:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_fdcan.c **** {
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc4Audip.s 			page 60
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccVBSC3m.s 			page 60
 
 
 3337:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_fdcan.c ****   /* Prevent unused argument(s) compilation warning */
@@ -3598,7 +3598,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc4Audip.s 			page 1
 3391:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_fdcan.c ****   /* Return FDCAN state */
 3392:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_fdcan.c ****   return hfdcan->State;
 3393:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_fdcan.c **** }
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc4Audip.s 			page 61
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccVBSC3m.s 			page 61
 
 
 3394:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_fdcan.c **** 
@@ -3658,7 +3658,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc4Audip.s 			page 1
   45 0004 1D4B     		ldr	r3, .L9
   46 0006 9A42     		cmp	r2, r3
   47 0008 28D0     		beq	.L6
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc4Audip.s 			page 62
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccVBSC3m.s 			page 62
 
 
 3428:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_fdcan.c ****   uint32_t SramCanInstanceBase = SRAMCAN_BASE;
@@ -3718,7 +3718,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc4Audip.s 			page 1
   79 003c C2F88030 		str	r3, [r2, #128]
 3454:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_fdcan.c **** 
 3455:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_fdcan.c ****   /* Rx FIFO 0 start address */
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc4Audip.s 			page 63
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccVBSC3m.s 			page 63
 
 
 3456:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_fdcan.c ****   hfdcan->msgRam.RxFIFO0SA = SramCanInstanceBase + SRAMCAN_RF0SA;
@@ -3778,7 +3778,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc4Audip.s 			page 1
  117              		.loc 1 3439 25 view .LVU35
  118 0064 D5E7     		b	.L3
  119              	.LVL8:
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc4Audip.s 			page 64
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccVBSC3m.s 			page 64
 
 
  120              	.L5:
@@ -3838,7 +3838,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc4Audip.s 			page 1
 3483:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_fdcan.c **** static void FDCAN_CopyMessageToRAM(const FDCAN_HandleTypeDef *hfdcan, const FDCAN_TxHeaderTypeDef *
 3484:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_fdcan.c ****                                    const uint8_t *pTxData, uint32_t BufferIndex)
 3485:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_fdcan.c **** {
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc4Audip.s 			page 65
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccVBSC3m.s 			page 65
 
 
  158              		.loc 1 3485 1 is_stmt 1 view -0
@@ -3898,7 +3898,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc4Audip.s 			page 1
 3505:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_fdcan.c ****   }
 3506:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_fdcan.c **** 
 3507:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_fdcan.c ****   /* Build second word of Tx header element */
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc4Audip.s 			page 66
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccVBSC3m.s 			page 66
 
 
 3508:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_fdcan.c ****   TxElementW2 = ((pTxHeader->MessageMarker << 24U) |
@@ -3958,7 +3958,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc4Audip.s 			page 1
 3522:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_fdcan.c **** 
 3523:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_fdcan.c ****   /* Write Tx payload to the message RAM */
 3524:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_fdcan.c ****   for (ByteCounter = 0; ByteCounter < DLCtoBytes[pTxHeader->DataLength]; ByteCounter += 4U)
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc4Audip.s 			page 67
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccVBSC3m.s 			page 67
 
 
  229              		.loc 1 3524 3 is_stmt 1 view .LVU75
@@ -4018,7 +4018,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc4Audip.s 			page 1
  268              		.loc 1 3528 64 view .LVU93
  269 006e 2343     		orrs	r3, r3, r4
 3526:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_fdcan.c ****                   ((uint32_t)pTxData[ByteCounter + 2U] << 16U) |
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc4Audip.s 			page 68
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccVBSC3m.s 			page 68
 
 
  270              		.loc 1 3526 16 view .LVU94
@@ -4078,7 +4078,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc4Audip.s 			page 1
  315 0000 7047     		bx	lr
  316              		.cfi_endproc
  317              	.LFE134:
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc4Audip.s 			page 69
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccVBSC3m.s 			page 69
 
 
  319              		.section	.text.HAL_FDCAN_Init,"ax",%progbits
@@ -4138,7 +4138,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc4Audip.s 			page 1
  357              		.loc 1 317 3 view .LVU122
  318:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_fdcan.c ****   {
  358              		.loc 1 318 3 view .LVU123
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc4Audip.s 			page 70
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccVBSC3m.s 			page 70
 
 
  320:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_fdcan.c ****     assert_param(IS_FDCAN_DATA_SJW(hfdcan->Init.DataSyncJumpWidth));
@@ -4198,7 +4198,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc4Audip.s 			page 1
  394              		.loc 1 376 5 is_stmt 1 view .LVU142
  376:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_fdcan.c ****     {
  395              		.loc 1 376 10 is_stmt 0 view .LVU143
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc4Audip.s 			page 71
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccVBSC3m.s 			page 71
 
 
  396 002a FFF7FEFF 		bl	HAL_GetTick
@@ -4258,7 +4258,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc4Audip.s 			page 1
  392:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_fdcan.c **** 
  435              		.loc 1 392 3 view .LVU159
  392:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_fdcan.c **** 
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc4Audip.s 			page 72
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccVBSC3m.s 			page 72
 
 
  436              		.loc 1 392 15 is_stmt 0 view .LVU160
@@ -4318,7 +4318,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc4Audip.s 			page 1
  474              	.L45:
  411:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_fdcan.c **** 
  475              		.loc 1 411 3 is_stmt 1 view .LVU177
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc4Audip.s 			page 73
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccVBSC3m.s 			page 73
 
 
  476 0084 9A69     		ldr	r2, [r3, #24]
@@ -4378,7 +4378,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc4Audip.s 			page 1
  516 00b8 41D0     		beq	.L49
  447:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_fdcan.c ****   }
  517              		.loc 1 447 5 is_stmt 1 view .LVU192
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc4Audip.s 			page 74
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccVBSC3m.s 			page 74
 
 
  518 00ba 2268     		ldr	r2, [r4]
@@ -4438,7 +4438,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc4Audip.s 			page 1
  560 00fe 2268     		ldr	r2, [r4]
  561 0100 1369     		ldr	r3, [r2, #16]
  562 0102 43F01003 		orr	r3, r3, #16
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc4Audip.s 			page 75
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccVBSC3m.s 			page 75
 
 
  563 0106 1361     		str	r3, [r2, #16]
@@ -4498,7 +4498,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc4Audip.s 			page 1
  606              		.loc 1 468 5 view .LVU215
  607 014a 2268     		ldr	r2, [r4]
  608 014c 9369     		ldr	r3, [r2, #24]
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc4Audip.s 			page 76
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccVBSC3m.s 			page 76
 
 
  609 014e 43F00403 		orr	r3, r3, #4
@@ -4558,7 +4558,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc4Audip.s 			page 1
  503:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_fdcan.c ****   {
  645              		.loc 1 503 6 view .LVU234
  646 0176 B3F5407F 		cmp	r3, #768
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc4Audip.s 			page 77
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccVBSC3m.s 			page 77
 
 
  647 017a 16D0     		beq	.L51
@@ -4618,7 +4618,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc4Audip.s 			page 1
  686              		.loc 1 506 55 view .LVU249
  687 01ae E26A     		ldr	r2, [r4, #44]
  506:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_fdcan.c ****                               (((uint32_t)hfdcan->Init.DataTimeSeg2 - 1U) << FDCAN_DBTP_DTSEG2_Pos)
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc4Audip.s 			page 78
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccVBSC3m.s 			page 78
 
 
  688              		.loc 1 506 69 view .LVU250
@@ -4678,7 +4678,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc4Audip.s 			page 1
  732              		.thumb
  733              		.thumb_func
  735              	HAL_FDCAN_MspDeInit:
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc4Audip.s 			page 79
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccVBSC3m.s 			page 79
 
 
  736              	.LVL38:
@@ -4738,7 +4738,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc4Audip.s 			page 1
  782 0012 0546     		mov	r5, r0
  783              	.LVL41:
  623:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_fdcan.c ****   {
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc4Audip.s 			page 80
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccVBSC3m.s 			page 80
 
 
  784              		.loc 1 623 3 is_stmt 1 view .LVU272
@@ -4798,7 +4798,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc4Audip.s 			page 1
  821              		.loc 1 639 1 view .LVU289
  822 003c 38BD     		pop	{r3, r4, r5, pc}
  639:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_fdcan.c **** 
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc4Audip.s 			page 81
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccVBSC3m.s 			page 81
 
 
  823              		.loc 1 639 1 view .LVU290
@@ -4858,7 +4858,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc4Audip.s 			page 1
  868 0016 9A69     		ldr	r2, [r3, #24]
  658:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_fdcan.c ****   {
  869              		.loc 1 658 52 view .LVU302
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc4Audip.s 			page 82
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccVBSC3m.s 			page 82
 
 
  870 0018 12F0080F 		tst	r2, #8
@@ -4918,7 +4918,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc4Audip.s 			page 1
  908              	.LFE137:
  910              		.section	.text.HAL_FDCAN_ConfigFilter,"ax",%progbits
  911              		.align	1
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc4Audip.s 			page 83
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccVBSC3m.s 			page 83
 
 
  912              		.global	HAL_FDCAN_ConfigFilter
@@ -4978,7 +4978,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc4Audip.s 			page 1
 1360:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_fdcan.c ****   }
  952              		.loc 1 1360 12 view .LVU334
  953 0016 7047     		bx	lr
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc4Audip.s 			page 84
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccVBSC3m.s 			page 84
 
 
  954              	.LVL52:
@@ -5038,7 +5038,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc4Audip.s 			page 1
  989              	.LVL55:
 1344:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_fdcan.c **** 
  990              		.loc 1 1344 84 view .LVU354
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc4Audip.s 			page 85
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccVBSC3m.s 			page 85
 
 
  991 0030 4968     		ldr	r1, [r1, #4]
@@ -5098,7 +5098,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc4Audip.s 			page 1
 1320:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_fdcan.c ****                          sFilterConfig->FilterID2);
  1027              		.loc 1 1320 40 view .LVU373
  1028 0050 0A69     		ldr	r2, [r1, #16]
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc4Audip.s 			page 86
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccVBSC3m.s 			page 86
 
 
 1319:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_fdcan.c ****                          (sFilterConfig->FilterID1 << 16U)    |
@@ -5158,7 +5158,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc4Audip.s 			page 1
 1389:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_fdcan.c ****   assert_param(IS_FDCAN_REJECT_REMOTE(RejectRemoteExt));
  1071              		.loc 1 1389 3 view .LVU388
 1390:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_fdcan.c **** 
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc4Audip.s 			page 87
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccVBSC3m.s 			page 87
 
 
  1072              		.loc 1 1390 3 view .LVU389
@@ -5218,7 +5218,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc4Audip.s 			page 1
  1112 002e 1A43     		orrs	r2, r2, r3
  1113 0030 0243     		orrs	r2, r2, r0
  1114 0032 C4F88020 		str	r2, [r4, #128]
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc4Audip.s 			page 88
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccVBSC3m.s 			page 88
 
 
 1405:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_fdcan.c ****   }
@@ -5278,7 +5278,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc4Audip.s 			page 1
  1157              		.loc 1 1442 12 is_stmt 0 view .LVU417
  1158 0010 0120     		movs	r0, #1
  1159              	.LVL72:
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc4Audip.s 			page 89
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccVBSC3m.s 			page 89
 
 
 1444:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_fdcan.c **** 
@@ -5338,7 +5338,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc4Audip.s 			page 1
 1483:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_fdcan.c **** 
  1202              		.loc 1 1483 11 is_stmt 0 view .LVU432
  1203 0008 036E     		ldr	r3, [r0, #96]
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc4Audip.s 			page 90
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccVBSC3m.s 			page 90
 
 
 1483:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_fdcan.c **** 
@@ -5398,7 +5398,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc4Audip.s 			page 1
  1245              		.cfi_endproc
  1246              	.LFE141:
  1248              		.section	.text.HAL_FDCAN_ConfigRamWatchdog,"ax",%progbits
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc4Audip.s 			page 91
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccVBSC3m.s 			page 91
 
 
  1249              		.align	1
@@ -5458,7 +5458,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc4Audip.s 			page 1
 1509:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_fdcan.c ****   }
  1291              		.loc 1 1509 12 is_stmt 0 view .LVU459
  1292 0020 0020     		movs	r0, #0
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc4Audip.s 			page 92
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccVBSC3m.s 			page 92
 
 
  1293              	.LVL85:
@@ -5518,7 +5518,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc4Audip.s 			page 1
  1336 0014 0268     		ldr	r2, [r0]
  1337 0016 136A     		ldr	r3, [r2, #32]
  1338 0018 23F47023 		bic	r3, r3, #983040
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc4Audip.s 			page 93
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccVBSC3m.s 			page 93
 
 
  1339 001c 0B43     		orrs	r3, r3, r1
@@ -5578,7 +5578,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc4Audip.s 			page 1
 1578:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_fdcan.c **** 
  1382              		.loc 1 1578 1 view .LVU486
  1383 0012 7047     		bx	lr
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc4Audip.s 			page 94
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccVBSC3m.s 			page 94
 
 
  1384              	.LVL92:
@@ -5638,7 +5638,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc4Audip.s 			page 1
  1428              		.loc 1 1601 5 is_stmt 1 view .LVU498
 1601:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_fdcan.c ****   }
  1429              		.loc 1 1601 12 is_stmt 0 view .LVU499
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc4Audip.s 			page 95
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccVBSC3m.s 			page 95
 
 
  1430 0010 0120     		movs	r0, #1
@@ -5698,7 +5698,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc4Audip.s 			page 1
  1477              		.section	.text.HAL_FDCAN_ResetTimestampCounter,"ax",%progbits
  1478              		.align	1
  1479              		.global	HAL_FDCAN_ResetTimestampCounter
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc4Audip.s 			page 96
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccVBSC3m.s 			page 96
 
 
  1480              		.syntax unified
@@ -5758,7 +5758,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc4Audip.s 			page 1
  1520 001a 0120     		movs	r0, #1
  1521              	.LVL103:
 1641:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_fdcan.c **** 
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc4Audip.s 			page 97
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccVBSC3m.s 			page 97
 
 
  1522              		.loc 1 1641 1 view .LVU525
@@ -5818,7 +5818,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc4Audip.s 			page 1
  1565 0014 0068     		ldr	r0, [r0]
  1566              	.LVL107:
 1663:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_fdcan.c ****                (FDCAN_TOCC_TOS | FDCAN_TOCC_TOP), (TimeoutOperation | (TimeoutPeriod << FDCAN_TOCC_
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc4Audip.s 			page 98
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccVBSC3m.s 			page 98
 
 
  1567              		.loc 1 1663 5 is_stmt 0 view .LVU539
@@ -5878,7 +5878,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc4Audip.s 			page 1
 1699:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_fdcan.c ****   }
  1612              		.loc 1 1699 12 is_stmt 0 view .LVU551
  1613 0010 0120     		movs	r0, #1
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc4Audip.s 			page 99
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccVBSC3m.s 			page 99
 
 
  1614              	.LVL110:
@@ -5938,7 +5938,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc4Audip.s 			page 1
  1658 000a 43F00403 		orr	r3, r3, #4
  1659 000e 0366     		str	r3, [r0, #96]
 1724:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_fdcan.c ****   }
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc4Audip.s 			page 100
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccVBSC3m.s 			page 100
 
 
  1660              		.loc 1 1724 5 is_stmt 1 view .LVU564
@@ -5998,7 +5998,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc4Audip.s 			page 1
  1705 0006 7047     		bx	lr
  1706              		.cfi_endproc
  1707              	.LFE151:
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc4Audip.s 			page 101
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccVBSC3m.s 			page 101
 
 
  1709              		.section	.text.HAL_FDCAN_ResetTimeoutCounter,"ax",%progbits
@@ -6058,7 +6058,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc4Audip.s 			page 1
  1750 0018 0120     		movs	r0, #1
  1751              	.LVL122:
 1763:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_fdcan.c **** 
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc4Audip.s 			page 102
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccVBSC3m.s 			page 102
 
 
  1752              		.loc 1 1763 1 view .LVU590
@@ -6118,7 +6118,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc4Audip.s 			page 1
 1785:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_fdcan.c **** 
  1795              		.loc 1 1785 11 is_stmt 0 view .LVU604
  1796 0014 0368     		ldr	r3, [r0]
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc4Audip.s 			page 103
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccVBSC3m.s 			page 103
 
 
 1785:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_fdcan.c **** 
@@ -6178,7 +6178,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc4Audip.s 			page 1
  1839              		.loc 1 1820 12 is_stmt 0 view .LVU618
  1840 0010 0120     		movs	r0, #1
  1841              	.LVL129:
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc4Audip.s 			page 104
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccVBSC3m.s 			page 104
 
 
 1822:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_fdcan.c **** 
@@ -6238,7 +6238,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc4Audip.s 			page 1
  1886 000e 0366     		str	r3, [r0, #96]
 1845:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_fdcan.c ****   }
  1887              		.loc 1 1845 5 is_stmt 1 view .LVU631
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc4Audip.s 			page 105
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccVBSC3m.s 			page 105
 
 
 1845:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_fdcan.c ****   }
@@ -6298,7 +6298,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc4Audip.s 			page 1
  1932 0008 036E     		ldr	r3, [r0, #96]
 1869:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_fdcan.c **** 
  1933              		.loc 1 1869 23 view .LVU644
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc4Audip.s 			page 106
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccVBSC3m.s 			page 106
 
 
  1934 000a 43F00403 		orr	r3, r3, #4
@@ -6358,7 +6358,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc4Audip.s 			page 1
 1895:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_fdcan.c **** 
  1979              		.loc 1 1895 5 is_stmt 1 view .LVU656
 1895:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_fdcan.c **** 
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc4Audip.s 			page 107
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccVBSC3m.s 			page 107
 
 
  1980              		.loc 1 1895 11 is_stmt 0 view .LVU657
@@ -6418,7 +6418,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc4Audip.s 			page 1
 1910:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_fdcan.c ****   {
  2025              		.loc 1 1910 6 view .LVU669
  2026 0004 012B     		cmp	r3, #1
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc4Audip.s 			page 108
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccVBSC3m.s 			page 108
 
 
  2027 0006 05D0     		beq	.L156
@@ -6478,7 +6478,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc4Audip.s 			page 1
  2071              		.loc 1 1936 3 view .LVU681
 1936:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_fdcan.c ****   {
  2072              		.loc 1 1936 13 is_stmt 0 view .LVU682
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc4Audip.s 			page 109
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccVBSC3m.s 			page 109
 
 
  2073 0000 90F85C30 		ldrb	r3, [r0, #92]	@ zero_extendqisi2
@@ -6538,7 +6538,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc4Audip.s 			page 1
  2117              		@ args = 0, pretend = 0, frame = 0
  2118              		@ frame_needed = 0, uses_anonymous_args = 0
  2119              		@ link register save eliminated.
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc4Audip.s 			page 110
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccVBSC3m.s 			page 110
 
 
 1996:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_fdcan.c ****   {
@@ -6598,7 +6598,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc4Audip.s 			page 1
  2157              		.loc 1 2008 12 view .LVU711
  2158 002a 7047     		bx	lr
  2159              		.cfi_endproc
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc4Audip.s 			page 111
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccVBSC3m.s 			page 111
 
 
  2160              	.LFE160:
@@ -6658,7 +6658,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc4Audip.s 			page 1
 2038:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_fdcan.c ****       {
  2203              		.loc 1 2038 10 is_stmt 0 view .LVU725
  2204 001e 0A2B     		cmp	r3, #10
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc4Audip.s 			page 112
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccVBSC3m.s 			page 112
 
 
  2205 0020 01D8     		bhi	.L175
@@ -6718,7 +6718,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc4Audip.s 			page 1
  2243              		.loc 1 2060 54 is_stmt 1 view .LVU741
 2060:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_fdcan.c ****     {
  2244              		.loc 1 2060 19 is_stmt 0 view .LVU742
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc4Audip.s 			page 113
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccVBSC3m.s 			page 113
 
 
  2245 0042 0268     		ldr	r2, [r0]
@@ -6778,7 +6778,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc4Audip.s 			page 1
  2283 0066 9369     		ldr	r3, [r2, #24]
  2284              	.LVL169:
 2079:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_fdcan.c **** 
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc4Audip.s 			page 114
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccVBSC3m.s 			page 114
 
 
  2285              		.loc 1 2079 5 is_stmt 0 view .LVU759
@@ -6838,7 +6838,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc4Audip.s 			page 1
  2328              	.LFB133:
  537:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_fdcan.c ****   /* Check FDCAN handle */
  2329              		.loc 1 537 1 is_stmt 1 view -0
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc4Audip.s 			page 115
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccVBSC3m.s 			page 115
 
 
  2330              		.cfi_startproc
@@ -6898,7 +6898,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc4Audip.s 			page 1
  2370              		.cfi_restore 14
  541:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_fdcan.c ****   }
  2371              		.loc 1 541 12 view .LVU788
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc4Audip.s 			page 116
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccVBSC3m.s 			page 116
 
 
  2372 0024 0120     		movs	r0, #1
@@ -6958,7 +6958,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc4Audip.s 			page 1
 2130:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_fdcan.c ****   {
  2413              		.loc 1 2130 3 view .LVU804
 2130:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_fdcan.c ****   {
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc4Audip.s 			page 117
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccVBSC3m.s 			page 117
 
 
  2414              		.loc 1 2130 13 is_stmt 0 view .LVU805
@@ -7018,7 +7018,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc4Audip.s 			page 1
  2452 0034 2268     		ldr	r2, [r4]
 2149:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_fdcan.c **** 
  2453              		.loc 1 2149 46 view .LVU822
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc4Audip.s 			page 118
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccVBSC3m.s 			page 118
 
 
  2454 0036 0123     		movs	r3, #1
@@ -7078,7 +7078,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc4Audip.s 			page 1
  2497              		@ frame_needed = 0, uses_anonymous_args = 0
  2498              		@ link register save eliminated.
 2178:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_fdcan.c **** }
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc4Audip.s 			page 119
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccVBSC3m.s 			page 119
 
 
  2499              		.loc 1 2178 3 view .LVU836
@@ -7138,7 +7138,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc4Audip.s 			page 1
  2542              	.LVL188:
  2543              	.L194:
 2197:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_fdcan.c **** 
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc4Audip.s 			page 120
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccVBSC3m.s 			page 120
 
 
  2544              		.loc 1 2197 5 is_stmt 1 view .LVU850
@@ -7198,7 +7198,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc4Audip.s 			page 1
  2587              	.LVL192:
 2231:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_fdcan.c **** 
  2588              		.loc 1 2231 3 is_stmt 1 view .LVU864
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc4Audip.s 			page 121
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccVBSC3m.s 			page 121
 
 
 2233:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_fdcan.c ****   {
@@ -7258,7 +7258,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc4Audip.s 			page 1
  2626 002a D4F89050 		ldr	r5, [r4, #144]
 2238:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_fdcan.c ****       {
  2627              		.loc 1 2238 10 view .LVU882
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc4Audip.s 			page 122
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccVBSC3m.s 			page 122
 
 
  2628 002e 15F00F0F 		tst	r5, #15
@@ -7318,7 +7318,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc4Audip.s 			page 1
 2258:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_fdcan.c **** 
  2666              		.loc 1 2258 18 view .LVU899
  2667 005e 2644     		add	r6, r6, r4
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc4Audip.s 			page 123
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccVBSC3m.s 			page 123
 
 
  2668              	.LVL202:
@@ -7378,7 +7378,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc4Audip.s 			page 1
  2705              		.loc 1 2289 9 is_stmt 1 view .LVU916
 2289:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_fdcan.c ****       }
  2706              		.loc 1 2289 48 is_stmt 0 view .LVU917
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc4Audip.s 			page 124
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccVBSC3m.s 			page 124
 
 
  2707 008c C46C     		ldr	r4, [r0, #76]
@@ -7438,7 +7438,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc4Audip.s 			page 1
  2742              		.loc 1 2310 50 view .LVU936
  2743 00ba 04F00044 		and	r4, r4, #-2147483648
 2310:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_fdcan.c **** 
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc4Audip.s 			page 125
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccVBSC3m.s 			page 125
 
 
  2744              		.loc 1 2310 36 view .LVU937
@@ -7498,7 +7498,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc4Audip.s 			page 1
  2779              		.loc 1 2331 5 is_stmt 1 view .LVU956
 2331:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_fdcan.c **** 
  2780              		.loc 1 2331 42 is_stmt 0 view .LVU957
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc4Audip.s 			page 126
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccVBSC3m.s 			page 126
 
 
  2781 00ee DEF80440 		ldr	r4, [lr, #4]
@@ -7558,7 +7558,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc4Audip.s 			page 1
  2818 0116 D468     		ldr	r4, [r2, #12]
 2338:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_fdcan.c ****     {
  2819              		.loc 1 2338 51 discriminator 1 view .LVU975
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc4Audip.s 			page 127
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccVBSC3m.s 			page 127
 
 
  2820 0118 0A4D     		ldr	r5, .L215
@@ -7618,7 +7618,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc4Audip.s 			page 1
  2859 013c 0366     		str	r3, [r0, #96]
 2362:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_fdcan.c ****   }
  2860              		.loc 1 2362 5 is_stmt 1 view .LVU991
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc4Audip.s 			page 128
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccVBSC3m.s 			page 128
 
 
 2362:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_fdcan.c ****   }
@@ -7678,7 +7678,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc4Audip.s 			page 1
 2382:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_fdcan.c ****     {
  2905              		.loc 1 2382 8 view .LVU1004
  2906 000e 12F0070F 		tst	r2, #7
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc4Audip.s 			page 129
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccVBSC3m.s 			page 129
 
 
  2907 0012 05D1     		bne	.L219
@@ -7738,7 +7738,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc4Audip.s 			page 1
  2944              		.loc 1 2395 22 view .LVU1021
  2945 0038 4D60     		str	r5, [r1, #4]
 2398:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_fdcan.c ****     {
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc4Audip.s 			page 130
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccVBSC3m.s 			page 130
 
 
  2946              		.loc 1 2398 5 is_stmt 1 view .LVU1022
@@ -7798,7 +7798,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc4Audip.s 			page 1
  2981 0060 04F00F04 		and	r4, r4, #15
 2420:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_fdcan.c **** 
  2982              		.loc 1 2420 26 view .LVU1042
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc4Audip.s 			page 131
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccVBSC3m.s 			page 131
 
 
  2983 0064 CC60     		str	r4, [r1, #12]
@@ -7858,7 +7858,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc4Audip.s 			page 1
  3017              		.loc 1 2438 12 is_stmt 0 view .LVU1062
  3018 0088 0020     		movs	r0, #0
  3019              	.LVL229:
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc4Audip.s 			page 132
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccVBSC3m.s 			page 132
 
 
 2447:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_fdcan.c **** 
@@ -7918,7 +7918,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc4Audip.s 			page 1
  3064              		.thumb_func
  3066              	HAL_FDCAN_GetHighPriorityMessageStatus:
  3067              	.LVL234:
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc4Audip.s 			page 133
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccVBSC3m.s 			page 133
 
 
  3068              	.LFB167:
@@ -7978,7 +7978,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc4Audip.s 			page 1
 2462:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_fdcan.c **** 
  3104              		.loc 1 2462 48 view .LVU1092
  3105 0026 D3F88830 		ldr	r3, [r3, #136]
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc4Audip.s 			page 134
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccVBSC3m.s 			page 134
 
 
 2462:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_fdcan.c **** 
@@ -8038,7 +8038,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc4Audip.s 			page 1
  3147              		.loc 1 2485 69 is_stmt 0 view .LVU1107
  3148 000a C3F30222 		ubfx	r2, r3, #8, #3
 2485:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_fdcan.c ****   ProtocolStatus->Activity = (StatusReg & FDCAN_PSR_ACT);
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc4Audip.s 			page 135
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccVBSC3m.s 			page 135
 
 
  3149              		.loc 1 2485 37 view .LVU1108
@@ -8098,7 +8098,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc4Audip.s 			page 1
  3183 0034 C3F34032 		ubfx	r2, r3, #13, #1
 2492:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_fdcan.c ****   ProtocolStatus->ProtocolException = ((StatusReg & FDCAN_PSR_PXE) >> FDCAN_PSR_PXE_Pos);
  3184              		.loc 1 2492 29 view .LVU1129
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc4Audip.s 			page 136
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccVBSC3m.s 			page 136
 
 
  3185 0038 0A62     		str	r2, [r1, #32]
@@ -8158,7 +8158,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc4Audip.s 			page 1
  3227              	.LVL241:
 2516:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_fdcan.c ****   ErrorCounters->RxErrorCnt = ((CountersReg & FDCAN_ECR_REC) >> FDCAN_ECR_REC_Pos);
  3228              		.loc 1 2516 3 is_stmt 1 view .LVU1144
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc4Audip.s 			page 137
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccVBSC3m.s 			page 137
 
 
 2516:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_fdcan.c ****   ErrorCounters->RxErrorCnt = ((CountersReg & FDCAN_ECR_REC) >> FDCAN_ECR_REC_Pos);
@@ -8218,7 +8218,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc4Audip.s 			page 1
  3270              		@ args = 0, pretend = 0, frame = 0
  3271              		@ frame_needed = 0, uses_anonymous_args = 0
  3272              		@ link register save eliminated.
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc4Audip.s 			page 138
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccVBSC3m.s 			page 138
 
 
 2538:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_fdcan.c **** 
@@ -8278,7 +8278,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc4Audip.s 			page 1
 2571:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_fdcan.c ****   }
  3315              		.loc 1 2571 33 view .LVU1174
  3316 0006 D3F89800 		ldr	r0, [r3, #152]
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc4Audip.s 			page 139
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccVBSC3m.s 			page 139
 
 
  3317              	.LVL247:
@@ -8338,7 +8338,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc4Audip.s 			page 1
  3360 0002 D3F8C400 		ldr	r0, [r3, #196]
  3361              	.LVL253:
 2592:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_fdcan.c **** }
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc4Audip.s 			page 140
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccVBSC3m.s 			page 140
 
 
  3362              		.loc 1 2592 3 is_stmt 1 view .LVU1188
@@ -8398,7 +8398,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc4Audip.s 			page 1
  3410              	.LVL258:
  3411              	.LFB174:
 2620:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_fdcan.c ****   HAL_FDCAN_StateTypeDef state = hfdcan->State;
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc4Audip.s 			page 141
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccVBSC3m.s 			page 141
 
 
  3412              		.loc 1 2620 1 is_stmt 1 view -0
@@ -8458,7 +8458,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc4Audip.s 			page 1
  3451              		.loc 1 2629 12 is_stmt 0 view .LVU1214
  3452 0022 0020     		movs	r0, #0
  3453              	.LVL264:
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc4Audip.s 			page 142
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccVBSC3m.s 			page 142
 
 
 2629:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_fdcan.c ****   }
@@ -8518,7 +8518,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc4Audip.s 			page 1
  3496              		.loc 1 2699 5 is_stmt 1 view .LVU1228
 2699:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_fdcan.c ****   }
  3497              		.loc 1 2699 12 is_stmt 0 view .LVU1229
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc4Audip.s 			page 143
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccVBSC3m.s 			page 143
 
 
  3498 0014 0120     		movs	r0, #1
@@ -8578,7 +8578,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc4Audip.s 			page 1
  3544              	.LFB176:
 2718:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_fdcan.c ****   HAL_FDCAN_StateTypeDef state = hfdcan->State;
  3545              		.loc 1 2718 1 is_stmt 1 view -0
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc4Audip.s 			page 144
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccVBSC3m.s 			page 144
 
 
  3546              		.cfi_startproc
@@ -8638,7 +8638,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc4Audip.s 			page 1
  3583 0018 70B4     		push	{r4, r5, r6}
  3584              		.cfi_def_cfa_offset 12
  3585              		.cfi_offset 4, -12
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc4Audip.s 			page 145
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccVBSC3m.s 			page 145
 
 
  3586              		.cfi_offset 5, -8
@@ -8698,7 +8698,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc4Audip.s 			page 1
  3626              		.loc 1 2744 10 view .LVU1271
  3627 0054 13F0100F 		tst	r3, #16
  3628 0058 0BD0     		beq	.L251
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc4Audip.s 			page 146
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccVBSC3m.s 			page 146
 
 
  3629              	.L255:
@@ -8758,7 +8758,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc4Audip.s 			page 1
  3670              		.loc 1 2758 78 discriminator 1 view .LVU1284
  3671 009a 11F4F05F 		tst	r1, #7680
  3672 009e 02D0     		beq	.L262
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc4Audip.s 			page 147
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccVBSC3m.s 			page 147
 
 
 2760:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_fdcan.c ****         (((ActiveITs & FDCAN_IT_LIST_MISC)           != 0U)
@@ -8818,7 +8818,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc4Audip.s 			page 1
  3715              	.L266:
 2779:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_fdcan.c ****     {
  3716              		.loc 1 2779 5 view .LVU1297
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc4Audip.s 			page 148
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccVBSC3m.s 			page 148
 
 
 2779:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_fdcan.c ****     {
@@ -8878,7 +8878,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc4Audip.s 			page 1
  3763              		.loc 1 2811 26 is_stmt 0 view .LVU1307
  3764 0000 90F85C30 		ldrb	r3, [r0, #92]	@ zero_extendqisi2
  3765              	.LVL286:
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc4Audip.s 			page 149
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccVBSC3m.s 			page 149
 
 
 2812:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_fdcan.c ****   uint32_t ITs_lines_selection;
@@ -8938,7 +8938,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc4Audip.s 			page 1
 2823:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_fdcan.c ****     {
  3804              		.loc 1 2823 8 is_stmt 0 view .LVU1324
  3805 0024 11F0800F 		tst	r1, #128
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc4Audip.s 			page 150
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccVBSC3m.s 			page 150
 
 
  3806 0028 03D0     		beq	.L276
@@ -8998,7 +8998,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc4Audip.s 			page 1
  3846              	.L280:
 2843:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_fdcan.c ****         (((ITs_enabled & FDCAN_IT_LIST_SMSG)           != 0U)
  3847              		.loc 1 2843 78 discriminator 1 view .LVU1339
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc4Audip.s 			page 151
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccVBSC3m.s 			page 151
 
 
  3848 005e 13F4E07F 		tst	r3, #448
@@ -9058,7 +9058,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc4Audip.s 			page 1
 2865:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_fdcan.c ****         (((ITs_enabled & FDCAN_IT_LIST_RX_FIFO1)       != 0U)
  3890              		.loc 1 2865 10 view .LVU1352
  3891 00a4 12F0010F 		tst	r2, #1
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc4Audip.s 			page 152
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccVBSC3m.s 			page 152
 
 
  3892 00a8 28D1     		bne	.L287
@@ -9118,7 +9118,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc4Audip.s 			page 1
  3934 00f0 04D1     		bne	.L287
  3935              	.L293:
 2884:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_fdcan.c ****     }
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc4Audip.s 			page 153
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccVBSC3m.s 			page 153
 
 
  3936              		.loc 1 2884 7 is_stmt 1 view .LVU1365
@@ -9178,7 +9178,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc4Audip.s 			page 1
  3984              		.syntax unified
  3985              		.thumb
  3986              		.thumb_func
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc4Audip.s 			page 154
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccVBSC3m.s 			page 154
 
 
  3988              	HAL_FDCAN_RxFifo0Callback:
@@ -9238,7 +9238,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc4Audip.s 			page 1
  4037              		@ args = 0, pretend = 0, frame = 0
  4038              		@ frame_needed = 0, uses_anonymous_args = 0
  4039              		@ link register save eliminated.
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc4Audip.s 			page 155
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccVBSC3m.s 			page 155
 
 
 3236:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_fdcan.c **** 
@@ -9298,7 +9298,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc4Audip.s 			page 1
  4088              	.LFE184:
  4090              		.section	.text.HAL_FDCAN_TimestampWraparoundCallback,"ax",%progbits
  4091              		.align	1
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc4Audip.s 			page 156
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccVBSC3m.s 			page 156
 
 
  4092              		.weak	HAL_FDCAN_TimestampWraparoundCallback
@@ -9358,7 +9358,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc4Audip.s 			page 1
  4144              		@ args = 0, pretend = 0, frame = 0
  4145              		@ frame_needed = 0, uses_anonymous_args = 0
  4146              		@ link register save eliminated.
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc4Audip.s 			page 157
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccVBSC3m.s 			page 157
 
 
 3322:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_fdcan.c **** 
@@ -9418,7 +9418,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc4Audip.s 			page 1
  4197              		.align	1
  4198              		.global	HAL_FDCAN_IRQHandler
  4199              		.syntax unified
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc4Audip.s 			page 158
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccVBSC3m.s 			page 158
 
 
  4200              		.thumb
@@ -9478,7 +9478,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc4Audip.s 			page 1
  4240              	.LVL309:
 2918:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_fdcan.c ****   RxFifo0ITs = hfdcan->Instance->IR & FDCAN_RX_FIFO0_MASK;
  4241              		.loc 1 2918 3 is_stmt 1 view .LVU1425
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc4Audip.s 			page 159
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccVBSC3m.s 			page 159
 
 
 2918:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_fdcan.c ****   RxFifo0ITs = hfdcan->Instance->IR & FDCAN_RX_FIFO0_MASK;
@@ -9538,7 +9538,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc4Audip.s 			page 1
 2924:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_fdcan.c ****   ErrorStatusITs = hfdcan->Instance->IR & FDCAN_ERROR_STATUS_MASK;
  4278              		.loc 1 2924 29 is_stmt 0 view .LVU1444
  4279 0032 5A6D     		ldr	r2, [r3, #84]
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc4Audip.s 			page 160
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccVBSC3m.s 			page 160
 
 
 2924:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_fdcan.c ****   ErrorStatusITs = hfdcan->Instance->IR & FDCAN_ERROR_STATUS_MASK;
@@ -9598,7 +9598,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc4Audip.s 			page 1
 2951:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_fdcan.c ****     {
  4317              		.loc 1 2951 5 is_stmt 1 view .LVU1462
 2951:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_fdcan.c ****     {
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc4Audip.s 			page 161
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccVBSC3m.s 			page 161
 
 
  4318              		.loc 1 2951 8 is_stmt 0 view .LVU1463
@@ -9658,7 +9658,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc4Audip.s 			page 1
  4356              		.loc 1 3056 6 is_stmt 0 view .LVU1479
  4357 0088 15F4005F 		tst	r5, #8192
  4358 008c 02D0     		beq	.L319
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc4Audip.s 			page 162
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccVBSC3m.s 			page 162
 
 
 3058:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_fdcan.c ****     {
@@ -9718,7 +9718,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc4Audip.s 			page 1
 3120:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_fdcan.c ****   {
  4397              		.loc 1 3120 3 is_stmt 1 view .LVU1496
 3120:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_fdcan.c ****   {
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc4Audip.s 			page 163
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccVBSC3m.s 			page 163
 
 
  4398              		.loc 1 3120 6 is_stmt 0 view .LVU1497
@@ -9778,7 +9778,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc4Audip.s 			page 1
 2955:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_fdcan.c **** 
  4437              		.loc 1 2955 41 is_stmt 0 view .LVU1513
  4438 00e6 D3F8E020 		ldr	r2, [r3, #224]
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc4Audip.s 			page 164
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccVBSC3m.s 			page 164
 
 
  4439              	.LVL325:
@@ -9838,7 +9838,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc4Audip.s 			page 1
  4483              	.L331:
 3021:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_fdcan.c **** 
  4484              		.loc 1 3021 7 view .LVU1524
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc4Audip.s 			page 165
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccVBSC3m.s 			page 165
 
 
  4485 012a 2368     		ldr	r3, [r4]
@@ -9898,7 +9898,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc4Audip.s 			page 1
  4527              	.L334:
 3079:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_fdcan.c **** 
  4528              		.loc 1 3079 7 view .LVU1537
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc4Audip.s 			page 166
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccVBSC3m.s 			page 166
 
 
  4529 0162 2368     		ldr	r3, [r4]
@@ -9958,7 +9958,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc4Audip.s 			page 1
  4576              		.loc 1 3393 1 view .LVU1546
  4577 0004 7047     		bx	lr
  4578              		.cfi_endproc
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc4Audip.s 			page 167
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccVBSC3m.s 			page 167
 
 
  4579              	.LFE190:
@@ -10005,147 +10005,147 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc4Audip.s 			page 1
  4618              		.file 6 "Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_def.h"
  4619              		.file 7 "Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_fdcan.h"
  4620              		.file 8 "Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal.h"
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc4Audip.s 			page 168
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccVBSC3m.s 			page 168
 
 
 DEFINED SYMBOLS
                             *ABS*:00000000 stm32g4xx_hal_fdcan.c
-C:\Users\Nathan\AppData\Local\Temp\cc4Audip.s:21     .text.FDCAN_CalcultateRamBlockAddresses:00000000 $t
-C:\Users\Nathan\AppData\Local\Temp\cc4Audip.s:26     .text.FDCAN_CalcultateRamBlockAddresses:00000000 FDCAN_CalcultateRamBlockAddresses
-C:\Users\Nathan\AppData\Local\Temp\cc4Audip.s:142    .text.FDCAN_CalcultateRamBlockAddresses:0000007c $d
-C:\Users\Nathan\AppData\Local\Temp\cc4Audip.s:150    .text.FDCAN_CopyMessageToRAM:00000000 $t
-C:\Users\Nathan\AppData\Local\Temp\cc4Audip.s:155    .text.FDCAN_CopyMessageToRAM:00000000 FDCAN_CopyMessageToRAM
-C:\Users\Nathan\AppData\Local\Temp\cc4Audip.s:294    .text.FDCAN_CopyMessageToRAM:00000084 $d
-C:\Users\Nathan\AppData\Local\Temp\cc4Audip.s:4609   .rodata.DLCtoBytes:00000000 DLCtoBytes
-C:\Users\Nathan\AppData\Local\Temp\cc4Audip.s:299    .text.HAL_FDCAN_MspInit:00000000 $t
-C:\Users\Nathan\AppData\Local\Temp\cc4Audip.s:305    .text.HAL_FDCAN_MspInit:00000000 HAL_FDCAN_MspInit
-C:\Users\Nathan\AppData\Local\Temp\cc4Audip.s:320    .text.HAL_FDCAN_Init:00000000 $t
-C:\Users\Nathan\AppData\Local\Temp\cc4Audip.s:326    .text.HAL_FDCAN_Init:00000000 HAL_FDCAN_Init
-C:\Users\Nathan\AppData\Local\Temp\cc4Audip.s:724    .text.HAL_FDCAN_Init:000001d0 $d
-C:\Users\Nathan\AppData\Local\Temp\cc4Audip.s:729    .text.HAL_FDCAN_MspDeInit:00000000 $t
-C:\Users\Nathan\AppData\Local\Temp\cc4Audip.s:735    .text.HAL_FDCAN_MspDeInit:00000000 HAL_FDCAN_MspDeInit
-C:\Users\Nathan\AppData\Local\Temp\cc4Audip.s:750    .text.HAL_FDCAN_EnterPowerDownMode:00000000 $t
-C:\Users\Nathan\AppData\Local\Temp\cc4Audip.s:756    .text.HAL_FDCAN_EnterPowerDownMode:00000000 HAL_FDCAN_EnterPowerDownMode
-C:\Users\Nathan\AppData\Local\Temp\cc4Audip.s:828    .text.HAL_FDCAN_ExitPowerDownMode:00000000 $t
-C:\Users\Nathan\AppData\Local\Temp\cc4Audip.s:834    .text.HAL_FDCAN_ExitPowerDownMode:00000000 HAL_FDCAN_ExitPowerDownMode
-C:\Users\Nathan\AppData\Local\Temp\cc4Audip.s:911    .text.HAL_FDCAN_ConfigFilter:00000000 $t
-C:\Users\Nathan\AppData\Local\Temp\cc4Audip.s:917    .text.HAL_FDCAN_ConfigFilter:00000000 HAL_FDCAN_ConfigFilter
-C:\Users\Nathan\AppData\Local\Temp\cc4Audip.s:1055   .text.HAL_FDCAN_ConfigGlobalFilter:00000000 $t
-C:\Users\Nathan\AppData\Local\Temp\cc4Audip.s:1061   .text.HAL_FDCAN_ConfigGlobalFilter:00000000 HAL_FDCAN_ConfigGlobalFilter
-C:\Users\Nathan\AppData\Local\Temp\cc4Audip.s:1129   .text.HAL_FDCAN_ConfigExtendedIdMask:00000000 $t
-C:\Users\Nathan\AppData\Local\Temp\cc4Audip.s:1135   .text.HAL_FDCAN_ConfigExtendedIdMask:00000000 HAL_FDCAN_ConfigExtendedIdMask
-C:\Users\Nathan\AppData\Local\Temp\cc4Audip.s:1179   .text.HAL_FDCAN_ConfigRxFifoOverwrite:00000000 $t
-C:\Users\Nathan\AppData\Local\Temp\cc4Audip.s:1185   .text.HAL_FDCAN_ConfigRxFifoOverwrite:00000000 HAL_FDCAN_ConfigRxFifoOverwrite
-C:\Users\Nathan\AppData\Local\Temp\cc4Audip.s:1249   .text.HAL_FDCAN_ConfigRamWatchdog:00000000 $t
-C:\Users\Nathan\AppData\Local\Temp\cc4Audip.s:1255   .text.HAL_FDCAN_ConfigRamWatchdog:00000000 HAL_FDCAN_ConfigRamWatchdog
-C:\Users\Nathan\AppData\Local\Temp\cc4Audip.s:1300   .text.HAL_FDCAN_ConfigTimestampCounter:00000000 $t
-C:\Users\Nathan\AppData\Local\Temp\cc4Audip.s:1306   .text.HAL_FDCAN_ConfigTimestampCounter:00000000 HAL_FDCAN_ConfigTimestampCounter
-C:\Users\Nathan\AppData\Local\Temp\cc4Audip.s:1351   .text.HAL_FDCAN_EnableTimestampCounter:00000000 $t
-C:\Users\Nathan\AppData\Local\Temp\cc4Audip.s:1357   .text.HAL_FDCAN_EnableTimestampCounter:00000000 HAL_FDCAN_EnableTimestampCounter
-C:\Users\Nathan\AppData\Local\Temp\cc4Audip.s:1402   .text.HAL_FDCAN_DisableTimestampCounter:00000000 $t
-C:\Users\Nathan\AppData\Local\Temp\cc4Audip.s:1408   .text.HAL_FDCAN_DisableTimestampCounter:00000000 HAL_FDCAN_DisableTimestampCounter
-C:\Users\Nathan\AppData\Local\Temp\cc4Audip.s:1451   .text.HAL_FDCAN_GetTimestampCounter:00000000 $t
-C:\Users\Nathan\AppData\Local\Temp\cc4Audip.s:1457   .text.HAL_FDCAN_GetTimestampCounter:00000000 HAL_FDCAN_GetTimestampCounter
-C:\Users\Nathan\AppData\Local\Temp\cc4Audip.s:1478   .text.HAL_FDCAN_ResetTimestampCounter:00000000 $t
-C:\Users\Nathan\AppData\Local\Temp\cc4Audip.s:1484   .text.HAL_FDCAN_ResetTimestampCounter:00000000 HAL_FDCAN_ResetTimestampCounter
-C:\Users\Nathan\AppData\Local\Temp\cc4Audip.s:1528   .text.HAL_FDCAN_ConfigTimeoutCounter:00000000 $t
-C:\Users\Nathan\AppData\Local\Temp\cc4Audip.s:1534   .text.HAL_FDCAN_ConfigTimeoutCounter:00000000 HAL_FDCAN_ConfigTimeoutCounter
-C:\Users\Nathan\AppData\Local\Temp\cc4Audip.s:1585   .text.HAL_FDCAN_EnableTimeoutCounter:00000000 $t
-C:\Users\Nathan\AppData\Local\Temp\cc4Audip.s:1591   .text.HAL_FDCAN_EnableTimeoutCounter:00000000 HAL_FDCAN_EnableTimeoutCounter
-C:\Users\Nathan\AppData\Local\Temp\cc4Audip.s:1634   .text.HAL_FDCAN_DisableTimeoutCounter:00000000 $t
-C:\Users\Nathan\AppData\Local\Temp\cc4Audip.s:1640   .text.HAL_FDCAN_DisableTimeoutCounter:00000000 HAL_FDCAN_DisableTimeoutCounter
-C:\Users\Nathan\AppData\Local\Temp\cc4Audip.s:1683   .text.HAL_FDCAN_GetTimeoutCounter:00000000 $t
-C:\Users\Nathan\AppData\Local\Temp\cc4Audip.s:1689   .text.HAL_FDCAN_GetTimeoutCounter:00000000 HAL_FDCAN_GetTimeoutCounter
-C:\Users\Nathan\AppData\Local\Temp\cc4Audip.s:1710   .text.HAL_FDCAN_ResetTimeoutCounter:00000000 $t
-C:\Users\Nathan\AppData\Local\Temp\cc4Audip.s:1716   .text.HAL_FDCAN_ResetTimeoutCounter:00000000 HAL_FDCAN_ResetTimeoutCounter
-C:\Users\Nathan\AppData\Local\Temp\cc4Audip.s:1758   .text.HAL_FDCAN_ConfigTxDelayCompensation:00000000 $t
-C:\Users\Nathan\AppData\Local\Temp\cc4Audip.s:1764   .text.HAL_FDCAN_ConfigTxDelayCompensation:00000000 HAL_FDCAN_ConfigTxDelayCompensation
-C:\Users\Nathan\AppData\Local\Temp\cc4Audip.s:1812   .text.HAL_FDCAN_EnableTxDelayCompensation:00000000 $t
-C:\Users\Nathan\AppData\Local\Temp\cc4Audip.s:1818   .text.HAL_FDCAN_EnableTxDelayCompensation:00000000 HAL_FDCAN_EnableTxDelayCompensation
-C:\Users\Nathan\AppData\Local\Temp\cc4Audip.s:1861   .text.HAL_FDCAN_DisableTxDelayCompensation:00000000 $t
-C:\Users\Nathan\AppData\Local\Temp\cc4Audip.s:1867   .text.HAL_FDCAN_DisableTxDelayCompensation:00000000 HAL_FDCAN_DisableTxDelayCompensation
-C:\Users\Nathan\AppData\Local\Temp\cc4Audip.s:1910   .text.HAL_FDCAN_EnableISOMode:00000000 $t
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc4Audip.s 			page 169
+C:\Users\Nathan\AppData\Local\Temp\ccVBSC3m.s:21     .text.FDCAN_CalcultateRamBlockAddresses:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccVBSC3m.s:26     .text.FDCAN_CalcultateRamBlockAddresses:00000000 FDCAN_CalcultateRamBlockAddresses
+C:\Users\Nathan\AppData\Local\Temp\ccVBSC3m.s:142    .text.FDCAN_CalcultateRamBlockAddresses:0000007c $d
+C:\Users\Nathan\AppData\Local\Temp\ccVBSC3m.s:150    .text.FDCAN_CopyMessageToRAM:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccVBSC3m.s:155    .text.FDCAN_CopyMessageToRAM:00000000 FDCAN_CopyMessageToRAM
+C:\Users\Nathan\AppData\Local\Temp\ccVBSC3m.s:294    .text.FDCAN_CopyMessageToRAM:00000084 $d
+C:\Users\Nathan\AppData\Local\Temp\ccVBSC3m.s:4609   .rodata.DLCtoBytes:00000000 DLCtoBytes
+C:\Users\Nathan\AppData\Local\Temp\ccVBSC3m.s:299    .text.HAL_FDCAN_MspInit:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccVBSC3m.s:305    .text.HAL_FDCAN_MspInit:00000000 HAL_FDCAN_MspInit
+C:\Users\Nathan\AppData\Local\Temp\ccVBSC3m.s:320    .text.HAL_FDCAN_Init:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccVBSC3m.s:326    .text.HAL_FDCAN_Init:00000000 HAL_FDCAN_Init
+C:\Users\Nathan\AppData\Local\Temp\ccVBSC3m.s:724    .text.HAL_FDCAN_Init:000001d0 $d
+C:\Users\Nathan\AppData\Local\Temp\ccVBSC3m.s:729    .text.HAL_FDCAN_MspDeInit:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccVBSC3m.s:735    .text.HAL_FDCAN_MspDeInit:00000000 HAL_FDCAN_MspDeInit
+C:\Users\Nathan\AppData\Local\Temp\ccVBSC3m.s:750    .text.HAL_FDCAN_EnterPowerDownMode:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccVBSC3m.s:756    .text.HAL_FDCAN_EnterPowerDownMode:00000000 HAL_FDCAN_EnterPowerDownMode
+C:\Users\Nathan\AppData\Local\Temp\ccVBSC3m.s:828    .text.HAL_FDCAN_ExitPowerDownMode:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccVBSC3m.s:834    .text.HAL_FDCAN_ExitPowerDownMode:00000000 HAL_FDCAN_ExitPowerDownMode
+C:\Users\Nathan\AppData\Local\Temp\ccVBSC3m.s:911    .text.HAL_FDCAN_ConfigFilter:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccVBSC3m.s:917    .text.HAL_FDCAN_ConfigFilter:00000000 HAL_FDCAN_ConfigFilter
+C:\Users\Nathan\AppData\Local\Temp\ccVBSC3m.s:1055   .text.HAL_FDCAN_ConfigGlobalFilter:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccVBSC3m.s:1061   .text.HAL_FDCAN_ConfigGlobalFilter:00000000 HAL_FDCAN_ConfigGlobalFilter
+C:\Users\Nathan\AppData\Local\Temp\ccVBSC3m.s:1129   .text.HAL_FDCAN_ConfigExtendedIdMask:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccVBSC3m.s:1135   .text.HAL_FDCAN_ConfigExtendedIdMask:00000000 HAL_FDCAN_ConfigExtendedIdMask
+C:\Users\Nathan\AppData\Local\Temp\ccVBSC3m.s:1179   .text.HAL_FDCAN_ConfigRxFifoOverwrite:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccVBSC3m.s:1185   .text.HAL_FDCAN_ConfigRxFifoOverwrite:00000000 HAL_FDCAN_ConfigRxFifoOverwrite
+C:\Users\Nathan\AppData\Local\Temp\ccVBSC3m.s:1249   .text.HAL_FDCAN_ConfigRamWatchdog:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccVBSC3m.s:1255   .text.HAL_FDCAN_ConfigRamWatchdog:00000000 HAL_FDCAN_ConfigRamWatchdog
+C:\Users\Nathan\AppData\Local\Temp\ccVBSC3m.s:1300   .text.HAL_FDCAN_ConfigTimestampCounter:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccVBSC3m.s:1306   .text.HAL_FDCAN_ConfigTimestampCounter:00000000 HAL_FDCAN_ConfigTimestampCounter
+C:\Users\Nathan\AppData\Local\Temp\ccVBSC3m.s:1351   .text.HAL_FDCAN_EnableTimestampCounter:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccVBSC3m.s:1357   .text.HAL_FDCAN_EnableTimestampCounter:00000000 HAL_FDCAN_EnableTimestampCounter
+C:\Users\Nathan\AppData\Local\Temp\ccVBSC3m.s:1402   .text.HAL_FDCAN_DisableTimestampCounter:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccVBSC3m.s:1408   .text.HAL_FDCAN_DisableTimestampCounter:00000000 HAL_FDCAN_DisableTimestampCounter
+C:\Users\Nathan\AppData\Local\Temp\ccVBSC3m.s:1451   .text.HAL_FDCAN_GetTimestampCounter:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccVBSC3m.s:1457   .text.HAL_FDCAN_GetTimestampCounter:00000000 HAL_FDCAN_GetTimestampCounter
+C:\Users\Nathan\AppData\Local\Temp\ccVBSC3m.s:1478   .text.HAL_FDCAN_ResetTimestampCounter:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccVBSC3m.s:1484   .text.HAL_FDCAN_ResetTimestampCounter:00000000 HAL_FDCAN_ResetTimestampCounter
+C:\Users\Nathan\AppData\Local\Temp\ccVBSC3m.s:1528   .text.HAL_FDCAN_ConfigTimeoutCounter:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccVBSC3m.s:1534   .text.HAL_FDCAN_ConfigTimeoutCounter:00000000 HAL_FDCAN_ConfigTimeoutCounter
+C:\Users\Nathan\AppData\Local\Temp\ccVBSC3m.s:1585   .text.HAL_FDCAN_EnableTimeoutCounter:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccVBSC3m.s:1591   .text.HAL_FDCAN_EnableTimeoutCounter:00000000 HAL_FDCAN_EnableTimeoutCounter
+C:\Users\Nathan\AppData\Local\Temp\ccVBSC3m.s:1634   .text.HAL_FDCAN_DisableTimeoutCounter:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccVBSC3m.s:1640   .text.HAL_FDCAN_DisableTimeoutCounter:00000000 HAL_FDCAN_DisableTimeoutCounter
+C:\Users\Nathan\AppData\Local\Temp\ccVBSC3m.s:1683   .text.HAL_FDCAN_GetTimeoutCounter:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccVBSC3m.s:1689   .text.HAL_FDCAN_GetTimeoutCounter:00000000 HAL_FDCAN_GetTimeoutCounter
+C:\Users\Nathan\AppData\Local\Temp\ccVBSC3m.s:1710   .text.HAL_FDCAN_ResetTimeoutCounter:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccVBSC3m.s:1716   .text.HAL_FDCAN_ResetTimeoutCounter:00000000 HAL_FDCAN_ResetTimeoutCounter
+C:\Users\Nathan\AppData\Local\Temp\ccVBSC3m.s:1758   .text.HAL_FDCAN_ConfigTxDelayCompensation:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccVBSC3m.s:1764   .text.HAL_FDCAN_ConfigTxDelayCompensation:00000000 HAL_FDCAN_ConfigTxDelayCompensation
+C:\Users\Nathan\AppData\Local\Temp\ccVBSC3m.s:1812   .text.HAL_FDCAN_EnableTxDelayCompensation:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccVBSC3m.s:1818   .text.HAL_FDCAN_EnableTxDelayCompensation:00000000 HAL_FDCAN_EnableTxDelayCompensation
+C:\Users\Nathan\AppData\Local\Temp\ccVBSC3m.s:1861   .text.HAL_FDCAN_DisableTxDelayCompensation:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccVBSC3m.s:1867   .text.HAL_FDCAN_DisableTxDelayCompensation:00000000 HAL_FDCAN_DisableTxDelayCompensation
+C:\Users\Nathan\AppData\Local\Temp\ccVBSC3m.s:1910   .text.HAL_FDCAN_EnableISOMode:00000000 $t
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccVBSC3m.s 			page 169
 
 
-C:\Users\Nathan\AppData\Local\Temp\cc4Audip.s:1916   .text.HAL_FDCAN_EnableISOMode:00000000 HAL_FDCAN_EnableISOMode
-C:\Users\Nathan\AppData\Local\Temp\cc4Audip.s:1959   .text.HAL_FDCAN_DisableISOMode:00000000 $t
-C:\Users\Nathan\AppData\Local\Temp\cc4Audip.s:1965   .text.HAL_FDCAN_DisableISOMode:00000000 HAL_FDCAN_DisableISOMode
-C:\Users\Nathan\AppData\Local\Temp\cc4Audip.s:2008   .text.HAL_FDCAN_EnableEdgeFiltering:00000000 $t
-C:\Users\Nathan\AppData\Local\Temp\cc4Audip.s:2014   .text.HAL_FDCAN_EnableEdgeFiltering:00000000 HAL_FDCAN_EnableEdgeFiltering
-C:\Users\Nathan\AppData\Local\Temp\cc4Audip.s:2057   .text.HAL_FDCAN_DisableEdgeFiltering:00000000 $t
-C:\Users\Nathan\AppData\Local\Temp\cc4Audip.s:2063   .text.HAL_FDCAN_DisableEdgeFiltering:00000000 HAL_FDCAN_DisableEdgeFiltering
-C:\Users\Nathan\AppData\Local\Temp\cc4Audip.s:2106   .text.HAL_FDCAN_Start:00000000 $t
-C:\Users\Nathan\AppData\Local\Temp\cc4Audip.s:2112   .text.HAL_FDCAN_Start:00000000 HAL_FDCAN_Start
-C:\Users\Nathan\AppData\Local\Temp\cc4Audip.s:2163   .text.HAL_FDCAN_Stop:00000000 $t
-C:\Users\Nathan\AppData\Local\Temp\cc4Audip.s:2169   .text.HAL_FDCAN_Stop:00000000 HAL_FDCAN_Stop
-C:\Users\Nathan\AppData\Local\Temp\cc4Audip.s:2320   .text.HAL_FDCAN_DeInit:00000000 $t
-C:\Users\Nathan\AppData\Local\Temp\cc4Audip.s:2326   .text.HAL_FDCAN_DeInit:00000000 HAL_FDCAN_DeInit
-C:\Users\Nathan\AppData\Local\Temp\cc4Audip.s:2380   .text.HAL_FDCAN_AddMessageToTxFifoQ:00000000 $t
-C:\Users\Nathan\AppData\Local\Temp\cc4Audip.s:2386   .text.HAL_FDCAN_AddMessageToTxFifoQ:00000000 HAL_FDCAN_AddMessageToTxFifoQ
-C:\Users\Nathan\AppData\Local\Temp\cc4Audip.s:2485   .text.HAL_FDCAN_GetLatestTxFifoQRequestBuffer:00000000 $t
-C:\Users\Nathan\AppData\Local\Temp\cc4Audip.s:2491   .text.HAL_FDCAN_GetLatestTxFifoQRequestBuffer:00000000 HAL_FDCAN_GetLatestTxFifoQRequestBuffer
-C:\Users\Nathan\AppData\Local\Temp\cc4Audip.s:2509   .text.HAL_FDCAN_AbortTxRequest:00000000 $t
-C:\Users\Nathan\AppData\Local\Temp\cc4Audip.s:2515   .text.HAL_FDCAN_AbortTxRequest:00000000 HAL_FDCAN_AbortTxRequest
-C:\Users\Nathan\AppData\Local\Temp\cc4Audip.s:2559   .text.HAL_FDCAN_GetRxMessage:00000000 $t
-C:\Users\Nathan\AppData\Local\Temp\cc4Audip.s:2565   .text.HAL_FDCAN_GetRxMessage:00000000 HAL_FDCAN_GetRxMessage
-C:\Users\Nathan\AppData\Local\Temp\cc4Audip.s:2870   .text.HAL_FDCAN_GetRxMessage:00000144 $d
-C:\Users\Nathan\AppData\Local\Temp\cc4Audip.s:2875   .text.HAL_FDCAN_GetTxEvent:00000000 $t
-C:\Users\Nathan\AppData\Local\Temp\cc4Audip.s:2881   .text.HAL_FDCAN_GetTxEvent:00000000 HAL_FDCAN_GetTxEvent
-C:\Users\Nathan\AppData\Local\Temp\cc4Audip.s:3060   .text.HAL_FDCAN_GetHighPriorityMessageStatus:00000000 $t
-C:\Users\Nathan\AppData\Local\Temp\cc4Audip.s:3066   .text.HAL_FDCAN_GetHighPriorityMessageStatus:00000000 HAL_FDCAN_GetHighPriorityMessageStatus
-C:\Users\Nathan\AppData\Local\Temp\cc4Audip.s:3120   .text.HAL_FDCAN_GetProtocolStatus:00000000 $t
-C:\Users\Nathan\AppData\Local\Temp\cc4Audip.s:3126   .text.HAL_FDCAN_GetProtocolStatus:00000000 HAL_FDCAN_GetProtocolStatus
-C:\Users\Nathan\AppData\Local\Temp\cc4Audip.s:3207   .text.HAL_FDCAN_GetErrorCounters:00000000 $t
-C:\Users\Nathan\AppData\Local\Temp\cc4Audip.s:3213   .text.HAL_FDCAN_GetErrorCounters:00000000 HAL_FDCAN_GetErrorCounters
-C:\Users\Nathan\AppData\Local\Temp\cc4Audip.s:3259   .text.HAL_FDCAN_IsTxBufferMessagePending:00000000 $t
-C:\Users\Nathan\AppData\Local\Temp\cc4Audip.s:3265   .text.HAL_FDCAN_IsTxBufferMessagePending:00000000 HAL_FDCAN_IsTxBufferMessagePending
-C:\Users\Nathan\AppData\Local\Temp\cc4Audip.s:3292   .text.HAL_FDCAN_GetRxFifoFillLevel:00000000 $t
-C:\Users\Nathan\AppData\Local\Temp\cc4Audip.s:3298   .text.HAL_FDCAN_GetRxFifoFillLevel:00000000 HAL_FDCAN_GetRxFifoFillLevel
-C:\Users\Nathan\AppData\Local\Temp\cc4Audip.s:3341   .text.HAL_FDCAN_GetTxFifoFreeLevel:00000000 $t
-C:\Users\Nathan\AppData\Local\Temp\cc4Audip.s:3347   .text.HAL_FDCAN_GetTxFifoFreeLevel:00000000 HAL_FDCAN_GetTxFifoFreeLevel
-C:\Users\Nathan\AppData\Local\Temp\cc4Audip.s:3372   .text.HAL_FDCAN_IsRestrictedOperationMode:00000000 $t
-C:\Users\Nathan\AppData\Local\Temp\cc4Audip.s:3378   .text.HAL_FDCAN_IsRestrictedOperationMode:00000000 HAL_FDCAN_IsRestrictedOperationMode
-C:\Users\Nathan\AppData\Local\Temp\cc4Audip.s:3403   .text.HAL_FDCAN_ExitRestrictedOperationMode:00000000 $t
-C:\Users\Nathan\AppData\Local\Temp\cc4Audip.s:3409   .text.HAL_FDCAN_ExitRestrictedOperationMode:00000000 HAL_FDCAN_ExitRestrictedOperationMode
-C:\Users\Nathan\AppData\Local\Temp\cc4Audip.s:3460   .text.HAL_FDCAN_ConfigInterruptLines:00000000 $t
-C:\Users\Nathan\AppData\Local\Temp\cc4Audip.s:3466   .text.HAL_FDCAN_ConfigInterruptLines:00000000 HAL_FDCAN_ConfigInterruptLines
-C:\Users\Nathan\AppData\Local\Temp\cc4Audip.s:3536   .text.HAL_FDCAN_ActivateNotification:00000000 $t
-C:\Users\Nathan\AppData\Local\Temp\cc4Audip.s:3542   .text.HAL_FDCAN_ActivateNotification:00000000 HAL_FDCAN_ActivateNotification
-C:\Users\Nathan\AppData\Local\Temp\cc4Audip.s:3748   .text.HAL_FDCAN_DeactivateNotification:00000000 $t
-C:\Users\Nathan\AppData\Local\Temp\cc4Audip.s:3754   .text.HAL_FDCAN_DeactivateNotification:00000000 HAL_FDCAN_DeactivateNotification
-C:\Users\Nathan\AppData\Local\Temp\cc4Audip.s:3960   .text.HAL_FDCAN_TxEventFifoCallback:00000000 $t
-C:\Users\Nathan\AppData\Local\Temp\cc4Audip.s:3966   .text.HAL_FDCAN_TxEventFifoCallback:00000000 HAL_FDCAN_TxEventFifoCallback
-C:\Users\Nathan\AppData\Local\Temp\cc4Audip.s:3982   .text.HAL_FDCAN_RxFifo0Callback:00000000 $t
-C:\Users\Nathan\AppData\Local\Temp\cc4Audip.s:3988   .text.HAL_FDCAN_RxFifo0Callback:00000000 HAL_FDCAN_RxFifo0Callback
-C:\Users\Nathan\AppData\Local\Temp\cc4Audip.s:4004   .text.HAL_FDCAN_RxFifo1Callback:00000000 $t
-C:\Users\Nathan\AppData\Local\Temp\cc4Audip.s:4010   .text.HAL_FDCAN_RxFifo1Callback:00000000 HAL_FDCAN_RxFifo1Callback
-C:\Users\Nathan\AppData\Local\Temp\cc4Audip.s:4026   .text.HAL_FDCAN_TxFifoEmptyCallback:00000000 $t
-C:\Users\Nathan\AppData\Local\Temp\cc4Audip.s:4032   .text.HAL_FDCAN_TxFifoEmptyCallback:00000000 HAL_FDCAN_TxFifoEmptyCallback
-C:\Users\Nathan\AppData\Local\Temp\cc4Audip.s:4047   .text.HAL_FDCAN_TxBufferCompleteCallback:00000000 $t
-C:\Users\Nathan\AppData\Local\Temp\cc4Audip.s:4053   .text.HAL_FDCAN_TxBufferCompleteCallback:00000000 HAL_FDCAN_TxBufferCompleteCallback
-C:\Users\Nathan\AppData\Local\Temp\cc4Audip.s:4069   .text.HAL_FDCAN_TxBufferAbortCallback:00000000 $t
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc4Audip.s 			page 170
+C:\Users\Nathan\AppData\Local\Temp\ccVBSC3m.s:1916   .text.HAL_FDCAN_EnableISOMode:00000000 HAL_FDCAN_EnableISOMode
+C:\Users\Nathan\AppData\Local\Temp\ccVBSC3m.s:1959   .text.HAL_FDCAN_DisableISOMode:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccVBSC3m.s:1965   .text.HAL_FDCAN_DisableISOMode:00000000 HAL_FDCAN_DisableISOMode
+C:\Users\Nathan\AppData\Local\Temp\ccVBSC3m.s:2008   .text.HAL_FDCAN_EnableEdgeFiltering:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccVBSC3m.s:2014   .text.HAL_FDCAN_EnableEdgeFiltering:00000000 HAL_FDCAN_EnableEdgeFiltering
+C:\Users\Nathan\AppData\Local\Temp\ccVBSC3m.s:2057   .text.HAL_FDCAN_DisableEdgeFiltering:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccVBSC3m.s:2063   .text.HAL_FDCAN_DisableEdgeFiltering:00000000 HAL_FDCAN_DisableEdgeFiltering
+C:\Users\Nathan\AppData\Local\Temp\ccVBSC3m.s:2106   .text.HAL_FDCAN_Start:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccVBSC3m.s:2112   .text.HAL_FDCAN_Start:00000000 HAL_FDCAN_Start
+C:\Users\Nathan\AppData\Local\Temp\ccVBSC3m.s:2163   .text.HAL_FDCAN_Stop:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccVBSC3m.s:2169   .text.HAL_FDCAN_Stop:00000000 HAL_FDCAN_Stop
+C:\Users\Nathan\AppData\Local\Temp\ccVBSC3m.s:2320   .text.HAL_FDCAN_DeInit:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccVBSC3m.s:2326   .text.HAL_FDCAN_DeInit:00000000 HAL_FDCAN_DeInit
+C:\Users\Nathan\AppData\Local\Temp\ccVBSC3m.s:2380   .text.HAL_FDCAN_AddMessageToTxFifoQ:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccVBSC3m.s:2386   .text.HAL_FDCAN_AddMessageToTxFifoQ:00000000 HAL_FDCAN_AddMessageToTxFifoQ
+C:\Users\Nathan\AppData\Local\Temp\ccVBSC3m.s:2485   .text.HAL_FDCAN_GetLatestTxFifoQRequestBuffer:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccVBSC3m.s:2491   .text.HAL_FDCAN_GetLatestTxFifoQRequestBuffer:00000000 HAL_FDCAN_GetLatestTxFifoQRequestBuffer
+C:\Users\Nathan\AppData\Local\Temp\ccVBSC3m.s:2509   .text.HAL_FDCAN_AbortTxRequest:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccVBSC3m.s:2515   .text.HAL_FDCAN_AbortTxRequest:00000000 HAL_FDCAN_AbortTxRequest
+C:\Users\Nathan\AppData\Local\Temp\ccVBSC3m.s:2559   .text.HAL_FDCAN_GetRxMessage:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccVBSC3m.s:2565   .text.HAL_FDCAN_GetRxMessage:00000000 HAL_FDCAN_GetRxMessage
+C:\Users\Nathan\AppData\Local\Temp\ccVBSC3m.s:2870   .text.HAL_FDCAN_GetRxMessage:00000144 $d
+C:\Users\Nathan\AppData\Local\Temp\ccVBSC3m.s:2875   .text.HAL_FDCAN_GetTxEvent:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccVBSC3m.s:2881   .text.HAL_FDCAN_GetTxEvent:00000000 HAL_FDCAN_GetTxEvent
+C:\Users\Nathan\AppData\Local\Temp\ccVBSC3m.s:3060   .text.HAL_FDCAN_GetHighPriorityMessageStatus:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccVBSC3m.s:3066   .text.HAL_FDCAN_GetHighPriorityMessageStatus:00000000 HAL_FDCAN_GetHighPriorityMessageStatus
+C:\Users\Nathan\AppData\Local\Temp\ccVBSC3m.s:3120   .text.HAL_FDCAN_GetProtocolStatus:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccVBSC3m.s:3126   .text.HAL_FDCAN_GetProtocolStatus:00000000 HAL_FDCAN_GetProtocolStatus
+C:\Users\Nathan\AppData\Local\Temp\ccVBSC3m.s:3207   .text.HAL_FDCAN_GetErrorCounters:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccVBSC3m.s:3213   .text.HAL_FDCAN_GetErrorCounters:00000000 HAL_FDCAN_GetErrorCounters
+C:\Users\Nathan\AppData\Local\Temp\ccVBSC3m.s:3259   .text.HAL_FDCAN_IsTxBufferMessagePending:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccVBSC3m.s:3265   .text.HAL_FDCAN_IsTxBufferMessagePending:00000000 HAL_FDCAN_IsTxBufferMessagePending
+C:\Users\Nathan\AppData\Local\Temp\ccVBSC3m.s:3292   .text.HAL_FDCAN_GetRxFifoFillLevel:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccVBSC3m.s:3298   .text.HAL_FDCAN_GetRxFifoFillLevel:00000000 HAL_FDCAN_GetRxFifoFillLevel
+C:\Users\Nathan\AppData\Local\Temp\ccVBSC3m.s:3341   .text.HAL_FDCAN_GetTxFifoFreeLevel:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccVBSC3m.s:3347   .text.HAL_FDCAN_GetTxFifoFreeLevel:00000000 HAL_FDCAN_GetTxFifoFreeLevel
+C:\Users\Nathan\AppData\Local\Temp\ccVBSC3m.s:3372   .text.HAL_FDCAN_IsRestrictedOperationMode:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccVBSC3m.s:3378   .text.HAL_FDCAN_IsRestrictedOperationMode:00000000 HAL_FDCAN_IsRestrictedOperationMode
+C:\Users\Nathan\AppData\Local\Temp\ccVBSC3m.s:3403   .text.HAL_FDCAN_ExitRestrictedOperationMode:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccVBSC3m.s:3409   .text.HAL_FDCAN_ExitRestrictedOperationMode:00000000 HAL_FDCAN_ExitRestrictedOperationMode
+C:\Users\Nathan\AppData\Local\Temp\ccVBSC3m.s:3460   .text.HAL_FDCAN_ConfigInterruptLines:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccVBSC3m.s:3466   .text.HAL_FDCAN_ConfigInterruptLines:00000000 HAL_FDCAN_ConfigInterruptLines
+C:\Users\Nathan\AppData\Local\Temp\ccVBSC3m.s:3536   .text.HAL_FDCAN_ActivateNotification:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccVBSC3m.s:3542   .text.HAL_FDCAN_ActivateNotification:00000000 HAL_FDCAN_ActivateNotification
+C:\Users\Nathan\AppData\Local\Temp\ccVBSC3m.s:3748   .text.HAL_FDCAN_DeactivateNotification:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccVBSC3m.s:3754   .text.HAL_FDCAN_DeactivateNotification:00000000 HAL_FDCAN_DeactivateNotification
+C:\Users\Nathan\AppData\Local\Temp\ccVBSC3m.s:3960   .text.HAL_FDCAN_TxEventFifoCallback:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccVBSC3m.s:3966   .text.HAL_FDCAN_TxEventFifoCallback:00000000 HAL_FDCAN_TxEventFifoCallback
+C:\Users\Nathan\AppData\Local\Temp\ccVBSC3m.s:3982   .text.HAL_FDCAN_RxFifo0Callback:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccVBSC3m.s:3988   .text.HAL_FDCAN_RxFifo0Callback:00000000 HAL_FDCAN_RxFifo0Callback
+C:\Users\Nathan\AppData\Local\Temp\ccVBSC3m.s:4004   .text.HAL_FDCAN_RxFifo1Callback:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccVBSC3m.s:4010   .text.HAL_FDCAN_RxFifo1Callback:00000000 HAL_FDCAN_RxFifo1Callback
+C:\Users\Nathan\AppData\Local\Temp\ccVBSC3m.s:4026   .text.HAL_FDCAN_TxFifoEmptyCallback:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccVBSC3m.s:4032   .text.HAL_FDCAN_TxFifoEmptyCallback:00000000 HAL_FDCAN_TxFifoEmptyCallback
+C:\Users\Nathan\AppData\Local\Temp\ccVBSC3m.s:4047   .text.HAL_FDCAN_TxBufferCompleteCallback:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccVBSC3m.s:4053   .text.HAL_FDCAN_TxBufferCompleteCallback:00000000 HAL_FDCAN_TxBufferCompleteCallback
+C:\Users\Nathan\AppData\Local\Temp\ccVBSC3m.s:4069   .text.HAL_FDCAN_TxBufferAbortCallback:00000000 $t
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccVBSC3m.s 			page 170
 
 
-C:\Users\Nathan\AppData\Local\Temp\cc4Audip.s:4075   .text.HAL_FDCAN_TxBufferAbortCallback:00000000 HAL_FDCAN_TxBufferAbortCallback
-C:\Users\Nathan\AppData\Local\Temp\cc4Audip.s:4091   .text.HAL_FDCAN_TimestampWraparoundCallback:00000000 $t
-C:\Users\Nathan\AppData\Local\Temp\cc4Audip.s:4097   .text.HAL_FDCAN_TimestampWraparoundCallback:00000000 HAL_FDCAN_TimestampWraparoundCallback
-C:\Users\Nathan\AppData\Local\Temp\cc4Audip.s:4112   .text.HAL_FDCAN_TimeoutOccurredCallback:00000000 $t
-C:\Users\Nathan\AppData\Local\Temp\cc4Audip.s:4118   .text.HAL_FDCAN_TimeoutOccurredCallback:00000000 HAL_FDCAN_TimeoutOccurredCallback
-C:\Users\Nathan\AppData\Local\Temp\cc4Audip.s:4133   .text.HAL_FDCAN_HighPriorityMessageCallback:00000000 $t
-C:\Users\Nathan\AppData\Local\Temp\cc4Audip.s:4139   .text.HAL_FDCAN_HighPriorityMessageCallback:00000000 HAL_FDCAN_HighPriorityMessageCallback
-C:\Users\Nathan\AppData\Local\Temp\cc4Audip.s:4154   .text.HAL_FDCAN_ErrorCallback:00000000 $t
-C:\Users\Nathan\AppData\Local\Temp\cc4Audip.s:4160   .text.HAL_FDCAN_ErrorCallback:00000000 HAL_FDCAN_ErrorCallback
-C:\Users\Nathan\AppData\Local\Temp\cc4Audip.s:4175   .text.HAL_FDCAN_ErrorStatusCallback:00000000 $t
-C:\Users\Nathan\AppData\Local\Temp\cc4Audip.s:4181   .text.HAL_FDCAN_ErrorStatusCallback:00000000 HAL_FDCAN_ErrorStatusCallback
-C:\Users\Nathan\AppData\Local\Temp\cc4Audip.s:4197   .text.HAL_FDCAN_IRQHandler:00000000 $t
-C:\Users\Nathan\AppData\Local\Temp\cc4Audip.s:4203   .text.HAL_FDCAN_IRQHandler:00000000 HAL_FDCAN_IRQHandler
-C:\Users\Nathan\AppData\Local\Temp\cc4Audip.s:4558   .text.HAL_FDCAN_GetState:00000000 $t
-C:\Users\Nathan\AppData\Local\Temp\cc4Audip.s:4564   .text.HAL_FDCAN_GetState:00000000 HAL_FDCAN_GetState
-C:\Users\Nathan\AppData\Local\Temp\cc4Audip.s:4582   .text.HAL_FDCAN_GetError:00000000 $t
-C:\Users\Nathan\AppData\Local\Temp\cc4Audip.s:4588   .text.HAL_FDCAN_GetError:00000000 HAL_FDCAN_GetError
-C:\Users\Nathan\AppData\Local\Temp\cc4Audip.s:4606   .rodata.DLCtoBytes:00000000 $d
+C:\Users\Nathan\AppData\Local\Temp\ccVBSC3m.s:4075   .text.HAL_FDCAN_TxBufferAbortCallback:00000000 HAL_FDCAN_TxBufferAbortCallback
+C:\Users\Nathan\AppData\Local\Temp\ccVBSC3m.s:4091   .text.HAL_FDCAN_TimestampWraparoundCallback:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccVBSC3m.s:4097   .text.HAL_FDCAN_TimestampWraparoundCallback:00000000 HAL_FDCAN_TimestampWraparoundCallback
+C:\Users\Nathan\AppData\Local\Temp\ccVBSC3m.s:4112   .text.HAL_FDCAN_TimeoutOccurredCallback:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccVBSC3m.s:4118   .text.HAL_FDCAN_TimeoutOccurredCallback:00000000 HAL_FDCAN_TimeoutOccurredCallback
+C:\Users\Nathan\AppData\Local\Temp\ccVBSC3m.s:4133   .text.HAL_FDCAN_HighPriorityMessageCallback:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccVBSC3m.s:4139   .text.HAL_FDCAN_HighPriorityMessageCallback:00000000 HAL_FDCAN_HighPriorityMessageCallback
+C:\Users\Nathan\AppData\Local\Temp\ccVBSC3m.s:4154   .text.HAL_FDCAN_ErrorCallback:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccVBSC3m.s:4160   .text.HAL_FDCAN_ErrorCallback:00000000 HAL_FDCAN_ErrorCallback
+C:\Users\Nathan\AppData\Local\Temp\ccVBSC3m.s:4175   .text.HAL_FDCAN_ErrorStatusCallback:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccVBSC3m.s:4181   .text.HAL_FDCAN_ErrorStatusCallback:00000000 HAL_FDCAN_ErrorStatusCallback
+C:\Users\Nathan\AppData\Local\Temp\ccVBSC3m.s:4197   .text.HAL_FDCAN_IRQHandler:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccVBSC3m.s:4203   .text.HAL_FDCAN_IRQHandler:00000000 HAL_FDCAN_IRQHandler
+C:\Users\Nathan\AppData\Local\Temp\ccVBSC3m.s:4558   .text.HAL_FDCAN_GetState:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccVBSC3m.s:4564   .text.HAL_FDCAN_GetState:00000000 HAL_FDCAN_GetState
+C:\Users\Nathan\AppData\Local\Temp\ccVBSC3m.s:4582   .text.HAL_FDCAN_GetError:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccVBSC3m.s:4588   .text.HAL_FDCAN_GetError:00000000 HAL_FDCAN_GetError
+C:\Users\Nathan\AppData\Local\Temp\ccVBSC3m.s:4606   .rodata.DLCtoBytes:00000000 $d
 
 UNDEFINED SYMBOLS
 HAL_GetTick

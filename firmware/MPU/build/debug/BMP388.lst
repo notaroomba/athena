@@ -1,0 +1,2734 @@
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc5tsvuh.s 			page 1
+
+
+   1              		.cpu cortex-m7
+   2              		.arch armv7e-m
+   3              		.fpu fpv5-d16
+   4              		.eabi_attribute 28, 1
+   5              		.eabi_attribute 20, 1
+   6              		.eabi_attribute 21, 1
+   7              		.eabi_attribute 23, 3
+   8              		.eabi_attribute 24, 1
+   9              		.eabi_attribute 25, 1
+  10              		.eabi_attribute 26, 1
+  11              		.eabi_attribute 30, 1
+  12              		.eabi_attribute 34, 1
+  13              		.eabi_attribute 18, 4
+  14              		.file	"BMP388.c"
+  15              		.text
+  16              	.Ltext0:
+  17              		.cfi_sections	.debug_frame
+  18              		.file 1 "Drivers/BMP388/BMP388.c"
+  19              		.section	.text.BMP388_SetTempOS,"ax",%progbits
+  20              		.align	1
+  21              		.global	BMP388_SetTempOS
+  22              		.syntax unified
+  23              		.thumb
+  24              		.thumb_func
+  26              	BMP388_SetTempOS:
+  27              	.LVL0:
+  28              	.LFB145:
+   1:Drivers/BMP388/BMP388.c **** /*
+   2:Drivers/BMP388/BMP388.c ****  * BMP388.c
+   3:Drivers/BMP388/BMP388.c ****  *
+   4:Drivers/BMP388/BMP388.c ****  *  Created on: Aug 18, 2023
+   5:Drivers/BMP388/BMP388.c ****  *      Author: sam
+   6:Drivers/BMP388/BMP388.c ****  */
+   7:Drivers/BMP388/BMP388.c **** 
+   8:Drivers/BMP388/BMP388.c **** 
+   9:Drivers/BMP388/BMP388.c **** /* Includes ------------------------------------------------------------------*/
+  10:Drivers/BMP388/BMP388.c **** #include "BMP388.h"
+  11:Drivers/BMP388/BMP388.c **** #include "math.h"
+  12:Drivers/BMP388/BMP388.c **** 
+  13:Drivers/BMP388/BMP388.c **** /* ----- PRIVATE FUNCTIONS PROTOTYPES ----- */
+  14:Drivers/BMP388/BMP388.c **** HAL_StatusTypeDef	BMP388_SoftReset(BMP388_HandleTypeDef *bmp);
+  15:Drivers/BMP388/BMP388.c **** HAL_StatusTypeDef	BMP388_GetCalibData(BMP388_HandleTypeDef *bmp);
+  16:Drivers/BMP388/BMP388.c ****             float	BMP388_CompensateTemp(BMP388_HandleTypeDef *bmp, uint32_t raw_temp, float *temp);
+  17:Drivers/BMP388/BMP388.c ****             float	BMP388_CompensatePress(BMP388_HandleTypeDef *bmp, float temp, uint32_t raw_press,
+  18:Drivers/BMP388/BMP388.c **** HAL_StatusTypeDef	BMP388_ReadBytes(BMP388_HandleTypeDef *bmp, BMP388_regs reg_addr, uint8_t *buff, 
+  19:Drivers/BMP388/BMP388.c **** HAL_StatusTypeDef	BMP388_WriteBytes(BMP388_HandleTypeDef *bmp, BMP388_regs reg_addr, uint8_t *buff,
+  20:Drivers/BMP388/BMP388.c **** 
+  21:Drivers/BMP388/BMP388.c **** 
+  22:Drivers/BMP388/BMP388.c **** 
+  23:Drivers/BMP388/BMP388.c **** 
+  24:Drivers/BMP388/BMP388.c **** /* ---------------------------- */
+  25:Drivers/BMP388/BMP388.c **** /* ----- PUBLIC FUNCTIONS ----- */
+  26:Drivers/BMP388/BMP388.c **** /* ---------------------------- */
+  27:Drivers/BMP388/BMP388.c **** 
+  28:Drivers/BMP388/BMP388.c **** /*!
+  29:Drivers/BMP388/BMP388.c ****  *  @brief Function to initiate BMP388 and get calibration data
+  30:Drivers/BMP388/BMP388.c ****  *
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc5tsvuh.s 			page 2
+
+
+  31:Drivers/BMP388/BMP388.c ****  *	@param[in] bmp			: Pointer to BMP388 structure
+  32:Drivers/BMP388/BMP388.c ****  *
+  33:Drivers/BMP388/BMP388.c ****  *  @return Status of execution
+  34:Drivers/BMP388/BMP388.c ****  *  @retval = HAL_OK  		-> Success
+  35:Drivers/BMP388/BMP388.c ****  *  @retval != HAL_OK	  	-> Failure Info
+  36:Drivers/BMP388/BMP388.c ****  */
+  37:Drivers/BMP388/BMP388.c **** HAL_StatusTypeDef BMP388_Init(BMP388_HandleTypeDef *bmp){
+  38:Drivers/BMP388/BMP388.c **** 	HAL_StatusTypeDef rslt;
+  39:Drivers/BMP388/BMP388.c **** 	uint8_t chip_id;
+  40:Drivers/BMP388/BMP388.c **** 
+  41:Drivers/BMP388/BMP388.c **** 	// Read CHIP_ID byte
+  42:Drivers/BMP388/BMP388.c **** 	rslt = BMP388_ReadBytes(bmp, CHIP_ID, &chip_id, 1);
+  43:Drivers/BMP388/BMP388.c **** 	if(rslt == HAL_OK && chip_id == BMP3_CHIP_ID){
+  44:Drivers/BMP388/BMP388.c **** 		// using softreset command
+  45:Drivers/BMP388/BMP388.c **** 		rslt = BMP388_SoftReset(bmp);
+  46:Drivers/BMP388/BMP388.c **** 		if(rslt == HAL_OK){
+  47:Drivers/BMP388/BMP388.c **** 			// get calibration data
+  48:Drivers/BMP388/BMP388.c **** 			rslt = BMP388_GetCalibData(bmp);
+  49:Drivers/BMP388/BMP388.c **** 		}
+  50:Drivers/BMP388/BMP388.c **** 		else{
+  51:Drivers/BMP388/BMP388.c **** 			return rslt;
+  52:Drivers/BMP388/BMP388.c **** 		}
+  53:Drivers/BMP388/BMP388.c **** 	}
+  54:Drivers/BMP388/BMP388.c **** 	else{
+  55:Drivers/BMP388/BMP388.c **** 		return rslt;
+  56:Drivers/BMP388/BMP388.c **** 	}
+  57:Drivers/BMP388/BMP388.c **** 
+  58:Drivers/BMP388/BMP388.c **** 	return rslt;
+  59:Drivers/BMP388/BMP388.c **** }
+  60:Drivers/BMP388/BMP388.c **** 
+  61:Drivers/BMP388/BMP388.c **** 
+  62:Drivers/BMP388/BMP388.c **** 
+  63:Drivers/BMP388/BMP388.c **** /*!
+  64:Drivers/BMP388/BMP388.c ****  *  @brief Function to set temperature measurment oversampling
+  65:Drivers/BMP388/BMP388.c ****  *
+  66:Drivers/BMP388/BMP388.c ****  *	@param[in] bmp			: Pointer to BMP388 structure
+  67:Drivers/BMP388/BMP388.c ****  *
+  68:Drivers/BMP388/BMP388.c ****  *  @return Status of execution
+  69:Drivers/BMP388/BMP388.c ****  *  @retval = HAL_OK  		-> Success
+  70:Drivers/BMP388/BMP388.c ****  *  @retval != HAL_OK	  	-> Wrong oversampling mode
+  71:Drivers/BMP388/BMP388.c ****  */
+  72:Drivers/BMP388/BMP388.c **** HAL_StatusTypeDef BMP388_SetTempOS(BMP388_HandleTypeDef *bmp, uint8_t oversample){
+  29              		.loc 1 72 82 view -0
+  30              		.cfi_startproc
+  31              		@ args = 0, pretend = 0, frame = 0
+  32              		@ frame_needed = 0, uses_anonymous_args = 0
+  33              		@ link register save eliminated.
+  73:Drivers/BMP388/BMP388.c **** 	if(oversample > BMP388_OVERSAMPLING_32X){
+  34              		.loc 1 73 2 view .LVU1
+  35              		.loc 1 73 4 is_stmt 0 view .LVU2
+  36 0000 0529     		cmp	r1, #5
+  37 0002 07D8     		bhi	.L3
+  74:Drivers/BMP388/BMP388.c **** 		return HAL_ERROR;
+  75:Drivers/BMP388/BMP388.c **** 	}
+  76:Drivers/BMP388/BMP388.c **** 	bmp->osr = (bmp->osr & 0xC7) | (oversample << 3); // == 0b11000111
+  38              		.loc 1 76 2 is_stmt 1 view .LVU3
+  39              		.loc 1 76 17 is_stmt 0 view .LVU4
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc5tsvuh.s 			page 3
+
+
+  40 0004 837A     		ldrb	r3, [r0, #10]	@ zero_extendqisi2
+  41              		.loc 1 76 31 view .LVU5
+  42 0006 23F03803 		bic	r3, r3, #56
+  43 000a 43EAC103 		orr	r3, r3, r1, lsl #3
+  44              		.loc 1 76 11 view .LVU6
+  45 000e 8372     		strb	r3, [r0, #10]
+  77:Drivers/BMP388/BMP388.c **** 	return HAL_OK;
+  46              		.loc 1 77 2 is_stmt 1 view .LVU7
+  47              		.loc 1 77 9 is_stmt 0 view .LVU8
+  48 0010 0020     		movs	r0, #0
+  49              	.LVL1:
+  50              		.loc 1 77 9 view .LVU9
+  51 0012 7047     		bx	lr
+  52              	.LVL2:
+  53              	.L3:
+  74:Drivers/BMP388/BMP388.c **** 		return HAL_ERROR;
+  54              		.loc 1 74 10 view .LVU10
+  55 0014 0120     		movs	r0, #1
+  56              	.LVL3:
+  78:Drivers/BMP388/BMP388.c **** }
+  57              		.loc 1 78 1 view .LVU11
+  58 0016 7047     		bx	lr
+  59              		.cfi_endproc
+  60              	.LFE145:
+  62              		.section	.text.BMP388_SetPressOS,"ax",%progbits
+  63              		.align	1
+  64              		.global	BMP388_SetPressOS
+  65              		.syntax unified
+  66              		.thumb
+  67              		.thumb_func
+  69              	BMP388_SetPressOS:
+  70              	.LVL4:
+  71              	.LFB146:
+  79:Drivers/BMP388/BMP388.c **** 
+  80:Drivers/BMP388/BMP388.c **** 
+  81:Drivers/BMP388/BMP388.c **** 
+  82:Drivers/BMP388/BMP388.c **** /*!
+  83:Drivers/BMP388/BMP388.c ****  *  @brief Function to set pressure measurement oversampling
+  84:Drivers/BMP388/BMP388.c ****  *
+  85:Drivers/BMP388/BMP388.c ****  *	@param[in] bmp			: Pointer to BMP388 structure
+  86:Drivers/BMP388/BMP388.c ****  *
+  87:Drivers/BMP388/BMP388.c ****  *  @return Status of execution
+  88:Drivers/BMP388/BMP388.c ****  *  @retval = HAL_OK  		-> Success
+  89:Drivers/BMP388/BMP388.c ****  *  @retval != HAL_OK	  	-> Wrong oversampling mode
+  90:Drivers/BMP388/BMP388.c ****  */
+  91:Drivers/BMP388/BMP388.c **** HAL_StatusTypeDef BMP388_SetPressOS(BMP388_HandleTypeDef *bmp, uint8_t oversample){
+  72              		.loc 1 91 83 is_stmt 1 view -0
+  73              		.cfi_startproc
+  74              		@ args = 0, pretend = 0, frame = 0
+  75              		@ frame_needed = 0, uses_anonymous_args = 0
+  76              		@ link register save eliminated.
+  92:Drivers/BMP388/BMP388.c **** 	if(oversample > BMP388_OVERSAMPLING_32X){
+  77              		.loc 1 92 2 view .LVU13
+  78              		.loc 1 92 4 is_stmt 0 view .LVU14
+  79 0000 0529     		cmp	r1, #5
+  80 0002 06D8     		bhi	.L6
+  93:Drivers/BMP388/BMP388.c **** 		return HAL_ERROR;
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc5tsvuh.s 			page 4
+
+
+  94:Drivers/BMP388/BMP388.c **** 	}
+  95:Drivers/BMP388/BMP388.c **** 	bmp->osr = (bmp->osr & 0xF8) | oversample; // 0xF8 == 0b11111000
+  81              		.loc 1 95 2 is_stmt 1 view .LVU15
+  82              		.loc 1 95 17 is_stmt 0 view .LVU16
+  83 0004 837A     		ldrb	r3, [r0, #10]	@ zero_extendqisi2
+  84              		.loc 1 95 11 view .LVU17
+  85 0006 23F00703 		bic	r3, r3, #7
+  86 000a 1943     		orrs	r1, r1, r3
+  87              	.LVL5:
+  88              		.loc 1 95 11 view .LVU18
+  89 000c 8172     		strb	r1, [r0, #10]
+  96:Drivers/BMP388/BMP388.c **** 	return HAL_OK;
+  90              		.loc 1 96 2 is_stmt 1 view .LVU19
+  91              		.loc 1 96 9 is_stmt 0 view .LVU20
+  92 000e 0020     		movs	r0, #0
+  93              	.LVL6:
+  94              		.loc 1 96 9 view .LVU21
+  95 0010 7047     		bx	lr
+  96              	.LVL7:
+  97              	.L6:
+  93:Drivers/BMP388/BMP388.c **** 		return HAL_ERROR;
+  98              		.loc 1 93 10 view .LVU22
+  99 0012 0120     		movs	r0, #1
+ 100              	.LVL8:
+  97:Drivers/BMP388/BMP388.c **** }
+ 101              		.loc 1 97 1 view .LVU23
+ 102 0014 7047     		bx	lr
+ 103              		.cfi_endproc
+ 104              	.LFE146:
+ 106              		.section	.text.BMP388_SetIIRFilterCoeff,"ax",%progbits
+ 107              		.align	1
+ 108              		.global	BMP388_SetIIRFilterCoeff
+ 109              		.syntax unified
+ 110              		.thumb
+ 111              		.thumb_func
+ 113              	BMP388_SetIIRFilterCoeff:
+ 114              	.LVL9:
+ 115              	.LFB147:
+  98:Drivers/BMP388/BMP388.c **** 
+  99:Drivers/BMP388/BMP388.c **** 
+ 100:Drivers/BMP388/BMP388.c **** 
+ 101:Drivers/BMP388/BMP388.c **** /*!
+ 102:Drivers/BMP388/BMP388.c ****  *  @brief Function to set IIR filter coefficient
+ 103:Drivers/BMP388/BMP388.c ****  *
+ 104:Drivers/BMP388/BMP388.c ****  *	@param[in] bmp			: Pointer to BMP388 structure
+ 105:Drivers/BMP388/BMP388.c ****  *
+ 106:Drivers/BMP388/BMP388.c ****  *  @return Status of execution
+ 107:Drivers/BMP388/BMP388.c ****  *  @retval = HAL_OK  		-> Success
+ 108:Drivers/BMP388/BMP388.c ****  *  @retval != HAL_OK	  	-> Wrong filter coefficient
+ 109:Drivers/BMP388/BMP388.c ****  */
+ 110:Drivers/BMP388/BMP388.c **** HAL_StatusTypeDef BMP388_SetIIRFilterCoeff(BMP388_HandleTypeDef *bmp, uint8_t filtercoeff){
+ 116              		.loc 1 110 91 is_stmt 1 view -0
+ 117              		.cfi_startproc
+ 118              		@ args = 0, pretend = 0, frame = 0
+ 119              		@ frame_needed = 0, uses_anonymous_args = 0
+ 120              		@ link register save eliminated.
+ 111:Drivers/BMP388/BMP388.c **** 	if(filtercoeff > BMP3_IIR_FILTER_COEFF_127){
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc5tsvuh.s 			page 5
+
+
+ 121              		.loc 1 111 2 view .LVU25
+ 122              		.loc 1 111 4 is_stmt 0 view .LVU26
+ 123 0000 0729     		cmp	r1, #7
+ 124 0002 03D8     		bhi	.L9
+ 112:Drivers/BMP388/BMP388.c **** 		return HAL_ERROR;
+ 113:Drivers/BMP388/BMP388.c **** 	}
+ 114:Drivers/BMP388/BMP388.c **** 	bmp->iir = filtercoeff << 1;
+ 125              		.loc 1 114 2 is_stmt 1 view .LVU27
+ 126              		.loc 1 114 25 is_stmt 0 view .LVU28
+ 127 0004 4900     		lsls	r1, r1, #1
+ 128              	.LVL10:
+ 129              		.loc 1 114 11 view .LVU29
+ 130 0006 C172     		strb	r1, [r0, #11]
+ 115:Drivers/BMP388/BMP388.c **** 	return HAL_OK;
+ 131              		.loc 1 115 2 is_stmt 1 view .LVU30
+ 132              		.loc 1 115 9 is_stmt 0 view .LVU31
+ 133 0008 0020     		movs	r0, #0
+ 134              	.LVL11:
+ 135              		.loc 1 115 9 view .LVU32
+ 136 000a 7047     		bx	lr
+ 137              	.LVL12:
+ 138              	.L9:
+ 112:Drivers/BMP388/BMP388.c **** 		return HAL_ERROR;
+ 139              		.loc 1 112 10 view .LVU33
+ 140 000c 0120     		movs	r0, #1
+ 141              	.LVL13:
+ 116:Drivers/BMP388/BMP388.c **** }
+ 142              		.loc 1 116 1 view .LVU34
+ 143 000e 7047     		bx	lr
+ 144              		.cfi_endproc
+ 145              	.LFE147:
+ 147              		.section	.text.BMP388_SetOutputDataRate,"ax",%progbits
+ 148              		.align	1
+ 149              		.global	BMP388_SetOutputDataRate
+ 150              		.syntax unified
+ 151              		.thumb
+ 152              		.thumb_func
+ 154              	BMP388_SetOutputDataRate:
+ 155              	.LVL14:
+ 156              	.LFB148:
+ 117:Drivers/BMP388/BMP388.c **** 
+ 118:Drivers/BMP388/BMP388.c **** 
+ 119:Drivers/BMP388/BMP388.c **** 
+ 120:Drivers/BMP388/BMP388.c **** /*!
+ 121:Drivers/BMP388/BMP388.c ****  *  @brief Function to set pressure measurement oversampling
+ 122:Drivers/BMP388/BMP388.c ****  *
+ 123:Drivers/BMP388/BMP388.c ****  *	@param[in] bmp			: Pointer to BMP388 structure
+ 124:Drivers/BMP388/BMP388.c ****  *
+ 125:Drivers/BMP388/BMP388.c ****  *  @return Status of execution
+ 126:Drivers/BMP388/BMP388.c ****  *  @retval = HAL_OK  		-> Success
+ 127:Drivers/BMP388/BMP388.c ****  *  @retval != HAL_OK	  	-> Wrong oversampling mode
+ 128:Drivers/BMP388/BMP388.c ****  */
+ 129:Drivers/BMP388/BMP388.c **** HAL_StatusTypeDef BMP388_SetOutputDataRate(BMP388_HandleTypeDef *bmp, uint8_t odr){
+ 157              		.loc 1 129 83 is_stmt 1 view -0
+ 158              		.cfi_startproc
+ 159              		@ args = 0, pretend = 0, frame = 0
+ 160              		@ frame_needed = 0, uses_anonymous_args = 0
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc5tsvuh.s 			page 6
+
+
+ 161              		@ link register save eliminated.
+ 130:Drivers/BMP388/BMP388.c **** 	if(odr > BMP3_ODR_0_001_HZ){
+ 162              		.loc 1 130 2 view .LVU36
+ 163              		.loc 1 130 4 is_stmt 0 view .LVU37
+ 164 0000 1129     		cmp	r1, #17
+ 165 0002 02D8     		bhi	.L12
+ 131:Drivers/BMP388/BMP388.c **** 		return HAL_ERROR;
+ 132:Drivers/BMP388/BMP388.c **** 	}
+ 133:Drivers/BMP388/BMP388.c **** 	bmp->odr = odr;
+ 166              		.loc 1 133 2 is_stmt 1 view .LVU38
+ 167              		.loc 1 133 11 is_stmt 0 view .LVU39
+ 168 0004 0173     		strb	r1, [r0, #12]
+ 134:Drivers/BMP388/BMP388.c **** 	return HAL_OK;
+ 169              		.loc 1 134 2 is_stmt 1 view .LVU40
+ 170              		.loc 1 134 9 is_stmt 0 view .LVU41
+ 171 0006 0020     		movs	r0, #0
+ 172              	.LVL15:
+ 173              		.loc 1 134 9 view .LVU42
+ 174 0008 7047     		bx	lr
+ 175              	.LVL16:
+ 176              	.L12:
+ 131:Drivers/BMP388/BMP388.c **** 		return HAL_ERROR;
+ 177              		.loc 1 131 10 view .LVU43
+ 178 000a 0120     		movs	r0, #1
+ 179              	.LVL17:
+ 135:Drivers/BMP388/BMP388.c **** }
+ 180              		.loc 1 135 1 view .LVU44
+ 181 000c 7047     		bx	lr
+ 182              		.cfi_endproc
+ 183              	.LFE148:
+ 185              		.section	.text.BMP388_FindAltitude,"ax",%progbits
+ 186              		.align	1
+ 187              		.global	BMP388_FindAltitude
+ 188              		.syntax unified
+ 189              		.thumb
+ 190              		.thumb_func
+ 192              	BMP388_FindAltitude:
+ 193              	.LVL18:
+ 194              	.LFB151:
+ 136:Drivers/BMP388/BMP388.c **** 
+ 137:Drivers/BMP388/BMP388.c **** 
+ 138:Drivers/BMP388/BMP388.c **** 
+ 139:Drivers/BMP388/BMP388.c **** /*!
+ 140:Drivers/BMP388/BMP388.c ****  *  @brief Function to read pressure and temperature from BMP388 in forced mode
+ 141:Drivers/BMP388/BMP388.c ****  *
+ 142:Drivers/BMP388/BMP388.c ****  *	@param[in]	bmp				: Pointer to BMP388 structure
+ 143:Drivers/BMP388/BMP388.c ****  *  @param[out] raw_pressure	: Pointer to the variable that contain uncompensated pressure data.
+ 144:Drivers/BMP388/BMP388.c ****  *	@param[out] raw_temperature	: Pointer to the variable that contain uncompensated temperature dat
+ 145:Drivers/BMP388/BMP388.c ****  *
+ 146:Drivers/BMP388/BMP388.c ****  *  @return Status of execution
+ 147:Drivers/BMP388/BMP388.c ****  *  @retval = HAL_OK  		-> Success
+ 148:Drivers/BMP388/BMP388.c ****  *  @retval != HAL_OK	  	-> Failure Info
+ 149:Drivers/BMP388/BMP388.c ****  */
+ 150:Drivers/BMP388/BMP388.c **** HAL_StatusTypeDef BMP388_ReadRawPressTempTime(BMP388_HandleTypeDef *bmp, uint32_t *raw_pressure, ui
+ 151:Drivers/BMP388/BMP388.c **** 	HAL_StatusTypeDef rslt;
+ 152:Drivers/BMP388/BMP388.c **** 	uint8_t pwr_ctrl = BMP3_PWR_CTRL_PRESS_ON | BMP3_PWR_CTRL_TEMP_ON | BMP3_PWR_CTRL_MODE_FORCED;
+ 153:Drivers/BMP388/BMP388.c **** 
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc5tsvuh.s 			page 7
+
+
+ 154:Drivers/BMP388/BMP388.c **** 	uint8_t oversampling = bmp->osr;
+ 155:Drivers/BMP388/BMP388.c **** 	uint8_t odr = bmp->odr;
+ 156:Drivers/BMP388/BMP388.c **** 	uint8_t filtercoeff = bmp->iir;
+ 157:Drivers/BMP388/BMP388.c **** 
+ 158:Drivers/BMP388/BMP388.c **** 
+ 159:Drivers/BMP388/BMP388.c **** 
+ 160:Drivers/BMP388/BMP388.c **** 	// Set OSR register
+ 161:Drivers/BMP388/BMP388.c **** 	rslt = BMP388_WriteBytes(bmp, OSR, &oversampling, 1);
+ 162:Drivers/BMP388/BMP388.c **** 	if(rslt != HAL_OK){
+ 163:Drivers/BMP388/BMP388.c **** 		return rslt;
+ 164:Drivers/BMP388/BMP388.c **** 	}
+ 165:Drivers/BMP388/BMP388.c **** 	// Set ODR register
+ 166:Drivers/BMP388/BMP388.c **** 	rslt = BMP388_WriteBytes(bmp, ODR, &odr, 1);
+ 167:Drivers/BMP388/BMP388.c **** 	if(rslt != HAL_OK){
+ 168:Drivers/BMP388/BMP388.c **** 		return rslt;
+ 169:Drivers/BMP388/BMP388.c **** 	}
+ 170:Drivers/BMP388/BMP388.c **** 	// Set CONFIG register
+ 171:Drivers/BMP388/BMP388.c **** 	rslt = BMP388_WriteBytes(bmp, CONFIG, &filtercoeff, 1);
+ 172:Drivers/BMP388/BMP388.c **** 	if(rslt != HAL_OK){
+ 173:Drivers/BMP388/BMP388.c **** 		return rslt;
+ 174:Drivers/BMP388/BMP388.c **** 	}
+ 175:Drivers/BMP388/BMP388.c **** 	// Set PWR_CTRL register
+ 176:Drivers/BMP388/BMP388.c **** 	rslt = BMP388_WriteBytes(bmp, PWR_CTRL, &pwr_ctrl, 1);
+ 177:Drivers/BMP388/BMP388.c **** 	if(rslt != HAL_OK){
+ 178:Drivers/BMP388/BMP388.c **** 		return rslt;
+ 179:Drivers/BMP388/BMP388.c **** 	}
+ 180:Drivers/BMP388/BMP388.c **** 
+ 181:Drivers/BMP388/BMP388.c **** 	uint8_t raw_data[11];
+ 182:Drivers/BMP388/BMP388.c **** 	// Get raw data for pressure and temperature
+ 183:Drivers/BMP388/BMP388.c **** 	rslt = BMP388_ReadBytes(bmp, DATA_0, raw_data, 11);
+ 184:Drivers/BMP388/BMP388.c **** 	if(rslt != HAL_OK){
+ 185:Drivers/BMP388/BMP388.c **** 		return rslt;
+ 186:Drivers/BMP388/BMP388.c **** 	}
+ 187:Drivers/BMP388/BMP388.c **** 
+ 188:Drivers/BMP388/BMP388.c **** 	// Parsing pressure data
+ 189:Drivers/BMP388/BMP388.c **** 	*raw_pressure = (uint32_t)raw_data[2] << 16 | (uint32_t)raw_data[1] << 8 | (uint32_t)raw_data[0];
+ 190:Drivers/BMP388/BMP388.c **** 
+ 191:Drivers/BMP388/BMP388.c **** 	// Parsing temperature data
+ 192:Drivers/BMP388/BMP388.c **** 	*raw_temperature = (uint32_t)raw_data[5] << 16 | (uint32_t)raw_data[4] << 8 | (uint32_t)raw_data[3
+ 193:Drivers/BMP388/BMP388.c **** 
+ 194:Drivers/BMP388/BMP388.c **** 	// Parsing time bytes
+ 195:Drivers/BMP388/BMP388.c **** 	*time = (uint32_t)raw_data[10] << 16 | (uint32_t)raw_data[9] << 8 | (uint32_t)raw_data[8];
+ 196:Drivers/BMP388/BMP388.c **** 
+ 197:Drivers/BMP388/BMP388.c **** 
+ 198:Drivers/BMP388/BMP388.c **** 	return rslt;
+ 199:Drivers/BMP388/BMP388.c **** }
+ 200:Drivers/BMP388/BMP388.c **** 
+ 201:Drivers/BMP388/BMP388.c **** 
+ 202:Drivers/BMP388/BMP388.c **** 
+ 203:Drivers/BMP388/BMP388.c **** /*!
+ 204:Drivers/BMP388/BMP388.c ****  *  @brief Function to compensate pressure and temperature from BMP388
+ 205:Drivers/BMP388/BMP388.c ****  *
+ 206:Drivers/BMP388/BMP388.c ****  *	@param[in]	bmp				: Pointer to BMP388 structure
+ 207:Drivers/BMP388/BMP388.c ****  *  @param[in] raw_pressure		: Variable that contain uncompensated pressure data.
+ 208:Drivers/BMP388/BMP388.c ****  *	@param[in] raw_temperature	: Variable that contain uncompensated temperature data.
+ 209:Drivers/BMP388/BMP388.c ****  *	@param[out] pressure		: Pointer to the variable that contain pressure.
+ 210:Drivers/BMP388/BMP388.c ****  *	@param[out]	temperature		: Pointer to the variable that contain temperature.
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc5tsvuh.s 			page 8
+
+
+ 211:Drivers/BMP388/BMP388.c ****  *
+ 212:Drivers/BMP388/BMP388.c ****  *  @return none
+ 213:Drivers/BMP388/BMP388.c ****  */
+ 214:Drivers/BMP388/BMP388.c **** void BMP388_CompensateRawPressTemp(BMP388_HandleTypeDef *bmp, uint32_t raw_pressure, uint32_t raw_t
+ 215:Drivers/BMP388/BMP388.c **** 									  	  	  	  	  	  	  float *pressure, float *temperature){
+ 216:Drivers/BMP388/BMP388.c **** 	float temp;
+ 217:Drivers/BMP388/BMP388.c **** 	float press;
+ 218:Drivers/BMP388/BMP388.c **** 
+ 219:Drivers/BMP388/BMP388.c **** 	BMP388_CompensateTemp(bmp, raw_temperature, &temp);
+ 220:Drivers/BMP388/BMP388.c **** 	BMP388_CompensatePress(bmp, temp, raw_pressure, &press);
+ 221:Drivers/BMP388/BMP388.c **** 
+ 222:Drivers/BMP388/BMP388.c **** 	*pressure = press;
+ 223:Drivers/BMP388/BMP388.c **** 	*temperature = temp;
+ 224:Drivers/BMP388/BMP388.c **** }
+ 225:Drivers/BMP388/BMP388.c **** 
+ 226:Drivers/BMP388/BMP388.c **** 
+ 227:Drivers/BMP388/BMP388.c **** 
+ 228:Drivers/BMP388/BMP388.c **** /*!
+ 229:Drivers/BMP388/BMP388.c ****  *  @brief Function to find altutede value based on pressure measurment
+ 230:Drivers/BMP388/BMP388.c ****  *
+ 231:Drivers/BMP388/BMP388.c ****  *	@param[in] ground_pressure	: Pressure at ground
+ 232:Drivers/BMP388/BMP388.c ****  *  @param[in] pressure			: Pressure that measured at flight.
+ 233:Drivers/BMP388/BMP388.c ****  *
+ 234:Drivers/BMP388/BMP388.c ****  *  @return Altitude
+ 235:Drivers/BMP388/BMP388.c ****  */
+ 236:Drivers/BMP388/BMP388.c **** float BMP388_FindAltitude(float ground_pressure, float pressure){
+ 195              		.loc 1 236 65 is_stmt 1 view -0
+ 196              		.cfi_startproc
+ 197              		@ args = 0, pretend = 0, frame = 0
+ 198              		@ frame_needed = 0, uses_anonymous_args = 0
+ 199              		.loc 1 236 65 is_stmt 0 view .LVU46
+ 200 0000 08B5     		push	{r3, lr}
+ 201              		.cfi_def_cfa_offset 8
+ 202              		.cfi_offset 3, -8
+ 203              		.cfi_offset 14, -4
+ 237:Drivers/BMP388/BMP388.c **** 	// Equation taken from BMP180 datasheet (page 16):
+ 238:Drivers/BMP388/BMP388.c **** 	//  http://www.adafruit.com/datasheets/BST-BMP180-DS000-09.pdf
+ 239:Drivers/BMP388/BMP388.c **** 
+ 240:Drivers/BMP388/BMP388.c **** 	// Note that using the equation from wikipedia can give bad results
+ 241:Drivers/BMP388/BMP388.c **** 	// at high altitude. See this thread for more information:
+ 242:Drivers/BMP388/BMP388.c **** 	//  http://forums.adafruit.com/viewtopic.php?f=22&t=58064
+ 243:Drivers/BMP388/BMP388.c **** 
+ 244:Drivers/BMP388/BMP388.c **** 	return 44330.0 * (1.0 - pow(pressure / ground_pressure, 0.1903));
+ 204              		.loc 1 244 2 is_stmt 1 view .LVU47
+ 205              		.loc 1 244 39 is_stmt 0 view .LVU48
+ 206 0002 C0EE807A 		vdiv.f32	s15, s1, s0
+ 207              		.loc 1 244 26 view .LVU49
+ 208 0006 9FED081B 		vldr.64	d1, .L15
+ 209 000a B7EEE70A 		vcvt.f64.f32	d0, s15
+ 210              	.LVL19:
+ 211              		.loc 1 244 26 view .LVU50
+ 212 000e FFF7FEFF 		bl	pow
+ 213              	.LVL20:
+ 214              		.loc 1 244 24 discriminator 1 view .LVU51
+ 215 0012 B7EE007B 		vmov.f64	d7, #1.0e+0
+ 216 0016 37EE400B 		vsub.f64	d0, d7, d0
+ 217              		.loc 1 244 17 discriminator 1 view .LVU52
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc5tsvuh.s 			page 9
+
+
+ 218 001a 9FED057B 		vldr.64	d7, .L15+8
+ 219 001e 20EE070B 		vmul.f64	d0, d0, d7
+ 245:Drivers/BMP388/BMP388.c **** }
+ 220              		.loc 1 245 1 view .LVU53
+ 221 0022 B7EEC00B 		vcvt.f32.f64	s0, d0
+ 222 0026 08BD     		pop	{r3, pc}
+ 223              	.L16:
+ 224              		.align	3
+ 225              	.L15:
+ 226 0028 EBE2361A 		.word	439804651
+ 227 002c C05BC83F 		.word	1070095296
+ 228 0030 00000000 		.word	0
+ 229 0034 40A5E540 		.word	1088791872
+ 230              		.cfi_endproc
+ 231              	.LFE151:
+ 233              		.section	.text.BMP388_CompensateTemp,"ax",%progbits
+ 234              		.align	1
+ 235              		.global	BMP388_CompensateTemp
+ 236              		.syntax unified
+ 237              		.thumb
+ 238              		.thumb_func
+ 240              	BMP388_CompensateTemp:
+ 241              	.LVL21:
+ 242              	.LFB157:
+ 246:Drivers/BMP388/BMP388.c **** 
+ 247:Drivers/BMP388/BMP388.c **** 
+ 248:Drivers/BMP388/BMP388.c **** /**
+ 249:Drivers/BMP388/BMP388.c ****  * @brief Function to start BMP measures in FIFO mode.
+ 250:Drivers/BMP388/BMP388.c ****  *        To find information about FIFO Data frames
+ 251:Drivers/BMP388/BMP388.c ****  *        use paragraph 3.6.5 in datasheet for BMP388
+ 252:Drivers/BMP388/BMP388.c ****  * 
+ 253:Drivers/BMP388/BMP388.c ****  * @param bmp 
+ 254:Drivers/BMP388/BMP388.c ****  * @return HAL_StatusTypeDef 
+ 255:Drivers/BMP388/BMP388.c ****  */
+ 256:Drivers/BMP388/BMP388.c **** HAL_StatusTypeDef BMP388_StartNormalModeFIFO(BMP388_HandleTypeDef *bmp){
+ 257:Drivers/BMP388/BMP388.c **** 	HAL_StatusTypeDef rslt;
+ 258:Drivers/BMP388/BMP388.c **** 
+ 259:Drivers/BMP388/BMP388.c **** 	uint8_t pwr_ctrl = BMP3_PWR_CTRL_PRESS_ON | BMP3_PWR_CTRL_TEMP_ON | BMP3_PWR_CTRL_MODE_NORMAL;
+ 260:Drivers/BMP388/BMP388.c **** 
+ 261:Drivers/BMP388/BMP388.c **** 	uint8_t fifo_config_1 = BMP3_FIFO_CONFIG_1_FIFO_MODE_ON | BMP3_FIFO_CONFIG_1_FIFO_STOP_ON_FULL_ON 
+ 262:Drivers/BMP388/BMP388.c ****                             BMP3_FIFO_CONFIG_1_FIFO_TIME_EN_OFF | BMP3_FIFO_CONFIG_1_FIFO_PRESS_EN_
+ 263:Drivers/BMP388/BMP388.c **** 							BMP3_FIFO_CONFIG_1_FIFO_TEMP_EN_ON;
+ 264:Drivers/BMP388/BMP388.c **** 
+ 265:Drivers/BMP388/BMP388.c **** 	uint8_t oversampling = bmp->osr;
+ 266:Drivers/BMP388/BMP388.c **** 	uint8_t odr = bmp->odr;
+ 267:Drivers/BMP388/BMP388.c **** 	uint8_t filtercoeff = bmp->iir;
+ 268:Drivers/BMP388/BMP388.c **** 
+ 269:Drivers/BMP388/BMP388.c **** 
+ 270:Drivers/BMP388/BMP388.c **** 
+ 271:Drivers/BMP388/BMP388.c **** 	// Set OSR register
+ 272:Drivers/BMP388/BMP388.c **** 	rslt = BMP388_WriteBytes(bmp, OSR, &oversampling, 1);
+ 273:Drivers/BMP388/BMP388.c **** 	if(rslt != HAL_OK){
+ 274:Drivers/BMP388/BMP388.c **** 		return rslt;
+ 275:Drivers/BMP388/BMP388.c **** 	}
+ 276:Drivers/BMP388/BMP388.c **** 	// Set ODR register
+ 277:Drivers/BMP388/BMP388.c **** 	rslt = BMP388_WriteBytes(bmp, ODR, &odr, 1);
+ 278:Drivers/BMP388/BMP388.c **** 	if(rslt != HAL_OK){
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc5tsvuh.s 			page 10
+
+
+ 279:Drivers/BMP388/BMP388.c **** 		return rslt;
+ 280:Drivers/BMP388/BMP388.c **** 	}
+ 281:Drivers/BMP388/BMP388.c **** 	// Set CONFIG register
+ 282:Drivers/BMP388/BMP388.c **** 	rslt = BMP388_WriteBytes(bmp, CONFIG, &filtercoeff, 1);
+ 283:Drivers/BMP388/BMP388.c **** 	if(rslt != HAL_OK){
+ 284:Drivers/BMP388/BMP388.c **** 		return rslt;
+ 285:Drivers/BMP388/BMP388.c **** 	}
+ 286:Drivers/BMP388/BMP388.c **** 	// Set PWR_CTRL register
+ 287:Drivers/BMP388/BMP388.c **** 	rslt = BMP388_WriteBytes(bmp, PWR_CTRL, &pwr_ctrl, 1);
+ 288:Drivers/BMP388/BMP388.c **** 	if(rslt != HAL_OK){
+ 289:Drivers/BMP388/BMP388.c **** 		return rslt;
+ 290:Drivers/BMP388/BMP388.c **** 	}
+ 291:Drivers/BMP388/BMP388.c **** 	// Set FIFO_CONFIG_1 register
+ 292:Drivers/BMP388/BMP388.c **** 	rslt = BMP388_WriteBytes(bmp, FIFO_CONFIG_1, &fifo_config_1, 1);
+ 293:Drivers/BMP388/BMP388.c **** 	if(rslt != HAL_OK){
+ 294:Drivers/BMP388/BMP388.c **** 		return rslt;
+ 295:Drivers/BMP388/BMP388.c **** 	}
+ 296:Drivers/BMP388/BMP388.c **** 
+ 297:Drivers/BMP388/BMP388.c **** 	return rslt;
+ 298:Drivers/BMP388/BMP388.c **** }
+ 299:Drivers/BMP388/BMP388.c **** 
+ 300:Drivers/BMP388/BMP388.c **** 
+ 301:Drivers/BMP388/BMP388.c **** 
+ 302:Drivers/BMP388/BMP388.c **** 
+ 303:Drivers/BMP388/BMP388.c **** HAL_StatusTypeDef BMP388_GetFIFOLength(BMP388_HandleTypeDef *bmp, uint16_t *len){
+ 304:Drivers/BMP388/BMP388.c **** 	HAL_StatusTypeDef rslt;
+ 305:Drivers/BMP388/BMP388.c **** 
+ 306:Drivers/BMP388/BMP388.c **** 	uint8_t raw_fifo_len[2];
+ 307:Drivers/BMP388/BMP388.c **** 
+ 308:Drivers/BMP388/BMP388.c **** 	rslt = BMP388_ReadBytes(bmp, FIFO_LENGTH_0, raw_fifo_len, 2);
+ 309:Drivers/BMP388/BMP388.c **** 	if(rslt != HAL_OK){
+ 310:Drivers/BMP388/BMP388.c **** 		return rslt;
+ 311:Drivers/BMP388/BMP388.c **** 	}
+ 312:Drivers/BMP388/BMP388.c **** 
+ 313:Drivers/BMP388/BMP388.c **** 	*len = raw_fifo_len[1] << 8 | raw_fifo_len[0];
+ 314:Drivers/BMP388/BMP388.c **** 
+ 315:Drivers/BMP388/BMP388.c **** 	return rslt;
+ 316:Drivers/BMP388/BMP388.c **** }
+ 317:Drivers/BMP388/BMP388.c **** 
+ 318:Drivers/BMP388/BMP388.c **** 
+ 319:Drivers/BMP388/BMP388.c **** 
+ 320:Drivers/BMP388/BMP388.c **** HAL_StatusTypeDef BMP388_GetRawDataFIFO(BMP388_HandleTypeDef *bmp, uint16_t bytes_num, uint8_t raw_
+ 321:Drivers/BMP388/BMP388.c **** 	HAL_StatusTypeDef rslt;
+ 322:Drivers/BMP388/BMP388.c **** 
+ 323:Drivers/BMP388/BMP388.c **** 
+ 324:Drivers/BMP388/BMP388.c **** 	rslt = BMP388_ReadBytes(bmp, FIFO_DATA, raw_data, bytes_num+4);
+ 325:Drivers/BMP388/BMP388.c **** 	if(rslt != HAL_OK){
+ 326:Drivers/BMP388/BMP388.c **** 		return rslt;
+ 327:Drivers/BMP388/BMP388.c **** 	}
+ 328:Drivers/BMP388/BMP388.c **** 
+ 329:Drivers/BMP388/BMP388.c **** 
+ 330:Drivers/BMP388/BMP388.c **** 	return rslt;
+ 331:Drivers/BMP388/BMP388.c **** }
+ 332:Drivers/BMP388/BMP388.c **** 
+ 333:Drivers/BMP388/BMP388.c **** 
+ 334:Drivers/BMP388/BMP388.c **** 
+ 335:Drivers/BMP388/BMP388.c **** 
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc5tsvuh.s 			page 11
+
+
+ 336:Drivers/BMP388/BMP388.c **** /* ----------------------------- */
+ 337:Drivers/BMP388/BMP388.c **** /* ----- PRIVATE FUNCTIONS ----- */
+ 338:Drivers/BMP388/BMP388.c **** /* ----------------------------- */
+ 339:Drivers/BMP388/BMP388.c **** 
+ 340:Drivers/BMP388/BMP388.c **** /*!
+ 341:Drivers/BMP388/BMP388.c ****  *  @brief Function to send softreset cmnd
+ 342:Drivers/BMP388/BMP388.c ****  *
+ 343:Drivers/BMP388/BMP388.c ****  *	@param[in] bmp			: Pointer to BMP388 structure
+ 344:Drivers/BMP388/BMP388.c ****  *
+ 345:Drivers/BMP388/BMP388.c ****  *  @return Status of execution
+ 346:Drivers/BMP388/BMP388.c ****  *  @retval = HAL_OK  		-> Success
+ 347:Drivers/BMP388/BMP388.c ****  *  @retval != HAL_OK	  	-> Failure Info
+ 348:Drivers/BMP388/BMP388.c ****  */
+ 349:Drivers/BMP388/BMP388.c **** HAL_StatusTypeDef BMP388_SoftReset(BMP388_HandleTypeDef *bmp){
+ 350:Drivers/BMP388/BMP388.c **** 	uint8_t rst_cmnd = BMP388_SOFTRESET;
+ 351:Drivers/BMP388/BMP388.c ****     uint8_t cmd_rdy_status;
+ 352:Drivers/BMP388/BMP388.c ****     uint8_t cmd_err_status;
+ 353:Drivers/BMP388/BMP388.c **** 
+ 354:Drivers/BMP388/BMP388.c **** 	HAL_StatusTypeDef rslt;
+ 355:Drivers/BMP388/BMP388.c **** 
+ 356:Drivers/BMP388/BMP388.c **** 	// Reading STATUS reg to understand that the BMP388 is ready to receive command
+ 357:Drivers/BMP388/BMP388.c **** 	rslt = BMP388_ReadBytes(bmp, STATUS, &cmd_rdy_status, 1);
+ 358:Drivers/BMP388/BMP388.c **** 	if((rslt == HAL_OK) && (cmd_rdy_status & BMP3_CMD_RDY)){
+ 359:Drivers/BMP388/BMP388.c **** 		// Writing SOFTRESET command to CMD reg
+ 360:Drivers/BMP388/BMP388.c **** 		rslt = BMP388_WriteBytes(bmp, CMD, &rst_cmnd, 1);
+ 361:Drivers/BMP388/BMP388.c **** 		if(rslt == HAL_OK){
+ 362:Drivers/BMP388/BMP388.c **** 			// 2 ms pause then check ERR reg
+ 363:Drivers/BMP388/BMP388.c **** 			HAL_Delay(2);
+ 364:Drivers/BMP388/BMP388.c **** 			rslt = BMP388_ReadBytes(bmp, ERR_REG, &cmd_err_status, 1);
+ 365:Drivers/BMP388/BMP388.c **** 			if((cmd_err_status & CMD) || (rslt != HAL_OK)){
+ 366:Drivers/BMP388/BMP388.c **** 				return rslt;
+ 367:Drivers/BMP388/BMP388.c **** 			}
+ 368:Drivers/BMP388/BMP388.c **** 		}
+ 369:Drivers/BMP388/BMP388.c **** 		else{
+ 370:Drivers/BMP388/BMP388.c **** 			return rslt;
+ 371:Drivers/BMP388/BMP388.c **** 		}
+ 372:Drivers/BMP388/BMP388.c **** 	}
+ 373:Drivers/BMP388/BMP388.c **** 
+ 374:Drivers/BMP388/BMP388.c **** 	return rslt;
+ 375:Drivers/BMP388/BMP388.c **** }
+ 376:Drivers/BMP388/BMP388.c **** 
+ 377:Drivers/BMP388/BMP388.c **** 
+ 378:Drivers/BMP388/BMP388.c **** 
+ 379:Drivers/BMP388/BMP388.c **** /*!
+ 380:Drivers/BMP388/BMP388.c ****  *  @brief Function to get calibration data
+ 381:Drivers/BMP388/BMP388.c ****  *
+ 382:Drivers/BMP388/BMP388.c ****  *	@param[in] bmp			: Pointer to BMP388 structure
+ 383:Drivers/BMP388/BMP388.c ****  *
+ 384:Drivers/BMP388/BMP388.c ****  *  @return Status of execution
+ 385:Drivers/BMP388/BMP388.c ****  *  @retval = HAL_OK  		-> Success
+ 386:Drivers/BMP388/BMP388.c ****  *  @retval != HAL_OK	  	-> Failure Info
+ 387:Drivers/BMP388/BMP388.c ****  */
+ 388:Drivers/BMP388/BMP388.c **** HAL_StatusTypeDef BMP388_GetCalibData(BMP388_HandleTypeDef *bmp){
+ 389:Drivers/BMP388/BMP388.c **** 	HAL_StatusTypeDef rslt;
+ 390:Drivers/BMP388/BMP388.c **** 	uint8_t calib_buff[BMP3_CALIBDATA_LEN] = {0};
+ 391:Drivers/BMP388/BMP388.c **** 
+ 392:Drivers/BMP388/BMP388.c **** 	uint16_t	raw_par_t1;
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc5tsvuh.s 			page 12
+
+
+ 393:Drivers/BMP388/BMP388.c **** 	uint16_t	raw_par_t2;
+ 394:Drivers/BMP388/BMP388.c **** 	int8_t		raw_par_t3;
+ 395:Drivers/BMP388/BMP388.c **** 	int16_t		raw_par_p1;
+ 396:Drivers/BMP388/BMP388.c **** 	int16_t		raw_par_p2;
+ 397:Drivers/BMP388/BMP388.c **** 	int8_t		raw_par_p3;
+ 398:Drivers/BMP388/BMP388.c **** 	int8_t		raw_par_p4;
+ 399:Drivers/BMP388/BMP388.c **** 	uint16_t	raw_par_p5;
+ 400:Drivers/BMP388/BMP388.c **** 	uint16_t	raw_par_p6;
+ 401:Drivers/BMP388/BMP388.c **** 	int8_t		raw_par_p7;
+ 402:Drivers/BMP388/BMP388.c **** 	int8_t		raw_par_p8;
+ 403:Drivers/BMP388/BMP388.c **** 	int16_t		raw_par_p9;
+ 404:Drivers/BMP388/BMP388.c **** 	int8_t		raw_par_p10;
+ 405:Drivers/BMP388/BMP388.c **** 	int8_t		raw_par_p11;
+ 406:Drivers/BMP388/BMP388.c **** 
+ 407:Drivers/BMP388/BMP388.c **** 	rslt = BMP388_ReadBytes(bmp, CALIB_DATA, calib_buff, BMP3_CALIBDATA_LEN);
+ 408:Drivers/BMP388/BMP388.c **** 
+ 409:Drivers/BMP388/BMP388.c **** 	float temp_var;
+ 410:Drivers/BMP388/BMP388.c **** 	if(rslt == HAL_OK){
+ 411:Drivers/BMP388/BMP388.c **** 		// PAR_T1
+ 412:Drivers/BMP388/BMP388.c **** 		temp_var = 0.00390625f;
+ 413:Drivers/BMP388/BMP388.c **** 		raw_par_t1 = ((uint16_t)calib_buff[1] << 8) | (uint16_t)calib_buff[0];
+ 414:Drivers/BMP388/BMP388.c **** 		bmp->calib_data.par_t1 = (float)raw_par_t1 / temp_var;
+ 415:Drivers/BMP388/BMP388.c **** 		// PAR_T2
+ 416:Drivers/BMP388/BMP388.c **** 		temp_var = 1073741824.f;
+ 417:Drivers/BMP388/BMP388.c **** 		raw_par_t2 = ((uint16_t)calib_buff[3] << 8) | (uint16_t)calib_buff[2];
+ 418:Drivers/BMP388/BMP388.c **** 		bmp->calib_data.par_t2 = (float)raw_par_t2 / temp_var;
+ 419:Drivers/BMP388/BMP388.c **** 		// PAR_T3
+ 420:Drivers/BMP388/BMP388.c **** 		temp_var = 281474976710656.f;
+ 421:Drivers/BMP388/BMP388.c **** 		raw_par_t3 = calib_buff[4];
+ 422:Drivers/BMP388/BMP388.c **** 		bmp->calib_data.par_t3 = (float)raw_par_t3 / temp_var;
+ 423:Drivers/BMP388/BMP388.c **** 		// PAR_P1
+ 424:Drivers/BMP388/BMP388.c **** 		temp_var = 1048576.f;
+ 425:Drivers/BMP388/BMP388.c **** 		raw_par_p1 = ((int16_t)calib_buff[6] << 8) | (int16_t)calib_buff[5];
+ 426:Drivers/BMP388/BMP388.c **** 		bmp->calib_data.par_p1 = ((float)raw_par_p1 - 16384) / temp_var;
+ 427:Drivers/BMP388/BMP388.c **** 		// PAR_P2
+ 428:Drivers/BMP388/BMP388.c **** 		temp_var = 536870912.f;
+ 429:Drivers/BMP388/BMP388.c **** 		raw_par_p2 = ((int16_t)calib_buff[8] << 8) | (int16_t)calib_buff[7];
+ 430:Drivers/BMP388/BMP388.c **** 		bmp->calib_data.par_p2 = ((float)raw_par_p2 - 16384) / temp_var;
+ 431:Drivers/BMP388/BMP388.c **** 		// PAR_P3
+ 432:Drivers/BMP388/BMP388.c **** 		temp_var = 4294967296.f;
+ 433:Drivers/BMP388/BMP388.c **** 		raw_par_p3 = (int8_t)calib_buff[9];
+ 434:Drivers/BMP388/BMP388.c **** 		bmp->calib_data.par_p3 = (float)raw_par_p3 / temp_var;
+ 435:Drivers/BMP388/BMP388.c **** 		// PAR_P4
+ 436:Drivers/BMP388/BMP388.c **** 		temp_var = 137438953472.f;
+ 437:Drivers/BMP388/BMP388.c **** 		raw_par_p4 = (int8_t)calib_buff[10];
+ 438:Drivers/BMP388/BMP388.c **** 		bmp->calib_data.par_p4 = (float)raw_par_p4 / temp_var;
+ 439:Drivers/BMP388/BMP388.c **** 		// PAR_P5
+ 440:Drivers/BMP388/BMP388.c **** 		temp_var = 0.125f;
+ 441:Drivers/BMP388/BMP388.c **** 		raw_par_p5 = ((uint16_t)calib_buff[12] << 8) | (uint16_t)calib_buff[11];
+ 442:Drivers/BMP388/BMP388.c **** 		bmp->calib_data.par_p5 = (float)raw_par_p5 / temp_var;
+ 443:Drivers/BMP388/BMP388.c **** 		// PAR_P6
+ 444:Drivers/BMP388/BMP388.c **** 		temp_var = 64.f;
+ 445:Drivers/BMP388/BMP388.c **** 		raw_par_p6 = ((uint16_t)calib_buff[14] << 8) | (uint16_t)calib_buff[13];
+ 446:Drivers/BMP388/BMP388.c **** 		bmp->calib_data.par_p6 = (float)raw_par_p6 / temp_var;
+ 447:Drivers/BMP388/BMP388.c **** 		// PAR_P7
+ 448:Drivers/BMP388/BMP388.c **** 		temp_var = 256.f;
+ 449:Drivers/BMP388/BMP388.c **** 		raw_par_p7 = (int8_t)calib_buff[15];
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc5tsvuh.s 			page 13
+
+
+ 450:Drivers/BMP388/BMP388.c **** 		bmp->calib_data.par_p7 = (float)raw_par_p7 / temp_var;
+ 451:Drivers/BMP388/BMP388.c **** 		// PAR_P8
+ 452:Drivers/BMP388/BMP388.c **** 		temp_var = 32768.f;
+ 453:Drivers/BMP388/BMP388.c **** 		raw_par_p8 = (int8_t)calib_buff[16];
+ 454:Drivers/BMP388/BMP388.c **** 		bmp->calib_data.par_p8 = (float)raw_par_p8 / temp_var;
+ 455:Drivers/BMP388/BMP388.c **** 		// PAR_P9
+ 456:Drivers/BMP388/BMP388.c **** 		temp_var = 281474976710656.f;
+ 457:Drivers/BMP388/BMP388.c **** 		raw_par_p9 = ((int16_t)calib_buff[18] << 8) | (int16_t)calib_buff[17];
+ 458:Drivers/BMP388/BMP388.c **** 		bmp->calib_data.par_p9 = (float)raw_par_p9 / temp_var;
+ 459:Drivers/BMP388/BMP388.c **** 		// PAR_P10
+ 460:Drivers/BMP388/BMP388.c **** 		temp_var = 281474976710656.f;
+ 461:Drivers/BMP388/BMP388.c **** 		raw_par_p10 = (int8_t)calib_buff[19];
+ 462:Drivers/BMP388/BMP388.c **** 		bmp->calib_data.par_p10 = (float)raw_par_p10 / temp_var;
+ 463:Drivers/BMP388/BMP388.c **** 		// PAR_P11
+ 464:Drivers/BMP388/BMP388.c **** 		temp_var = 36893488147419103232.f;
+ 465:Drivers/BMP388/BMP388.c **** 		raw_par_p11 = (int8_t)calib_buff[20];
+ 466:Drivers/BMP388/BMP388.c **** 		bmp->calib_data.par_p11 = (float)raw_par_p11 / temp_var;
+ 467:Drivers/BMP388/BMP388.c **** 	}
+ 468:Drivers/BMP388/BMP388.c **** 	return rslt;
+ 469:Drivers/BMP388/BMP388.c **** }
+ 470:Drivers/BMP388/BMP388.c **** 
+ 471:Drivers/BMP388/BMP388.c **** 
+ 472:Drivers/BMP388/BMP388.c **** 
+ 473:Drivers/BMP388/BMP388.c **** /*!
+ 474:Drivers/BMP388/BMP388.c ****  *  @brief Function to compensate raw temperature data
+ 475:Drivers/BMP388/BMP388.c ****  *
+ 476:Drivers/BMP388/BMP388.c ****  *	@param[in] bmp			: Pointer to BMP388 structure
+ 477:Drivers/BMP388/BMP388.c ****  *	@parem[in] raw_temp		: Raw temperature data that need to be compensated
+ 478:Drivers/BMP388/BMP388.c ****  *	@param[out] temp		: Measured temp in celsius
+ 479:Drivers/BMP388/BMP388.c ****  *
+ 480:Drivers/BMP388/BMP388.c ****  *  @return Status of execution
+ 481:Drivers/BMP388/BMP388.c ****  *  @retval = HAL_OK  		-> Success
+ 482:Drivers/BMP388/BMP388.c ****  *  @retval != HAL_OK	  	-> Failure Info
+ 483:Drivers/BMP388/BMP388.c ****  */
+ 484:Drivers/BMP388/BMP388.c **** float BMP388_CompensateTemp(BMP388_HandleTypeDef *bmp, uint32_t raw_temp, float *temp){
+ 243              		.loc 1 484 87 is_stmt 1 view -0
+ 244              		.cfi_startproc
+ 245              		@ args = 0, pretend = 0, frame = 0
+ 246              		@ frame_needed = 0, uses_anonymous_args = 0
+ 247              		@ link register save eliminated.
+ 248              		.loc 1 484 87 is_stmt 0 view .LVU55
+ 249 0000 07EE901A 		vmov	s15, r1	@ int
+ 485:Drivers/BMP388/BMP388.c ****     float partial_data1 = (float)(raw_temp - bmp->calib_data.par_t1);;
+ 250              		.loc 1 485 5 is_stmt 1 view .LVU56
+ 251              		.loc 1 485 27 is_stmt 0 view .LVU57
+ 252 0004 F8EE677A 		vcvt.f32.u32	s15, s15
+ 253              		.loc 1 485 61 view .LVU58
+ 254 0008 90ED047A 		vldr.32	s14, [r0, #16]
+ 255              		.loc 1 485 11 view .LVU59
+ 256 000c 77EEC77A 		vsub.f32	s15, s15, s14
+ 257              	.LVL22:
+ 258              		.loc 1 485 70 is_stmt 1 view .LVU60
+ 486:Drivers/BMP388/BMP388.c ****     float partial_data2 = (float)(partial_data1 * bmp->calib_data.par_t2);
+ 259              		.loc 1 486 5 view .LVU61
+ 260              		.loc 1 486 66 is_stmt 0 view .LVU62
+ 261 0010 90ED057A 		vldr.32	s14, [r0, #20]
+ 262              		.loc 1 486 11 view .LVU63
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc5tsvuh.s 			page 14
+
+
+ 263 0014 27EE277A 		vmul.f32	s14, s14, s15
+ 264              	.LVL23:
+ 487:Drivers/BMP388/BMP388.c **** 
+ 488:Drivers/BMP388/BMP388.c ****     *temp = partial_data2 + (partial_data1 * partial_data1) * bmp->calib_data.par_t3;
+ 265              		.loc 1 488 5 is_stmt 1 view .LVU64
+ 266              		.loc 1 488 44 is_stmt 0 view .LVU65
+ 267 0018 27EEA70A 		vmul.f32	s0, s15, s15
+ 268              		.loc 1 488 78 view .LVU66
+ 269 001c D0ED067A 		vldr.32	s15, [r0, #24]
+ 270              	.LVL24:
+ 271              		.loc 1 488 61 view .LVU67
+ 272 0020 20EE270A 		vmul.f32	s0, s0, s15
+ 273              		.loc 1 488 27 view .LVU68
+ 274 0024 30EE070A 		vadd.f32	s0, s0, s14
+ 275              		.loc 1 488 11 view .LVU69
+ 276 0028 82ED000A 		vstr.32	s0, [r2]
+ 277              	.LVL25:
+ 489:Drivers/BMP388/BMP388.c **** 
+ 490:Drivers/BMP388/BMP388.c ****     return *temp;
+ 278              		.loc 1 490 5 is_stmt 1 view .LVU70
+ 491:Drivers/BMP388/BMP388.c **** }
+ 279              		.loc 1 491 1 is_stmt 0 view .LVU71
+ 280 002c 7047     		bx	lr
+ 281              		.cfi_endproc
+ 282              	.LFE157:
+ 284              		.section	.text.BMP388_CompensatePress,"ax",%progbits
+ 285              		.align	1
+ 286              		.global	BMP388_CompensatePress
+ 287              		.syntax unified
+ 288              		.thumb
+ 289              		.thumb_func
+ 291              	BMP388_CompensatePress:
+ 292              	.LVL26:
+ 293              	.LFB158:
+ 492:Drivers/BMP388/BMP388.c **** 
+ 493:Drivers/BMP388/BMP388.c **** 
+ 494:Drivers/BMP388/BMP388.c **** 
+ 495:Drivers/BMP388/BMP388.c **** /*!
+ 496:Drivers/BMP388/BMP388.c ****  *  @brief Function to compensate raw pressure data
+ 497:Drivers/BMP388/BMP388.c ****  *
+ 498:Drivers/BMP388/BMP388.c ****  *	@param[in] bmp			: Pointer to BMP388 structure
+ 499:Drivers/BMP388/BMP388.c ****  *	@param[in] temp			: Temperature that associated with pressure measurement
+ 500:Drivers/BMP388/BMP388.c ****  *	@param[in] raw_press	: Raw pressure data that need to be compensated
+ 501:Drivers/BMP388/BMP388.c ****  *	@param[out] press		: Measured pressure in Pa
+ 502:Drivers/BMP388/BMP388.c ****  *
+ 503:Drivers/BMP388/BMP388.c ****  *  @return Status of execution
+ 504:Drivers/BMP388/BMP388.c ****  *  @retval = press			: Compensated pressure value
+ 505:Drivers/BMP388/BMP388.c ****  */
+ 506:Drivers/BMP388/BMP388.c **** float BMP388_CompensatePress(BMP388_HandleTypeDef *bmp, float temp, uint32_t raw_press, float *pres
+ 294              		.loc 1 506 102 is_stmt 1 view -0
+ 295              		.cfi_startproc
+ 296              		@ args = 0, pretend = 0, frame = 0
+ 297              		@ frame_needed = 0, uses_anonymous_args = 0
+ 298              		@ link register save eliminated.
+ 299              		.loc 1 506 102 is_stmt 0 view .LVU73
+ 300 0000 07EE101A 		vmov	s14, r1	@ int
+ 507:Drivers/BMP388/BMP388.c ****     float partial_data1;
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc5tsvuh.s 			page 15
+
+
+ 301              		.loc 1 507 5 is_stmt 1 view .LVU74
+ 508:Drivers/BMP388/BMP388.c ****     float partial_data2;
+ 302              		.loc 1 508 5 view .LVU75
+ 509:Drivers/BMP388/BMP388.c ****     float partial_data3;
+ 303              		.loc 1 509 5 view .LVU76
+ 510:Drivers/BMP388/BMP388.c ****     float partial_data4;
+ 304              		.loc 1 510 5 view .LVU77
+ 511:Drivers/BMP388/BMP388.c ****     float partial_out1;
+ 305              		.loc 1 511 5 view .LVU78
+ 512:Drivers/BMP388/BMP388.c ****     float partial_out2;
+ 306              		.loc 1 512 5 view .LVU79
+ 513:Drivers/BMP388/BMP388.c **** 
+ 514:Drivers/BMP388/BMP388.c **** 
+ 515:Drivers/BMP388/BMP388.c **** 
+ 516:Drivers/BMP388/BMP388.c ****     partial_data1 = bmp->calib_data.par_p6 * temp;
+ 307              		.loc 1 516 5 view .LVU80
+ 308              		.loc 1 516 36 is_stmt 0 view .LVU81
+ 309 0004 D0ED0C4A 		vldr.32	s9, [r0, #48]
+ 310              		.loc 1 516 19 view .LVU82
+ 311 0008 64EE804A 		vmul.f32	s9, s9, s0
+ 312              	.LVL27:
+ 517:Drivers/BMP388/BMP388.c ****     partial_data2 = bmp->calib_data.par_p7 * (temp * temp);
+ 313              		.loc 1 517 5 is_stmt 1 view .LVU83
+ 314              		.loc 1 517 36 is_stmt 0 view .LVU84
+ 315 000c 90ED0D5A 		vldr.32	s10, [r0, #52]
+ 316              		.loc 1 517 52 view .LVU85
+ 317 0010 60EE006A 		vmul.f32	s13, s0, s0
+ 318              		.loc 1 517 19 view .LVU86
+ 319 0014 25EE265A 		vmul.f32	s10, s10, s13
+ 320              	.LVL28:
+ 518:Drivers/BMP388/BMP388.c ****     partial_data3 = bmp->calib_data.par_p8 * (temp * temp * temp);
+ 321              		.loc 1 518 5 is_stmt 1 view .LVU87
+ 322              		.loc 1 518 36 is_stmt 0 view .LVU88
+ 323 0018 90ED0E6A 		vldr.32	s12, [r0, #56]
+ 324              		.loc 1 518 59 view .LVU89
+ 325 001c 66EE805A 		vmul.f32	s11, s13, s0
+ 326              		.loc 1 518 19 view .LVU90
+ 327 0020 26EE256A 		vmul.f32	s12, s12, s11
+ 328              	.LVL29:
+ 519:Drivers/BMP388/BMP388.c ****     partial_out1 = bmp->calib_data.par_p5 + partial_data1 + partial_data2 + partial_data3;
+ 329              		.loc 1 519 5 is_stmt 1 view .LVU91
+ 330              		.loc 1 519 35 is_stmt 0 view .LVU92
+ 331 0024 D0ED0B7A 		vldr.32	s15, [r0, #44]
+ 332              		.loc 1 519 43 view .LVU93
+ 333 0028 77EEA47A 		vadd.f32	s15, s15, s9
+ 334              		.loc 1 519 59 view .LVU94
+ 335 002c 77EE857A 		vadd.f32	s15, s15, s10
+ 336              		.loc 1 519 18 view .LVU95
+ 337 0030 77EE867A 		vadd.f32	s15, s15, s12
+ 338              	.LVL30:
+ 520:Drivers/BMP388/BMP388.c **** 
+ 521:Drivers/BMP388/BMP388.c ****     partial_data1 = bmp->calib_data.par_p2 * temp;
+ 339              		.loc 1 521 5 is_stmt 1 view .LVU96
+ 340              		.loc 1 521 36 is_stmt 0 view .LVU97
+ 341 0034 90ED085A 		vldr.32	s10, [r0, #32]
+ 342              	.LVL31:
+ 343              		.loc 1 521 19 view .LVU98
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc5tsvuh.s 			page 16
+
+
+ 344 0038 25EE005A 		vmul.f32	s10, s10, s0
+ 345              	.LVL32:
+ 522:Drivers/BMP388/BMP388.c ****     partial_data2 = bmp->calib_data.par_p3 * (temp * temp);
+ 346              		.loc 1 522 5 is_stmt 1 view .LVU99
+ 347              		.loc 1 522 36 is_stmt 0 view .LVU100
+ 348 003c 90ED096A 		vldr.32	s12, [r0, #36]
+ 349              	.LVL33:
+ 350              		.loc 1 522 19 view .LVU101
+ 351 0040 26EE866A 		vmul.f32	s12, s13, s12
+ 352              	.LVL34:
+ 523:Drivers/BMP388/BMP388.c ****     partial_data3 = bmp->calib_data.par_p4 * (temp * temp * temp);
+ 353              		.loc 1 523 5 is_stmt 1 view .LVU102
+ 354              		.loc 1 523 36 is_stmt 0 view .LVU103
+ 355 0044 D0ED0A6A 		vldr.32	s13, [r0, #40]
+ 356              		.loc 1 523 19 view .LVU104
+ 357 0048 65EEA65A 		vmul.f32	s11, s11, s13
+ 358              	.LVL35:
+ 524:Drivers/BMP388/BMP388.c ****     partial_out2 = (float)raw_press * (bmp->calib_data.par_p1 + partial_data1 + partial_data2 + par
+ 359              		.loc 1 524 5 is_stmt 1 view .LVU105
+ 360              		.loc 1 524 20 is_stmt 0 view .LVU106
+ 361 004c B8EE477A 		vcvt.f32.u32	s14, s14
+ 362              		.loc 1 524 55 view .LVU107
+ 363 0050 D0ED076A 		vldr.32	s13, [r0, #28]
+ 364              		.loc 1 524 63 view .LVU108
+ 365 0054 76EE856A 		vadd.f32	s13, s13, s10
+ 366              		.loc 1 524 79 view .LVU109
+ 367 0058 76EE866A 		vadd.f32	s13, s13, s12
+ 368              		.loc 1 524 95 view .LVU110
+ 369 005c 76EEA56A 		vadd.f32	s13, s13, s11
+ 370              		.loc 1 524 18 view .LVU111
+ 371 0060 67EE266A 		vmul.f32	s13, s14, s13
+ 372              	.LVL36:
+ 525:Drivers/BMP388/BMP388.c **** 
+ 526:Drivers/BMP388/BMP388.c ****     partial_data1 = (float)raw_press * (float)raw_press;
+ 373              		.loc 1 526 5 is_stmt 1 view .LVU112
+ 374              		.loc 1 526 19 is_stmt 0 view .LVU113
+ 375 0064 27EE075A 		vmul.f32	s10, s14, s14
+ 376              	.LVL37:
+ 527:Drivers/BMP388/BMP388.c ****     partial_data2 = bmp->calib_data.par_p9 + bmp->calib_data.par_p10 * temp;
+ 377              		.loc 1 527 5 is_stmt 1 view .LVU114
+ 378              		.loc 1 527 36 is_stmt 0 view .LVU115
+ 379 0068 90ED0F6A 		vldr.32	s12, [r0, #60]
+ 380              	.LVL38:
+ 381              		.loc 1 527 61 view .LVU116
+ 382 006c D0ED105A 		vldr.32	s11, [r0, #64]
+ 383              	.LVL39:
+ 384              		.loc 1 527 70 view .LVU117
+ 385 0070 65EE805A 		vmul.f32	s11, s11, s0
+ 386              		.loc 1 527 19 view .LVU118
+ 387 0074 36EE256A 		vadd.f32	s12, s12, s11
+ 388              	.LVL40:
+ 528:Drivers/BMP388/BMP388.c ****     partial_data3 = partial_data1 * partial_data2;
+ 389              		.loc 1 528 5 is_stmt 1 view .LVU119
+ 390              		.loc 1 528 19 is_stmt 0 view .LVU120
+ 391 0078 25EE066A 		vmul.f32	s12, s10, s12
+ 392              	.LVL41:
+ 529:Drivers/BMP388/BMP388.c ****     partial_data4 = partial_data3 + ((float)raw_press * (float)raw_press * (float)raw_press) * bmp-
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc5tsvuh.s 			page 17
+
+
+ 393              		.loc 1 529 5 is_stmt 1 view .LVU121
+ 394              		.loc 1 529 74 is_stmt 0 view .LVU122
+ 395 007c 27EE057A 		vmul.f32	s14, s14, s10
+ 396              		.loc 1 529 111 view .LVU123
+ 397 0080 D0ED115A 		vldr.32	s11, [r0, #68]
+ 398              	.LVL42:
+ 399              		.loc 1 529 94 view .LVU124
+ 400 0084 27EE257A 		vmul.f32	s14, s14, s11
+ 401              		.loc 1 529 19 view .LVU125
+ 402 0088 37EE067A 		vadd.f32	s14, s14, s12
+ 403              	.LVL43:
+ 530:Drivers/BMP388/BMP388.c **** 
+ 531:Drivers/BMP388/BMP388.c ****     *press = partial_out1 + partial_out2 + partial_data4;
+ 404              		.loc 1 531 5 is_stmt 1 view .LVU126
+ 405              		.loc 1 531 27 is_stmt 0 view .LVU127
+ 406 008c 37EEA60A 		vadd.f32	s0, s15, s13
+ 407              	.LVL44:
+ 408              		.loc 1 531 42 view .LVU128
+ 409 0090 30EE070A 		vadd.f32	s0, s0, s14
+ 410              		.loc 1 531 12 view .LVU129
+ 411 0094 82ED000A 		vstr.32	s0, [r2]
+ 412              	.LVL45:
+ 532:Drivers/BMP388/BMP388.c **** 
+ 533:Drivers/BMP388/BMP388.c ****     return *press;
+ 413              		.loc 1 533 5 is_stmt 1 view .LVU130
+ 534:Drivers/BMP388/BMP388.c **** }
+ 414              		.loc 1 534 1 is_stmt 0 view .LVU131
+ 415 0098 7047     		bx	lr
+ 416              		.cfi_endproc
+ 417              	.LFE158:
+ 419              		.section	.text.BMP388_CompensateRawPressTemp,"ax",%progbits
+ 420              		.align	1
+ 421              		.global	BMP388_CompensateRawPressTemp
+ 422              		.syntax unified
+ 423              		.thumb
+ 424              		.thumb_func
+ 426              	BMP388_CompensateRawPressTemp:
+ 427              	.LVL46:
+ 428              	.LFB150:
+ 215:Drivers/BMP388/BMP388.c **** 	float temp;
+ 429              		.loc 1 215 66 is_stmt 1 view -0
+ 430              		.cfi_startproc
+ 431              		@ args = 4, pretend = 0, frame = 8
+ 432              		@ frame_needed = 0, uses_anonymous_args = 0
+ 215:Drivers/BMP388/BMP388.c **** 	float temp;
+ 433              		.loc 1 215 66 is_stmt 0 view .LVU133
+ 434 0000 70B5     		push	{r4, r5, r6, lr}
+ 435              		.cfi_def_cfa_offset 16
+ 436              		.cfi_offset 4, -16
+ 437              		.cfi_offset 5, -12
+ 438              		.cfi_offset 6, -8
+ 439              		.cfi_offset 14, -4
+ 440 0002 82B0     		sub	sp, sp, #8
+ 441              		.cfi_def_cfa_offset 24
+ 442 0004 0546     		mov	r5, r0
+ 443 0006 0E46     		mov	r6, r1
+ 444 0008 1146     		mov	r1, r2
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc5tsvuh.s 			page 18
+
+
+ 445              	.LVL47:
+ 215:Drivers/BMP388/BMP388.c **** 	float temp;
+ 446              		.loc 1 215 66 view .LVU134
+ 447 000a 1C46     		mov	r4, r3
+ 216:Drivers/BMP388/BMP388.c **** 	float press;
+ 448              		.loc 1 216 2 is_stmt 1 view .LVU135
+ 217:Drivers/BMP388/BMP388.c **** 
+ 449              		.loc 1 217 2 view .LVU136
+ 219:Drivers/BMP388/BMP388.c **** 	BMP388_CompensatePress(bmp, temp, raw_pressure, &press);
+ 450              		.loc 1 219 2 view .LVU137
+ 451 000c 01AA     		add	r2, sp, #4
+ 452              	.LVL48:
+ 219:Drivers/BMP388/BMP388.c **** 	BMP388_CompensatePress(bmp, temp, raw_pressure, &press);
+ 453              		.loc 1 219 2 is_stmt 0 view .LVU138
+ 454 000e FFF7FEFF 		bl	BMP388_CompensateTemp
+ 455              	.LVL49:
+ 220:Drivers/BMP388/BMP388.c **** 
+ 456              		.loc 1 220 2 is_stmt 1 view .LVU139
+ 457 0012 6A46     		mov	r2, sp
+ 458 0014 3146     		mov	r1, r6
+ 459 0016 9DED010A 		vldr.32	s0, [sp, #4]
+ 460 001a 2846     		mov	r0, r5
+ 461 001c FFF7FEFF 		bl	BMP388_CompensatePress
+ 462              	.LVL50:
+ 222:Drivers/BMP388/BMP388.c **** 	*temperature = temp;
+ 463              		.loc 1 222 2 view .LVU140
+ 222:Drivers/BMP388/BMP388.c **** 	*temperature = temp;
+ 464              		.loc 1 222 12 is_stmt 0 view .LVU141
+ 465 0020 009B     		ldr	r3, [sp]	@ float
+ 466 0022 2360     		str	r3, [r4]	@ float
+ 223:Drivers/BMP388/BMP388.c **** }
+ 467              		.loc 1 223 2 is_stmt 1 view .LVU142
+ 223:Drivers/BMP388/BMP388.c **** }
+ 468              		.loc 1 223 15 is_stmt 0 view .LVU143
+ 469 0024 019A     		ldr	r2, [sp, #4]	@ float
+ 470 0026 069B     		ldr	r3, [sp, #24]
+ 471 0028 1A60     		str	r2, [r3]	@ float
+ 224:Drivers/BMP388/BMP388.c **** 
+ 472              		.loc 1 224 1 view .LVU144
+ 473 002a 02B0     		add	sp, sp, #8
+ 474              		.cfi_def_cfa_offset 16
+ 475              		@ sp needed
+ 476 002c 70BD     		pop	{r4, r5, r6, pc}
+ 224:Drivers/BMP388/BMP388.c **** 
+ 477              		.loc 1 224 1 view .LVU145
+ 478              		.cfi_endproc
+ 479              	.LFE150:
+ 481              		.section	.text.BMP388_ReadBytes,"ax",%progbits
+ 482              		.align	1
+ 483              		.global	BMP388_ReadBytes
+ 484              		.syntax unified
+ 485              		.thumb
+ 486              		.thumb_func
+ 488              	BMP388_ReadBytes:
+ 489              	.LVL51:
+ 490              	.LFB159:
+ 535:Drivers/BMP388/BMP388.c **** 
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc5tsvuh.s 			page 19
+
+
+ 536:Drivers/BMP388/BMP388.c **** 
+ 537:Drivers/BMP388/BMP388.c **** 
+ 538:Drivers/BMP388/BMP388.c **** /*!
+ 539:Drivers/BMP388/BMP388.c ****  *  @brief Function to read byte from BMP388 in blocking mode
+ 540:Drivers/BMP388/BMP388.c ****  *
+ 541:Drivers/BMP388/BMP388.c ****  *	@param[in] bmp			: Pointer to BMP388 structure
+ 542:Drivers/BMP388/BMP388.c ****  *  @param[in] reg_addr     : Register address.
+ 543:Drivers/BMP388/BMP388.c ****  *  @param[out] buff	    : Pointer to the data buffer to store the read data.
+ 544:Drivers/BMP388/BMP388.c ****  *  @param[in] len          : Amount of bytes to read.
+ 545:Drivers/BMP388/BMP388.c ****  *
+ 546:Drivers/BMP388/BMP388.c ****  *  @return Status of execution
+ 547:Drivers/BMP388/BMP388.c ****  *  @retval = HAL_OK 		-> Success
+ 548:Drivers/BMP388/BMP388.c ****  *  @retval != HAL_ERROR 	-> Failure Info
+ 549:Drivers/BMP388/BMP388.c ****  */
+ 550:Drivers/BMP388/BMP388.c **** HAL_StatusTypeDef BMP388_ReadBytes(BMP388_HandleTypeDef *bmp, BMP388_regs reg_addr, uint8_t *buff, 
+ 491              		.loc 1 550 112 is_stmt 1 view -0
+ 492              		.cfi_startproc
+ 493              		@ args = 0, pretend = 0, frame = 8
+ 494              		@ frame_needed = 0, uses_anonymous_args = 0
+ 495              		.loc 1 550 112 is_stmt 0 view .LVU147
+ 496 0000 F0B5     		push	{r4, r5, r6, r7, lr}
+ 497              		.cfi_def_cfa_offset 20
+ 498              		.cfi_offset 4, -20
+ 499              		.cfi_offset 5, -16
+ 500              		.cfi_offset 6, -12
+ 501              		.cfi_offset 7, -8
+ 502              		.cfi_offset 14, -4
+ 503 0002 83B0     		sub	sp, sp, #12
+ 504              		.cfi_def_cfa_offset 32
+ 505 0004 0446     		mov	r4, r0
+ 506 0006 1646     		mov	r6, r2
+ 507 0008 1F46     		mov	r7, r3
+ 551:Drivers/BMP388/BMP388.c **** 	HAL_StatusTypeDef status;
+ 508              		.loc 1 551 2 is_stmt 1 view .LVU148
+ 552:Drivers/BMP388/BMP388.c **** 	uint8_t tx_data = reg_addr | 0x80; // Set MSB for read operation in SPI
+ 509              		.loc 1 552 2 view .LVU149
+ 510              		.loc 1 552 10 is_stmt 0 view .LVU150
+ 511 000a 61F07F01 		orn	r1, r1, #127
+ 512              	.LVL52:
+ 513              		.loc 1 552 10 view .LVU151
+ 514 000e 8DF80710 		strb	r1, [sp, #7]
+ 553:Drivers/BMP388/BMP388.c **** 	
+ 554:Drivers/BMP388/BMP388.c **** 	// Pull CS low
+ 555:Drivers/BMP388/BMP388.c **** 	HAL_GPIO_WritePin(bmp->cs_port, bmp->cs_pin, GPIO_PIN_RESET);
+ 515              		.loc 1 555 2 is_stmt 1 view .LVU152
+ 516 0012 0022     		movs	r2, #0
+ 517              	.LVL53:
+ 518              		.loc 1 555 2 is_stmt 0 view .LVU153
+ 519 0014 0189     		ldrh	r1, [r0, #8]
+ 520 0016 4068     		ldr	r0, [r0, #4]
+ 521              	.LVL54:
+ 522              		.loc 1 555 2 view .LVU154
+ 523 0018 FFF7FEFF 		bl	HAL_GPIO_WritePin
+ 524              	.LVL55:
+ 556:Drivers/BMP388/BMP388.c **** 	
+ 557:Drivers/BMP388/BMP388.c **** 	// Transmit register address
+ 558:Drivers/BMP388/BMP388.c **** 	status = HAL_SPI_Transmit(bmp->hspi, &tx_data, 1, 100);
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc5tsvuh.s 			page 20
+
+
+ 525              		.loc 1 558 2 is_stmt 1 view .LVU155
+ 526              		.loc 1 558 11 is_stmt 0 view .LVU156
+ 527 001c 6423     		movs	r3, #100
+ 528 001e 0122     		movs	r2, #1
+ 529 0020 0DF10701 		add	r1, sp, #7
+ 530 0024 2068     		ldr	r0, [r4]
+ 531 0026 FFF7FEFF 		bl	HAL_SPI_Transmit
+ 532              	.LVL56:
+ 559:Drivers/BMP388/BMP388.c **** 	if(status != HAL_OK){
+ 533              		.loc 1 559 2 is_stmt 1 view .LVU157
+ 534              		.loc 1 559 4 is_stmt 0 view .LVU158
+ 535 002a 70B9     		cbnz	r0, .L25
+ 560:Drivers/BMP388/BMP388.c **** 		HAL_GPIO_WritePin(bmp->cs_port, bmp->cs_pin, GPIO_PIN_SET);
+ 561:Drivers/BMP388/BMP388.c **** 		return status;
+ 562:Drivers/BMP388/BMP388.c **** 	}
+ 563:Drivers/BMP388/BMP388.c **** 	
+ 564:Drivers/BMP388/BMP388.c **** 	// Receive data
+ 565:Drivers/BMP388/BMP388.c **** 	status = HAL_SPI_Receive(bmp->hspi, buff, len, 100);
+ 536              		.loc 1 565 2 is_stmt 1 view .LVU159
+ 537              		.loc 1 565 11 is_stmt 0 view .LVU160
+ 538 002c 6423     		movs	r3, #100
+ 539 002e 3A46     		mov	r2, r7
+ 540 0030 3146     		mov	r1, r6
+ 541 0032 2068     		ldr	r0, [r4]
+ 542              	.LVL57:
+ 543              		.loc 1 565 11 view .LVU161
+ 544 0034 FFF7FEFF 		bl	HAL_SPI_Receive
+ 545              	.LVL58:
+ 546 0038 0546     		mov	r5, r0
+ 547              	.LVL59:
+ 566:Drivers/BMP388/BMP388.c **** 	
+ 567:Drivers/BMP388/BMP388.c **** 	// Pull CS high
+ 568:Drivers/BMP388/BMP388.c **** 	HAL_GPIO_WritePin(bmp->cs_port, bmp->cs_pin, GPIO_PIN_SET);
+ 548              		.loc 1 568 2 is_stmt 1 view .LVU162
+ 549 003a 0122     		movs	r2, #1
+ 550 003c 2189     		ldrh	r1, [r4, #8]
+ 551 003e 6068     		ldr	r0, [r4, #4]
+ 552 0040 FFF7FEFF 		bl	HAL_GPIO_WritePin
+ 553              	.LVL60:
+ 569:Drivers/BMP388/BMP388.c **** 	
+ 570:Drivers/BMP388/BMP388.c **** 	return status;
+ 554              		.loc 1 570 2 view .LVU163
+ 555              	.L23:
+ 571:Drivers/BMP388/BMP388.c **** }
+ 556              		.loc 1 571 1 is_stmt 0 view .LVU164
+ 557 0044 2846     		mov	r0, r5
+ 558 0046 03B0     		add	sp, sp, #12
+ 559              		.cfi_remember_state
+ 560              		.cfi_def_cfa_offset 20
+ 561              		@ sp needed
+ 562 0048 F0BD     		pop	{r4, r5, r6, r7, pc}
+ 563              	.LVL61:
+ 564              	.L25:
+ 565              		.cfi_restore_state
+ 566              		.loc 1 571 1 view .LVU165
+ 567 004a 0546     		mov	r5, r0
+ 560:Drivers/BMP388/BMP388.c **** 		return status;
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc5tsvuh.s 			page 21
+
+
+ 568              		.loc 1 560 3 is_stmt 1 view .LVU166
+ 569 004c 0122     		movs	r2, #1
+ 570 004e 2189     		ldrh	r1, [r4, #8]
+ 571 0050 6068     		ldr	r0, [r4, #4]
+ 572              	.LVL62:
+ 560:Drivers/BMP388/BMP388.c **** 		return status;
+ 573              		.loc 1 560 3 is_stmt 0 view .LVU167
+ 574 0052 FFF7FEFF 		bl	HAL_GPIO_WritePin
+ 575              	.LVL63:
+ 561:Drivers/BMP388/BMP388.c **** 	}
+ 576              		.loc 1 561 3 is_stmt 1 view .LVU168
+ 561:Drivers/BMP388/BMP388.c **** 	}
+ 577              		.loc 1 561 10 is_stmt 0 view .LVU169
+ 578 0056 F5E7     		b	.L23
+ 579              		.cfi_endproc
+ 580              	.LFE159:
+ 582              		.section	.text.BMP388_GetFIFOLength,"ax",%progbits
+ 583              		.align	1
+ 584              		.global	BMP388_GetFIFOLength
+ 585              		.syntax unified
+ 586              		.thumb
+ 587              		.thumb_func
+ 589              	BMP388_GetFIFOLength:
+ 590              	.LVL64:
+ 591              	.LFB153:
+ 303:Drivers/BMP388/BMP388.c **** 	HAL_StatusTypeDef rslt;
+ 592              		.loc 1 303 81 is_stmt 1 view -0
+ 593              		.cfi_startproc
+ 594              		@ args = 0, pretend = 0, frame = 8
+ 595              		@ frame_needed = 0, uses_anonymous_args = 0
+ 303:Drivers/BMP388/BMP388.c **** 	HAL_StatusTypeDef rslt;
+ 596              		.loc 1 303 81 is_stmt 0 view .LVU171
+ 597 0000 10B5     		push	{r4, lr}
+ 598              		.cfi_def_cfa_offset 8
+ 599              		.cfi_offset 4, -8
+ 600              		.cfi_offset 14, -4
+ 601 0002 82B0     		sub	sp, sp, #8
+ 602              		.cfi_def_cfa_offset 16
+ 603 0004 0C46     		mov	r4, r1
+ 304:Drivers/BMP388/BMP388.c **** 
+ 604              		.loc 1 304 2 is_stmt 1 view .LVU172
+ 306:Drivers/BMP388/BMP388.c **** 
+ 605              		.loc 1 306 2 view .LVU173
+ 308:Drivers/BMP388/BMP388.c **** 	if(rslt != HAL_OK){
+ 606              		.loc 1 308 2 view .LVU174
+ 308:Drivers/BMP388/BMP388.c **** 	if(rslt != HAL_OK){
+ 607              		.loc 1 308 9 is_stmt 0 view .LVU175
+ 608 0006 0223     		movs	r3, #2
+ 609 0008 01AA     		add	r2, sp, #4
+ 610 000a 1221     		movs	r1, #18
+ 611              	.LVL65:
+ 308:Drivers/BMP388/BMP388.c **** 	if(rslt != HAL_OK){
+ 612              		.loc 1 308 9 view .LVU176
+ 613 000c FFF7FEFF 		bl	BMP388_ReadBytes
+ 614              	.LVL66:
+ 309:Drivers/BMP388/BMP388.c **** 		return rslt;
+ 615              		.loc 1 309 2 is_stmt 1 view .LVU177
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc5tsvuh.s 			page 22
+
+
+ 309:Drivers/BMP388/BMP388.c **** 		return rslt;
+ 616              		.loc 1 309 4 is_stmt 0 view .LVU178
+ 617 0010 30B9     		cbnz	r0, .L27
+ 313:Drivers/BMP388/BMP388.c **** 
+ 618              		.loc 1 313 2 is_stmt 1 view .LVU179
+ 313:Drivers/BMP388/BMP388.c **** 
+ 619              		.loc 1 313 21 is_stmt 0 view .LVU180
+ 620 0012 9DF80520 		ldrb	r2, [sp, #5]	@ zero_extendqisi2
+ 313:Drivers/BMP388/BMP388.c **** 
+ 621              		.loc 1 313 44 view .LVU181
+ 622 0016 9DF80430 		ldrb	r3, [sp, #4]	@ zero_extendqisi2
+ 313:Drivers/BMP388/BMP388.c **** 
+ 623              		.loc 1 313 30 view .LVU182
+ 624 001a 43EA0223 		orr	r3, r3, r2, lsl #8
+ 313:Drivers/BMP388/BMP388.c **** 
+ 625              		.loc 1 313 7 view .LVU183
+ 626 001e 2380     		strh	r3, [r4]	@ movhi
+ 315:Drivers/BMP388/BMP388.c **** }
+ 627              		.loc 1 315 2 is_stmt 1 view .LVU184
+ 628              	.L27:
+ 316:Drivers/BMP388/BMP388.c **** 
+ 629              		.loc 1 316 1 is_stmt 0 view .LVU185
+ 630 0020 02B0     		add	sp, sp, #8
+ 631              		.cfi_def_cfa_offset 8
+ 632              		@ sp needed
+ 633 0022 10BD     		pop	{r4, pc}
+ 316:Drivers/BMP388/BMP388.c **** 
+ 634              		.loc 1 316 1 view .LVU186
+ 635              		.cfi_endproc
+ 636              	.LFE153:
+ 638              		.section	.text.BMP388_GetRawDataFIFO,"ax",%progbits
+ 639              		.align	1
+ 640              		.global	BMP388_GetRawDataFIFO
+ 641              		.syntax unified
+ 642              		.thumb
+ 643              		.thumb_func
+ 645              	BMP388_GetRawDataFIFO:
+ 646              	.LVL67:
+ 647              	.LFB154:
+ 320:Drivers/BMP388/BMP388.c **** 	HAL_StatusTypeDef rslt;
+ 648              		.loc 1 320 107 is_stmt 1 view -0
+ 649              		.cfi_startproc
+ 650              		@ args = 0, pretend = 0, frame = 0
+ 651              		@ frame_needed = 0, uses_anonymous_args = 0
+ 320:Drivers/BMP388/BMP388.c **** 	HAL_StatusTypeDef rslt;
+ 652              		.loc 1 320 107 is_stmt 0 view .LVU188
+ 653 0000 08B5     		push	{r3, lr}
+ 654              		.cfi_def_cfa_offset 8
+ 655              		.cfi_offset 3, -8
+ 656              		.cfi_offset 14, -4
+ 321:Drivers/BMP388/BMP388.c **** 
+ 657              		.loc 1 321 2 is_stmt 1 view .LVU189
+ 324:Drivers/BMP388/BMP388.c **** 	if(rslt != HAL_OK){
+ 658              		.loc 1 324 2 view .LVU190
+ 324:Drivers/BMP388/BMP388.c **** 	if(rslt != HAL_OK){
+ 659              		.loc 1 324 9 is_stmt 0 view .LVU191
+ 660 0002 0B1D     		adds	r3, r1, #4
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc5tsvuh.s 			page 23
+
+
+ 661 0004 DBB2     		uxtb	r3, r3
+ 662 0006 1421     		movs	r1, #20
+ 663              	.LVL68:
+ 324:Drivers/BMP388/BMP388.c **** 	if(rslt != HAL_OK){
+ 664              		.loc 1 324 9 view .LVU192
+ 665 0008 FFF7FEFF 		bl	BMP388_ReadBytes
+ 666              	.LVL69:
+ 325:Drivers/BMP388/BMP388.c **** 		return rslt;
+ 667              		.loc 1 325 2 is_stmt 1 view .LVU193
+ 326:Drivers/BMP388/BMP388.c **** 	}
+ 668              		.loc 1 326 3 view .LVU194
+ 331:Drivers/BMP388/BMP388.c **** 
+ 669              		.loc 1 331 1 is_stmt 0 view .LVU195
+ 670 000c 08BD     		pop	{r3, pc}
+ 671              		.cfi_endproc
+ 672              	.LFE154:
+ 674              		.section	.text.BMP388_GetCalibData,"ax",%progbits
+ 675              		.align	1
+ 676              		.global	BMP388_GetCalibData
+ 677              		.syntax unified
+ 678              		.thumb
+ 679              		.thumb_func
+ 681              	BMP388_GetCalibData:
+ 682              	.LVL70:
+ 683              	.LFB156:
+ 388:Drivers/BMP388/BMP388.c **** 	HAL_StatusTypeDef rslt;
+ 684              		.loc 1 388 65 is_stmt 1 view -0
+ 685              		.cfi_startproc
+ 686              		@ args = 0, pretend = 0, frame = 24
+ 687              		@ frame_needed = 0, uses_anonymous_args = 0
+ 388:Drivers/BMP388/BMP388.c **** 	HAL_StatusTypeDef rslt;
+ 688              		.loc 1 388 65 is_stmt 0 view .LVU197
+ 689 0000 10B5     		push	{r4, lr}
+ 690              		.cfi_def_cfa_offset 8
+ 691              		.cfi_offset 4, -8
+ 692              		.cfi_offset 14, -4
+ 693 0002 86B0     		sub	sp, sp, #24
+ 694              		.cfi_def_cfa_offset 32
+ 695 0004 0446     		mov	r4, r0
+ 389:Drivers/BMP388/BMP388.c **** 	uint8_t calib_buff[BMP3_CALIBDATA_LEN] = {0};
+ 696              		.loc 1 389 2 is_stmt 1 view .LVU198
+ 390:Drivers/BMP388/BMP388.c **** 
+ 697              		.loc 1 390 2 view .LVU199
+ 390:Drivers/BMP388/BMP388.c **** 
+ 698              		.loc 1 390 10 is_stmt 0 view .LVU200
+ 699 0006 6A46     		mov	r2, sp
+ 700 0008 0023     		movs	r3, #0
+ 701 000a 0093     		str	r3, [sp]
+ 702 000c 0193     		str	r3, [sp, #4]
+ 703 000e 0293     		str	r3, [sp, #8]
+ 704 0010 0393     		str	r3, [sp, #12]
+ 705 0012 0493     		str	r3, [sp, #16]
+ 706 0014 8DF81430 		strb	r3, [sp, #20]
+ 392:Drivers/BMP388/BMP388.c **** 	uint16_t	raw_par_t2;
+ 707              		.loc 1 392 2 is_stmt 1 view .LVU201
+ 393:Drivers/BMP388/BMP388.c **** 	int8_t		raw_par_t3;
+ 708              		.loc 1 393 2 view .LVU202
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc5tsvuh.s 			page 24
+
+
+ 394:Drivers/BMP388/BMP388.c **** 	int16_t		raw_par_p1;
+ 709              		.loc 1 394 2 view .LVU203
+ 395:Drivers/BMP388/BMP388.c **** 	int16_t		raw_par_p2;
+ 710              		.loc 1 395 2 view .LVU204
+ 396:Drivers/BMP388/BMP388.c **** 	int8_t		raw_par_p3;
+ 711              		.loc 1 396 2 view .LVU205
+ 397:Drivers/BMP388/BMP388.c **** 	int8_t		raw_par_p4;
+ 712              		.loc 1 397 2 view .LVU206
+ 398:Drivers/BMP388/BMP388.c **** 	uint16_t	raw_par_p5;
+ 713              		.loc 1 398 2 view .LVU207
+ 399:Drivers/BMP388/BMP388.c **** 	uint16_t	raw_par_p6;
+ 714              		.loc 1 399 2 view .LVU208
+ 400:Drivers/BMP388/BMP388.c **** 	int8_t		raw_par_p7;
+ 715              		.loc 1 400 2 view .LVU209
+ 401:Drivers/BMP388/BMP388.c **** 	int8_t		raw_par_p8;
+ 716              		.loc 1 401 2 view .LVU210
+ 402:Drivers/BMP388/BMP388.c **** 	int16_t		raw_par_p9;
+ 717              		.loc 1 402 2 view .LVU211
+ 403:Drivers/BMP388/BMP388.c **** 	int8_t		raw_par_p10;
+ 718              		.loc 1 403 2 view .LVU212
+ 404:Drivers/BMP388/BMP388.c **** 	int8_t		raw_par_p11;
+ 719              		.loc 1 404 2 view .LVU213
+ 405:Drivers/BMP388/BMP388.c **** 
+ 720              		.loc 1 405 2 view .LVU214
+ 407:Drivers/BMP388/BMP388.c **** 
+ 721              		.loc 1 407 2 view .LVU215
+ 407:Drivers/BMP388/BMP388.c **** 
+ 722              		.loc 1 407 9 is_stmt 0 view .LVU216
+ 723 0018 1523     		movs	r3, #21
+ 724 001a 3121     		movs	r1, #49
+ 725 001c FFF7FEFF 		bl	BMP388_ReadBytes
+ 726              	.LVL71:
+ 409:Drivers/BMP388/BMP388.c **** 	if(rslt == HAL_OK){
+ 727              		.loc 1 409 2 is_stmt 1 view .LVU217
+ 410:Drivers/BMP388/BMP388.c **** 		// PAR_T1
+ 728              		.loc 1 410 2 view .LVU218
+ 410:Drivers/BMP388/BMP388.c **** 		// PAR_T1
+ 729              		.loc 1 410 4 is_stmt 0 view .LVU219
+ 730 0020 0246     		mov	r2, r0
+ 731 0022 0028     		cmp	r0, #0
+ 732 0024 40F0C980 		bne	.L32
+ 412:Drivers/BMP388/BMP388.c **** 		raw_par_t1 = ((uint16_t)calib_buff[1] << 8) | (uint16_t)calib_buff[0];
+ 733              		.loc 1 412 3 is_stmt 1 view .LVU220
+ 734              	.LVL72:
+ 413:Drivers/BMP388/BMP388.c **** 		bmp->calib_data.par_t1 = (float)raw_par_t1 / temp_var;
+ 735              		.loc 1 413 3 view .LVU221
+ 413:Drivers/BMP388/BMP388.c **** 		bmp->calib_data.par_t1 = (float)raw_par_t1 / temp_var;
+ 736              		.loc 1 413 37 is_stmt 0 view .LVU222
+ 737 0028 9DF80110 		ldrb	r1, [sp, #1]	@ zero_extendqisi2
+ 413:Drivers/BMP388/BMP388.c **** 		bmp->calib_data.par_t1 = (float)raw_par_t1 / temp_var;
+ 738              		.loc 1 413 69 view .LVU223
+ 739 002c 9DF80030 		ldrb	r3, [sp]	@ zero_extendqisi2
+ 413:Drivers/BMP388/BMP388.c **** 		bmp->calib_data.par_t1 = (float)raw_par_t1 / temp_var;
+ 740              		.loc 1 413 14 view .LVU224
+ 741 0030 43EA0123 		orr	r3, r3, r1, lsl #8
+ 742 0034 07EE903A 		vmov	s15, r3	@ int
+ 743              	.LVL73:
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc5tsvuh.s 			page 25
+
+
+ 414:Drivers/BMP388/BMP388.c **** 		// PAR_T2
+ 744              		.loc 1 414 3 is_stmt 1 view .LVU225
+ 414:Drivers/BMP388/BMP388.c **** 		// PAR_T2
+ 745              		.loc 1 414 28 is_stmt 0 view .LVU226
+ 746 0038 F8EE677A 		vcvt.f32.u32	s15, s15
+ 747              	.LVL74:
+ 414:Drivers/BMP388/BMP388.c **** 		// PAR_T2
+ 748              		.loc 1 414 46 view .LVU227
+ 749 003c 9FED607A 		vldr.32	s14, .L34
+ 750 0040 67EE877A 		vmul.f32	s15, s15, s14
+ 414:Drivers/BMP388/BMP388.c **** 		// PAR_T2
+ 751              		.loc 1 414 26 view .LVU228
+ 752 0044 C4ED047A 		vstr.32	s15, [r4, #16]
+ 416:Drivers/BMP388/BMP388.c **** 		raw_par_t2 = ((uint16_t)calib_buff[3] << 8) | (uint16_t)calib_buff[2];
+ 753              		.loc 1 416 3 is_stmt 1 view .LVU229
+ 754              	.LVL75:
+ 417:Drivers/BMP388/BMP388.c **** 		bmp->calib_data.par_t2 = (float)raw_par_t2 / temp_var;
+ 755              		.loc 1 417 3 view .LVU230
+ 417:Drivers/BMP388/BMP388.c **** 		bmp->calib_data.par_t2 = (float)raw_par_t2 / temp_var;
+ 756              		.loc 1 417 37 is_stmt 0 view .LVU231
+ 757 0048 9DF80310 		ldrb	r1, [sp, #3]	@ zero_extendqisi2
+ 417:Drivers/BMP388/BMP388.c **** 		bmp->calib_data.par_t2 = (float)raw_par_t2 / temp_var;
+ 758              		.loc 1 417 69 view .LVU232
+ 759 004c 9DF80230 		ldrb	r3, [sp, #2]	@ zero_extendqisi2
+ 760              	.LVL76:
+ 417:Drivers/BMP388/BMP388.c **** 		bmp->calib_data.par_t2 = (float)raw_par_t2 / temp_var;
+ 761              		.loc 1 417 14 view .LVU233
+ 762 0050 43EA0123 		orr	r3, r3, r1, lsl #8
+ 763 0054 07EE903A 		vmov	s15, r3	@ int
+ 764              	.LVL77:
+ 418:Drivers/BMP388/BMP388.c **** 		// PAR_T3
+ 765              		.loc 1 418 3 is_stmt 1 view .LVU234
+ 418:Drivers/BMP388/BMP388.c **** 		// PAR_T3
+ 766              		.loc 1 418 28 is_stmt 0 view .LVU235
+ 767 0058 F8EE677A 		vcvt.f32.u32	s15, s15
+ 768              	.LVL78:
+ 418:Drivers/BMP388/BMP388.c **** 		// PAR_T3
+ 769              		.loc 1 418 46 view .LVU236
+ 770 005c 9FED597A 		vldr.32	s14, .L34+4
+ 771 0060 67EE877A 		vmul.f32	s15, s15, s14
+ 418:Drivers/BMP388/BMP388.c **** 		// PAR_T3
+ 772              		.loc 1 418 26 view .LVU237
+ 773 0064 C4ED057A 		vstr.32	s15, [r4, #20]
+ 420:Drivers/BMP388/BMP388.c **** 		raw_par_t3 = calib_buff[4];
+ 774              		.loc 1 420 3 is_stmt 1 view .LVU238
+ 775              	.LVL79:
+ 421:Drivers/BMP388/BMP388.c **** 		bmp->calib_data.par_t3 = (float)raw_par_t3 / temp_var;
+ 776              		.loc 1 421 3 view .LVU239
+ 421:Drivers/BMP388/BMP388.c **** 		bmp->calib_data.par_t3 = (float)raw_par_t3 / temp_var;
+ 777              		.loc 1 421 14 is_stmt 0 view .LVU240
+ 778 0068 9DF90430 		ldrsb	r3, [sp, #4]
+ 779              	.LVL80:
+ 421:Drivers/BMP388/BMP388.c **** 		bmp->calib_data.par_t3 = (float)raw_par_t3 / temp_var;
+ 780              		.loc 1 421 14 view .LVU241
+ 781 006c 07EE903A 		vmov	s15, r3	@ int
+ 782              	.LVL81:
+ 422:Drivers/BMP388/BMP388.c **** 		// PAR_P1
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc5tsvuh.s 			page 26
+
+
+ 783              		.loc 1 422 3 is_stmt 1 view .LVU242
+ 422:Drivers/BMP388/BMP388.c **** 		// PAR_P1
+ 784              		.loc 1 422 28 is_stmt 0 view .LVU243
+ 785 0070 F8EEE77A 		vcvt.f32.s32	s15, s15
+ 422:Drivers/BMP388/BMP388.c **** 		// PAR_P1
+ 786              		.loc 1 422 46 view .LVU244
+ 787 0074 9FED547A 		vldr.32	s14, .L34+8
+ 788 0078 67EE877A 		vmul.f32	s15, s15, s14
+ 422:Drivers/BMP388/BMP388.c **** 		// PAR_P1
+ 789              		.loc 1 422 26 view .LVU245
+ 790 007c C4ED067A 		vstr.32	s15, [r4, #24]
+ 424:Drivers/BMP388/BMP388.c **** 		raw_par_p1 = ((int16_t)calib_buff[6] << 8) | (int16_t)calib_buff[5];
+ 791              		.loc 1 424 3 is_stmt 1 view .LVU246
+ 792              	.LVL82:
+ 425:Drivers/BMP388/BMP388.c **** 		bmp->calib_data.par_p1 = ((float)raw_par_p1 - 16384) / temp_var;
+ 793              		.loc 1 425 3 view .LVU247
+ 425:Drivers/BMP388/BMP388.c **** 		bmp->calib_data.par_p1 = ((float)raw_par_p1 - 16384) / temp_var;
+ 794              		.loc 1 425 36 is_stmt 0 view .LVU248
+ 795 0080 9DF80630 		ldrb	r3, [sp, #6]	@ zero_extendqisi2
+ 425:Drivers/BMP388/BMP388.c **** 		bmp->calib_data.par_p1 = ((float)raw_par_p1 - 16384) / temp_var;
+ 796              		.loc 1 425 46 view .LVU249
+ 797 0084 1B02     		lsls	r3, r3, #8
+ 798 0086 1BB2     		sxth	r3, r3
+ 425:Drivers/BMP388/BMP388.c **** 		bmp->calib_data.par_p1 = ((float)raw_par_p1 - 16384) / temp_var;
+ 799              		.loc 1 425 67 view .LVU250
+ 800 0088 9DF80510 		ldrb	r1, [sp, #5]	@ zero_extendqisi2
+ 801              	.LVL83:
+ 425:Drivers/BMP388/BMP388.c **** 		bmp->calib_data.par_p1 = ((float)raw_par_p1 - 16384) / temp_var;
+ 802              		.loc 1 425 14 view .LVU251
+ 803 008c 0B43     		orrs	r3, r3, r1
+ 804 008e 07EE903A 		vmov	s15, r3	@ int
+ 805              	.LVL84:
+ 426:Drivers/BMP388/BMP388.c **** 		// PAR_P2
+ 806              		.loc 1 426 3 is_stmt 1 view .LVU252
+ 426:Drivers/BMP388/BMP388.c **** 		// PAR_P2
+ 807              		.loc 1 426 29 is_stmt 0 view .LVU253
+ 808 0092 F8EEE77A 		vcvt.f32.s32	s15, s15
+ 809              	.LVL85:
+ 426:Drivers/BMP388/BMP388.c **** 		// PAR_P2
+ 810              		.loc 1 426 47 view .LVU254
+ 811 0096 DFED4D6A 		vldr.32	s13, .L34+12
+ 812 009a 77EEE67A 		vsub.f32	s15, s15, s13
+ 426:Drivers/BMP388/BMP388.c **** 		// PAR_P2
+ 813              		.loc 1 426 56 view .LVU255
+ 814 009e 9FED4C6A 		vldr.32	s12, .L34+16
+ 815 00a2 67EE867A 		vmul.f32	s15, s15, s12
+ 426:Drivers/BMP388/BMP388.c **** 		// PAR_P2
+ 816              		.loc 1 426 26 view .LVU256
+ 817 00a6 C4ED077A 		vstr.32	s15, [r4, #28]
+ 428:Drivers/BMP388/BMP388.c **** 		raw_par_p2 = ((int16_t)calib_buff[8] << 8) | (int16_t)calib_buff[7];
+ 818              		.loc 1 428 3 is_stmt 1 view .LVU257
+ 819              	.LVL86:
+ 429:Drivers/BMP388/BMP388.c **** 		bmp->calib_data.par_p2 = ((float)raw_par_p2 - 16384) / temp_var;
+ 820              		.loc 1 429 3 view .LVU258
+ 429:Drivers/BMP388/BMP388.c **** 		bmp->calib_data.par_p2 = ((float)raw_par_p2 - 16384) / temp_var;
+ 821              		.loc 1 429 36 is_stmt 0 view .LVU259
+ 822 00aa 9DF80830 		ldrb	r3, [sp, #8]	@ zero_extendqisi2
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc5tsvuh.s 			page 27
+
+
+ 823              	.LVL87:
+ 429:Drivers/BMP388/BMP388.c **** 		bmp->calib_data.par_p2 = ((float)raw_par_p2 - 16384) / temp_var;
+ 824              		.loc 1 429 46 view .LVU260
+ 825 00ae 1B02     		lsls	r3, r3, #8
+ 826 00b0 1BB2     		sxth	r3, r3
+ 429:Drivers/BMP388/BMP388.c **** 		bmp->calib_data.par_p2 = ((float)raw_par_p2 - 16384) / temp_var;
+ 827              		.loc 1 429 67 view .LVU261
+ 828 00b2 9DF80710 		ldrb	r1, [sp, #7]	@ zero_extendqisi2
+ 829              	.LVL88:
+ 429:Drivers/BMP388/BMP388.c **** 		bmp->calib_data.par_p2 = ((float)raw_par_p2 - 16384) / temp_var;
+ 830              		.loc 1 429 14 view .LVU262
+ 831 00b6 0B43     		orrs	r3, r3, r1
+ 832 00b8 07EE903A 		vmov	s15, r3	@ int
+ 833              	.LVL89:
+ 430:Drivers/BMP388/BMP388.c **** 		// PAR_P3
+ 834              		.loc 1 430 3 is_stmt 1 view .LVU263
+ 430:Drivers/BMP388/BMP388.c **** 		// PAR_P3
+ 835              		.loc 1 430 29 is_stmt 0 view .LVU264
+ 836 00bc F8EEE77A 		vcvt.f32.s32	s15, s15
+ 837              	.LVL90:
+ 430:Drivers/BMP388/BMP388.c **** 		// PAR_P3
+ 838              		.loc 1 430 47 view .LVU265
+ 839 00c0 77EEE67A 		vsub.f32	s15, s15, s13
+ 430:Drivers/BMP388/BMP388.c **** 		// PAR_P3
+ 840              		.loc 1 430 56 view .LVU266
+ 841 00c4 DFED436A 		vldr.32	s13, .L34+20
+ 842 00c8 67EEA67A 		vmul.f32	s15, s15, s13
+ 430:Drivers/BMP388/BMP388.c **** 		// PAR_P3
+ 843              		.loc 1 430 26 view .LVU267
+ 844 00cc C4ED087A 		vstr.32	s15, [r4, #32]
+ 432:Drivers/BMP388/BMP388.c **** 		raw_par_p3 = (int8_t)calib_buff[9];
+ 845              		.loc 1 432 3 is_stmt 1 view .LVU268
+ 846              	.LVL91:
+ 433:Drivers/BMP388/BMP388.c **** 		bmp->calib_data.par_p3 = (float)raw_par_p3 / temp_var;
+ 847              		.loc 1 433 3 view .LVU269
+ 433:Drivers/BMP388/BMP388.c **** 		bmp->calib_data.par_p3 = (float)raw_par_p3 / temp_var;
+ 848              		.loc 1 433 14 is_stmt 0 view .LVU270
+ 849 00d0 9DF90930 		ldrsb	r3, [sp, #9]
+ 850              	.LVL92:
+ 433:Drivers/BMP388/BMP388.c **** 		bmp->calib_data.par_p3 = (float)raw_par_p3 / temp_var;
+ 851              		.loc 1 433 14 view .LVU271
+ 852 00d4 07EE903A 		vmov	s15, r3	@ int
+ 853              	.LVL93:
+ 434:Drivers/BMP388/BMP388.c **** 		// PAR_P4
+ 854              		.loc 1 434 3 is_stmt 1 view .LVU272
+ 434:Drivers/BMP388/BMP388.c **** 		// PAR_P4
+ 855              		.loc 1 434 28 is_stmt 0 view .LVU273
+ 856 00d8 F8EEE77A 		vcvt.f32.s32	s15, s15
+ 434:Drivers/BMP388/BMP388.c **** 		// PAR_P4
+ 857              		.loc 1 434 46 view .LVU274
+ 858 00dc DFED3E6A 		vldr.32	s13, .L34+24
+ 859 00e0 67EEA67A 		vmul.f32	s15, s15, s13
+ 434:Drivers/BMP388/BMP388.c **** 		// PAR_P4
+ 860              		.loc 1 434 26 view .LVU275
+ 861 00e4 C4ED097A 		vstr.32	s15, [r4, #36]
+ 436:Drivers/BMP388/BMP388.c **** 		raw_par_p4 = (int8_t)calib_buff[10];
+ 862              		.loc 1 436 3 is_stmt 1 view .LVU276
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc5tsvuh.s 			page 28
+
+
+ 863              	.LVL94:
+ 437:Drivers/BMP388/BMP388.c **** 		bmp->calib_data.par_p4 = (float)raw_par_p4 / temp_var;
+ 864              		.loc 1 437 3 view .LVU277
+ 437:Drivers/BMP388/BMP388.c **** 		bmp->calib_data.par_p4 = (float)raw_par_p4 / temp_var;
+ 865              		.loc 1 437 14 is_stmt 0 view .LVU278
+ 866 00e8 9DF90A30 		ldrsb	r3, [sp, #10]
+ 867 00ec 07EE903A 		vmov	s15, r3	@ int
+ 868              	.LVL95:
+ 438:Drivers/BMP388/BMP388.c **** 		// PAR_P5
+ 869              		.loc 1 438 3 is_stmt 1 view .LVU279
+ 438:Drivers/BMP388/BMP388.c **** 		// PAR_P5
+ 870              		.loc 1 438 28 is_stmt 0 view .LVU280
+ 871 00f0 F8EEE77A 		vcvt.f32.s32	s15, s15
+ 438:Drivers/BMP388/BMP388.c **** 		// PAR_P5
+ 872              		.loc 1 438 46 view .LVU281
+ 873 00f4 DFED396A 		vldr.32	s13, .L34+28
+ 874 00f8 67EEA67A 		vmul.f32	s15, s15, s13
+ 438:Drivers/BMP388/BMP388.c **** 		// PAR_P5
+ 875              		.loc 1 438 26 view .LVU282
+ 876 00fc C4ED0A7A 		vstr.32	s15, [r4, #40]
+ 440:Drivers/BMP388/BMP388.c **** 		raw_par_p5 = ((uint16_t)calib_buff[12] << 8) | (uint16_t)calib_buff[11];
+ 877              		.loc 1 440 3 is_stmt 1 view .LVU283
+ 878              	.LVL96:
+ 441:Drivers/BMP388/BMP388.c **** 		bmp->calib_data.par_p5 = (float)raw_par_p5 / temp_var;
+ 879              		.loc 1 441 3 view .LVU284
+ 441:Drivers/BMP388/BMP388.c **** 		bmp->calib_data.par_p5 = (float)raw_par_p5 / temp_var;
+ 880              		.loc 1 441 37 is_stmt 0 view .LVU285
+ 881 0100 9DF80C10 		ldrb	r1, [sp, #12]	@ zero_extendqisi2
+ 882              	.LVL97:
+ 441:Drivers/BMP388/BMP388.c **** 		bmp->calib_data.par_p5 = (float)raw_par_p5 / temp_var;
+ 883              		.loc 1 441 70 view .LVU286
+ 884 0104 9DF80B30 		ldrb	r3, [sp, #11]	@ zero_extendqisi2
+ 441:Drivers/BMP388/BMP388.c **** 		bmp->calib_data.par_p5 = (float)raw_par_p5 / temp_var;
+ 885              		.loc 1 441 14 view .LVU287
+ 886 0108 43EA0123 		orr	r3, r3, r1, lsl #8
+ 887 010c 07EE903A 		vmov	s15, r3	@ int
+ 888              	.LVL98:
+ 442:Drivers/BMP388/BMP388.c **** 		// PAR_P6
+ 889              		.loc 1 442 3 is_stmt 1 view .LVU288
+ 442:Drivers/BMP388/BMP388.c **** 		// PAR_P6
+ 890              		.loc 1 442 28 is_stmt 0 view .LVU289
+ 891 0110 F8EE677A 		vcvt.f32.u32	s15, s15
+ 892              	.LVL99:
+ 442:Drivers/BMP388/BMP388.c **** 		// PAR_P6
+ 893              		.loc 1 442 46 view .LVU290
+ 894 0114 F2EE006A 		vmov.f32	s13, #8.0e+0
+ 895 0118 67EEA67A 		vmul.f32	s15, s15, s13
+ 442:Drivers/BMP388/BMP388.c **** 		// PAR_P6
+ 896              		.loc 1 442 26 view .LVU291
+ 897 011c C4ED0B7A 		vstr.32	s15, [r4, #44]
+ 444:Drivers/BMP388/BMP388.c **** 		raw_par_p6 = ((uint16_t)calib_buff[14] << 8) | (uint16_t)calib_buff[13];
+ 898              		.loc 1 444 3 is_stmt 1 view .LVU292
+ 899              	.LVL100:
+ 445:Drivers/BMP388/BMP388.c **** 		bmp->calib_data.par_p6 = (float)raw_par_p6 / temp_var;
+ 900              		.loc 1 445 3 view .LVU293
+ 445:Drivers/BMP388/BMP388.c **** 		bmp->calib_data.par_p6 = (float)raw_par_p6 / temp_var;
+ 901              		.loc 1 445 37 is_stmt 0 view .LVU294
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc5tsvuh.s 			page 29
+
+
+ 902 0120 9DF80E10 		ldrb	r1, [sp, #14]	@ zero_extendqisi2
+ 445:Drivers/BMP388/BMP388.c **** 		bmp->calib_data.par_p6 = (float)raw_par_p6 / temp_var;
+ 903              		.loc 1 445 70 view .LVU295
+ 904 0124 9DF80D30 		ldrb	r3, [sp, #13]	@ zero_extendqisi2
+ 905              	.LVL101:
+ 445:Drivers/BMP388/BMP388.c **** 		bmp->calib_data.par_p6 = (float)raw_par_p6 / temp_var;
+ 906              		.loc 1 445 14 view .LVU296
+ 907 0128 43EA0123 		orr	r3, r3, r1, lsl #8
+ 908 012c 07EE903A 		vmov	s15, r3	@ int
+ 909              	.LVL102:
+ 446:Drivers/BMP388/BMP388.c **** 		// PAR_P7
+ 910              		.loc 1 446 3 is_stmt 1 view .LVU297
+ 446:Drivers/BMP388/BMP388.c **** 		// PAR_P7
+ 911              		.loc 1 446 28 is_stmt 0 view .LVU298
+ 912 0130 F8EE677A 		vcvt.f32.u32	s15, s15
+ 913              	.LVL103:
+ 446:Drivers/BMP388/BMP388.c **** 		// PAR_P7
+ 914              		.loc 1 446 46 view .LVU299
+ 915 0134 DFED2A6A 		vldr.32	s13, .L34+32
+ 916 0138 67EEA67A 		vmul.f32	s15, s15, s13
+ 446:Drivers/BMP388/BMP388.c **** 		// PAR_P7
+ 917              		.loc 1 446 26 view .LVU300
+ 918 013c C4ED0C7A 		vstr.32	s15, [r4, #48]
+ 448:Drivers/BMP388/BMP388.c **** 		raw_par_p7 = (int8_t)calib_buff[15];
+ 919              		.loc 1 448 3 is_stmt 1 view .LVU301
+ 920              	.LVL104:
+ 449:Drivers/BMP388/BMP388.c **** 		bmp->calib_data.par_p7 = (float)raw_par_p7 / temp_var;
+ 921              		.loc 1 449 3 view .LVU302
+ 449:Drivers/BMP388/BMP388.c **** 		bmp->calib_data.par_p7 = (float)raw_par_p7 / temp_var;
+ 922              		.loc 1 449 14 is_stmt 0 view .LVU303
+ 923 0140 9DF90F30 		ldrsb	r3, [sp, #15]
+ 924              	.LVL105:
+ 449:Drivers/BMP388/BMP388.c **** 		bmp->calib_data.par_p7 = (float)raw_par_p7 / temp_var;
+ 925              		.loc 1 449 14 view .LVU304
+ 926 0144 07EE903A 		vmov	s15, r3	@ int
+ 927              	.LVL106:
+ 450:Drivers/BMP388/BMP388.c **** 		// PAR_P8
+ 928              		.loc 1 450 3 is_stmt 1 view .LVU305
+ 450:Drivers/BMP388/BMP388.c **** 		// PAR_P8
+ 929              		.loc 1 450 28 is_stmt 0 view .LVU306
+ 930 0148 F8EEE77A 		vcvt.f32.s32	s15, s15
+ 450:Drivers/BMP388/BMP388.c **** 		// PAR_P8
+ 931              		.loc 1 450 46 view .LVU307
+ 932 014c DFED256A 		vldr.32	s13, .L34+36
+ 933 0150 67EEA67A 		vmul.f32	s15, s15, s13
+ 450:Drivers/BMP388/BMP388.c **** 		// PAR_P8
+ 934              		.loc 1 450 26 view .LVU308
+ 935 0154 C4ED0D7A 		vstr.32	s15, [r4, #52]
+ 452:Drivers/BMP388/BMP388.c **** 		raw_par_p8 = (int8_t)calib_buff[16];
+ 936              		.loc 1 452 3 is_stmt 1 view .LVU309
+ 937              	.LVL107:
+ 453:Drivers/BMP388/BMP388.c **** 		bmp->calib_data.par_p8 = (float)raw_par_p8 / temp_var;
+ 938              		.loc 1 453 3 view .LVU310
+ 453:Drivers/BMP388/BMP388.c **** 		bmp->calib_data.par_p8 = (float)raw_par_p8 / temp_var;
+ 939              		.loc 1 453 14 is_stmt 0 view .LVU311
+ 940 0158 9DF91030 		ldrsb	r3, [sp, #16]
+ 941 015c 07EE903A 		vmov	s15, r3	@ int
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc5tsvuh.s 			page 30
+
+
+ 942              	.LVL108:
+ 454:Drivers/BMP388/BMP388.c **** 		// PAR_P9
+ 943              		.loc 1 454 3 is_stmt 1 view .LVU312
+ 454:Drivers/BMP388/BMP388.c **** 		// PAR_P9
+ 944              		.loc 1 454 28 is_stmt 0 view .LVU313
+ 945 0160 F8EEE77A 		vcvt.f32.s32	s15, s15
+ 454:Drivers/BMP388/BMP388.c **** 		// PAR_P9
+ 946              		.loc 1 454 46 view .LVU314
+ 947 0164 DFED206A 		vldr.32	s13, .L34+40
+ 948 0168 67EEA67A 		vmul.f32	s15, s15, s13
+ 454:Drivers/BMP388/BMP388.c **** 		// PAR_P9
+ 949              		.loc 1 454 26 view .LVU315
+ 950 016c C4ED0E7A 		vstr.32	s15, [r4, #56]
+ 456:Drivers/BMP388/BMP388.c **** 		raw_par_p9 = ((int16_t)calib_buff[18] << 8) | (int16_t)calib_buff[17];
+ 951              		.loc 1 456 3 is_stmt 1 view .LVU316
+ 952              	.LVL109:
+ 457:Drivers/BMP388/BMP388.c **** 		bmp->calib_data.par_p9 = (float)raw_par_p9 / temp_var;
+ 953              		.loc 1 457 3 view .LVU317
+ 457:Drivers/BMP388/BMP388.c **** 		bmp->calib_data.par_p9 = (float)raw_par_p9 / temp_var;
+ 954              		.loc 1 457 36 is_stmt 0 view .LVU318
+ 955 0170 9DF81230 		ldrb	r3, [sp, #18]	@ zero_extendqisi2
+ 457:Drivers/BMP388/BMP388.c **** 		bmp->calib_data.par_p9 = (float)raw_par_p9 / temp_var;
+ 956              		.loc 1 457 47 view .LVU319
+ 957 0174 1B02     		lsls	r3, r3, #8
+ 958 0176 1BB2     		sxth	r3, r3
+ 457:Drivers/BMP388/BMP388.c **** 		bmp->calib_data.par_p9 = (float)raw_par_p9 / temp_var;
+ 959              		.loc 1 457 68 view .LVU320
+ 960 0178 9DF81110 		ldrb	r1, [sp, #17]	@ zero_extendqisi2
+ 961              	.LVL110:
+ 457:Drivers/BMP388/BMP388.c **** 		bmp->calib_data.par_p9 = (float)raw_par_p9 / temp_var;
+ 962              		.loc 1 457 14 view .LVU321
+ 963 017c 0B43     		orrs	r3, r3, r1
+ 964 017e 07EE903A 		vmov	s15, r3	@ int
+ 965              	.LVL111:
+ 458:Drivers/BMP388/BMP388.c **** 		// PAR_P10
+ 966              		.loc 1 458 3 is_stmt 1 view .LVU322
+ 458:Drivers/BMP388/BMP388.c **** 		// PAR_P10
+ 967              		.loc 1 458 28 is_stmt 0 view .LVU323
+ 968 0182 F8EEE77A 		vcvt.f32.s32	s15, s15
+ 969              	.LVL112:
+ 458:Drivers/BMP388/BMP388.c **** 		// PAR_P10
+ 970              		.loc 1 458 46 view .LVU324
+ 971 0186 67EE877A 		vmul.f32	s15, s15, s14
+ 458:Drivers/BMP388/BMP388.c **** 		// PAR_P10
+ 972              		.loc 1 458 26 view .LVU325
+ 973 018a C4ED0F7A 		vstr.32	s15, [r4, #60]
+ 460:Drivers/BMP388/BMP388.c **** 		raw_par_p10 = (int8_t)calib_buff[19];
+ 974              		.loc 1 460 3 is_stmt 1 view .LVU326
+ 461:Drivers/BMP388/BMP388.c **** 		bmp->calib_data.par_p10 = (float)raw_par_p10 / temp_var;
+ 975              		.loc 1 461 3 view .LVU327
+ 461:Drivers/BMP388/BMP388.c **** 		bmp->calib_data.par_p10 = (float)raw_par_p10 / temp_var;
+ 976              		.loc 1 461 15 is_stmt 0 view .LVU328
+ 977 018e 9DF91330 		ldrsb	r3, [sp, #19]
+ 978              	.LVL113:
+ 461:Drivers/BMP388/BMP388.c **** 		bmp->calib_data.par_p10 = (float)raw_par_p10 / temp_var;
+ 979              		.loc 1 461 15 view .LVU329
+ 980 0192 07EE903A 		vmov	s15, r3	@ int
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc5tsvuh.s 			page 31
+
+
+ 981              	.LVL114:
+ 462:Drivers/BMP388/BMP388.c **** 		// PAR_P11
+ 982              		.loc 1 462 3 is_stmt 1 view .LVU330
+ 462:Drivers/BMP388/BMP388.c **** 		// PAR_P11
+ 983              		.loc 1 462 29 is_stmt 0 view .LVU331
+ 984 0196 F8EEE77A 		vcvt.f32.s32	s15, s15
+ 462:Drivers/BMP388/BMP388.c **** 		// PAR_P11
+ 985              		.loc 1 462 48 view .LVU332
+ 986 019a 67EE877A 		vmul.f32	s15, s15, s14
+ 462:Drivers/BMP388/BMP388.c **** 		// PAR_P11
+ 987              		.loc 1 462 27 view .LVU333
+ 988 019e C4ED107A 		vstr.32	s15, [r4, #64]
+ 464:Drivers/BMP388/BMP388.c **** 		raw_par_p11 = (int8_t)calib_buff[20];
+ 989              		.loc 1 464 3 is_stmt 1 view .LVU334
+ 990              	.LVL115:
+ 465:Drivers/BMP388/BMP388.c **** 		bmp->calib_data.par_p11 = (float)raw_par_p11 / temp_var;
+ 991              		.loc 1 465 3 view .LVU335
+ 465:Drivers/BMP388/BMP388.c **** 		bmp->calib_data.par_p11 = (float)raw_par_p11 / temp_var;
+ 992              		.loc 1 465 15 is_stmt 0 view .LVU336
+ 993 01a2 9DF91430 		ldrsb	r3, [sp, #20]
+ 994 01a6 07EE903A 		vmov	s15, r3	@ int
+ 995              	.LVL116:
+ 466:Drivers/BMP388/BMP388.c **** 	}
+ 996              		.loc 1 466 3 is_stmt 1 view .LVU337
+ 466:Drivers/BMP388/BMP388.c **** 	}
+ 997              		.loc 1 466 29 is_stmt 0 view .LVU338
+ 998 01aa F8EEE77A 		vcvt.f32.s32	s15, s15
+ 466:Drivers/BMP388/BMP388.c **** 	}
+ 999              		.loc 1 466 48 view .LVU339
+ 1000 01ae 9FED0F7A 		vldr.32	s14, .L34+44
+ 1001 01b2 67EE877A 		vmul.f32	s15, s15, s14
+ 466:Drivers/BMP388/BMP388.c **** 	}
+ 1002              		.loc 1 466 27 view .LVU340
+ 1003 01b6 C4ED117A 		vstr.32	s15, [r4, #68]
+ 1004              	.LVL117:
+ 1005              	.L32:
+ 468:Drivers/BMP388/BMP388.c **** }
+ 1006              		.loc 1 468 2 is_stmt 1 view .LVU341
+ 469:Drivers/BMP388/BMP388.c **** 
+ 1007              		.loc 1 469 1 is_stmt 0 view .LVU342
+ 1008 01ba 1046     		mov	r0, r2
+ 1009              	.LVL118:
+ 469:Drivers/BMP388/BMP388.c **** 
+ 1010              		.loc 1 469 1 view .LVU343
+ 1011 01bc 06B0     		add	sp, sp, #24
+ 1012              		.cfi_def_cfa_offset 8
+ 1013              		@ sp needed
+ 1014 01be 10BD     		pop	{r4, pc}
+ 1015              	.LVL119:
+ 1016              	.L35:
+ 469:Drivers/BMP388/BMP388.c **** 
+ 1017              		.loc 1 469 1 view .LVU344
+ 1018              		.align	2
+ 1019              	.L34:
+ 1020 01c0 00008043 		.word	1132462080
+ 1021 01c4 00008030 		.word	813694976
+ 1022 01c8 00008027 		.word	662700032
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc5tsvuh.s 			page 32
+
+
+ 1023 01cc 00008046 		.word	1182793728
+ 1024 01d0 00008035 		.word	897581056
+ 1025 01d4 00000031 		.word	822083584
+ 1026 01d8 0000802F 		.word	796917760
+ 1027 01dc 0000002D 		.word	754974720
+ 1028 01e0 0000803C 		.word	1015021568
+ 1029 01e4 0000803B 		.word	998244352
+ 1030 01e8 00000038 		.word	939524096
+ 1031 01ec 0000001F 		.word	520093696
+ 1032              		.cfi_endproc
+ 1033              	.LFE156:
+ 1035              		.section	.text.BMP388_WriteBytes,"ax",%progbits
+ 1036              		.align	1
+ 1037              		.global	BMP388_WriteBytes
+ 1038              		.syntax unified
+ 1039              		.thumb
+ 1040              		.thumb_func
+ 1042              	BMP388_WriteBytes:
+ 1043              	.LVL120:
+ 1044              	.LFB160:
+ 572:Drivers/BMP388/BMP388.c **** 
+ 573:Drivers/BMP388/BMP388.c **** 
+ 574:Drivers/BMP388/BMP388.c **** 
+ 575:Drivers/BMP388/BMP388.c **** /*!
+ 576:Drivers/BMP388/BMP388.c ****  *  @brief Function to write byte from BMP388 in blocking mode
+ 577:Drivers/BMP388/BMP388.c ****  *
+ 578:Drivers/BMP388/BMP388.c ****  *	@param[in] bmp			: Pointer to BMP388 structure
+ 579:Drivers/BMP388/BMP388.c ****  *  @param[in] reg_addr     : Register address.
+ 580:Drivers/BMP388/BMP388.c ****  *  @param[out] buff	    : Pointer to the data buffer to store the read data.
+ 581:Drivers/BMP388/BMP388.c ****  *  @param[in] len          : Amount of bytes to write.
+ 582:Drivers/BMP388/BMP388.c ****  *
+ 583:Drivers/BMP388/BMP388.c ****  *  @return Status of execution
+ 584:Drivers/BMP388/BMP388.c ****  *  @retval = HAL_OK 		-> Success
+ 585:Drivers/BMP388/BMP388.c ****  *  @retval != HAL_ERROR 	-> Failure Info
+ 586:Drivers/BMP388/BMP388.c ****  */
+ 587:Drivers/BMP388/BMP388.c **** HAL_StatusTypeDef BMP388_WriteBytes(BMP388_HandleTypeDef *bmp, BMP388_regs reg_addr, uint8_t *buff,
+ 1045              		.loc 1 587 113 is_stmt 1 view -0
+ 1046              		.cfi_startproc
+ 1047              		@ args = 0, pretend = 0, frame = 8
+ 1048              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1049              		.loc 1 587 113 is_stmt 0 view .LVU346
+ 1050 0000 F0B5     		push	{r4, r5, r6, r7, lr}
+ 1051              		.cfi_def_cfa_offset 20
+ 1052              		.cfi_offset 4, -20
+ 1053              		.cfi_offset 5, -16
+ 1054              		.cfi_offset 6, -12
+ 1055              		.cfi_offset 7, -8
+ 1056              		.cfi_offset 14, -4
+ 1057 0002 83B0     		sub	sp, sp, #12
+ 1058              		.cfi_def_cfa_offset 32
+ 1059 0004 0446     		mov	r4, r0
+ 1060 0006 1646     		mov	r6, r2
+ 1061 0008 1F46     		mov	r7, r3
+ 588:Drivers/BMP388/BMP388.c **** 	HAL_StatusTypeDef status;
+ 1062              		.loc 1 588 2 is_stmt 1 view .LVU347
+ 589:Drivers/BMP388/BMP388.c **** 	uint8_t tx_data = reg_addr & 0x7F; // Clear MSB for write operation in SPI
+ 1063              		.loc 1 589 2 view .LVU348
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc5tsvuh.s 			page 33
+
+
+ 1064              		.loc 1 589 29 is_stmt 0 view .LVU349
+ 1065 000a 01F07F01 		and	r1, r1, #127
+ 1066              	.LVL121:
+ 1067              		.loc 1 589 10 view .LVU350
+ 1068 000e 8DF80710 		strb	r1, [sp, #7]
+ 590:Drivers/BMP388/BMP388.c **** 	
+ 591:Drivers/BMP388/BMP388.c **** 	// Pull CS low
+ 592:Drivers/BMP388/BMP388.c **** 	HAL_GPIO_WritePin(bmp->cs_port, bmp->cs_pin, GPIO_PIN_RESET);
+ 1069              		.loc 1 592 2 is_stmt 1 view .LVU351
+ 1070 0012 0022     		movs	r2, #0
+ 1071              	.LVL122:
+ 1072              		.loc 1 592 2 is_stmt 0 view .LVU352
+ 1073 0014 0189     		ldrh	r1, [r0, #8]
+ 1074 0016 4068     		ldr	r0, [r0, #4]
+ 1075              	.LVL123:
+ 1076              		.loc 1 592 2 view .LVU353
+ 1077 0018 FFF7FEFF 		bl	HAL_GPIO_WritePin
+ 1078              	.LVL124:
+ 593:Drivers/BMP388/BMP388.c **** 	
+ 594:Drivers/BMP388/BMP388.c **** 	// Transmit register address
+ 595:Drivers/BMP388/BMP388.c **** 	status = HAL_SPI_Transmit(bmp->hspi, &tx_data, 1, 100);
+ 1079              		.loc 1 595 2 is_stmt 1 view .LVU354
+ 1080              		.loc 1 595 11 is_stmt 0 view .LVU355
+ 1081 001c 6423     		movs	r3, #100
+ 1082 001e 0122     		movs	r2, #1
+ 1083 0020 0DF10701 		add	r1, sp, #7
+ 1084 0024 2068     		ldr	r0, [r4]
+ 1085 0026 FFF7FEFF 		bl	HAL_SPI_Transmit
+ 1086              	.LVL125:
+ 596:Drivers/BMP388/BMP388.c **** 	if(status != HAL_OK){
+ 1087              		.loc 1 596 2 is_stmt 1 view .LVU356
+ 1088              		.loc 1 596 4 is_stmt 0 view .LVU357
+ 1089 002a 70B9     		cbnz	r0, .L40
+ 597:Drivers/BMP388/BMP388.c **** 		HAL_GPIO_WritePin(bmp->cs_port, bmp->cs_pin, GPIO_PIN_SET);
+ 598:Drivers/BMP388/BMP388.c **** 		return status;
+ 599:Drivers/BMP388/BMP388.c **** 	}
+ 600:Drivers/BMP388/BMP388.c **** 	
+ 601:Drivers/BMP388/BMP388.c **** 	// Transmit data
+ 602:Drivers/BMP388/BMP388.c **** 	status = HAL_SPI_Transmit(bmp->hspi, buff, len, 100);
+ 1090              		.loc 1 602 2 is_stmt 1 view .LVU358
+ 1091              		.loc 1 602 11 is_stmt 0 view .LVU359
+ 1092 002c 6423     		movs	r3, #100
+ 1093 002e 3A46     		mov	r2, r7
+ 1094 0030 3146     		mov	r1, r6
+ 1095 0032 2068     		ldr	r0, [r4]
+ 1096              	.LVL126:
+ 1097              		.loc 1 602 11 view .LVU360
+ 1098 0034 FFF7FEFF 		bl	HAL_SPI_Transmit
+ 1099              	.LVL127:
+ 1100 0038 0546     		mov	r5, r0
+ 1101              	.LVL128:
+ 603:Drivers/BMP388/BMP388.c **** 	
+ 604:Drivers/BMP388/BMP388.c **** 	// Pull CS high
+ 605:Drivers/BMP388/BMP388.c **** 	HAL_GPIO_WritePin(bmp->cs_port, bmp->cs_pin, GPIO_PIN_SET);
+ 1102              		.loc 1 605 2 is_stmt 1 view .LVU361
+ 1103 003a 0122     		movs	r2, #1
+ 1104 003c 2189     		ldrh	r1, [r4, #8]
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc5tsvuh.s 			page 34
+
+
+ 1105 003e 6068     		ldr	r0, [r4, #4]
+ 1106 0040 FFF7FEFF 		bl	HAL_GPIO_WritePin
+ 1107              	.LVL129:
+ 606:Drivers/BMP388/BMP388.c **** 	
+ 607:Drivers/BMP388/BMP388.c **** 	return status;
+ 1108              		.loc 1 607 2 view .LVU362
+ 1109              	.L38:
+ 608:Drivers/BMP388/BMP388.c **** }
+ 1110              		.loc 1 608 1 is_stmt 0 view .LVU363
+ 1111 0044 2846     		mov	r0, r5
+ 1112 0046 03B0     		add	sp, sp, #12
+ 1113              		.cfi_remember_state
+ 1114              		.cfi_def_cfa_offset 20
+ 1115              		@ sp needed
+ 1116 0048 F0BD     		pop	{r4, r5, r6, r7, pc}
+ 1117              	.LVL130:
+ 1118              	.L40:
+ 1119              		.cfi_restore_state
+ 1120              		.loc 1 608 1 view .LVU364
+ 1121 004a 0546     		mov	r5, r0
+ 597:Drivers/BMP388/BMP388.c **** 		return status;
+ 1122              		.loc 1 597 3 is_stmt 1 view .LVU365
+ 1123 004c 0122     		movs	r2, #1
+ 1124 004e 2189     		ldrh	r1, [r4, #8]
+ 1125 0050 6068     		ldr	r0, [r4, #4]
+ 1126              	.LVL131:
+ 597:Drivers/BMP388/BMP388.c **** 		return status;
+ 1127              		.loc 1 597 3 is_stmt 0 view .LVU366
+ 1128 0052 FFF7FEFF 		bl	HAL_GPIO_WritePin
+ 1129              	.LVL132:
+ 598:Drivers/BMP388/BMP388.c **** 	}
+ 1130              		.loc 1 598 3 is_stmt 1 view .LVU367
+ 598:Drivers/BMP388/BMP388.c **** 	}
+ 1131              		.loc 1 598 10 is_stmt 0 view .LVU368
+ 1132 0056 F5E7     		b	.L38
+ 1133              		.cfi_endproc
+ 1134              	.LFE160:
+ 1136              		.section	.text.BMP388_ReadRawPressTempTime,"ax",%progbits
+ 1137              		.align	1
+ 1138              		.global	BMP388_ReadRawPressTempTime
+ 1139              		.syntax unified
+ 1140              		.thumb
+ 1141              		.thumb_func
+ 1143              	BMP388_ReadRawPressTempTime:
+ 1144              	.LVL133:
+ 1145              	.LFB149:
+ 150:Drivers/BMP388/BMP388.c **** 	HAL_StatusTypeDef rslt;
+ 1146              		.loc 1 150 140 is_stmt 1 view -0
+ 1147              		.cfi_startproc
+ 1148              		@ args = 0, pretend = 0, frame = 16
+ 1149              		@ frame_needed = 0, uses_anonymous_args = 0
+ 150:Drivers/BMP388/BMP388.c **** 	HAL_StatusTypeDef rslt;
+ 1150              		.loc 1 150 140 is_stmt 0 view .LVU370
+ 1151 0000 F0B5     		push	{r4, r5, r6, r7, lr}
+ 1152              		.cfi_def_cfa_offset 20
+ 1153              		.cfi_offset 4, -20
+ 1154              		.cfi_offset 5, -16
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc5tsvuh.s 			page 35
+
+
+ 1155              		.cfi_offset 6, -12
+ 1156              		.cfi_offset 7, -8
+ 1157              		.cfi_offset 14, -4
+ 1158 0002 85B0     		sub	sp, sp, #20
+ 1159              		.cfi_def_cfa_offset 40
+ 1160 0004 0446     		mov	r4, r0
+ 1161 0006 0F46     		mov	r7, r1
+ 1162 0008 1646     		mov	r6, r2
+ 1163 000a 1D46     		mov	r5, r3
+ 151:Drivers/BMP388/BMP388.c **** 	uint8_t pwr_ctrl = BMP3_PWR_CTRL_PRESS_ON | BMP3_PWR_CTRL_TEMP_ON | BMP3_PWR_CTRL_MODE_FORCED;
+ 1164              		.loc 1 151 2 is_stmt 1 view .LVU371
+ 152:Drivers/BMP388/BMP388.c **** 
+ 1165              		.loc 1 152 2 view .LVU372
+ 152:Drivers/BMP388/BMP388.c **** 
+ 1166              		.loc 1 152 10 is_stmt 0 view .LVU373
+ 1167 000c 1323     		movs	r3, #19
+ 1168              	.LVL134:
+ 152:Drivers/BMP388/BMP388.c **** 
+ 1169              		.loc 1 152 10 view .LVU374
+ 1170 000e 8DF80F30 		strb	r3, [sp, #15]
+ 154:Drivers/BMP388/BMP388.c **** 	uint8_t odr = bmp->odr;
+ 1171              		.loc 1 154 2 is_stmt 1 view .LVU375
+ 154:Drivers/BMP388/BMP388.c **** 	uint8_t odr = bmp->odr;
+ 1172              		.loc 1 154 28 is_stmt 0 view .LVU376
+ 1173 0012 837A     		ldrb	r3, [r0, #10]	@ zero_extendqisi2
+ 154:Drivers/BMP388/BMP388.c **** 	uint8_t odr = bmp->odr;
+ 1174              		.loc 1 154 10 view .LVU377
+ 1175 0014 8DF80E30 		strb	r3, [sp, #14]
+ 155:Drivers/BMP388/BMP388.c **** 	uint8_t filtercoeff = bmp->iir;
+ 1176              		.loc 1 155 2 is_stmt 1 view .LVU378
+ 155:Drivers/BMP388/BMP388.c **** 	uint8_t filtercoeff = bmp->iir;
+ 1177              		.loc 1 155 19 is_stmt 0 view .LVU379
+ 1178 0018 037B     		ldrb	r3, [r0, #12]	@ zero_extendqisi2
+ 155:Drivers/BMP388/BMP388.c **** 	uint8_t filtercoeff = bmp->iir;
+ 1179              		.loc 1 155 10 view .LVU380
+ 1180 001a 8DF80D30 		strb	r3, [sp, #13]
+ 156:Drivers/BMP388/BMP388.c **** 
+ 1181              		.loc 1 156 2 is_stmt 1 view .LVU381
+ 156:Drivers/BMP388/BMP388.c **** 
+ 1182              		.loc 1 156 27 is_stmt 0 view .LVU382
+ 1183 001e C37A     		ldrb	r3, [r0, #11]	@ zero_extendqisi2
+ 156:Drivers/BMP388/BMP388.c **** 
+ 1184              		.loc 1 156 10 view .LVU383
+ 1185 0020 8DF80C30 		strb	r3, [sp, #12]
+ 161:Drivers/BMP388/BMP388.c **** 	if(rslt != HAL_OK){
+ 1186              		.loc 1 161 2 is_stmt 1 view .LVU384
+ 161:Drivers/BMP388/BMP388.c **** 	if(rslt != HAL_OK){
+ 1187              		.loc 1 161 9 is_stmt 0 view .LVU385
+ 1188 0024 0123     		movs	r3, #1
+ 1189 0026 0DF10E02 		add	r2, sp, #14
+ 1190              	.LVL135:
+ 161:Drivers/BMP388/BMP388.c **** 	if(rslt != HAL_OK){
+ 1191              		.loc 1 161 9 view .LVU386
+ 1192 002a 1C21     		movs	r1, #28
+ 1193              	.LVL136:
+ 161:Drivers/BMP388/BMP388.c **** 	if(rslt != HAL_OK){
+ 1194              		.loc 1 161 9 view .LVU387
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc5tsvuh.s 			page 36
+
+
+ 1195 002c FFF7FEFF 		bl	BMP388_WriteBytes
+ 1196              	.LVL137:
+ 162:Drivers/BMP388/BMP388.c **** 		return rslt;
+ 1197              		.loc 1 162 2 is_stmt 1 view .LVU388
+ 162:Drivers/BMP388/BMP388.c **** 		return rslt;
+ 1198              		.loc 1 162 4 is_stmt 0 view .LVU389
+ 1199 0030 08B1     		cbz	r0, .L44
+ 1200              	.LVL138:
+ 1201              	.L42:
+ 199:Drivers/BMP388/BMP388.c **** 
+ 1202              		.loc 1 199 1 view .LVU390
+ 1203 0032 05B0     		add	sp, sp, #20
+ 1204              		.cfi_remember_state
+ 1205              		.cfi_def_cfa_offset 20
+ 1206              		@ sp needed
+ 1207 0034 F0BD     		pop	{r4, r5, r6, r7, pc}
+ 1208              	.LVL139:
+ 1209              	.L44:
+ 1210              		.cfi_restore_state
+ 166:Drivers/BMP388/BMP388.c **** 	if(rslt != HAL_OK){
+ 1211              		.loc 1 166 2 is_stmt 1 view .LVU391
+ 166:Drivers/BMP388/BMP388.c **** 	if(rslt != HAL_OK){
+ 1212              		.loc 1 166 9 is_stmt 0 view .LVU392
+ 1213 0036 0123     		movs	r3, #1
+ 1214              	.LVL140:
+ 166:Drivers/BMP388/BMP388.c **** 	if(rslt != HAL_OK){
+ 1215              		.loc 1 166 9 view .LVU393
+ 1216 0038 0DF10D02 		add	r2, sp, #13
+ 1217 003c 1D21     		movs	r1, #29
+ 1218 003e 2046     		mov	r0, r4
+ 1219 0040 FFF7FEFF 		bl	BMP388_WriteBytes
+ 1220              	.LVL141:
+ 167:Drivers/BMP388/BMP388.c **** 		return rslt;
+ 1221              		.loc 1 167 2 is_stmt 1 view .LVU394
+ 167:Drivers/BMP388/BMP388.c **** 		return rslt;
+ 1222              		.loc 1 167 4 is_stmt 0 view .LVU395
+ 1223 0044 0028     		cmp	r0, #0
+ 1224 0046 F4D1     		bne	.L42
+ 171:Drivers/BMP388/BMP388.c **** 	if(rslt != HAL_OK){
+ 1225              		.loc 1 171 2 is_stmt 1 view .LVU396
+ 171:Drivers/BMP388/BMP388.c **** 	if(rslt != HAL_OK){
+ 1226              		.loc 1 171 9 is_stmt 0 view .LVU397
+ 1227 0048 0123     		movs	r3, #1
+ 1228 004a 03AA     		add	r2, sp, #12
+ 1229 004c 1F21     		movs	r1, #31
+ 1230 004e 2046     		mov	r0, r4
+ 1231              	.LVL142:
+ 171:Drivers/BMP388/BMP388.c **** 	if(rslt != HAL_OK){
+ 1232              		.loc 1 171 9 view .LVU398
+ 1233 0050 FFF7FEFF 		bl	BMP388_WriteBytes
+ 1234              	.LVL143:
+ 172:Drivers/BMP388/BMP388.c **** 		return rslt;
+ 1235              		.loc 1 172 2 is_stmt 1 view .LVU399
+ 172:Drivers/BMP388/BMP388.c **** 		return rslt;
+ 1236              		.loc 1 172 4 is_stmt 0 view .LVU400
+ 1237 0054 0028     		cmp	r0, #0
+ 1238 0056 ECD1     		bne	.L42
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc5tsvuh.s 			page 37
+
+
+ 176:Drivers/BMP388/BMP388.c **** 	if(rslt != HAL_OK){
+ 1239              		.loc 1 176 2 is_stmt 1 view .LVU401
+ 176:Drivers/BMP388/BMP388.c **** 	if(rslt != HAL_OK){
+ 1240              		.loc 1 176 9 is_stmt 0 view .LVU402
+ 1241 0058 0123     		movs	r3, #1
+ 1242 005a 0DF10F02 		add	r2, sp, #15
+ 1243 005e 1B21     		movs	r1, #27
+ 1244 0060 2046     		mov	r0, r4
+ 1245              	.LVL144:
+ 176:Drivers/BMP388/BMP388.c **** 	if(rslt != HAL_OK){
+ 1246              		.loc 1 176 9 view .LVU403
+ 1247 0062 FFF7FEFF 		bl	BMP388_WriteBytes
+ 1248              	.LVL145:
+ 177:Drivers/BMP388/BMP388.c **** 		return rslt;
+ 1249              		.loc 1 177 2 is_stmt 1 view .LVU404
+ 177:Drivers/BMP388/BMP388.c **** 		return rslt;
+ 1250              		.loc 1 177 4 is_stmt 0 view .LVU405
+ 1251 0066 0028     		cmp	r0, #0
+ 1252 0068 E3D1     		bne	.L42
+ 181:Drivers/BMP388/BMP388.c **** 	// Get raw data for pressure and temperature
+ 1253              		.loc 1 181 2 is_stmt 1 view .LVU406
+ 183:Drivers/BMP388/BMP388.c **** 	if(rslt != HAL_OK){
+ 1254              		.loc 1 183 2 view .LVU407
+ 183:Drivers/BMP388/BMP388.c **** 	if(rslt != HAL_OK){
+ 1255              		.loc 1 183 9 is_stmt 0 view .LVU408
+ 1256 006a 0B23     		movs	r3, #11
+ 1257 006c 6A46     		mov	r2, sp
+ 1258 006e 0421     		movs	r1, #4
+ 1259 0070 2046     		mov	r0, r4
+ 1260              	.LVL146:
+ 183:Drivers/BMP388/BMP388.c **** 	if(rslt != HAL_OK){
+ 1261              		.loc 1 183 9 view .LVU409
+ 1262 0072 FFF7FEFF 		bl	BMP388_ReadBytes
+ 1263              	.LVL147:
+ 184:Drivers/BMP388/BMP388.c **** 		return rslt;
+ 1264              		.loc 1 184 2 is_stmt 1 view .LVU410
+ 184:Drivers/BMP388/BMP388.c **** 		return rslt;
+ 1265              		.loc 1 184 4 is_stmt 0 view .LVU411
+ 1266 0076 0028     		cmp	r0, #0
+ 1267 0078 DBD1     		bne	.L42
+ 189:Drivers/BMP388/BMP388.c **** 
+ 1268              		.loc 1 189 2 is_stmt 1 view .LVU412
+ 189:Drivers/BMP388/BMP388.c **** 
+ 1269              		.loc 1 189 36 is_stmt 0 view .LVU413
+ 1270 007a 9DF80220 		ldrb	r2, [sp, #2]	@ zero_extendqisi2
+ 189:Drivers/BMP388/BMP388.c **** 
+ 1271              		.loc 1 189 66 view .LVU414
+ 1272 007e 9DF80130 		ldrb	r3, [sp, #1]	@ zero_extendqisi2
+ 189:Drivers/BMP388/BMP388.c **** 
+ 1273              		.loc 1 189 70 view .LVU415
+ 1274 0082 1B02     		lsls	r3, r3, #8
+ 189:Drivers/BMP388/BMP388.c **** 
+ 1275              		.loc 1 189 46 view .LVU416
+ 1276 0084 43EA0243 		orr	r3, r3, r2, lsl #16
+ 189:Drivers/BMP388/BMP388.c **** 
+ 1277              		.loc 1 189 95 view .LVU417
+ 1278 0088 9DF80020 		ldrb	r2, [sp]	@ zero_extendqisi2
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc5tsvuh.s 			page 38
+
+
+ 189:Drivers/BMP388/BMP388.c **** 
+ 1279              		.loc 1 189 75 view .LVU418
+ 1280 008c 1343     		orrs	r3, r3, r2
+ 189:Drivers/BMP388/BMP388.c **** 
+ 1281              		.loc 1 189 16 view .LVU419
+ 1282 008e 3B60     		str	r3, [r7]
+ 192:Drivers/BMP388/BMP388.c **** 
+ 1283              		.loc 1 192 2 is_stmt 1 view .LVU420
+ 192:Drivers/BMP388/BMP388.c **** 
+ 1284              		.loc 1 192 39 is_stmt 0 view .LVU421
+ 1285 0090 9DF80520 		ldrb	r2, [sp, #5]	@ zero_extendqisi2
+ 192:Drivers/BMP388/BMP388.c **** 
+ 1286              		.loc 1 192 69 view .LVU422
+ 1287 0094 9DF80430 		ldrb	r3, [sp, #4]	@ zero_extendqisi2
+ 192:Drivers/BMP388/BMP388.c **** 
+ 1288              		.loc 1 192 73 view .LVU423
+ 1289 0098 1B02     		lsls	r3, r3, #8
+ 192:Drivers/BMP388/BMP388.c **** 
+ 1290              		.loc 1 192 49 view .LVU424
+ 1291 009a 43EA0243 		orr	r3, r3, r2, lsl #16
+ 192:Drivers/BMP388/BMP388.c **** 
+ 1292              		.loc 1 192 98 view .LVU425
+ 1293 009e 9DF80320 		ldrb	r2, [sp, #3]	@ zero_extendqisi2
+ 192:Drivers/BMP388/BMP388.c **** 
+ 1294              		.loc 1 192 78 view .LVU426
+ 1295 00a2 1343     		orrs	r3, r3, r2
+ 192:Drivers/BMP388/BMP388.c **** 
+ 1296              		.loc 1 192 19 view .LVU427
+ 1297 00a4 3360     		str	r3, [r6]
+ 195:Drivers/BMP388/BMP388.c **** 
+ 1298              		.loc 1 195 2 is_stmt 1 view .LVU428
+ 195:Drivers/BMP388/BMP388.c **** 
+ 1299              		.loc 1 195 28 is_stmt 0 view .LVU429
+ 1300 00a6 9DF80A20 		ldrb	r2, [sp, #10]	@ zero_extendqisi2
+ 195:Drivers/BMP388/BMP388.c **** 
+ 1301              		.loc 1 195 59 view .LVU430
+ 1302 00aa 9DF80930 		ldrb	r3, [sp, #9]	@ zero_extendqisi2
+ 195:Drivers/BMP388/BMP388.c **** 
+ 1303              		.loc 1 195 63 view .LVU431
+ 1304 00ae 1B02     		lsls	r3, r3, #8
+ 195:Drivers/BMP388/BMP388.c **** 
+ 1305              		.loc 1 195 39 view .LVU432
+ 1306 00b0 43EA0243 		orr	r3, r3, r2, lsl #16
+ 195:Drivers/BMP388/BMP388.c **** 
+ 1307              		.loc 1 195 88 view .LVU433
+ 1308 00b4 9DF80820 		ldrb	r2, [sp, #8]	@ zero_extendqisi2
+ 195:Drivers/BMP388/BMP388.c **** 
+ 1309              		.loc 1 195 68 view .LVU434
+ 1310 00b8 1343     		orrs	r3, r3, r2
+ 195:Drivers/BMP388/BMP388.c **** 
+ 1311              		.loc 1 195 8 view .LVU435
+ 1312 00ba 2B60     		str	r3, [r5]
+ 198:Drivers/BMP388/BMP388.c **** }
+ 1313              		.loc 1 198 2 is_stmt 1 view .LVU436
+ 198:Drivers/BMP388/BMP388.c **** }
+ 1314              		.loc 1 198 9 is_stmt 0 view .LVU437
+ 1315 00bc B9E7     		b	.L42
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc5tsvuh.s 			page 39
+
+
+ 1316              		.cfi_endproc
+ 1317              	.LFE149:
+ 1319              		.section	.text.BMP388_StartNormalModeFIFO,"ax",%progbits
+ 1320              		.align	1
+ 1321              		.global	BMP388_StartNormalModeFIFO
+ 1322              		.syntax unified
+ 1323              		.thumb
+ 1324              		.thumb_func
+ 1326              	BMP388_StartNormalModeFIFO:
+ 1327              	.LVL148:
+ 1328              	.LFB152:
+ 256:Drivers/BMP388/BMP388.c **** 	HAL_StatusTypeDef rslt;
+ 1329              		.loc 1 256 72 is_stmt 1 view -0
+ 1330              		.cfi_startproc
+ 1331              		@ args = 0, pretend = 0, frame = 8
+ 1332              		@ frame_needed = 0, uses_anonymous_args = 0
+ 256:Drivers/BMP388/BMP388.c **** 	HAL_StatusTypeDef rslt;
+ 1333              		.loc 1 256 72 is_stmt 0 view .LVU439
+ 1334 0000 10B5     		push	{r4, lr}
+ 1335              		.cfi_def_cfa_offset 8
+ 1336              		.cfi_offset 4, -8
+ 1337              		.cfi_offset 14, -4
+ 1338 0002 82B0     		sub	sp, sp, #8
+ 1339              		.cfi_def_cfa_offset 16
+ 1340 0004 0446     		mov	r4, r0
+ 257:Drivers/BMP388/BMP388.c **** 
+ 1341              		.loc 1 257 2 is_stmt 1 view .LVU440
+ 259:Drivers/BMP388/BMP388.c **** 
+ 1342              		.loc 1 259 2 view .LVU441
+ 259:Drivers/BMP388/BMP388.c **** 
+ 1343              		.loc 1 259 10 is_stmt 0 view .LVU442
+ 1344 0006 3323     		movs	r3, #51
+ 1345 0008 8DF80730 		strb	r3, [sp, #7]
+ 261:Drivers/BMP388/BMP388.c ****                             BMP3_FIFO_CONFIG_1_FIFO_TIME_EN_OFF | BMP3_FIFO_CONFIG_1_FIFO_PRESS_EN_
+ 1346              		.loc 1 261 2 is_stmt 1 view .LVU443
+ 261:Drivers/BMP388/BMP388.c ****                             BMP3_FIFO_CONFIG_1_FIFO_TIME_EN_OFF | BMP3_FIFO_CONFIG_1_FIFO_PRESS_EN_
+ 1347              		.loc 1 261 10 is_stmt 0 view .LVU444
+ 1348 000c 1B23     		movs	r3, #27
+ 1349 000e 8DF80630 		strb	r3, [sp, #6]
+ 265:Drivers/BMP388/BMP388.c **** 	uint8_t odr = bmp->odr;
+ 1350              		.loc 1 265 2 is_stmt 1 view .LVU445
+ 265:Drivers/BMP388/BMP388.c **** 	uint8_t odr = bmp->odr;
+ 1351              		.loc 1 265 28 is_stmt 0 view .LVU446
+ 1352 0012 837A     		ldrb	r3, [r0, #10]	@ zero_extendqisi2
+ 265:Drivers/BMP388/BMP388.c **** 	uint8_t odr = bmp->odr;
+ 1353              		.loc 1 265 10 view .LVU447
+ 1354 0014 8DF80530 		strb	r3, [sp, #5]
+ 266:Drivers/BMP388/BMP388.c **** 	uint8_t filtercoeff = bmp->iir;
+ 1355              		.loc 1 266 2 is_stmt 1 view .LVU448
+ 266:Drivers/BMP388/BMP388.c **** 	uint8_t filtercoeff = bmp->iir;
+ 1356              		.loc 1 266 19 is_stmt 0 view .LVU449
+ 1357 0018 037B     		ldrb	r3, [r0, #12]	@ zero_extendqisi2
+ 266:Drivers/BMP388/BMP388.c **** 	uint8_t filtercoeff = bmp->iir;
+ 1358              		.loc 1 266 10 view .LVU450
+ 1359 001a 8DF80430 		strb	r3, [sp, #4]
+ 267:Drivers/BMP388/BMP388.c **** 
+ 1360              		.loc 1 267 2 is_stmt 1 view .LVU451
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc5tsvuh.s 			page 40
+
+
+ 267:Drivers/BMP388/BMP388.c **** 
+ 1361              		.loc 1 267 27 is_stmt 0 view .LVU452
+ 1362 001e C37A     		ldrb	r3, [r0, #11]	@ zero_extendqisi2
+ 267:Drivers/BMP388/BMP388.c **** 
+ 1363              		.loc 1 267 10 view .LVU453
+ 1364 0020 8DF80330 		strb	r3, [sp, #3]
+ 272:Drivers/BMP388/BMP388.c **** 	if(rslt != HAL_OK){
+ 1365              		.loc 1 272 2 is_stmt 1 view .LVU454
+ 272:Drivers/BMP388/BMP388.c **** 	if(rslt != HAL_OK){
+ 1366              		.loc 1 272 9 is_stmt 0 view .LVU455
+ 1367 0024 0123     		movs	r3, #1
+ 1368 0026 0DF10502 		add	r2, sp, #5
+ 1369 002a 1C21     		movs	r1, #28
+ 1370 002c FFF7FEFF 		bl	BMP388_WriteBytes
+ 1371              	.LVL149:
+ 273:Drivers/BMP388/BMP388.c **** 		return rslt;
+ 1372              		.loc 1 273 2 is_stmt 1 view .LVU456
+ 273:Drivers/BMP388/BMP388.c **** 		return rslt;
+ 1373              		.loc 1 273 4 is_stmt 0 view .LVU457
+ 1374 0030 0346     		mov	r3, r0
+ 1375 0032 10B1     		cbz	r0, .L48
+ 1376              	.LVL150:
+ 1377              	.L46:
+ 298:Drivers/BMP388/BMP388.c **** 
+ 1378              		.loc 1 298 1 view .LVU458
+ 1379 0034 1846     		mov	r0, r3
+ 1380 0036 02B0     		add	sp, sp, #8
+ 1381              		.cfi_remember_state
+ 1382              		.cfi_def_cfa_offset 8
+ 1383              		@ sp needed
+ 1384 0038 10BD     		pop	{r4, pc}
+ 1385              	.LVL151:
+ 1386              	.L48:
+ 1387              		.cfi_restore_state
+ 277:Drivers/BMP388/BMP388.c **** 	if(rslt != HAL_OK){
+ 1388              		.loc 1 277 2 is_stmt 1 view .LVU459
+ 277:Drivers/BMP388/BMP388.c **** 	if(rslt != HAL_OK){
+ 1389              		.loc 1 277 9 is_stmt 0 view .LVU460
+ 1390 003a 0123     		movs	r3, #1
+ 1391 003c 01AA     		add	r2, sp, #4
+ 1392 003e 1D21     		movs	r1, #29
+ 1393 0040 2046     		mov	r0, r4
+ 1394              	.LVL152:
+ 277:Drivers/BMP388/BMP388.c **** 	if(rslt != HAL_OK){
+ 1395              		.loc 1 277 9 view .LVU461
+ 1396 0042 FFF7FEFF 		bl	BMP388_WriteBytes
+ 1397              	.LVL153:
+ 278:Drivers/BMP388/BMP388.c **** 		return rslt;
+ 1398              		.loc 1 278 2 is_stmt 1 view .LVU462
+ 278:Drivers/BMP388/BMP388.c **** 		return rslt;
+ 1399              		.loc 1 278 4 is_stmt 0 view .LVU463
+ 1400 0046 0346     		mov	r3, r0
+ 1401 0048 0028     		cmp	r0, #0
+ 1402 004a F3D1     		bne	.L46
+ 282:Drivers/BMP388/BMP388.c **** 	if(rslt != HAL_OK){
+ 1403              		.loc 1 282 2 is_stmt 1 view .LVU464
+ 282:Drivers/BMP388/BMP388.c **** 	if(rslt != HAL_OK){
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc5tsvuh.s 			page 41
+
+
+ 1404              		.loc 1 282 9 is_stmt 0 view .LVU465
+ 1405 004c 0123     		movs	r3, #1
+ 1406 004e 0DF10302 		add	r2, sp, #3
+ 1407 0052 1F21     		movs	r1, #31
+ 1408 0054 2046     		mov	r0, r4
+ 1409              	.LVL154:
+ 282:Drivers/BMP388/BMP388.c **** 	if(rslt != HAL_OK){
+ 1410              		.loc 1 282 9 view .LVU466
+ 1411 0056 FFF7FEFF 		bl	BMP388_WriteBytes
+ 1412              	.LVL155:
+ 283:Drivers/BMP388/BMP388.c **** 		return rslt;
+ 1413              		.loc 1 283 2 is_stmt 1 view .LVU467
+ 283:Drivers/BMP388/BMP388.c **** 		return rslt;
+ 1414              		.loc 1 283 4 is_stmt 0 view .LVU468
+ 1415 005a 0346     		mov	r3, r0
+ 1416 005c 0028     		cmp	r0, #0
+ 1417 005e E9D1     		bne	.L46
+ 287:Drivers/BMP388/BMP388.c **** 	if(rslt != HAL_OK){
+ 1418              		.loc 1 287 2 is_stmt 1 view .LVU469
+ 287:Drivers/BMP388/BMP388.c **** 	if(rslt != HAL_OK){
+ 1419              		.loc 1 287 9 is_stmt 0 view .LVU470
+ 1420 0060 0123     		movs	r3, #1
+ 1421 0062 0DF10702 		add	r2, sp, #7
+ 1422 0066 1B21     		movs	r1, #27
+ 1423 0068 2046     		mov	r0, r4
+ 1424              	.LVL156:
+ 287:Drivers/BMP388/BMP388.c **** 	if(rslt != HAL_OK){
+ 1425              		.loc 1 287 9 view .LVU471
+ 1426 006a FFF7FEFF 		bl	BMP388_WriteBytes
+ 1427              	.LVL157:
+ 288:Drivers/BMP388/BMP388.c **** 		return rslt;
+ 1428              		.loc 1 288 2 is_stmt 1 view .LVU472
+ 288:Drivers/BMP388/BMP388.c **** 		return rslt;
+ 1429              		.loc 1 288 4 is_stmt 0 view .LVU473
+ 1430 006e 0346     		mov	r3, r0
+ 1431 0070 0028     		cmp	r0, #0
+ 1432 0072 DFD1     		bne	.L46
+ 292:Drivers/BMP388/BMP388.c **** 	if(rslt != HAL_OK){
+ 1433              		.loc 1 292 2 is_stmt 1 view .LVU474
+ 292:Drivers/BMP388/BMP388.c **** 	if(rslt != HAL_OK){
+ 1434              		.loc 1 292 9 is_stmt 0 view .LVU475
+ 1435 0074 0123     		movs	r3, #1
+ 1436 0076 0DF10602 		add	r2, sp, #6
+ 1437 007a 1721     		movs	r1, #23
+ 1438 007c 2046     		mov	r0, r4
+ 1439              	.LVL158:
+ 292:Drivers/BMP388/BMP388.c **** 	if(rslt != HAL_OK){
+ 1440              		.loc 1 292 9 view .LVU476
+ 1441 007e FFF7FEFF 		bl	BMP388_WriteBytes
+ 1442              	.LVL159:
+ 1443 0082 0346     		mov	r3, r0
+ 1444              	.LVL160:
+ 293:Drivers/BMP388/BMP388.c **** 		return rslt;
+ 1445              		.loc 1 293 2 is_stmt 1 view .LVU477
+ 294:Drivers/BMP388/BMP388.c **** 	}
+ 1446              		.loc 1 294 3 view .LVU478
+ 1447 0084 D6E7     		b	.L46
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc5tsvuh.s 			page 42
+
+
+ 1448              		.cfi_endproc
+ 1449              	.LFE152:
+ 1451              		.section	.text.BMP388_SoftReset,"ax",%progbits
+ 1452              		.align	1
+ 1453              		.global	BMP388_SoftReset
+ 1454              		.syntax unified
+ 1455              		.thumb
+ 1456              		.thumb_func
+ 1458              	BMP388_SoftReset:
+ 1459              	.LVL161:
+ 1460              	.LFB155:
+ 349:Drivers/BMP388/BMP388.c **** 	uint8_t rst_cmnd = BMP388_SOFTRESET;
+ 1461              		.loc 1 349 62 view -0
+ 1462              		.cfi_startproc
+ 1463              		@ args = 0, pretend = 0, frame = 8
+ 1464              		@ frame_needed = 0, uses_anonymous_args = 0
+ 349:Drivers/BMP388/BMP388.c **** 	uint8_t rst_cmnd = BMP388_SOFTRESET;
+ 1465              		.loc 1 349 62 is_stmt 0 view .LVU480
+ 1466 0000 10B5     		push	{r4, lr}
+ 1467              		.cfi_def_cfa_offset 8
+ 1468              		.cfi_offset 4, -8
+ 1469              		.cfi_offset 14, -4
+ 1470 0002 82B0     		sub	sp, sp, #8
+ 1471              		.cfi_def_cfa_offset 16
+ 1472 0004 0446     		mov	r4, r0
+ 350:Drivers/BMP388/BMP388.c ****     uint8_t cmd_rdy_status;
+ 1473              		.loc 1 350 2 is_stmt 1 view .LVU481
+ 350:Drivers/BMP388/BMP388.c ****     uint8_t cmd_rdy_status;
+ 1474              		.loc 1 350 10 is_stmt 0 view .LVU482
+ 1475 0006 B623     		movs	r3, #182
+ 1476 0008 8DF80730 		strb	r3, [sp, #7]
+ 351:Drivers/BMP388/BMP388.c ****     uint8_t cmd_err_status;
+ 1477              		.loc 1 351 5 is_stmt 1 view .LVU483
+ 352:Drivers/BMP388/BMP388.c **** 
+ 1478              		.loc 1 352 5 view .LVU484
+ 354:Drivers/BMP388/BMP388.c **** 
+ 1479              		.loc 1 354 2 view .LVU485
+ 357:Drivers/BMP388/BMP388.c **** 	if((rslt == HAL_OK) && (cmd_rdy_status & BMP3_CMD_RDY)){
+ 1480              		.loc 1 357 2 view .LVU486
+ 357:Drivers/BMP388/BMP388.c **** 	if((rslt == HAL_OK) && (cmd_rdy_status & BMP3_CMD_RDY)){
+ 1481              		.loc 1 357 9 is_stmt 0 view .LVU487
+ 1482 000c 0123     		movs	r3, #1
+ 1483 000e 0DF10602 		add	r2, sp, #6
+ 1484 0012 0321     		movs	r1, #3
+ 1485 0014 FFF7FEFF 		bl	BMP388_ReadBytes
+ 1486              	.LVL162:
+ 358:Drivers/BMP388/BMP388.c **** 		// Writing SOFTRESET command to CMD reg
+ 1487              		.loc 1 358 2 is_stmt 1 view .LVU488
+ 358:Drivers/BMP388/BMP388.c **** 		// Writing SOFTRESET command to CMD reg
+ 1488              		.loc 1 358 4 is_stmt 0 view .LVU489
+ 1489 0018 20B9     		cbnz	r0, .L50
+ 358:Drivers/BMP388/BMP388.c **** 		// Writing SOFTRESET command to CMD reg
+ 1490              		.loc 1 358 41 discriminator 1 view .LVU490
+ 1491 001a 9DF80630 		ldrb	r3, [sp, #6]	@ zero_extendqisi2
+ 358:Drivers/BMP388/BMP388.c **** 		// Writing SOFTRESET command to CMD reg
+ 1492              		.loc 1 358 22 discriminator 1 view .LVU491
+ 1493 001e 13F0100F 		tst	r3, #16
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc5tsvuh.s 			page 43
+
+
+ 1494 0022 01D1     		bne	.L52
+ 1495              	.LVL163:
+ 1496              	.L50:
+ 375:Drivers/BMP388/BMP388.c **** 
+ 1497              		.loc 1 375 1 view .LVU492
+ 1498 0024 02B0     		add	sp, sp, #8
+ 1499              		.cfi_remember_state
+ 1500              		.cfi_def_cfa_offset 8
+ 1501              		@ sp needed
+ 1502 0026 10BD     		pop	{r4, pc}
+ 1503              	.LVL164:
+ 1504              	.L52:
+ 1505              		.cfi_restore_state
+ 360:Drivers/BMP388/BMP388.c **** 		if(rslt == HAL_OK){
+ 1506              		.loc 1 360 3 is_stmt 1 view .LVU493
+ 360:Drivers/BMP388/BMP388.c **** 		if(rslt == HAL_OK){
+ 1507              		.loc 1 360 10 is_stmt 0 view .LVU494
+ 1508 0028 0123     		movs	r3, #1
+ 1509              	.LVL165:
+ 360:Drivers/BMP388/BMP388.c **** 		if(rslt == HAL_OK){
+ 1510              		.loc 1 360 10 view .LVU495
+ 1511 002a 0DF10702 		add	r2, sp, #7
+ 1512 002e 7E21     		movs	r1, #126
+ 1513 0030 2046     		mov	r0, r4
+ 1514 0032 FFF7FEFF 		bl	BMP388_WriteBytes
+ 1515              	.LVL166:
+ 361:Drivers/BMP388/BMP388.c **** 			// 2 ms pause then check ERR reg
+ 1516              		.loc 1 361 3 is_stmt 1 view .LVU496
+ 361:Drivers/BMP388/BMP388.c **** 			// 2 ms pause then check ERR reg
+ 1517              		.loc 1 361 5 is_stmt 0 view .LVU497
+ 1518 0036 0028     		cmp	r0, #0
+ 1519 0038 F4D1     		bne	.L50
+ 363:Drivers/BMP388/BMP388.c **** 			rslt = BMP388_ReadBytes(bmp, ERR_REG, &cmd_err_status, 1);
+ 1520              		.loc 1 363 4 is_stmt 1 view .LVU498
+ 1521 003a 0220     		movs	r0, #2
+ 1522              	.LVL167:
+ 363:Drivers/BMP388/BMP388.c **** 			rslt = BMP388_ReadBytes(bmp, ERR_REG, &cmd_err_status, 1);
+ 1523              		.loc 1 363 4 is_stmt 0 view .LVU499
+ 1524 003c FFF7FEFF 		bl	HAL_Delay
+ 1525              	.LVL168:
+ 364:Drivers/BMP388/BMP388.c **** 			if((cmd_err_status & CMD) || (rslt != HAL_OK)){
+ 1526              		.loc 1 364 4 is_stmt 1 view .LVU500
+ 364:Drivers/BMP388/BMP388.c **** 			if((cmd_err_status & CMD) || (rslt != HAL_OK)){
+ 1527              		.loc 1 364 11 is_stmt 0 view .LVU501
+ 1528 0040 0123     		movs	r3, #1
+ 1529 0042 0DF10502 		add	r2, sp, #5
+ 1530 0046 0221     		movs	r1, #2
+ 1531 0048 2046     		mov	r0, r4
+ 1532 004a FFF7FEFF 		bl	BMP388_ReadBytes
+ 1533              	.LVL169:
+ 365:Drivers/BMP388/BMP388.c **** 				return rslt;
+ 1534              		.loc 1 365 4 is_stmt 1 view .LVU502
+ 1535 004e E9E7     		b	.L50
+ 1536              		.cfi_endproc
+ 1537              	.LFE155:
+ 1539              		.section	.text.BMP388_Init,"ax",%progbits
+ 1540              		.align	1
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc5tsvuh.s 			page 44
+
+
+ 1541              		.global	BMP388_Init
+ 1542              		.syntax unified
+ 1543              		.thumb
+ 1544              		.thumb_func
+ 1546              	BMP388_Init:
+ 1547              	.LVL170:
+ 1548              	.LFB144:
+  37:Drivers/BMP388/BMP388.c **** 	HAL_StatusTypeDef rslt;
+ 1549              		.loc 1 37 57 view -0
+ 1550              		.cfi_startproc
+ 1551              		@ args = 0, pretend = 0, frame = 8
+ 1552              		@ frame_needed = 0, uses_anonymous_args = 0
+  37:Drivers/BMP388/BMP388.c **** 	HAL_StatusTypeDef rslt;
+ 1553              		.loc 1 37 57 is_stmt 0 view .LVU504
+ 1554 0000 10B5     		push	{r4, lr}
+ 1555              		.cfi_def_cfa_offset 8
+ 1556              		.cfi_offset 4, -8
+ 1557              		.cfi_offset 14, -4
+ 1558 0002 82B0     		sub	sp, sp, #8
+ 1559              		.cfi_def_cfa_offset 16
+ 1560 0004 0446     		mov	r4, r0
+  38:Drivers/BMP388/BMP388.c **** 	uint8_t chip_id;
+ 1561              		.loc 1 38 2 is_stmt 1 view .LVU505
+  39:Drivers/BMP388/BMP388.c **** 
+ 1562              		.loc 1 39 2 view .LVU506
+  42:Drivers/BMP388/BMP388.c **** 	if(rslt == HAL_OK && chip_id == BMP3_CHIP_ID){
+ 1563              		.loc 1 42 2 view .LVU507
+  42:Drivers/BMP388/BMP388.c **** 	if(rslt == HAL_OK && chip_id == BMP3_CHIP_ID){
+ 1564              		.loc 1 42 9 is_stmt 0 view .LVU508
+ 1565 0006 0123     		movs	r3, #1
+ 1566 0008 0DF10702 		add	r2, sp, #7
+ 1567 000c 0021     		movs	r1, #0
+ 1568 000e FFF7FEFF 		bl	BMP388_ReadBytes
+ 1569              	.LVL171:
+  43:Drivers/BMP388/BMP388.c **** 		// using softreset command
+ 1570              		.loc 1 43 2 is_stmt 1 view .LVU509
+  43:Drivers/BMP388/BMP388.c **** 		// using softreset command
+ 1571              		.loc 1 43 4 is_stmt 0 view .LVU510
+ 1572 0012 18B9     		cbnz	r0, .L54
+  43:Drivers/BMP388/BMP388.c **** 		// using softreset command
+ 1573              		.loc 1 43 31 discriminator 1 view .LVU511
+ 1574 0014 9DF80730 		ldrb	r3, [sp, #7]	@ zero_extendqisi2
+  43:Drivers/BMP388/BMP388.c **** 		// using softreset command
+ 1575              		.loc 1 43 20 discriminator 1 view .LVU512
+ 1576 0018 502B     		cmp	r3, #80
+ 1577 001a 01D0     		beq	.L56
+ 1578              	.LVL172:
+ 1579              	.L54:
+  59:Drivers/BMP388/BMP388.c **** 
+ 1580              		.loc 1 59 1 view .LVU513
+ 1581 001c 02B0     		add	sp, sp, #8
+ 1582              		.cfi_remember_state
+ 1583              		.cfi_def_cfa_offset 8
+ 1584              		@ sp needed
+ 1585 001e 10BD     		pop	{r4, pc}
+ 1586              	.LVL173:
+ 1587              	.L56:
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc5tsvuh.s 			page 45
+
+
+ 1588              		.cfi_restore_state
+  45:Drivers/BMP388/BMP388.c **** 		if(rslt == HAL_OK){
+ 1589              		.loc 1 45 3 is_stmt 1 view .LVU514
+  45:Drivers/BMP388/BMP388.c **** 		if(rslt == HAL_OK){
+ 1590              		.loc 1 45 10 is_stmt 0 view .LVU515
+ 1591 0020 2046     		mov	r0, r4
+ 1592 0022 FFF7FEFF 		bl	BMP388_SoftReset
+ 1593              	.LVL174:
+  46:Drivers/BMP388/BMP388.c **** 			// get calibration data
+ 1594              		.loc 1 46 3 is_stmt 1 view .LVU516
+  46:Drivers/BMP388/BMP388.c **** 			// get calibration data
+ 1595              		.loc 1 46 5 is_stmt 0 view .LVU517
+ 1596 0026 0028     		cmp	r0, #0
+ 1597 0028 F8D1     		bne	.L54
+  48:Drivers/BMP388/BMP388.c **** 		}
+ 1598              		.loc 1 48 4 is_stmt 1 view .LVU518
+  48:Drivers/BMP388/BMP388.c **** 		}
+ 1599              		.loc 1 48 11 is_stmt 0 view .LVU519
+ 1600 002a 2046     		mov	r0, r4
+ 1601              	.LVL175:
+  48:Drivers/BMP388/BMP388.c **** 		}
+ 1602              		.loc 1 48 11 view .LVU520
+ 1603 002c FFF7FEFF 		bl	BMP388_GetCalibData
+ 1604              	.LVL176:
+  58:Drivers/BMP388/BMP388.c **** }
+ 1605              		.loc 1 58 2 is_stmt 1 view .LVU521
+  58:Drivers/BMP388/BMP388.c **** }
+ 1606              		.loc 1 58 9 is_stmt 0 view .LVU522
+ 1607 0030 F4E7     		b	.L54
+ 1608              		.cfi_endproc
+ 1609              	.LFE144:
+ 1611              		.text
+ 1612              	.Letext0:
+ 1613              		.file 2 "C:/Users/Nathan/AppData/Roaming/Code/User/globalStorage/bmd.stm32-for-vscode/@xpack-dev-t
+ 1614              		.file 3 "C:/Users/Nathan/AppData/Roaming/Code/User/globalStorage/bmd.stm32-for-vscode/@xpack-dev-t
+ 1615              		.file 4 "Drivers/CMSIS/Device/ST/STM32H7xx/Include/stm32h753xx.h"
+ 1616              		.file 5 "Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_def.h"
+ 1617              		.file 6 "Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_gpio.h"
+ 1618              		.file 7 "Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_dma.h"
+ 1619              		.file 8 "Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_spi.h"
+ 1620              		.file 9 "Drivers/BMP388/BMP388.h"
+ 1621              		.file 10 "Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal.h"
+ 1622              		.file 11 "C:/Users/Nathan/AppData/Roaming/Code/User/globalStorage/bmd.stm32-for-vscode/@xpack-dev-
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc5tsvuh.s 			page 46
+
+
+DEFINED SYMBOLS
+                            *ABS*:00000000 BMP388.c
+C:\Users\Nathan\AppData\Local\Temp\cc5tsvuh.s:20     .text.BMP388_SetTempOS:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\cc5tsvuh.s:26     .text.BMP388_SetTempOS:00000000 BMP388_SetTempOS
+C:\Users\Nathan\AppData\Local\Temp\cc5tsvuh.s:63     .text.BMP388_SetPressOS:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\cc5tsvuh.s:69     .text.BMP388_SetPressOS:00000000 BMP388_SetPressOS
+C:\Users\Nathan\AppData\Local\Temp\cc5tsvuh.s:107    .text.BMP388_SetIIRFilterCoeff:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\cc5tsvuh.s:113    .text.BMP388_SetIIRFilterCoeff:00000000 BMP388_SetIIRFilterCoeff
+C:\Users\Nathan\AppData\Local\Temp\cc5tsvuh.s:148    .text.BMP388_SetOutputDataRate:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\cc5tsvuh.s:154    .text.BMP388_SetOutputDataRate:00000000 BMP388_SetOutputDataRate
+C:\Users\Nathan\AppData\Local\Temp\cc5tsvuh.s:186    .text.BMP388_FindAltitude:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\cc5tsvuh.s:192    .text.BMP388_FindAltitude:00000000 BMP388_FindAltitude
+C:\Users\Nathan\AppData\Local\Temp\cc5tsvuh.s:226    .text.BMP388_FindAltitude:00000028 $d
+C:\Users\Nathan\AppData\Local\Temp\cc5tsvuh.s:234    .text.BMP388_CompensateTemp:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\cc5tsvuh.s:240    .text.BMP388_CompensateTemp:00000000 BMP388_CompensateTemp
+C:\Users\Nathan\AppData\Local\Temp\cc5tsvuh.s:285    .text.BMP388_CompensatePress:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\cc5tsvuh.s:291    .text.BMP388_CompensatePress:00000000 BMP388_CompensatePress
+C:\Users\Nathan\AppData\Local\Temp\cc5tsvuh.s:420    .text.BMP388_CompensateRawPressTemp:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\cc5tsvuh.s:426    .text.BMP388_CompensateRawPressTemp:00000000 BMP388_CompensateRawPressTemp
+C:\Users\Nathan\AppData\Local\Temp\cc5tsvuh.s:482    .text.BMP388_ReadBytes:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\cc5tsvuh.s:488    .text.BMP388_ReadBytes:00000000 BMP388_ReadBytes
+C:\Users\Nathan\AppData\Local\Temp\cc5tsvuh.s:583    .text.BMP388_GetFIFOLength:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\cc5tsvuh.s:589    .text.BMP388_GetFIFOLength:00000000 BMP388_GetFIFOLength
+C:\Users\Nathan\AppData\Local\Temp\cc5tsvuh.s:639    .text.BMP388_GetRawDataFIFO:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\cc5tsvuh.s:645    .text.BMP388_GetRawDataFIFO:00000000 BMP388_GetRawDataFIFO
+C:\Users\Nathan\AppData\Local\Temp\cc5tsvuh.s:675    .text.BMP388_GetCalibData:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\cc5tsvuh.s:681    .text.BMP388_GetCalibData:00000000 BMP388_GetCalibData
+C:\Users\Nathan\AppData\Local\Temp\cc5tsvuh.s:1020   .text.BMP388_GetCalibData:000001c0 $d
+C:\Users\Nathan\AppData\Local\Temp\cc5tsvuh.s:1036   .text.BMP388_WriteBytes:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\cc5tsvuh.s:1042   .text.BMP388_WriteBytes:00000000 BMP388_WriteBytes
+C:\Users\Nathan\AppData\Local\Temp\cc5tsvuh.s:1137   .text.BMP388_ReadRawPressTempTime:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\cc5tsvuh.s:1143   .text.BMP388_ReadRawPressTempTime:00000000 BMP388_ReadRawPressTempTime
+C:\Users\Nathan\AppData\Local\Temp\cc5tsvuh.s:1320   .text.BMP388_StartNormalModeFIFO:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\cc5tsvuh.s:1326   .text.BMP388_StartNormalModeFIFO:00000000 BMP388_StartNormalModeFIFO
+C:\Users\Nathan\AppData\Local\Temp\cc5tsvuh.s:1452   .text.BMP388_SoftReset:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\cc5tsvuh.s:1458   .text.BMP388_SoftReset:00000000 BMP388_SoftReset
+C:\Users\Nathan\AppData\Local\Temp\cc5tsvuh.s:1540   .text.BMP388_Init:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\cc5tsvuh.s:1546   .text.BMP388_Init:00000000 BMP388_Init
+
+UNDEFINED SYMBOLS
+pow
+HAL_GPIO_WritePin
+HAL_SPI_Transmit
+HAL_SPI_Receive
+HAL_Delay

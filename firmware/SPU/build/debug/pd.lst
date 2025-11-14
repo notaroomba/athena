@@ -1,0 +1,404 @@
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccHfspl8.s 			page 1
+
+
+   1              		.cpu cortex-m4
+   2              		.arch armv7e-m
+   3              		.fpu fpv4-sp-d16
+   4              		.eabi_attribute 27, 1
+   5              		.eabi_attribute 28, 1
+   6              		.eabi_attribute 20, 1
+   7              		.eabi_attribute 21, 1
+   8              		.eabi_attribute 23, 3
+   9              		.eabi_attribute 24, 1
+  10              		.eabi_attribute 25, 1
+  11              		.eabi_attribute 26, 1
+  12              		.eabi_attribute 30, 1
+  13              		.eabi_attribute 34, 1
+  14              		.eabi_attribute 18, 4
+  15              		.file	"pd.c"
+  16              		.text
+  17              	.Ltext0:
+  18              		.cfi_sections	.debug_frame
+  19              		.file 1 "Core/Src/pd.c"
+  20              		.section	.text.TPS25751_LoadFirmware,"ax",%progbits
+  21              		.align	1
+  22              		.global	TPS25751_LoadFirmware
+  23              		.syntax unified
+  24              		.thumb
+  25              		.thumb_func
+  27              	TPS25751_LoadFirmware:
+  28              	.LVL0:
+  29              	.LFB132:
+   1:Core/Src/pd.c **** /**
+   2:Core/Src/pd.c ****   ******************************************************************************
+   3:Core/Src/pd.c ****   * @file    pd.c
+   4:Core/Src/pd.c ****   * @brief   TPS25751 USB-PD Controller Configuration Implementation
+   5:Core/Src/pd.c ****   ******************************************************************************
+   6:Core/Src/pd.c ****   */
+   7:Core/Src/pd.c **** 
+   8:Core/Src/pd.c **** /* Includes ------------------------------------------------------------------*/
+   9:Core/Src/pd.c **** #include "pd.h"
+  10:Core/Src/pd.c **** #include "stm32g4xx_hal.h"
+  11:Core/Src/pd.c **** 
+  12:Core/Src/pd.c **** /* Private defines -----------------------------------------------------------*/
+  13:Core/Src/pd.c **** 
+  14:Core/Src/pd.c **** /* Private variables ---------------------------------------------------------*/
+  15:Core/Src/pd.c **** 
+  16:Core/Src/pd.c **** /* Private function prototypes -----------------------------------------------*/
+  17:Core/Src/pd.c **** 
+  18:Core/Src/pd.c **** /* Public functions ----------------------------------------------------------*/
+  19:Core/Src/pd.c **** 
+  20:Core/Src/pd.c **** /**
+  21:Core/Src/pd.c ****   * @brief  Load firmware to TPS25751 via I2C
+  22:Core/Src/pd.c ****   * @param  hi2c: pointer to I2C handle
+  23:Core/Src/pd.c ****   * @param  firmware_data: pointer to firmware binary data
+  24:Core/Src/pd.c ****   * @param  firmware_size: size of firmware data in bytes
+  25:Core/Src/pd.c ****   * @param  device_addr: TPS25751 I2C 7-bit address (0x20 for address #1)
+  26:Core/Src/pd.c ****   * @retval HAL status
+  27:Core/Src/pd.c ****   */
+  28:Core/Src/pd.c **** HAL_StatusTypeDef TPS25751_LoadFirmware(I2C_HandleTypeDef *hi2c, 
+  29:Core/Src/pd.c ****                                         const char *firmware_data, 
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccHfspl8.s 			page 2
+
+
+  30:Core/Src/pd.c ****                                         int firmware_size, 
+  31:Core/Src/pd.c ****                                         uint8_t device_addr)
+  32:Core/Src/pd.c **** {
+  30              		.loc 1 32 1 view -0
+  31              		.cfi_startproc
+  32              		@ args = 0, pretend = 0, frame = 0
+  33              		@ frame_needed = 0, uses_anonymous_args = 0
+  34              		.loc 1 32 1 is_stmt 0 view .LVU1
+  35 0000 2DE9F043 		push	{r4, r5, r6, r7, r8, r9, lr}
+  36              		.cfi_def_cfa_offset 28
+  37              		.cfi_offset 4, -28
+  38              		.cfi_offset 5, -24
+  39              		.cfi_offset 6, -20
+  40              		.cfi_offset 7, -16
+  41              		.cfi_offset 8, -12
+  42              		.cfi_offset 9, -8
+  43              		.cfi_offset 14, -4
+  44 0004 83B0     		sub	sp, sp, #12
+  45              		.cfi_def_cfa_offset 40
+  46 0006 8146     		mov	r9, r0
+  47 0008 8846     		mov	r8, r1
+  48 000a 1646     		mov	r6, r2
+  49 000c 1F46     		mov	r7, r3
+  33:Core/Src/pd.c ****     HAL_StatusTypeDef status;
+  50              		.loc 1 33 5 is_stmt 1 view .LVU2
+  34:Core/Src/pd.c ****     const int CHUNK_SIZE = 64; // I2C write chunk size
+  51              		.loc 1 34 5 view .LVU3
+  52              	.LVL1:
+  35:Core/Src/pd.c ****     int bytes_written = 0;
+  53              		.loc 1 35 5 view .LVU4
+  36:Core/Src/pd.c ****     
+  37:Core/Src/pd.c ****     // TPS25751 expects firmware to be written in chunks
+  38:Core/Src/pd.c ****     while (bytes_written < firmware_size)
+  54              		.loc 1 38 5 view .LVU5
+  35:Core/Src/pd.c ****     int bytes_written = 0;
+  55              		.loc 1 35 9 is_stmt 0 view .LVU6
+  56 000e 0024     		movs	r4, #0
+  57              		.loc 1 38 11 view .LVU7
+  58 0010 03E0     		b	.L2
+  59              	.LVL2:
+  60              	.L7:
+  61              	.LBB2:
+  39:Core/Src/pd.c ****     {
+  40:Core/Src/pd.c ****         int bytes_to_write = (firmware_size - bytes_written) > CHUNK_SIZE ? 
+  41:Core/Src/pd.c ****                              CHUNK_SIZE : (firmware_size - bytes_written);
+  42:Core/Src/pd.c ****         
+  43:Core/Src/pd.c ****         // Write chunk to device
+  44:Core/Src/pd.c ****         // HAL automatically shifts device_addr left by 1
+  45:Core/Src/pd.c ****         status = HAL_I2C_Master_Transmit(hi2c, 
+  46:Core/Src/pd.c ****                                          device_addr << 1, 
+  47:Core/Src/pd.c ****                                          (uint8_t*)&firmware_data[bytes_written], 
+  48:Core/Src/pd.c ****                                          bytes_to_write, 
+  49:Core/Src/pd.c ****                                          1000); // 1 second timeout
+  50:Core/Src/pd.c ****         
+  51:Core/Src/pd.c ****         if (status != HAL_OK)
+  52:Core/Src/pd.c ****         {
+  53:Core/Src/pd.c ****             return status;
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccHfspl8.s 			page 3
+
+
+  54:Core/Src/pd.c ****         }
+  55:Core/Src/pd.c ****         
+  56:Core/Src/pd.c ****         bytes_written += bytes_to_write;
+  62              		.loc 1 56 9 is_stmt 1 view .LVU8
+  63              		.loc 1 56 23 is_stmt 0 view .LVU9
+  64 0012 2C44     		add	r4, r4, r5
+  65              	.LVL3:
+  57:Core/Src/pd.c ****         
+  58:Core/Src/pd.c ****         // Small delay between chunks to allow processing
+  59:Core/Src/pd.c ****         HAL_Delay(10);
+  66              		.loc 1 59 9 is_stmt 1 view .LVU10
+  67 0014 0A20     		movs	r0, #10
+  68              	.LVL4:
+  69              		.loc 1 59 9 is_stmt 0 view .LVU11
+  70 0016 FFF7FEFF 		bl	HAL_Delay
+  71              	.LVL5:
+  72              	.L2:
+  73              		.loc 1 59 9 view .LVU12
+  74              	.LBE2:
+  38:Core/Src/pd.c ****     {
+  75              		.loc 1 38 26 is_stmt 1 view .LVU13
+  76 001a B442     		cmp	r4, r6
+  77 001c 11DA     		bge	.L6
+  78              	.LBB3:
+  40:Core/Src/pd.c ****                              CHUNK_SIZE : (firmware_size - bytes_written);
+  79              		.loc 1 40 9 view .LVU14
+  40:Core/Src/pd.c ****                              CHUNK_SIZE : (firmware_size - bytes_written);
+  80              		.loc 1 40 45 is_stmt 0 view .LVU15
+  81 001e 351B     		subs	r5, r6, r4
+  40:Core/Src/pd.c ****                              CHUNK_SIZE : (firmware_size - bytes_written);
+  82              		.loc 1 40 13 view .LVU16
+  83 0020 402D     		cmp	r5, #64
+  84 0022 A8BF     		it	ge
+  85 0024 4025     		movge	r5, #64
+  86              	.LVL6:
+  45:Core/Src/pd.c ****                                          device_addr << 1, 
+  87              		.loc 1 45 9 is_stmt 1 view .LVU17
+  45:Core/Src/pd.c ****                                          device_addr << 1, 
+  88              		.loc 1 45 18 is_stmt 0 view .LVU18
+  89 0026 4FF47A72 		mov	r2, #1000
+  90 002a 0092     		str	r2, [sp]
+  91 002c ABB2     		uxth	r3, r5
+  92 002e 08EB0402 		add	r2, r8, r4
+  93 0032 7900     		lsls	r1, r7, #1
+  94 0034 4846     		mov	r0, r9
+  95 0036 FFF7FEFF 		bl	HAL_I2C_Master_Transmit
+  96              	.LVL7:
+  51:Core/Src/pd.c ****         {
+  97              		.loc 1 51 9 is_stmt 1 view .LVU19
+  51:Core/Src/pd.c ****         {
+  98              		.loc 1 51 12 is_stmt 0 view .LVU20
+  99 003a 0346     		mov	r3, r0
+ 100 003c 0028     		cmp	r0, #0
+ 101 003e E8D0     		beq	.L7
+ 102 0040 00E0     		b	.L3
+ 103              	.LVL8:
+ 104              	.L6:
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccHfspl8.s 			page 4
+
+
+  51:Core/Src/pd.c ****         {
+ 105              		.loc 1 51 12 view .LVU21
+ 106              	.LBE3:
+  60:Core/Src/pd.c ****     }
+  61:Core/Src/pd.c ****     
+  62:Core/Src/pd.c ****     return HAL_OK;
+ 107              		.loc 1 62 12 view .LVU22
+ 108 0042 0023     		movs	r3, #0
+ 109              	.L3:
+  63:Core/Src/pd.c **** }
+ 110              		.loc 1 63 1 view .LVU23
+ 111 0044 1846     		mov	r0, r3
+ 112 0046 03B0     		add	sp, sp, #12
+ 113              		.cfi_def_cfa_offset 28
+ 114              		@ sp needed
+ 115 0048 BDE8F083 		pop	{r4, r5, r6, r7, r8, r9, pc}
+ 116              		.loc 1 63 1 view .LVU24
+ 117              		.cfi_endproc
+ 118              	.LFE132:
+ 120              		.section	.text.TPS25751_WriteEEPROM,"ax",%progbits
+ 121              		.align	1
+ 122              		.global	TPS25751_WriteEEPROM
+ 123              		.syntax unified
+ 124              		.thumb
+ 125              		.thumb_func
+ 127              	TPS25751_WriteEEPROM:
+ 128              	.LVL9:
+ 129              	.LFB133:
+  64:Core/Src/pd.c **** 
+  65:Core/Src/pd.c **** /**
+  66:Core/Src/pd.c ****   * @brief  Write firmware to external EEPROM at address 0x50
+  67:Core/Src/pd.c ****   * @param  hi2c: pointer to I2C handle
+  68:Core/Src/pd.c ****   * @param  data: pointer to firmware binary data
+  69:Core/Src/pd.c ****   * @param  size: size of firmware data in bytes
+  70:Core/Src/pd.c ****   * @retval HAL status
+  71:Core/Src/pd.c ****   */
+  72:Core/Src/pd.c **** HAL_StatusTypeDef TPS25751_WriteEEPROM(I2C_HandleTypeDef *hi2c, 
+  73:Core/Src/pd.c ****                                        const char *data, 
+  74:Core/Src/pd.c ****                                        int size)
+  75:Core/Src/pd.c **** {
+ 130              		.loc 1 75 1 is_stmt 1 view -0
+ 131              		.cfi_startproc
+ 132              		@ args = 0, pretend = 0, frame = 0
+ 133              		@ frame_needed = 0, uses_anonymous_args = 0
+ 134              		.loc 1 75 1 is_stmt 0 view .LVU26
+ 135 0000 2DE9F047 		push	{r4, r5, r6, r7, r8, r9, r10, lr}
+ 136              		.cfi_def_cfa_offset 32
+ 137              		.cfi_offset 4, -32
+ 138              		.cfi_offset 5, -28
+ 139              		.cfi_offset 6, -24
+ 140              		.cfi_offset 7, -20
+ 141              		.cfi_offset 8, -16
+ 142              		.cfi_offset 9, -12
+ 143              		.cfi_offset 10, -8
+ 144              		.cfi_offset 14, -4
+ 145 0004 84B0     		sub	sp, sp, #16
+ 146              		.cfi_def_cfa_offset 48
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccHfspl8.s 			page 5
+
+
+ 147 0006 8246     		mov	r10, r0
+ 148 0008 8946     		mov	r9, r1
+ 149 000a 9046     		mov	r8, r2
+  76:Core/Src/pd.c ****     HAL_StatusTypeDef status;
+ 150              		.loc 1 76 5 is_stmt 1 view .LVU27
+  77:Core/Src/pd.c ****     const uint8_t EEPROM_ADDR = 0x50; // Fixed EEPROM address per datasheet
+ 151              		.loc 1 77 5 view .LVU28
+ 152              	.LVL10:
+  78:Core/Src/pd.c ****     const int PAGE_SIZE = 64; // Typical EEPROM page size
+ 153              		.loc 1 78 5 view .LVU29
+  79:Core/Src/pd.c ****     uint16_t mem_addr = 0;
+ 154              		.loc 1 79 5 view .LVU30
+  80:Core/Src/pd.c ****     int bytes_written = 0;
+ 155              		.loc 1 80 5 view .LVU31
+  81:Core/Src/pd.c ****     
+  82:Core/Src/pd.c ****     while (bytes_written < size)
+ 156              		.loc 1 82 5 view .LVU32
+  80:Core/Src/pd.c ****     int bytes_written = 0;
+ 157              		.loc 1 80 9 is_stmt 0 view .LVU33
+ 158 000c 0024     		movs	r4, #0
+  79:Core/Src/pd.c ****     int bytes_written = 0;
+ 159              		.loc 1 79 14 view .LVU34
+ 160 000e 2746     		mov	r7, r4
+ 161              		.loc 1 82 11 view .LVU35
+ 162 0010 05E0     		b	.L9
+ 163              	.LVL11:
+ 164              	.L14:
+ 165              	.LBB4:
+  83:Core/Src/pd.c ****     {
+  84:Core/Src/pd.c ****         int bytes_to_write = (size - bytes_written) > PAGE_SIZE ? 
+  85:Core/Src/pd.c ****                              PAGE_SIZE : (size - bytes_written);
+  86:Core/Src/pd.c ****         
+  87:Core/Src/pd.c ****         // Write page to EEPROM
+  88:Core/Src/pd.c ****         status = HAL_I2C_Mem_Write(hi2c, 
+  89:Core/Src/pd.c ****                                    EEPROM_ADDR << 1, 
+  90:Core/Src/pd.c ****                                    mem_addr, 
+  91:Core/Src/pd.c ****                                    I2C_MEMADD_SIZE_16BIT,
+  92:Core/Src/pd.c ****                                    (uint8_t*)&data[bytes_written], 
+  93:Core/Src/pd.c ****                                    bytes_to_write, 
+  94:Core/Src/pd.c ****                                    1000);
+  95:Core/Src/pd.c ****         
+  96:Core/Src/pd.c ****         if (status != HAL_OK)
+  97:Core/Src/pd.c ****         {
+  98:Core/Src/pd.c ****             return status;
+  99:Core/Src/pd.c ****         }
+ 100:Core/Src/pd.c ****         
+ 101:Core/Src/pd.c ****         bytes_written += bytes_to_write;
+ 166              		.loc 1 101 9 is_stmt 1 view .LVU36
+ 167              		.loc 1 101 23 is_stmt 0 view .LVU37
+ 168 0012 2C44     		add	r4, r4, r5
+ 169              	.LVL12:
+ 102:Core/Src/pd.c ****         mem_addr += bytes_to_write;
+ 170              		.loc 1 102 9 is_stmt 1 view .LVU38
+ 171              		.loc 1 102 18 is_stmt 0 view .LVU39
+ 172 0014 3E44     		add	r6, r6, r7
+ 173 0016 B7B2     		uxth	r7, r6
+ 174              	.LVL13:
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccHfspl8.s 			page 6
+
+
+ 103:Core/Src/pd.c ****         
+ 104:Core/Src/pd.c ****         // EEPROM write cycle time (typically 5ms)
+ 105:Core/Src/pd.c ****         HAL_Delay(5);
+ 175              		.loc 1 105 9 is_stmt 1 view .LVU40
+ 176 0018 0520     		movs	r0, #5
+ 177              	.LVL14:
+ 178              		.loc 1 105 9 is_stmt 0 view .LVU41
+ 179 001a FFF7FEFF 		bl	HAL_Delay
+ 180              	.LVL15:
+ 181              	.L9:
+ 182              		.loc 1 105 9 view .LVU42
+ 183              	.LBE4:
+  82:Core/Src/pd.c ****     {
+ 184              		.loc 1 82 26 is_stmt 1 view .LVU43
+ 185 001e 4445     		cmp	r4, r8
+ 186 0020 16DA     		bge	.L13
+ 187              	.LBB5:
+  84:Core/Src/pd.c ****                              PAGE_SIZE : (size - bytes_written);
+ 188              		.loc 1 84 9 view .LVU44
+  84:Core/Src/pd.c ****                              PAGE_SIZE : (size - bytes_written);
+ 189              		.loc 1 84 36 is_stmt 0 view .LVU45
+ 190 0022 A8EB0405 		sub	r5, r8, r4
+  84:Core/Src/pd.c ****                              PAGE_SIZE : (size - bytes_written);
+ 191              		.loc 1 84 13 view .LVU46
+ 192 0026 402D     		cmp	r5, #64
+ 193 0028 A8BF     		it	ge
+ 194 002a 4025     		movge	r5, #64
+ 195              	.LVL16:
+  88:Core/Src/pd.c ****                                    EEPROM_ADDR << 1, 
+ 196              		.loc 1 88 9 is_stmt 1 view .LVU47
+  92:Core/Src/pd.c ****                                    bytes_to_write, 
+ 197              		.loc 1 92 46 is_stmt 0 view .LVU48
+ 198 002c 09EB0403 		add	r3, r9, r4
+  88:Core/Src/pd.c ****                                    EEPROM_ADDR << 1, 
+ 199              		.loc 1 88 18 view .LVU49
+ 200 0030 AEB2     		uxth	r6, r5
+ 201 0032 4FF47A72 		mov	r2, #1000
+ 202 0036 0292     		str	r2, [sp, #8]
+ 203 0038 0196     		str	r6, [sp, #4]
+ 204 003a 0093     		str	r3, [sp]
+ 205 003c 0223     		movs	r3, #2
+ 206 003e 3A46     		mov	r2, r7
+ 207 0040 A021     		movs	r1, #160
+ 208 0042 5046     		mov	r0, r10
+ 209 0044 FFF7FEFF 		bl	HAL_I2C_Mem_Write
+ 210              	.LVL17:
+  96:Core/Src/pd.c ****         {
+ 211              		.loc 1 96 9 is_stmt 1 view .LVU50
+  96:Core/Src/pd.c ****         {
+ 212              		.loc 1 96 12 is_stmt 0 view .LVU51
+ 213 0048 0346     		mov	r3, r0
+ 214 004a 0028     		cmp	r0, #0
+ 215 004c E1D0     		beq	.L14
+ 216 004e 00E0     		b	.L10
+ 217              	.LVL18:
+ 218              	.L13:
+  96:Core/Src/pd.c ****         {
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccHfspl8.s 			page 7
+
+
+ 219              		.loc 1 96 12 view .LVU52
+ 220              	.LBE5:
+ 106:Core/Src/pd.c ****     }
+ 107:Core/Src/pd.c ****     
+ 108:Core/Src/pd.c ****     return HAL_OK;
+ 221              		.loc 1 108 12 view .LVU53
+ 222 0050 0023     		movs	r3, #0
+ 223              	.L10:
+ 109:Core/Src/pd.c **** }
+ 224              		.loc 1 109 1 view .LVU54
+ 225 0052 1846     		mov	r0, r3
+ 226 0054 04B0     		add	sp, sp, #16
+ 227              		.cfi_def_cfa_offset 32
+ 228              		@ sp needed
+ 229 0056 BDE8F087 		pop	{r4, r5, r6, r7, r8, r9, r10, pc}
+ 230              		.loc 1 109 1 view .LVU55
+ 231              		.cfi_endproc
+ 232              	.LFE133:
+ 234              		.text
+ 235              	.Letext0:
+ 236              		.file 2 "C:/Users/Nathan/AppData/Roaming/Code/User/globalStorage/bmd.stm32-for-vscode/@xpack-dev-t
+ 237              		.file 3 "C:/Users/Nathan/AppData/Roaming/Code/User/globalStorage/bmd.stm32-for-vscode/@xpack-dev-t
+ 238              		.file 4 "Drivers/CMSIS/Device/ST/STM32G4xx/Include/stm32g474xx.h"
+ 239              		.file 5 "Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_def.h"
+ 240              		.file 6 "Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_dma.h"
+ 241              		.file 7 "Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_i2c.h"
+ 242              		.file 8 "Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal.h"
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccHfspl8.s 			page 8
+
+
+DEFINED SYMBOLS
+                            *ABS*:00000000 pd.c
+C:\Users\Nathan\AppData\Local\Temp\ccHfspl8.s:21     .text.TPS25751_LoadFirmware:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccHfspl8.s:27     .text.TPS25751_LoadFirmware:00000000 TPS25751_LoadFirmware
+C:\Users\Nathan\AppData\Local\Temp\ccHfspl8.s:121    .text.TPS25751_WriteEEPROM:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccHfspl8.s:127    .text.TPS25751_WriteEEPROM:00000000 TPS25751_WriteEEPROM
+
+UNDEFINED SYMBOLS
+HAL_Delay
+HAL_I2C_Master_Transmit
+HAL_I2C_Mem_Write

@@ -1,4 +1,4 @@
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccZqaT42.s 			page 1
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccinN8Ai.s 			page 1
 
 
    1              		.cpu cortex-m7
@@ -58,7 +58,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccZqaT42.s 			page 1
   29:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_ll_sdmmc.c ****     [..] The SD/SDMMC MMC card host interface (SDMMC) provides an interface between the AHB
   30:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_ll_sdmmc.c ****          peripheral bus and MultiMedia cards (MMCs), SD memory cards, SDMMC cards and CE-ATA
   31:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_ll_sdmmc.c ****          devices.
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccZqaT42.s 			page 2
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccinN8Ai.s 			page 2
 
 
   32:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_ll_sdmmc.c **** 
@@ -118,7 +118,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccZqaT42.s 			page 1
   86:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_ll_sdmmc.c ****            (++) Command Index
   87:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_ll_sdmmc.c ****            (++) Command Response type
   88:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_ll_sdmmc.c ****            (++) Command Wait
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccZqaT42.s 			page 3
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccinN8Ai.s 			page 3
 
 
   89:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_ll_sdmmc.c ****            (++) CPSM Status (Enable or Disable).
@@ -178,7 +178,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccZqaT42.s 			page 1
  143:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_ll_sdmmc.c ****      (#) The commands used for Read/Write/Erase operations are managed in
  144:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_ll_sdmmc.c ****          separate functions.
  145:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_ll_sdmmc.c ****          Each function allows to send the needed command with the related argument,
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccZqaT42.s 			page 4
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccinN8Ai.s 			page 4
 
 
  146:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_ll_sdmmc.c ****          then check the response.
@@ -238,7 +238,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccZqaT42.s 			page 1
  200:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_ll_sdmmc.c ****   */
  201:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_ll_sdmmc.c **** HAL_StatusTypeDef SDMMC_Init(SDMMC_TypeDef *SDMMCx, SDMMC_InitTypeDef Init)
  202:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_ll_sdmmc.c **** {
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccZqaT42.s 			page 5
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccinN8Ai.s 			page 5
 
 
  203:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_ll_sdmmc.c ****   uint32_t tmpreg = 0;
@@ -298,7 +298,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccZqaT42.s 			page 1
  257:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_ll_sdmmc.c **** 
  258:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_ll_sdmmc.c **** /**
  259:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_ll_sdmmc.c ****   * @brief  Write data (word) to Tx FIFO in blocking mode (polling)
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccZqaT42.s 			page 6
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccinN8Ai.s 			page 6
 
 
  260:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_ll_sdmmc.c ****   * @param  SDMMCx: Pointer to SDMMC register base
@@ -358,7 +358,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccZqaT42.s 			page 1
  314:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_ll_sdmmc.c ****   return HAL_OK;
  315:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_ll_sdmmc.c **** }
  316:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_ll_sdmmc.c **** 
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccZqaT42.s 			page 7
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccinN8Ai.s 			page 7
 
 
  317:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_ll_sdmmc.c **** /**
@@ -418,7 +418,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccZqaT42.s 			page 1
  371:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_ll_sdmmc.c ****   /* Write to SDMMC CMD register */
  372:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_ll_sdmmc.c ****   MODIFY_REG(SDMMCx->CMD, CMD_CLEAR_MASK, tmpreg);
  373:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_ll_sdmmc.c **** 
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccZqaT42.s 			page 8
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccinN8Ai.s 			page 8
 
 
  374:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_ll_sdmmc.c ****   return HAL_OK;
@@ -478,7 +478,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccZqaT42.s 			page 1
  428:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_ll_sdmmc.c ****   assert_param(IS_SDMMC_TRANSFER_MODE(Data->TransferMode));
  429:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_ll_sdmmc.c ****   assert_param(IS_SDMMC_DPSM(Data->DPSM));
  430:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_ll_sdmmc.c **** 
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccZqaT42.s 			page 9
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccinN8Ai.s 			page 9
 
 
  431:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_ll_sdmmc.c ****   /* Set the SDMMC Data TimeOut value */
@@ -538,7 +538,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccZqaT42.s 			page 1
  485:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_ll_sdmmc.c ****   MODIFY_REG(SDMMCx->DCTRL, SDMMC_DCTRL_RWMOD, SDMMC_ReadWaitMode);
  486:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_ll_sdmmc.c **** 
  487:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_ll_sdmmc.c ****   return HAL_OK;
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccZqaT42.s 			page 10
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccinN8Ai.s 			page 10
 
 
  488:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_ll_sdmmc.c **** }
@@ -598,7 +598,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccZqaT42.s 			page 1
  542:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_ll_sdmmc.c **** 
  543:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_ll_sdmmc.c ****   /* Set Block Size for Card */
  544:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_ll_sdmmc.c ****   sdmmc_cmdinit.Argument         = (uint32_t)BlockCount;
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccZqaT42.s 			page 11
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccinN8Ai.s 			page 11
 
 
  545:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_ll_sdmmc.c ****   sdmmc_cmdinit.CmdIndex         = SDMMC_CMD_SET_BLOCK_COUNT;
@@ -658,7 +658,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccZqaT42.s 			page 1
  599:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_ll_sdmmc.c ****   /* Check for error conditions */
  600:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_ll_sdmmc.c ****   errorstate = SDMMC_GetCmdResp1(SDMMCx, SDMMC_CMD_READ_MULT_BLOCK, SDMMC_CMDTIMEOUT);
  601:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_ll_sdmmc.c **** 
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccZqaT42.s 			page 12
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccinN8Ai.s 			page 12
 
 
  602:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_ll_sdmmc.c ****   return errorstate;
@@ -718,7 +718,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccZqaT42.s 			page 1
  656:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_ll_sdmmc.c ****   * @retval HAL status
  657:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_ll_sdmmc.c ****   */
  658:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_ll_sdmmc.c **** uint32_t SDMMC_CmdSDEraseStartAdd(SDMMC_TypeDef *SDMMCx, uint32_t StartAdd)
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccZqaT42.s 			page 13
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccinN8Ai.s 			page 13
 
 
  659:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_ll_sdmmc.c **** {
@@ -778,7 +778,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccZqaT42.s 			page 1
  713:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_ll_sdmmc.c ****   sdmmc_cmdinit.CmdIndex         = SDMMC_CMD_ERASE_GRP_START;
  714:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_ll_sdmmc.c ****   sdmmc_cmdinit.Response         = SDMMC_RESPONSE_SHORT;
  715:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_ll_sdmmc.c ****   sdmmc_cmdinit.WaitForInterrupt = SDMMC_WAIT_NO;
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccZqaT42.s 			page 14
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccinN8Ai.s 			page 14
 
 
  716:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_ll_sdmmc.c ****   sdmmc_cmdinit.CPSM             = SDMMC_CPSM_ENABLE;
@@ -838,7 +838,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccZqaT42.s 			page 1
  770:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_ll_sdmmc.c **** 
  771:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_ll_sdmmc.c ****   return errorstate;
  772:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_ll_sdmmc.c **** }
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccZqaT42.s 			page 15
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccinN8Ai.s 			page 15
 
 
  773:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_ll_sdmmc.c **** 
@@ -898,7 +898,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccZqaT42.s 			page 1
  827:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_ll_sdmmc.c ****   (void)SDMMC_SendCommand(SDMMCx, &sdmmc_cmdinit);
  828:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_ll_sdmmc.c **** 
  829:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_ll_sdmmc.c ****   /* Check for error conditions */
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccZqaT42.s 			page 16
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccinN8Ai.s 			page 16
 
 
  830:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_ll_sdmmc.c ****   errorstate = SDMMC_GetCmdResp1(SDMMCx, SDMMC_CMD_SEL_DESEL_CARD, SDMMC_CMDTIMEOUT);
@@ -958,7 +958,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccZqaT42.s 			page 1
  884:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_ll_sdmmc.c **** }
  885:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_ll_sdmmc.c **** 
  886:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_ll_sdmmc.c **** /**
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccZqaT42.s 			page 17
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccinN8Ai.s 			page 17
 
 
  887:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_ll_sdmmc.c ****   * @brief  Send the Application command to verify that that the next command
@@ -1018,7 +1018,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccZqaT42.s 			page 1
  941:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_ll_sdmmc.c ****   * @brief  Send the Bus Width command and check the response.
  942:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_ll_sdmmc.c ****   * @param  SDMMCx: Pointer to SDMMC register base
  943:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_ll_sdmmc.c ****   * @param  BusWidth: BusWidth
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccZqaT42.s 			page 18
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccinN8Ai.s 			page 18
 
 
  944:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_ll_sdmmc.c ****   * @retval HAL status
@@ -1078,7 +1078,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccZqaT42.s 			page 1
  998:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_ll_sdmmc.c ****   /* Send CMD2 ALL_SEND_CID */
  999:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_ll_sdmmc.c ****   sdmmc_cmdinit.Argument         = 0U;
 1000:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_ll_sdmmc.c ****   sdmmc_cmdinit.CmdIndex         = SDMMC_CMD_ALL_SEND_CID;
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccZqaT42.s 			page 19
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccinN8Ai.s 			page 19
 
 
 1001:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_ll_sdmmc.c ****   sdmmc_cmdinit.Response         = SDMMC_RESPONSE_LONG;
@@ -1138,7 +1138,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccZqaT42.s 			page 1
 1055:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_ll_sdmmc.c **** 
 1056:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_ll_sdmmc.c ****   /* Check for error conditions */
 1057:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_ll_sdmmc.c ****   errorstate = SDMMC_GetCmdResp6(SDMMCx, SDMMC_CMD_SET_REL_ADDR, pRCA);
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccZqaT42.s 			page 20
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccinN8Ai.s 			page 20
 
 
 1058:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_ll_sdmmc.c **** 
@@ -1198,7 +1198,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccZqaT42.s 			page 1
 1112:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_ll_sdmmc.c **** /**
 1113:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_ll_sdmmc.c ****   * @brief  Send the Status command and check the response.
 1114:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_ll_sdmmc.c ****   * @param  SDMMCx: Pointer to SDMMC register base
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccZqaT42.s 			page 21
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccinN8Ai.s 			page 21
 
 
 1115:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_ll_sdmmc.c ****   * @param  Argument: Command Argument
@@ -1258,7 +1258,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccZqaT42.s 			page 1
 1169:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_ll_sdmmc.c ****   uint32_t errorstate;
 1170:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_ll_sdmmc.c **** 
 1171:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_ll_sdmmc.c ****   sdmmc_cmdinit.Argument         = Argument;
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccZqaT42.s 			page 22
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccinN8Ai.s 			page 22
 
 
 1172:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_ll_sdmmc.c ****   sdmmc_cmdinit.CmdIndex         = SDMMC_CMD_SEND_OP_COND;
@@ -1318,7 +1318,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccZqaT42.s 			page 1
 1226:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_ll_sdmmc.c ****   (void)SDMMC_SendCommand(SDMMCx, &sdmmc_cmdinit);
 1227:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_ll_sdmmc.c **** 
 1228:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_ll_sdmmc.c ****   /* Check for error conditions */
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccZqaT42.s 			page 23
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccinN8Ai.s 			page 23
 
 
 1229:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_ll_sdmmc.c ****   errorstate = SDMMC_GetCmdResp1(SDMMCx, SDMMC_CMD_VOLTAGE_SWITCH, SDMMC_CMDTIMEOUT);
@@ -1378,7 +1378,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccZqaT42.s 			page 1
 1283:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_ll_sdmmc.c **** 
 1284:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_ll_sdmmc.c **** /**
 1285:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_ll_sdmmc.c ****   * @brief  Execute a cmd53 to write or read multiple data with a single command
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccZqaT42.s 			page 24
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccinN8Ai.s 			page 24
 
 
 1286:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_ll_sdmmc.c ****   * @param  SDMMCx: Pointer to SDMMC register base
@@ -1438,7 +1438,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccZqaT42.s 			page 1
 1340:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_ll_sdmmc.c ****  ===============================================================================
 1341:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_ll_sdmmc.c ****                    ##### Responses management functions #####
 1342:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_ll_sdmmc.c ****  ===============================================================================
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccZqaT42.s 			page 25
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccinN8Ai.s 			page 25
 
 
 1343:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_ll_sdmmc.c ****     [..]
@@ -1498,7 +1498,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccZqaT42.s 			page 1
 1397:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_ll_sdmmc.c ****     return SDMMC_ERROR_CMD_CRC_FAIL;
 1398:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_ll_sdmmc.c ****   }
 1399:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_ll_sdmmc.c **** 
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccZqaT42.s 			page 26
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccinN8Ai.s 			page 26
 
 
 1400:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_ll_sdmmc.c ****   /* We have received response, retrieve it for analysis  */
@@ -1558,7 +1558,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccZqaT42.s 			page 1
 1454:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_ll_sdmmc.c ****   }
 1455:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_ll_sdmmc.c ****   else if ((response_r1 & SDMMC_OCR_STREAM_WRITE_OVERRUN) == SDMMC_OCR_STREAM_WRITE_OVERRUN)
 1456:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_ll_sdmmc.c ****   {
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccZqaT42.s 			page 27
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccinN8Ai.s 			page 27
 
 
 1457:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_ll_sdmmc.c ****     return SDMMC_ERROR_STREAM_WRITE_OVERRUN;
@@ -1618,7 +1618,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccZqaT42.s 			page 1
 1511:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_ll_sdmmc.c ****     return SDMMC_ERROR_CMD_RSP_TIMEOUT;
 1512:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_ll_sdmmc.c ****   }
 1513:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_ll_sdmmc.c ****   else if (__SDMMC_GET_FLAG(SDMMCx, SDMMC_FLAG_CCRCFAIL))
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccZqaT42.s 			page 28
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccinN8Ai.s 			page 28
 
 
 1514:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_ll_sdmmc.c ****   {
@@ -1678,7 +1678,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccZqaT42.s 			page 1
 1568:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_ll_sdmmc.c ****   * @param  SDMMCx: Pointer to SDMMC register base
 1569:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_ll_sdmmc.c ****   * @param  pResp: pointer to response
 1570:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_ll_sdmmc.c ****   * @retval error state
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccZqaT42.s 			page 29
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccinN8Ai.s 			page 29
 
 
 1571:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_ll_sdmmc.c ****   */
@@ -1738,7 +1738,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccZqaT42.s 			page 1
 1625:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_ll_sdmmc.c ****   uint32_t count = SDMMC_CMDTIMEOUT * (SystemCoreClock / 8U / 1000U);
 1626:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_ll_sdmmc.c **** 
 1627:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_ll_sdmmc.c ****   do
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccZqaT42.s 			page 30
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccinN8Ai.s 			page 30
 
 
 1628:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_ll_sdmmc.c ****   {
@@ -1798,7 +1798,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccZqaT42.s 			page 1
 1682:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_ll_sdmmc.c ****     return SDMMC_ERROR_INVALID_PARAMETER;
 1683:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_ll_sdmmc.c ****   }
 1684:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_ll_sdmmc.c ****   else if ((response_r5 & SDMMC_SDIO_R5_ILLEGAL_CMD) == SDMMC_SDIO_R5_ILLEGAL_CMD)
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccZqaT42.s 			page 31
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccinN8Ai.s 			page 31
 
 
 1685:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_ll_sdmmc.c ****   {
@@ -1858,7 +1858,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccZqaT42.s 			page 1
 1739:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_ll_sdmmc.c ****     /* Nothing to do */
 1740:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_ll_sdmmc.c ****   }
 1741:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_ll_sdmmc.c **** 
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccZqaT42.s 			page 32
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccinN8Ai.s 			page 32
 
 
 1742:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_ll_sdmmc.c ****   /* Check response received is of desired command */
@@ -1918,7 +1918,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccZqaT42.s 			page 1
 1796:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_ll_sdmmc.c **** 
 1797:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_ll_sdmmc.c ****   if (__SDMMC_GET_FLAG(SDMMCx, SDMMC_FLAG_CTIMEOUT))
 1798:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_ll_sdmmc.c ****   {
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccZqaT42.s 			page 33
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccinN8Ai.s 			page 33
 
 
 1799:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_ll_sdmmc.c ****     /* Card is not SD V2.0 compliant */
@@ -1978,7 +1978,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccZqaT42.s 			page 1
   35 0000 0B4B     		ldr	r3, .L5
   36 0002 1B68     		ldr	r3, [r3]
   37 0004 0B4A     		ldr	r2, .L5+4
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccZqaT42.s 			page 34
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccinN8Ai.s 			page 34
 
 
   38 0006 A2FB0323 		umull	r2, r3, r2, r3
@@ -2038,7 +2038,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccZqaT42.s 			page 1
   76 002e 7047     		bx	lr
   77              	.L6:
   78              		.align	2
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccZqaT42.s 			page 35
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccinN8Ai.s 			page 35
 
 
   79              	.L5:
@@ -2098,7 +2098,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccZqaT42.s 			page 1
  217:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_ll_sdmmc.c ****              Init.ClockDiv
  122              		.loc 1 217 18 view .LVU31
  123 0012 049A     		ldr	r2, [sp, #16]
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccZqaT42.s 			page 36
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccinN8Ai.s 			page 36
 
 
  216:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_ll_sdmmc.c ****              Init.HardwareFlowControl | \
@@ -2158,7 +2158,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccZqaT42.s 			page 1
  255:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_ll_sdmmc.c **** }
  170              		.loc 1 255 17 is_stmt 0 view .LVU42
  171 0000 D0F88000 		ldr	r0, [r0, #128]
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccZqaT42.s 			page 37
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccinN8Ai.s 			page 37
 
 
  172              	.LVL13:
@@ -2218,7 +2218,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccZqaT42.s 			page 1
  221              		@ link register save eliminated.
  299:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_ll_sdmmc.c **** 
  222              		.loc 1 299 3 view .LVU52
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccZqaT42.s 			page 38
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccinN8Ai.s 			page 38
 
 
  299:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_ll_sdmmc.c **** 
@@ -2278,7 +2278,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccZqaT42.s 			page 1
  268              		.align	1
  269              		.global	SDMMC_PowerState_OFF
  270              		.syntax unified
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccZqaT42.s 			page 39
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccinN8Ai.s 			page 39
 
 
  271              		.thumb
@@ -2338,7 +2338,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccZqaT42.s 			page 1
  317 0002 00F00300 		and	r0, r0, #3
  318 0006 7047     		bx	lr
  319              		.cfi_endproc
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccZqaT42.s 			page 40
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccinN8Ai.s 			page 40
 
 
  320              	.LFE150:
@@ -2398,7 +2398,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccZqaT42.s 			page 1
  368:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_ll_sdmmc.c ****                        Command->CPSM);
  360              		.loc 1 368 50 view .LVU92
  361 0010 1343     		orrs	r3, r3, r2
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccZqaT42.s 			page 41
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccinN8Ai.s 			page 41
 
 
  362              	.LVL25:
@@ -2458,7 +2458,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccZqaT42.s 			page 1
  408 0004 7047     		bx	lr
  409              		.cfi_endproc
  410              	.LFE152:
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccZqaT42.s 			page 42
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccinN8Ai.s 			page 42
 
 
  412              		.section	.text.SDMMC_GetResponse,"ax",%progbits
@@ -2518,7 +2518,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccZqaT42.s 			page 1
  458              		.loc 1 425 3 view .LVU113
  426:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_ll_sdmmc.c ****   assert_param(IS_SDMMC_TRANSFER_DIR(Data->TransferDir));
  459              		.loc 1 426 3 view .LVU114
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccZqaT42.s 			page 43
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccinN8Ai.s 			page 43
 
 
  427:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_ll_sdmmc.c ****   assert_param(IS_SDMMC_TRANSFER_MODE(Data->TransferMode));
@@ -2578,7 +2578,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccZqaT42.s 			page 1
  495 001e C362     		str	r3, [r0, #44]
  496              	.LVL38:
  446:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_ll_sdmmc.c **** 
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccZqaT42.s 			page 44
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccinN8Ai.s 			page 44
 
 
  497              		.loc 1 446 3 is_stmt 1 view .LVU134
@@ -2638,7 +2638,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccZqaT42.s 			page 1
  546              		.loc 1 467 17 is_stmt 0 view .LVU143
  547 0000 D0F88000 		ldr	r0, [r0, #128]
  548              	.LVL43:
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccZqaT42.s 			page 45
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccinN8Ai.s 			page 45
 
 
  468:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_ll_sdmmc.c **** 
@@ -2698,7 +2698,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccZqaT42.s 			page 1
  598              		.loc 1 841 1 is_stmt 0 view .LVU152
  599 0000 10B5     		push	{r4, lr}
  600              		.cfi_def_cfa_offset 8
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccZqaT42.s 			page 46
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccinN8Ai.s 			page 46
 
 
  601              		.cfi_offset 4, -8
@@ -2758,7 +2758,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccZqaT42.s 			page 1
  637 0022 06B0     		add	sp, sp, #24
  638              		.cfi_def_cfa_offset 8
  639              		@ sp needed
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccZqaT42.s 			page 47
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccinN8Ai.s 			page 47
 
 
  640 0024 10BD     		pop	{r4, pc}
@@ -2818,7 +2818,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccZqaT42.s 			page 1
  685 0016 1346     		mov	r3, r2
 1366:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_ll_sdmmc.c ****     {
  686              		.loc 1 1366 14 is_stmt 0 view .LVU182
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccZqaT42.s 			page 48
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccinN8Ai.s 			page 48
 
 
  687 0018 013A     		subs	r2, r2, #1
@@ -2878,7 +2878,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccZqaT42.s 			page 1
  724              		.loc 1 1384 12 is_stmt 0 view .LVU199
  725 0042 4DE0     		b	.L28
  726              	.LVL55:
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccZqaT42.s 			page 49
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccinN8Ai.s 			page 49
 
 
  727              	.L54:
@@ -2938,7 +2938,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccZqaT42.s 			page 1
  766 0066 3D48     		ldr	r0, .L56+16
  767              	.LVL62:
 1403:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_ll_sdmmc.c ****   {
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccZqaT42.s 			page 50
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccinN8Ai.s 			page 50
 
 
  768              		.loc 1 1403 20 view .LVU215
@@ -2998,7 +2998,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccZqaT42.s 			page 1
  804              		.loc 1 1439 8 is_stmt 1 view .LVU233
 1439:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_ll_sdmmc.c ****   {
  805              		.loc 1 1439 11 is_stmt 0 view .LVU234
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccZqaT42.s 			page 51
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccinN8Ai.s 			page 51
 
 
  806 009a 13F4800F 		tst	r3, #4194304
@@ -3058,7 +3058,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccZqaT42.s 			page 1
  842 00d0 13F0080F 		tst	r3, #8
  843 00d4 36D0     		beq	.L52
 1477:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_ll_sdmmc.c ****   }
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccZqaT42.s 			page 52
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccinN8Ai.s 			page 52
 
 
  844              		.loc 1 1477 12 view .LVU253
@@ -3118,7 +3118,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccZqaT42.s 			page 1
  888              	.L43:
 1441:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_ll_sdmmc.c ****   }
  889              		.loc 1 1441 12 view .LVU264
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccZqaT42.s 			page 53
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccinN8Ai.s 			page 53
 
 
  890 010e 4FF40050 		mov	r0, #8192
@@ -3178,7 +3178,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccZqaT42.s 			page 1
  935 015c 08E0FFFD 		.word	-33562616
  936              		.cfi_endproc
  937              	.LFE191:
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccZqaT42.s 			page 54
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccinN8Ai.s 			page 54
 
 
  939              		.section	.text.SDMMC_CmdBlockLength,"ax",%progbits
@@ -3238,7 +3238,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccZqaT42.s 			page 1
  980              		.loc 1 524 34 is_stmt 0 view .LVU287
  981 0016 4FF48053 		mov	r3, #4096
  982 001a 0593     		str	r3, [sp, #20]
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccZqaT42.s 			page 55
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccinN8Ai.s 			page 55
 
 
  525:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_ll_sdmmc.c **** 
@@ -3298,7 +3298,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccZqaT42.s 			page 1
  1029 0004 0446     		mov	r4, r0
  540:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_ll_sdmmc.c ****   uint32_t errorstate;
  1030              		.loc 1 540 3 is_stmt 1 view .LVU298
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccZqaT42.s 			page 56
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccinN8Ai.s 			page 56
 
 
  541:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_ll_sdmmc.c **** 
@@ -3358,7 +3358,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccZqaT42.s 			page 1
  1067 002e 07B0     		add	sp, sp, #28
  1068              		.cfi_def_cfa_offset 12
  1069              		@ sp needed
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccZqaT42.s 			page 57
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccinN8Ai.s 			page 57
 
 
  1070 0030 30BD     		pop	{r4, r5, pc}
@@ -3418,7 +3418,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccZqaT42.s 			page 1
  1113 0012 0023     		movs	r3, #0
  1114 0014 0493     		str	r3, [sp, #16]
  572:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_ll_sdmmc.c ****   (void)SDMMC_SendCommand(SDMMCx, &sdmmc_cmdinit);
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccZqaT42.s 			page 58
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccinN8Ai.s 			page 58
 
 
  1115              		.loc 1 572 3 is_stmt 1 view .LVU330
@@ -3478,7 +3478,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccZqaT42.s 			page 1
  1160              		.cfi_offset 4, -12
  1161              		.cfi_offset 5, -8
  1162              		.cfi_offset 14, -4
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccZqaT42.s 			page 59
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccinN8Ai.s 			page 59
 
 
  1163 0002 87B0     		sub	sp, sp, #28
@@ -3538,7 +3538,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccZqaT42.s 			page 1
  1200              	.LVL81:
  602:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_ll_sdmmc.c **** }
  1201              		.loc 1 602 3 is_stmt 1 view .LVU359
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccZqaT42.s 			page 60
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccinN8Ai.s 			page 60
 
 
  603:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_ll_sdmmc.c **** 
@@ -3598,7 +3598,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccZqaT42.s 			page 1
  1246 0010 0393     		str	r3, [sp, #12]
  619:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_ll_sdmmc.c ****   sdmmc_cmdinit.CPSM             = SDMMC_CPSM_ENABLE;
  1247              		.loc 1 619 3 is_stmt 1 view .LVU372
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccZqaT42.s 			page 61
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccinN8Ai.s 			page 61
 
 
  619:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_ll_sdmmc.c ****   sdmmc_cmdinit.CPSM             = SDMMC_CPSM_ENABLE;
@@ -3658,7 +3658,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccZqaT42.s 			page 1
  1292              		@ frame_needed = 0, uses_anonymous_args = 0
  635:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_ll_sdmmc.c ****   SDMMC_CmdInitTypeDef  sdmmc_cmdinit;
  1293              		.loc 1 635 1 is_stmt 0 view .LVU385
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccZqaT42.s 			page 62
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccinN8Ai.s 			page 62
 
 
  1294 0000 30B5     		push	{r4, r5, lr}
@@ -3718,7 +3718,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccZqaT42.s 			page 1
  1331              		.loc 1 648 16 is_stmt 0 view .LVU402
  1332 0022 41F28832 		movw	r2, #5000
  1333 0026 2946     		mov	r1, r5
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccZqaT42.s 			page 63
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccinN8Ai.s 			page 63
 
 
  1334 0028 2046     		mov	r0, r4
@@ -3778,7 +3778,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccZqaT42.s 			page 1
  666:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_ll_sdmmc.c ****   sdmmc_cmdinit.WaitForInterrupt = SDMMC_WAIT_NO;
  1379              		.loc 1 666 3 is_stmt 1 view .LVU414
  666:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_ll_sdmmc.c ****   sdmmc_cmdinit.WaitForInterrupt = SDMMC_WAIT_NO;
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccZqaT42.s 			page 64
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccinN8Ai.s 			page 64
 
 
  1380              		.loc 1 666 34 is_stmt 0 view .LVU415
@@ -3838,7 +3838,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccZqaT42.s 			page 1
  1424              	.LFB165:
  683:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_ll_sdmmc.c ****   SDMMC_CmdInitTypeDef  sdmmc_cmdinit;
  1425              		.loc 1 683 1 is_stmt 1 view -0
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccZqaT42.s 			page 65
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccinN8Ai.s 			page 65
 
 
  1426              		.cfi_startproc
@@ -3898,7 +3898,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccZqaT42.s 			page 1
  1464 001e FFF7FEFF 		bl	SDMMC_SendCommand
  1465              	.LVL96:
  696:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_ll_sdmmc.c **** 
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccZqaT42.s 			page 66
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccinN8Ai.s 			page 66
 
 
  1466              		.loc 1 696 3 is_stmt 1 view .LVU445
@@ -3958,7 +3958,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccZqaT42.s 			page 1
  1511              		.loc 1 713 3 is_stmt 1 view .LVU456
  713:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_ll_sdmmc.c ****   sdmmc_cmdinit.Response         = SDMMC_RESPONSE_SHORT;
  1512              		.loc 1 713 34 is_stmt 0 view .LVU457
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccZqaT42.s 			page 67
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccinN8Ai.s 			page 67
 
 
  1513 0008 2325     		movs	r5, #35
@@ -4018,7 +4018,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccZqaT42.s 			page 1
  1554              		.syntax unified
  1555              		.thumb
  1556              		.thumb_func
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccZqaT42.s 			page 68
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccinN8Ai.s 			page 68
 
 
  1558              	SDMMC_CmdEraseEndAdd:
@@ -4078,7 +4078,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccZqaT42.s 			page 1
  1596              		.loc 1 741 9 is_stmt 0 view .LVU487
  1597 001c 01A9     		add	r1, sp, #4
  1598              	.LVL103:
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccZqaT42.s 			page 69
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccinN8Ai.s 			page 69
 
 
  741:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_ll_sdmmc.c **** 
@@ -4138,7 +4138,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccZqaT42.s 			page 1
  1644              		.loc 1 761 3 view .LVU498
  761:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_ll_sdmmc.c ****   sdmmc_cmdinit.CmdIndex         = SDMMC_CMD_ERASE;
  1645              		.loc 1 761 34 is_stmt 0 view .LVU499
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccZqaT42.s 			page 70
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccinN8Ai.s 			page 70
 
 
  1646 0006 0191     		str	r1, [sp, #4]
@@ -4198,7 +4198,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccZqaT42.s 			page 1
  1684              		.cfi_endproc
  1685              	.LFE168:
  1687              		.section	.text.SDMMC_CmdStopTransfer,"ax",%progbits
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccZqaT42.s 			page 71
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccinN8Ai.s 			page 71
 
 
  1688              		.align	1
@@ -4258,7 +4258,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccZqaT42.s 			page 1
  1729 0016 4FF48053 		mov	r3, #4096
  1730 001a 0593     		str	r3, [sp, #20]
  791:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_ll_sdmmc.c ****   __SDMMC_CMDTRANS_DISABLE(SDMMCx);
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccZqaT42.s 			page 72
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccinN8Ai.s 			page 72
 
 
  1731              		.loc 1 791 3 is_stmt 1 view .LVU530
@@ -4318,7 +4318,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccZqaT42.s 			page 1
  807:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_ll_sdmmc.c **** }
  1774              		.loc 1 807 10 is_stmt 0 view .LVU542
  1775 0050 FBE7     		b	.L80
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccZqaT42.s 			page 73
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccinN8Ai.s 			page 73
 
 
  1776              	.L86:
@@ -4378,7 +4378,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccZqaT42.s 			page 1
  1820              		.loc 1 825 34 is_stmt 0 view .LVU554
  1821 0012 0023     		movs	r3, #0
  1822 0014 0493     		str	r3, [sp, #16]
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccZqaT42.s 			page 74
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccinN8Ai.s 			page 74
 
 
  826:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_ll_sdmmc.c ****   (void)SDMMC_SendCommand(SDMMCx, &sdmmc_cmdinit);
@@ -4438,7 +4438,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccZqaT42.s 			page 1
  1867              		.cfi_def_cfa_offset 12
  1868              		.cfi_offset 4, -12
  1869              		.cfi_offset 5, -8
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccZqaT42.s 			page 75
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccinN8Ai.s 			page 75
 
 
  1870              		.cfi_offset 14, -4
@@ -4498,7 +4498,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccZqaT42.s 			page 1
  1907 002a FFF7FEFF 		bl	SDMMC_GetCmdResp1
  1908              	.LVL123:
  912:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_ll_sdmmc.c **** }
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccZqaT42.s 			page 76
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccinN8Ai.s 			page 76
 
 
  1909              		.loc 1 912 3 is_stmt 1 view .LVU584
@@ -4558,7 +4558,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccZqaT42.s 			page 1
  1953 000c 4FF48073 		mov	r3, #256
  1954 0010 0393     		str	r3, [sp, #12]
  954:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_ll_sdmmc.c ****   sdmmc_cmdinit.CPSM             = SDMMC_CPSM_ENABLE;
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccZqaT42.s 			page 77
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccinN8Ai.s 			page 77
 
 
  1955              		.loc 1 954 3 is_stmt 1 view .LVU597
@@ -4618,7 +4618,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccZqaT42.s 			page 1
  1999              		@ args = 0, pretend = 0, frame = 24
  2000              		@ frame_needed = 0, uses_anonymous_args = 0
  970:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_ll_sdmmc.c ****   SDMMC_CmdInitTypeDef  sdmmc_cmdinit;
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccZqaT42.s 			page 78
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccinN8Ai.s 			page 78
 
 
  2001              		.loc 1 970 1 is_stmt 0 view .LVU610
@@ -4678,7 +4678,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccZqaT42.s 			page 1
  2039 0026 2946     		mov	r1, r5
  2040 0028 2046     		mov	r0, r4
  2041 002a FFF7FEFF 		bl	SDMMC_GetCmdResp1
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccZqaT42.s 			page 79
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccinN8Ai.s 			page 79
 
 
  2042              	.LVL130:
@@ -4738,7 +4738,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccZqaT42.s 			page 1
  2086 000a 0325     		movs	r5, #3
  2087 000c 0295     		str	r5, [sp, #8]
 1076:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_ll_sdmmc.c ****   sdmmc_cmdinit.WaitForInterrupt = SDMMC_WAIT_NO;
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccZqaT42.s 			page 80
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccinN8Ai.s 			page 80
 
 
  2088              		.loc 1 1076 3 is_stmt 1 view .LVU639
@@ -4798,7 +4798,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccZqaT42.s 			page 1
 1094:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_ll_sdmmc.c ****   SDMMC_CmdInitTypeDef  sdmmc_cmdinit;
  2132              		.loc 1 1094 1 is_stmt 1 view -0
  2133              		.cfi_startproc
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccZqaT42.s 			page 81
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccinN8Ai.s 			page 81
 
 
  2134              		@ args = 0, pretend = 0, frame = 24
@@ -4858,7 +4858,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccZqaT42.s 			page 1
  2172              	.LVL137:
 1107:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_ll_sdmmc.c **** 
  2173              		.loc 1 1107 3 is_stmt 1 view .LVU669
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccZqaT42.s 			page 82
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccinN8Ai.s 			page 82
 
 
 1107:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_ll_sdmmc.c **** 
@@ -4918,7 +4918,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccZqaT42.s 			page 1
 1124:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_ll_sdmmc.c ****   sdmmc_cmdinit.Response         = SDMMC_RESPONSE_SHORT;
  2219              		.loc 1 1124 34 is_stmt 0 view .LVU681
  2220 0008 0D25     		movs	r5, #13
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccZqaT42.s 			page 83
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccinN8Ai.s 			page 83
 
 
  2221 000a 0295     		str	r5, [sp, #8]
@@ -4978,7 +4978,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccZqaT42.s 			page 1
  2262              		.thumb
  2263              		.thumb_func
  2265              	SDMMC_CmdStatusRegister:
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccZqaT42.s 			page 84
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccinN8Ai.s 			page 84
 
 
  2266              	.LVL143:
@@ -5038,7 +5038,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccZqaT42.s 			page 1
  2304 001c 01A9     		add	r1, sp, #4
  2305 001e FFF7FEFF 		bl	SDMMC_SendCommand
  2306              	.LVL144:
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccZqaT42.s 			page 85
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccinN8Ai.s 			page 85
 
 
 1154:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_ll_sdmmc.c **** 
@@ -5098,7 +5098,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccZqaT42.s 			page 1
 1198:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_ll_sdmmc.c ****   sdmmc_cmdinit.Response         = SDMMC_RESPONSE_SHORT;
  2352              		.loc 1 1198 3 is_stmt 1 view .LVU723
 1198:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_ll_sdmmc.c ****   sdmmc_cmdinit.Response         = SDMMC_RESPONSE_SHORT;
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccZqaT42.s 			page 86
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccinN8Ai.s 			page 86
 
 
  2353              		.loc 1 1198 34 is_stmt 0 view .LVU724
@@ -5158,7 +5158,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccZqaT42.s 			page 1
  2394              		.global	SDMMC_CmdVoltageSwitch
  2395              		.syntax unified
  2396              		.thumb
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccZqaT42.s 			page 87
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccinN8Ai.s 			page 87
 
 
  2397              		.thumb_func
@@ -5218,7 +5218,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccZqaT42.s 			page 1
 1226:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_ll_sdmmc.c **** 
  2437              		.loc 1 1226 9 is_stmt 0 view .LVU754
  2438 001c 01A9     		add	r1, sp, #4
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccZqaT42.s 			page 88
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccinN8Ai.s 			page 88
 
 
  2439 001e FFF7FEFF 		bl	SDMMC_SendCommand
@@ -5278,7 +5278,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccZqaT42.s 			page 1
  2484              		.loc 1 1246 34 is_stmt 0 view .LVU765
  2485 0006 0191     		str	r1, [sp, #4]
 1247:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_ll_sdmmc.c ****   sdmmc_cmdinit.Response         = SDMMC_RESPONSE_SHORT;
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccZqaT42.s 			page 89
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccinN8Ai.s 			page 89
 
 
  2486              		.loc 1 1247 3 is_stmt 1 view .LVU766
@@ -5338,7 +5338,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccZqaT42.s 			page 1
  2526              		.section	.text.SDMMC_GetCmdResp2,"ax",%progbits
  2527              		.align	1
  2528              		.global	SDMMC_GetCmdResp2
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccZqaT42.s 			page 90
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccinN8Ai.s 			page 90
 
 
  2529              		.syntax unified
@@ -5398,7 +5398,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccZqaT42.s 			page 1
 1504:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_ll_sdmmc.c ****            ((sta_reg & SDMMC_FLAG_CMDACT) != 0U));
  2571              		.loc 1 1504 97 is_stmt 0 discriminator 1 view .LVU795
  2572 0024 12F4005F 		tst	r2, #8192
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccZqaT42.s 			page 91
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccinN8Ai.s 			page 91
 
 
  2573 0028 F5D1     		bne	.L111
@@ -5458,7 +5458,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccZqaT42.s 			page 1
  2611              	.LVL165:
  2612              	.L114:
 1501:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_ll_sdmmc.c ****     }
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccZqaT42.s 			page 92
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccinN8Ai.s 			page 92
 
 
  2613              		.loc 1 1501 14 view .LVU812
@@ -5518,7 +5518,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccZqaT42.s 			page 1
  2659              		.loc 1 1001 3 is_stmt 1 view .LVU822
 1001:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_ll_sdmmc.c ****   sdmmc_cmdinit.WaitForInterrupt = SDMMC_WAIT_NO;
  2660              		.loc 1 1001 34 is_stmt 0 view .LVU823
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccZqaT42.s 			page 93
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccinN8Ai.s 			page 93
 
 
  2661 000e 4FF44072 		mov	r2, #768
@@ -5578,7 +5578,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccZqaT42.s 			page 1
  2704              		.loc 1 1019 1 is_stmt 0 view .LVU836
  2705 0000 10B5     		push	{r4, lr}
  2706              		.cfi_def_cfa_offset 8
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccZqaT42.s 			page 94
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccinN8Ai.s 			page 94
 
 
  2707              		.cfi_offset 4, -8
@@ -5638,7 +5638,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccZqaT42.s 			page 1
  2744              	.LVL173:
 1034:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_ll_sdmmc.c **** }
  2745              		.loc 1 1034 3 is_stmt 1 view .LVU854
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccZqaT42.s 			page 95
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccinN8Ai.s 			page 95
 
 
 1035:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_ll_sdmmc.c **** 
@@ -5698,7 +5698,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccZqaT42.s 			page 1
 1543:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_ll_sdmmc.c ****     {
  2791              		.loc 1 1543 8 view .LVU866
  2792 001a 82B1     		cbz	r2, .L127
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccZqaT42.s 			page 96
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccinN8Ai.s 			page 96
 
 
 1547:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_ll_sdmmc.c ****   } while (((sta_reg & (SDMMC_FLAG_CCRCFAIL | SDMMC_FLAG_CMDREND | SDMMC_FLAG_CTIMEOUT)) == 0U) ||
@@ -5758,7 +5758,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccZqaT42.s 			page 1
  2831              		.loc 1 1564 1 view .LVU882
  2832 0042 7047     		bx	lr
  2833              	.L130:
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccZqaT42.s 			page 97
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccinN8Ai.s 			page 97
 
 
  2834              		.align	2
@@ -5818,7 +5818,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccZqaT42.s 			page 1
  2878              		.loc 1 930 34 is_stmt 0 view .LVU894
  2879 0012 0023     		movs	r3, #0
  2880 0014 0493     		str	r3, [sp, #16]
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccZqaT42.s 			page 98
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccinN8Ai.s 			page 98
 
 
  931:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_ll_sdmmc.c ****   (void)SDMMC_SendCommand(SDMMCx, &sdmmc_cmdinit);
@@ -5878,7 +5878,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccZqaT42.s 			page 1
  2925              		.cfi_offset 14, -4
  2926 0002 86B0     		sub	sp, sp, #24
  2927              		.cfi_def_cfa_offset 32
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccZqaT42.s 			page 99
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccinN8Ai.s 			page 99
 
 
  2928 0004 0446     		mov	r4, r0
@@ -5938,7 +5938,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccZqaT42.s 			page 1
  2963              		.loc 1 1182 1 is_stmt 0 view .LVU925
  2964 0028 06B0     		add	sp, sp, #24
  2965              		.cfi_def_cfa_offset 8
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccZqaT42.s 			page 100
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccinN8Ai.s 			page 100
 
 
  2966              		@ sp needed
@@ -5998,7 +5998,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccZqaT42.s 			page 1
  3012              	.LVL193:
 1582:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_ll_sdmmc.c ****     {
  3013              		.loc 1 1582 8 view .LVU936
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccZqaT42.s 			page 101
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccinN8Ai.s 			page 101
 
 
  3014 001c AAB1     		cbz	r2, .L139
@@ -6058,7 +6058,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccZqaT42.s 			page 1
 1592:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_ll_sdmmc.c **** 
  3052              		.loc 1 1592 5 is_stmt 1 view .LVU953
  3053 0044 0425     		movs	r5, #4
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccZqaT42.s 			page 102
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccinN8Ai.s 			page 102
 
 
  3054 0046 8563     		str	r5, [r0, #56]
@@ -6118,7 +6118,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccZqaT42.s 			page 1
  3102              		.loc 1 1316 3 is_stmt 1 view .LVU961
 1317:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_ll_sdmmc.c **** 
  3103              		.loc 1 1317 3 view .LVU962
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccZqaT42.s 			page 103
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccinN8Ai.s 			page 103
 
 
 1319:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_ll_sdmmc.c ****   sdmmc_cmdinit.CmdIndex         = SDMMC_CMD_SDMMC_SEN_OP_COND;
@@ -6178,7 +6178,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccZqaT42.s 			page 1
  3141 002e 30BD     		pop	{r4, r5, pc}
 1330:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_ll_sdmmc.c **** /**
  3142              		.loc 1 1330 1 view .LVU980
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccZqaT42.s 			page 104
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccinN8Ai.s 			page 104
 
 
  3143              		.cfi_endproc
@@ -6238,7 +6238,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccZqaT42.s 			page 1
  3189              		.loc 1 1629 5 view .LVU990
  3190 001c 1A46     		mov	r2, r3
 1629:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_ll_sdmmc.c ****     {
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccZqaT42.s 			page 105
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccinN8Ai.s 			page 105
 
 
  3191              		.loc 1 1629 14 is_stmt 0 view .LVU991
@@ -6298,7 +6298,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccZqaT42.s 			page 1
  3229              		.loc 1 1639 5 is_stmt 1 view .LVU1007
  3230 0046 0420     		movs	r0, #4
  3231              	.LVL214:
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccZqaT42.s 			page 106
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccinN8Ai.s 			page 106
 
 
 1639:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_ll_sdmmc.c **** 
@@ -6358,7 +6358,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccZqaT42.s 			page 1
 1676:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_ll_sdmmc.c ****   {
  3271              		.loc 1 1676 8 is_stmt 1 view .LVU1023
 1676:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_ll_sdmmc.c ****   {
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccZqaT42.s 			page 107
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccinN8Ai.s 			page 107
 
 
  3272              		.loc 1 1676 11 is_stmt 0 view .LVU1024
@@ -6418,7 +6418,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccZqaT42.s 			page 1
  3310              		.loc 1 1678 12 view .LVU1040
  3311 0098 4FF00070 		mov	r0, #33554432
  3312 009c FBE7     		b	.L146
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccZqaT42.s 			page 108
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccinN8Ai.s 			page 108
 
 
  3313              	.L156:
@@ -6478,7 +6478,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccZqaT42.s 			page 1
  3361              		.loc 1 1271 3 view .LVU1048
 1271:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_ll_sdmmc.c ****   sdmmc_cmdinit.CmdIndex         = SDMMC_CMD_SDMMC_RW_DIRECT;
  3362              		.loc 1 1271 34 is_stmt 0 view .LVU1049
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccZqaT42.s 			page 109
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccinN8Ai.s 			page 109
 
 
  3363 0008 0191     		str	r1, [sp, #4]
@@ -6538,7 +6538,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccZqaT42.s 			page 1
  3401              		.cfi_endproc
  3402              	.LFE188:
  3404              		.section	.text.SDMMC_SDIO_CmdReadWriteExtended,"ax",%progbits
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccZqaT42.s 			page 110
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccinN8Ai.s 			page 110
 
 
  3405              		.align	1
@@ -6598,7 +6598,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccZqaT42.s 			page 1
  3446              		.loc 1 1299 34 is_stmt 0 view .LVU1079
  3447 0016 4FF48053 		mov	r3, #4096
  3448 001a 0593     		str	r3, [sp, #20]
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccZqaT42.s 			page 111
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccinN8Ai.s 			page 111
 
 
 1300:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_ll_sdmmc.c **** 
@@ -6658,7 +6658,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccZqaT42.s 			page 1
  3495              		.cfi_offset 14, -4
  3496 0002 0546     		mov	r5, r0
  3497 0004 0E46     		mov	r6, r1
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccZqaT42.s 			page 112
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccinN8Ai.s 			page 112
 
 
  3498 0006 1746     		mov	r7, r2
@@ -6718,7 +6718,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccZqaT42.s 			page 1
  3536              	.LVL237:
 1725:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_ll_sdmmc.c ****   {
  3537              		.loc 1 1725 6 view .LVU1106
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccZqaT42.s 			page 113
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccinN8Ai.s 			page 113
 
 
  3538 0032 13F0040F 		tst	r3, #4
@@ -6778,7 +6778,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccZqaT42.s 			page 1
  3576 0054 01D0     		beq	.L181
 1745:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_ll_sdmmc.c ****   }
  3577              		.loc 1 1745 12 view .LVU1123
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccZqaT42.s 			page 114
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccinN8Ai.s 			page 114
 
 
  3578 0056 0120     		movs	r0, #1
@@ -6838,7 +6838,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccZqaT42.s 			page 1
 1759:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_ll_sdmmc.c ****   }
  3617              		.loc 1 1759 12 is_stmt 0 view .LVU1139
  3618 0084 01E0     		b	.L169
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccZqaT42.s 			page 115
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccinN8Ai.s 			page 115
 
 
  3619              	.LVL248:
@@ -6898,7 +6898,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccZqaT42.s 			page 1
  3669 0006 0D46     		mov	r5, r1
 1045:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_ll_sdmmc.c ****   uint32_t errorstate;
  3670              		.loc 1 1045 3 is_stmt 1 view .LVU1146
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccZqaT42.s 			page 116
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccinN8Ai.s 			page 116
 
 
 1046:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_ll_sdmmc.c **** 
@@ -6958,7 +6958,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccZqaT42.s 			page 1
  3707 002e 06B0     		add	sp, sp, #24
  3708              		.cfi_def_cfa_offset 16
  3709              		@ sp needed
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccZqaT42.s 			page 117
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccinN8Ai.s 			page 117
 
 
  3710 0030 70BD     		pop	{r4, r5, r6, pc}
@@ -7018,7 +7018,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccZqaT42.s 			page 1
 1793:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_ll_sdmmc.c ****   } while (((sta_reg & (SDMMC_FLAG_CCRCFAIL | SDMMC_FLAG_CMDREND | SDMMC_FLAG_CTIMEOUT)) == 0U) ||
  3754              		.loc 1 1793 13 is_stmt 0 view .LVU1177
  3755 001c 4A6B     		ldr	r2, [r1, #52]
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccZqaT42.s 			page 118
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccinN8Ai.s 			page 118
 
 
  3756              	.LVL258:
@@ -7078,7 +7078,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccZqaT42.s 			page 1
  3794              		.loc 1 1800 5 is_stmt 1 view .LVU1193
  3795 004a 0420     		movs	r0, #4
  3796              	.LVL263:
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccZqaT42.s 			page 119
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccinN8Ai.s 			page 119
 
 
 1800:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_ll_sdmmc.c **** 
@@ -7138,7 +7138,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccZqaT42.s 			page 1
  3842              		.loc 1 864 1 is_stmt 0 view .LVU1204
  3843 0000 10B5     		push	{r4, lr}
  3844              		.cfi_def_cfa_offset 8
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccZqaT42.s 			page 120
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccinN8Ai.s 			page 120
 
 
  3845              		.cfi_offset 4, -8
@@ -7198,7 +7198,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccZqaT42.s 			page 1
  3882              		.loc 1 883 3 is_stmt 1 view .LVU1221
  884:Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_ll_sdmmc.c **** 
  3883              		.loc 1 884 1 is_stmt 0 view .LVU1222
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccZqaT42.s 			page 121
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccinN8Ai.s 			page 121
 
 
  3884 002c 06B0     		add	sp, sp, #24
@@ -7217,138 +7217,138 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccZqaT42.s 			page 1
  3897              		.file 5 "Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_def.h"
  3898              		.file 6 "Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_ll_sdmmc.h"
  3899              		.file 7 "Drivers/CMSIS/Device/ST/STM32H7xx/Include/system_stm32h7xx.h"
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccZqaT42.s 			page 122
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccinN8Ai.s 			page 122
 
 
 DEFINED SYMBOLS
                             *ABS*:00000000 stm32h7xx_ll_sdmmc.c
-C:\Users\Nathan\AppData\Local\Temp\ccZqaT42.s:20     .text.SDMMC_GetCmdError:00000000 $t
-C:\Users\Nathan\AppData\Local\Temp\ccZqaT42.s:25     .text.SDMMC_GetCmdError:00000000 SDMMC_GetCmdError
-C:\Users\Nathan\AppData\Local\Temp\ccZqaT42.s:80     .text.SDMMC_GetCmdError:00000030 $d
-C:\Users\Nathan\AppData\Local\Temp\ccZqaT42.s:87     .text.SDMMC_Init:00000000 $t
-C:\Users\Nathan\AppData\Local\Temp\ccZqaT42.s:93     .text.SDMMC_Init:00000000 SDMMC_Init
-C:\Users\Nathan\AppData\Local\Temp\ccZqaT42.s:150    .text.SDMMC_Init:0000002c $d
-C:\Users\Nathan\AppData\Local\Temp\ccZqaT42.s:155    .text.SDMMC_ReadFIFO:00000000 $t
-C:\Users\Nathan\AppData\Local\Temp\ccZqaT42.s:161    .text.SDMMC_ReadFIFO:00000000 SDMMC_ReadFIFO
-C:\Users\Nathan\AppData\Local\Temp\ccZqaT42.s:179    .text.SDMMC_WriteFIFO:00000000 $t
-C:\Users\Nathan\AppData\Local\Temp\ccZqaT42.s:185    .text.SDMMC_WriteFIFO:00000000 SDMMC_WriteFIFO
-C:\Users\Nathan\AppData\Local\Temp\ccZqaT42.s:208    .text.SDMMC_PowerState_ON:00000000 $t
-C:\Users\Nathan\AppData\Local\Temp\ccZqaT42.s:214    .text.SDMMC_PowerState_ON:00000000 SDMMC_PowerState_ON
-C:\Users\Nathan\AppData\Local\Temp\ccZqaT42.s:238    .text.SDMMC_PowerState_Cycle:00000000 $t
-C:\Users\Nathan\AppData\Local\Temp\ccZqaT42.s:244    .text.SDMMC_PowerState_Cycle:00000000 SDMMC_PowerState_Cycle
-C:\Users\Nathan\AppData\Local\Temp\ccZqaT42.s:268    .text.SDMMC_PowerState_OFF:00000000 $t
-C:\Users\Nathan\AppData\Local\Temp\ccZqaT42.s:274    .text.SDMMC_PowerState_OFF:00000000 SDMMC_PowerState_OFF
-C:\Users\Nathan\AppData\Local\Temp\ccZqaT42.s:298    .text.SDMMC_GetPowerState:00000000 $t
-C:\Users\Nathan\AppData\Local\Temp\ccZqaT42.s:304    .text.SDMMC_GetPowerState:00000000 SDMMC_GetPowerState
-C:\Users\Nathan\AppData\Local\Temp\ccZqaT42.s:323    .text.SDMMC_SendCommand:00000000 $t
-C:\Users\Nathan\AppData\Local\Temp\ccZqaT42.s:329    .text.SDMMC_SendCommand:00000000 SDMMC_SendCommand
-C:\Users\Nathan\AppData\Local\Temp\ccZqaT42.s:383    .text.SDMMC_SendCommand:00000020 $d
-C:\Users\Nathan\AppData\Local\Temp\ccZqaT42.s:388    .text.SDMMC_GetCommandResponse:00000000 $t
-C:\Users\Nathan\AppData\Local\Temp\ccZqaT42.s:394    .text.SDMMC_GetCommandResponse:00000000 SDMMC_GetCommandResponse
-C:\Users\Nathan\AppData\Local\Temp\ccZqaT42.s:413    .text.SDMMC_GetResponse:00000000 $t
-C:\Users\Nathan\AppData\Local\Temp\ccZqaT42.s:419    .text.SDMMC_GetResponse:00000000 SDMMC_GetResponse
-C:\Users\Nathan\AppData\Local\Temp\ccZqaT42.s:443    .text.SDMMC_ConfigData:00000000 $t
-C:\Users\Nathan\AppData\Local\Temp\ccZqaT42.s:449    .text.SDMMC_ConfigData:00000000 SDMMC_ConfigData
-C:\Users\Nathan\AppData\Local\Temp\ccZqaT42.s:507    .text.SDMMC_GetDataCounter:00000000 $t
-C:\Users\Nathan\AppData\Local\Temp\ccZqaT42.s:513    .text.SDMMC_GetDataCounter:00000000 SDMMC_GetDataCounter
-C:\Users\Nathan\AppData\Local\Temp\ccZqaT42.s:531    .text.SDMMC_GetFIFOCount:00000000 $t
-C:\Users\Nathan\AppData\Local\Temp\ccZqaT42.s:537    .text.SDMMC_GetFIFOCount:00000000 SDMMC_GetFIFOCount
-C:\Users\Nathan\AppData\Local\Temp\ccZqaT42.s:555    .text.SDMMC_SetSDMMCReadWaitMode:00000000 $t
-C:\Users\Nathan\AppData\Local\Temp\ccZqaT42.s:561    .text.SDMMC_SetSDMMCReadWaitMode:00000000 SDMMC_SetSDMMCReadWaitMode
-C:\Users\Nathan\AppData\Local\Temp\ccZqaT42.s:585    .text.SDMMC_CmdGoIdleState:00000000 $t
-C:\Users\Nathan\AppData\Local\Temp\ccZqaT42.s:591    .text.SDMMC_CmdGoIdleState:00000000 SDMMC_CmdGoIdleState
-C:\Users\Nathan\AppData\Local\Temp\ccZqaT42.s:646    .text.SDMMC_GetCmdResp1:00000000 $t
-C:\Users\Nathan\AppData\Local\Temp\ccZqaT42.s:652    .text.SDMMC_GetCmdResp1:00000000 SDMMC_GetCmdResp1
-C:\Users\Nathan\AppData\Local\Temp\ccZqaT42.s:931    .text.SDMMC_GetCmdResp1:0000014c $d
-C:\Users\Nathan\AppData\Local\Temp\ccZqaT42.s:940    .text.SDMMC_CmdBlockLength:00000000 $t
-C:\Users\Nathan\AppData\Local\Temp\ccZqaT42.s:946    .text.SDMMC_CmdBlockLength:00000000 SDMMC_CmdBlockLength
-C:\Users\Nathan\AppData\Local\Temp\ccZqaT42.s:1008   .text.SDMMC_CmdBlockCount:00000000 $t
-C:\Users\Nathan\AppData\Local\Temp\ccZqaT42.s:1014   .text.SDMMC_CmdBlockCount:00000000 SDMMC_CmdBlockCount
-C:\Users\Nathan\AppData\Local\Temp\ccZqaT42.s:1076   .text.SDMMC_CmdReadSingleBlock:00000000 $t
-C:\Users\Nathan\AppData\Local\Temp\ccZqaT42.s:1082   .text.SDMMC_CmdReadSingleBlock:00000000 SDMMC_CmdReadSingleBlock
-C:\Users\Nathan\AppData\Local\Temp\ccZqaT42.s:1144   .text.SDMMC_CmdReadMultiBlock:00000000 $t
-C:\Users\Nathan\AppData\Local\Temp\ccZqaT42.s:1150   .text.SDMMC_CmdReadMultiBlock:00000000 SDMMC_CmdReadMultiBlock
-C:\Users\Nathan\AppData\Local\Temp\ccZqaT42.s:1212   .text.SDMMC_CmdWriteSingleBlock:00000000 $t
-C:\Users\Nathan\AppData\Local\Temp\ccZqaT42.s:1218   .text.SDMMC_CmdWriteSingleBlock:00000000 SDMMC_CmdWriteSingleBlock
-C:\Users\Nathan\AppData\Local\Temp\ccZqaT42.s:1280   .text.SDMMC_CmdWriteMultiBlock:00000000 $t
-C:\Users\Nathan\AppData\Local\Temp\ccZqaT42.s:1286   .text.SDMMC_CmdWriteMultiBlock:00000000 SDMMC_CmdWriteMultiBlock
-C:\Users\Nathan\AppData\Local\Temp\ccZqaT42.s:1348   .text.SDMMC_CmdSDEraseStartAdd:00000000 $t
-C:\Users\Nathan\AppData\Local\Temp\ccZqaT42.s:1354   .text.SDMMC_CmdSDEraseStartAdd:00000000 SDMMC_CmdSDEraseStartAdd
-C:\Users\Nathan\AppData\Local\Temp\ccZqaT42.s:1416   .text.SDMMC_CmdSDEraseEndAdd:00000000 $t
-C:\Users\Nathan\AppData\Local\Temp\ccZqaT42.s:1422   .text.SDMMC_CmdSDEraseEndAdd:00000000 SDMMC_CmdSDEraseEndAdd
-C:\Users\Nathan\AppData\Local\Temp\ccZqaT42.s:1484   .text.SDMMC_CmdEraseStartAdd:00000000 $t
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccZqaT42.s 			page 123
+C:\Users\Nathan\AppData\Local\Temp\ccinN8Ai.s:20     .text.SDMMC_GetCmdError:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccinN8Ai.s:25     .text.SDMMC_GetCmdError:00000000 SDMMC_GetCmdError
+C:\Users\Nathan\AppData\Local\Temp\ccinN8Ai.s:80     .text.SDMMC_GetCmdError:00000030 $d
+C:\Users\Nathan\AppData\Local\Temp\ccinN8Ai.s:87     .text.SDMMC_Init:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccinN8Ai.s:93     .text.SDMMC_Init:00000000 SDMMC_Init
+C:\Users\Nathan\AppData\Local\Temp\ccinN8Ai.s:150    .text.SDMMC_Init:0000002c $d
+C:\Users\Nathan\AppData\Local\Temp\ccinN8Ai.s:155    .text.SDMMC_ReadFIFO:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccinN8Ai.s:161    .text.SDMMC_ReadFIFO:00000000 SDMMC_ReadFIFO
+C:\Users\Nathan\AppData\Local\Temp\ccinN8Ai.s:179    .text.SDMMC_WriteFIFO:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccinN8Ai.s:185    .text.SDMMC_WriteFIFO:00000000 SDMMC_WriteFIFO
+C:\Users\Nathan\AppData\Local\Temp\ccinN8Ai.s:208    .text.SDMMC_PowerState_ON:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccinN8Ai.s:214    .text.SDMMC_PowerState_ON:00000000 SDMMC_PowerState_ON
+C:\Users\Nathan\AppData\Local\Temp\ccinN8Ai.s:238    .text.SDMMC_PowerState_Cycle:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccinN8Ai.s:244    .text.SDMMC_PowerState_Cycle:00000000 SDMMC_PowerState_Cycle
+C:\Users\Nathan\AppData\Local\Temp\ccinN8Ai.s:268    .text.SDMMC_PowerState_OFF:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccinN8Ai.s:274    .text.SDMMC_PowerState_OFF:00000000 SDMMC_PowerState_OFF
+C:\Users\Nathan\AppData\Local\Temp\ccinN8Ai.s:298    .text.SDMMC_GetPowerState:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccinN8Ai.s:304    .text.SDMMC_GetPowerState:00000000 SDMMC_GetPowerState
+C:\Users\Nathan\AppData\Local\Temp\ccinN8Ai.s:323    .text.SDMMC_SendCommand:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccinN8Ai.s:329    .text.SDMMC_SendCommand:00000000 SDMMC_SendCommand
+C:\Users\Nathan\AppData\Local\Temp\ccinN8Ai.s:383    .text.SDMMC_SendCommand:00000020 $d
+C:\Users\Nathan\AppData\Local\Temp\ccinN8Ai.s:388    .text.SDMMC_GetCommandResponse:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccinN8Ai.s:394    .text.SDMMC_GetCommandResponse:00000000 SDMMC_GetCommandResponse
+C:\Users\Nathan\AppData\Local\Temp\ccinN8Ai.s:413    .text.SDMMC_GetResponse:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccinN8Ai.s:419    .text.SDMMC_GetResponse:00000000 SDMMC_GetResponse
+C:\Users\Nathan\AppData\Local\Temp\ccinN8Ai.s:443    .text.SDMMC_ConfigData:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccinN8Ai.s:449    .text.SDMMC_ConfigData:00000000 SDMMC_ConfigData
+C:\Users\Nathan\AppData\Local\Temp\ccinN8Ai.s:507    .text.SDMMC_GetDataCounter:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccinN8Ai.s:513    .text.SDMMC_GetDataCounter:00000000 SDMMC_GetDataCounter
+C:\Users\Nathan\AppData\Local\Temp\ccinN8Ai.s:531    .text.SDMMC_GetFIFOCount:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccinN8Ai.s:537    .text.SDMMC_GetFIFOCount:00000000 SDMMC_GetFIFOCount
+C:\Users\Nathan\AppData\Local\Temp\ccinN8Ai.s:555    .text.SDMMC_SetSDMMCReadWaitMode:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccinN8Ai.s:561    .text.SDMMC_SetSDMMCReadWaitMode:00000000 SDMMC_SetSDMMCReadWaitMode
+C:\Users\Nathan\AppData\Local\Temp\ccinN8Ai.s:585    .text.SDMMC_CmdGoIdleState:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccinN8Ai.s:591    .text.SDMMC_CmdGoIdleState:00000000 SDMMC_CmdGoIdleState
+C:\Users\Nathan\AppData\Local\Temp\ccinN8Ai.s:646    .text.SDMMC_GetCmdResp1:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccinN8Ai.s:652    .text.SDMMC_GetCmdResp1:00000000 SDMMC_GetCmdResp1
+C:\Users\Nathan\AppData\Local\Temp\ccinN8Ai.s:931    .text.SDMMC_GetCmdResp1:0000014c $d
+C:\Users\Nathan\AppData\Local\Temp\ccinN8Ai.s:940    .text.SDMMC_CmdBlockLength:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccinN8Ai.s:946    .text.SDMMC_CmdBlockLength:00000000 SDMMC_CmdBlockLength
+C:\Users\Nathan\AppData\Local\Temp\ccinN8Ai.s:1008   .text.SDMMC_CmdBlockCount:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccinN8Ai.s:1014   .text.SDMMC_CmdBlockCount:00000000 SDMMC_CmdBlockCount
+C:\Users\Nathan\AppData\Local\Temp\ccinN8Ai.s:1076   .text.SDMMC_CmdReadSingleBlock:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccinN8Ai.s:1082   .text.SDMMC_CmdReadSingleBlock:00000000 SDMMC_CmdReadSingleBlock
+C:\Users\Nathan\AppData\Local\Temp\ccinN8Ai.s:1144   .text.SDMMC_CmdReadMultiBlock:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccinN8Ai.s:1150   .text.SDMMC_CmdReadMultiBlock:00000000 SDMMC_CmdReadMultiBlock
+C:\Users\Nathan\AppData\Local\Temp\ccinN8Ai.s:1212   .text.SDMMC_CmdWriteSingleBlock:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccinN8Ai.s:1218   .text.SDMMC_CmdWriteSingleBlock:00000000 SDMMC_CmdWriteSingleBlock
+C:\Users\Nathan\AppData\Local\Temp\ccinN8Ai.s:1280   .text.SDMMC_CmdWriteMultiBlock:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccinN8Ai.s:1286   .text.SDMMC_CmdWriteMultiBlock:00000000 SDMMC_CmdWriteMultiBlock
+C:\Users\Nathan\AppData\Local\Temp\ccinN8Ai.s:1348   .text.SDMMC_CmdSDEraseStartAdd:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccinN8Ai.s:1354   .text.SDMMC_CmdSDEraseStartAdd:00000000 SDMMC_CmdSDEraseStartAdd
+C:\Users\Nathan\AppData\Local\Temp\ccinN8Ai.s:1416   .text.SDMMC_CmdSDEraseEndAdd:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccinN8Ai.s:1422   .text.SDMMC_CmdSDEraseEndAdd:00000000 SDMMC_CmdSDEraseEndAdd
+C:\Users\Nathan\AppData\Local\Temp\ccinN8Ai.s:1484   .text.SDMMC_CmdEraseStartAdd:00000000 $t
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccinN8Ai.s 			page 123
 
 
-C:\Users\Nathan\AppData\Local\Temp\ccZqaT42.s:1490   .text.SDMMC_CmdEraseStartAdd:00000000 SDMMC_CmdEraseStartAdd
-C:\Users\Nathan\AppData\Local\Temp\ccZqaT42.s:1552   .text.SDMMC_CmdEraseEndAdd:00000000 $t
-C:\Users\Nathan\AppData\Local\Temp\ccZqaT42.s:1558   .text.SDMMC_CmdEraseEndAdd:00000000 SDMMC_CmdEraseEndAdd
-C:\Users\Nathan\AppData\Local\Temp\ccZqaT42.s:1620   .text.SDMMC_CmdErase:00000000 $t
-C:\Users\Nathan\AppData\Local\Temp\ccZqaT42.s:1626   .text.SDMMC_CmdErase:00000000 SDMMC_CmdErase
-C:\Users\Nathan\AppData\Local\Temp\ccZqaT42.s:1688   .text.SDMMC_CmdStopTransfer:00000000 $t
-C:\Users\Nathan\AppData\Local\Temp\ccZqaT42.s:1694   .text.SDMMC_CmdStopTransfer:00000000 SDMMC_CmdStopTransfer
-C:\Users\Nathan\AppData\Local\Temp\ccZqaT42.s:1779   .text.SDMMC_CmdStopTransfer:00000054 $d
-C:\Users\Nathan\AppData\Local\Temp\ccZqaT42.s:1784   .text.SDMMC_CmdSelDesel:00000000 $t
-C:\Users\Nathan\AppData\Local\Temp\ccZqaT42.s:1790   .text.SDMMC_CmdSelDesel:00000000 SDMMC_CmdSelDesel
-C:\Users\Nathan\AppData\Local\Temp\ccZqaT42.s:1852   .text.SDMMC_CmdAppCommand:00000000 $t
-C:\Users\Nathan\AppData\Local\Temp\ccZqaT42.s:1858   .text.SDMMC_CmdAppCommand:00000000 SDMMC_CmdAppCommand
-C:\Users\Nathan\AppData\Local\Temp\ccZqaT42.s:1920   .text.SDMMC_CmdBusWidth:00000000 $t
-C:\Users\Nathan\AppData\Local\Temp\ccZqaT42.s:1926   .text.SDMMC_CmdBusWidth:00000000 SDMMC_CmdBusWidth
-C:\Users\Nathan\AppData\Local\Temp\ccZqaT42.s:1988   .text.SDMMC_CmdSendSCR:00000000 $t
-C:\Users\Nathan\AppData\Local\Temp\ccZqaT42.s:1994   .text.SDMMC_CmdSendSCR:00000000 SDMMC_CmdSendSCR
-C:\Users\Nathan\AppData\Local\Temp\ccZqaT42.s:2054   .text.SDMMC_CmdSetRelAddMmc:00000000 $t
-C:\Users\Nathan\AppData\Local\Temp\ccZqaT42.s:2060   .text.SDMMC_CmdSetRelAddMmc:00000000 SDMMC_CmdSetRelAddMmc
-C:\Users\Nathan\AppData\Local\Temp\ccZqaT42.s:2123   .text.SDMMC_CmdSleepMmc:00000000 $t
-C:\Users\Nathan\AppData\Local\Temp\ccZqaT42.s:2129   .text.SDMMC_CmdSleepMmc:00000000 SDMMC_CmdSleepMmc
-C:\Users\Nathan\AppData\Local\Temp\ccZqaT42.s:2191   .text.SDMMC_CmdSendStatus:00000000 $t
-C:\Users\Nathan\AppData\Local\Temp\ccZqaT42.s:2197   .text.SDMMC_CmdSendStatus:00000000 SDMMC_CmdSendStatus
-C:\Users\Nathan\AppData\Local\Temp\ccZqaT42.s:2259   .text.SDMMC_CmdStatusRegister:00000000 $t
-C:\Users\Nathan\AppData\Local\Temp\ccZqaT42.s:2265   .text.SDMMC_CmdStatusRegister:00000000 SDMMC_CmdStatusRegister
-C:\Users\Nathan\AppData\Local\Temp\ccZqaT42.s:2325   .text.SDMMC_CmdSwitch:00000000 $t
-C:\Users\Nathan\AppData\Local\Temp\ccZqaT42.s:2331   .text.SDMMC_CmdSwitch:00000000 SDMMC_CmdSwitch
-C:\Users\Nathan\AppData\Local\Temp\ccZqaT42.s:2393   .text.SDMMC_CmdVoltageSwitch:00000000 $t
-C:\Users\Nathan\AppData\Local\Temp\ccZqaT42.s:2399   .text.SDMMC_CmdVoltageSwitch:00000000 SDMMC_CmdVoltageSwitch
-C:\Users\Nathan\AppData\Local\Temp\ccZqaT42.s:2459   .text.SDMMC_CmdSendEXTCSD:00000000 $t
-C:\Users\Nathan\AppData\Local\Temp\ccZqaT42.s:2465   .text.SDMMC_CmdSendEXTCSD:00000000 SDMMC_CmdSendEXTCSD
-C:\Users\Nathan\AppData\Local\Temp\ccZqaT42.s:2527   .text.SDMMC_GetCmdResp2:00000000 $t
-C:\Users\Nathan\AppData\Local\Temp\ccZqaT42.s:2533   .text.SDMMC_GetCmdResp2:00000000 SDMMC_GetCmdResp2
-C:\Users\Nathan\AppData\Local\Temp\ccZqaT42.s:2621   .text.SDMMC_GetCmdResp2:00000054 $d
-C:\Users\Nathan\AppData\Local\Temp\ccZqaT42.s:2628   .text.SDMMC_CmdSendCID:00000000 $t
-C:\Users\Nathan\AppData\Local\Temp\ccZqaT42.s:2634   .text.SDMMC_CmdSendCID:00000000 SDMMC_CmdSendCID
-C:\Users\Nathan\AppData\Local\Temp\ccZqaT42.s:2691   .text.SDMMC_CmdSendCSD:00000000 $t
-C:\Users\Nathan\AppData\Local\Temp\ccZqaT42.s:2697   .text.SDMMC_CmdSendCSD:00000000 SDMMC_CmdSendCSD
-C:\Users\Nathan\AppData\Local\Temp\ccZqaT42.s:2756   .text.SDMMC_GetCmdResp3:00000000 $t
-C:\Users\Nathan\AppData\Local\Temp\ccZqaT42.s:2762   .text.SDMMC_GetCmdResp3:00000000 SDMMC_GetCmdResp3
-C:\Users\Nathan\AppData\Local\Temp\ccZqaT42.s:2836   .text.SDMMC_GetCmdResp3:00000044 $d
-C:\Users\Nathan\AppData\Local\Temp\ccZqaT42.s:2843   .text.SDMMC_CmdAppOperCommand:00000000 $t
-C:\Users\Nathan\AppData\Local\Temp\ccZqaT42.s:2849   .text.SDMMC_CmdAppOperCommand:00000000 SDMMC_CmdAppOperCommand
-C:\Users\Nathan\AppData\Local\Temp\ccZqaT42.s:2908   .text.SDMMC_CmdOpCondition:00000000 $t
-C:\Users\Nathan\AppData\Local\Temp\ccZqaT42.s:2914   .text.SDMMC_CmdOpCondition:00000000 SDMMC_CmdOpCondition
-C:\Users\Nathan\AppData\Local\Temp\ccZqaT42.s:2973   .text.SDMMC_GetCmdResp4:00000000 $t
-C:\Users\Nathan\AppData\Local\Temp\ccZqaT42.s:2979   .text.SDMMC_GetCmdResp4:00000000 SDMMC_GetCmdResp4
-C:\Users\Nathan\AppData\Local\Temp\ccZqaT42.s:3072   .text.SDMMC_GetCmdResp4:00000054 $d
-C:\Users\Nathan\AppData\Local\Temp\ccZqaT42.s:3079   .text.SDMMC_CmdSendOperationcondition:00000000 $t
-C:\Users\Nathan\AppData\Local\Temp\ccZqaT42.s:3085   .text.SDMMC_CmdSendOperationcondition:00000000 SDMMC_CmdSendOperationcondition
-C:\Users\Nathan\AppData\Local\Temp\ccZqaT42.s:3147   .text.SDMMC_GetCmdResp5:00000000 $t
-C:\Users\Nathan\AppData\Local\Temp\ccZqaT42.s:3153   .text.SDMMC_GetCmdResp5:00000000 SDMMC_GetCmdResp5
-C:\Users\Nathan\AppData\Local\Temp\ccZqaT42.s:3328   .text.SDMMC_GetCmdResp5:000000b0 $d
-C:\Users\Nathan\AppData\Local\Temp\ccZqaT42.s:3335   .text.SDMMC_SDIO_CmdReadWriteDirect:00000000 $t
-C:\Users\Nathan\AppData\Local\Temp\ccZqaT42.s:3341   .text.SDMMC_SDIO_CmdReadWriteDirect:00000000 SDMMC_SDIO_CmdReadWriteDirect
-C:\Users\Nathan\AppData\Local\Temp\ccZqaT42.s:3405   .text.SDMMC_SDIO_CmdReadWriteExtended:00000000 $t
-C:\Users\Nathan\AppData\Local\Temp\ccZqaT42.s:3411   .text.SDMMC_SDIO_CmdReadWriteExtended:00000000 SDMMC_SDIO_CmdReadWriteExtended
-C:\Users\Nathan\AppData\Local\Temp\ccZqaT42.s:3474   .text.SDMMC_GetCmdResp6:00000000 $t
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccZqaT42.s 			page 124
+C:\Users\Nathan\AppData\Local\Temp\ccinN8Ai.s:1490   .text.SDMMC_CmdEraseStartAdd:00000000 SDMMC_CmdEraseStartAdd
+C:\Users\Nathan\AppData\Local\Temp\ccinN8Ai.s:1552   .text.SDMMC_CmdEraseEndAdd:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccinN8Ai.s:1558   .text.SDMMC_CmdEraseEndAdd:00000000 SDMMC_CmdEraseEndAdd
+C:\Users\Nathan\AppData\Local\Temp\ccinN8Ai.s:1620   .text.SDMMC_CmdErase:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccinN8Ai.s:1626   .text.SDMMC_CmdErase:00000000 SDMMC_CmdErase
+C:\Users\Nathan\AppData\Local\Temp\ccinN8Ai.s:1688   .text.SDMMC_CmdStopTransfer:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccinN8Ai.s:1694   .text.SDMMC_CmdStopTransfer:00000000 SDMMC_CmdStopTransfer
+C:\Users\Nathan\AppData\Local\Temp\ccinN8Ai.s:1779   .text.SDMMC_CmdStopTransfer:00000054 $d
+C:\Users\Nathan\AppData\Local\Temp\ccinN8Ai.s:1784   .text.SDMMC_CmdSelDesel:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccinN8Ai.s:1790   .text.SDMMC_CmdSelDesel:00000000 SDMMC_CmdSelDesel
+C:\Users\Nathan\AppData\Local\Temp\ccinN8Ai.s:1852   .text.SDMMC_CmdAppCommand:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccinN8Ai.s:1858   .text.SDMMC_CmdAppCommand:00000000 SDMMC_CmdAppCommand
+C:\Users\Nathan\AppData\Local\Temp\ccinN8Ai.s:1920   .text.SDMMC_CmdBusWidth:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccinN8Ai.s:1926   .text.SDMMC_CmdBusWidth:00000000 SDMMC_CmdBusWidth
+C:\Users\Nathan\AppData\Local\Temp\ccinN8Ai.s:1988   .text.SDMMC_CmdSendSCR:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccinN8Ai.s:1994   .text.SDMMC_CmdSendSCR:00000000 SDMMC_CmdSendSCR
+C:\Users\Nathan\AppData\Local\Temp\ccinN8Ai.s:2054   .text.SDMMC_CmdSetRelAddMmc:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccinN8Ai.s:2060   .text.SDMMC_CmdSetRelAddMmc:00000000 SDMMC_CmdSetRelAddMmc
+C:\Users\Nathan\AppData\Local\Temp\ccinN8Ai.s:2123   .text.SDMMC_CmdSleepMmc:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccinN8Ai.s:2129   .text.SDMMC_CmdSleepMmc:00000000 SDMMC_CmdSleepMmc
+C:\Users\Nathan\AppData\Local\Temp\ccinN8Ai.s:2191   .text.SDMMC_CmdSendStatus:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccinN8Ai.s:2197   .text.SDMMC_CmdSendStatus:00000000 SDMMC_CmdSendStatus
+C:\Users\Nathan\AppData\Local\Temp\ccinN8Ai.s:2259   .text.SDMMC_CmdStatusRegister:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccinN8Ai.s:2265   .text.SDMMC_CmdStatusRegister:00000000 SDMMC_CmdStatusRegister
+C:\Users\Nathan\AppData\Local\Temp\ccinN8Ai.s:2325   .text.SDMMC_CmdSwitch:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccinN8Ai.s:2331   .text.SDMMC_CmdSwitch:00000000 SDMMC_CmdSwitch
+C:\Users\Nathan\AppData\Local\Temp\ccinN8Ai.s:2393   .text.SDMMC_CmdVoltageSwitch:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccinN8Ai.s:2399   .text.SDMMC_CmdVoltageSwitch:00000000 SDMMC_CmdVoltageSwitch
+C:\Users\Nathan\AppData\Local\Temp\ccinN8Ai.s:2459   .text.SDMMC_CmdSendEXTCSD:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccinN8Ai.s:2465   .text.SDMMC_CmdSendEXTCSD:00000000 SDMMC_CmdSendEXTCSD
+C:\Users\Nathan\AppData\Local\Temp\ccinN8Ai.s:2527   .text.SDMMC_GetCmdResp2:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccinN8Ai.s:2533   .text.SDMMC_GetCmdResp2:00000000 SDMMC_GetCmdResp2
+C:\Users\Nathan\AppData\Local\Temp\ccinN8Ai.s:2621   .text.SDMMC_GetCmdResp2:00000054 $d
+C:\Users\Nathan\AppData\Local\Temp\ccinN8Ai.s:2628   .text.SDMMC_CmdSendCID:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccinN8Ai.s:2634   .text.SDMMC_CmdSendCID:00000000 SDMMC_CmdSendCID
+C:\Users\Nathan\AppData\Local\Temp\ccinN8Ai.s:2691   .text.SDMMC_CmdSendCSD:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccinN8Ai.s:2697   .text.SDMMC_CmdSendCSD:00000000 SDMMC_CmdSendCSD
+C:\Users\Nathan\AppData\Local\Temp\ccinN8Ai.s:2756   .text.SDMMC_GetCmdResp3:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccinN8Ai.s:2762   .text.SDMMC_GetCmdResp3:00000000 SDMMC_GetCmdResp3
+C:\Users\Nathan\AppData\Local\Temp\ccinN8Ai.s:2836   .text.SDMMC_GetCmdResp3:00000044 $d
+C:\Users\Nathan\AppData\Local\Temp\ccinN8Ai.s:2843   .text.SDMMC_CmdAppOperCommand:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccinN8Ai.s:2849   .text.SDMMC_CmdAppOperCommand:00000000 SDMMC_CmdAppOperCommand
+C:\Users\Nathan\AppData\Local\Temp\ccinN8Ai.s:2908   .text.SDMMC_CmdOpCondition:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccinN8Ai.s:2914   .text.SDMMC_CmdOpCondition:00000000 SDMMC_CmdOpCondition
+C:\Users\Nathan\AppData\Local\Temp\ccinN8Ai.s:2973   .text.SDMMC_GetCmdResp4:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccinN8Ai.s:2979   .text.SDMMC_GetCmdResp4:00000000 SDMMC_GetCmdResp4
+C:\Users\Nathan\AppData\Local\Temp\ccinN8Ai.s:3072   .text.SDMMC_GetCmdResp4:00000054 $d
+C:\Users\Nathan\AppData\Local\Temp\ccinN8Ai.s:3079   .text.SDMMC_CmdSendOperationcondition:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccinN8Ai.s:3085   .text.SDMMC_CmdSendOperationcondition:00000000 SDMMC_CmdSendOperationcondition
+C:\Users\Nathan\AppData\Local\Temp\ccinN8Ai.s:3147   .text.SDMMC_GetCmdResp5:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccinN8Ai.s:3153   .text.SDMMC_GetCmdResp5:00000000 SDMMC_GetCmdResp5
+C:\Users\Nathan\AppData\Local\Temp\ccinN8Ai.s:3328   .text.SDMMC_GetCmdResp5:000000b0 $d
+C:\Users\Nathan\AppData\Local\Temp\ccinN8Ai.s:3335   .text.SDMMC_SDIO_CmdReadWriteDirect:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccinN8Ai.s:3341   .text.SDMMC_SDIO_CmdReadWriteDirect:00000000 SDMMC_SDIO_CmdReadWriteDirect
+C:\Users\Nathan\AppData\Local\Temp\ccinN8Ai.s:3405   .text.SDMMC_SDIO_CmdReadWriteExtended:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccinN8Ai.s:3411   .text.SDMMC_SDIO_CmdReadWriteExtended:00000000 SDMMC_SDIO_CmdReadWriteExtended
+C:\Users\Nathan\AppData\Local\Temp\ccinN8Ai.s:3474   .text.SDMMC_GetCmdResp6:00000000 $t
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccinN8Ai.s 			page 124
 
 
-C:\Users\Nathan\AppData\Local\Temp\ccZqaT42.s:3480   .text.SDMMC_GetCmdResp6:00000000 SDMMC_GetCmdResp6
-C:\Users\Nathan\AppData\Local\Temp\ccZqaT42.s:3639   .text.SDMMC_GetCmdResp6:00000098 $d
-C:\Users\Nathan\AppData\Local\Temp\ccZqaT42.s:3646   .text.SDMMC_CmdSetRelAdd:00000000 $t
-C:\Users\Nathan\AppData\Local\Temp\ccZqaT42.s:3652   .text.SDMMC_CmdSetRelAdd:00000000 SDMMC_CmdSetRelAdd
-C:\Users\Nathan\AppData\Local\Temp\ccZqaT42.s:3716   .text.SDMMC_GetCmdResp7:00000000 $t
-C:\Users\Nathan\AppData\Local\Temp\ccZqaT42.s:3722   .text.SDMMC_GetCmdResp7:00000000 SDMMC_GetCmdResp7
-C:\Users\Nathan\AppData\Local\Temp\ccZqaT42.s:3823   .text.SDMMC_GetCmdResp7:0000005c $d
-C:\Users\Nathan\AppData\Local\Temp\ccZqaT42.s:3829   .text.SDMMC_CmdOperCond:00000000 $t
-C:\Users\Nathan\AppData\Local\Temp\ccZqaT42.s:3835   .text.SDMMC_CmdOperCond:00000000 SDMMC_CmdOperCond
+C:\Users\Nathan\AppData\Local\Temp\ccinN8Ai.s:3480   .text.SDMMC_GetCmdResp6:00000000 SDMMC_GetCmdResp6
+C:\Users\Nathan\AppData\Local\Temp\ccinN8Ai.s:3639   .text.SDMMC_GetCmdResp6:00000098 $d
+C:\Users\Nathan\AppData\Local\Temp\ccinN8Ai.s:3646   .text.SDMMC_CmdSetRelAdd:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccinN8Ai.s:3652   .text.SDMMC_CmdSetRelAdd:00000000 SDMMC_CmdSetRelAdd
+C:\Users\Nathan\AppData\Local\Temp\ccinN8Ai.s:3716   .text.SDMMC_GetCmdResp7:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccinN8Ai.s:3722   .text.SDMMC_GetCmdResp7:00000000 SDMMC_GetCmdResp7
+C:\Users\Nathan\AppData\Local\Temp\ccinN8Ai.s:3823   .text.SDMMC_GetCmdResp7:0000005c $d
+C:\Users\Nathan\AppData\Local\Temp\ccinN8Ai.s:3829   .text.SDMMC_CmdOperCond:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccinN8Ai.s:3835   .text.SDMMC_CmdOperCond:00000000 SDMMC_CmdOperCond
 
 UNDEFINED SYMBOLS
 SystemCoreClock

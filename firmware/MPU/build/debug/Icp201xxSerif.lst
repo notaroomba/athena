@@ -1,0 +1,480 @@
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cck5hSSR.s 			page 1
+
+
+   1              		.cpu cortex-m7
+   2              		.arch armv7e-m
+   3              		.fpu fpv5-d16
+   4              		.eabi_attribute 28, 1
+   5              		.eabi_attribute 20, 1
+   6              		.eabi_attribute 21, 1
+   7              		.eabi_attribute 23, 3
+   8              		.eabi_attribute 24, 1
+   9              		.eabi_attribute 25, 1
+  10              		.eabi_attribute 26, 1
+  11              		.eabi_attribute 30, 1
+  12              		.eabi_attribute 34, 1
+  13              		.eabi_attribute 18, 4
+  14              		.file	"Icp201xxSerif.c"
+  15              		.text
+  16              	.Ltext0:
+  17              		.cfi_sections	.debug_frame
+  18              		.file 1 "Drivers/ICP201xx/Icp201xxSerif.c"
+  19              		.section	.text.inv_icp201xx_serif_read_reg,"ax",%progbits
+  20              		.align	1
+  21              		.global	inv_icp201xx_serif_read_reg
+  22              		.syntax unified
+  23              		.thumb
+  24              		.thumb_func
+  26              	inv_icp201xx_serif_read_reg:
+  27              	.LVL0:
+  28              	.LFB0:
+   1:Drivers/ICP201xx/Icp201xxSerif.c **** /*
+   2:Drivers/ICP201xx/Icp201xxSerif.c ****  *
+   3:Drivers/ICP201xx/Icp201xxSerif.c ****  * Copyright (c) [2020] by InvenSense, Inc.
+   4:Drivers/ICP201xx/Icp201xxSerif.c ****  * 
+   5:Drivers/ICP201xx/Icp201xxSerif.c ****  * Permission to use, copy, modify, and/or distribute this software for any
+   6:Drivers/ICP201xx/Icp201xxSerif.c ****  * purpose with or without fee is hereby granted.
+   7:Drivers/ICP201xx/Icp201xxSerif.c ****  * 
+   8:Drivers/ICP201xx/Icp201xxSerif.c ****  * THE SOFTWARE IS PROVIDED "AS IS" AND THE AUTHOR DISCLAIMS ALL WARRANTIES
+   9:Drivers/ICP201xx/Icp201xxSerif.c ****  * WITH REGARD TO THIS SOFTWARE INCLUDING ALL IMPLIED WARRANTIES OF
+  10:Drivers/ICP201xx/Icp201xxSerif.c ****  * MERCHANTABILITY AND FITNESS. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR ANY
+  11:Drivers/ICP201xx/Icp201xxSerif.c ****  * SPECIAL, DIRECT, INDIRECT, OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES
+  12:Drivers/ICP201xx/Icp201xxSerif.c ****  * WHATSOEVER RESULTING FROM LOSS OF USE, DATA OR PROFITS, WHETHER IN AN ACTION
+  13:Drivers/ICP201xx/Icp201xxSerif.c ****  * OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF OR IN
+  14:Drivers/ICP201xx/Icp201xxSerif.c ****  * CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
+  15:Drivers/ICP201xx/Icp201xxSerif.c ****  *
+  16:Drivers/ICP201xx/Icp201xxSerif.c ****  */
+  17:Drivers/ICP201xx/Icp201xxSerif.c **** 
+  18:Drivers/ICP201xx/Icp201xxSerif.c **** 
+  19:Drivers/ICP201xx/Icp201xxSerif.c **** /** @defgroup DriverIcp201xxSerif Icp201xx driver serif
+  20:Drivers/ICP201xx/Icp201xxSerif.c ****  *  @brief Interface for low-level serial (I2C/I3C/SPI) access
+  21:Drivers/ICP201xx/Icp201xxSerif.c ****  *  @ingroup  DriverIcp201xx
+  22:Drivers/ICP201xx/Icp201xxSerif.c ****  *  @{
+  23:Drivers/ICP201xx/Icp201xxSerif.c ****  */
+  24:Drivers/ICP201xx/Icp201xxSerif.c **** 
+  25:Drivers/ICP201xx/Icp201xxSerif.c **** 
+  26:Drivers/ICP201xx/Icp201xxSerif.c **** #include "InvError.h"
+  27:Drivers/ICP201xx/Icp201xxSerif.c **** #include "Icp201xxSerif.h"
+  28:Drivers/ICP201xx/Icp201xxSerif.c **** 
+  29:Drivers/ICP201xx/Icp201xxSerif.c **** 
+  30:Drivers/ICP201xx/Icp201xxSerif.c **** 
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cck5hSSR.s 			page 2
+
+
+  31:Drivers/ICP201xx/Icp201xxSerif.c **** #define ICP201XX_SERIF_SPI_REG_WRITE_CMD   0X33
+  32:Drivers/ICP201xx/Icp201xxSerif.c **** #define ICP201XX_SERIF_SPI_REG_READ_CMD    0X3C
+  33:Drivers/ICP201xx/Icp201xxSerif.c **** 
+  34:Drivers/ICP201xx/Icp201xxSerif.c **** 
+  35:Drivers/ICP201xx/Icp201xxSerif.c **** /** @brief Reads data from a register on mems.
+  36:Drivers/ICP201xx/Icp201xxSerif.c ****  * @param[in]  s Pointer to the driver serial interface context structure inv_icp201xx_serif_t
+  37:Drivers/ICP201xx/Icp201xxSerif.c ****  * @param[in]  reg    register address
+  38:Drivers/ICP201xx/Icp201xxSerif.c ****  * @param[in]  len length of data
+  39:Drivers/ICP201xx/Icp201xxSerif.c ****  * @param[out] buf   output data from the register
+  40:Drivers/ICP201xx/Icp201xxSerif.c ****  * @return     0 in case of success, negative value on error. See enum inv_status
+  41:Drivers/ICP201xx/Icp201xxSerif.c ****  */
+  42:Drivers/ICP201xx/Icp201xxSerif.c **** int inv_icp201xx_serif_read_reg(inv_icp201xx_serif_t * s,uint8_t reg, uint32_t len, uint8_t * buf )
+  43:Drivers/ICP201xx/Icp201xxSerif.c **** {
+  29              		.loc 1 43 1 view -0
+  30              		.cfi_startproc
+  31              		@ args = 0, pretend = 0, frame = 8
+  32              		@ frame_needed = 0, uses_anonymous_args = 0
+  44:Drivers/ICP201xx/Icp201xxSerif.c **** 	if ( 0 == s)
+  33              		.loc 1 44 2 view .LVU1
+  34              		.loc 1 44 5 is_stmt 0 view .LVU2
+  35 0000 58B3     		cbz	r0, .L5
+  43:Drivers/ICP201xx/Icp201xxSerif.c **** 	if ( 0 == s)
+  36              		.loc 1 43 1 view .LVU3
+  37 0002 2DE9F043 		push	{r4, r5, r6, r7, r8, r9, lr}
+  38              		.cfi_def_cfa_offset 28
+  39              		.cfi_offset 4, -28
+  40              		.cfi_offset 5, -24
+  41              		.cfi_offset 6, -20
+  42              		.cfi_offset 7, -16
+  43              		.cfi_offset 8, -12
+  44              		.cfi_offset 9, -8
+  45              		.cfi_offset 14, -4
+  46 0006 83B0     		sub	sp, sp, #12
+  47              		.cfi_def_cfa_offset 40
+  48 0008 0E46     		mov	r6, r1
+  49 000a 1546     		mov	r5, r2
+  50 000c 9946     		mov	r9, r3
+  51 000e 0446     		mov	r4, r0
+  45:Drivers/ICP201xx/Icp201xxSerif.c **** 		return INV_ERROR_BAD_ARG;
+  46:Drivers/ICP201xx/Icp201xxSerif.c **** 
+  47:Drivers/ICP201xx/Icp201xxSerif.c **** 	if(len > s->max_read)
+  52              		.loc 1 47 2 is_stmt 1 view .LVU4
+  53              		.loc 1 47 12 is_stmt 0 view .LVU5
+  54 0010 C368     		ldr	r3, [r0, #12]
+  55              	.LVL1:
+  56              		.loc 1 47 4 view .LVU6
+  57 0012 9342     		cmp	r3, r2
+  58 0014 24D3     		bcc	.L6
+  48:Drivers/ICP201xx/Icp201xxSerif.c **** 		return INV_ERROR_SIZE;
+  49:Drivers/ICP201xx/Icp201xxSerif.c **** 	
+  50:Drivers/ICP201xx/Icp201xxSerif.c **** 	if ( s->if_mode == ICP201XX_IF_3_WIRE_SPI || s->if_mode == ICP201XX_IF_4_WIRE_SPI )
+  59              		.loc 1 50 2 is_stmt 1 view .LVU7
+  60              		.loc 1 50 8 is_stmt 0 view .LVU8
+  61 0016 007D     		ldrb	r0, [r0, #20]	@ zero_extendqisi2
+  62              	.LVL2:
+  63              		.loc 1 50 44 view .LVU9
+  64 0018 0238     		subs	r0, r0, #2
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cck5hSSR.s 			page 3
+
+
+  65 001a C0B2     		uxtb	r0, r0
+  66              		.loc 1 50 5 view .LVU10
+  67 001c 0128     		cmp	r0, #1
+  68 001e 0AD9     		bls	.L12
+  69              	.LVL3:
+  70              	.L3:
+  51:Drivers/ICP201xx/Icp201xxSerif.c **** 	{
+  52:Drivers/ICP201xx/Icp201xxSerif.c **** 		uint8_t cmd_buf[2] = {0};
+  53:Drivers/ICP201xx/Icp201xxSerif.c **** 		cmd_buf[0] = ICP201XX_SERIF_SPI_REG_READ_CMD;
+  54:Drivers/ICP201xx/Icp201xxSerif.c **** 		cmd_buf[1] = reg;
+  55:Drivers/ICP201xx/Icp201xxSerif.c **** 
+  56:Drivers/ICP201xx/Icp201xxSerif.c **** 		if(s->write_reg(s->context, 0, cmd_buf, 2) != 0)
+  57:Drivers/ICP201xx/Icp201xxSerif.c **** 			return INV_ERROR_TRANSPORT;
+  58:Drivers/ICP201xx/Icp201xxSerif.c **** 	}
+  59:Drivers/ICP201xx/Icp201xxSerif.c **** 	
+  60:Drivers/ICP201xx/Icp201xxSerif.c **** 	if(s->read_reg(s->context, reg, buf, len) != 0)
+  71              		.loc 1 60 2 is_stmt 1 view .LVU11
+  72              		.loc 1 60 6 is_stmt 0 view .LVU12
+  73 0020 D4F80480 		ldr	r8, [r4, #4]
+  74              		.loc 1 60 5 view .LVU13
+  75 0024 2B46     		mov	r3, r5
+  76 0026 4A46     		mov	r2, r9
+  77 0028 3146     		mov	r1, r6
+  78 002a 2068     		ldr	r0, [r4]
+  79 002c C047     		blx	r8
+  80              	.LVL4:
+  81              		.loc 1 60 4 discriminator 1 view .LVU14
+  82 002e D0B9     		cbnz	r0, .L13
+  83              	.L1:
+  61:Drivers/ICP201xx/Icp201xxSerif.c **** 		return INV_ERROR_TRANSPORT;
+  62:Drivers/ICP201xx/Icp201xxSerif.c **** 
+  63:Drivers/ICP201xx/Icp201xxSerif.c **** 
+  64:Drivers/ICP201xx/Icp201xxSerif.c **** 	return INV_ERROR_SUCCESS;
+  65:Drivers/ICP201xx/Icp201xxSerif.c **** }
+  84              		.loc 1 65 1 view .LVU15
+  85 0030 03B0     		add	sp, sp, #12
+  86              		.cfi_remember_state
+  87              		.cfi_def_cfa_offset 28
+  88              		@ sp needed
+  89 0032 BDE8F083 		pop	{r4, r5, r6, r7, r8, r9, pc}
+  90              	.LVL5:
+  91              	.L12:
+  92              		.cfi_restore_state
+  93              	.LBB2:
+  52:Drivers/ICP201xx/Icp201xxSerif.c **** 		cmd_buf[0] = ICP201XX_SERIF_SPI_REG_READ_CMD;
+  94              		.loc 1 52 3 is_stmt 1 view .LVU16
+  52:Drivers/ICP201xx/Icp201xxSerif.c **** 		cmd_buf[0] = ICP201XX_SERIF_SPI_REG_READ_CMD;
+  95              		.loc 1 52 11 is_stmt 0 view .LVU17
+  96 0036 0021     		movs	r1, #0
+  97              	.LVL6:
+  52:Drivers/ICP201xx/Icp201xxSerif.c **** 		cmd_buf[0] = ICP201XX_SERIF_SPI_REG_READ_CMD;
+  98              		.loc 1 52 11 view .LVU18
+  99 0038 ADF80410 		strh	r1, [sp, #4]	@ movhi
+  53:Drivers/ICP201xx/Icp201xxSerif.c **** 		cmd_buf[1] = reg;
+ 100              		.loc 1 53 3 is_stmt 1 view .LVU19
+  53:Drivers/ICP201xx/Icp201xxSerif.c **** 		cmd_buf[1] = reg;
+ 101              		.loc 1 53 14 is_stmt 0 view .LVU20
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cck5hSSR.s 			page 4
+
+
+ 102 003c 3C23     		movs	r3, #60
+ 103 003e 8DF80430 		strb	r3, [sp, #4]
+  54:Drivers/ICP201xx/Icp201xxSerif.c **** 
+ 104              		.loc 1 54 3 is_stmt 1 view .LVU21
+  54:Drivers/ICP201xx/Icp201xxSerif.c **** 
+ 105              		.loc 1 54 14 is_stmt 0 view .LVU22
+ 106 0042 8DF80560 		strb	r6, [sp, #5]
+  56:Drivers/ICP201xx/Icp201xxSerif.c **** 			return INV_ERROR_TRANSPORT;
+ 107              		.loc 1 56 3 is_stmt 1 view .LVU23
+  56:Drivers/ICP201xx/Icp201xxSerif.c **** 			return INV_ERROR_TRANSPORT;
+ 108              		.loc 1 56 6 is_stmt 0 view .LVU24
+ 109 0046 0223     		movs	r3, #2
+ 110 0048 01AA     		add	r2, sp, #4
+ 111              	.LVL7:
+  56:Drivers/ICP201xx/Icp201xxSerif.c **** 			return INV_ERROR_TRANSPORT;
+ 112              		.loc 1 56 6 view .LVU25
+ 113 004a 2068     		ldr	r0, [r4]
+ 114 004c A768     		ldr	r7, [r4, #8]
+ 115 004e B847     		blx	r7
+ 116              	.LVL8:
+  56:Drivers/ICP201xx/Icp201xxSerif.c **** 			return INV_ERROR_TRANSPORT;
+ 117              		.loc 1 56 5 discriminator 1 view .LVU26
+ 118 0050 0028     		cmp	r0, #0
+ 119 0052 E5D0     		beq	.L3
+  57:Drivers/ICP201xx/Icp201xxSerif.c **** 	}
+ 120              		.loc 1 57 4 is_stmt 1 view .LVU27
+  57:Drivers/ICP201xx/Icp201xxSerif.c **** 	}
+ 121              		.loc 1 57 11 is_stmt 0 view .LVU28
+ 122 0054 6FF00200 		mvn	r0, #2
+ 123 0058 EAE7     		b	.L1
+ 124              	.LVL9:
+ 125              	.L5:
+ 126              		.cfi_def_cfa_offset 0
+ 127              		.cfi_restore 4
+ 128              		.cfi_restore 5
+ 129              		.cfi_restore 6
+ 130              		.cfi_restore 7
+ 131              		.cfi_restore 8
+ 132              		.cfi_restore 9
+ 133              		.cfi_restore 14
+  57:Drivers/ICP201xx/Icp201xxSerif.c **** 	}
+ 134              		.loc 1 57 11 view .LVU29
+ 135              	.LBE2:
+  45:Drivers/ICP201xx/Icp201xxSerif.c **** 
+ 136              		.loc 1 45 10 view .LVU30
+ 137 005a 6FF00A00 		mvn	r0, #10
+ 138              	.LVL10:
+ 139              		.loc 1 65 1 view .LVU31
+ 140 005e 7047     		bx	lr
+ 141              	.LVL11:
+ 142              	.L6:
+ 143              		.cfi_def_cfa_offset 40
+ 144              		.cfi_offset 4, -28
+ 145              		.cfi_offset 5, -24
+ 146              		.cfi_offset 6, -20
+ 147              		.cfi_offset 7, -16
+ 148              		.cfi_offset 8, -12
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cck5hSSR.s 			page 5
+
+
+ 149              		.cfi_offset 9, -8
+ 150              		.cfi_offset 14, -4
+  48:Drivers/ICP201xx/Icp201xxSerif.c **** 	
+ 151              		.loc 1 48 10 view .LVU32
+ 152 0060 6FF00400 		mvn	r0, #4
+ 153              	.LVL12:
+  48:Drivers/ICP201xx/Icp201xxSerif.c **** 	
+ 154              		.loc 1 48 10 view .LVU33
+ 155 0064 E4E7     		b	.L1
+ 156              	.LVL13:
+ 157              	.L13:
+  61:Drivers/ICP201xx/Icp201xxSerif.c **** 
+ 158              		.loc 1 61 10 view .LVU34
+ 159 0066 6FF00200 		mvn	r0, #2
+ 160 006a E1E7     		b	.L1
+ 161              		.cfi_endproc
+ 162              	.LFE0:
+ 164              		.section	.text.inv_icp201xx_serif_write_reg,"ax",%progbits
+ 165              		.align	1
+ 166              		.global	inv_icp201xx_serif_write_reg
+ 167              		.syntax unified
+ 168              		.thumb
+ 169              		.thumb_func
+ 171              	inv_icp201xx_serif_write_reg:
+ 172              	.LVL14:
+ 173              	.LFB1:
+  66:Drivers/ICP201xx/Icp201xxSerif.c **** 
+  67:Drivers/ICP201xx/Icp201xxSerif.c **** 
+  68:Drivers/ICP201xx/Icp201xxSerif.c **** /** @brief Writes data to a register on mems.
+  69:Drivers/ICP201xx/Icp201xxSerif.c ****  * @param[in]  s Pointer to the driver serial interface context structure inv_icp201xx_serif_t
+  70:Drivers/ICP201xx/Icp201xxSerif.c ****  * @param[in]  reg    register address
+  71:Drivers/ICP201xx/Icp201xxSerif.c ****  * @param[in]  buf   data to be written to the register
+  72:Drivers/ICP201xx/Icp201xxSerif.c ****  * @param[in]  len number of bytes to be written
+  73:Drivers/ICP201xx/Icp201xxSerif.c ****  * @return     0 in case of success, negative value on error. See enum inv_status
+  74:Drivers/ICP201xx/Icp201xxSerif.c ****  */
+  75:Drivers/ICP201xx/Icp201xxSerif.c **** int inv_icp201xx_serif_write_reg(inv_icp201xx_serif_t * s,uint8_t reg, uint32_t len, const uint8_t 
+  76:Drivers/ICP201xx/Icp201xxSerif.c **** {
+ 174              		.loc 1 76 1 is_stmt 1 view -0
+ 175              		.cfi_startproc
+ 176              		@ args = 0, pretend = 0, frame = 8
+ 177              		@ frame_needed = 0, uses_anonymous_args = 0
+  77:Drivers/ICP201xx/Icp201xxSerif.c **** 	if ( 0 == s)
+ 178              		.loc 1 77 2 view .LVU36
+ 179              		.loc 1 77 5 is_stmt 0 view .LVU37
+ 180 0000 58B3     		cbz	r0, .L18
+  76:Drivers/ICP201xx/Icp201xxSerif.c **** 	if ( 0 == s)
+ 181              		.loc 1 76 1 view .LVU38
+ 182 0002 2DE9F043 		push	{r4, r5, r6, r7, r8, r9, lr}
+ 183              		.cfi_def_cfa_offset 28
+ 184              		.cfi_offset 4, -28
+ 185              		.cfi_offset 5, -24
+ 186              		.cfi_offset 6, -20
+ 187              		.cfi_offset 7, -16
+ 188              		.cfi_offset 8, -12
+ 189              		.cfi_offset 9, -8
+ 190              		.cfi_offset 14, -4
+ 191 0006 83B0     		sub	sp, sp, #12
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cck5hSSR.s 			page 6
+
+
+ 192              		.cfi_def_cfa_offset 40
+ 193 0008 0E46     		mov	r6, r1
+ 194 000a 1546     		mov	r5, r2
+ 195 000c 9946     		mov	r9, r3
+ 196 000e 0446     		mov	r4, r0
+  78:Drivers/ICP201xx/Icp201xxSerif.c **** 		return INV_ERROR_BAD_ARG;
+  79:Drivers/ICP201xx/Icp201xxSerif.c **** 
+  80:Drivers/ICP201xx/Icp201xxSerif.c **** 	if(len > s->max_write)
+ 197              		.loc 1 80 2 is_stmt 1 view .LVU39
+ 198              		.loc 1 80 12 is_stmt 0 view .LVU40
+ 199 0010 0369     		ldr	r3, [r0, #16]
+ 200              	.LVL15:
+ 201              		.loc 1 80 4 view .LVU41
+ 202 0012 9342     		cmp	r3, r2
+ 203 0014 24D3     		bcc	.L19
+  81:Drivers/ICP201xx/Icp201xxSerif.c **** 		return INV_ERROR_SIZE;
+  82:Drivers/ICP201xx/Icp201xxSerif.c **** 
+  83:Drivers/ICP201xx/Icp201xxSerif.c **** 	if ( s->if_mode == ICP201XX_IF_3_WIRE_SPI || s->if_mode == ICP201XX_IF_4_WIRE_SPI )
+ 204              		.loc 1 83 2 is_stmt 1 view .LVU42
+ 205              		.loc 1 83 8 is_stmt 0 view .LVU43
+ 206 0016 007D     		ldrb	r0, [r0, #20]	@ zero_extendqisi2
+ 207              	.LVL16:
+ 208              		.loc 1 83 44 view .LVU44
+ 209 0018 0238     		subs	r0, r0, #2
+ 210 001a C0B2     		uxtb	r0, r0
+ 211              		.loc 1 83 5 view .LVU45
+ 212 001c 0128     		cmp	r0, #1
+ 213 001e 0AD9     		bls	.L25
+ 214              	.LVL17:
+ 215              	.L16:
+  84:Drivers/ICP201xx/Icp201xxSerif.c **** 	{
+  85:Drivers/ICP201xx/Icp201xxSerif.c **** 		uint8_t cmd_buf[2] = {0};
+  86:Drivers/ICP201xx/Icp201xxSerif.c **** 		cmd_buf[0] = ICP201XX_SERIF_SPI_REG_WRITE_CMD;
+  87:Drivers/ICP201xx/Icp201xxSerif.c **** 		cmd_buf[1] = reg;
+  88:Drivers/ICP201xx/Icp201xxSerif.c **** 
+  89:Drivers/ICP201xx/Icp201xxSerif.c **** 		if(s->write_reg(s->context, 0, cmd_buf, 2) != 0)
+  90:Drivers/ICP201xx/Icp201xxSerif.c **** 			return INV_ERROR_TRANSPORT;
+  91:Drivers/ICP201xx/Icp201xxSerif.c **** 	}
+  92:Drivers/ICP201xx/Icp201xxSerif.c **** 
+  93:Drivers/ICP201xx/Icp201xxSerif.c **** 	if(s->write_reg(s->context, reg, buf, len) != 0)
+ 216              		.loc 1 93 2 is_stmt 1 view .LVU46
+ 217              		.loc 1 93 6 is_stmt 0 view .LVU47
+ 218 0020 D4F80880 		ldr	r8, [r4, #8]
+ 219              		.loc 1 93 5 view .LVU48
+ 220 0024 2B46     		mov	r3, r5
+ 221 0026 4A46     		mov	r2, r9
+ 222 0028 3146     		mov	r1, r6
+ 223 002a 2068     		ldr	r0, [r4]
+ 224 002c C047     		blx	r8
+ 225              	.LVL18:
+ 226              		.loc 1 93 4 discriminator 1 view .LVU49
+ 227 002e D0B9     		cbnz	r0, .L26
+ 228              	.L14:
+  94:Drivers/ICP201xx/Icp201xxSerif.c **** 		return INV_ERROR_TRANSPORT;
+  95:Drivers/ICP201xx/Icp201xxSerif.c **** 
+  96:Drivers/ICP201xx/Icp201xxSerif.c **** 	return INV_ERROR_SUCCESS;
+  97:Drivers/ICP201xx/Icp201xxSerif.c **** }
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cck5hSSR.s 			page 7
+
+
+ 229              		.loc 1 97 1 view .LVU50
+ 230 0030 03B0     		add	sp, sp, #12
+ 231              		.cfi_remember_state
+ 232              		.cfi_def_cfa_offset 28
+ 233              		@ sp needed
+ 234 0032 BDE8F083 		pop	{r4, r5, r6, r7, r8, r9, pc}
+ 235              	.LVL19:
+ 236              	.L25:
+ 237              		.cfi_restore_state
+ 238              	.LBB3:
+  85:Drivers/ICP201xx/Icp201xxSerif.c **** 		cmd_buf[0] = ICP201XX_SERIF_SPI_REG_WRITE_CMD;
+ 239              		.loc 1 85 3 is_stmt 1 view .LVU51
+  85:Drivers/ICP201xx/Icp201xxSerif.c **** 		cmd_buf[0] = ICP201XX_SERIF_SPI_REG_WRITE_CMD;
+ 240              		.loc 1 85 11 is_stmt 0 view .LVU52
+ 241 0036 0021     		movs	r1, #0
+ 242              	.LVL20:
+  85:Drivers/ICP201xx/Icp201xxSerif.c **** 		cmd_buf[0] = ICP201XX_SERIF_SPI_REG_WRITE_CMD;
+ 243              		.loc 1 85 11 view .LVU53
+ 244 0038 ADF80410 		strh	r1, [sp, #4]	@ movhi
+  86:Drivers/ICP201xx/Icp201xxSerif.c **** 		cmd_buf[1] = reg;
+ 245              		.loc 1 86 3 is_stmt 1 view .LVU54
+  86:Drivers/ICP201xx/Icp201xxSerif.c **** 		cmd_buf[1] = reg;
+ 246              		.loc 1 86 14 is_stmt 0 view .LVU55
+ 247 003c 3323     		movs	r3, #51
+ 248 003e 8DF80430 		strb	r3, [sp, #4]
+  87:Drivers/ICP201xx/Icp201xxSerif.c **** 
+ 249              		.loc 1 87 3 is_stmt 1 view .LVU56
+  87:Drivers/ICP201xx/Icp201xxSerif.c **** 
+ 250              		.loc 1 87 14 is_stmt 0 view .LVU57
+ 251 0042 8DF80560 		strb	r6, [sp, #5]
+  89:Drivers/ICP201xx/Icp201xxSerif.c **** 			return INV_ERROR_TRANSPORT;
+ 252              		.loc 1 89 3 is_stmt 1 view .LVU58
+  89:Drivers/ICP201xx/Icp201xxSerif.c **** 			return INV_ERROR_TRANSPORT;
+ 253              		.loc 1 89 6 is_stmt 0 view .LVU59
+ 254 0046 0223     		movs	r3, #2
+ 255 0048 01AA     		add	r2, sp, #4
+ 256              	.LVL21:
+  89:Drivers/ICP201xx/Icp201xxSerif.c **** 			return INV_ERROR_TRANSPORT;
+ 257              		.loc 1 89 6 view .LVU60
+ 258 004a 2068     		ldr	r0, [r4]
+ 259 004c A768     		ldr	r7, [r4, #8]
+ 260 004e B847     		blx	r7
+ 261              	.LVL22:
+  89:Drivers/ICP201xx/Icp201xxSerif.c **** 			return INV_ERROR_TRANSPORT;
+ 262              		.loc 1 89 5 discriminator 1 view .LVU61
+ 263 0050 0028     		cmp	r0, #0
+ 264 0052 E5D0     		beq	.L16
+  90:Drivers/ICP201xx/Icp201xxSerif.c **** 	}
+ 265              		.loc 1 90 4 is_stmt 1 view .LVU62
+  90:Drivers/ICP201xx/Icp201xxSerif.c **** 	}
+ 266              		.loc 1 90 11 is_stmt 0 view .LVU63
+ 267 0054 6FF00200 		mvn	r0, #2
+ 268 0058 EAE7     		b	.L14
+ 269              	.LVL23:
+ 270              	.L18:
+ 271              		.cfi_def_cfa_offset 0
+ 272              		.cfi_restore 4
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cck5hSSR.s 			page 8
+
+
+ 273              		.cfi_restore 5
+ 274              		.cfi_restore 6
+ 275              		.cfi_restore 7
+ 276              		.cfi_restore 8
+ 277              		.cfi_restore 9
+ 278              		.cfi_restore 14
+  90:Drivers/ICP201xx/Icp201xxSerif.c **** 	}
+ 279              		.loc 1 90 11 view .LVU64
+ 280              	.LBE3:
+  78:Drivers/ICP201xx/Icp201xxSerif.c **** 
+ 281              		.loc 1 78 10 view .LVU65
+ 282 005a 6FF00A00 		mvn	r0, #10
+ 283              	.LVL24:
+ 284              		.loc 1 97 1 view .LVU66
+ 285 005e 7047     		bx	lr
+ 286              	.LVL25:
+ 287              	.L19:
+ 288              		.cfi_def_cfa_offset 40
+ 289              		.cfi_offset 4, -28
+ 290              		.cfi_offset 5, -24
+ 291              		.cfi_offset 6, -20
+ 292              		.cfi_offset 7, -16
+ 293              		.cfi_offset 8, -12
+ 294              		.cfi_offset 9, -8
+ 295              		.cfi_offset 14, -4
+  81:Drivers/ICP201xx/Icp201xxSerif.c **** 
+ 296              		.loc 1 81 10 view .LVU67
+ 297 0060 6FF00400 		mvn	r0, #4
+ 298              	.LVL26:
+  81:Drivers/ICP201xx/Icp201xxSerif.c **** 
+ 299              		.loc 1 81 10 view .LVU68
+ 300 0064 E4E7     		b	.L14
+ 301              	.LVL27:
+ 302              	.L26:
+  94:Drivers/ICP201xx/Icp201xxSerif.c **** 
+ 303              		.loc 1 94 10 view .LVU69
+ 304 0066 6FF00200 		mvn	r0, #2
+ 305 006a E1E7     		b	.L14
+ 306              		.cfi_endproc
+ 307              	.LFE1:
+ 309              		.text
+ 310              	.Letext0:
+ 311              		.file 2 "C:/Users/Nathan/AppData/Roaming/Code/User/globalStorage/bmd.stm32-for-vscode/@xpack-dev-t
+ 312              		.file 3 "C:/Users/Nathan/AppData/Roaming/Code/User/globalStorage/bmd.stm32-for-vscode/@xpack-dev-t
+ 313              		.file 4 "Drivers/ICP201xx/InvError.h"
+ 314              		.file 5 "Drivers/ICP201xx/Icp201xxSerif.h"
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cck5hSSR.s 			page 9
+
+
+DEFINED SYMBOLS
+                            *ABS*:00000000 Icp201xxSerif.c
+C:\Users\Nathan\AppData\Local\Temp\cck5hSSR.s:20     .text.inv_icp201xx_serif_read_reg:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\cck5hSSR.s:26     .text.inv_icp201xx_serif_read_reg:00000000 inv_icp201xx_serif_read_reg
+C:\Users\Nathan\AppData\Local\Temp\cck5hSSR.s:165    .text.inv_icp201xx_serif_write_reg:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\cck5hSSR.s:171    .text.inv_icp201xx_serif_write_reg:00000000 inv_icp201xx_serif_write_reg
+
+NO UNDEFINED SYMBOLS

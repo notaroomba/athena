@@ -1,0 +1,89 @@
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc5kOVhl.s 			page 1
+
+
+   1              		.cpu cortex-m7
+   2              		.arch armv7e-m
+   3              		.fpu fpv5-d16
+   4              		.eabi_attribute 28, 1
+   5              		.eabi_attribute 20, 1
+   6              		.eabi_attribute 21, 1
+   7              		.eabi_attribute 23, 3
+   8              		.eabi_attribute 24, 1
+   9              		.eabi_attribute 25, 1
+  10              		.eabi_attribute 26, 1
+  11              		.eabi_attribute 30, 1
+  12              		.eabi_attribute 34, 1
+  13              		.eabi_attribute 18, 4
+  14              		.file	"inv_time.c"
+  15              		.text
+  16              	.Ltext0:
+  17              		.cfi_sections	.debug_frame
+  18              		.file 1 "Drivers/ICP201xx/inv_time.c"
+  19              		.section	.text.inv_icp201xx_sleep_us,"ax",%progbits
+  20              		.align	1
+  21              		.global	inv_icp201xx_sleep_us
+  22              		.syntax unified
+  23              		.thumb
+  24              		.thumb_func
+  26              	inv_icp201xx_sleep_us:
+  27              	.LVL0:
+  28              	.LFB3:
+   1:Drivers/ICP201xx/inv_time.c **** /*
+   2:Drivers/ICP201xx/inv_time.c ****  *
+   3:Drivers/ICP201xx/inv_time.c ****  * Copyright (c) [2020] by InvenSense, Inc.
+   4:Drivers/ICP201xx/inv_time.c ****  * 
+   5:Drivers/ICP201xx/inv_time.c ****  * Permission to use, copy, modify, and/or distribute this software for any
+   6:Drivers/ICP201xx/inv_time.c ****  * purpose with or without fee is hereby granted.
+   7:Drivers/ICP201xx/inv_time.c ****  * 
+   8:Drivers/ICP201xx/inv_time.c ****  * THE SOFTWARE IS PROVIDED "AS IS" AND THE AUTHOR DISCLAIMS ALL WARRANTIES
+   9:Drivers/ICP201xx/inv_time.c ****  * WITH REGARD TO THIS SOFTWARE INCLUDING ALL IMPLIED WARRANTIES OF
+  10:Drivers/ICP201xx/inv_time.c ****  * MERCHANTABILITY AND FITNESS. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR ANY
+  11:Drivers/ICP201xx/inv_time.c ****  * SPECIAL, DIRECT, INDIRECT, OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES
+  12:Drivers/ICP201xx/inv_time.c ****  * WHATSOEVER RESULTING FROM LOSS OF USE, DATA OR PROFITS, WHETHER IN AN ACTION
+  13:Drivers/ICP201xx/inv_time.c ****  * OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF OR IN
+  14:Drivers/ICP201xx/inv_time.c ****  * CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
+  15:Drivers/ICP201xx/inv_time.c ****  *
+  16:Drivers/ICP201xx/inv_time.c ****  */
+  17:Drivers/ICP201xx/inv_time.c **** #include <stdint.h>
+  18:Drivers/ICP201xx/inv_time.c **** #include <stdio.h>
+  19:Drivers/ICP201xx/inv_time.c **** #include <string.h>
+  20:Drivers/ICP201xx/inv_time.c **** 
+  21:Drivers/ICP201xx/inv_time.c **** extern void HAL_Delay(uint32_t Delay);
+  22:Drivers/ICP201xx/inv_time.c **** 
+  23:Drivers/ICP201xx/inv_time.c **** void inv_icp201xx_sleep_us(uint32_t us)
+  24:Drivers/ICP201xx/inv_time.c **** {
+  29              		.loc 1 24 1 view -0
+  30              		.cfi_startproc
+  31              		@ args = 0, pretend = 0, frame = 0
+  32              		@ frame_needed = 0, uses_anonymous_args = 0
+  33              		.loc 1 24 1 is_stmt 0 view .LVU1
+  34 0000 08B5     		push	{r3, lr}
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc5kOVhl.s 			page 2
+
+
+  35              		.cfi_def_cfa_offset 8
+  36              		.cfi_offset 3, -8
+  37              		.cfi_offset 14, -4
+  25:Drivers/ICP201xx/inv_time.c ****   HAL_Delay(us);
+  38              		.loc 1 25 3 is_stmt 1 view .LVU2
+  39 0002 FFF7FEFF 		bl	HAL_Delay
+  40              	.LVL1:
+  26:Drivers/ICP201xx/inv_time.c **** }
+  41              		.loc 1 26 1 is_stmt 0 view .LVU3
+  42 0006 08BD     		pop	{r3, pc}
+  43              		.cfi_endproc
+  44              	.LFE3:
+  46              		.text
+  47              	.Letext0:
+  48              		.file 2 "C:/Users/Nathan/AppData/Roaming/Code/User/globalStorage/bmd.stm32-for-vscode/@xpack-dev-t
+  49              		.file 3 "C:/Users/Nathan/AppData/Roaming/Code/User/globalStorage/bmd.stm32-for-vscode/@xpack-dev-t
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc5kOVhl.s 			page 3
+
+
+DEFINED SYMBOLS
+                            *ABS*:00000000 inv_time.c
+C:\Users\Nathan\AppData\Local\Temp\cc5kOVhl.s:20     .text.inv_icp201xx_sleep_us:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\cc5kOVhl.s:26     .text.inv_icp201xx_sleep_us:00000000 inv_icp201xx_sleep_us
+
+UNDEFINED SYMBOLS
+HAL_Delay

@@ -24,8 +24,9 @@
 /* USER CODE BEGIN Includes */
 
 #include "usbd_cdc_if.h"
-
 #include "athena.h"
+#include "driver_bmp388_fifo.h"
+#include "icp201xx_interface.h"
 
 /* USER CODE END Includes */
 
@@ -36,7 +37,7 @@
 
 /* Private define ------------------------------------------------------------*/
 /* USER CODE BEGIN PD */
-
+#define __FPU_USED 1U
 /* USER CODE END PD */
 
 /* Private macro -------------------------------------------------------------*/
@@ -59,10 +60,19 @@ UART_HandleTypeDef huart4;
 UART_HandleTypeDef huart8;
 UART_HandleTypeDef huart1;
 
-WWDG_HandleTypeDef hwwdg1;
-
 /* USER CODE BEGIN PV */
-
+Athena_LED_PinConfig led_pins = {
+      .port_r = MPU_R_GPIO_Port,
+      .pin_r = MPU_R_Pin,
+      .port_g = MPU_G_GPIO_Port,
+      .pin_g = MPU_G_Pin,
+      .port_b = MPU_B_GPIO_Port,
+      .pin_b = MPU_B_Pin
+  };uint8_t gs_fifo_full_flag;
+uint8_t gs_fifo_watermark_flag;
+uint16_t i, timeout;
+uint8_t gs_buf[512];
+bmp388_frame_t gs_frame[256];
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
@@ -74,13 +84,109 @@ static void MX_SPI3_Init(void);
 static void MX_SPI4_Init(void);
 static void MX_SPI6_Init(void);
 static void MX_UART8_Init(void);
-static void MX_WWDG1_Init(void);
 static void MX_UART4_Init(void);
 static void MX_FDCAN1_Init(void);
 static void MX_USART1_UART_Init(void);
 static void MX_TIM1_Init(void);
 /* USER CODE BEGIN PFP */
-
+void bmp388_fifo_receive_callback(uint8_t type)
+{
+    switch (type)
+    {
+        case BMP388_INTERRUPT_STATUS_FIFO_WATERMARK :
+        {
+            uint8_t res;
+            uint16_t len;
+            uint16_t i, frame_len;
+            
+            len = 512;
+            frame_len = 256;
+            res = bmp388_fifo_read(gs_buf, len, (bmp388_frame_t *)gs_frame, (uint16_t *)&frame_len);
+            if (res != 0)
+            {
+                bmp388_interface_debug_print("bmp388: fifo read failed.\n");
+                
+                return;
+            }
+            for (i = 0; i < frame_len; i++)
+            {
+                if (gs_frame[i].type == BMP388_FRAME_TYPE_TEMPERATURE)
+                {
+                    bmp388_interface_debug_print("bmp388: fifo %d/%d.\n", i+1, frame_len);
+                    bmp388_interface_debug_print("bmp388: temperature is %0.2fC.\n", gs_frame[i].data);
+                }
+                else if (gs_frame[i].type == BMP388_FRAME_TYPE_PRESSURE)
+                {
+                    bmp388_interface_debug_print("bmp388: fifo %d/%d.\n", i+1, frame_len);
+                    bmp388_interface_debug_print("bmp388: pressure is %0.2fPa.\n", gs_frame[i].data);
+                }
+                else if (gs_frame[i].type == BMP388_FRAME_TYPE_SENSORTIME)
+                {
+                    bmp388_interface_debug_print("bmp388: fifo %d/%d.\n", i+1, frame_len);
+                    bmp388_interface_debug_print("bmp388: sensortime is %d.\n", gs_frame[i].raw);
+                }
+                else
+                {
+                    bmp388_interface_debug_print("bmp388: fifo %d/%d.\n", i+1, frame_len);
+                    bmp388_interface_debug_print("bmp388: unknow type.\n");
+                }
+            }
+            gs_fifo_watermark_flag = 1;
+            
+            break;
+        }
+        case BMP388_INTERRUPT_STATUS_FIFO_FULL :
+        {
+            uint8_t res;
+            uint16_t len;
+            uint16_t i, frame_len;
+            
+            len = 512;
+            frame_len = 256;
+            res = bmp388_fifo_read(gs_buf, len, (bmp388_frame_t *)gs_frame, (uint16_t *)&frame_len);
+            if (res != 0)
+            {
+                bmp388_interface_debug_print("bmp388: fifo read failed.\n");
+                
+                return;
+            }
+            for (i = 0; i < frame_len; i++)
+            {
+                if (gs_frame[i].type == BMP388_FRAME_TYPE_TEMPERATURE)
+                {
+                    bmp388_interface_debug_print("bmp388: fifo %d/%d.\n", i+1, frame_len);
+                    bmp388_interface_debug_print("bmp388: temperature is %0.2fC.\n", gs_frame[i].data);
+                }
+                else if (gs_frame[i].type == BMP388_FRAME_TYPE_PRESSURE)
+                {
+                    bmp388_interface_debug_print("bmp388: fifo %d/%d.\n", i+1, frame_len);
+                    bmp388_interface_debug_print("bmp388: pressure is %0.2fPa.\n", gs_frame[i].data);
+                }
+                else if (gs_frame[i].type == BMP388_FRAME_TYPE_SENSORTIME)
+                {
+                    bmp388_interface_debug_print("bmp388: fifo %d/%d.\n", i+1, frame_len);
+                    bmp388_interface_debug_print("bmp388: sensortime is %d.\n", gs_frame[i].raw);
+                }
+                else
+                {
+                    bmp388_interface_debug_print("bmp388: fifo %d/%d.\n", i+1, frame_len);
+                    bmp388_interface_debug_print("bmp388: unknow type.\n");
+                }
+            }
+            gs_fifo_full_flag = 1;
+            
+            break;
+        }
+        case BMP388_INTERRUPT_STATUS_DATA_READY :
+        {
+            break;
+        }
+        default :
+        {
+            break;
+        }
+    }
+}
 /* USER CODE END PFP */
 
 /* Private user code ---------------------------------------------------------*/
@@ -96,7 +202,9 @@ int main(void)
 {
 
   /* USER CODE BEGIN 1 */
-
+  #if (__FPU_PRESENT == 1) && (__FPU_USED == 1)
+    SCB->CPACR |= ((3UL << 10*2)|(3UL << 11*2));  /* set CP10 and CP11 Full Access */
+  #endif
   /* USER CODE END 1 */
 
   /* MPU Configuration--------------------------------------------------------*/
@@ -109,21 +217,15 @@ int main(void)
 
   /* USER CODE BEGIN Init */
 
+
+
   /* USER CODE END Init */
 
   /* Configure the system clock */
   SystemClock_Config();
 
   /* USER CODE BEGIN SysInit */
-Athena_LED_PinConfig led_pins = {
-      .port_r = MPU_R_GPIO_Port,
-      .pin_r = MPU_R_Pin,
-      .port_g = MPU_G_GPIO_Port,
-      .pin_g = MPU_G_Pin,
-      .port_b = MPU_B_GPIO_Port,
-      .pin_b = MPU_B_Pin
-  };
-  Athena_Init(&led_pins);
+    Athena_Init(&led_pins);
   /* USER CODE END SysInit */
 
   /* Initialize all configured peripherals */
@@ -133,13 +235,74 @@ Athena_LED_PinConfig led_pins = {
   MX_SPI4_Init();
   MX_SPI6_Init();
   MX_UART8_Init();
-  MX_WWDG1_Init();
   MX_UART4_Init();
   MX_FDCAN1_Init();
   MX_USART1_UART_Init();
   MX_TIM1_Init();
   MX_USB_DEVICE_Init();
   /* USER CODE BEGIN 2 */
+
+  HAL_Delay(2000);
+  
+  // BMP388 BASIC CONFIGURATION
+  int bmp_res;
+  float bmp_temperature_c;
+  float bmp_pressure_pa;
+
+  // bmp_res = bmp388_basic_init(BMP388_INTERFACE_SPI, BMP388_ADDRESS_ADO_LOW);
+  // if (bmp_res != 0)
+  // {
+  //     char buffer[64];
+  //     int len = sprintf(buffer, "BMP388 initialization failed, code: %d\r\n", bmp_res);
+  //     CDC_Transmit_FS((uint8_t *)buffer, len);
+  // }
+  // else
+  // {
+  //     CDC_Transmit_FS((uint8_t *)"BMP388 initialized successfully!\r\n", 35);
+  // }
+// bmp_res = gpio_interrupt_init();
+// if (bmp_res != 0)
+// {
+//     return 1;
+// }
+bmp_res = bmp388_fifo_init(BMP388_INTERFACE_SPI, BMP388_ADDRESS_ADO_LOW, bmp388_fifo_receive_callback);
+if (bmp_res != 0)
+{
+    char buffer[64];
+    int len = sprintf(buffer, "BMP388 FIFO initialization failed, code: %d\r\n", bmp_res);
+    CDC_Transmit_FS((uint8_t *)buffer, len);
+}
+else
+{
+    CDC_Transmit_FS((uint8_t *)"BMP388 FIFO initialized successfully!\r\n", 39);
+}
+  // ICP201xx CONFIGURATION
+  // ICP201xx_t icp_device;
+  // int icp_res;
+  // float icp_temperature_c;
+  // float icp_pressure_kpa;
+  
+  // ICP201xx_init_spi(&icp_device);
+  // icp_res = ICP201xx_begin(&icp_device);
+  // if (icp_res != 0)
+  // {
+  //     char buffer[64];
+  //     int len = sprintf(buffer, "ICP201xx initialization failed, code: %d\r\n", icp_res);
+  //     CDC_Transmit_FS((uint8_t *)buffer, len);
+  // }
+  // else
+  // {
+  //     CDC_Transmit_FS((uint8_t *)"ICP201xx initialized successfully!\r\n", 37);
+  //     icp_res = ICP201xx_start(&icp_device);
+  //     if (icp_res != 0)
+  //     {
+  //         char buffer[64];
+  //         int len = sprintf(buffer, "ICP201xx start failed, code: %d\r\n", icp_res);
+  //         CDC_Transmit_FS((uint8_t *)buffer, len);
+  //     }
+  // }
+
+  
   // MX_USB_DEVICE_Init();
 
   // HAL_Delay(2000);
@@ -153,9 +316,67 @@ Athena_LED_PinConfig led_pins = {
   /* USER CODE BEGIN WHILE */
   while (1)
   {
-  // uint8_t cdc_message[] = "MPU Initialized\r\n";
-  // CDC_Transmit_FS(cdc_message, sizeof(cdc_message) - 1);
-  LED_Test_Sequence();
+
+    Set_LED_Color(LED_GREEN);
+    
+    // Wait for FIFO to accumulate data (polling mode, no interrupts needed)
+    HAL_Delay(1000);
+    
+    // Read BMP388 FIFO
+    if (bmp_res == 0) {
+        uint8_t res;
+        uint16_t len;
+        uint16_t frame_len;
+        
+        len = 512;
+        frame_len = 256;
+        res = bmp388_fifo_read(gs_buf, len, (bmp388_frame_t *)gs_frame, (uint16_t *)&frame_len);
+        if (res != 0)
+        {
+            print("BMP388: FIFO read failed.\r\n");
+        }
+        else
+        {
+            print("BMP388: Read %d frames from FIFO\r\n", frame_len);
+            if (frame_len > 0) {
+                // Print first frame
+                if (gs_frame[0].type == BMP388_FRAME_TYPE_TEMPERATURE)
+                {
+                    print("BMP388: First temp = %0.2fC\r\n", gs_frame[0].data);
+                }
+                else if (gs_frame[0].type == BMP388_FRAME_TYPE_PRESSURE)
+                {
+                    print("BMP388: First pressure = %0.2fPa\r\n", gs_frame[0].data);
+                }
+                
+                // Print last frame
+                if (frame_len > 1 && gs_frame[frame_len-1].type == BMP388_FRAME_TYPE_TEMPERATURE)
+                {
+                    print("BMP388: Last temp = %0.2fC\r\n", gs_frame[frame_len-1].data);
+                }
+                else if (frame_len > 1 && gs_frame[frame_len-1].type == BMP388_FRAME_TYPE_PRESSURE)
+                {
+                    print("BMP388: Last pressure = %0.2fPa\r\n", gs_frame[frame_len-1].data);
+                }
+            }
+        }
+    }
+    
+    // Read ICP201xx sensor
+    // if (icp_res == 0) {
+    //   icp_res = ICP201xx_getData(&icp_device, &icp_pressure_kpa, &icp_temperature_c);
+    //   if (icp_res != 0)
+    //   {
+    //       print("ICP201xx: read failed, code: %d\r\n", icp_res);
+    //   }
+    //   else
+    //   {
+    //       print("ICP201xx: temperature is %0.2fC, pressure is %0.3fkPa\r\n", 
+    //             icp_temperature_c, icp_pressure_kpa);
+    //   }
+    // }
+    
+    Set_LED_Color(LED_BLUE);
     // HAL_GPIO_WritePin(MPU_B_GPIO_Port, MPU_B_Pin, GPIO_PIN_SET);
     // HAL_Delay(1000);
     // HAL_GPIO_WritePin(MPU_B_GPIO_Port, MPU_B_Pin, GPIO_PIN_RESET);
@@ -395,7 +616,7 @@ static void MX_SPI4_Init(void)
   hspi4.Instance = SPI4;
   hspi4.Init.Mode = SPI_MODE_MASTER;
   hspi4.Init.Direction = SPI_DIRECTION_2LINES;
-  hspi4.Init.DataSize = SPI_DATASIZE_4BIT;
+  hspi4.Init.DataSize = SPI_DATASIZE_8BIT;
   hspi4.Init.CLKPolarity = SPI_POLARITY_LOW;
   hspi4.Init.CLKPhase = SPI_PHASE_1EDGE;
   hspi4.Init.NSS = SPI_NSS_SOFT;
@@ -687,36 +908,6 @@ static void MX_USART1_UART_Init(void)
 }
 
 /**
-  * @brief WWDG1 Initialization Function
-  * @param None
-  * @retval None
-  */
-static void MX_WWDG1_Init(void)
-{
-
-  /* USER CODE BEGIN WWDG1_Init 0 */
-
-  /* USER CODE END WWDG1_Init 0 */
-
-  /* USER CODE BEGIN WWDG1_Init 1 */
-
-  /* USER CODE END WWDG1_Init 1 */
-  hwwdg1.Instance = WWDG1;
-  hwwdg1.Init.Prescaler = WWDG_PRESCALER_1;
-  hwwdg1.Init.Window = 64;
-  hwwdg1.Init.Counter = 64;
-  hwwdg1.Init.EWIMode = WWDG_EWI_DISABLE;
-  if (HAL_WWDG_Init(&hwwdg1) != HAL_OK)
-  {
-    Error_Handler();
-  }
-  /* USER CODE BEGIN WWDG1_Init 2 */
-
-  /* USER CODE END WWDG1_Init 2 */
-
-}
-
-/**
   * @brief GPIO Initialization Function
   * @param None
   * @retval None
@@ -740,17 +931,17 @@ static void MX_GPIO_Init(void)
   HAL_GPIO_WritePin(TPU_SELECT_GPIO_Port, TPU_SELECT_Pin, GPIO_PIN_RESET);
 
   /*Configure GPIO pin Output Level */
-  HAL_GPIO_WritePin(GPIOB, MAG_CS_Pin|SPU_SELECT_Pin, GPIO_PIN_RESET);
+  HAL_GPIO_WritePin(GPIOB, MAG_CS_Pin|MPU_R_Pin|MPU_G_Pin|MPU_B_Pin
+                          |SPU_SELECT_Pin, GPIO_PIN_RESET);
 
   /*Configure GPIO pin Output Level */
   HAL_GPIO_WritePin(GPIOE, IMU1_INT_Pin|IMU1_CS_Pin|IMU2_INT_Pin, GPIO_PIN_RESET);
 
   /*Configure GPIO pin Output Level */
-  HAL_GPIO_WritePin(GPIOB, MPU_R_Pin|MPU_G_Pin|MPU_B_Pin, GPIO_PIN_SET);
+  HAL_GPIO_WritePin(GPIOD, MPU_CAN_S_Pin|ICP_INT_Pin, GPIO_PIN_RESET);
 
   /*Configure GPIO pin Output Level */
-  HAL_GPIO_WritePin(GPIOD, MPU_CAN_S_Pin|BMP_CS_Pin|BMP_INT_Pin|ICP_CS_Pin
-                          |ICP_INT_Pin, GPIO_PIN_RESET);
+  HAL_GPIO_WritePin(GPIOD, BMP_CS_Pin|ICP_CS_Pin, GPIO_PIN_SET);
 
   /*Configure GPIO pin : TPU_SELECT_Pin */
   GPIO_InitStruct.Pin = TPU_SELECT_Pin;
@@ -781,14 +972,22 @@ static void MX_GPIO_Init(void)
   GPIO_InitStruct.Pull = GPIO_NOPULL;
   HAL_GPIO_Init(GPIOE, &GPIO_InitStruct);
 
-  /*Configure GPIO pins : MPU_CAN_S_Pin BMP_CS_Pin BMP_INT_Pin ICP_CS_Pin
-                           ICP_INT_Pin */
-  GPIO_InitStruct.Pin = MPU_CAN_S_Pin|BMP_CS_Pin|BMP_INT_Pin|ICP_CS_Pin
-                          |ICP_INT_Pin;
+  /*Configure GPIO pins : MPU_CAN_S_Pin BMP_CS_Pin ICP_CS_Pin ICP_INT_Pin */
+  GPIO_InitStruct.Pin = MPU_CAN_S_Pin|BMP_CS_Pin|ICP_CS_Pin|ICP_INT_Pin;
   GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
   GPIO_InitStruct.Pull = GPIO_NOPULL;
   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
   HAL_GPIO_Init(GPIOD, &GPIO_InitStruct);
+
+  /*Configure GPIO pin : BMP_INT_Pin */
+  GPIO_InitStruct.Pin = BMP_INT_Pin;
+  GPIO_InitStruct.Mode = GPIO_MODE_IT_RISING;
+  GPIO_InitStruct.Pull = GPIO_NOPULL;
+  HAL_GPIO_Init(BMP_INT_GPIO_Port, &GPIO_InitStruct);
+
+  /* EXTI interrupt init*/
+  HAL_NVIC_SetPriority(BMP_INT_EXTI_IRQn, 0, 0);
+  HAL_NVIC_EnableIRQ(BMP_INT_EXTI_IRQn);
 
   /* USER CODE BEGIN MX_GPIO_Init_2 */
 

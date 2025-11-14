@@ -1,21 +1,25 @@
 {
-  "configurations": [
-    {
-      "name": "STM32",
-      "includePath": [
-        "Core/Inc",
-        "Drivers/CMSIS/Device/ST/STM32G4xx/Include",
-        "Drivers/CMSIS/Include",
-        "Drivers/STM32G4xx_HAL_Driver/Inc",
-        "Drivers/STM32G4xx_HAL_Driver/Inc/Legacy",
-        "../Athena"
-      ],
-      "defines": [
-        "STM32G474xx",
-        "USE_HAL_DRIVER"
-      ],
-      "compilerPath": "c:\\Users\\Nathan\\AppData\\Roaming\\Code\\User\\globalStorage\\bmd.stm32-for-vscode\\@xpack-dev-tools\\arm-none-eabi-gcc\\14.2.1-1.1.1\\.content\\bin\\arm-none-eabi-gcc.EXE"
-    }
-  ],
-  "version": 4
+    "configurations": [
+        {
+            "name": "STM32",
+            "includePath": [
+                "Core/Inc",
+                "Drivers/CMSIS/Device/ST/STM32G4xx/Include",
+                "Drivers/CMSIS/Include",
+                "Drivers/STM32G4xx_HAL_Driver/Inc",
+                "Drivers/STM32G4xx_HAL_Driver/Inc/Legacy",
+                "../Athena",
+                "USB_Device/App",
+                "USB_Device/Target",
+                "Middlewares/ST/STM32_USB_Device_Library/Core/Inc",
+                "Middlewares/ST/STM32_USB_Device_Library/Class/CDC/Inc"
+            ],
+            "defines": [
+                "STM32G474xx",
+                "USE_HAL_DRIVER"
+            ],
+            "compilerPath": "c:\\Users\\Nathan\\AppData\\Roaming\\Code\\User\\globalStorage\\bmd.stm32-for-vscode\\@xpack-dev-tools\\arm-none-eabi-gcc\\14.2.1-1.1.1\\.content\\bin\\arm-none-eabi-gcc.EXE"
+        }
+    ],
+    "version": 4
 }

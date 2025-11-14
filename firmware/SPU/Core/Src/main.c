@@ -18,10 +18,13 @@
 /* USER CODE END Header */
 /* Includes ------------------------------------------------------------------*/
 #include "main.h"
+#include "usb_device.h"
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
+#include "usbd_cdc_if.h"
 #include "athena.h"
+#include "pd.h"
 
 /* USER CODE END Includes */
 
@@ -32,7 +35,8 @@
 
 /* Private define ------------------------------------------------------------*/
 /* USER CODE BEGIN PD */
-
+ #define TPS25751_I2C_ADDR        0x20  // 7-bit I2C Address (HAL will shift to 0x40)
+  #define LOAD_FULL_FLASH          1     // Set to 1 for full flash, 0 for low region only
 /* USER CODE END PD */
 
 /* Private macro -------------------------------------------------------------*/
@@ -53,10 +57,16 @@ TIM_HandleTypeDef htim2;
 UART_HandleTypeDef huart5;
 UART_HandleTypeDef huart1;
 
-PCD_HandleTypeDef hpcd_USB_FS;
-
 /* USER CODE BEGIN PV */
-
+  HAL_StatusTypeDef i2c_status;
+  Athena_LED_PinConfig led_pins = {
+      .port_r = SPU_R_GPIO_Port,
+      .pin_r = SPU_R_Pin,
+      .port_g = SPU_G_GPIO_Port,
+      .pin_g = SPU_G_Pin,
+      .port_b = SPU_B_GPIO_Port,
+      .pin_b = SPU_B_Pin
+  };
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
@@ -67,7 +77,6 @@ static void MX_SPI1_Init(void);
 static void MX_TIM1_Init(void);
 static void MX_TIM2_Init(void);
 static void MX_UART5_Init(void);
-static void MX_USB_PCD_Init(void);
 static void MX_FDCAN2_Init(void);
 static void MX_USART1_UART_Init(void);
 /* USER CODE BEGIN PFP */
@@ -103,28 +112,65 @@ int main(void)
   SystemClock_Config();
 
   /* USER CODE BEGIN SysInit */
-Athena_LED_PinConfig led_pins = {
-      .port_r = SPU_R_GPIO_Port,
-      .pin_r = SPU_R_Pin,
-      .port_g = SPU_G_GPIO_Port,
-      .pin_g = SPU_G_Pin,
-      .port_b = SPU_B_GPIO_Port,
-      .pin_b = SPU_B_Pin
-  };
+
   Athena_Init(&led_pins);
   /* USER CODE END SysInit */
 
   /* Initialize all configured peripherals */
   MX_GPIO_Init();
-  // MX_I2C1_Init();
-  // MX_SPI1_Init();
-  // MX_TIM1_Init();
-  // MX_TIM2_Init();
-  // MX_UART5_Init();
-  // MX_USB_PCD_Init();
-  // MX_FDCAN2_Init();
-  // MX_USART1_UART_Init();
+  MX_I2C1_Init();
+  MX_SPI1_Init();
+  MX_TIM1_Init();
+  MX_TIM2_Init();
+  MX_UART5_Init();
+  MX_FDCAN2_Init();
+  MX_USART1_UART_Init();
+  MX_USB_Device_Init();
   /* USER CODE BEGIN 2 */
+  
+  // TPS25751 I2C Configuration
+  // I2C Address #1 selected by ADCIN1=#7 and ADCIN2=#5
+  // Per Table 8-5: Address bits are 0100000x where x is R/W bit
+  // 7-bit address = 0100000 = 0x20 (HAL functions auto-shift this to 0x40 for 8-bit format)
+
+  // if (LOAD_FULL_FLASH) {
+  //   // Load Full Flash firmware (larger, complete firmware image)
+  //   i2c_status = TPS25751_LoadFirmware(&hi2c1, 
+  //                                      tps25750x_fullFlash_i2c_array, 
+  //                                      gSizeFullFlashArray, 
+  //                                      TPS25751_I2C_ADDR);
+  //   }
+  // else {
+  //   i2c_status = TPS25751_LoadFirmware(&hi2c1, 
+  //                                      tps25750x_lowRegion_i2c_array, 
+  //                                      gSizeLowRegionArray, 
+  //                                      TPS25751_I2C_ADDR);
+  //   }
+  
+  // // Optional: Indicate loading status via LED or UART
+  // if (i2c_status == HAL_OK)
+  // {
+  //   // TPS25751 firmware loaded successfully
+  //   // You can add LED indication or UART debug message here
+  //   Set_LED_Color(LED_GREEN);
+  // }
+  // else if (i2c_status == HAL_BUSY)
+  // {
+  //   // I2C bus is busy
+  //   // Handle error (blink LED, send UART message, etc.)
+  //   Set_LED_Color(LED_YELLOW);
+  // }
+  // else if (i2c_status == HAL_ERROR)
+  // {
+  //   // Failed to load firmware
+  //   // Handle error (blink LED, send UART message, etc.)
+  //   Set_LED_Color(LED_RED);
+    
+  // } else {
+  //   Set_LED_Color(LED_MAGENTA);
+  // }
+  
+  
 
   /* USER CODE END 2 */
 
@@ -132,8 +178,11 @@ Athena_LED_PinConfig led_pins = {
   /* USER CODE BEGIN WHILE */
   while (1)
   {
-    //I2C PD ADDRESS IS #1 CONFIG with ADCIN1 being #7 adn ADCIN2 beintg #5: 0100000
-    LED_Test_Sequence();
+//      uint8_t cdc_message[] = "Status \r\n";
+
+//  CDC_Transmit_FS(cdc_message, sizeof(cdc_message) - 1);
+//  CDC_Transmit_FS((uint8_t *)&i2c_status, sizeof(i2c_status));
+    // LED_Test_Sequence();
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
@@ -550,39 +599,6 @@ static void MX_USART1_UART_Init(void)
 }
 
 /**
-  * @brief USB Initialization Function
-  * @param None
-  * @retval None
-  */
-static void MX_USB_PCD_Init(void)
-{
-
-  /* USER CODE BEGIN USB_Init 0 */
-
-  /* USER CODE END USB_Init 0 */
-
-  /* USER CODE BEGIN USB_Init 1 */
-
-  /* USER CODE END USB_Init 1 */
-  hpcd_USB_FS.Instance = USB;
-  hpcd_USB_FS.Init.dev_endpoints = 8;
-  hpcd_USB_FS.Init.speed = PCD_SPEED_FULL;
-  hpcd_USB_FS.Init.phy_itface = PCD_PHY_EMBEDDED;
-  hpcd_USB_FS.Init.Sof_enable = DISABLE;
-  hpcd_USB_FS.Init.low_power_enable = DISABLE;
-  hpcd_USB_FS.Init.lpm_enable = DISABLE;
-  hpcd_USB_FS.Init.battery_charging_enable = DISABLE;
-  if (HAL_PCD_Init(&hpcd_USB_FS) != HAL_OK)
-  {
-    Error_Handler();
-  }
-  /* USER CODE BEGIN USB_Init 2 */
-
-  /* USER CODE END USB_Init 2 */
-
-}
-
-/**
   * @brief GPIO Initialization Function
   * @param None
   * @retval None
@@ -607,11 +623,10 @@ static void MX_GPIO_Init(void)
 
   /*Configure GPIO pin Output Level */
   HAL_GPIO_WritePin(GPIOB, SERVO1_EN_Pin|SERVO2_EN_Pin|SERVO3_EN_Pin|SERVO4_EN_Pin
-                          |SERVO5_EN_Pin|EN_OTG_Pin|CHRG_OK_Pin|SPU_CAN_S_Pin
-                          |RESET_MPU_Pin, GPIO_PIN_RESET);
+                          |SERVO5_EN_Pin|EN_OTG_Pin|CHRG_OK_Pin|SPU_CAN_S_Pin, GPIO_PIN_RESET);
 
   /*Configure GPIO pin Output Level */
-  HAL_GPIO_WritePin(GPIOB, SPU_B_Pin|SPU_G_Pin|SPU_R_Pin, GPIO_PIN_SET);
+  HAL_GPIO_WritePin(GPIOB, SPU_B_Pin|SPU_G_Pin|SPU_R_Pin|RESET_MPU_Pin, GPIO_PIN_SET);
 
   /*Configure GPIO pin Output Level */
   HAL_GPIO_WritePin(GPIOC, SERVO6_EN_Pin|PYRO_6_Pin|PYRO_5_Pin|PYRO_4_Pin

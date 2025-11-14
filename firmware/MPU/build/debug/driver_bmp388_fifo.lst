@@ -1,0 +1,2004 @@
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccWOK94f.s 			page 1
+
+
+   1              		.cpu cortex-m7
+   2              		.arch armv7e-m
+   3              		.fpu fpv5-d16
+   4              		.eabi_attribute 28, 1
+   5              		.eabi_attribute 20, 1
+   6              		.eabi_attribute 21, 1
+   7              		.eabi_attribute 23, 3
+   8              		.eabi_attribute 24, 1
+   9              		.eabi_attribute 25, 1
+  10              		.eabi_attribute 26, 1
+  11              		.eabi_attribute 30, 1
+  12              		.eabi_attribute 34, 1
+  13              		.eabi_attribute 18, 4
+  14              		.file	"driver_bmp388_fifo.c"
+  15              		.text
+  16              	.Ltext0:
+  17              		.cfi_sections	.debug_frame
+  18              		.file 1 "Drivers/BMP388/driver_bmp388_fifo.c"
+  19              		.section	.text.bmp388_fifo_irq_handler,"ax",%progbits
+  20              		.align	1
+  21              		.global	bmp388_fifo_irq_handler
+  22              		.syntax unified
+  23              		.thumb
+  24              		.thumb_func
+  26              	bmp388_fifo_irq_handler:
+  27              	.LFB3:
+   1:Drivers/BMP388/driver_bmp388_fifo.c **** /**
+   2:Drivers/BMP388/driver_bmp388_fifo.c ****  * Copyright (c) 2015 - present LibDriver All rights reserved
+   3:Drivers/BMP388/driver_bmp388_fifo.c ****  * 
+   4:Drivers/BMP388/driver_bmp388_fifo.c ****  * The MIT License (MIT)
+   5:Drivers/BMP388/driver_bmp388_fifo.c ****  *
+   6:Drivers/BMP388/driver_bmp388_fifo.c ****  * Permission is hereby granted, free of charge, to any person obtaining a copy
+   7:Drivers/BMP388/driver_bmp388_fifo.c ****  * of this software and associated documentation files (the "Software"), to deal
+   8:Drivers/BMP388/driver_bmp388_fifo.c ****  * in the Software without restriction, including without limitation the rights
+   9:Drivers/BMP388/driver_bmp388_fifo.c ****  * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+  10:Drivers/BMP388/driver_bmp388_fifo.c ****  * copies of the Software, and to permit persons to whom the Software is
+  11:Drivers/BMP388/driver_bmp388_fifo.c ****  * furnished to do so, subject to the following conditions:
+  12:Drivers/BMP388/driver_bmp388_fifo.c ****  *
+  13:Drivers/BMP388/driver_bmp388_fifo.c ****  * The above copyright notice and this permission notice shall be included in all
+  14:Drivers/BMP388/driver_bmp388_fifo.c ****  * copies or substantial portions of the Software.
+  15:Drivers/BMP388/driver_bmp388_fifo.c ****  *
+  16:Drivers/BMP388/driver_bmp388_fifo.c ****  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+  17:Drivers/BMP388/driver_bmp388_fifo.c ****  * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+  18:Drivers/BMP388/driver_bmp388_fifo.c ****  * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+  19:Drivers/BMP388/driver_bmp388_fifo.c ****  * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+  20:Drivers/BMP388/driver_bmp388_fifo.c ****  * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+  21:Drivers/BMP388/driver_bmp388_fifo.c ****  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+  22:Drivers/BMP388/driver_bmp388_fifo.c ****  * SOFTWARE. 
+  23:Drivers/BMP388/driver_bmp388_fifo.c ****  *
+  24:Drivers/BMP388/driver_bmp388_fifo.c ****  * @file      driver_bmp388_fifo.c
+  25:Drivers/BMP388/driver_bmp388_fifo.c ****  * @brief     driver bmp388 fifo source file
+  26:Drivers/BMP388/driver_bmp388_fifo.c ****  * @version   2.0.0
+  27:Drivers/BMP388/driver_bmp388_fifo.c ****  * @author    Shifeng Li
+  28:Drivers/BMP388/driver_bmp388_fifo.c ****  * @date      2021-04-12
+  29:Drivers/BMP388/driver_bmp388_fifo.c ****  *
+  30:Drivers/BMP388/driver_bmp388_fifo.c ****  * <h3>history</h3>
+  31:Drivers/BMP388/driver_bmp388_fifo.c ****  * <table>
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccWOK94f.s 			page 2
+
+
+  32:Drivers/BMP388/driver_bmp388_fifo.c ****  * <tr><th>Date        <th>Version  <th>Author      <th>Description
+  33:Drivers/BMP388/driver_bmp388_fifo.c ****  * <tr><td>2021/04/12  <td>2.0      <td>Shifeng Li  <td>format the code
+  34:Drivers/BMP388/driver_bmp388_fifo.c ****  * <tr><td>2020/12/20  <td>1.0      <td>Shifeng Li  <td>first upload
+  35:Drivers/BMP388/driver_bmp388_fifo.c ****  * </table>
+  36:Drivers/BMP388/driver_bmp388_fifo.c ****  */
+  37:Drivers/BMP388/driver_bmp388_fifo.c **** 
+  38:Drivers/BMP388/driver_bmp388_fifo.c **** #include "driver_bmp388_fifo.h"
+  39:Drivers/BMP388/driver_bmp388_fifo.c **** 
+  40:Drivers/BMP388/driver_bmp388_fifo.c **** static bmp388_handle_t gs_handle;        /**< bmp388 handle */
+  41:Drivers/BMP388/driver_bmp388_fifo.c **** 
+  42:Drivers/BMP388/driver_bmp388_fifo.c **** /**
+  43:Drivers/BMP388/driver_bmp388_fifo.c ****  * @brief  fifo example irq handler
+  44:Drivers/BMP388/driver_bmp388_fifo.c ****  * @return status code
+  45:Drivers/BMP388/driver_bmp388_fifo.c ****  *         - 0 success
+  46:Drivers/BMP388/driver_bmp388_fifo.c ****  *         - 1 run failed
+  47:Drivers/BMP388/driver_bmp388_fifo.c ****  * @note   none
+  48:Drivers/BMP388/driver_bmp388_fifo.c ****  */
+  49:Drivers/BMP388/driver_bmp388_fifo.c **** uint8_t bmp388_fifo_irq_handler(void)
+  50:Drivers/BMP388/driver_bmp388_fifo.c **** {
+  28              		.loc 1 50 1 view -0
+  29              		.cfi_startproc
+  30              		@ args = 0, pretend = 0, frame = 0
+  31              		@ frame_needed = 0, uses_anonymous_args = 0
+  32 0000 08B5     		push	{r3, lr}
+  33              		.cfi_def_cfa_offset 8
+  34              		.cfi_offset 3, -8
+  35              		.cfi_offset 14, -4
+  51:Drivers/BMP388/driver_bmp388_fifo.c ****     /* run irq handler */
+  52:Drivers/BMP388/driver_bmp388_fifo.c ****     if (bmp388_irq_handler(&gs_handle) != 0)
+  36              		.loc 1 52 5 view .LVU1
+  37              		.loc 1 52 9 is_stmt 0 view .LVU2
+  38 0002 0348     		ldr	r0, .L4
+  39 0004 FFF7FEFF 		bl	bmp388_irq_handler
+  40              	.LVL0:
+  41              		.loc 1 52 8 discriminator 1 view .LVU3
+  42 0008 00B1     		cbz	r0, .L2
+  53:Drivers/BMP388/driver_bmp388_fifo.c ****     {
+  54:Drivers/BMP388/driver_bmp388_fifo.c ****         return 1;
+  43              		.loc 1 54 16 view .LVU4
+  44 000a 0120     		movs	r0, #1
+  45              	.L2:
+  55:Drivers/BMP388/driver_bmp388_fifo.c ****     }
+  56:Drivers/BMP388/driver_bmp388_fifo.c ****     else
+  57:Drivers/BMP388/driver_bmp388_fifo.c ****     {
+  58:Drivers/BMP388/driver_bmp388_fifo.c ****         return 0;
+  59:Drivers/BMP388/driver_bmp388_fifo.c ****     }
+  60:Drivers/BMP388/driver_bmp388_fifo.c **** }
+  46              		.loc 1 60 1 view .LVU5
+  47 000c 08BD     		pop	{r3, pc}
+  48              	.L5:
+  49 000e 00BF     		.align	2
+  50              	.L4:
+  51 0010 00000000 		.word	gs_handle
+  52              		.cfi_endproc
+  53              	.LFE3:
+  55              		.section	.rodata.bmp388_fifo_init.str1.4,"aMS",%progbits,1
+  56              		.align	2
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccWOK94f.s 			page 3
+
+
+  57              	.LC0:
+  58 0000 626D7033 		.ascii	"bmp388: set interface failed.\012\000"
+  58      38383A20 
+  58      73657420 
+  58      696E7465 
+  58      72666163 
+  59 001f 00       		.align	2
+  60              	.LC1:
+  61 0020 626D7033 		.ascii	"bmp388: set addr pin failed.\012\000"
+  61      38383A20 
+  61      73657420 
+  61      61646472 
+  61      2070696E 
+  62 003e 0000     		.align	2
+  63              	.LC2:
+  64 0040 626D7033 		.ascii	"bmp388: init failed.\012\000"
+  64      38383A20 
+  64      696E6974 
+  64      20666169 
+  64      6C65642E 
+  65 0056 0000     		.align	2
+  66              	.LC3:
+  67 0058 626D7033 		.ascii	"bmp388: set spi wire failed.\012\000"
+  67      38383A20 
+  67      73657420 
+  67      73706920 
+  67      77697265 
+  68 0076 0000     		.align	2
+  69              	.LC4:
+  70 0078 626D7033 		.ascii	"bmp388: set iic watchdog timer failed.\012\000"
+  70      38383A20 
+  70      73657420 
+  70      69696320 
+  70      77617463 
+  71              		.align	2
+  72              	.LC5:
+  73 00a0 626D7033 		.ascii	"bmp388: set iic watchdog period failed.\012\000"
+  73      38383A20 
+  73      73657420 
+  73      69696320 
+  73      77617463 
+  74 00c9 000000   		.align	2
+  75              	.LC6:
+  76 00cc 626D7033 		.ascii	"bmp388: set fifo failed.\012\000"
+  76      38383A20 
+  76      73657420 
+  76      6669666F 
+  76      20666169 
+  77 00e6 0000     		.align	2
+  78              	.LC7:
+  79 00e8 626D7033 		.ascii	"bmp388: set fifo stop on full failed.\012\000"
+  79      38383A20 
+  79      73657420 
+  79      6669666F 
+  79      2073746F 
+  80 010f 00       		.align	2
+  81              	.LC8:
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccWOK94f.s 			page 4
+
+
+  82 0110 626D7033 		.ascii	"bmp388: set fifo watermark failed.\012\000"
+  82      38383A20 
+  82      73657420 
+  82      6669666F 
+  82      20776174 
+  83              		.align	2
+  84              	.LC9:
+  85 0134 626D7033 		.ascii	"bmp388: set fifo sensor time on failed.\012\000"
+  85      38383A20 
+  85      73657420 
+  85      6669666F 
+  85      2073656E 
+  86 015d 000000   		.align	2
+  87              	.LC10:
+  88 0160 626D7033 		.ascii	"bmp388: set fifo temperature on failed.\012\000"
+  88      38383A20 
+  88      73657420 
+  88      6669666F 
+  88      2074656D 
+  89 0189 000000   		.align	2
+  90              	.LC11:
+  91 018c 626D7033 		.ascii	"bmp388: set fifo subsampling failed.\012\000"
+  91      38383A20 
+  91      73657420 
+  91      6669666F 
+  91      20737562 
+  92 01b2 0000     		.align	2
+  93              	.LC12:
+  94 01b4 626D7033 		.ascii	"bmp388: set fifo data source failed.\012\000"
+  94      38383A20 
+  94      73657420 
+  94      6669666F 
+  94      20646174 
+  95 01da 0000     		.align	2
+  96              	.LC13:
+  97 01dc 626D7033 		.ascii	"bmp388: set interrupt pin type failed.\012\000"
+  97      38383A20 
+  97      73657420 
+  97      696E7465 
+  97      72727570 
+  98              		.align	2
+  99              	.LC14:
+ 100 0204 626D7033 		.ascii	"bmp388: set interrupt active level failed.\012\000"
+ 100      38383A20 
+ 100      73657420 
+ 100      696E7465 
+ 100      72727570 
+ 101              		.align	2
+ 102              	.LC15:
+ 103 0230 626D7033 		.ascii	"bmp388: set latch interrupt pin and interrupt statu"
+ 103      38383A20 
+ 103      73657420 
+ 103      6C617463 
+ 103      6820696E 
+ 104 0263 73206661 		.ascii	"s failed.\012\000"
+ 104      696C6564 
+ 104      2E0A00
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccWOK94f.s 			page 5
+
+
+ 105 026e 0000     		.align	2
+ 106              	.LC16:
+ 107 0270 626D7033 		.ascii	"bmp388: set interrupt fifo watermark failed.\012\000"
+ 107      38383A20 
+ 107      73657420 
+ 107      696E7465 
+ 107      72727570 
+ 108 029e 0000     		.align	2
+ 109              	.LC17:
+ 110 02a0 626D7033 		.ascii	"bmp388: set interrupt fifo full failed.\012\000"
+ 110      38383A20 
+ 110      73657420 
+ 110      696E7465 
+ 110      72727570 
+ 111 02c9 000000   		.align	2
+ 112              	.LC18:
+ 113 02cc 626D7033 		.ascii	"bmp388: set interrupt data ready failed.\012\000"
+ 113      38383A20 
+ 113      73657420 
+ 113      696E7465 
+ 113      72727570 
+ 114 02f6 0000     		.align	2
+ 115              	.LC19:
+ 116 02f8 626D7033 		.ascii	"bmp388: set pressure failed.\012\000"
+ 116      38383A20 
+ 116      73657420 
+ 116      70726573 
+ 116      73757265 
+ 117 0316 0000     		.align	2
+ 118              	.LC20:
+ 119 0318 626D7033 		.ascii	"bmp388: set temperature failed.\012\000"
+ 119      38383A20 
+ 119      73657420 
+ 119      74656D70 
+ 119      65726174 
+ 120 0339 000000   		.align	2
+ 121              	.LC21:
+ 122 033c 626D7033 		.ascii	"bmp388: set pressure oversampling failed.\012\000"
+ 122      38383A20 
+ 122      73657420 
+ 122      70726573 
+ 122      73757265 
+ 123 0367 00       		.align	2
+ 124              	.LC22:
+ 125 0368 626D7033 		.ascii	"bmp388: set temperature oversampling failed.\012\000"
+ 125      38383A20 
+ 125      73657420 
+ 125      74656D70 
+ 125      65726174 
+ 126 0396 0000     		.align	2
+ 127              	.LC23:
+ 128 0398 626D7033 		.ascii	"bmp388: set odr failed.\012\000"
+ 128      38383A20 
+ 128      73657420 
+ 128      6F647220 
+ 128      6661696C 
+ 129 03b1 000000   		.align	2
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccWOK94f.s 			page 6
+
+
+ 130              	.LC24:
+ 131 03b4 626D7033 		.ascii	"bmp388: set filter coefficient failed.\012\000"
+ 131      38383A20 
+ 131      73657420 
+ 131      66696C74 
+ 131      65722063 
+ 132              		.align	2
+ 133              	.LC25:
+ 134 03dc 626D7033 		.ascii	"bmp388: set mode failed.\012\000"
+ 134      38383A20 
+ 134      73657420 
+ 134      6D6F6465 
+ 134      20666169 
+ 135              		.section	.text.bmp388_fifo_init,"ax",%progbits
+ 136              		.align	1
+ 137              		.global	bmp388_fifo_init
+ 138              		.syntax unified
+ 139              		.thumb
+ 140              		.thumb_func
+ 142              	bmp388_fifo_init:
+ 143              	.LVL1:
+ 144              	.LFB4:
+  61:Drivers/BMP388/driver_bmp388_fifo.c **** 
+  62:Drivers/BMP388/driver_bmp388_fifo.c **** /**
+  63:Drivers/BMP388/driver_bmp388_fifo.c ****  * @brief     fifo example init
+  64:Drivers/BMP388/driver_bmp388_fifo.c ****  * @param[in] interface chip interface
+  65:Drivers/BMP388/driver_bmp388_fifo.c ****  * @param[in] addr_pin iic device address
+  66:Drivers/BMP388/driver_bmp388_fifo.c ****  * @param[in] *fifo_receive_callback pointer to a fifo receive callback
+  67:Drivers/BMP388/driver_bmp388_fifo.c ****  * @return    status code
+  68:Drivers/BMP388/driver_bmp388_fifo.c ****  *            - 0 success
+  69:Drivers/BMP388/driver_bmp388_fifo.c ****  *            - 1 init failed
+  70:Drivers/BMP388/driver_bmp388_fifo.c ****  * @note      none
+  71:Drivers/BMP388/driver_bmp388_fifo.c ****  */
+  72:Drivers/BMP388/driver_bmp388_fifo.c **** uint8_t bmp388_fifo_init(bmp388_interface_t interface, bmp388_address_t addr_pin,
+  73:Drivers/BMP388/driver_bmp388_fifo.c ****                          void (*fifo_receive_callback)(uint8_t type))
+  74:Drivers/BMP388/driver_bmp388_fifo.c **** {
+ 145              		.loc 1 74 1 is_stmt 1 view -0
+ 146              		.cfi_startproc
+ 147              		@ args = 0, pretend = 0, frame = 0
+ 148              		@ frame_needed = 0, uses_anonymous_args = 0
+ 149              		.loc 1 74 1 is_stmt 0 view .LVU7
+ 150 0000 F8B5     		push	{r3, r4, r5, r6, r7, lr}
+ 151              		.cfi_def_cfa_offset 24
+ 152              		.cfi_offset 3, -24
+ 153              		.cfi_offset 4, -20
+ 154              		.cfi_offset 5, -16
+ 155              		.cfi_offset 6, -12
+ 156              		.cfi_offset 7, -8
+ 157              		.cfi_offset 14, -4
+ 158 0002 0546     		mov	r5, r0
+ 159 0004 0F46     		mov	r7, r1
+ 160 0006 1646     		mov	r6, r2
+  75:Drivers/BMP388/driver_bmp388_fifo.c ****     uint8_t res;
+ 161              		.loc 1 75 5 is_stmt 1 view .LVU8
+  76:Drivers/BMP388/driver_bmp388_fifo.c ****     
+  77:Drivers/BMP388/driver_bmp388_fifo.c ****     /* link functions */
+  78:Drivers/BMP388/driver_bmp388_fifo.c ****     DRIVER_BMP388_LINK_INIT(&gs_handle, bmp388_handle_t);
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccWOK94f.s 			page 7
+
+
+ 162              		.loc 1 78 5 view .LVU9
+ 163 0008 BC4C     		ldr	r4, .L61
+ 164 000a 4FF41472 		mov	r2, #592
+ 165              	.LVL2:
+ 166              		.loc 1 78 5 is_stmt 0 view .LVU10
+ 167 000e 0021     		movs	r1, #0
+ 168              	.LVL3:
+ 169              		.loc 1 78 5 view .LVU11
+ 170 0010 2046     		mov	r0, r4
+ 171              	.LVL4:
+ 172              		.loc 1 78 5 view .LVU12
+ 173 0012 FFF7FEFF 		bl	memset
+ 174              	.LVL5:
+  79:Drivers/BMP388/driver_bmp388_fifo.c ****     DRIVER_BMP388_LINK_IIC_INIT(&gs_handle, bmp388_interface_iic_init);
+ 175              		.loc 1 79 5 is_stmt 1 view .LVU13
+ 176 0016 BA4B     		ldr	r3, .L61+4
+ 177 0018 C4F80432 		str	r3, [r4, #516]
+  80:Drivers/BMP388/driver_bmp388_fifo.c ****     DRIVER_BMP388_LINK_IIC_DEINIT(&gs_handle, bmp388_interface_iic_deinit);
+ 178              		.loc 1 80 5 view .LVU14
+ 179 001c B94B     		ldr	r3, .L61+8
+ 180 001e C4F80832 		str	r3, [r4, #520]
+  81:Drivers/BMP388/driver_bmp388_fifo.c ****     DRIVER_BMP388_LINK_IIC_READ(&gs_handle, bmp388_interface_iic_read);
+ 181              		.loc 1 81 5 view .LVU15
+ 182 0022 B94B     		ldr	r3, .L61+12
+ 183 0024 C4F80C32 		str	r3, [r4, #524]
+  82:Drivers/BMP388/driver_bmp388_fifo.c ****     DRIVER_BMP388_LINK_IIC_WRITE(&gs_handle, bmp388_interface_iic_write);
+ 184              		.loc 1 82 5 view .LVU16
+ 185 0028 B84B     		ldr	r3, .L61+16
+ 186 002a C4F81032 		str	r3, [r4, #528]
+  83:Drivers/BMP388/driver_bmp388_fifo.c ****     DRIVER_BMP388_LINK_SPI_INIT(&gs_handle, bmp388_interface_spi_init);
+ 187              		.loc 1 83 5 view .LVU17
+ 188 002e B84B     		ldr	r3, .L61+20
+ 189 0030 C4F81432 		str	r3, [r4, #532]
+  84:Drivers/BMP388/driver_bmp388_fifo.c ****     DRIVER_BMP388_LINK_SPI_DEINIT(&gs_handle, bmp388_interface_spi_deinit);
+ 190              		.loc 1 84 5 view .LVU18
+ 191 0034 B74B     		ldr	r3, .L61+24
+ 192 0036 C4F81832 		str	r3, [r4, #536]
+  85:Drivers/BMP388/driver_bmp388_fifo.c ****     DRIVER_BMP388_LINK_SPI_READ(&gs_handle, bmp388_interface_spi_read);
+ 193              		.loc 1 85 5 view .LVU19
+ 194 003a B74B     		ldr	r3, .L61+28
+ 195 003c C4F81C32 		str	r3, [r4, #540]
+  86:Drivers/BMP388/driver_bmp388_fifo.c ****     DRIVER_BMP388_LINK_SPI_WRITE(&gs_handle, bmp388_interface_spi_write);
+ 196              		.loc 1 86 5 view .LVU20
+ 197 0040 B64B     		ldr	r3, .L61+32
+ 198 0042 C4F82032 		str	r3, [r4, #544]
+  87:Drivers/BMP388/driver_bmp388_fifo.c ****     DRIVER_BMP388_LINK_DELAY_MS(&gs_handle, bmp388_interface_delay_ms);
+ 199              		.loc 1 87 5 view .LVU21
+ 200 0046 B64B     		ldr	r3, .L61+36
+ 201 0048 C4F82832 		str	r3, [r4, #552]
+  88:Drivers/BMP388/driver_bmp388_fifo.c ****     DRIVER_BMP388_LINK_DEBUG_PRINT(&gs_handle, bmp388_interface_debug_print);
+ 202              		.loc 1 88 5 view .LVU22
+ 203 004c B54B     		ldr	r3, .L61+40
+ 204 004e C4F82C32 		str	r3, [r4, #556]
+  89:Drivers/BMP388/driver_bmp388_fifo.c ****     DRIVER_BMP388_LINK_RECEIVE_CALLBACK(&gs_handle, fifo_receive_callback);
+ 205              		.loc 1 89 5 view .LVU23
+ 206 0052 C4F82462 		str	r6, [r4, #548]
+  90:Drivers/BMP388/driver_bmp388_fifo.c ****     
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccWOK94f.s 			page 8
+
+
+  91:Drivers/BMP388/driver_bmp388_fifo.c ****     /* set interface */
+  92:Drivers/BMP388/driver_bmp388_fifo.c ****     res = bmp388_set_interface(&gs_handle, interface);
+ 207              		.loc 1 92 5 view .LVU24
+ 208              		.loc 1 92 11 is_stmt 0 view .LVU25
+ 209 0056 2946     		mov	r1, r5
+ 210 0058 2046     		mov	r0, r4
+ 211 005a FFF7FEFF 		bl	bmp388_set_interface
+ 212              	.LVL6:
+  93:Drivers/BMP388/driver_bmp388_fifo.c ****     if (res != 0)
+ 213              		.loc 1 93 5 is_stmt 1 view .LVU26
+ 214              		.loc 1 93 8 is_stmt 0 view .LVU27
+ 215 005e 0028     		cmp	r0, #0
+ 216 0060 40F0BC80 		bne	.L35
+  94:Drivers/BMP388/driver_bmp388_fifo.c ****     {
+  95:Drivers/BMP388/driver_bmp388_fifo.c ****         bmp388_interface_debug_print("bmp388: set interface failed.\n");
+  96:Drivers/BMP388/driver_bmp388_fifo.c ****        
+  97:Drivers/BMP388/driver_bmp388_fifo.c ****         return 1;
+  98:Drivers/BMP388/driver_bmp388_fifo.c ****     }
+  99:Drivers/BMP388/driver_bmp388_fifo.c ****     
+ 100:Drivers/BMP388/driver_bmp388_fifo.c ****     /* set addr pin */
+ 101:Drivers/BMP388/driver_bmp388_fifo.c ****     res = bmp388_set_addr_pin(&gs_handle, addr_pin);
+ 217              		.loc 1 101 5 is_stmt 1 view .LVU28
+ 218              		.loc 1 101 11 is_stmt 0 view .LVU29
+ 219 0064 3946     		mov	r1, r7
+ 220 0066 A548     		ldr	r0, .L61
+ 221              	.LVL7:
+ 222              		.loc 1 101 11 view .LVU30
+ 223 0068 FFF7FEFF 		bl	bmp388_set_addr_pin
+ 224              	.LVL8:
+ 102:Drivers/BMP388/driver_bmp388_fifo.c ****     if (res != 0)
+ 225              		.loc 1 102 5 is_stmt 1 view .LVU31
+ 226              		.loc 1 102 8 is_stmt 0 view .LVU32
+ 227 006c 0028     		cmp	r0, #0
+ 228 006e 40F0BA80 		bne	.L36
+ 103:Drivers/BMP388/driver_bmp388_fifo.c ****     {
+ 104:Drivers/BMP388/driver_bmp388_fifo.c ****         bmp388_interface_debug_print("bmp388: set addr pin failed.\n");
+ 105:Drivers/BMP388/driver_bmp388_fifo.c ****        
+ 106:Drivers/BMP388/driver_bmp388_fifo.c ****         return 1;
+ 107:Drivers/BMP388/driver_bmp388_fifo.c ****     }
+ 108:Drivers/BMP388/driver_bmp388_fifo.c ****     
+ 109:Drivers/BMP388/driver_bmp388_fifo.c ****     /* bmp388 init */
+ 110:Drivers/BMP388/driver_bmp388_fifo.c ****     res = bmp388_init(&gs_handle);
+ 229              		.loc 1 110 5 is_stmt 1 view .LVU33
+ 230              		.loc 1 110 11 is_stmt 0 view .LVU34
+ 231 0072 A248     		ldr	r0, .L61
+ 232              	.LVL9:
+ 233              		.loc 1 110 11 view .LVU35
+ 234 0074 FFF7FEFF 		bl	bmp388_init
+ 235              	.LVL10:
+ 111:Drivers/BMP388/driver_bmp388_fifo.c ****     if (res != 0)
+ 236              		.loc 1 111 5 is_stmt 1 view .LVU36
+ 237              		.loc 1 111 8 is_stmt 0 view .LVU37
+ 238 0078 0028     		cmp	r0, #0
+ 239 007a 40F0B980 		bne	.L37
+ 112:Drivers/BMP388/driver_bmp388_fifo.c ****     {
+ 113:Drivers/BMP388/driver_bmp388_fifo.c ****         bmp388_interface_debug_print("bmp388: init failed.\n");
+ 114:Drivers/BMP388/driver_bmp388_fifo.c ****        
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccWOK94f.s 			page 9
+
+
+ 115:Drivers/BMP388/driver_bmp388_fifo.c ****         return 1;
+ 116:Drivers/BMP388/driver_bmp388_fifo.c ****     }
+ 117:Drivers/BMP388/driver_bmp388_fifo.c ****     
+ 118:Drivers/BMP388/driver_bmp388_fifo.c ****     /* set spi wire 4 */
+ 119:Drivers/BMP388/driver_bmp388_fifo.c ****     res = bmp388_set_spi_wire(&gs_handle, BMP388_FIFO_DEFAULT_SPI_WIRE);
+ 240              		.loc 1 119 5 is_stmt 1 view .LVU38
+ 241              		.loc 1 119 11 is_stmt 0 view .LVU39
+ 242 007e 0021     		movs	r1, #0
+ 243 0080 9E48     		ldr	r0, .L61
+ 244              	.LVL11:
+ 245              		.loc 1 119 11 view .LVU40
+ 246 0082 FFF7FEFF 		bl	bmp388_set_spi_wire
+ 247              	.LVL12:
+ 120:Drivers/BMP388/driver_bmp388_fifo.c ****     if (res != 0)
+ 248              		.loc 1 120 5 is_stmt 1 view .LVU41
+ 249              		.loc 1 120 8 is_stmt 0 view .LVU42
+ 250 0086 0028     		cmp	r0, #0
+ 251 0088 40F0B780 		bne	.L38
+ 121:Drivers/BMP388/driver_bmp388_fifo.c ****     {
+ 122:Drivers/BMP388/driver_bmp388_fifo.c ****         bmp388_interface_debug_print("bmp388: set spi wire failed.\n");
+ 123:Drivers/BMP388/driver_bmp388_fifo.c ****         (void)bmp388_deinit(&gs_handle);
+ 124:Drivers/BMP388/driver_bmp388_fifo.c ****         
+ 125:Drivers/BMP388/driver_bmp388_fifo.c ****         return 1;
+ 126:Drivers/BMP388/driver_bmp388_fifo.c ****     }
+ 127:Drivers/BMP388/driver_bmp388_fifo.c ****     
+ 128:Drivers/BMP388/driver_bmp388_fifo.c ****     /* set default iic watchdog timer */
+ 129:Drivers/BMP388/driver_bmp388_fifo.c ****     res = bmp388_set_iic_watchdog_timer(&gs_handle, BMP388_FIFO_DEFAULT_IIC_WATCHDOG_TIMER);
+ 252              		.loc 1 129 5 is_stmt 1 view .LVU43
+ 253              		.loc 1 129 11 is_stmt 0 view .LVU44
+ 254 008c 0121     		movs	r1, #1
+ 255 008e 9B48     		ldr	r0, .L61
+ 256              	.LVL13:
+ 257              		.loc 1 129 11 view .LVU45
+ 258 0090 FFF7FEFF 		bl	bmp388_set_iic_watchdog_timer
+ 259              	.LVL14:
+ 130:Drivers/BMP388/driver_bmp388_fifo.c ****     if (res != 0)
+ 260              		.loc 1 130 5 is_stmt 1 view .LVU46
+ 261              		.loc 1 130 8 is_stmt 0 view .LVU47
+ 262 0094 0028     		cmp	r0, #0
+ 263 0096 40F0B880 		bne	.L39
+ 131:Drivers/BMP388/driver_bmp388_fifo.c ****     {
+ 132:Drivers/BMP388/driver_bmp388_fifo.c ****         bmp388_interface_debug_print("bmp388: set iic watchdog timer failed.\n");
+ 133:Drivers/BMP388/driver_bmp388_fifo.c ****         (void)bmp388_deinit(&gs_handle);
+ 134:Drivers/BMP388/driver_bmp388_fifo.c ****         
+ 135:Drivers/BMP388/driver_bmp388_fifo.c ****         return 1;
+ 136:Drivers/BMP388/driver_bmp388_fifo.c ****     }
+ 137:Drivers/BMP388/driver_bmp388_fifo.c ****     
+ 138:Drivers/BMP388/driver_bmp388_fifo.c ****     /* set default iic watchdog period */
+ 139:Drivers/BMP388/driver_bmp388_fifo.c ****     res = bmp388_set_iic_watchdog_period(&gs_handle, BMP388_FIFO_DEFAULT_IIC_WATCHDOG_PERIOD);
+ 264              		.loc 1 139 5 is_stmt 1 view .LVU48
+ 265              		.loc 1 139 11 is_stmt 0 view .LVU49
+ 266 009a 0121     		movs	r1, #1
+ 267 009c 9748     		ldr	r0, .L61
+ 268              	.LVL15:
+ 269              		.loc 1 139 11 view .LVU50
+ 270 009e FFF7FEFF 		bl	bmp388_set_iic_watchdog_period
+ 271              	.LVL16:
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccWOK94f.s 			page 10
+
+
+ 140:Drivers/BMP388/driver_bmp388_fifo.c ****     if (res != 0)
+ 272              		.loc 1 140 5 is_stmt 1 view .LVU51
+ 273              		.loc 1 140 8 is_stmt 0 view .LVU52
+ 274 00a2 0028     		cmp	r0, #0
+ 275 00a4 40F0B980 		bne	.L40
+ 141:Drivers/BMP388/driver_bmp388_fifo.c ****     {
+ 142:Drivers/BMP388/driver_bmp388_fifo.c ****         bmp388_interface_debug_print("bmp388: set iic watchdog period failed.\n");
+ 143:Drivers/BMP388/driver_bmp388_fifo.c ****         (void)bmp388_deinit(&gs_handle);
+ 144:Drivers/BMP388/driver_bmp388_fifo.c ****         
+ 145:Drivers/BMP388/driver_bmp388_fifo.c ****         return 1;
+ 146:Drivers/BMP388/driver_bmp388_fifo.c ****     }
+ 147:Drivers/BMP388/driver_bmp388_fifo.c ****     
+ 148:Drivers/BMP388/driver_bmp388_fifo.c ****     /* enable fifo */
+ 149:Drivers/BMP388/driver_bmp388_fifo.c ****     res = bmp388_set_fifo(&gs_handle, BMP388_BOOL_TRUE);
+ 276              		.loc 1 149 5 is_stmt 1 view .LVU53
+ 277              		.loc 1 149 11 is_stmt 0 view .LVU54
+ 278 00a8 0121     		movs	r1, #1
+ 279 00aa 9448     		ldr	r0, .L61
+ 280              	.LVL17:
+ 281              		.loc 1 149 11 view .LVU55
+ 282 00ac FFF7FEFF 		bl	bmp388_set_fifo
+ 283              	.LVL18:
+ 150:Drivers/BMP388/driver_bmp388_fifo.c ****     if (res != 0)
+ 284              		.loc 1 150 5 is_stmt 1 view .LVU56
+ 285              		.loc 1 150 8 is_stmt 0 view .LVU57
+ 286 00b0 0028     		cmp	r0, #0
+ 287 00b2 40F0BA80 		bne	.L41
+ 151:Drivers/BMP388/driver_bmp388_fifo.c ****     {
+ 152:Drivers/BMP388/driver_bmp388_fifo.c ****         bmp388_interface_debug_print("bmp388: set fifo failed.\n");
+ 153:Drivers/BMP388/driver_bmp388_fifo.c ****         (void)bmp388_deinit(&gs_handle);
+ 154:Drivers/BMP388/driver_bmp388_fifo.c ****         
+ 155:Drivers/BMP388/driver_bmp388_fifo.c ****         return 1;
+ 156:Drivers/BMP388/driver_bmp388_fifo.c ****     }
+ 157:Drivers/BMP388/driver_bmp388_fifo.c ****     
+ 158:Drivers/BMP388/driver_bmp388_fifo.c ****     /* set default fifo stop on full */
+ 159:Drivers/BMP388/driver_bmp388_fifo.c ****     res = bmp388_set_fifo_stop_on_full(&gs_handle, BMP388_FIFO_DEFAULT_FIFO_STOP_ON_FULL);
+ 288              		.loc 1 159 5 is_stmt 1 view .LVU58
+ 289              		.loc 1 159 11 is_stmt 0 view .LVU59
+ 290 00b6 0021     		movs	r1, #0
+ 291 00b8 9048     		ldr	r0, .L61
+ 292              	.LVL19:
+ 293              		.loc 1 159 11 view .LVU60
+ 294 00ba FFF7FEFF 		bl	bmp388_set_fifo_stop_on_full
+ 295              	.LVL20:
+ 160:Drivers/BMP388/driver_bmp388_fifo.c ****     if (res != 0)
+ 296              		.loc 1 160 5 is_stmt 1 view .LVU61
+ 297              		.loc 1 160 8 is_stmt 0 view .LVU62
+ 298 00be 0028     		cmp	r0, #0
+ 299 00c0 40F0BB80 		bne	.L42
+ 161:Drivers/BMP388/driver_bmp388_fifo.c ****     {
+ 162:Drivers/BMP388/driver_bmp388_fifo.c ****         bmp388_interface_debug_print("bmp388: set fifo stop on full failed.\n");
+ 163:Drivers/BMP388/driver_bmp388_fifo.c ****         (void)bmp388_deinit(&gs_handle);
+ 164:Drivers/BMP388/driver_bmp388_fifo.c ****         
+ 165:Drivers/BMP388/driver_bmp388_fifo.c ****         return 1;
+ 166:Drivers/BMP388/driver_bmp388_fifo.c ****     }
+ 167:Drivers/BMP388/driver_bmp388_fifo.c ****     
+ 168:Drivers/BMP388/driver_bmp388_fifo.c ****     /* set default fifo watermark */
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccWOK94f.s 			page 11
+
+
+ 169:Drivers/BMP388/driver_bmp388_fifo.c ****     res = bmp388_set_fifo_watermark(&gs_handle, BMP388_FIFO_DEFAULT_FIFO_WATERMARK);
+ 300              		.loc 1 169 5 is_stmt 1 view .LVU63
+ 301              		.loc 1 169 11 is_stmt 0 view .LVU64
+ 302 00c4 4FF48071 		mov	r1, #256
+ 303 00c8 8C48     		ldr	r0, .L61
+ 304              	.LVL21:
+ 305              		.loc 1 169 11 view .LVU65
+ 306 00ca FFF7FEFF 		bl	bmp388_set_fifo_watermark
+ 307              	.LVL22:
+ 170:Drivers/BMP388/driver_bmp388_fifo.c ****     if (res != 0)
+ 308              		.loc 1 170 5 is_stmt 1 view .LVU66
+ 309              		.loc 1 170 8 is_stmt 0 view .LVU67
+ 310 00ce 0028     		cmp	r0, #0
+ 311 00d0 40F0BB80 		bne	.L43
+ 171:Drivers/BMP388/driver_bmp388_fifo.c ****     {
+ 172:Drivers/BMP388/driver_bmp388_fifo.c ****         bmp388_interface_debug_print("bmp388: set fifo watermark failed.\n");
+ 173:Drivers/BMP388/driver_bmp388_fifo.c ****         (void)bmp388_deinit(&gs_handle);
+ 174:Drivers/BMP388/driver_bmp388_fifo.c ****         
+ 175:Drivers/BMP388/driver_bmp388_fifo.c ****         return 1;
+ 176:Drivers/BMP388/driver_bmp388_fifo.c ****     }
+ 177:Drivers/BMP388/driver_bmp388_fifo.c ****     
+ 178:Drivers/BMP388/driver_bmp388_fifo.c ****     /* set default fifo sensor time on */
+ 179:Drivers/BMP388/driver_bmp388_fifo.c ****     res = bmp388_set_fifo_sensortime_on(&gs_handle, BMP388_FIFO_DEFAULT_FIFO_SENSORTIME_ON);
+ 312              		.loc 1 179 5 is_stmt 1 view .LVU68
+ 313              		.loc 1 179 11 is_stmt 0 view .LVU69
+ 314 00d4 0121     		movs	r1, #1
+ 315 00d6 8948     		ldr	r0, .L61
+ 316              	.LVL23:
+ 317              		.loc 1 179 11 view .LVU70
+ 318 00d8 FFF7FEFF 		bl	bmp388_set_fifo_sensortime_on
+ 319              	.LVL24:
+ 180:Drivers/BMP388/driver_bmp388_fifo.c ****     if (res != 0)
+ 320              		.loc 1 180 5 is_stmt 1 view .LVU71
+ 321              		.loc 1 180 8 is_stmt 0 view .LVU72
+ 322 00dc 0028     		cmp	r0, #0
+ 323 00de 40F0BC80 		bne	.L44
+ 181:Drivers/BMP388/driver_bmp388_fifo.c ****     {
+ 182:Drivers/BMP388/driver_bmp388_fifo.c ****         bmp388_interface_debug_print("bmp388: set fifo sensor time on failed.\n");
+ 183:Drivers/BMP388/driver_bmp388_fifo.c ****         (void)bmp388_deinit(&gs_handle);
+ 184:Drivers/BMP388/driver_bmp388_fifo.c ****         
+ 185:Drivers/BMP388/driver_bmp388_fifo.c ****         return 1;
+ 186:Drivers/BMP388/driver_bmp388_fifo.c ****     }
+ 187:Drivers/BMP388/driver_bmp388_fifo.c ****     
+ 188:Drivers/BMP388/driver_bmp388_fifo.c ****     /* set default fifo pressure on */
+ 189:Drivers/BMP388/driver_bmp388_fifo.c ****     res = bmp388_set_fifo_pressure_on(&gs_handle, BMP388_FIFO_DEFAULT_FIFO_PRESSURE_ON);
+ 324              		.loc 1 189 5 is_stmt 1 view .LVU73
+ 325              		.loc 1 189 11 is_stmt 0 view .LVU74
+ 326 00e2 0121     		movs	r1, #1
+ 327 00e4 8548     		ldr	r0, .L61
+ 328              	.LVL25:
+ 329              		.loc 1 189 11 view .LVU75
+ 330 00e6 FFF7FEFF 		bl	bmp388_set_fifo_pressure_on
+ 331              	.LVL26:
+ 190:Drivers/BMP388/driver_bmp388_fifo.c ****     if (res != 0)
+ 332              		.loc 1 190 5 is_stmt 1 view .LVU76
+ 333              		.loc 1 190 8 is_stmt 0 view .LVU77
+ 334 00ea 0028     		cmp	r0, #0
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccWOK94f.s 			page 12
+
+
+ 335 00ec 40F0BD80 		bne	.L45
+ 191:Drivers/BMP388/driver_bmp388_fifo.c ****     {
+ 192:Drivers/BMP388/driver_bmp388_fifo.c ****         bmp388_interface_debug_print("bmp388: set fifo sensor time on failed.\n");
+ 193:Drivers/BMP388/driver_bmp388_fifo.c ****         (void)bmp388_deinit(&gs_handle);
+ 194:Drivers/BMP388/driver_bmp388_fifo.c ****         
+ 195:Drivers/BMP388/driver_bmp388_fifo.c ****         return 1;
+ 196:Drivers/BMP388/driver_bmp388_fifo.c ****     }
+ 197:Drivers/BMP388/driver_bmp388_fifo.c ****     
+ 198:Drivers/BMP388/driver_bmp388_fifo.c ****     /* set default fifo temperature on */
+ 199:Drivers/BMP388/driver_bmp388_fifo.c ****     res = bmp388_set_fifo_temperature_on(&gs_handle, BMP388_FIFO_DEFAULT_FIFO_TEMPERATURE_ON);
+ 336              		.loc 1 199 5 is_stmt 1 view .LVU78
+ 337              		.loc 1 199 11 is_stmt 0 view .LVU79
+ 338 00f0 0121     		movs	r1, #1
+ 339 00f2 8248     		ldr	r0, .L61
+ 340              	.LVL27:
+ 341              		.loc 1 199 11 view .LVU80
+ 342 00f4 FFF7FEFF 		bl	bmp388_set_fifo_temperature_on
+ 343              	.LVL28:
+ 200:Drivers/BMP388/driver_bmp388_fifo.c ****     if (res != 0)
+ 344              		.loc 1 200 5 is_stmt 1 view .LVU81
+ 345              		.loc 1 200 8 is_stmt 0 view .LVU82
+ 346 00f8 0028     		cmp	r0, #0
+ 347 00fa 40F0BE80 		bne	.L46
+ 201:Drivers/BMP388/driver_bmp388_fifo.c ****     {
+ 202:Drivers/BMP388/driver_bmp388_fifo.c ****         bmp388_interface_debug_print("bmp388: set fifo temperature on failed.\n");
+ 203:Drivers/BMP388/driver_bmp388_fifo.c ****         (void)bmp388_deinit(&gs_handle);
+ 204:Drivers/BMP388/driver_bmp388_fifo.c ****         
+ 205:Drivers/BMP388/driver_bmp388_fifo.c ****         return 1;
+ 206:Drivers/BMP388/driver_bmp388_fifo.c ****     }
+ 207:Drivers/BMP388/driver_bmp388_fifo.c ****     
+ 208:Drivers/BMP388/driver_bmp388_fifo.c ****     /* set default fifo subsampling */
+ 209:Drivers/BMP388/driver_bmp388_fifo.c ****     res = bmp388_set_fifo_subsampling(&gs_handle, BMP388_FIFO_DEFAULT_FIFO_SUBSAMPLING);
+ 348              		.loc 1 209 5 is_stmt 1 view .LVU83
+ 349              		.loc 1 209 11 is_stmt 0 view .LVU84
+ 350 00fe 0021     		movs	r1, #0
+ 351 0100 7E48     		ldr	r0, .L61
+ 352              	.LVL29:
+ 353              		.loc 1 209 11 view .LVU85
+ 354 0102 FFF7FEFF 		bl	bmp388_set_fifo_subsampling
+ 355              	.LVL30:
+ 210:Drivers/BMP388/driver_bmp388_fifo.c ****     if (res != 0)
+ 356              		.loc 1 210 5 is_stmt 1 view .LVU86
+ 357              		.loc 1 210 8 is_stmt 0 view .LVU87
+ 358 0106 0028     		cmp	r0, #0
+ 359 0108 40F0BF80 		bne	.L47
+ 211:Drivers/BMP388/driver_bmp388_fifo.c ****     {
+ 212:Drivers/BMP388/driver_bmp388_fifo.c ****         bmp388_interface_debug_print("bmp388: set fifo subsampling failed.\n");
+ 213:Drivers/BMP388/driver_bmp388_fifo.c ****         (void)bmp388_deinit(&gs_handle);
+ 214:Drivers/BMP388/driver_bmp388_fifo.c ****         
+ 215:Drivers/BMP388/driver_bmp388_fifo.c ****         return 1;
+ 216:Drivers/BMP388/driver_bmp388_fifo.c ****     }
+ 217:Drivers/BMP388/driver_bmp388_fifo.c ****     
+ 218:Drivers/BMP388/driver_bmp388_fifo.c ****     /* set default fifo data source */
+ 219:Drivers/BMP388/driver_bmp388_fifo.c ****     res = bmp388_set_fifo_data_source(&gs_handle,BMP388_FIFO_DEFAULT_FIFO_DATA_SOURCE);
+ 360              		.loc 1 219 5 is_stmt 1 view .LVU88
+ 361              		.loc 1 219 11 is_stmt 0 view .LVU89
+ 362 010c 0121     		movs	r1, #1
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccWOK94f.s 			page 13
+
+
+ 363 010e 7B48     		ldr	r0, .L61
+ 364              	.LVL31:
+ 365              		.loc 1 219 11 view .LVU90
+ 366 0110 FFF7FEFF 		bl	bmp388_set_fifo_data_source
+ 367              	.LVL32:
+ 220:Drivers/BMP388/driver_bmp388_fifo.c ****     if (res != 0)
+ 368              		.loc 1 220 5 is_stmt 1 view .LVU91
+ 369              		.loc 1 220 8 is_stmt 0 view .LVU92
+ 370 0114 0028     		cmp	r0, #0
+ 371 0116 40F0C080 		bne	.L48
+ 221:Drivers/BMP388/driver_bmp388_fifo.c ****     {
+ 222:Drivers/BMP388/driver_bmp388_fifo.c ****         bmp388_interface_debug_print("bmp388: set fifo data source failed.\n");
+ 223:Drivers/BMP388/driver_bmp388_fifo.c ****         (void)bmp388_deinit(&gs_handle);
+ 224:Drivers/BMP388/driver_bmp388_fifo.c ****         
+ 225:Drivers/BMP388/driver_bmp388_fifo.c ****         return 1;
+ 226:Drivers/BMP388/driver_bmp388_fifo.c ****     }
+ 227:Drivers/BMP388/driver_bmp388_fifo.c ****     
+ 228:Drivers/BMP388/driver_bmp388_fifo.c ****     /* set default interrupt pin type */
+ 229:Drivers/BMP388/driver_bmp388_fifo.c ****     res = bmp388_set_interrupt_pin_type(&gs_handle, BMP388_FIFO_DEFAULT_INTERRUPT_PIN_TYPE);
+ 372              		.loc 1 229 5 is_stmt 1 view .LVU93
+ 373              		.loc 1 229 11 is_stmt 0 view .LVU94
+ 374 011a 0021     		movs	r1, #0
+ 375 011c 7748     		ldr	r0, .L61
+ 376              	.LVL33:
+ 377              		.loc 1 229 11 view .LVU95
+ 378 011e FFF7FEFF 		bl	bmp388_set_interrupt_pin_type
+ 379              	.LVL34:
+ 230:Drivers/BMP388/driver_bmp388_fifo.c ****     if (res != 0)
+ 380              		.loc 1 230 5 is_stmt 1 view .LVU96
+ 381              		.loc 1 230 8 is_stmt 0 view .LVU97
+ 382 0122 0028     		cmp	r0, #0
+ 383 0124 40F0C180 		bne	.L49
+ 231:Drivers/BMP388/driver_bmp388_fifo.c ****     {
+ 232:Drivers/BMP388/driver_bmp388_fifo.c ****         bmp388_interface_debug_print("bmp388: set interrupt pin type failed.\n");
+ 233:Drivers/BMP388/driver_bmp388_fifo.c ****         (void)bmp388_deinit(&gs_handle);
+ 234:Drivers/BMP388/driver_bmp388_fifo.c ****         
+ 235:Drivers/BMP388/driver_bmp388_fifo.c ****         return 1;
+ 236:Drivers/BMP388/driver_bmp388_fifo.c ****     }
+ 237:Drivers/BMP388/driver_bmp388_fifo.c ****     
+ 238:Drivers/BMP388/driver_bmp388_fifo.c ****     /* set default interrupt active level */
+ 239:Drivers/BMP388/driver_bmp388_fifo.c ****     res = bmp388_set_interrupt_active_level(&gs_handle, BMP388_FIFO_DEFAULT_INTERRUPT_ACTIVE_LEVEL)
+ 384              		.loc 1 239 5 is_stmt 1 view .LVU98
+ 385              		.loc 1 239 11 is_stmt 0 view .LVU99
+ 386 0128 0121     		movs	r1, #1
+ 387 012a 7448     		ldr	r0, .L61
+ 388              	.LVL35:
+ 389              		.loc 1 239 11 view .LVU100
+ 390 012c FFF7FEFF 		bl	bmp388_set_interrupt_active_level
+ 391              	.LVL36:
+ 240:Drivers/BMP388/driver_bmp388_fifo.c ****     if (res != 0)
+ 392              		.loc 1 240 5 is_stmt 1 view .LVU101
+ 393              		.loc 1 240 8 is_stmt 0 view .LVU102
+ 394 0130 0028     		cmp	r0, #0
+ 395 0132 40F0C280 		bne	.L50
+ 241:Drivers/BMP388/driver_bmp388_fifo.c ****     {
+ 242:Drivers/BMP388/driver_bmp388_fifo.c ****         bmp388_interface_debug_print("bmp388: set interrupt active level failed.\n");
+ 243:Drivers/BMP388/driver_bmp388_fifo.c ****         (void)bmp388_deinit(&gs_handle);
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccWOK94f.s 			page 14
+
+
+ 244:Drivers/BMP388/driver_bmp388_fifo.c ****         
+ 245:Drivers/BMP388/driver_bmp388_fifo.c ****         return 1;
+ 246:Drivers/BMP388/driver_bmp388_fifo.c ****     }
+ 247:Drivers/BMP388/driver_bmp388_fifo.c ****     
+ 248:Drivers/BMP388/driver_bmp388_fifo.c ****     /* set default latch interrupt pin and interrupt status */
+ 249:Drivers/BMP388/driver_bmp388_fifo.c ****     res = bmp388_set_latch_interrupt_pin_and_interrupt_status(&gs_handle, BMP388_FIFO_DEFAULT_LATCH
+ 396              		.loc 1 249 5 is_stmt 1 view .LVU103
+ 397              		.loc 1 249 11 is_stmt 0 view .LVU104
+ 398 0136 0021     		movs	r1, #0
+ 399 0138 7048     		ldr	r0, .L61
+ 400              	.LVL37:
+ 401              		.loc 1 249 11 view .LVU105
+ 402 013a FFF7FEFF 		bl	bmp388_set_latch_interrupt_pin_and_interrupt_status
+ 403              	.LVL38:
+ 250:Drivers/BMP388/driver_bmp388_fifo.c ****     if (res != 0)
+ 404              		.loc 1 250 5 is_stmt 1 view .LVU106
+ 405              		.loc 1 250 8 is_stmt 0 view .LVU107
+ 406 013e 0028     		cmp	r0, #0
+ 407 0140 40F0C380 		bne	.L51
+ 251:Drivers/BMP388/driver_bmp388_fifo.c ****     {
+ 252:Drivers/BMP388/driver_bmp388_fifo.c ****         bmp388_interface_debug_print("bmp388: set latch interrupt pin and interrupt status failed.\
+ 253:Drivers/BMP388/driver_bmp388_fifo.c ****         (void)bmp388_deinit(&gs_handle);
+ 254:Drivers/BMP388/driver_bmp388_fifo.c ****         
+ 255:Drivers/BMP388/driver_bmp388_fifo.c ****         return 1;
+ 256:Drivers/BMP388/driver_bmp388_fifo.c ****     }
+ 257:Drivers/BMP388/driver_bmp388_fifo.c ****     
+ 258:Drivers/BMP388/driver_bmp388_fifo.c ****     /* set default interrupt fifo watermark */
+ 259:Drivers/BMP388/driver_bmp388_fifo.c ****     res = bmp388_set_interrupt_fifo_watermark(&gs_handle, BMP388_FIFO_DEFAULT_INTERRUPT_WATERMARK);
+ 408              		.loc 1 259 5 is_stmt 1 view .LVU108
+ 409              		.loc 1 259 11 is_stmt 0 view .LVU109
+ 410 0144 0121     		movs	r1, #1
+ 411 0146 6D48     		ldr	r0, .L61
+ 412              	.LVL39:
+ 413              		.loc 1 259 11 view .LVU110
+ 414 0148 FFF7FEFF 		bl	bmp388_set_interrupt_fifo_watermark
+ 415              	.LVL40:
+ 260:Drivers/BMP388/driver_bmp388_fifo.c ****     if (res != 0)
+ 416              		.loc 1 260 5 is_stmt 1 view .LVU111
+ 417              		.loc 1 260 8 is_stmt 0 view .LVU112
+ 418 014c 0028     		cmp	r0, #0
+ 419 014e 40F0C480 		bne	.L52
+ 261:Drivers/BMP388/driver_bmp388_fifo.c ****     {
+ 262:Drivers/BMP388/driver_bmp388_fifo.c ****         bmp388_interface_debug_print("bmp388: set interrupt fifo watermark failed.\n");
+ 263:Drivers/BMP388/driver_bmp388_fifo.c ****         (void)bmp388_deinit(&gs_handle);
+ 264:Drivers/BMP388/driver_bmp388_fifo.c ****         
+ 265:Drivers/BMP388/driver_bmp388_fifo.c ****         return 1;
+ 266:Drivers/BMP388/driver_bmp388_fifo.c ****     }
+ 267:Drivers/BMP388/driver_bmp388_fifo.c ****     
+ 268:Drivers/BMP388/driver_bmp388_fifo.c ****     /* set default interrupt fifo full */
+ 269:Drivers/BMP388/driver_bmp388_fifo.c ****     res = bmp388_set_interrupt_fifo_full(&gs_handle, BMP388_FIFO_DEFAULT_INTERRUPT_FIFO_FULL);
+ 420              		.loc 1 269 5 is_stmt 1 view .LVU113
+ 421              		.loc 1 269 11 is_stmt 0 view .LVU114
+ 422 0152 0021     		movs	r1, #0
+ 423 0154 6948     		ldr	r0, .L61
+ 424              	.LVL41:
+ 425              		.loc 1 269 11 view .LVU115
+ 426 0156 FFF7FEFF 		bl	bmp388_set_interrupt_fifo_full
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccWOK94f.s 			page 15
+
+
+ 427              	.LVL42:
+ 270:Drivers/BMP388/driver_bmp388_fifo.c ****     if (res != 0)
+ 428              		.loc 1 270 5 is_stmt 1 view .LVU116
+ 429              		.loc 1 270 8 is_stmt 0 view .LVU117
+ 430 015a 0028     		cmp	r0, #0
+ 431 015c 40F0C580 		bne	.L53
+ 271:Drivers/BMP388/driver_bmp388_fifo.c ****     {
+ 272:Drivers/BMP388/driver_bmp388_fifo.c ****         bmp388_interface_debug_print("bmp388: set interrupt fifo full failed.\n");
+ 273:Drivers/BMP388/driver_bmp388_fifo.c ****         (void)bmp388_deinit(&gs_handle);
+ 274:Drivers/BMP388/driver_bmp388_fifo.c ****         
+ 275:Drivers/BMP388/driver_bmp388_fifo.c ****         return 1;
+ 276:Drivers/BMP388/driver_bmp388_fifo.c ****     }
+ 277:Drivers/BMP388/driver_bmp388_fifo.c ****     
+ 278:Drivers/BMP388/driver_bmp388_fifo.c ****     /* set default interrupt data ready */
+ 279:Drivers/BMP388/driver_bmp388_fifo.c ****     res = bmp388_set_interrupt_data_ready(&gs_handle,BMP388_FIFO_DEFAULT_INTERRUPT_DATA_READY);
+ 432              		.loc 1 279 5 is_stmt 1 view .LVU118
+ 433              		.loc 1 279 11 is_stmt 0 view .LVU119
+ 434 0160 0021     		movs	r1, #0
+ 435 0162 6648     		ldr	r0, .L61
+ 436              	.LVL43:
+ 437              		.loc 1 279 11 view .LVU120
+ 438 0164 FFF7FEFF 		bl	bmp388_set_interrupt_data_ready
+ 439              	.LVL44:
+ 280:Drivers/BMP388/driver_bmp388_fifo.c ****     if (res != 0)
+ 440              		.loc 1 280 5 is_stmt 1 view .LVU121
+ 441              		.loc 1 280 8 is_stmt 0 view .LVU122
+ 442 0168 0028     		cmp	r0, #0
+ 443 016a 40F00381 		bne	.L54
+ 281:Drivers/BMP388/driver_bmp388_fifo.c ****     {
+ 282:Drivers/BMP388/driver_bmp388_fifo.c ****         bmp388_interface_debug_print("bmp388: set interrupt data ready failed.\n");
+ 283:Drivers/BMP388/driver_bmp388_fifo.c ****         (void)bmp388_deinit(&gs_handle);
+ 284:Drivers/BMP388/driver_bmp388_fifo.c ****         
+ 285:Drivers/BMP388/driver_bmp388_fifo.c ****         return 1;
+ 286:Drivers/BMP388/driver_bmp388_fifo.c ****     }
+ 287:Drivers/BMP388/driver_bmp388_fifo.c ****     
+ 288:Drivers/BMP388/driver_bmp388_fifo.c ****     /* set default pressure */
+ 289:Drivers/BMP388/driver_bmp388_fifo.c ****     res = bmp388_set_pressure(&gs_handle, BMP388_FIFO_DEFAULT_PRESSURE);
+ 444              		.loc 1 289 5 is_stmt 1 view .LVU123
+ 445              		.loc 1 289 11 is_stmt 0 view .LVU124
+ 446 016e 0121     		movs	r1, #1
+ 447 0170 6248     		ldr	r0, .L61
+ 448              	.LVL45:
+ 449              		.loc 1 289 11 view .LVU125
+ 450 0172 FFF7FEFF 		bl	bmp388_set_pressure
+ 451              	.LVL46:
+ 290:Drivers/BMP388/driver_bmp388_fifo.c ****     if (res != 0)
+ 452              		.loc 1 290 5 is_stmt 1 view .LVU126
+ 453              		.loc 1 290 8 is_stmt 0 view .LVU127
+ 454 0176 0028     		cmp	r0, #0
+ 455 0178 40F00481 		bne	.L55
+ 291:Drivers/BMP388/driver_bmp388_fifo.c ****     {
+ 292:Drivers/BMP388/driver_bmp388_fifo.c ****         bmp388_interface_debug_print("bmp388: set pressure failed.\n");
+ 293:Drivers/BMP388/driver_bmp388_fifo.c ****         (void)bmp388_deinit(&gs_handle);
+ 294:Drivers/BMP388/driver_bmp388_fifo.c ****         
+ 295:Drivers/BMP388/driver_bmp388_fifo.c ****         return 1;
+ 296:Drivers/BMP388/driver_bmp388_fifo.c ****     }
+ 297:Drivers/BMP388/driver_bmp388_fifo.c ****     
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccWOK94f.s 			page 16
+
+
+ 298:Drivers/BMP388/driver_bmp388_fifo.c ****     /* set default temperature */
+ 299:Drivers/BMP388/driver_bmp388_fifo.c ****     res = bmp388_set_temperature(&gs_handle, BMP388_FIFO_DEFAULT_TEMPERATURE);
+ 456              		.loc 1 299 5 is_stmt 1 view .LVU128
+ 457              		.loc 1 299 11 is_stmt 0 view .LVU129
+ 458 017c 0121     		movs	r1, #1
+ 459 017e 5F48     		ldr	r0, .L61
+ 460              	.LVL47:
+ 461              		.loc 1 299 11 view .LVU130
+ 462 0180 FFF7FEFF 		bl	bmp388_set_temperature
+ 463              	.LVL48:
+ 300:Drivers/BMP388/driver_bmp388_fifo.c ****     if (res != 0)
+ 464              		.loc 1 300 5 is_stmt 1 view .LVU131
+ 465              		.loc 1 300 8 is_stmt 0 view .LVU132
+ 466 0184 0028     		cmp	r0, #0
+ 467 0186 40F00581 		bne	.L56
+ 301:Drivers/BMP388/driver_bmp388_fifo.c ****     {
+ 302:Drivers/BMP388/driver_bmp388_fifo.c ****         bmp388_interface_debug_print("bmp388: set temperature failed.\n");
+ 303:Drivers/BMP388/driver_bmp388_fifo.c ****         (void)bmp388_deinit(&gs_handle);
+ 304:Drivers/BMP388/driver_bmp388_fifo.c ****         
+ 305:Drivers/BMP388/driver_bmp388_fifo.c ****         return 1;
+ 306:Drivers/BMP388/driver_bmp388_fifo.c ****     }
+ 307:Drivers/BMP388/driver_bmp388_fifo.c ****     
+ 308:Drivers/BMP388/driver_bmp388_fifo.c ****     /* set default pressure oversampling */
+ 309:Drivers/BMP388/driver_bmp388_fifo.c ****     res = bmp388_set_pressure_oversampling(&gs_handle, BMP388_FIFO_DEFAULT_PRESSURE_OVERSAMPLING);
+ 468              		.loc 1 309 5 is_stmt 1 view .LVU133
+ 469              		.loc 1 309 11 is_stmt 0 view .LVU134
+ 470 018a 0521     		movs	r1, #5
+ 471 018c 5B48     		ldr	r0, .L61
+ 472              	.LVL49:
+ 473              		.loc 1 309 11 view .LVU135
+ 474 018e FFF7FEFF 		bl	bmp388_set_pressure_oversampling
+ 475              	.LVL50:
+ 310:Drivers/BMP388/driver_bmp388_fifo.c ****     if (res != 0)
+ 476              		.loc 1 310 5 is_stmt 1 view .LVU136
+ 477              		.loc 1 310 8 is_stmt 0 view .LVU137
+ 478 0192 0028     		cmp	r0, #0
+ 479 0194 40F00681 		bne	.L57
+ 311:Drivers/BMP388/driver_bmp388_fifo.c ****     {
+ 312:Drivers/BMP388/driver_bmp388_fifo.c ****         bmp388_interface_debug_print("bmp388: set pressure oversampling failed.\n");
+ 313:Drivers/BMP388/driver_bmp388_fifo.c ****         (void)bmp388_deinit(&gs_handle);
+ 314:Drivers/BMP388/driver_bmp388_fifo.c ****         
+ 315:Drivers/BMP388/driver_bmp388_fifo.c ****         return 1;
+ 316:Drivers/BMP388/driver_bmp388_fifo.c ****     }
+ 317:Drivers/BMP388/driver_bmp388_fifo.c ****     
+ 318:Drivers/BMP388/driver_bmp388_fifo.c ****     /* set default temperature oversampling */
+ 319:Drivers/BMP388/driver_bmp388_fifo.c ****     res = bmp388_set_temperature_oversampling(&gs_handle, BMP388_FIFO_DEFAULT_TEMPERATURE_OVERSAMPL
+ 480              		.loc 1 319 5 is_stmt 1 view .LVU138
+ 481              		.loc 1 319 11 is_stmt 0 view .LVU139
+ 482 0198 0121     		movs	r1, #1
+ 483 019a 5848     		ldr	r0, .L61
+ 484              	.LVL51:
+ 485              		.loc 1 319 11 view .LVU140
+ 486 019c FFF7FEFF 		bl	bmp388_set_temperature_oversampling
+ 487              	.LVL52:
+ 320:Drivers/BMP388/driver_bmp388_fifo.c ****     if (res != 0)
+ 488              		.loc 1 320 5 is_stmt 1 view .LVU141
+ 489              		.loc 1 320 8 is_stmt 0 view .LVU142
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccWOK94f.s 			page 17
+
+
+ 490 01a0 0028     		cmp	r0, #0
+ 491 01a2 40F00781 		bne	.L58
+ 321:Drivers/BMP388/driver_bmp388_fifo.c ****     {
+ 322:Drivers/BMP388/driver_bmp388_fifo.c ****         bmp388_interface_debug_print("bmp388: set temperature oversampling failed.\n");
+ 323:Drivers/BMP388/driver_bmp388_fifo.c ****         (void)bmp388_deinit(&gs_handle);
+ 324:Drivers/BMP388/driver_bmp388_fifo.c ****         
+ 325:Drivers/BMP388/driver_bmp388_fifo.c ****         return 1;
+ 326:Drivers/BMP388/driver_bmp388_fifo.c ****     }
+ 327:Drivers/BMP388/driver_bmp388_fifo.c ****     
+ 328:Drivers/BMP388/driver_bmp388_fifo.c ****     /* set default odr */
+ 329:Drivers/BMP388/driver_bmp388_fifo.c ****     res = bmp388_set_odr(&gs_handle, BMP388_FIFO_DEFAULT_ODR);
+ 492              		.loc 1 329 5 is_stmt 1 view .LVU143
+ 493              		.loc 1 329 11 is_stmt 0 view .LVU144
+ 494 01a6 0421     		movs	r1, #4
+ 495 01a8 5448     		ldr	r0, .L61
+ 496              	.LVL53:
+ 497              		.loc 1 329 11 view .LVU145
+ 498 01aa FFF7FEFF 		bl	bmp388_set_odr
+ 499              	.LVL54:
+ 330:Drivers/BMP388/driver_bmp388_fifo.c ****     if (res != 0)
+ 500              		.loc 1 330 5 is_stmt 1 view .LVU146
+ 501              		.loc 1 330 8 is_stmt 0 view .LVU147
+ 502 01ae 0028     		cmp	r0, #0
+ 503 01b0 40F00881 		bne	.L59
+ 331:Drivers/BMP388/driver_bmp388_fifo.c ****     {
+ 332:Drivers/BMP388/driver_bmp388_fifo.c ****         bmp388_interface_debug_print("bmp388: set odr failed.\n");
+ 333:Drivers/BMP388/driver_bmp388_fifo.c ****         (void)bmp388_deinit(&gs_handle);
+ 334:Drivers/BMP388/driver_bmp388_fifo.c ****         
+ 335:Drivers/BMP388/driver_bmp388_fifo.c ****         return 1;
+ 336:Drivers/BMP388/driver_bmp388_fifo.c ****     }
+ 337:Drivers/BMP388/driver_bmp388_fifo.c ****     
+ 338:Drivers/BMP388/driver_bmp388_fifo.c ****     /* set default filter coefficient */
+ 339:Drivers/BMP388/driver_bmp388_fifo.c ****     res = bmp388_set_filter_coefficient(&gs_handle, BMP388_FIFO_DEFAULT_FILTER_COEFFICIENT);
+ 504              		.loc 1 339 5 is_stmt 1 view .LVU148
+ 505              		.loc 1 339 11 is_stmt 0 view .LVU149
+ 506 01b4 0421     		movs	r1, #4
+ 507 01b6 5148     		ldr	r0, .L61
+ 508              	.LVL55:
+ 509              		.loc 1 339 11 view .LVU150
+ 510 01b8 FFF7FEFF 		bl	bmp388_set_filter_coefficient
+ 511              	.LVL56:
+ 340:Drivers/BMP388/driver_bmp388_fifo.c ****     if (res != 0)
+ 512              		.loc 1 340 5 is_stmt 1 view .LVU151
+ 513              		.loc 1 340 8 is_stmt 0 view .LVU152
+ 514 01bc 0028     		cmp	r0, #0
+ 515 01be 40F00981 		bne	.L60
+ 341:Drivers/BMP388/driver_bmp388_fifo.c ****     {
+ 342:Drivers/BMP388/driver_bmp388_fifo.c ****         bmp388_interface_debug_print("bmp388: set filter coefficient failed.\n");
+ 343:Drivers/BMP388/driver_bmp388_fifo.c ****         (void)bmp388_deinit(&gs_handle);
+ 344:Drivers/BMP388/driver_bmp388_fifo.c ****         
+ 345:Drivers/BMP388/driver_bmp388_fifo.c ****         return 1;
+ 346:Drivers/BMP388/driver_bmp388_fifo.c ****     }
+ 347:Drivers/BMP388/driver_bmp388_fifo.c ****     
+ 348:Drivers/BMP388/driver_bmp388_fifo.c ****     /* set normal mode */
+ 349:Drivers/BMP388/driver_bmp388_fifo.c ****     res = bmp388_set_mode(&gs_handle, BMP388_MODE_NORMAL_MODE);
+ 516              		.loc 1 349 5 is_stmt 1 view .LVU153
+ 517              		.loc 1 349 11 is_stmt 0 view .LVU154
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccWOK94f.s 			page 18
+
+
+ 518 01c2 0321     		movs	r1, #3
+ 519 01c4 4D48     		ldr	r0, .L61
+ 520              	.LVL57:
+ 521              		.loc 1 349 11 view .LVU155
+ 522 01c6 FFF7FEFF 		bl	bmp388_set_mode
+ 523              	.LVL58:
+ 350:Drivers/BMP388/driver_bmp388_fifo.c ****     if (res != 0)
+ 524              		.loc 1 350 5 is_stmt 1 view .LVU156
+ 525              		.loc 1 350 8 is_stmt 0 view .LVU157
+ 526 01ca 58B1     		cbz	r0, .L8
+ 351:Drivers/BMP388/driver_bmp388_fifo.c ****     {
+ 352:Drivers/BMP388/driver_bmp388_fifo.c ****         bmp388_interface_debug_print("bmp388: set mode failed.\n");
+ 527              		.loc 1 352 9 is_stmt 1 view .LVU158
+ 528 01cc 5648     		ldr	r0, .L61+44
+ 529              	.LVL59:
+ 530              		.loc 1 352 9 is_stmt 0 view .LVU159
+ 531 01ce FFF7FEFF 		bl	bmp388_interface_debug_print
+ 532              	.LVL60:
+ 353:Drivers/BMP388/driver_bmp388_fifo.c ****         (void)bmp388_deinit(&gs_handle);
+ 533              		.loc 1 353 9 is_stmt 1 view .LVU160
+ 534              		.loc 1 353 15 is_stmt 0 view .LVU161
+ 535 01d2 4A48     		ldr	r0, .L61
+ 536 01d4 FFF7FEFF 		bl	bmp388_deinit
+ 537              	.LVL61:
+ 354:Drivers/BMP388/driver_bmp388_fifo.c ****         
+ 355:Drivers/BMP388/driver_bmp388_fifo.c ****         return 1;
+ 538              		.loc 1 355 9 is_stmt 1 view .LVU162
+ 539              		.loc 1 355 16 is_stmt 0 view .LVU163
+ 540 01d8 0120     		movs	r0, #1
+ 541 01da 03E0     		b	.L8
+ 542              	.LVL62:
+ 543              	.L35:
+  95:Drivers/BMP388/driver_bmp388_fifo.c ****        
+ 544              		.loc 1 95 9 is_stmt 1 view .LVU164
+ 545 01dc 5348     		ldr	r0, .L61+48
+ 546              	.LVL63:
+  95:Drivers/BMP388/driver_bmp388_fifo.c ****        
+ 547              		.loc 1 95 9 is_stmt 0 view .LVU165
+ 548 01de FFF7FEFF 		bl	bmp388_interface_debug_print
+ 549              	.LVL64:
+  97:Drivers/BMP388/driver_bmp388_fifo.c ****     }
+ 550              		.loc 1 97 9 is_stmt 1 view .LVU166
+  97:Drivers/BMP388/driver_bmp388_fifo.c ****     }
+ 551              		.loc 1 97 16 is_stmt 0 view .LVU167
+ 552 01e2 0120     		movs	r0, #1
+ 553              	.LVL65:
+ 554              	.L8:
+ 356:Drivers/BMP388/driver_bmp388_fifo.c ****     } 
+ 357:Drivers/BMP388/driver_bmp388_fifo.c ****     
+ 358:Drivers/BMP388/driver_bmp388_fifo.c ****     return 0;
+ 359:Drivers/BMP388/driver_bmp388_fifo.c **** }
+ 555              		.loc 1 359 1 view .LVU168
+ 556 01e4 F8BD     		pop	{r3, r4, r5, r6, r7, pc}
+ 557              	.LVL66:
+ 558              	.L36:
+ 104:Drivers/BMP388/driver_bmp388_fifo.c ****        
+ 559              		.loc 1 104 9 is_stmt 1 view .LVU169
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccWOK94f.s 			page 19
+
+
+ 560 01e6 5248     		ldr	r0, .L61+52
+ 561              	.LVL67:
+ 104:Drivers/BMP388/driver_bmp388_fifo.c ****        
+ 562              		.loc 1 104 9 is_stmt 0 view .LVU170
+ 563 01e8 FFF7FEFF 		bl	bmp388_interface_debug_print
+ 564              	.LVL68:
+ 106:Drivers/BMP388/driver_bmp388_fifo.c ****     }
+ 565              		.loc 1 106 9 is_stmt 1 view .LVU171
+ 106:Drivers/BMP388/driver_bmp388_fifo.c ****     }
+ 566              		.loc 1 106 16 is_stmt 0 view .LVU172
+ 567 01ec 0120     		movs	r0, #1
+ 568 01ee F9E7     		b	.L8
+ 569              	.LVL69:
+ 570              	.L37:
+ 113:Drivers/BMP388/driver_bmp388_fifo.c ****        
+ 571              		.loc 1 113 9 is_stmt 1 view .LVU173
+ 572 01f0 5048     		ldr	r0, .L61+56
+ 573              	.LVL70:
+ 113:Drivers/BMP388/driver_bmp388_fifo.c ****        
+ 574              		.loc 1 113 9 is_stmt 0 view .LVU174
+ 575 01f2 FFF7FEFF 		bl	bmp388_interface_debug_print
+ 576              	.LVL71:
+ 115:Drivers/BMP388/driver_bmp388_fifo.c ****     }
+ 577              		.loc 1 115 9 is_stmt 1 view .LVU175
+ 115:Drivers/BMP388/driver_bmp388_fifo.c ****     }
+ 578              		.loc 1 115 16 is_stmt 0 view .LVU176
+ 579 01f6 0120     		movs	r0, #1
+ 580 01f8 F4E7     		b	.L8
+ 581              	.LVL72:
+ 582              	.L38:
+ 122:Drivers/BMP388/driver_bmp388_fifo.c ****         (void)bmp388_deinit(&gs_handle);
+ 583              		.loc 1 122 9 is_stmt 1 view .LVU177
+ 584 01fa 4F48     		ldr	r0, .L61+60
+ 585              	.LVL73:
+ 122:Drivers/BMP388/driver_bmp388_fifo.c ****         (void)bmp388_deinit(&gs_handle);
+ 586              		.loc 1 122 9 is_stmt 0 view .LVU178
+ 587 01fc FFF7FEFF 		bl	bmp388_interface_debug_print
+ 588              	.LVL74:
+ 123:Drivers/BMP388/driver_bmp388_fifo.c ****         
+ 589              		.loc 1 123 9 is_stmt 1 view .LVU179
+ 123:Drivers/BMP388/driver_bmp388_fifo.c ****         
+ 590              		.loc 1 123 15 is_stmt 0 view .LVU180
+ 591 0200 3E48     		ldr	r0, .L61
+ 592 0202 FFF7FEFF 		bl	bmp388_deinit
+ 593              	.LVL75:
+ 125:Drivers/BMP388/driver_bmp388_fifo.c ****     }
+ 594              		.loc 1 125 9 is_stmt 1 view .LVU181
+ 125:Drivers/BMP388/driver_bmp388_fifo.c ****     }
+ 595              		.loc 1 125 16 is_stmt 0 view .LVU182
+ 596 0206 0120     		movs	r0, #1
+ 597 0208 ECE7     		b	.L8
+ 598              	.LVL76:
+ 599              	.L39:
+ 132:Drivers/BMP388/driver_bmp388_fifo.c ****         (void)bmp388_deinit(&gs_handle);
+ 600              		.loc 1 132 9 is_stmt 1 view .LVU183
+ 601 020a 4C48     		ldr	r0, .L61+64
+ 602              	.LVL77:
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccWOK94f.s 			page 20
+
+
+ 132:Drivers/BMP388/driver_bmp388_fifo.c ****         (void)bmp388_deinit(&gs_handle);
+ 603              		.loc 1 132 9 is_stmt 0 view .LVU184
+ 604 020c FFF7FEFF 		bl	bmp388_interface_debug_print
+ 605              	.LVL78:
+ 133:Drivers/BMP388/driver_bmp388_fifo.c ****         
+ 606              		.loc 1 133 9 is_stmt 1 view .LVU185
+ 133:Drivers/BMP388/driver_bmp388_fifo.c ****         
+ 607              		.loc 1 133 15 is_stmt 0 view .LVU186
+ 608 0210 3A48     		ldr	r0, .L61
+ 609 0212 FFF7FEFF 		bl	bmp388_deinit
+ 610              	.LVL79:
+ 135:Drivers/BMP388/driver_bmp388_fifo.c ****     }
+ 611              		.loc 1 135 9 is_stmt 1 view .LVU187
+ 135:Drivers/BMP388/driver_bmp388_fifo.c ****     }
+ 612              		.loc 1 135 16 is_stmt 0 view .LVU188
+ 613 0216 0120     		movs	r0, #1
+ 614 0218 E4E7     		b	.L8
+ 615              	.LVL80:
+ 616              	.L40:
+ 142:Drivers/BMP388/driver_bmp388_fifo.c ****         (void)bmp388_deinit(&gs_handle);
+ 617              		.loc 1 142 9 is_stmt 1 view .LVU189
+ 618 021a 4948     		ldr	r0, .L61+68
+ 619              	.LVL81:
+ 142:Drivers/BMP388/driver_bmp388_fifo.c ****         (void)bmp388_deinit(&gs_handle);
+ 620              		.loc 1 142 9 is_stmt 0 view .LVU190
+ 621 021c FFF7FEFF 		bl	bmp388_interface_debug_print
+ 622              	.LVL82:
+ 143:Drivers/BMP388/driver_bmp388_fifo.c ****         
+ 623              		.loc 1 143 9 is_stmt 1 view .LVU191
+ 143:Drivers/BMP388/driver_bmp388_fifo.c ****         
+ 624              		.loc 1 143 15 is_stmt 0 view .LVU192
+ 625 0220 3648     		ldr	r0, .L61
+ 626 0222 FFF7FEFF 		bl	bmp388_deinit
+ 627              	.LVL83:
+ 145:Drivers/BMP388/driver_bmp388_fifo.c ****     }
+ 628              		.loc 1 145 9 is_stmt 1 view .LVU193
+ 145:Drivers/BMP388/driver_bmp388_fifo.c ****     }
+ 629              		.loc 1 145 16 is_stmt 0 view .LVU194
+ 630 0226 0120     		movs	r0, #1
+ 631 0228 DCE7     		b	.L8
+ 632              	.LVL84:
+ 633              	.L41:
+ 152:Drivers/BMP388/driver_bmp388_fifo.c ****         (void)bmp388_deinit(&gs_handle);
+ 634              		.loc 1 152 9 is_stmt 1 view .LVU195
+ 635 022a 4648     		ldr	r0, .L61+72
+ 636              	.LVL85:
+ 152:Drivers/BMP388/driver_bmp388_fifo.c ****         (void)bmp388_deinit(&gs_handle);
+ 637              		.loc 1 152 9 is_stmt 0 view .LVU196
+ 638 022c FFF7FEFF 		bl	bmp388_interface_debug_print
+ 639              	.LVL86:
+ 153:Drivers/BMP388/driver_bmp388_fifo.c ****         
+ 640              		.loc 1 153 9 is_stmt 1 view .LVU197
+ 153:Drivers/BMP388/driver_bmp388_fifo.c ****         
+ 641              		.loc 1 153 15 is_stmt 0 view .LVU198
+ 642 0230 3248     		ldr	r0, .L61
+ 643 0232 FFF7FEFF 		bl	bmp388_deinit
+ 644              	.LVL87:
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccWOK94f.s 			page 21
+
+
+ 155:Drivers/BMP388/driver_bmp388_fifo.c ****     }
+ 645              		.loc 1 155 9 is_stmt 1 view .LVU199
+ 155:Drivers/BMP388/driver_bmp388_fifo.c ****     }
+ 646              		.loc 1 155 16 is_stmt 0 view .LVU200
+ 647 0236 0120     		movs	r0, #1
+ 648 0238 D4E7     		b	.L8
+ 649              	.LVL88:
+ 650              	.L42:
+ 162:Drivers/BMP388/driver_bmp388_fifo.c ****         (void)bmp388_deinit(&gs_handle);
+ 651              		.loc 1 162 9 is_stmt 1 view .LVU201
+ 652 023a 4348     		ldr	r0, .L61+76
+ 653              	.LVL89:
+ 162:Drivers/BMP388/driver_bmp388_fifo.c ****         (void)bmp388_deinit(&gs_handle);
+ 654              		.loc 1 162 9 is_stmt 0 view .LVU202
+ 655 023c FFF7FEFF 		bl	bmp388_interface_debug_print
+ 656              	.LVL90:
+ 163:Drivers/BMP388/driver_bmp388_fifo.c ****         
+ 657              		.loc 1 163 9 is_stmt 1 view .LVU203
+ 163:Drivers/BMP388/driver_bmp388_fifo.c ****         
+ 658              		.loc 1 163 15 is_stmt 0 view .LVU204
+ 659 0240 2E48     		ldr	r0, .L61
+ 660 0242 FFF7FEFF 		bl	bmp388_deinit
+ 661              	.LVL91:
+ 165:Drivers/BMP388/driver_bmp388_fifo.c ****     }
+ 662              		.loc 1 165 9 is_stmt 1 view .LVU205
+ 165:Drivers/BMP388/driver_bmp388_fifo.c ****     }
+ 663              		.loc 1 165 16 is_stmt 0 view .LVU206
+ 664 0246 0120     		movs	r0, #1
+ 665 0248 CCE7     		b	.L8
+ 666              	.LVL92:
+ 667              	.L43:
+ 172:Drivers/BMP388/driver_bmp388_fifo.c ****         (void)bmp388_deinit(&gs_handle);
+ 668              		.loc 1 172 9 is_stmt 1 view .LVU207
+ 669 024a 4048     		ldr	r0, .L61+80
+ 670              	.LVL93:
+ 172:Drivers/BMP388/driver_bmp388_fifo.c ****         (void)bmp388_deinit(&gs_handle);
+ 671              		.loc 1 172 9 is_stmt 0 view .LVU208
+ 672 024c FFF7FEFF 		bl	bmp388_interface_debug_print
+ 673              	.LVL94:
+ 173:Drivers/BMP388/driver_bmp388_fifo.c ****         
+ 674              		.loc 1 173 9 is_stmt 1 view .LVU209
+ 173:Drivers/BMP388/driver_bmp388_fifo.c ****         
+ 675              		.loc 1 173 15 is_stmt 0 view .LVU210
+ 676 0250 2A48     		ldr	r0, .L61
+ 677 0252 FFF7FEFF 		bl	bmp388_deinit
+ 678              	.LVL95:
+ 175:Drivers/BMP388/driver_bmp388_fifo.c ****     }
+ 679              		.loc 1 175 9 is_stmt 1 view .LVU211
+ 175:Drivers/BMP388/driver_bmp388_fifo.c ****     }
+ 680              		.loc 1 175 16 is_stmt 0 view .LVU212
+ 681 0256 0120     		movs	r0, #1
+ 682 0258 C4E7     		b	.L8
+ 683              	.LVL96:
+ 684              	.L44:
+ 182:Drivers/BMP388/driver_bmp388_fifo.c ****         (void)bmp388_deinit(&gs_handle);
+ 685              		.loc 1 182 9 is_stmt 1 view .LVU213
+ 686 025a 3D48     		ldr	r0, .L61+84
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccWOK94f.s 			page 22
+
+
+ 687              	.LVL97:
+ 182:Drivers/BMP388/driver_bmp388_fifo.c ****         (void)bmp388_deinit(&gs_handle);
+ 688              		.loc 1 182 9 is_stmt 0 view .LVU214
+ 689 025c FFF7FEFF 		bl	bmp388_interface_debug_print
+ 690              	.LVL98:
+ 183:Drivers/BMP388/driver_bmp388_fifo.c ****         
+ 691              		.loc 1 183 9 is_stmt 1 view .LVU215
+ 183:Drivers/BMP388/driver_bmp388_fifo.c ****         
+ 692              		.loc 1 183 15 is_stmt 0 view .LVU216
+ 693 0260 2648     		ldr	r0, .L61
+ 694 0262 FFF7FEFF 		bl	bmp388_deinit
+ 695              	.LVL99:
+ 185:Drivers/BMP388/driver_bmp388_fifo.c ****     }
+ 696              		.loc 1 185 9 is_stmt 1 view .LVU217
+ 185:Drivers/BMP388/driver_bmp388_fifo.c ****     }
+ 697              		.loc 1 185 16 is_stmt 0 view .LVU218
+ 698 0266 0120     		movs	r0, #1
+ 699 0268 BCE7     		b	.L8
+ 700              	.LVL100:
+ 701              	.L45:
+ 192:Drivers/BMP388/driver_bmp388_fifo.c ****         (void)bmp388_deinit(&gs_handle);
+ 702              		.loc 1 192 9 is_stmt 1 view .LVU219
+ 703 026a 3948     		ldr	r0, .L61+84
+ 704              	.LVL101:
+ 192:Drivers/BMP388/driver_bmp388_fifo.c ****         (void)bmp388_deinit(&gs_handle);
+ 705              		.loc 1 192 9 is_stmt 0 view .LVU220
+ 706 026c FFF7FEFF 		bl	bmp388_interface_debug_print
+ 707              	.LVL102:
+ 193:Drivers/BMP388/driver_bmp388_fifo.c ****         
+ 708              		.loc 1 193 9 is_stmt 1 view .LVU221
+ 193:Drivers/BMP388/driver_bmp388_fifo.c ****         
+ 709              		.loc 1 193 15 is_stmt 0 view .LVU222
+ 710 0270 2248     		ldr	r0, .L61
+ 711 0272 FFF7FEFF 		bl	bmp388_deinit
+ 712              	.LVL103:
+ 195:Drivers/BMP388/driver_bmp388_fifo.c ****     }
+ 713              		.loc 1 195 9 is_stmt 1 view .LVU223
+ 195:Drivers/BMP388/driver_bmp388_fifo.c ****     }
+ 714              		.loc 1 195 16 is_stmt 0 view .LVU224
+ 715 0276 0120     		movs	r0, #1
+ 716 0278 B4E7     		b	.L8
+ 717              	.LVL104:
+ 718              	.L46:
+ 202:Drivers/BMP388/driver_bmp388_fifo.c ****         (void)bmp388_deinit(&gs_handle);
+ 719              		.loc 1 202 9 is_stmt 1 view .LVU225
+ 720 027a 3648     		ldr	r0, .L61+88
+ 721              	.LVL105:
+ 202:Drivers/BMP388/driver_bmp388_fifo.c ****         (void)bmp388_deinit(&gs_handle);
+ 722              		.loc 1 202 9 is_stmt 0 view .LVU226
+ 723 027c FFF7FEFF 		bl	bmp388_interface_debug_print
+ 724              	.LVL106:
+ 203:Drivers/BMP388/driver_bmp388_fifo.c ****         
+ 725              		.loc 1 203 9 is_stmt 1 view .LVU227
+ 203:Drivers/BMP388/driver_bmp388_fifo.c ****         
+ 726              		.loc 1 203 15 is_stmt 0 view .LVU228
+ 727 0280 1E48     		ldr	r0, .L61
+ 728 0282 FFF7FEFF 		bl	bmp388_deinit
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccWOK94f.s 			page 23
+
+
+ 729              	.LVL107:
+ 205:Drivers/BMP388/driver_bmp388_fifo.c ****     }
+ 730              		.loc 1 205 9 is_stmt 1 view .LVU229
+ 205:Drivers/BMP388/driver_bmp388_fifo.c ****     }
+ 731              		.loc 1 205 16 is_stmt 0 view .LVU230
+ 732 0286 0120     		movs	r0, #1
+ 733 0288 ACE7     		b	.L8
+ 734              	.LVL108:
+ 735              	.L47:
+ 212:Drivers/BMP388/driver_bmp388_fifo.c ****         (void)bmp388_deinit(&gs_handle);
+ 736              		.loc 1 212 9 is_stmt 1 view .LVU231
+ 737 028a 3348     		ldr	r0, .L61+92
+ 738              	.LVL109:
+ 212:Drivers/BMP388/driver_bmp388_fifo.c ****         (void)bmp388_deinit(&gs_handle);
+ 739              		.loc 1 212 9 is_stmt 0 view .LVU232
+ 740 028c FFF7FEFF 		bl	bmp388_interface_debug_print
+ 741              	.LVL110:
+ 213:Drivers/BMP388/driver_bmp388_fifo.c ****         
+ 742              		.loc 1 213 9 is_stmt 1 view .LVU233
+ 213:Drivers/BMP388/driver_bmp388_fifo.c ****         
+ 743              		.loc 1 213 15 is_stmt 0 view .LVU234
+ 744 0290 1A48     		ldr	r0, .L61
+ 745 0292 FFF7FEFF 		bl	bmp388_deinit
+ 746              	.LVL111:
+ 215:Drivers/BMP388/driver_bmp388_fifo.c ****     }
+ 747              		.loc 1 215 9 is_stmt 1 view .LVU235
+ 215:Drivers/BMP388/driver_bmp388_fifo.c ****     }
+ 748              		.loc 1 215 16 is_stmt 0 view .LVU236
+ 749 0296 0120     		movs	r0, #1
+ 750 0298 A4E7     		b	.L8
+ 751              	.LVL112:
+ 752              	.L48:
+ 222:Drivers/BMP388/driver_bmp388_fifo.c ****         (void)bmp388_deinit(&gs_handle);
+ 753              		.loc 1 222 9 is_stmt 1 view .LVU237
+ 754 029a 3048     		ldr	r0, .L61+96
+ 755              	.LVL113:
+ 222:Drivers/BMP388/driver_bmp388_fifo.c ****         (void)bmp388_deinit(&gs_handle);
+ 756              		.loc 1 222 9 is_stmt 0 view .LVU238
+ 757 029c FFF7FEFF 		bl	bmp388_interface_debug_print
+ 758              	.LVL114:
+ 223:Drivers/BMP388/driver_bmp388_fifo.c ****         
+ 759              		.loc 1 223 9 is_stmt 1 view .LVU239
+ 223:Drivers/BMP388/driver_bmp388_fifo.c ****         
+ 760              		.loc 1 223 15 is_stmt 0 view .LVU240
+ 761 02a0 1648     		ldr	r0, .L61
+ 762 02a2 FFF7FEFF 		bl	bmp388_deinit
+ 763              	.LVL115:
+ 225:Drivers/BMP388/driver_bmp388_fifo.c ****     }
+ 764              		.loc 1 225 9 is_stmt 1 view .LVU241
+ 225:Drivers/BMP388/driver_bmp388_fifo.c ****     }
+ 765              		.loc 1 225 16 is_stmt 0 view .LVU242
+ 766 02a6 0120     		movs	r0, #1
+ 767 02a8 9CE7     		b	.L8
+ 768              	.LVL116:
+ 769              	.L49:
+ 232:Drivers/BMP388/driver_bmp388_fifo.c ****         (void)bmp388_deinit(&gs_handle);
+ 770              		.loc 1 232 9 is_stmt 1 view .LVU243
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccWOK94f.s 			page 24
+
+
+ 771 02aa 2D48     		ldr	r0, .L61+100
+ 772              	.LVL117:
+ 232:Drivers/BMP388/driver_bmp388_fifo.c ****         (void)bmp388_deinit(&gs_handle);
+ 773              		.loc 1 232 9 is_stmt 0 view .LVU244
+ 774 02ac FFF7FEFF 		bl	bmp388_interface_debug_print
+ 775              	.LVL118:
+ 233:Drivers/BMP388/driver_bmp388_fifo.c ****         
+ 776              		.loc 1 233 9 is_stmt 1 view .LVU245
+ 233:Drivers/BMP388/driver_bmp388_fifo.c ****         
+ 777              		.loc 1 233 15 is_stmt 0 view .LVU246
+ 778 02b0 1248     		ldr	r0, .L61
+ 779 02b2 FFF7FEFF 		bl	bmp388_deinit
+ 780              	.LVL119:
+ 235:Drivers/BMP388/driver_bmp388_fifo.c ****     }
+ 781              		.loc 1 235 9 is_stmt 1 view .LVU247
+ 235:Drivers/BMP388/driver_bmp388_fifo.c ****     }
+ 782              		.loc 1 235 16 is_stmt 0 view .LVU248
+ 783 02b6 0120     		movs	r0, #1
+ 784 02b8 94E7     		b	.L8
+ 785              	.LVL120:
+ 786              	.L50:
+ 242:Drivers/BMP388/driver_bmp388_fifo.c ****         (void)bmp388_deinit(&gs_handle);
+ 787              		.loc 1 242 9 is_stmt 1 view .LVU249
+ 788 02ba 2A48     		ldr	r0, .L61+104
+ 789              	.LVL121:
+ 242:Drivers/BMP388/driver_bmp388_fifo.c ****         (void)bmp388_deinit(&gs_handle);
+ 790              		.loc 1 242 9 is_stmt 0 view .LVU250
+ 791 02bc FFF7FEFF 		bl	bmp388_interface_debug_print
+ 792              	.LVL122:
+ 243:Drivers/BMP388/driver_bmp388_fifo.c ****         
+ 793              		.loc 1 243 9 is_stmt 1 view .LVU251
+ 243:Drivers/BMP388/driver_bmp388_fifo.c ****         
+ 794              		.loc 1 243 15 is_stmt 0 view .LVU252
+ 795 02c0 0E48     		ldr	r0, .L61
+ 796 02c2 FFF7FEFF 		bl	bmp388_deinit
+ 797              	.LVL123:
+ 245:Drivers/BMP388/driver_bmp388_fifo.c ****     }
+ 798              		.loc 1 245 9 is_stmt 1 view .LVU253
+ 245:Drivers/BMP388/driver_bmp388_fifo.c ****     }
+ 799              		.loc 1 245 16 is_stmt 0 view .LVU254
+ 800 02c6 0120     		movs	r0, #1
+ 801 02c8 8CE7     		b	.L8
+ 802              	.LVL124:
+ 803              	.L51:
+ 252:Drivers/BMP388/driver_bmp388_fifo.c ****         (void)bmp388_deinit(&gs_handle);
+ 804              		.loc 1 252 9 is_stmt 1 view .LVU255
+ 805 02ca 2748     		ldr	r0, .L61+108
+ 806              	.LVL125:
+ 252:Drivers/BMP388/driver_bmp388_fifo.c ****         (void)bmp388_deinit(&gs_handle);
+ 807              		.loc 1 252 9 is_stmt 0 view .LVU256
+ 808 02cc FFF7FEFF 		bl	bmp388_interface_debug_print
+ 809              	.LVL126:
+ 253:Drivers/BMP388/driver_bmp388_fifo.c ****         
+ 810              		.loc 1 253 9 is_stmt 1 view .LVU257
+ 253:Drivers/BMP388/driver_bmp388_fifo.c ****         
+ 811              		.loc 1 253 15 is_stmt 0 view .LVU258
+ 812 02d0 0A48     		ldr	r0, .L61
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccWOK94f.s 			page 25
+
+
+ 813 02d2 FFF7FEFF 		bl	bmp388_deinit
+ 814              	.LVL127:
+ 255:Drivers/BMP388/driver_bmp388_fifo.c ****     }
+ 815              		.loc 1 255 9 is_stmt 1 view .LVU259
+ 255:Drivers/BMP388/driver_bmp388_fifo.c ****     }
+ 816              		.loc 1 255 16 is_stmt 0 view .LVU260
+ 817 02d6 0120     		movs	r0, #1
+ 818 02d8 84E7     		b	.L8
+ 819              	.LVL128:
+ 820              	.L52:
+ 262:Drivers/BMP388/driver_bmp388_fifo.c ****         (void)bmp388_deinit(&gs_handle);
+ 821              		.loc 1 262 9 is_stmt 1 view .LVU261
+ 822 02da 2448     		ldr	r0, .L61+112
+ 823              	.LVL129:
+ 262:Drivers/BMP388/driver_bmp388_fifo.c ****         (void)bmp388_deinit(&gs_handle);
+ 824              		.loc 1 262 9 is_stmt 0 view .LVU262
+ 825 02dc FFF7FEFF 		bl	bmp388_interface_debug_print
+ 826              	.LVL130:
+ 263:Drivers/BMP388/driver_bmp388_fifo.c ****         
+ 827              		.loc 1 263 9 is_stmt 1 view .LVU263
+ 263:Drivers/BMP388/driver_bmp388_fifo.c ****         
+ 828              		.loc 1 263 15 is_stmt 0 view .LVU264
+ 829 02e0 0648     		ldr	r0, .L61
+ 830 02e2 FFF7FEFF 		bl	bmp388_deinit
+ 831              	.LVL131:
+ 265:Drivers/BMP388/driver_bmp388_fifo.c ****     }
+ 832              		.loc 1 265 9 is_stmt 1 view .LVU265
+ 265:Drivers/BMP388/driver_bmp388_fifo.c ****     }
+ 833              		.loc 1 265 16 is_stmt 0 view .LVU266
+ 834 02e6 0120     		movs	r0, #1
+ 835 02e8 7CE7     		b	.L8
+ 836              	.LVL132:
+ 837              	.L53:
+ 272:Drivers/BMP388/driver_bmp388_fifo.c ****         (void)bmp388_deinit(&gs_handle);
+ 838              		.loc 1 272 9 is_stmt 1 view .LVU267
+ 839 02ea 2148     		ldr	r0, .L61+116
+ 840              	.LVL133:
+ 272:Drivers/BMP388/driver_bmp388_fifo.c ****         (void)bmp388_deinit(&gs_handle);
+ 841              		.loc 1 272 9 is_stmt 0 view .LVU268
+ 842 02ec FFF7FEFF 		bl	bmp388_interface_debug_print
+ 843              	.LVL134:
+ 273:Drivers/BMP388/driver_bmp388_fifo.c ****         
+ 844              		.loc 1 273 9 is_stmt 1 view .LVU269
+ 273:Drivers/BMP388/driver_bmp388_fifo.c ****         
+ 845              		.loc 1 273 15 is_stmt 0 view .LVU270
+ 846 02f0 0248     		ldr	r0, .L61
+ 847 02f2 FFF7FEFF 		bl	bmp388_deinit
+ 848              	.LVL135:
+ 275:Drivers/BMP388/driver_bmp388_fifo.c ****     }
+ 849              		.loc 1 275 9 is_stmt 1 view .LVU271
+ 275:Drivers/BMP388/driver_bmp388_fifo.c ****     }
+ 850              		.loc 1 275 16 is_stmt 0 view .LVU272
+ 851 02f6 0120     		movs	r0, #1
+ 852 02f8 74E7     		b	.L8
+ 853              	.L62:
+ 854 02fa 00BF     		.align	2
+ 855              	.L61:
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccWOK94f.s 			page 26
+
+
+ 856 02fc 00000000 		.word	gs_handle
+ 857 0300 00000000 		.word	bmp388_interface_iic_init
+ 858 0304 00000000 		.word	bmp388_interface_iic_deinit
+ 859 0308 00000000 		.word	bmp388_interface_iic_read
+ 860 030c 00000000 		.word	bmp388_interface_iic_write
+ 861 0310 00000000 		.word	bmp388_interface_spi_init
+ 862 0314 00000000 		.word	bmp388_interface_spi_deinit
+ 863 0318 00000000 		.word	bmp388_interface_spi_read
+ 864 031c 00000000 		.word	bmp388_interface_spi_write
+ 865 0320 00000000 		.word	bmp388_interface_delay_ms
+ 866 0324 00000000 		.word	bmp388_interface_debug_print
+ 867 0328 DC030000 		.word	.LC25
+ 868 032c 00000000 		.word	.LC0
+ 869 0330 20000000 		.word	.LC1
+ 870 0334 40000000 		.word	.LC2
+ 871 0338 58000000 		.word	.LC3
+ 872 033c 78000000 		.word	.LC4
+ 873 0340 A0000000 		.word	.LC5
+ 874 0344 CC000000 		.word	.LC6
+ 875 0348 E8000000 		.word	.LC7
+ 876 034c 10010000 		.word	.LC8
+ 877 0350 34010000 		.word	.LC9
+ 878 0354 60010000 		.word	.LC10
+ 879 0358 8C010000 		.word	.LC11
+ 880 035c B4010000 		.word	.LC12
+ 881 0360 DC010000 		.word	.LC13
+ 882 0364 04020000 		.word	.LC14
+ 883 0368 30020000 		.word	.LC15
+ 884 036c 70020000 		.word	.LC16
+ 885 0370 A0020000 		.word	.LC17
+ 886              	.LVL136:
+ 887              	.L54:
+ 282:Drivers/BMP388/driver_bmp388_fifo.c ****         (void)bmp388_deinit(&gs_handle);
+ 888              		.loc 1 282 9 is_stmt 1 view .LVU273
+ 889 0374 1B48     		ldr	r0, .L63
+ 890              	.LVL137:
+ 282:Drivers/BMP388/driver_bmp388_fifo.c ****         (void)bmp388_deinit(&gs_handle);
+ 891              		.loc 1 282 9 is_stmt 0 view .LVU274
+ 892 0376 FFF7FEFF 		bl	bmp388_interface_debug_print
+ 893              	.LVL138:
+ 283:Drivers/BMP388/driver_bmp388_fifo.c ****         
+ 894              		.loc 1 283 9 is_stmt 1 view .LVU275
+ 283:Drivers/BMP388/driver_bmp388_fifo.c ****         
+ 895              		.loc 1 283 15 is_stmt 0 view .LVU276
+ 896 037a 1B48     		ldr	r0, .L63+4
+ 897 037c FFF7FEFF 		bl	bmp388_deinit
+ 898              	.LVL139:
+ 285:Drivers/BMP388/driver_bmp388_fifo.c ****     }
+ 899              		.loc 1 285 9 is_stmt 1 view .LVU277
+ 285:Drivers/BMP388/driver_bmp388_fifo.c ****     }
+ 900              		.loc 1 285 16 is_stmt 0 view .LVU278
+ 901 0380 0120     		movs	r0, #1
+ 902 0382 2FE7     		b	.L8
+ 903              	.LVL140:
+ 904              	.L55:
+ 292:Drivers/BMP388/driver_bmp388_fifo.c ****         (void)bmp388_deinit(&gs_handle);
+ 905              		.loc 1 292 9 is_stmt 1 view .LVU279
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccWOK94f.s 			page 27
+
+
+ 906 0384 1948     		ldr	r0, .L63+8
+ 907              	.LVL141:
+ 292:Drivers/BMP388/driver_bmp388_fifo.c ****         (void)bmp388_deinit(&gs_handle);
+ 908              		.loc 1 292 9 is_stmt 0 view .LVU280
+ 909 0386 FFF7FEFF 		bl	bmp388_interface_debug_print
+ 910              	.LVL142:
+ 293:Drivers/BMP388/driver_bmp388_fifo.c ****         
+ 911              		.loc 1 293 9 is_stmt 1 view .LVU281
+ 293:Drivers/BMP388/driver_bmp388_fifo.c ****         
+ 912              		.loc 1 293 15 is_stmt 0 view .LVU282
+ 913 038a 1748     		ldr	r0, .L63+4
+ 914 038c FFF7FEFF 		bl	bmp388_deinit
+ 915              	.LVL143:
+ 295:Drivers/BMP388/driver_bmp388_fifo.c ****     }
+ 916              		.loc 1 295 9 is_stmt 1 view .LVU283
+ 295:Drivers/BMP388/driver_bmp388_fifo.c ****     }
+ 917              		.loc 1 295 16 is_stmt 0 view .LVU284
+ 918 0390 0120     		movs	r0, #1
+ 919 0392 27E7     		b	.L8
+ 920              	.LVL144:
+ 921              	.L56:
+ 302:Drivers/BMP388/driver_bmp388_fifo.c ****         (void)bmp388_deinit(&gs_handle);
+ 922              		.loc 1 302 9 is_stmt 1 view .LVU285
+ 923 0394 1648     		ldr	r0, .L63+12
+ 924              	.LVL145:
+ 302:Drivers/BMP388/driver_bmp388_fifo.c ****         (void)bmp388_deinit(&gs_handle);
+ 925              		.loc 1 302 9 is_stmt 0 view .LVU286
+ 926 0396 FFF7FEFF 		bl	bmp388_interface_debug_print
+ 927              	.LVL146:
+ 303:Drivers/BMP388/driver_bmp388_fifo.c ****         
+ 928              		.loc 1 303 9 is_stmt 1 view .LVU287
+ 303:Drivers/BMP388/driver_bmp388_fifo.c ****         
+ 929              		.loc 1 303 15 is_stmt 0 view .LVU288
+ 930 039a 1348     		ldr	r0, .L63+4
+ 931 039c FFF7FEFF 		bl	bmp388_deinit
+ 932              	.LVL147:
+ 305:Drivers/BMP388/driver_bmp388_fifo.c ****     }
+ 933              		.loc 1 305 9 is_stmt 1 view .LVU289
+ 305:Drivers/BMP388/driver_bmp388_fifo.c ****     }
+ 934              		.loc 1 305 16 is_stmt 0 view .LVU290
+ 935 03a0 0120     		movs	r0, #1
+ 936 03a2 1FE7     		b	.L8
+ 937              	.LVL148:
+ 938              	.L57:
+ 312:Drivers/BMP388/driver_bmp388_fifo.c ****         (void)bmp388_deinit(&gs_handle);
+ 939              		.loc 1 312 9 is_stmt 1 view .LVU291
+ 940 03a4 1348     		ldr	r0, .L63+16
+ 941              	.LVL149:
+ 312:Drivers/BMP388/driver_bmp388_fifo.c ****         (void)bmp388_deinit(&gs_handle);
+ 942              		.loc 1 312 9 is_stmt 0 view .LVU292
+ 943 03a6 FFF7FEFF 		bl	bmp388_interface_debug_print
+ 944              	.LVL150:
+ 313:Drivers/BMP388/driver_bmp388_fifo.c ****         
+ 945              		.loc 1 313 9 is_stmt 1 view .LVU293
+ 313:Drivers/BMP388/driver_bmp388_fifo.c ****         
+ 946              		.loc 1 313 15 is_stmt 0 view .LVU294
+ 947 03aa 0F48     		ldr	r0, .L63+4
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccWOK94f.s 			page 28
+
+
+ 948 03ac FFF7FEFF 		bl	bmp388_deinit
+ 949              	.LVL151:
+ 315:Drivers/BMP388/driver_bmp388_fifo.c ****     }
+ 950              		.loc 1 315 9 is_stmt 1 view .LVU295
+ 315:Drivers/BMP388/driver_bmp388_fifo.c ****     }
+ 951              		.loc 1 315 16 is_stmt 0 view .LVU296
+ 952 03b0 0120     		movs	r0, #1
+ 953 03b2 17E7     		b	.L8
+ 954              	.LVL152:
+ 955              	.L58:
+ 322:Drivers/BMP388/driver_bmp388_fifo.c ****         (void)bmp388_deinit(&gs_handle);
+ 956              		.loc 1 322 9 is_stmt 1 view .LVU297
+ 957 03b4 1048     		ldr	r0, .L63+20
+ 958              	.LVL153:
+ 322:Drivers/BMP388/driver_bmp388_fifo.c ****         (void)bmp388_deinit(&gs_handle);
+ 959              		.loc 1 322 9 is_stmt 0 view .LVU298
+ 960 03b6 FFF7FEFF 		bl	bmp388_interface_debug_print
+ 961              	.LVL154:
+ 323:Drivers/BMP388/driver_bmp388_fifo.c ****         
+ 962              		.loc 1 323 9 is_stmt 1 view .LVU299
+ 323:Drivers/BMP388/driver_bmp388_fifo.c ****         
+ 963              		.loc 1 323 15 is_stmt 0 view .LVU300
+ 964 03ba 0B48     		ldr	r0, .L63+4
+ 965 03bc FFF7FEFF 		bl	bmp388_deinit
+ 966              	.LVL155:
+ 325:Drivers/BMP388/driver_bmp388_fifo.c ****     }
+ 967              		.loc 1 325 9 is_stmt 1 view .LVU301
+ 325:Drivers/BMP388/driver_bmp388_fifo.c ****     }
+ 968              		.loc 1 325 16 is_stmt 0 view .LVU302
+ 969 03c0 0120     		movs	r0, #1
+ 970 03c2 0FE7     		b	.L8
+ 971              	.LVL156:
+ 972              	.L59:
+ 332:Drivers/BMP388/driver_bmp388_fifo.c ****         (void)bmp388_deinit(&gs_handle);
+ 973              		.loc 1 332 9 is_stmt 1 view .LVU303
+ 974 03c4 0D48     		ldr	r0, .L63+24
+ 975              	.LVL157:
+ 332:Drivers/BMP388/driver_bmp388_fifo.c ****         (void)bmp388_deinit(&gs_handle);
+ 976              		.loc 1 332 9 is_stmt 0 view .LVU304
+ 977 03c6 FFF7FEFF 		bl	bmp388_interface_debug_print
+ 978              	.LVL158:
+ 333:Drivers/BMP388/driver_bmp388_fifo.c ****         
+ 979              		.loc 1 333 9 is_stmt 1 view .LVU305
+ 333:Drivers/BMP388/driver_bmp388_fifo.c ****         
+ 980              		.loc 1 333 15 is_stmt 0 view .LVU306
+ 981 03ca 0748     		ldr	r0, .L63+4
+ 982 03cc FFF7FEFF 		bl	bmp388_deinit
+ 983              	.LVL159:
+ 335:Drivers/BMP388/driver_bmp388_fifo.c ****     }
+ 984              		.loc 1 335 9 is_stmt 1 view .LVU307
+ 335:Drivers/BMP388/driver_bmp388_fifo.c ****     }
+ 985              		.loc 1 335 16 is_stmt 0 view .LVU308
+ 986 03d0 0120     		movs	r0, #1
+ 987 03d2 07E7     		b	.L8
+ 988              	.LVL160:
+ 989              	.L60:
+ 342:Drivers/BMP388/driver_bmp388_fifo.c ****         (void)bmp388_deinit(&gs_handle);
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccWOK94f.s 			page 29
+
+
+ 990              		.loc 1 342 9 is_stmt 1 view .LVU309
+ 991 03d4 0A48     		ldr	r0, .L63+28
+ 992              	.LVL161:
+ 342:Drivers/BMP388/driver_bmp388_fifo.c ****         (void)bmp388_deinit(&gs_handle);
+ 993              		.loc 1 342 9 is_stmt 0 view .LVU310
+ 994 03d6 FFF7FEFF 		bl	bmp388_interface_debug_print
+ 995              	.LVL162:
+ 343:Drivers/BMP388/driver_bmp388_fifo.c ****         
+ 996              		.loc 1 343 9 is_stmt 1 view .LVU311
+ 343:Drivers/BMP388/driver_bmp388_fifo.c ****         
+ 997              		.loc 1 343 15 is_stmt 0 view .LVU312
+ 998 03da 0348     		ldr	r0, .L63+4
+ 999 03dc FFF7FEFF 		bl	bmp388_deinit
+ 1000              	.LVL163:
+ 345:Drivers/BMP388/driver_bmp388_fifo.c ****     }
+ 1001              		.loc 1 345 9 is_stmt 1 view .LVU313
+ 345:Drivers/BMP388/driver_bmp388_fifo.c ****     }
+ 1002              		.loc 1 345 16 is_stmt 0 view .LVU314
+ 1003 03e0 0120     		movs	r0, #1
+ 1004 03e2 FFE6     		b	.L8
+ 1005              	.L64:
+ 1006              		.align	2
+ 1007              	.L63:
+ 1008 03e4 CC020000 		.word	.LC18
+ 1009 03e8 00000000 		.word	gs_handle
+ 1010 03ec F8020000 		.word	.LC19
+ 1011 03f0 18030000 		.word	.LC20
+ 1012 03f4 3C030000 		.word	.LC21
+ 1013 03f8 68030000 		.word	.LC22
+ 1014 03fc 98030000 		.word	.LC23
+ 1015 0400 B4030000 		.word	.LC24
+ 1016              		.cfi_endproc
+ 1017              	.LFE4:
+ 1019              		.section	.text.bmp388_fifo_read,"ax",%progbits
+ 1020              		.align	1
+ 1021              		.global	bmp388_fifo_read
+ 1022              		.syntax unified
+ 1023              		.thumb
+ 1024              		.thumb_func
+ 1026              	bmp388_fifo_read:
+ 1027              	.LVL164:
+ 1028              	.LFB5:
+ 360:Drivers/BMP388/driver_bmp388_fifo.c **** 
+ 361:Drivers/BMP388/driver_bmp388_fifo.c **** /**
+ 362:Drivers/BMP388/driver_bmp388_fifo.c ****  * @brief         fifo example read
+ 363:Drivers/BMP388/driver_bmp388_fifo.c ****  * @param[in]     *buf pointer a data buffer
+ 364:Drivers/BMP388/driver_bmp388_fifo.c ****  * @param[in]     buf_len data buffer length
+ 365:Drivers/BMP388/driver_bmp388_fifo.c ****  * @param[out]    *frame pointer a frame structure
+ 366:Drivers/BMP388/driver_bmp388_fifo.c ****  * @param[in,out] *frame_len pointer a frame data buffer
+ 367:Drivers/BMP388/driver_bmp388_fifo.c ****  * @return        status code
+ 368:Drivers/BMP388/driver_bmp388_fifo.c ****  *                - 0 success
+ 369:Drivers/BMP388/driver_bmp388_fifo.c ****  *                - 1 read failed
+ 370:Drivers/BMP388/driver_bmp388_fifo.c ****  * @note          none
+ 371:Drivers/BMP388/driver_bmp388_fifo.c ****  */
+ 372:Drivers/BMP388/driver_bmp388_fifo.c **** uint8_t bmp388_fifo_read(uint8_t *buf, uint16_t buf_len, bmp388_frame_t *frame, uint16_t *frame_len
+ 373:Drivers/BMP388/driver_bmp388_fifo.c **** {
+ 1029              		.loc 1 373 1 is_stmt 1 view -0
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccWOK94f.s 			page 30
+
+
+ 1030              		.cfi_startproc
+ 1031              		@ args = 0, pretend = 0, frame = 8
+ 1032              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1033              		.loc 1 373 1 is_stmt 0 view .LVU316
+ 1034 0000 70B5     		push	{r4, r5, r6, lr}
+ 1035              		.cfi_def_cfa_offset 16
+ 1036              		.cfi_offset 4, -16
+ 1037              		.cfi_offset 5, -12
+ 1038              		.cfi_offset 6, -8
+ 1039              		.cfi_offset 14, -4
+ 1040 0002 84B0     		sub	sp, sp, #16
+ 1041              		.cfi_def_cfa_offset 32
+ 1042 0004 0446     		mov	r4, r0
+ 1043 0006 1546     		mov	r5, r2
+ 1044 0008 1E46     		mov	r6, r3
+ 1045 000a ADF80E10 		strh	r1, [sp, #14]	@ movhi
+ 374:Drivers/BMP388/driver_bmp388_fifo.c ****     /* read fifo */
+ 375:Drivers/BMP388/driver_bmp388_fifo.c ****     if (bmp388_read_fifo(&gs_handle, (uint8_t *)buf, (uint16_t *)&buf_len) != 0)
+ 1046              		.loc 1 375 5 is_stmt 1 view .LVU317
+ 1047              		.loc 1 375 9 is_stmt 0 view .LVU318
+ 1048 000e 0DF10E02 		add	r2, sp, #14
+ 1049              	.LVL165:
+ 1050              		.loc 1 375 9 view .LVU319
+ 1051 0012 0146     		mov	r1, r0
+ 1052              	.LVL166:
+ 1053              		.loc 1 375 9 view .LVU320
+ 1054 0014 0948     		ldr	r0, .L71
+ 1055              	.LVL167:
+ 1056              		.loc 1 375 9 view .LVU321
+ 1057 0016 FFF7FEFF 		bl	bmp388_read_fifo
+ 1058              	.LVL168:
+ 1059              		.loc 1 375 8 discriminator 1 view .LVU322
+ 1060 001a 10B1     		cbz	r0, .L70
+ 376:Drivers/BMP388/driver_bmp388_fifo.c ****     {
+ 377:Drivers/BMP388/driver_bmp388_fifo.c ****         return 1;
+ 1061              		.loc 1 377 16 view .LVU323
+ 1062 001c 0120     		movs	r0, #1
+ 1063              	.L66:
+ 378:Drivers/BMP388/driver_bmp388_fifo.c ****     }
+ 379:Drivers/BMP388/driver_bmp388_fifo.c ****     /* parse fifo */
+ 380:Drivers/BMP388/driver_bmp388_fifo.c ****     if (bmp388_fifo_parse(&gs_handle, (uint8_t *)buf, buf_len, (bmp388_frame_t *)frame, (uint16_t *
+ 381:Drivers/BMP388/driver_bmp388_fifo.c ****     {
+ 382:Drivers/BMP388/driver_bmp388_fifo.c ****         return 1;
+ 383:Drivers/BMP388/driver_bmp388_fifo.c ****     }
+ 384:Drivers/BMP388/driver_bmp388_fifo.c ****    
+ 385:Drivers/BMP388/driver_bmp388_fifo.c ****     return 0;
+ 386:Drivers/BMP388/driver_bmp388_fifo.c **** }
+ 1064              		.loc 1 386 1 view .LVU324
+ 1065 001e 04B0     		add	sp, sp, #16
+ 1066              		.cfi_remember_state
+ 1067              		.cfi_def_cfa_offset 16
+ 1068              		@ sp needed
+ 1069 0020 70BD     		pop	{r4, r5, r6, pc}
+ 1070              	.LVL169:
+ 1071              	.L70:
+ 1072              		.cfi_restore_state
+ 380:Drivers/BMP388/driver_bmp388_fifo.c ****     {
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccWOK94f.s 			page 31
+
+
+ 1073              		.loc 1 380 5 is_stmt 1 view .LVU325
+ 380:Drivers/BMP388/driver_bmp388_fifo.c ****     {
+ 1074              		.loc 1 380 9 is_stmt 0 view .LVU326
+ 1075 0022 0096     		str	r6, [sp]
+ 1076 0024 2B46     		mov	r3, r5
+ 1077 0026 BDF80E20 		ldrh	r2, [sp, #14]
+ 1078 002a 2146     		mov	r1, r4
+ 1079 002c 0348     		ldr	r0, .L71
+ 1080 002e FFF7FEFF 		bl	bmp388_fifo_parse
+ 1081              	.LVL170:
+ 380:Drivers/BMP388/driver_bmp388_fifo.c ****     {
+ 1082              		.loc 1 380 8 discriminator 1 view .LVU327
+ 1083 0032 0028     		cmp	r0, #0
+ 1084 0034 F3D0     		beq	.L66
+ 382:Drivers/BMP388/driver_bmp388_fifo.c ****     }
+ 1085              		.loc 1 382 16 view .LVU328
+ 1086 0036 0120     		movs	r0, #1
+ 1087 0038 F1E7     		b	.L66
+ 1088              	.L72:
+ 1089 003a 00BF     		.align	2
+ 1090              	.L71:
+ 1091 003c 00000000 		.word	gs_handle
+ 1092              		.cfi_endproc
+ 1093              	.LFE5:
+ 1095              		.section	.text.bmp388_fifo_deinit,"ax",%progbits
+ 1096              		.align	1
+ 1097              		.global	bmp388_fifo_deinit
+ 1098              		.syntax unified
+ 1099              		.thumb
+ 1100              		.thumb_func
+ 1102              	bmp388_fifo_deinit:
+ 1103              	.LFB6:
+ 387:Drivers/BMP388/driver_bmp388_fifo.c **** 
+ 388:Drivers/BMP388/driver_bmp388_fifo.c **** /**
+ 389:Drivers/BMP388/driver_bmp388_fifo.c ****  * @brief  fifo example deinit
+ 390:Drivers/BMP388/driver_bmp388_fifo.c ****  * @return status code
+ 391:Drivers/BMP388/driver_bmp388_fifo.c ****  *         - 0 success
+ 392:Drivers/BMP388/driver_bmp388_fifo.c ****  *         - 1 deinit failed
+ 393:Drivers/BMP388/driver_bmp388_fifo.c ****  * @note   none
+ 394:Drivers/BMP388/driver_bmp388_fifo.c ****  */
+ 395:Drivers/BMP388/driver_bmp388_fifo.c **** uint8_t bmp388_fifo_deinit(void)
+ 396:Drivers/BMP388/driver_bmp388_fifo.c **** {
+ 1104              		.loc 1 396 1 is_stmt 1 view -0
+ 1105              		.cfi_startproc
+ 1106              		@ args = 0, pretend = 0, frame = 0
+ 1107              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1108 0000 08B5     		push	{r3, lr}
+ 1109              		.cfi_def_cfa_offset 8
+ 1110              		.cfi_offset 3, -8
+ 1111              		.cfi_offset 14, -4
+ 397:Drivers/BMP388/driver_bmp388_fifo.c ****     uint8_t res;
+ 1112              		.loc 1 397 5 view .LVU330
+ 398:Drivers/BMP388/driver_bmp388_fifo.c ****     
+ 399:Drivers/BMP388/driver_bmp388_fifo.c ****     /* set sleep mode */
+ 400:Drivers/BMP388/driver_bmp388_fifo.c ****     res = bmp388_set_mode(&gs_handle, BMP388_MODE_SLEEP_MODE);
+ 1113              		.loc 1 400 5 view .LVU331
+ 1114              		.loc 1 400 11 is_stmt 0 view .LVU332
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccWOK94f.s 			page 32
+
+
+ 1115 0002 0021     		movs	r1, #0
+ 1116 0004 0648     		ldr	r0, .L78
+ 1117 0006 FFF7FEFF 		bl	bmp388_set_mode
+ 1118              	.LVL171:
+ 401:Drivers/BMP388/driver_bmp388_fifo.c ****     if (res != 0)
+ 1119              		.loc 1 401 5 is_stmt 1 view .LVU333
+ 1120              		.loc 1 401 8 is_stmt 0 view .LVU334
+ 1121 000a 08B1     		cbz	r0, .L77
+ 402:Drivers/BMP388/driver_bmp388_fifo.c ****     {
+ 403:Drivers/BMP388/driver_bmp388_fifo.c ****         return 1;
+ 1122              		.loc 1 403 16 view .LVU335
+ 1123 000c 0120     		movs	r0, #1
+ 1124              	.LVL172:
+ 1125              	.L74:
+ 404:Drivers/BMP388/driver_bmp388_fifo.c ****     }
+ 405:Drivers/BMP388/driver_bmp388_fifo.c ****     
+ 406:Drivers/BMP388/driver_bmp388_fifo.c ****     if (bmp388_deinit(&gs_handle) != 0)
+ 407:Drivers/BMP388/driver_bmp388_fifo.c ****     {
+ 408:Drivers/BMP388/driver_bmp388_fifo.c ****         return 1;
+ 409:Drivers/BMP388/driver_bmp388_fifo.c ****     }
+ 410:Drivers/BMP388/driver_bmp388_fifo.c ****     else
+ 411:Drivers/BMP388/driver_bmp388_fifo.c ****     {
+ 412:Drivers/BMP388/driver_bmp388_fifo.c ****         return 0;
+ 413:Drivers/BMP388/driver_bmp388_fifo.c ****     }
+ 414:Drivers/BMP388/driver_bmp388_fifo.c **** }
+ 1126              		.loc 1 414 1 view .LVU336
+ 1127 000e 08BD     		pop	{r3, pc}
+ 1128              	.LVL173:
+ 1129              	.L77:
+ 406:Drivers/BMP388/driver_bmp388_fifo.c ****     {
+ 1130              		.loc 1 406 5 is_stmt 1 view .LVU337
+ 406:Drivers/BMP388/driver_bmp388_fifo.c ****     {
+ 1131              		.loc 1 406 9 is_stmt 0 view .LVU338
+ 1132 0010 0348     		ldr	r0, .L78
+ 1133              	.LVL174:
+ 406:Drivers/BMP388/driver_bmp388_fifo.c ****     {
+ 1134              		.loc 1 406 9 view .LVU339
+ 1135 0012 FFF7FEFF 		bl	bmp388_deinit
+ 1136              	.LVL175:
+ 406:Drivers/BMP388/driver_bmp388_fifo.c ****     {
+ 1137              		.loc 1 406 8 discriminator 1 view .LVU340
+ 1138 0016 0028     		cmp	r0, #0
+ 1139 0018 F9D0     		beq	.L74
+ 408:Drivers/BMP388/driver_bmp388_fifo.c ****     }
+ 1140              		.loc 1 408 16 view .LVU341
+ 1141 001a 0120     		movs	r0, #1
+ 1142 001c F7E7     		b	.L74
+ 1143              	.L79:
+ 1144 001e 00BF     		.align	2
+ 1145              	.L78:
+ 1146 0020 00000000 		.word	gs_handle
+ 1147              		.cfi_endproc
+ 1148              	.LFE6:
+ 1150              		.section	.bss.gs_handle,"aw",%nobits
+ 1151              		.align	3
+ 1154              	gs_handle:
+ 1155 0000 00000000 		.space	592
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccWOK94f.s 			page 33
+
+
+ 1155      00000000 
+ 1155      00000000 
+ 1155      00000000 
+ 1155      00000000 
+ 1156              		.text
+ 1157              	.Letext0:
+ 1158              		.file 2 "C:/Users/Nathan/AppData/Roaming/Code/User/globalStorage/bmd.stm32-for-vscode/@xpack-dev-t
+ 1159              		.file 3 "C:/Users/Nathan/AppData/Roaming/Code/User/globalStorage/bmd.stm32-for-vscode/@xpack-dev-t
+ 1160              		.file 4 "Drivers/BMP388/driver_bmp388.h"
+ 1161              		.file 5 "Drivers/BMP388/driver_bmp388_interface.h"
+ 1162              		.file 6 "C:/Users/Nathan/AppData/Roaming/Code/User/globalStorage/bmd.stm32-for-vscode/@xpack-dev-t
+ 1163              		.file 7 "<built-in>"
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccWOK94f.s 			page 34
+
+
+DEFINED SYMBOLS
+                            *ABS*:00000000 driver_bmp388_fifo.c
+C:\Users\Nathan\AppData\Local\Temp\ccWOK94f.s:20     .text.bmp388_fifo_irq_handler:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccWOK94f.s:26     .text.bmp388_fifo_irq_handler:00000000 bmp388_fifo_irq_handler
+C:\Users\Nathan\AppData\Local\Temp\ccWOK94f.s:51     .text.bmp388_fifo_irq_handler:00000010 $d
+C:\Users\Nathan\AppData\Local\Temp\ccWOK94f.s:1154   .bss.gs_handle:00000000 gs_handle
+C:\Users\Nathan\AppData\Local\Temp\ccWOK94f.s:56     .rodata.bmp388_fifo_init.str1.4:00000000 $d
+C:\Users\Nathan\AppData\Local\Temp\ccWOK94f.s:136    .text.bmp388_fifo_init:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccWOK94f.s:142    .text.bmp388_fifo_init:00000000 bmp388_fifo_init
+C:\Users\Nathan\AppData\Local\Temp\ccWOK94f.s:856    .text.bmp388_fifo_init:000002fc $d
+C:\Users\Nathan\AppData\Local\Temp\ccWOK94f.s:889    .text.bmp388_fifo_init:00000374 $t
+C:\Users\Nathan\AppData\Local\Temp\ccWOK94f.s:1008   .text.bmp388_fifo_init:000003e4 $d
+C:\Users\Nathan\AppData\Local\Temp\ccWOK94f.s:1020   .text.bmp388_fifo_read:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccWOK94f.s:1026   .text.bmp388_fifo_read:00000000 bmp388_fifo_read
+C:\Users\Nathan\AppData\Local\Temp\ccWOK94f.s:1091   .text.bmp388_fifo_read:0000003c $d
+C:\Users\Nathan\AppData\Local\Temp\ccWOK94f.s:1096   .text.bmp388_fifo_deinit:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccWOK94f.s:1102   .text.bmp388_fifo_deinit:00000000 bmp388_fifo_deinit
+C:\Users\Nathan\AppData\Local\Temp\ccWOK94f.s:1146   .text.bmp388_fifo_deinit:00000020 $d
+C:\Users\Nathan\AppData\Local\Temp\ccWOK94f.s:1151   .bss.gs_handle:00000000 $d
+
+UNDEFINED SYMBOLS
+bmp388_irq_handler
+memset
+bmp388_set_interface
+bmp388_set_addr_pin
+bmp388_init
+bmp388_set_spi_wire
+bmp388_set_iic_watchdog_timer
+bmp388_set_iic_watchdog_period
+bmp388_set_fifo
+bmp388_set_fifo_stop_on_full
+bmp388_set_fifo_watermark
+bmp388_set_fifo_sensortime_on
+bmp388_set_fifo_pressure_on
+bmp388_set_fifo_temperature_on
+bmp388_set_fifo_subsampling
+bmp388_set_fifo_data_source
+bmp388_set_interrupt_pin_type
+bmp388_set_interrupt_active_level
+bmp388_set_latch_interrupt_pin_and_interrupt_status
+bmp388_set_interrupt_fifo_watermark
+bmp388_set_interrupt_fifo_full
+bmp388_set_interrupt_data_ready
+bmp388_set_pressure
+bmp388_set_temperature
+bmp388_set_pressure_oversampling
+bmp388_set_temperature_oversampling
+bmp388_set_odr
+bmp388_set_filter_coefficient
+bmp388_set_mode
+bmp388_interface_debug_print
+bmp388_deinit
+bmp388_interface_iic_init
+bmp388_interface_iic_deinit
+bmp388_interface_iic_read
+bmp388_interface_iic_write
+bmp388_interface_spi_init
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccWOK94f.s 			page 35
+
+
+bmp388_interface_spi_deinit
+bmp388_interface_spi_read
+bmp388_interface_spi_write
+bmp388_interface_delay_ms
+bmp388_read_fifo
+bmp388_fifo_parse
