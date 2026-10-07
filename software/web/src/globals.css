@@ -1,0 +1,204 @@
+@import "tailwindcss";
+
+@theme inline {
+  --color-bg: #0c0c0d;
+  --color-panel: #121214;
+  --color-panel-2: #0e0e10;
+  --color-line: #232326;
+  --color-grid: #1b1b1f;
+  --color-ink: #ece6da;
+  --color-ink-2: #a59f93;
+  --color-ink-3: #6b665e;
+  --color-navy: #0d2a5c;
+  --color-teal: #1f8a97;
+  --color-cream: #f3dfb0;
+  --color-orange-2: #f29a5a;
+  --color-orange: #f2552a;
+  --color-x: #ea5a2c;
+  --color-y: #1f9aa8;
+  --color-z: #3b5fd0;
+  --font-display: "Space Grotesk", "Helvetica Neue", Arial, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+}
+
+:root {
+  --stripes: linear-gradient(
+    90deg,
+    #0d2a5c 0 20%,
+    #1f8a97 20% 40%,
+    #f3dfb0 40% 60%,
+    #f29a5a 60% 80%,
+    #f2552a 80%
+  );
+  color-scheme: dark;
+}
+
+* {
+  scrollbar-width: thin;
+  scrollbar-color: #232326 #0c0c0d;
+}
+
+body {
+  background: #0c0c0d;
+  color: #ece6da;
+  font-family: var(--font-display);
+}
+
+.font-display {
+  font-family: var(--font-display);
+}
+
+/* Panel: card with the five-stripe bar along the top edge */
+.panel {
+  position: relative;
+  background: #121214;
+  border: 1px solid #232326;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.panel::before {
+  content: "";
+  position: absolute;
+  inset: 0 0 auto 0;
+  height: 3px;
+  background: var(--stripes);
+}
+
+.stripebar {
+  height: 3px;
+  background: var(--stripes);
+  border-radius: 2px;
+}
+
+.wordmark {
+  font-size: 20px;
+  letter-spacing: 0.36em;
+  color: #f3dfb0;
+  font-weight: 700;
+  margin-left: 0.36em;
+  line-height: 1.3;
+}
+
+.panel-title {
+  font-size: 11px;
+  letter-spacing: 0.16em;
+  color: #f3dfb0;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+.panel-title small {
+  color: #6b665e;
+  font-weight: 400;
+  letter-spacing: 0.06em;
+  margin-left: 8px;
+  text-transform: none;
+}
+
+.btn {
+  background: transparent;
+  color: #f3dfb0;
+  border: 1px solid #3a3a40;
+  border-radius: 6px;
+  padding: 6px 12px;
+  font: inherit;
+  font-size: 10px;
+  letter-spacing: 0.14em;
+  cursor: pointer;
+  text-transform: uppercase;
+  font-weight: 600;
+  transition:
+    border-color 0.15s,
+    color 0.15s;
+}
+
+.btn:hover {
+  border-color: #f2552a;
+  color: #f2552a;
+}
+
+.btn:disabled {
+  opacity: 0.35;
+  cursor: default;
+}
+
+.btn.active {
+  border-color: #1f8a97;
+  color: #1f8a97;
+}
+
+.btn.danger {
+  border-color: rgba(242, 85, 42, 0.5);
+  color: #f2552a;
+}
+
+.flag {
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  padding: 3px 7px;
+  border: 1px solid #232326;
+  border-radius: 4px;
+  color: #6b665e;
+  font-weight: 600;
+}
+
+.flag.on {
+  color: #1f8a97;
+  border-color: rgba(31, 138, 151, 0.6);
+}
+
+.flag.warn.on {
+  color: #f29a5a;
+  border-color: rgba(242, 154, 90, 0.6);
+}
+
+.console {
+  background: #0e0e10;
+  border: 1px solid #232326;
+  border-radius: 8px;
+  padding: 8px 12px;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: #a59f93;
+  overflow: auto;
+  white-space: pre;
+}
+
+.console .t {
+  color: #6b665e;
+}
+
+@keyframes pulse-dot {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.3;
+  }
+}
+
+.pulse-dot {
+  animation: pulse-dot 2s ease-in-out infinite;
+}
+
+/* Input styling */
+input[type="password"],
+input[type="text"],
+select {
+  background: #0e0e10;
+  border: 1px solid #232326;
+  color: #ece6da;
+  border-radius: 6px;
+  padding: 0.35rem 0.6rem;
+  font-family: var(--font-display);
+  transition: border-color 0.2s;
+}
+
+input[type="password"]:focus,
+input[type="text"]:focus,
+select:focus {
+  outline: none;
+  border-color: #1f8a97;
+}

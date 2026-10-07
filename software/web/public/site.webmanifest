@@ -1,0 +1,10 @@
+{
+  "name": "Athena Telemetry",
+  "short_name": "Athena",
+  "icons": [
+    { "src": "/logo.png", "sizes": "512x512", "type": "image/png" }
+  ],
+  "theme_color": "#0c0c0d",
+  "background_color": "#0c0c0d",
+  "display": "standalone"
+}
