@@ -76,6 +76,8 @@ endif
 # C sources
 C_SOURCES =  \
 ../Athena/athena.c \
+../Athena/athena_link.c \
+../Athena/recovery.c \
 Core/Src/pd.c \
 Core/Src/athena_pd_lr.c \
 Core/Src/athena_pd_ff.c \

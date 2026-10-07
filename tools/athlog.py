@@ -61,8 +61,10 @@ def decode(t, p):
     return None, None
 
 def open_port(path):
+    """raw 8-bit tty: binary frames contain 0x03/0x11/0x13 etc., which a cooked tty would swallow"""
+    import tty
     fd = os.open(path, os.O_RDWR | os.O_NONBLOCK | os.O_NOCTTY)
-    a = termios.tcgetattr(fd); a[3] &= ~(termios.ECHO | termios.ICANON); a[0] &= ~termios.ICRNL; termios.tcsetattr(fd, termios.TCSANOW, a)
+    tty.setraw(fd, termios.TCSANOW)
     return fd
 
 def read_for(fd, seconds):
@@ -85,6 +87,8 @@ def cmd_dump(port, out):
             buf += chunk; last = time.time()
             if b'LOGEND' in buf: break
         elif time.time() - last > 5 and b'LOGDUMP' in buf: break
+        elif time.time() - t0 > 20 and b'LOGDUMP' not in buf:
+            sys.exit('no LOGDUMP header within 20 s: wrong port, or the TPU is not running the logging firmware')
     os.close(fd)
     i = buf.find(b'LOGDUMP')
     if i < 0: sys.exit('no LOGDUMP header seen (is this the TPU port?)')
@@ -102,16 +106,20 @@ def cmd_csv(path):
         if not kind: continue
         if kind not in files:
             files[kind] = open(f'{base}_{kind}.csv', 'w'); files[kind].write(','.join(row.keys()) + '\n')
-        files[kind].write(','.join(f'{v:.6f}' if isinstance(v, float) else str(v).replace(',', ';') for v in row.values()) + '\n')
+        files[kind].write(','.join(f'{v:.6f}' if isinstance(v, float) else '"' + str(v).replace('"', "'").replace('\r', ' ').replace('\n', ' ') + '"' if isinstance(v, str) else str(v) for v in row.values()) + '\n')
         counts[kind] = counts.get(kind, 0) + 1
     for f in files.values(): f.close()
     print({k: v for k, v in counts.items()}, '->', ', '.join(f'{base}_{k}.csv' for k in files))
 
 def cmd_tail(port):
-    fd = open_port(port)
+    fd = open_port(port); pending = b''
     try:
         while True:
-            for t, p, text in frames(read_for(fd, 1.0)):
+            data = pending + read_for(fd, 1.0)
+            # keep an unfinished trailing frame for the next round instead of dropping it
+            cut = data.rfind(bytes([SOF]), max(0, len(data) - 205)); pending = b''
+            if cut >= 0 and len(data) - cut < 5 + (data[cut + 2] if cut + 2 < len(data) else MAXP): pending, data = data[cut:], data[:cut]
+            for t, p, text in frames(data):
                 kind, row = decode(t, p)
                 if kind == 'state': print(f"state t={row['t_us']/1e6:8.2f}s alt={-row['pD']:7.1f} vD={row['vD']:6.1f} imu={row['imu_mask']} flags=0x{row['flags']:02x} hz={row['loop_hz']}")
                 elif kind == 'gps':  print(f"gps   fix={row['fix']} sv={row['sv']} {row['lat']:.6f},{row['lon']:.6f} h={row['hmsl']:.1f}")

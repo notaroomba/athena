@@ -1,4 +1,4 @@
-import type { AthenaState, GpsFix, Quat, Telemetry } from "./types";
+import type { AthenaState, GpsFix, Quat, SpuStatus, Telemetry } from "./types";
 
 // Athena link frame (mirror of firmware/Athena/athena_link.h):
 //   [0xA5][type u8][len u8][payload len bytes][crc16 lo][crc16 hi]
@@ -6,7 +6,7 @@ import type { AthenaState, GpsFix, Quat, Telemetry } from "./types";
 
 export const SOF = 0xa5;
 export const MAX_PAYLOAD = 200;
-export const PKT = { GPS: 0x01, STATE: 0x02, TELEM: 0x03, TEXT: 0x7f } as const;
+export const PKT = { GPS: 0x01, STATE: 0x02, TELEM: 0x03, SPU: 0x04, CMD: 0x05, TEXT: 0x7f } as const;
 
 export const STATE_FLAG = {
   IN_FLIGHT: 1 << 0,
@@ -15,6 +15,21 @@ export const STATE_FLAG = {
   MAG_OK: 1 << 3,
   ORIGIN_OK: 1 << 4,
 } as const;
+
+export const SPU_PHASES = ["pad", "boost", "coast", "apogee", "descent", "landed"] as const;
+export const SPU_FLAG = {
+  ARMED: 1 << 0,
+  MPU_LINK: 1 << 1,
+  CHRG_OK: 1 << 2,
+  PROCHOT: 1 << 3,
+  CMPOUT: 1 << 4,
+  PD_APP: 1 << 5,
+  BQ_OK: 1 << 6,
+} as const;
+export const PD_MODES = ["none", "PTCH", "APP", "BOOT"] as const;
+export const CMD = { PING: 1, ARM: 2, DISARM: 3, FIRE: 4, SERVO: 5, RESET_MPU: 6, SET_MAIN_ALT: 7 } as const;
+/** "ARM!" - ARM and FIRE are refused by the SPU without it. */
+export const CMD_KEY = 0x41524d21;
 
 export function crc16(bytes: Uint8Array, off = 0, len = bytes.length - off): number {
   let crc = 0xffff;
@@ -195,4 +210,62 @@ export function quatToEuler(q: Quat): [number, number, number] {
     Math.asin(s) * R2D,
     Math.atan2(2 * (w * z + x * y), 1 - 2 * (y * y + z * z)) * R2D,
   ];
+}
+
+/** Athena_SpuStatus, 44 bytes. */
+export function parseSpu(p: Uint8Array): SpuStatus | null {
+  if (p.length < 44) return null;
+  const v = view(p);
+  const u16 = (o: number) => v.getUint16(o, true);
+  return {
+    t_ms: v.getUint32(0, true),
+    vbat_mv: u16(4),
+    vsys_mv: u16(6),
+    vbus_mv: u16(8),
+    ibat_ma: v.getInt16(10, true),
+    iin_ma: u16(12),
+    chg_status: u16(14),
+    main_alt_m: u16(16),
+    phase: p[18],
+    flags: p[19],
+    pyro_fired: p[20],
+    pyro_on: p[21],
+    pd_mode: p[22],
+    pd_status: p[23],
+    servo_us: [u16(24), u16(26), u16(28), u16(30), u16(32), u16(34)],
+    apogee_m: v.getFloat32(36, true),
+    vmax_ms: v.getFloat32(40, true),
+  };
+}
+
+/** Athena_Cmd (8 bytes) wrapped in a CMD frame, ready for the serial/Bluetooth link. */
+export function encodeCmd(cmd: number, arg = 0, value = 0, key = 0): Uint8Array {
+  const b = new Uint8Array(8);
+  const v = view(b);
+  b[0] = cmd;
+  b[1] = arg;
+  v.setUint16(2, value, true);
+  v.setUint32(4, key >>> 0, true);
+  return encodeFrame(PKT.CMD, b);
+}
+
+const EARTH_R = 6371000;
+
+/** Local NED offset (m) from an origin to lat/lon, flat-earth (fine for a few km). */
+export function nedToLatLon(lat0: number, lon0: number, north: number, east: number): [number, number] {
+  const lat = lat0 + (north / EARTH_R) * R2D;
+  const lon = lon0 + (east / (EARTH_R * Math.cos(lat0 / R2D))) * R2D;
+  return [lat, lon];
+}
+
+/** Great-circle distance (m) and initial bearing (deg) from a to b. */
+export function distanceBearing(lat1: number, lon1: number, lat2: number, lon2: number): [number, number] {
+  const p1 = lat1 / R2D,
+    p2 = lat2 / R2D,
+    dl = (lon2 - lon1) / R2D;
+  const a = Math.sin((p2 - p1) / 2) ** 2 + Math.cos(p1) * Math.cos(p2) * Math.sin(dl / 2) ** 2;
+  const d = 2 * EARTH_R * Math.asin(Math.sqrt(a));
+  const y = Math.sin(dl) * Math.cos(p2);
+  const x = Math.cos(p1) * Math.sin(p2) - Math.sin(p1) * Math.cos(p2) * Math.cos(dl);
+  return [d, (Math.atan2(y, x) * R2D + 360) % 360];
 }

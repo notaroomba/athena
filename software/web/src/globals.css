@@ -202,3 +202,23 @@ select:focus {
   outline: none;
   border-color: #1f8a97;
 }
+
+/* Leaflet map: dark tiles by inverting OSM, chrome in the dashboard palette */
+.leaflet-container {
+  font-family: var(--font-display);
+  background: #0e0e10;
+}
+
+.dark-tiles {
+  filter: invert(1) hue-rotate(180deg) brightness(0.82) contrast(0.9) saturate(0.35);
+}
+
+.leaflet-control-attribution {
+  background: rgba(12, 12, 13, 0.75) !important;
+  color: #6b665e !important;
+  font-size: 9px !important;
+}
+
+.leaflet-control-attribution a {
+  color: #a59f93 !important;
+}

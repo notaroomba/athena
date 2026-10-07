@@ -126,10 +126,10 @@ help:
 	@echo   TPU-debug.elf, TPU-release.elf
 
 ######################################
-# Host self-check of the pure-C modules (link protocol, UBX parser, fusion filter)
+# Host self-check of the pure-C modules (link protocol, UBX parser, fusion filter, SPU recovery logic)
 # Runs on the dev machine with any C compiler, no toolchain or hardware needed.
 ######################################
 host-test:
 	@mkdir -p "$(BUILD_DIR)"
-	cc -std=c99 -Wall -Wextra -O1 -I Athena test/test_host.c Athena/athena_link.c Athena/ubx.c Athena/fusion.c -lm -o $(BUILD_DIR)/host_test
+	cc -std=c99 -Wall -Wextra -O1 -I Athena test/test_host.c Athena/athena_link.c Athena/ubx.c Athena/fusion.c Athena/recovery.c -lm -o $(BUILD_DIR)/host_test
 	./$(BUILD_DIR)/host_test

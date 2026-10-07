@@ -20,7 +20,9 @@ floatAbi: -mfloat-abi=hard
 ldscript: STM32H743xx_FLASH.ld # linker script
 
 # Compiler definitions. The -D prefix for the compiler will be automatically added.
-cDefinitions: []
+cDefinitions:
+  - SDMMC_SWDATATIMEOUT=1000     # HAL SD init waits are otherwise unbounded (card pulled mid-init)
+  - SDMMC_DATATIMEOUT=12500000    # ~1 s of SDMMC clocks at 12.5 MHz
 cxxDefinitions: []
 asDefinitions: []
 

@@ -74,6 +74,7 @@ UART_HandleTypeDef huart8;
 UART_HandleTypeDef huart1;
 
 /* USER CODE BEGIN PV */
+static uint32_t dfu_boot_magic;
 Athena_LED_PinConfig led_pins = {
       .port_r = MPU_R_GPIO_Port,
       .pin_r = MPU_R_Pin,
@@ -95,6 +96,16 @@ static Athena_GpsFix  last_gps;
 static uint32_t       gps_count;
 static ICP201xx_t     icp_device;
 static uint8_t        imu_mask, mag_ok, icp_ok;
+static Link           spu_link;                 // UART8 <-> SPU: state frames out, SPU status in
+static Link           usb_link;                 // USB console: command frames from the dashboard, 'B'/'J'
+static uint8_t        uart8_rx_byte;
+static uint8_t        uart8_frame[sizeof(Athena_State) + LINK_OVERHEAD];      // owned by the UART8 IT transfer (state -> SPU)
+static uint8_t        fwd_tpu_frame[sizeof(Athena_SpuStatus) + LINK_OVERHEAD], fwd_tpu_pending[sizeof(Athena_SpuStatus) + LINK_OVERHEAD];
+static uint8_t        fwd_spu_frame[sizeof(Athena_Cmd) + LINK_OVERHEAD], fwd_spu_pending[sizeof(Athena_Cmd) + LINK_OVERHEAD];
+static uint8_t        fwd_tpu_len, fwd_spu_len; // bytes waiting in the *_pending buffers for a free UART
+static uint8_t        spu_usb_frame[sizeof(Athena_SpuStatus) + LINK_OVERHEAD];
+static Athena_SpuStatus spu;
+static uint32_t       spu_ms, spu_count, cmd_count;
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
@@ -112,7 +123,14 @@ static void MX_USART1_UART_Init(void);
 static void MX_TIM2_Init(void);
 static void MX_TIM1_Init(void);
 /* USER CODE BEGIN PFP */
+static void Athena_DfuPoll(void);
+void Athena_DfuRequest(uint8_t c);
 static void on_tpu_packet(uint8_t type, const uint8_t *payload, uint8_t len, void *user);
+static void on_spu_packet(uint8_t type, const uint8_t *payload, uint8_t len, void *user);
+static void on_usb_packet(uint8_t type, const uint8_t *payload, uint8_t len, void *user);
+static void on_usb_text(uint8_t b, void *user);
+static void forward_cmd(const uint8_t *payload, uint8_t len, const char *src);
+void Athena_UsbRx(const uint8_t *buf, uint32_t len);
 /* USER CODE END PFP */
 
 /* Private user code ---------------------------------------------------------*/
@@ -128,6 +146,14 @@ int main(void)
 {
 
   /* USER CODE BEGIN 1 */
+  dfu_boot_magic = *(volatile uint32_t *)DFU_MAGIC_ADDR;        /* printed later: tells whether the word survived the reset */
+  if (dfu_boot_magic == DFU_MAGIC) {                            /* 'B' on the USB console asked for DFU */
+    *(volatile uint32_t *)DFU_MAGIC_ADDR = 0;
+    SysTick->CTRL = 0;
+    SCB->VTOR = DFU_SYSMEM_ADDR;                                /* ROM vector table; interrupts stay enabled as after a real reset */
+    __set_MSP(*(volatile uint32_t *)DFU_SYSMEM_ADDR);
+    ((void (*)(void))(*(volatile uint32_t *)(DFU_SYSMEM_ADDR + 4)))();   /* never returns */
+  }
   #if (__FPU_PRESENT == 1) && (__FPU_USED == 1)
     SCB->CPACR |= ((3UL << 10*2)|(3UL << 11*2));  /* set CP10 and CP11 Full Access */
   #endif
@@ -176,10 +202,15 @@ int main(void)
   HAL_Delay(1000);                            // let USB CDC enumerate so the first prints are seen
 
   Link_Init(&tpu_link, on_tpu_packet, NULL);
+  Link_Init(&spu_link, on_spu_packet, NULL);
+  Link_Init(&usb_link, on_usb_packet, NULL);
+  usb_link.on_text = on_usb_text;
   HAL_UART_Receive_IT(&huart4, &uart4_rx_byte, 1);
+  HAL_UART_Receive_IT(&huart8, &uart8_rx_byte, 1);
   Fusion_Init(&fusion, NULL);
 
   print("\r\n=== Athena MPU ===\r\n");
+  print("dfu: magic word at boot was 0x%08lX\r\n", (unsigned long)dfu_boot_magic);
   imu_mask = IMU_Init();
   print("IMU mask 0x%X (bit n = IMU n+1 alive)\r\n", imu_mask);
   mag_ok = (LIS2MDL_Init() == 0);
@@ -199,6 +230,7 @@ int main(void)
   while (1)
   {
     uint32_t now = GetTimestamp();
+    Athena_DfuPoll();
 
     /* 1. IMUs: vote the three units, convert to SI, run attitude + dead-reckoning predict */
     if ((now - last_imu_us) >= (1000000u / IMU_RATE_HZ)) {
@@ -227,8 +259,19 @@ int main(void)
       if (ICP201xx_getData(&icp_device, &p_kpa, &t_c) == 0) Fusion_Baro(&fusion, p_kpa * 1000.f, now);
     }
 
-    /* 4. GPS fixes relayed by the TPU (handled in on_tpu_packet) */
+    /* 4. GPS fixes and commands relayed by the TPU (on_tpu_packet), SPU status (on_spu_packet), USB console */
     Link_Process(&tpu_link);
+    Link_Process(&spu_link);
+    Link_Process(&usb_link);
+    /* 4b. relay: SPU status -> TPU over UART4, commands -> SPU over UART8, as soon as the UART is free */
+    if (fwd_tpu_len && huart4.gState == HAL_UART_STATE_READY) {
+      memcpy(fwd_tpu_frame, fwd_tpu_pending, fwd_tpu_len);
+      HAL_UART_Transmit_IT(&huart4, fwd_tpu_frame, fwd_tpu_len); fwd_tpu_len = 0;
+    }
+    if (fwd_spu_len && huart8.gState == HAL_UART_STATE_READY) {
+      memcpy(fwd_spu_frame, fwd_spu_pending, fwd_spu_len);
+      HAL_UART_Transmit_IT(&huart8, fwd_spu_frame, fwd_spu_len); fwd_spu_len = 0;
+    }
 
     /* 5. publish the navigation state to the TPU */
     if ((now - last_state_us) >= (1000000u / STATE_RATE_HZ)) {
@@ -241,6 +284,10 @@ int main(void)
         memcpy(uart_frame, state_frame, n);
         HAL_UART_Transmit_IT(&huart4, uart_frame, (uint16_t)n);
       }
+      if (huart8.gState == HAL_UART_STATE_READY) {             // the SPU runs its recovery logic on the same frames
+        memcpy(uart8_frame, state_frame, n);
+        HAL_UART_Transmit_IT(&huart8, uart8_frame, (uint16_t)n);
+      }
     }
 
     /* 6. human-readable status over USB */
@@ -248,12 +295,13 @@ int main(void)
       last_print_us = now;
       float roll, pitch, yaw;
       Fusion_QuatToEuler(state.q, &roll, &pitch, &yaw);
-      print("alt %7.1f m  vD %6.1f m/s  baro %7.1f m | rpy %6.1f %6.1f %6.1f | imu 0x%X %u Hz | gps %s n=%lu rx_bad=%lu | %s\r\n",
+      print("alt %7.1f m  vD %6.1f m/s  baro %7.1f m | rpy %6.1f %6.1f %6.1f | imu 0x%X %u Hz | gps %s n=%lu rx_bad=%lu | %s | spu %s ph=%u fl=0x%02X vbat=%u\r\n",
             -state.pos_ned[2], state.vel_ned[2], state.baro_alt,
             roll * 57.2958f, pitch * 57.2958f, yaw * 57.2958f,
             state.imu_mask, state.loop_hz,
             (state.flags & STATE_FLAG_GPS_FRESH) ? "fresh" : "DR", (unsigned long)gps_count, (unsigned long)tpu_link.rx_bad,
-            (state.flags & STATE_FLAG_IN_FLIGHT) ? "FLIGHT" : "pad");
+            (state.flags & STATE_FLAG_IN_FLIGHT) ? "FLIGHT" : "pad",
+            (spu_count && HAL_GetTick() - spu_ms < 2000u) ? "ok" : "LOST", spu.phase, spu.flags, spu.vbat_mv);
       if (HAL_GetTick() < LED_IDENTITY_MS)          { /* keep showing the identity colour */ }
       else if (state.flags & STATE_FLAG_IN_FLIGHT) Set_LED_Color(LED_MAGENTA);
       else if (!imu_mask)                          Set_LED_Color(LED_RED);
@@ -942,6 +990,54 @@ static void MX_GPIO_Init(void)
 }
 
 /* USER CODE BEGIN 4 */
+/* --- software entry into the ST ROM bootloader (USB DFU), two ways ---------------------------
+ * 'B': leave a magic word in RAM and reset; main() checks it first thing and jumps (needs the
+ *      SRAM word to survive the reset).
+ * 'J': jump from here without a reset: tear USB, clocks, NVIC, caches and MPU down to their
+ *      reset state and enter system memory with interrupts enabled (the ROM uses the USB IRQ). */
+extern USBD_HandleTypeDef hUsbDeviceFS;
+static volatile uint8_t dfu_request;
+void Athena_DfuRequest(uint8_t c) { dfu_request = c; }
+
+static void Athena_ResetToDfu(void)
+{
+  USBD_DeInit(&hUsbDeviceFS);                                   /* host sees a disconnect (>= 30 ms) before the reset */
+  HAL_Delay(100);
+  *(volatile uint32_t *)DFU_MAGIC_ADDR = DFU_MAGIC;             /* AXI SRAM, untouched by the startup code (all sections live in DTCM); D-cache is off */
+  __DSB();
+  NVIC_SystemReset();
+}
+
+static void Athena_JumpToBootloader(void)
+{
+  USBD_DeInit(&hUsbDeviceFS);                                   /* host sees a disconnect */
+  HAL_Delay(100);
+  __disable_irq();
+  HAL_RCC_DeInit();
+  HAL_DeInit();
+  SysTick->CTRL = 0; SysTick->LOAD = 0; SysTick->VAL = 0;
+  for (unsigned i = 0; i < sizeof(NVIC->ICER) / sizeof(NVIC->ICER[0]); i++) { NVIC->ICER[i] = 0xFFFFFFFFu; NVIC->ICPR[i] = 0xFFFFFFFFu; }
+#if defined(__CORTEX_M) && (__CORTEX_M == 7U)
+  SCB_DisableICache();
+  SCB_DisableDCache();
+#endif
+  HAL_MPU_Disable();
+  SCB->VTOR = DFU_SYSMEM_ADDR;
+  __set_MSP(*(volatile uint32_t *)DFU_SYSMEM_ADDR);
+  __enable_irq();
+  ((void (*)(void))(*(volatile uint32_t *)(DFU_SYSMEM_ADDR + 4)))();
+  for (;;) {}
+}
+
+static void Athena_DfuPoll(void)                                /* main loop */
+{
+  uint8_t c = dfu_request;
+  if (!c) return;
+  dfu_request = 0;
+  if (c == 'J') Athena_JumpToBootloader();
+  else Athena_ResetToDfu();
+}
+
 static void on_tpu_packet(uint8_t type, const uint8_t *payload, uint8_t len, void *user)
 {
   (void)user;
@@ -949,7 +1045,46 @@ static void on_tpu_packet(uint8_t type, const uint8_t *payload, uint8_t len, voi
     memcpy(&last_gps, payload, sizeof last_gps);
     gps_count++;
     Fusion_Gps(&fusion, &last_gps, GetTimestamp());
+  } else if (type == LINK_PKT_CMD && len == sizeof(Athena_Cmd)) {
+    forward_cmd(payload, len, "tpu");                   // uplink / TPU console -> SPU
   }
+}
+
+/* commands pass through unchanged (re-framed) to the SPU, which owns the safety checks */
+static void forward_cmd(const uint8_t *payload, uint8_t len, const char *src)
+{
+  cmd_count++;
+  fwd_spu_len = (uint8_t)Link_Encode(fwd_spu_pending, LINK_PKT_CMD, payload, len);
+  print("cmd from %s: %u -> SPU\r\n", src, payload[0]);
+}
+
+static void on_spu_packet(uint8_t type, const uint8_t *payload, uint8_t len, void *user)
+{
+  (void)user;
+  if (type == LINK_PKT_SPU && len == sizeof(Athena_SpuStatus)) {
+    memcpy(&spu, payload, sizeof spu);
+    spu_ms = HAL_GetTick(); spu_count++;
+    size_t n = Link_Encode(spu_usb_frame, LINK_PKT_SPU, payload, len);
+    CDC_Transmit_FS(spu_usb_frame, (uint16_t)n);        // USB dashboard on the MPU port
+    memcpy(fwd_tpu_pending, spu_usb_frame, n); fwd_tpu_len = (uint8_t)n;   // and on to the TPU: log + radio
+  }
+}
+
+static void on_usb_packet(uint8_t type, const uint8_t *payload, uint8_t len, void *user)
+{
+  (void)user;
+  if (type == LINK_PKT_CMD && len == sizeof(Athena_Cmd)) forward_cmd(payload, len, "usb");
+}
+
+static void on_usb_text(uint8_t b, void *user)
+{
+  (void)user;
+  if (b == 'B' || b == 'J') Athena_DfuRequest(b);
+}
+
+void Athena_UsbRx(const uint8_t *buf, uint32_t len)      /* USB CDC receive interrupt */
+{
+  for (uint32_t i = 0; i < len; i++) Link_RxPush(&usb_link, buf[i]);
 }
 
 void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart)
@@ -957,15 +1092,17 @@ void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart)
   if (huart->Instance == UART4) {
     Link_RxPush(&tpu_link, uart4_rx_byte);
     HAL_UART_Receive_IT(&huart4, &uart4_rx_byte, 1);
+  } else if (huart->Instance == UART8) {
+    Link_RxPush(&spu_link, uart8_rx_byte);
+    HAL_UART_Receive_IT(&huart8, &uart8_rx_byte, 1);
   }
 }
 
 void HAL_UART_ErrorCallback(UART_HandleTypeDef *huart)
 {
-  if (huart->Instance == UART4) {              // an overrun aborts IT reception: re-arm it
-    __HAL_UART_CLEAR_FLAG(huart, UART_CLEAR_OREF | UART_CLEAR_FEF | UART_CLEAR_NEF);
-    HAL_UART_Receive_IT(&huart4, &uart4_rx_byte, 1);
-  }
+  __HAL_UART_CLEAR_FLAG(huart, UART_CLEAR_OREF | UART_CLEAR_FEF | UART_CLEAR_NEF);   // an overrun aborts IT reception: re-arm it
+  if (huart->Instance == UART4) HAL_UART_Receive_IT(&huart4, &uart4_rx_byte, 1);
+  else if (huart->Instance == UART8) HAL_UART_Receive_IT(&huart8, &uart8_rx_byte, 1);
 }
 /* USER CODE END 4 */
 

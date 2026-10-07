@@ -29,11 +29,11 @@ static int cmd(uint8_t instr, int has_addr, uint32_t addr, uint32_t nbytes, uint
     c.DdrMode           = QSPI_DDR_MODE_DISABLE;
     c.DdrHoldHalfCycle  = QSPI_DDR_HHC_ANALOG_DELAY;
     c.SIOOMode          = QSPI_SIOO_INST_EVERY_CMD;
-    if (HAL_QSPI_Command(&hqspi, &c, 1000) != HAL_OK) return -1;
+    if (HAL_QSPI_Command(&hqspi, &c, 1000) != HAL_OK) { HAL_QSPI_Abort(&hqspi); return -1; }
     if (nbytes) {
-        if (write ? HAL_QSPI_Transmit(&hqspi, data, 1000) : HAL_QSPI_Receive(&hqspi, data, 1000)) return -1;
+        if (write ? HAL_QSPI_Transmit(&hqspi, data, 1000) : HAL_QSPI_Receive(&hqspi, data, 1000)) { HAL_QSPI_Abort(&hqspi); return -1; }
     }
-    return 0;
+    return 0;                                                   /* Abort clears the BUSY state a timeout would otherwise leave behind */
 }
 
 static int wait_ready(uint32_t timeout_ms)
@@ -49,6 +49,7 @@ static int wait_ready(uint32_t timeout_ms)
 int W25Q_Init(uint32_t *jedec_id)
 {
     uint8_t id[3] = { 0 };
+    wait_ready(500);                                            /* an erase may still be running from before an MCU reset */
     if (cmd(CMD_RST_EN, 0, 0, 0, NULL, 0) || cmd(CMD_RST, 0, 0, 0, NULL, 0)) return -1;
     HAL_Delay(1);                                               /* tRST 30 us */
     if (cmd(CMD_JEDEC_ID, 0, 0, 3, id, 0)) return -1;
@@ -68,6 +69,19 @@ int W25Q_Program(uint32_t addr, const uint8_t *buf, uint32_t len)
     if (cmd(CMD_WREN, 0, 0, 0, NULL, 0)) return -1;
     if (cmd(CMD_PP4, 1, addr, len, (uint8_t *)buf, 1)) return -1;
     return wait_ready(10);                                      /* tPP 3 ms max */
+}
+
+int W25Q_EraseSectorStart(uint32_t addr)                      /* issue the erase, do not wait: poll W25Q_Busy() */
+{
+    if (cmd(CMD_WREN, 0, 0, 0, NULL, 0)) return -1;
+    return cmd(CMD_SE4, 1, addr & ~(W25Q_SECTOR - 1), 0, NULL, 0);
+}
+
+int W25Q_Busy(void)
+{
+    uint8_t sr = SR1_BUSY;
+    if (cmd(CMD_RDSR1, 0, 0, 1, &sr, 0)) return 1;
+    return (sr & SR1_BUSY) != 0;
 }
 
 int W25Q_EraseSector(uint32_t addr)

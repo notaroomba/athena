@@ -1,8 +1,9 @@
 #!/bin/sh
 # Flash the three Athena MCUs over USB DFU (hold BOOT on each, then reset/power up).
 #
-#   ./flash.sh            flash all three
+#   ./flash.sh            flash all three (MCUs running the firmware are rebooted into DFU over USB first)
 #   ./flash.sh mpu|tpu|spu
+#   ./flash.sh dfu [mcu]  just reboot the running MCU(s) into DFU
 #   ./flash.sh list       just show what dfu-util sees
 #
 # Which chip is which comes from the PCB: the TUSB2036 hub's downstream port 1 is the
@@ -50,10 +51,45 @@ flash_one() {   # $1 = mcu (lower), $2 = dfu path
   sleep 1
 }
 
+# Map a USB console (/dev/cu.usbmodem<serial>1) to its MCU through the hub port in ioreg's locationID
+# (last non-zero hex digit: 1 = SPU, 2 = MPU, 3 = TPU).
+console_mcu() {
+  serial=$(basename "$1" | sed 's/^cu\.usbmodem//; s/1$//')
+  loc=$(ioreg -p IOUSB -l -w0 2>/dev/null | awk -v s="$serial" '
+    /^[ |]*\+-o / { loc=""; ser="" }
+    /"locationID"/ { gsub(/[^0-9]/, "", $0); loc=$0 }
+    /"USB Serial Number"/ { split($0, a, "\""); ser=a[4] }
+    ser == s && loc != "" { print loc; exit }')
+  [ -z "$loc" ] && { echo ""; return; }
+  hex=$(printf '%x' "$loc" | sed 's/0*$//'); port=${hex##*[!0-9]}; port=$(printf '%s' "$hex" | tail -c 1)
+  mcu_for_port "$port"
+}
+
+# Ask the running MCU(s) (USB serial console, command 'B') to reboot into DFU, then wait for them.
+enter_dfu() {   # $1 = all|mpu|tpu|spu   -- 'B': USB disconnect + magic word + reset, ROM bootloader from a clean chip; 'J' = in-place jump fallback
+  n=0
+  for p in /dev/cu.usbmodem*; do
+    [ -e "$p" ] || continue
+    m=$(console_mcu "$p")
+    if [ "$1" = all ] || [ "$m" = "$1" ]; then
+      stty -f "$p" raw -echo 2>/dev/null; printf 'B' > "$p" 2>/dev/null && { n=$((n+1)); echo "asking ${m:-?} ($p) to enter DFU"; }
+    fi
+  done
+  [ $n -eq 0 ] && return 0
+  i=0; while [ $i -lt 16 ]; do sleep 0.5; [ "$(devices | wc -l | tr -d ' ')" -ge "$n" ] && break; i=$((i+1)); done
+  if [ "$(devices | wc -l | tr -d ' ')" -lt "$n" ]; then           # fall back to the in-place jump
+    for p in /dev/cu.usbmodem*; do [ -e "$p" ] || continue; m=$(console_mcu "$p"); if [ "$1" = all ] || [ "$m" = "$1" ]; then stty -f "$p" raw -echo 2>/dev/null; printf 'J' > "$p" 2>/dev/null; fi; done
+    i=0; while [ $i -lt 16 ]; do sleep 0.5; [ "$(devices | wc -l | tr -d ' ')" -ge "$n" ] && break; i=$((i+1)); done
+  fi
+  sleep 1
+}
+
 case "${1:-all}" in
   list) echo "DFU devices:"; list ;;
+  dfu)  enter_dfu "${2:-all}"; echo "DFU devices:"; list ;;
   all|mpu|tpu|spu)
     want=$1; found=0
+    enter_dfu "$want"
     echo "DFU devices:"; list
     for p in $(devices); do
       mcu=$(mcu_for_port "$(port_of "$p")")
@@ -63,5 +99,5 @@ case "${1:-all}" in
     [ $found -eq 0 ] && { echo "nothing flashed"; exit 1; }
     echo "done: $found device(s). Identity LEDs for the first 3 s: MPU green, TPU red, SPU blue."
     echo "Serial consoles appear as /dev/cu.usbmodem*; each prints '=== Athena <MCU> ===' at boot." ;;
-  *) echo "usage: $0 [all|mpu|tpu|spu|list]"; exit 1 ;;
+  *) echo "usage: $0 [all|mpu|tpu|spu|dfu|list]"; exit 1 ;;
 esac

@@ -128,7 +128,7 @@ static int8_t CDC_Receive_FS(uint8_t* pbuf, uint32_t *Len);
 static int8_t CDC_TransmitCplt_FS(uint8_t *pbuf, uint32_t *Len, uint8_t epnum);
 
 /* USER CODE BEGIN PRIVATE_FUNCTIONS_DECLARATION */
-extern void Logger_UsbRx(const uint8_t *buf, uint32_t len);   /* 'D' dump flash log, 'E' restart it, 'S' sync SD */
+extern void Athena_UsbRx(const uint8_t *buf, uint32_t len);   /* main.c: frames + console characters */
 
 /* USER CODE END PRIVATE_FUNCTIONS_DECLARATION */
 
@@ -262,7 +262,7 @@ static int8_t CDC_Control_FS(uint8_t cmd, uint8_t* pbuf, uint16_t length)
 static int8_t CDC_Receive_FS(uint8_t* Buf, uint32_t *Len)
 {
   /* USER CODE BEGIN 6 */
-  Logger_UsbRx(Buf, *Len);
+  Athena_UsbRx(Buf, *Len);                                     /* decoded in the main loop (commands, B/J DFU, D/E/S/F logger) */
   USBD_CDC_SetRxBuffer(&hUsbDeviceFS, &Buf[0]);
   USBD_CDC_ReceivePacket(&hUsbDeviceFS);
   return (USBD_OK);

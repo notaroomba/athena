@@ -11,9 +11,13 @@
 #include "athena_link.h"
 #include "ubx.h"
 #include "fusion.h"
+#include "recovery.h"
 
 static int got_type = -1; static uint8_t got_len; static uint8_t got_buf[LINK_MAX_PAYLOAD];
 static void on_pkt(uint8_t type, const uint8_t *p, uint8_t len, void *u) { (void)u; got_type = type; got_len = len; memcpy(got_buf, p, len); }
+
+static char text[16]; static int ntext;
+static void on_text(uint8_t b, void *u) { (void)u; if (ntext < 15) text[ntext++] = (char)b; }
 
 static void test_link(void)
 {
@@ -33,6 +37,12 @@ static void test_link(void)
     for (size_t i = 0; i < n; i++) Link_FeedByte(&l, frame[i]);
     assert(got_type == -1 && l.rx_bad == 2 && l.rx_ok == 1);   /* 1 bad from junk prefix, 1 from flipped bit */
     assert(sizeof(Athena_State) == 96 && sizeof(Athena_Telemetry) == 38 && sizeof(Athena_GpsFix) == 44);
+    assert(sizeof(Athena_SpuStatus) == 44 && sizeof(Athena_Cmd) == 8);
+    /* console bytes outside a frame reach on_text, frame bytes never do */
+    Link c; Link_Init(&c, on_pkt, NULL); c.on_text = on_text; got_type = -1;
+    frame[10] ^= 0x01;                                   /* restore the valid frame */
+    Link_FeedByte(&c, 'A'); for (size_t i = 0; i < n; i++) Link_FeedByte(&c, frame[i]); Link_FeedByte(&c, 'B');
+    assert(got_type == LINK_PKT_GPS && ntext == 2 && text[0] == 'A' && text[1] == 'B');
     printf("link      ok\n");
 }
 
@@ -117,11 +127,85 @@ static void test_fusion(void)
     printf("fusion    ok\n");
 }
 
+/* ---- recovery: hardware stubs record what the SPU would drive ---- */
+static int hw_pyro[6], hw_servo[6], pyro_events;
+void Recovery_HwPyro(uint8_t ch, int on) { if (on && !hw_pyro[ch]) pyro_events++; hw_pyro[ch] = on; }
+void Recovery_HwServo(uint8_t ch, uint16_t us) { hw_servo[ch] = us; }
+
+/* Feeds a scripted vertical flight (20 Hz state frames) and returns the time the given channel first fired. */
+static float fly(Recovery *r, int armed, float *apogee_t, float *main_t, float *landed_t)
+{
+    float alt = 0, vz = 0, t = 0, drogue_t = -1, apogee_true = 0; *apogee_t = *main_t = *landed_t = -1;
+    const float dt = 0.05f, g = 9.80665f;
+    Athena_Cmd arm = { .cmd = CMD_ARM, .key = CMD_KEY };
+    if (armed) assert(Recovery_Command(r, &arm, 0) == 0);
+    for (int k = 0; k < 4000; k++, t += dt) {
+        uint32_t now = (uint32_t)(t * 1000.f);
+        float thrust = (t >= 2.f && t < 5.f) ? 60.f : 0.f;                 /* 3 s burn, 60 m/s^2 */
+        int in_flight = t >= 2.f;
+        float a_kin = thrust - g;                                         /* drag ignored on the way up */
+        if (vz < 0 && (r->fired & 1)) a_kin = (-15.f - vz) * 1.5f;         /* drogue out: settle to -15 m/s */
+        if (vz < 0 && (r->fired & 2)) a_kin = (-5.f - vz) * 2.0f;          /* main out: -5 m/s */
+        if (!in_flight) a_kin = 0;
+        vz += a_kin * dt; alt += vz * dt;
+        if (alt <= 0 && t > 6.f) { alt = 0; vz = 0; a_kin = 0; }
+        if (alt > apogee_true) { apogee_true = alt; }
+        if (*apogee_t < 0 && t > 6.f && vz < 0) *apogee_t = t;
+        Athena_State s = { 0 };
+        s.pos_ned[2] = -alt; s.vel_ned[2] = -vz;
+        s.acc_body[0] = in_flight ? a_kin + g : g;                        /* specific force: thrust phase ~7 g, free fall ~0 */
+        if (in_flight && thrust == 0.f && alt > 0) s.acc_body[0] = (vz < 0) ? ((r->fired & 1) ? g : 1.5f) : 1.5f;   /* coast: drag only; under canopy ~1 g */
+        if (alt <= 0 && t > 6.f) s.acc_body[0] = g;
+        s.flags = in_flight ? STATE_FLAG_IN_FLIGHT : 0;
+        Recovery_OnState(r, &s, now);
+        Recovery_Task(r, now);
+        if (drogue_t < 0 && hw_pyro[0]) drogue_t = t;
+        if (*main_t < 0 && hw_pyro[1]) *main_t = t;
+        if (*landed_t < 0 && r->phase == SPU_PHASE_LANDED) *landed_t = t;
+        if (*landed_t > 0 && t > *landed_t + 12.f) break;
+    }
+    return drogue_t;
+}
+
+static void test_recovery(void)
+{
+    Recovery r; float ap, mn, ld;
+    /* disarmed: full flight, phases advance, nothing fires */
+    Recovery_Init(&r, NULL); pyro_events = 0;
+    float dr = fly(&r, 0, &ap, &mn, &ld);
+    assert(dr < 0 && mn < 0 && pyro_events == 0 && r.fired == 0 && ld > 0 && r.phase == SPU_PHASE_LANDED);
+    assert(r.apogee_m > 1000.f);                       /* 3 s at 60 m/s^2 -> ~150 m/s -> ~1.2 km */
+    /* armed: drogue within 0.5 s of apogee, main while descending through 150 m, pulses end, auto-disarm after landing */
+    Recovery_Init(&r, NULL); pyro_events = 0;
+    dr = fly(&r, 1, &ap, &mn, &ld);
+    printf("recovery  apogee %.1f m at %.2f s, drogue %.2f s, main %.2f s (alt<150 falling), landed %.1f s, armed=%d\n", r.apogee_m, ap, dr, mn, ld, r.armed);
+    assert(dr > 0 && dr - ap >= 0.f && dr - ap < 0.5f);
+    assert(mn > dr && pyro_events == 2 && r.fired == 0x03 && r.on == 0 && !hw_pyro[0] && !hw_pyro[1]);
+    assert(ld > 0 && r.phase == SPU_PHASE_LANDED && r.armed == 0);
+    /* commands: FIRE needs key + armed + valid channel; SERVO range; main altitude range */
+    Recovery_Init(&r, NULL);
+    Athena_Cmd c = { .cmd = CMD_FIRE, .arg = 3, .key = CMD_KEY };
+    assert(Recovery_Command(&r, &c, 0) == -1);          /* not armed */
+    c.cmd = CMD_ARM; c.key = 1; assert(Recovery_Command(&r, &c, 0) == -1);   /* wrong key */
+    c.key = CMD_KEY; assert(Recovery_Command(&r, &c, 0) == 0 && r.armed);
+    c.cmd = CMD_FIRE; c.arg = 7; assert(Recovery_Command(&r, &c, 0) == -1);
+    c.arg = 3; assert(Recovery_Command(&r, &c, 100) == 0 && hw_pyro[2] && r.on == 0x04);
+    Recovery_Task(&r, 1099); assert(hw_pyro[2]); Recovery_Task(&r, 1100); assert(!hw_pyro[2] && r.on == 0 && r.fired == 0x04);
+    c.cmd = CMD_SERVO; c.arg = 5; c.value = 1500; assert(Recovery_Command(&r, &c, 0) == 0 && hw_servo[4] == 1500);
+    c.value = 3000; assert(Recovery_Command(&r, &c, 0) == -1);
+    c.cmd = CMD_SET_MAIN_ALT; c.value = 300; assert(Recovery_Command(&r, &c, 0) == 0 && r.p.main_alt_m == 300.f);
+    c.cmd = CMD_DISARM; assert(Recovery_Command(&r, &c, 0) == 0 && !r.armed);
+    Athena_SpuStatus st = { 0 }; Recovery_Fill(&r, &st, 0);
+    assert(st.pyro_fired == 0x04 && st.servo_us[4] == 1500 && st.main_alt_m == 300 && !(st.flags & SPU_FLAG_ARMED));
+    printf("recovery  ok\n");
+}
+
 int main(void)
 {
     test_link();
     test_ubx();
     test_fusion();
+    test_recovery();
     printf("ALL OK\n");
     return 0;
 }

@@ -143,6 +143,12 @@ void Error_Handler(void);
 #define RESET_MPU_GPIO_Port GPIOB
 
 /* USER CODE BEGIN Private defines */
+/* Software entry into the ST ROM bootloader (USB DFU) without the BOOT/RESET buttons:
+ * the USB console command 'B' stores DFU_MAGIC at DFU_MAGIC_ADDR and resets; the first thing
+ * main() does is check it and jump to system memory. 4 KB below the top of SRAM: untouched by the startup code and by the shallow stack right after reset. */
+#define DFU_MAGIC       0x41544844UL   /* "ATHD" */
+#define DFU_MAGIC_ADDR  0x2001F000UL
+#define DFU_SYSMEM_ADDR 0x1FFF0000UL   /* ST system memory (AN2606) */
 
 /* USER CODE END Private defines */
 

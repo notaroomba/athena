@@ -23,12 +23,14 @@ extern "C" {
 #define LINK_SOF          0xA5
 #define LINK_MAX_PAYLOAD  200
 #define LINK_OVERHEAD     5          /* sof + type + len + crc16 */
-#define LINK_RX_RING      512
+#define LINK_RX_RING      4096
 
 enum {
     LINK_PKT_GPS   = 0x01,  /* TPU -> MPU   : Athena_GpsFix       */
     LINK_PKT_STATE = 0x02,  /* MPU -> TPU   : Athena_State        */
     LINK_PKT_TELEM = 0x03,  /* TPU -> ground: Athena_Telemetry    */
+    LINK_PKT_SPU   = 0x04,  /* SPU -> MPU -> TPU -> ground: Athena_SpuStatus */
+    LINK_PKT_CMD   = 0x05,  /* ground/USB -> TPU -> MPU -> SPU: Athena_Cmd   */
     LINK_PKT_TEXT  = 0x7F,  /* free-form debug text               */
 };
 
@@ -89,6 +91,45 @@ typedef struct __attribute__((packed)) {
     uint8_t  imu_mask;
 } Athena_Telemetry;           /* 38 bytes */
 
+/* ---- SPU: recovery logic, pyro/servo outputs, USB-PD and battery charger ---------------- */
+enum { SPU_PHASE_PAD = 0, SPU_PHASE_BOOST, SPU_PHASE_COAST, SPU_PHASE_APOGEE, SPU_PHASE_DESCENT, SPU_PHASE_LANDED };
+
+#define SPU_FLAG_ARMED     (1u << 0)   /* automatic and manual pyro firing enabled */
+#define SPU_FLAG_MPU_LINK  (1u << 1)   /* state frames from the MPU arrived within the last second */
+#define SPU_FLAG_CHRG_OK   (1u << 2)   /* BQ25713 CHRG_OK pin: valid input power present */
+#define SPU_FLAG_PROCHOT   (1u << 3)   /* BQ25713 PROCHOT asserted (pin low) */
+#define SPU_FLAG_CMPOUT    (1u << 4)   /* BQ25713 independent comparator output (pin level) */
+#define SPU_FLAG_PD_APP    (1u << 5)   /* TPS25751 runs the patched application firmware */
+#define SPU_FLAG_BQ_OK     (1u << 6)   /* BQ25713 answered through the TPS25751 I2Cc bridge */
+
+typedef struct __attribute__((packed, aligned(4))) {
+    uint32_t t_ms;
+    uint16_t vbat_mv, vsys_mv, vbus_mv;  /* BQ25713 ADC (0 = not available) */
+    int16_t  ibat_ma;                    /* > 0 charging, < 0 discharging */
+    uint16_t iin_ma;
+    uint16_t chg_status;                 /* BQ25713 ChargerStatus: 0x21 in the high byte, 0x20 in the low byte */
+    uint16_t main_alt_m;                 /* configured main-chute deploy altitude above the pad */
+    uint8_t  phase;                      /* SPU_PHASE_* */
+    uint8_t  flags;                      /* SPU_FLAG_* */
+    uint8_t  pyro_fired;                 /* bit n = channel n+1 has fired since boot */
+    uint8_t  pyro_on;                    /* bit n = channel n+1 is conducting right now */
+    uint8_t  pd_mode;                    /* 0 none, 1 PTCH (waiting for patch), 2 APP, 3 BOOT */
+    uint8_t  pd_status;                  /* TPS25751 STATUS byte 0: bit0 plug present, bits3:1 connection state */
+    uint16_t servo_us[6];                /* commanded pulse width, 0 = released */
+    float    apogee_m;                   /* highest fused altitude seen this flight */
+    float    vmax_ms;                    /* largest |vertical speed| seen this flight */
+} Athena_SpuStatus;                      /* 44 bytes */
+
+enum { CMD_PING = 1, CMD_ARM, CMD_DISARM, CMD_FIRE, CMD_SERVO, CMD_RESET_MPU, CMD_SET_MAIN_ALT };
+#define CMD_KEY 0x41524D21u            /* "ARM!" - required by ARM and FIRE so a corrupt frame can never fire a channel */
+
+typedef struct __attribute__((packed, aligned(4))) {
+    uint8_t  cmd;                        /* CMD_* */
+    uint8_t  arg;                        /* FIRE / SERVO: channel 1..6 */
+    uint16_t value;                      /* SERVO: pulse in us (0 = release); SET_MAIN_ALT: metres */
+    uint32_t key;                        /* CMD_KEY for ARM and FIRE, ignored otherwise */
+} Athena_Cmd;                            /* 8 bytes */
+
 typedef void (*Link_Handler)(uint8_t type, const uint8_t *payload, uint8_t len, void *user);
 
 typedef struct {
@@ -100,6 +141,7 @@ typedef struct {
     uint8_t  buf[LINK_MAX_PAYLOAD];
     uint16_t crc;
     Link_Handler on_packet;
+    void   (*on_text)(uint8_t b, void *user);   /* optional: bytes seen outside a frame (console characters) */
     void    *user;
     uint32_t rx_ok, rx_bad;
 } Link;

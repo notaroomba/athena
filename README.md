@@ -37,7 +37,7 @@ Advanced Flight Computer with Triple MCU Architecture
 - **Advanced Sensors**: Triple ICM-45686 IMUs, LIS2MDLTR magnetometer, ICP-20100 & BMP388 barometers
 - **GNSS & Communication**: NEO-M8U-06B GPS, LoRa RA-02 telemetry, Bluetooth DA14531MOD
 - **Storage**: SD Card + Winbond W25Q256JV flash memory
-- **Power Management**: 7.4-12V LiPo battery with BQ25703ARSNR charger, USB-C PD support
+- **Power Management**: 7.4-12V LiPo battery with BQ25713 charger, TPS25751 USB-C PD controller
 - **6-Layer PCB**: Dedicated power planes and signal routing
 
 ## Board Overview
@@ -98,8 +98,8 @@ The board was designed in EasyEDA with careful attention to power distribution a
 
 ### Power Management
 
-- **Battery Charger**: BQ25703ARSNR
-- **USB-C PD Controller**: TPS25750
+- **Battery Charger**: BQ25713RSNR (on the TPS25751's I2C controller bus)
+- **USB-C PD Controller**: TPS25751DREFR (patched over I2C by the SPU at power-up)
 - **Buck Converters**: LM5145RGYR (servo), TPS5430 (3.3V)
 
 ### Storage & Communication
@@ -112,27 +112,50 @@ The board was designed in EasyEDA with careful attention to power distribution a
 
 ## Dashboard
 
-[docs/index.html](docs/index.html) is a static live-telemetry page, served at [athena.notaroomba.dev](https://athena.notaroomba.dev) by GitHub Pages, in the style of
-[cyberboard.notaroomba.dev](https://cyberboard.notaroomba.dev): 3D attitude, accel/gyro and
-altitude charts, flight flags, GPS and a serial console. It talks to the MPU or TPU USB port
-directly with WebSerial (Chrome/Edge, served over https or localhost) and decodes the same
-binary frames the MCUs exchange, so there is no backend. **Demo** runs a scripted flight
-through the real encoder/decoder. Locally: `python3 -m http.server 8787 --directory docs`.
+[docs/](docs/) is the built dashboard (source in [software/web](software/web): React 19 + Vite +
+Tailwind + recharts + three.js, same stack as [cyberboard.notaroomba.dev](https://cyberboard.notaroomba.dev)),
+served at [athena.notaroomba.dev](https://athena.notaroomba.dev) by GitHub Pages. It shows the 3D
+attitude, accel/gyro/altitude charts, flight flags, GPS, a live **ground-track map** (filter
+estimate, dead-reckoned stretches dashed, raw GPS, landing estimate from the current descent,
+distance/bearing from the pad, apogee and max speed), and the SPU **recovery & power** panel
+(flight phase, arming, the six pyro channels, battery/charger/USB-PD state) with ARM / DISARM /
+FIRE / servo / main-altitude commands when a writable link is open. Data sources:
+
+- **SERIAL**: any of the three USB ports (WebSerial, Chrome/Edge over https or localhost).
+- **BLUETOOTH**: the DA14531 on the TPU over Web Bluetooth (DSPS serial-bridge firmware streams the
+  telemetry; the factory CodeLess firmware only answers AT commands).
+- **REPLAY**: an `ATHnnnnn.BIN` from the SD card or a flash dump, paced by its own timestamps.
+- **DEMO**: a scripted flight (with a GPS dropout) through the real encoder/decoder.
+- viewers: an admin's serial/Bluetooth bytes are relayed through the WebSocket server in
+  [software/server](software/server) (axum, on Railway at `api.athena.notaroomba.dev`).
+
+Locally: `cd software/web && npm install && npm run dev` (or `python3 -m http.server 8787 --directory docs`).
 
 ## Firmware
 
 Three CubeMX projects (`firmware/MPU`, `firmware/TPU`, `firmware/SPU`) share the pure-C
 modules in `firmware/Athena`: the inter-MCU/LoRa framing (`athena_link`), the UBX parser
-(`ubx`) and the navigation filter (`fusion`: Mahony attitude + per-axis Kalman filters with
-IMU dead reckoning, barometer and GPS corrections). `cd firmware && make debug` builds all three
-(`brew install osx-cross/arm/arm-gcc-bin@14` for the toolchain), `./firmware/flash.sh` flashes them
-over USB DFU with `dfu-util` (hold BOOT on each MCU; the script tells them apart by USB hub port),
-and `make host-test` runs the PC self-check of the shared modules. The TPU logs every link
-frame to the microSD card (one `ATHnnnnn.BIN` per boot, card hot-plug safe) and to the W25Q256
-flash; `tools/athlog.py` dumps the flash log over USB and converts logs to CSV. After reset each MCU shows its
-identity colour for 3 s: **MPU green, TPU red, SPU blue**.
-the data flow, every driver, the schematic/CubeMX mismatches that were found, and the
-bring-up checklist.
+(`ubx`), the navigation filter (`fusion`: Mahony attitude + per-axis Kalman filters with
+IMU dead reckoning, barometer and GPS corrections) and the SPU recovery logic (`recovery`:
+flight phase from the fused state, drogue at apogee, main below a set altitude, servo outputs).
+`cd firmware && make debug` builds all three (`brew install osx-cross/arm/arm-gcc-bin@14` for the
+toolchain) and `make host-test` runs the PC self-check of the shared modules including a scripted
+flight through the recovery logic.
+
+`./firmware/flash.sh` flashes over USB DFU with `dfu-util` and tells the MCUs apart by USB hub
+port. No buttons are needed: `B` on any MCU's USB console disconnects USB, leaves a magic word in
+RAM and resets into the ST ROM bootloader (`J` jumps in place as a fallback); the script does this
+itself. After reset each MCU shows its identity colour for 3 s: **MPU green, TPU red, SPU blue**.
+
+Links: MPU -> TPU (UART4/UART8, state 20 Hz, GPS back), MPU -> SPU (UART8/UART5, state 20 Hz,
+SPU status 2 Hz back), TPU -> MPU -> SPU for commands (LoRa uplink, USB, Bluetooth). The TPU
+logs every link frame to the microSD card (one `ATHnnnnn.BIN` per boot, card hot-plug safe) and
+to the W25Q256 flash, sends telemetry + SPU status over LoRa and over UART7 to the Bluetooth module;
+`tools/athlog.py` dumps the flash log over USB and converts logs to CSV.
+
+USB console characters: all MCUs `B`/`J` (DFU); TPU `D` dump flash log, `E` restart it, `S` sync SD,
+`F` format SD; SPU `A` arm, `d` disarm, `1`-`6` fire a channel (armed only), `s` sweep servo 1,
+`r` reset the MPU. Pyros only get power when the external ARM terminal is closed.
 
 ## Credits
 

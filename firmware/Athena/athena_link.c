@@ -48,6 +48,7 @@ void Link_FeedByte(Link *l, uint8_t b)
     switch (l->st) {
     case ST_SOF:
         if (b == LINK_SOF) l->st = ST_TYPE;
+        else if (l->on_text) l->on_text(b, l->user);
         break;
     case ST_TYPE:
         l->type = b; l->st = ST_LEN;

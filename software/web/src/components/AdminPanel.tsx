@@ -81,7 +81,7 @@ export default function AdminPanel({
             </div>
           ) : (
             <button onClick={handleConnect} className="btn active">
-              CONNECT SERIAL
+              CONNECT SERIAL (or use the BLUETOOTH button)
             </button>
           )}
           <dl className="grid grid-cols-[auto_1fr] gap-x-4 gap-y-1 font-mono text-[11px]">

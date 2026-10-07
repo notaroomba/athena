@@ -51,6 +51,36 @@ export interface Telemetry {
   imu_mask: number;
 }
 
+/** Athena_SpuStatus, 44 bytes (SPU -> MPU -> TPU, 2 Hz). */
+export interface SpuStatus {
+  t_ms: number;
+  vbat_mv: number;
+  vsys_mv: number;
+  vbus_mv: number;
+  ibat_ma: number; // >0 charging
+  iin_ma: number;
+  chg_status: number; // BQ25713 ChargerStatus, 0x21 high byte
+  main_alt_m: number;
+  phase: number; // SPU_PHASE index
+  flags: number; // SPU_FLAG bits
+  pyro_fired: number;
+  pyro_on: number;
+  pd_mode: number; // 0 none, 1 PTCH, 2 APP, 3 BOOT
+  pd_status: number;
+  servo_us: number[];
+  apogee_m: number;
+  vmax_ms: number;
+}
+
+/** A point on the ground track. `dr` = dead-reckoned (GPS was not fresh when the filter produced it). */
+export interface TrackPoint {
+  lat: number;
+  lon: number;
+  alt: number;
+  t: number;
+  dr: boolean;
+}
+
 /** One chart sample: acc in g, gyro in deg/s, altitudes in m. */
 export interface Sample {
   t: number;

@@ -10,6 +10,7 @@ export interface SerialCallbacks {
 
 let port: SerialPort | null = null;
 let reader: ReadableStreamDefaultReader<Uint8Array> | null = null;
+let writer: WritableStreamDefaultWriter<Uint8Array> | null = null;
 
 export function isSerialSupported(): boolean {
   return typeof navigator !== "undefined" && "serial" in navigator;
@@ -25,6 +26,12 @@ export async function connectSerial(callbacks: SerialCallbacks): Promise<string>
 
   const info = port.getInfo();
   const label = `usb ${info.usbVendorId?.toString(16)}:${info.usbProductId?.toString(16)}`;
+
+  try {
+    writer = port.writable?.getWriter() ?? null;
+  } catch {
+    writer = null;
+  }
 
   // Read loop: runs until the reader is cancelled or the device goes away.
   const p = port;
@@ -46,6 +53,12 @@ export async function connectSerial(callbacks: SerialCallbacks): Promise<string>
       }
       reader = null;
       try {
+        writer?.releaseLock();
+      } catch {
+        /* ignore */
+      }
+      writer = null;
+      try {
         await p.close();
       } catch {
         /* ignore */
@@ -65,4 +78,16 @@ export async function disconnectSerial(): Promise<void> {
     /* ignore */
   }
   // the read loop's finally block closes the port and fires onDisconnect
+}
+
+/** Sends raw bytes (a CMD frame or console characters) to the open port. */
+export async function writeSerial(bytes: Uint8Array): Promise<boolean> {
+  if (!writer) return false;
+  try {
+    await writer.write(bytes);
+    return true;
+  } catch (e) {
+    console.warn("serial write error:", e);
+    return false;
+  }
 }
