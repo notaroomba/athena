@@ -76,6 +76,8 @@ endif
 # C sources
 C_SOURCES =  \
 ../Athena/athena.c \
+../Athena/athena_link.c \
+../Athena/fusion.c \
 Core/Src/main.c \
 Core/Src/stm32h7xx_hal_msp.c \
 Core/Src/stm32h7xx_it.c \
@@ -99,6 +101,8 @@ Drivers/ICP201xx/Icp201xxSerif.c \
 Drivers/ICP201xx/conversion_helper.c \
 Drivers/ICP201xx/icp201xx_interface.c \
 Drivers/ICP201xx/inv_time.c \
+Drivers/LIS2MDL/lis2mdl.c \
+Drivers/LIS2MDL/lis2mdl_reg.c \
 Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal.c \
 Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_cortex.c \
 Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_dma.c \
@@ -238,6 +242,7 @@ C_INCLUDES =  \
 -IDrivers/CMSIS/Include \
 -IDrivers/ICM45686 \
 -IDrivers/ICP201xx \
+-IDrivers/LIS2MDL \
 -IDrivers/STM32H7xx_HAL_Driver/Inc \
 -IDrivers/STM32H7xx_HAL_Driver/Inc/Legacy \
 -IMiddlewares/ST/STM32_USB_Device_Library/Class/CDC/Inc \
@@ -275,7 +280,7 @@ CXXFLAGS += $(ASSEMBLER_LIST_OUTPUT_FLAG)
 # LDFLAGS
 #######################################
 # link script
-LDSCRIPT = STM32H753XX_FLASH.ld
+LDSCRIPT = STM32H753xx_FLASH.ld
 
 # libraries
 LIBS = -lc -lm -lnosys 

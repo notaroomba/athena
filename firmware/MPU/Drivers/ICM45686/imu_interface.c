@@ -1,237 +1,133 @@
-/*
- * IMU Interface for STM32 - ICM-45686
- * Simple polling-based interface adapted from InvenSense example
- */
-
 #include "imu_interface.h"
 #include "main.h"
 #include "inv_imu_driver.h"
-#include "athena.h"
-#include <stdio.h>
+#include "fusion.h"
 #include <string.h>
 
-/* External SPI handle */
 extern SPI_HandleTypeDef hspi1;
 
-/* Static variables */
-static inv_imu_device_t imu_dev;
+static inv_imu_device_t imu_dev[IMU_COUNT];
 
-/* SPI Read/Write implementation for IMU1 */
-static int imu1_read_reg(uint8_t reg, uint8_t *buf, uint32_t len)
+/* ---- raw SPI: ICM-45686 read = reg | 0x80, write = reg & 0x7F, CS active low ---- */
+
+static int spi_read(GPIO_TypeDef *port, uint16_t pin, uint8_t reg, uint8_t *buf, uint32_t len)
 {
-    uint8_t tx_buf[32];
-    uint8_t rx_buf[32];
-    
-    if (len + 1 > sizeof(tx_buf)) {
-        print("IMU1: Read length %lu too large\r\n", len);
-        return -1;
-    }
-    
-    tx_buf[0] = (uint8_t)(reg | 0x80);  // Set read bit (MSB=1 for read)
-    for (uint32_t i = 1; i <= len; i++) {
-        tx_buf[i] = 0x00;  // Dummy bytes to clock out data
-    }
-    
-    HAL_GPIO_WritePin(IMU1_CS_GPIO_Port, IMU1_CS_Pin, GPIO_PIN_SET);
-    HAL_StatusTypeDef status = HAL_SPI_TransmitReceive(&hspi1, tx_buf, rx_buf, len + 1, 100);
-    HAL_GPIO_WritePin(IMU1_CS_GPIO_Port, IMU1_CS_Pin, GPIO_PIN_RESET);
-    
-    if (status != HAL_OK) {
-        print("IMU1: SPI TransmitReceive FAILED - reg=0x%02X, status=%d\r\n", reg, status);
-        return -1;
-    }
-    
-    // Copy received data (skip first byte which is dummy response to register address)
-    for (uint32_t i = 0; i < len; i++) {
-        buf[i] = rx_buf[i + 1];
-    }
-    
+    uint8_t tx[33] = { 0 }, rx[33];
+    if (len + 1 > sizeof(tx)) return -1;
+    tx[0] = (uint8_t)(reg | 0x80);
+    HAL_GPIO_WritePin(port, pin, GPIO_PIN_RESET);
+    HAL_StatusTypeDef st = HAL_SPI_TransmitReceive(&hspi1, tx, rx, (uint16_t)(len + 1), 100);
+    HAL_GPIO_WritePin(port, pin, GPIO_PIN_SET);
+    if (st != HAL_OK) return -1;
+    memcpy(buf, &rx[1], len);
     return 0;
 }
 
-static int imu1_write_reg(uint8_t reg, const uint8_t *buf, uint32_t len)
+static int spi_write(GPIO_TypeDef *port, uint16_t pin, uint8_t reg, const uint8_t *buf, uint32_t len)
 {
-    uint8_t tx_buf[32];
-    
-    if (len + 1 > sizeof(tx_buf)) {
-        print("IMU1: Write length %lu too large\r\n", len);
-        return -1;
-    }
-    
-    tx_buf[0] = (uint8_t)(reg & 0x7F);  // Clear read bit (MSB=0 for write)
-    for (uint32_t i = 0; i < len; i++) {
-        tx_buf[i + 1] = buf[i];
-    }
-    
-    HAL_GPIO_WritePin(IMU1_CS_GPIO_Port, IMU1_CS_Pin, GPIO_PIN_SET);
-    HAL_StatusTypeDef status = HAL_SPI_Transmit(&hspi1, tx_buf, len + 1, 100);
-    HAL_GPIO_WritePin(IMU1_CS_GPIO_Port, IMU1_CS_Pin, GPIO_PIN_RESET);
-    
-    if (status != HAL_OK) {
-        print("IMU1: SPI write FAILED - reg=0x%02X, status=%d\r\n", reg, status);
-        return -1;
-    }
-    
-    return 0;
+    uint8_t tx[33];
+    if (len + 1 > sizeof(tx)) return -1;
+    tx[0] = (uint8_t)(reg & 0x7F);
+    memcpy(&tx[1], buf, len);
+    HAL_GPIO_WritePin(port, pin, GPIO_PIN_RESET);
+    HAL_StatusTypeDef st = HAL_SPI_Transmit(&hspi1, tx, (uint16_t)(len + 1), 100);
+    HAL_GPIO_WritePin(port, pin, GPIO_PIN_SET);
+    return st == HAL_OK ? 0 : -1;
 }
 
-static void imu1_sleep_us(uint32_t us)
-{
-    HAL_Delay((us + 999) / 1000);  // Convert microseconds to milliseconds, rounding up
-}
+/* The InvenSense transport callbacks carry no context pointer, so one tiny wrapper pair per chip. */
+#define IMU_XPORT(n) \
+    static int imu##n##_read (uint8_t r, uint8_t *b, uint32_t l)       { return spi_read (IMU##n##_CS_GPIO_Port, IMU##n##_CS_Pin, r, b, l); } \
+    static int imu##n##_write(uint8_t r, const uint8_t *b, uint32_t l) { return spi_write(IMU##n##_CS_GPIO_Port, IMU##n##_CS_Pin, r, b, l); }
+IMU_XPORT(1)
+IMU_XPORT(2)
+IMU_XPORT(3)
 
-/* Initialize IMU1 */
-int IMU_Init(void)
+static void imu_sleep_us(uint32_t us) { HAL_Delay((us + 999) / 1000); }
+
+static const struct { inv_imu_read_reg_t rd; inv_imu_write_reg_t wr; } xport[IMU_COUNT] = {
+    { imu1_read, imu1_write }, { imu2_read, imu2_write }, { imu3_read, imu3_write },
+};
+
+static int imu_init_one(int idx)
 {
-    int rc = 0;
-    uint8_t whoami = 0;
-    
-    print("IMU1: Starting initialization...\r\n");
-    
-    /* Init transport layer */
-    imu_dev.transport.read_reg   = imu1_read_reg;
-    imu_dev.transport.write_reg  = imu1_write_reg;
-    imu_dev.transport.serif_type = UI_SPI4;
-    imu_dev.transport.sleep_us   = imu1_sleep_us;
-    
-    /* Wait 3 ms to ensure device is properly supplied */
-    imu1_sleep_us(3000);
-    
-    /* Configure SPI slew rate */
-    drive_config0_t drive_config0;
-    drive_config0.pads_spi_slew = DRIVE_CONFIG0_PADS_SPI_SLEW_TYP_10NS;
-    rc = inv_imu_write_reg(&imu_dev, DRIVE_CONFIG0, 1, (uint8_t *)&drive_config0);
-    if (rc != 0) {
-        print("IMU1: Failed to configure SPI slew rate\r\n");
-        return rc;
-    }
-    imu1_sleep_us(2); /* Takes effect 1.5 us after programmed */
-    
-    /* Check WHO_AM_I */
-    rc = inv_imu_get_who_am_i(&imu_dev, &whoami);
-    if (rc != 0) {
-        print("IMU1: Failed to read WHO_AM_I\r\n");
-        return rc;
-    }
-    print("IMU1: WHO_AM_I = 0x%02X (expected 0x%02X)\r\n", whoami, INV_IMU_WHOAMI);
-    
+    inv_imu_device_t *d = &imu_dev[idx];
+    int rc; uint8_t whoami = 0;
+
+    memset(d, 0, sizeof(*d));
+    d->transport.read_reg   = xport[idx].rd;
+    d->transport.write_reg  = xport[idx].wr;
+    d->transport.serif_type = UI_SPI4;
+    d->transport.sleep_us   = imu_sleep_us;
+
+    drive_config0_t drv = { 0 };
+    drv.pads_spi_slew = DRIVE_CONFIG0_PADS_SPI_SLEW_TYP_10NS;
+    rc = inv_imu_write_reg(d, DRIVE_CONFIG0, 1, (uint8_t *)&drv);
+    if (rc) return rc;
+    imu_sleep_us(2);
+
+    rc = inv_imu_get_who_am_i(d, &whoami);
+    if (rc) return rc;
     if (whoami != INV_IMU_WHOAMI) {
-        print("IMU1: ERROR - Wrong WHO_AM_I value!\r\n");
-        // return -1;
+        print("IMU%d: WHO_AM_I 0x%02X != 0x%02X\r\n", idx + 1, whoami, INV_IMU_WHOAMI);
+        return -1;
     }
-    
-    /* Soft reset */
-    print("IMU1: Performing soft reset...\r\n");
-    rc = inv_imu_soft_reset(&imu_dev);
-    if (rc != 0) {
-        print("IMU1: Soft reset failed\r\n");
-        return rc;
+    rc  = inv_imu_soft_reset(d);
+    rc |= inv_imu_set_accel_fsr(d, ACCEL_CONFIG0_ACCEL_UI_FS_SEL_32_G);
+    rc |= inv_imu_set_gyro_fsr(d, GYRO_CONFIG0_GYRO_UI_FS_SEL_2000_DPS);
+    rc |= inv_imu_set_accel_frequency(d, ACCEL_CONFIG0_ACCEL_ODR_400_HZ);
+    rc |= inv_imu_set_gyro_frequency(d, GYRO_CONFIG0_GYRO_ODR_400_HZ);
+    rc |= inv_imu_set_accel_ln_bw(d, IPREG_SYS2_REG_131_ACCEL_UI_LPFBW_DIV_4);
+    rc |= inv_imu_set_gyro_ln_bw(d, IPREG_SYS1_REG_172_GYRO_UI_LPFBW_DIV_4);
+    rc |= inv_imu_set_accel_mode(d, PWR_MGMT0_ACCEL_MODE_LN);
+    rc |= inv_imu_set_gyro_mode(d, PWR_MGMT0_GYRO_MODE_LN);
+    return rc;
+}
+
+uint8_t IMU_Init(void)
+{
+    uint8_t mask = 0;
+    HAL_Delay(3);                                   /* supply settle */
+    for (int i = 0; i < IMU_COUNT; i++) {
+        int rc = imu_init_one(i);
+        print("IMU%d: %s\r\n", i + 1, rc ? "FAILED" : "ok");
+        if (!rc) mask |= (uint8_t)(1u << i);
     }
-    
-    /* Set FSR: Accel=4g, Gyro=2000dps */
-    print("IMU1: Configuring FSR...\r\n");
-    rc = inv_imu_set_accel_fsr(&imu_dev, ACCEL_CONFIG0_ACCEL_UI_FS_SEL_4_G);
-    if (rc != 0) {
-        print("IMU1: Failed to set accel FSR\r\n");
-        return rc;
+    return mask;
+}
+
+int IMU_Read(int idx, IMU_Data *d)
+{
+    inv_imu_sensor_data_t raw;
+    if (inv_imu_get_register_data(&imu_dev[idx], &raw)) return -1;
+    if (raw.accel_data[0] == INVALID_VALUE_FIFO || raw.gyro_data[0] == INVALID_VALUE_FIFO) return -1;
+    for (int i = 0; i < 3; i++) {
+        d->accel_g[i]  = raw.accel_data[i] * (IMU_ACCEL_FSR_G / 32768.f);
+        d->gyro_dps[i] = raw.gyro_data[i]  * (IMU_GYRO_FSR_DPS / 32768.f);
     }
-    
-    rc = inv_imu_set_gyro_fsr(&imu_dev, GYRO_CONFIG0_GYRO_UI_FS_SEL_2000_DPS);
-    if (rc != 0) {
-        print("IMU1: Failed to set gyro FSR\r\n");
-        return rc;
-    }
-    
-    /* Set ODR: 50 Hz */
-    print("IMU1: Configuring ODR to 50 Hz...\r\n");
-    rc = inv_imu_set_accel_frequency(&imu_dev, ACCEL_CONFIG0_ACCEL_ODR_50_HZ);
-    if (rc != 0) {
-        print("IMU1: Failed to set accel ODR\r\n");
-        return rc;
-    }
-    
-    rc = inv_imu_set_gyro_frequency(&imu_dev, GYRO_CONFIG0_GYRO_ODR_50_HZ);
-    if (rc != 0) {
-        print("IMU1: Failed to set gyro ODR\r\n");
-        return rc;
-    }
-    
-    /* Set BW = ODR/4 */
-    rc = inv_imu_set_accel_ln_bw(&imu_dev, IPREG_SYS2_REG_131_ACCEL_UI_LPFBW_DIV_4);
-    if (rc != 0) {
-        print("IMU1: Failed to set accel BW\r\n");
-        return rc;
-    }
-    
-    rc = inv_imu_set_gyro_ln_bw(&imu_dev, IPREG_SYS1_REG_172_GYRO_UI_LPFBW_DIV_4);
-    if (rc != 0) {
-        print("IMU1: Failed to set gyro BW\r\n");
-        return rc;
-    }
-    
-    /* Enable sensors in Low-Noise mode */
-    print("IMU1: Enabling sensors in Low-Noise mode...\r\n");
-    rc = inv_imu_set_accel_mode(&imu_dev, PWR_MGMT0_ACCEL_MODE_LN);
-    if (rc != 0) {
-        print("IMU1: Failed to enable accel\r\n");
-        return rc;
-    }
-    
-    rc = inv_imu_set_gyro_mode(&imu_dev, PWR_MGMT0_GYRO_MODE_LN);
-    if (rc != 0) {
-        print("IMU1: Failed to enable gyro\r\n");
-        return rc;
-    }
-    
-    print("IMU1: Initialization complete!\r\n");
+    d->temperature_c = 25.f + raw.temp_data / 128.f;
+    d->timestamp = GetTimestamp();
     return 0;
 }
 
-/* Read and print IMU1 data */
-void IMU_Process(void)
+uint8_t IMU_ReadFused(uint8_t mask, IMU_Data *out)
 {
-    static uint32_t last_print = 0;
-    uint32_t now = GetTimestamp();
-    
-    /* Print data every 100ms (10 Hz) */
-    if (now - last_print < 100) {
-        return;
+    IMU_Data d[IMU_COUNT]; int ok[IMU_COUNT] = { 0 }; int n = 0; uint8_t used = 0;
+    for (int i = 0; i < IMU_COUNT; i++) {
+        if (!(mask & (1u << i))) continue;
+        if (IMU_Read(i, &d[i]) == 0) { ok[i] = 1; n++; used |= (uint8_t)(1u << i); }
     }
-    last_print = now;
-    
-    int rc;
-    inv_imu_sensor_data_t data;
-    float accel_g[3];
-    float gyro_dps[3];
-    float temp_degc;
-    
-    /* Read sensor data from registers */
-    rc = inv_imu_get_register_data(&imu_dev, &data);
-    if (rc != 0) {
-        print("IMU1: Failed to read data\r\n");
-        return;
+    if (!n) return 0;
+    memset(out, 0, sizeof(*out));
+    if (n == 3) {                                   /* median rejects one wild unit */
+        for (int a = 0; a < 3; a++) {
+            out->accel_g[a]  = Fusion_Median3(d[0].accel_g[a],  d[1].accel_g[a],  d[2].accel_g[a]);
+            out->gyro_dps[a] = Fusion_Median3(d[0].gyro_dps[a], d[1].gyro_dps[a], d[2].gyro_dps[a]);
+        }
+    } else {                                        /* mean of 2, or pass-through of 1 */
+        for (int i = 0; i < IMU_COUNT; i++) if (ok[i])
+            for (int a = 0; a < 3; a++) { out->accel_g[a] += d[i].accel_g[a] / n; out->gyro_dps[a] += d[i].gyro_dps[a] / n; }
     }
-    
-    /* Check for invalid data */
-    if (data.accel_data[0] == INVALID_VALUE_FIFO || 
-        data.gyro_data[0] == INVALID_VALUE_FIFO) {
-        return;  /* Skip invalid samples */
-    }
-    
-    /* Convert to SI units (FSR: 4g, 2000dps, 16-bit signed) */
-    accel_g[0] = (float)(data.accel_data[0] * 4.0) / 32768.0;
-    accel_g[1] = (float)(data.accel_data[1] * 4.0) / 32768.0;
-    accel_g[2] = (float)(data.accel_data[2] * 4.0) / 32768.0;
-    
-    gyro_dps[0] = (float)(data.gyro_data[0] * 2000.0) / 32768.0;
-    gyro_dps[1] = (float)(data.gyro_data[1] * 2000.0) / 32768.0;
-    gyro_dps[2] = (float)(data.gyro_data[2] * 2000.0) / 32768.0;
-    
-    temp_degc = 25.0 + ((float)data.temp_data / 128.0);
-    
-    /* Print data */
-    print("IMU1: Accel[% 6.2f % 6.2f % 6.2f]g  Gyro[% 7.1f % 7.1f % 7.1f]dps  Temp[% 4.1f]C\r\n",
-          accel_g[0], accel_g[1], accel_g[2],
-          gyro_dps[0], gyro_dps[1], gyro_dps[2],
-          temp_degc);
+    for (int i = 0; i < IMU_COUNT; i++) if (ok[i]) { out->temperature_c += d[i].temperature_c / n; out->timestamp = d[i].timestamp; }
+    return used;
 }

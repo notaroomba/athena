@@ -24,6 +24,11 @@
 /* USER CODE BEGIN Includes */
 #include "usbd_cdc_if.h"
 #include "athena.h"
+#include "athena_link.h"
+#include "sx127x.h"
+#include "ublox.h"
+#include "logger.h"
+#include <string.h>
 
 /* USER CODE END Includes */
 
@@ -34,7 +39,11 @@
 
 /* Private define ------------------------------------------------------------*/
 /* USER CODE BEGIN PD */
-
+#define LORA_FREQ_HZ    433000000u   // RA-02 band 410-525 MHz; match the ground station
+#define LORA_TX_DBM     17
+#define TELEM_RATE_HZ   2            // ~45 B frame at SF7/125k is ~90 ms of air time
+#define STATUS_PRINT_MS 500
+#define LED_IDENTITY_MS 3000         // show the MCU identity colour this long after reset
 /* USER CODE END PD */
 
 /* Private macro -------------------------------------------------------------*/
@@ -61,7 +70,22 @@ UART_HandleTypeDef huart8;
 UART_HandleTypeDef huart1;
 
 /* USER CODE BEGIN PV */
-
+static Link             mpu_link;        // UART8 <-> MPU
+static Link             air_link;        // frames received over LoRa (ground -> rocket)
+static uint8_t          uart8_rx_byte;
+static uint8_t          uart_frame[sizeof(Athena_GpsFix) + LINK_OVERHEAD];   // owned by the UART8 IT transfer
+static uint8_t          usb_frame[sizeof(Athena_GpsFix) + LINK_OVERHEAD];
+static uint8_t          lora_frame[sizeof(Athena_Telemetry) + LINK_OVERHEAD];
+static Athena_State     mpu_state;
+static uint32_t         mpu_state_ms, state_count;
+static Athena_GpsFix    gps;
+static uint32_t         gps_ms, gps_count;
+static uint8_t          lora_ok, gps_cfg_failed;
+static int16_t          last_rssi; static int8_t last_snr; static uint32_t air_count;
+static uint8_t          lora_fail;
+static uint8_t          uart7_rx_byte;                       // DA14531 (CodeLess AT) console
+static char             bt_line[96]; static uint8_t bt_len; static uint32_t bt_rx_bytes;
+static uint32_t         gps_rate_count, gps_rate_ms, gps_rate_x10;   /* measured fix rate, Hz*10 */
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
@@ -79,7 +103,8 @@ static void MX_USART1_UART_Init(void);
 static void MX_TIM2_Init(void);
 static void MX_SDMMC1_SD_Init(void);
 /* USER CODE BEGIN PFP */
-
+static void on_mpu_packet(uint8_t type, const uint8_t *payload, uint8_t len, void *user);
+static void on_air_packet(uint8_t type, const uint8_t *payload, uint8_t len, void *user);
 /* USER CODE END PFP */
 
 /* Private user code ---------------------------------------------------------*/
@@ -124,7 +149,7 @@ int main(void)
       .port_b = TPU_B_GPIO_Port,
       .pin_b = TPU_B_Pin
   };
-  Athena_Init(&led_pins);
+  Athena_Init(&led_pins, NULL);
 
   /* USER CODE END SysInit */
 
@@ -142,18 +167,104 @@ int main(void)
   MX_USB_DEVICE_Init();
   MX_SDMMC1_SD_Init();
   /* USER CODE BEGIN 2 */
-// MX_USB_DEVICE_Init();
+  Set_LED_Color(LED_RED);                              // identity colour: TPU = red (MPU green, SPU blue)
+  Link_Init(&mpu_link, on_mpu_packet, NULL);
+  Link_Init(&air_link, on_air_packet, NULL);
+  HAL_UART_Receive_IT(&huart8, &uart8_rx_byte, 1);
+  HAL_UART_Receive_IT(&huart7, &uart7_rx_byte, 1);     // DA14531 CodeLess replies (needs module J5/P0_6 -> PE7, see INTEGRATION.md)
+  HAL_Delay(1000);                                     // USB CDC enumeration
+
+  print("\r\n=== Athena TPU ===\r\n");
+  lora_ok = (SX127x_Init(LORA_FREQ_HZ, LORA_TX_DBM) == 0);
+  print("SX1278 %s (RegVersion 0x%02X)\r\n", lora_ok ? "ok" : "FAILED", SX127x_ReadReg(0x42));
+  gps_cfg_failed = (uint8_t)Ublox_Init();
+  print("NEO-M8U: %u config messages not ACKed (ack %lu nak %lu)\r\n", gps_cfg_failed, (unsigned long)Ublox_AckCount(), (unsigned long)Ublox_NakCount());
+  Logger_Init();                                       // W25Q256 ring log + microSD file (mounted when a card is present)
+  HAL_Delay(1500);                                     // DA14531 boots CodeLess from its flash (RST/P0_0 left floating)
+  HAL_UART_Transmit(&huart7, (uint8_t *)"AT\r\n", 4, 100);
+  print("DA14531: AT sent on UART7 @57600 (replies only visible once module J5/P0_6 is wired to PE7)\r\n");
+
+  uint32_t last_telem_ms = 0, last_print_ms = 0;
   /* USER CODE END 2 */
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
-
   while (1)
   {
-    // CDC_Transmit_FS((uint8_t *)"Hello from TPU!\r\n", 22);
-    // HAL_Delay(1000);
-    // LED_Test_Sequence();
-    // HAL_Delay(500);
+    uint32_t now = HAL_GetTick();
+
+    /* 0. logging back-ends: card detect, buffered writes, periodic sync, console commands */
+    Logger_Task();
+
+    /* 1. navigation state arriving from the MPU (handled in on_mpu_packet) */
+    Link_Process(&mpu_link);
+
+    /* 2. GPS: forward every NAV-PVT to the MPU, where the Kalman filter uses it */
+    if (Ublox_Poll(&gps)) {
+      gps_ms = now; gps_count++; gps_rate_count++;
+      if ((now - gps_rate_ms) >= 5000u) {              // fix rate actually delivered by the receiver
+        gps_rate_x10 = gps_rate_count * 10000u / (now - gps_rate_ms);
+        gps_rate_count = 0; gps_rate_ms = now;
+      }
+      size_t n = Link_Encode(usb_frame, LINK_PKT_GPS, &gps, sizeof gps);
+      Logger_Write(usb_frame, (uint32_t)n);
+      CDC_Transmit_FS(usb_frame, (uint16_t)n);                 // to the USB dashboard (dropped if busy)
+      if (huart8.gState == HAL_UART_STATE_READY) {
+        memcpy(uart_frame, usb_frame, n);
+        HAL_UART_Transmit_IT(&huart8, uart_frame, (uint16_t)n);
+      }
+    }
+
+    /* 3. telemetry downlink: fused estimate + raw fix quality */
+    if (lora_ok && (now - last_telem_ms) >= (1000u / TELEM_RATE_HZ)) {
+      last_telem_ms = now;
+      Athena_Telemetry t;
+      Link_MakeTelemetry(&t, &mpu_state, (now - gps_ms) < 2000u ? &gps : NULL, now);
+      size_t n = Link_Encode(lora_frame, LINK_PKT_TELEM, &t, sizeof t);
+      Logger_Write(lora_frame, (uint32_t)n);
+      CDC_Transmit_FS(lora_frame, (uint16_t)n);                // to the USB dashboard too
+      if (SX127x_Send(lora_frame, (uint8_t)n) == 0) {  // blocks ~90 ms, then returns to RX
+        lora_fail = 0;
+      } else if (++lora_fail >= 2) {                   // no TxDone twice: reset and re-init the radio
+        lora_ok = (SX127x_Init(LORA_FREQ_HZ, LORA_TX_DBM) == 0);
+        lora_fail = 0;
+        print("SX1278: TxDone timeout, re-init %s\r\n", lora_ok ? "ok" : "FAILED");
+      }
+    }
+
+    /* 4. uplink: anything the ground station sends is parsed with the same framing */
+    if (lora_ok) {
+      uint8_t rx[LINK_MAX_PAYLOAD + LINK_OVERHEAD];
+      int n = SX127x_Receive(rx, sizeof rx, &last_rssi, &last_snr);
+      for (int i = 0; i < n; i++) Link_FeedByte(&air_link, rx[i]);
+    }
+
+    /* 4b. anything the Bluetooth module said */
+    if (bt_len == 0xFF) { print("bt: %s\r\n", bt_line); bt_len = 0; }
+
+    /* 5. status over USB */
+    if ((now - last_print_ms) >= STATUS_PRINT_MS) {
+      last_print_ms = now;
+      const Ublox_Hw *hw = Ublox_HwStatus();
+      char logst[48]; Logger_StatusLine(logst, sizeof logst);
+      static char line[LINK_MAX_PAYLOAD];
+      int ln = snprintf(line, sizeof line, "gps fix=%u sv=%u lat=%ld lon=%ld hmsl=%ld m (n=%lu, %lu.%lu Hz) ant=%s pwr=%u noise=%u agc=%u jam=%u | mpu alt=%.1f vD=%.1f flags=0x%02X (n=%lu, %lu ms ago, bad=%lu) | air rx=%lu rssi=%d | %s",
+            gps.fix_type, gps.num_sv, (long)gps.lat_1e7, (long)gps.lon_1e7, (long)(gps.h_msl_mm / 1000), (unsigned long)gps_count,
+            (unsigned long)(gps_rate_x10 / 10), (unsigned long)(gps_rate_x10 % 10),
+            hw->valid ? Ublox_AntStatusStr(hw->ant_status) : "-", hw->ant_power, hw->noise_per_ms, hw->agc_cnt, hw->jam_ind,
+            -mpu_state.pos_ned[2], mpu_state.vel_ned[2], mpu_state.flags, (unsigned long)state_count, (unsigned long)(now - mpu_state_ms), (unsigned long)mpu_link.rx_bad,
+            (unsigned long)air_count, last_rssi, logst);
+      if (ln > (int)sizeof line - 1) ln = sizeof line - 1;
+      print("%s\r\n", line);
+      static uint8_t text_frame[LINK_MAX_PAYLOAD + LINK_OVERHEAD];
+      Logger_Write(text_frame, (uint32_t)Link_Encode(text_frame, LINK_PKT_TEXT, line, (uint8_t)ln));
+      int mpu_alive = (now - mpu_state_ms) < 1000u && state_count;
+      if (HAL_GetTick() < LED_IDENTITY_MS)            { /* keep showing the identity colour */ }
+      else if (!lora_ok)                              Set_LED_Color(LED_YELLOW);
+      else if (mpu_alive && gps.fix_type >= 3)        Set_LED_Color(LED_GREEN);
+      else if (mpu_alive)                             Set_LED_Color(LED_CYAN);
+      else                                            Set_LED_Color(LED_BLUE);
+    }
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
@@ -289,10 +400,10 @@ static void MX_QUADSPI_Init(void)
   /* USER CODE END QUADSPI_Init 1 */
   /* QUADSPI parameter configuration*/
   hqspi.Instance = QUADSPI;
-  hqspi.Init.ClockPrescaler = 255;
+  hqspi.Init.ClockPrescaler = 7;
   hqspi.Init.FifoThreshold = 1;
   hqspi.Init.SampleShifting = QSPI_SAMPLE_SHIFTING_NONE;
-  hqspi.Init.FlashSize = 1;
+  hqspi.Init.FlashSize = 24;
   hqspi.Init.ChipSelectHighTime = QSPI_CS_HIGH_TIME_1_CYCLE;
   hqspi.Init.ClockMode = QSPI_CLOCK_MODE_0;
   hqspi.Init.FlashID = QSPI_FLASH_ID_1;
@@ -320,14 +431,15 @@ static void MX_SDMMC1_SD_Init(void)
   /* USER CODE END SDMMC1_Init 0 */
 
   /* USER CODE BEGIN SDMMC1_Init 1 */
-
+  return;   /* the microSD is removable: logger.c initialises SDMMC1 only when a card is present,
+               so the generated HAL_SD_Init()/Error_Handler() below must never run */
   /* USER CODE END SDMMC1_Init 1 */
   hsd1.Instance = SDMMC1;
   hsd1.Init.ClockEdge = SDMMC_CLOCK_EDGE_RISING;
   hsd1.Init.ClockPowerSave = SDMMC_CLOCK_POWER_SAVE_DISABLE;
   hsd1.Init.BusWide = SDMMC_BUS_WIDE_4B;
   hsd1.Init.HardwareFlowControl = SDMMC_HARDWARE_FLOW_CONTROL_DISABLE;
-  hsd1.Init.ClockDiv = 0;
+  hsd1.Init.ClockDiv = 2;
   if (HAL_SD_Init(&hsd1) != HAL_OK)
   {
     Error_Handler();
@@ -357,11 +469,11 @@ static void MX_SPI1_Init(void)
   hspi1.Instance = SPI1;
   hspi1.Init.Mode = SPI_MODE_MASTER;
   hspi1.Init.Direction = SPI_DIRECTION_2LINES;
-  hspi1.Init.DataSize = SPI_DATASIZE_4BIT;
+  hspi1.Init.DataSize = SPI_DATASIZE_8BIT;
   hspi1.Init.CLKPolarity = SPI_POLARITY_LOW;
   hspi1.Init.CLKPhase = SPI_PHASE_1EDGE;
   hspi1.Init.NSS = SPI_NSS_SOFT;
-  hspi1.Init.BaudRatePrescaler = SPI_BAUDRATEPRESCALER_2;
+  hspi1.Init.BaudRatePrescaler = SPI_BAUDRATEPRESCALER_8;
   hspi1.Init.FirstBit = SPI_FIRSTBIT_MSB;
   hspi1.Init.TIMode = SPI_TIMODE_DISABLE;
   hspi1.Init.CRCCalculation = SPI_CRCCALCULATION_DISABLE;
@@ -405,11 +517,11 @@ static void MX_SPI3_Init(void)
   hspi3.Instance = SPI3;
   hspi3.Init.Mode = SPI_MODE_MASTER;
   hspi3.Init.Direction = SPI_DIRECTION_2LINES;
-  hspi3.Init.DataSize = SPI_DATASIZE_4BIT;
+  hspi3.Init.DataSize = SPI_DATASIZE_8BIT;
   hspi3.Init.CLKPolarity = SPI_POLARITY_LOW;
   hspi3.Init.CLKPhase = SPI_PHASE_1EDGE;
   hspi3.Init.NSS = SPI_NSS_SOFT;
-  hspi3.Init.BaudRatePrescaler = SPI_BAUDRATEPRESCALER_2;
+  hspi3.Init.BaudRatePrescaler = SPI_BAUDRATEPRESCALER_64;
   hspi3.Init.FirstBit = SPI_FIRSTBIT_MSB;
   hspi3.Init.TIMode = SPI_TIMODE_DISABLE;
   hspi3.Init.CRCCalculation = SPI_CRCCALCULATION_DISABLE;
@@ -545,7 +657,7 @@ static void MX_UART7_Init(void)
 
   /* USER CODE END UART7_Init 1 */
   huart7.Instance = UART7;
-  huart7.Init.BaudRate = 115200;
+  huart7.Init.BaudRate = 57600;
   huart7.Init.WordLength = UART_WORDLENGTH_8B;
   huart7.Init.StopBits = UART_STOPBITS_1;
   huart7.Init.Parity = UART_PARITY_NONE;
@@ -602,8 +714,9 @@ static void MX_UART8_Init(void)
   huart8.Init.OverSampling = UART_OVERSAMPLING_16;
   huart8.Init.OneBitSampling = UART_ONE_BIT_SAMPLE_DISABLE;
   huart8.Init.ClockPrescaler = UART_PRESCALER_DIV1;
-  huart8.AdvancedInit.AdvFeatureInit = UART_ADVFEATURE_NO_INIT;
-  if (HAL_MultiProcessor_Init(&huart8, 0, UART_WAKEUPMETHOD_IDLELINE) != HAL_OK)
+  huart8.AdvancedInit.AdvFeatureInit = UART_ADVFEATURE_SWAP_INIT;
+  huart8.AdvancedInit.Swap = UART_ADVFEATURE_SWAP_ENABLE;
+  if (HAL_UART_Init(&huart8) != HAL_OK)
   {
     Error_Handler();
   }
@@ -694,55 +807,49 @@ static void MX_GPIO_Init(void)
   __HAL_RCC_GPIOD_CLK_ENABLE();
 
   /*Configure GPIO pin Output Level */
-  HAL_GPIO_WritePin(GPIOA, RF_RESET_Pin|RF_DIO4_Pin|RF_DIO5_Pin|RF_CS_Pin, GPIO_PIN_RESET);
+  HAL_GPIO_WritePin(GPIOA, RF_RESET_Pin|RF_CS_Pin, GPIO_PIN_SET);
 
   /*Configure GPIO pin Output Level */
-  HAL_GPIO_WritePin(GPIOC, RF_DIO3_Pin|RF_DIO2_Pin, GPIO_PIN_RESET);
+  HAL_GPIO_WritePin(TPU_CAN_S_GPIO_Port, TPU_CAN_S_Pin, GPIO_PIN_RESET);
 
   /*Configure GPIO pin Output Level */
-  HAL_GPIO_WritePin(GPIOB, RF_DIO1_Pin|RF_DIO0_Pin|TPU_CAN_S_Pin|GPS_RESET_Pin, GPIO_PIN_RESET);
+  HAL_GPIO_WritePin(GPIOB, TPU_R_Pin|GPS_RESET_Pin, GPIO_PIN_SET);
 
   /*Configure GPIO pin Output Level */
-  HAL_GPIO_WritePin(BT_RESET_GPIO_Port, BT_RESET_Pin, GPIO_PIN_RESET);
+  HAL_GPIO_WritePin(GPIOD, TPU_G_Pin|TPU_B_Pin|GPS_SAFEBOOT_Pin|GPS_CS_Pin, GPIO_PIN_SET);
 
   /*Configure GPIO pin Output Level */
-  HAL_GPIO_WritePin(TPU_R_GPIO_Port, TPU_R_Pin, GPIO_PIN_SET);
+  HAL_GPIO_WritePin(GPS_SEL_GPIO_Port, GPS_SEL_Pin, GPIO_PIN_RESET);
 
-  /*Configure GPIO pin Output Level */
-  HAL_GPIO_WritePin(GPIOD, TPU_G_Pin|TPU_B_Pin, GPIO_PIN_SET);
-
-  /*Configure GPIO pin Output Level */
-  HAL_GPIO_WritePin(GPIOD, SD_CD_Pin|GPS_SEL_Pin|GPS_SAFEBOOT_Pin|GPS_LNA_EN_Pin
-                          |GPS_CS_Pin, GPIO_PIN_RESET);
-
-  /*Configure GPIO pins : RF_RESET_Pin RF_DIO4_Pin RF_DIO5_Pin RF_CS_Pin */
-  GPIO_InitStruct.Pin = RF_RESET_Pin|RF_DIO4_Pin|RF_DIO5_Pin|RF_CS_Pin;
+  /*Configure GPIO pins : RF_RESET_Pin RF_CS_Pin */
+  GPIO_InitStruct.Pin = RF_RESET_Pin|RF_CS_Pin;
   GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
   GPIO_InitStruct.Pull = GPIO_NOPULL;
   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
   HAL_GPIO_Init(GPIOA, &GPIO_InitStruct);
 
+  /*Configure GPIO pins : RF_DIO4_Pin RF_DIO5_Pin */
+  GPIO_InitStruct.Pin = RF_DIO4_Pin|RF_DIO5_Pin;
+  GPIO_InitStruct.Mode = GPIO_MODE_INPUT;
+  GPIO_InitStruct.Pull = GPIO_NOPULL;
+  HAL_GPIO_Init(GPIOA, &GPIO_InitStruct);
+
   /*Configure GPIO pins : RF_DIO3_Pin RF_DIO2_Pin */
   GPIO_InitStruct.Pin = RF_DIO3_Pin|RF_DIO2_Pin;
-  GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
+  GPIO_InitStruct.Mode = GPIO_MODE_INPUT;
   GPIO_InitStruct.Pull = GPIO_NOPULL;
-  GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
   HAL_GPIO_Init(GPIOC, &GPIO_InitStruct);
 
-  /*Configure GPIO pins : RF_DIO1_Pin RF_DIO0_Pin TPU_CAN_S_Pin TPU_R_Pin
-                           GPS_RESET_Pin */
-  GPIO_InitStruct.Pin = RF_DIO1_Pin|RF_DIO0_Pin|TPU_CAN_S_Pin|TPU_R_Pin
-                          |GPS_RESET_Pin;
-  GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
+  /*Configure GPIO pins : RF_DIO1_Pin RF_DIO0_Pin */
+  GPIO_InitStruct.Pin = RF_DIO1_Pin|RF_DIO0_Pin;
+  GPIO_InitStruct.Mode = GPIO_MODE_INPUT;
   GPIO_InitStruct.Pull = GPIO_NOPULL;
-  GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
   HAL_GPIO_Init(GPIOB, &GPIO_InitStruct);
 
   /*Configure GPIO pin : BT_RESET_Pin */
   GPIO_InitStruct.Pin = BT_RESET_Pin;
-  GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
+  GPIO_InitStruct.Mode = GPIO_MODE_INPUT;
   GPIO_InitStruct.Pull = GPIO_NOPULL;
-  GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
   HAL_GPIO_Init(BT_RESET_GPIO_Port, &GPIO_InitStruct);
 
   /*Configure GPIO pin : TPU_SELECT_Pin */
@@ -751,13 +858,26 @@ static void MX_GPIO_Init(void)
   GPIO_InitStruct.Pull = GPIO_NOPULL;
   HAL_GPIO_Init(TPU_SELECT_GPIO_Port, &GPIO_InitStruct);
 
-  /*Configure GPIO pins : TPU_G_Pin TPU_B_Pin SD_CD_Pin GPS_SEL_Pin
-                           GPS_SAFEBOOT_Pin GPS_LNA_EN_Pin GPS_CS_Pin */
-  GPIO_InitStruct.Pin = TPU_G_Pin|TPU_B_Pin|SD_CD_Pin|GPS_SEL_Pin
-                          |GPS_SAFEBOOT_Pin|GPS_LNA_EN_Pin|GPS_CS_Pin;
+  /*Configure GPIO pins : TPU_CAN_S_Pin TPU_R_Pin GPS_RESET_Pin */
+  GPIO_InitStruct.Pin = TPU_CAN_S_Pin|TPU_R_Pin|GPS_RESET_Pin;
   GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
   GPIO_InitStruct.Pull = GPIO_NOPULL;
   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
+  HAL_GPIO_Init(GPIOB, &GPIO_InitStruct);
+
+  /*Configure GPIO pins : TPU_G_Pin TPU_B_Pin GPS_SEL_Pin GPS_SAFEBOOT_Pin
+                           GPS_CS_Pin */
+  GPIO_InitStruct.Pin = TPU_G_Pin|TPU_B_Pin|GPS_SEL_Pin|GPS_SAFEBOOT_Pin
+                          |GPS_CS_Pin;
+  GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
+  GPIO_InitStruct.Pull = GPIO_NOPULL;
+  GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
+  HAL_GPIO_Init(GPIOD, &GPIO_InitStruct);
+
+  /*Configure GPIO pins : SD_CD_Pin GPS_LNA_EN_Pin */
+  GPIO_InitStruct.Pin = SD_CD_Pin|GPS_LNA_EN_Pin;
+  GPIO_InitStruct.Mode = GPIO_MODE_INPUT;
+  GPIO_InitStruct.Pull = GPIO_NOPULL;
   HAL_GPIO_Init(GPIOD, &GPIO_InitStruct);
 
   /*Configure GPIO pin : GPS_EXTINT_Pin */
@@ -775,7 +895,49 @@ static void MX_GPIO_Init(void)
 }
 
 /* USER CODE BEGIN 4 */
+static void on_mpu_packet(uint8_t type, const uint8_t *payload, uint8_t len, void *user)
+{
+  (void)user;
+  if (type == LINK_PKT_STATE && len == sizeof(Athena_State)) {
+    memcpy(&mpu_state, payload, sizeof mpu_state);
+    mpu_state_ms = HAL_GetTick();
+    state_count++;
+    static uint8_t f[sizeof(Athena_State) + LINK_OVERHEAD];
+    Logger_Write(f, (uint32_t)Link_Encode(f, LINK_PKT_STATE, payload, len));
+  }
+}
 
+static void on_air_packet(uint8_t type, const uint8_t *payload, uint8_t len, void *user)
+{
+  (void)user;
+  air_count++;
+  if (type == LINK_PKT_TEXT) print("air: %.*s\r\n", len, (const char *)payload);
+  // ponytail: uplink commands (arm, abort, pyro) go here once the ground station exists
+}
+
+void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart)
+{
+  if (huart->Instance == UART8) {
+    Link_RxPush(&mpu_link, uart8_rx_byte);
+    HAL_UART_Receive_IT(&huart8, &uart8_rx_byte, 1);
+  } else if (huart->Instance == UART7) {                // collect CodeLess lines, printed from the main loop
+    bt_rx_bytes++;
+    if (uart7_rx_byte == '\n' || bt_len >= sizeof(bt_line) - 1) { bt_line[bt_len] = 0; bt_len = 0xFF; }
+    else if (bt_len != 0xFF && uart7_rx_byte >= 32) bt_line[bt_len++] = (char)uart7_rx_byte;
+    HAL_UART_Receive_IT(&huart7, &uart7_rx_byte, 1);
+  }
+}
+
+void HAL_UART_ErrorCallback(UART_HandleTypeDef *huart)
+{
+  if (huart->Instance == UART8) {              // an overrun aborts IT reception: re-arm it
+    __HAL_UART_CLEAR_FLAG(huart, UART_CLEAR_OREF | UART_CLEAR_FEF | UART_CLEAR_NEF);
+    HAL_UART_Receive_IT(&huart8, &uart8_rx_byte, 1);
+  } else if (huart->Instance == UART7) {
+    __HAL_UART_CLEAR_FLAG(huart, UART_CLEAR_OREF | UART_CLEAR_FEF | UART_CLEAR_NEF);
+    HAL_UART_Receive_IT(&huart7, &uart7_rx_byte, 1);
+  }
+}
 /* USER CODE END 4 */
 
  /* MPU Configuration */

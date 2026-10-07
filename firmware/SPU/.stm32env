@@ -2,5 +2,12 @@
 # Other environment variables can be added here. If wanting to use the generated makefile in CI/CD context please
 # configure the following variables: GCC_PATH, OPENOCD
 
+# Windows (STM32-for-VSCode xpack install). On macOS/Linux leave ARM_GCC_PATH unset so the
+# toolchain is taken from PATH (e.g. brew install arm-none-eabi-gcc).
+ifeq ($(OS),Windows_NT)
 ARM_GCC_PATH = $(APPDATA)\Code\User\globalStorage\bmd.stm32-for-vscode\@xpack-dev-tools\arm-none-eabi-gcc\14.2.1-1.1.1\.content\bin
 OPENOCD = $(APPDATA)\Code\User\globalStorage\bmd.stm32-for-vscode\@xpack-dev-tools\openocd\0.12.0-7.1\.content\bin\openocd.EXE
+else
+# macOS/Linux: first arm-none-eabi-gcc found on PATH (make's built-in CC=cc would otherwise be used)
+ARM_GCC_PATH := $(patsubst %/,%,$(dir $(shell command -v arm-none-eabi-gcc 2>/dev/null)))
+endif

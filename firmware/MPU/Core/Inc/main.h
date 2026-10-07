@@ -79,6 +79,8 @@ void Error_Handler(void);
 #define TPU_SELECT_GPIO_Port GPIOC
 #define MAG_CS_Pin GPIO_PIN_1
 #define MAG_CS_GPIO_Port GPIOB
+#define MAG_MOSI_Pin GPIO_PIN_2
+#define MAG_MOSI_GPIO_Port GPIOB
 #define IMU_FSYNC_Pin GPIO_PIN_9
 #define IMU_FSYNC_GPIO_Port GPIOE
 #define IMU1_INT_Pin GPIO_PIN_10
@@ -107,8 +109,6 @@ void Error_Handler(void);
 #define MAG_SCK_GPIO_Port GPIOC
 #define MAG_MISO_Pin GPIO_PIN_11
 #define MAG_MISO_GPIO_Port GPIOC
-#define MAG_MOSI_Pin GPIO_PIN_12
-#define MAG_MOSI_GPIO_Port GPIOC
 #define MPU_CAN_S_Pin GPIO_PIN_2
 #define MPU_CAN_S_GPIO_Port GPIOD
 #define BMP_CS_Pin GPIO_PIN_3

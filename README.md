@@ -110,6 +110,30 @@ The board was designed in EasyEDA with careful attention to power distribution a
 - **LoRa**: RA-02
 - **Bluetooth**: DA14531MOD-00F01002
 
+## Dashboard
+
+[docs/index.html](docs/index.html) is a static live-telemetry page, served at [athena.notaroomba.dev](https://athena.notaroomba.dev) by GitHub Pages, in the style of
+[cyberboard.notaroomba.dev](https://cyberboard.notaroomba.dev): 3D attitude, accel/gyro and
+altitude charts, flight flags, GPS and a serial console. It talks to the MPU or TPU USB port
+directly with WebSerial (Chrome/Edge, served over https or localhost) and decodes the same
+binary frames the MCUs exchange, so there is no backend. **Demo** runs a scripted flight
+through the real encoder/decoder. Locally: `python3 -m http.server 8787 --directory docs`.
+
+## Firmware
+
+Three CubeMX projects (`firmware/MPU`, `firmware/TPU`, `firmware/SPU`) share the pure-C
+modules in `firmware/Athena`: the inter-MCU/LoRa framing (`athena_link`), the UBX parser
+(`ubx`) and the navigation filter (`fusion`: Mahony attitude + per-axis Kalman filters with
+IMU dead reckoning, barometer and GPS corrections). `cd firmware && make debug` builds all three
+(`brew install osx-cross/arm/arm-gcc-bin@14` for the toolchain), `./firmware/flash.sh` flashes them
+over USB DFU with `dfu-util` (hold BOOT on each MCU; the script tells them apart by USB hub port),
+and `make host-test` runs the PC self-check of the shared modules. The TPU logs every link
+frame to the microSD card (one `ATHnnnnn.BIN` per boot, card hot-plug safe) and to the W25Q256
+flash; `tools/athlog.py` dumps the flash log over USB and converts logs to CSV. After reset each MCU shows its
+identity colour for 3 s: **MPU green, TPU red, SPU blue**.
+the data flow, every driver, the schematic/CubeMX mismatches that were found, and the
+bring-up checklist.
+
 ## Credits
 
 This project uses:

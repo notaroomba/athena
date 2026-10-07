@@ -76,12 +76,21 @@ endif
 # C sources
 C_SOURCES =  \
 ../Athena/athena.c \
+../Athena/athena_link.c \
+../Athena/ubx.c \
 Core/Src/main.c \
 Core/Src/stm32h7xx_hal_msp.c \
 Core/Src/stm32h7xx_it.c \
 Core/Src/syscalls.c \
 Core/Src/sysmem.c \
 Core/Src/system_stm32h7xx.c \
+Drivers/FatFs/diskio.c \
+Drivers/FatFs/ff.c \
+Drivers/FatFs/option/unicode.c \
+Drivers/Logger/logger.c \
+Drivers/SX127x/sx127x.c \
+Drivers/UBLOX/ublox.c \
+Drivers/W25Q/w25q.c \
 Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal.c \
 Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_cortex.c \
 Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_dma.c \
@@ -219,6 +228,11 @@ AS_INCLUDES = \
 C_INCLUDES =  \
 -I../Athena \
 -ICore/Inc \
+-IDrivers/FatFs \
+-IDrivers/Logger \
+-IDrivers/SX127x \
+-IDrivers/UBLOX \
+-IDrivers/W25Q \
 -IDrivers/CMSIS/Device/ST/STM32H7xx/Include \
 -IDrivers/CMSIS/Include \
 -IDrivers/STM32H7xx_HAL_Driver/Inc \
@@ -256,7 +270,7 @@ CXXFLAGS += $(ASSEMBLER_LIST_OUTPUT_FLAG)
 # LDFLAGS
 #######################################
 # link script
-LDSCRIPT = STM32H743XX_FLASH.ld
+LDSCRIPT = STM32H743xx_FLASH.ld
 
 # libraries
 LIBS = -lc -lm -lnosys 
@@ -264,7 +278,7 @@ LIBDIR = \
 
 
 # Additional LD Flags from config file
-ADDITIONALLDFLAGS = -Wl,--print-memory-usage -specs=nano.specs 
+ADDITIONALLDFLAGS = -Wl,--print-memory-usage,-u _printf_float -specs=nano.specs 
 
 LDFLAGS = $(MCU) $(ADDITIONALLDFLAGS) -T$(LDSCRIPT) $(LIBDIR) $(LIBS) -Wl,-Map=$(BUILD_DIRECTORY)/$(TARGET).map,--cref -Wl,--gc-sections
 

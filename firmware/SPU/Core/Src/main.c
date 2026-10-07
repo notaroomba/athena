@@ -113,7 +113,7 @@ int main(void)
 
   /* USER CODE BEGIN SysInit */
 
-  Athena_Init(&led_pins);
+  Athena_Init(&led_pins, NULL);
   /* USER CODE END SysInit */
 
   /* Initialize all configured peripherals */
@@ -127,6 +127,7 @@ int main(void)
   MX_USART1_UART_Init();
   MX_USB_Device_Init();
   /* USER CODE BEGIN 2 */
+  Set_LED_Color(LED_BLUE);                             // identity colour: SPU = blue (MPU green, TPU red)
   
   // TPS25751 I2C Configuration
   // I2C Address #1 selected by ADCIN1=#7 and ADCIN2=#5
@@ -528,7 +529,7 @@ static void MX_UART5_Init(void)
   huart5.Init.OneBitSampling = UART_ONE_BIT_SAMPLE_DISABLE;
   huart5.Init.ClockPrescaler = UART_PRESCALER_DIV1;
   huart5.AdvancedInit.AdvFeatureInit = UART_ADVFEATURE_NO_INIT;
-  if (HAL_MultiProcessor_Init(&huart5, 0, UART_WAKEUPMETHOD_IDLELINE) != HAL_OK)
+  if (HAL_UART_Init(&huart5) != HAL_OK)
   {
     Error_Handler();
   }

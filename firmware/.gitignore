@@ -50,3 +50,5 @@ release
 *.su
 *.idb
 *.pdb
+# host self-check binary (make host-test)
+build/host_test

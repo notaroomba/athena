@@ -29,6 +29,10 @@
 // #include "driver_bmp388_shot.h"
 #include "icp201xx_interface.h"
 #include "imu_interface.h"
+#include "lis2mdl.h"
+#include "athena_link.h"
+#include "fusion.h"
+#include <string.h>
 
 /* USER CODE END Includes */
 
@@ -41,6 +45,11 @@
 /* USER CODE BEGIN PD */
 #define __FPU_USED 1U
 #define FSYNC_FREQUENCY_HZ 30000  // FSYNC frequency at 30kHz
+#define IMU_RATE_HZ    400        // fusion predict rate (= IMU ODR)
+#define STATE_RATE_HZ  20         // Athena_State frames sent to the TPU
+#define MAG_POLL_HZ    200
+#define BARO_POLL_HZ   100
+#define LED_IDENTITY_MS 3000      // show the MCU identity colour this long after reset
 /* USER CODE END PD */
 
 /* Private macro -------------------------------------------------------------*/
@@ -75,6 +84,17 @@ Athena_LED_PinConfig led_pins = {
   };
 
 volatile uint8_t bmp388_data_ready = 0;  // Flag set by interrupt
+
+static Link           tpu_link;                 // UART4 <-> TPU
+static uint8_t        uart4_rx_byte;
+static uint8_t        state_frame[sizeof(Athena_State) + LINK_OVERHEAD];
+static uint8_t        uart_frame[sizeof(Athena_State) + LINK_OVERHEAD];   // owned by the UART4 IT transfer
+static Fusion         fusion;
+static Athena_State   state;
+static Athena_GpsFix  last_gps;
+static uint32_t       gps_count;
+static ICP201xx_t     icp_device;
+static uint8_t        imu_mask, mag_ok, icp_ok;
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
@@ -92,8 +112,7 @@ static void MX_USART1_UART_Init(void);
 static void MX_TIM2_Init(void);
 static void MX_TIM1_Init(void);
 /* USER CODE BEGIN PFP */
-Athena_SensorData sensor_data = {0};  // Global sensor data structure
-
+static void on_tpu_packet(uint8_t type, const uint8_t *payload, uint8_t len, void *user);
 /* USER CODE END PFP */
 
 /* Private user code ---------------------------------------------------------*/
@@ -152,132 +171,99 @@ int main(void)
   MX_TIM2_Init();
   MX_TIM1_Init();
   /* USER CODE BEGIN 2 */
+  Set_LED_Color(LED_GREEN);                   // identity colour: MPU = green (TPU red, SPU blue)
+  HAL_TIM_Base_Start(&htim2);                 // 1 MHz free-running counter behind GetTimestamp()
+  HAL_Delay(1000);                            // let USB CDC enumerate so the first prints are seen
 
-  // Start TIM2 for GetTimestamp() function
-  HAL_TIM_Base_Start(&htim2);
+  Link_Init(&tpu_link, on_tpu_packet, NULL);
+  HAL_UART_Receive_IT(&huart4, &uart4_rx_byte, 1);
+  Fusion_Init(&fusion, NULL);
 
-  HAL_Delay(2000);
-  
-  // BMP388 BASIC MODE CONFIGURATION
-//   int bmp_res;
-
-// bmp_res = bmp388_basic_init(BMP388_INTERFACE_SPI, BMP388_ADDRESS_ADO_LOW);
-// if (bmp_res != 0)
-// {
-//     print("BMP388 basic initialization failed, code: %d\r\n", bmp_res);
-// }
-// else
-// {
-//     print("BMP388 basic initialized successfully!\r\n");
-// }
-  // ICP201xx CONFIGURATION
-  ICP201xx_t icp_device;
-  int icp_res;
-  float icp_temperature_c;
-  float icp_pressure_kpa;
-  
+  print("\r\n=== Athena MPU ===\r\n");
+  imu_mask = IMU_Init();
+  print("IMU mask 0x%X (bit n = IMU n+1 alive)\r\n", imu_mask);
+  mag_ok = (LIS2MDL_Init() == 0);
+  print("LIS2MDL %s\r\n", mag_ok ? "ok" : "FAILED");
   ICP201xx_init_spi(&icp_device);
-  icp_res = ICP201xx_begin(&icp_device);
-  if (icp_res != 0)
-  {
-      char buffer[64];
-      int len = sprintf(buffer, "ICP201xx initialization failed, code: %d\r\n", icp_res);
-      CDC_Transmit_FS((uint8_t *)buffer, len);
-  }
-  else
-  {
-      CDC_Transmit_FS((uint8_t *)"ICP201xx initialized successfully!\r\n", 37);
-      icp_res = ICP201xx_start(&icp_device);
-      if (icp_res != 0)
-      {
-          char buffer[64];
-          int len = sprintf(buffer, "ICP201xx start failed, code: %d\r\n", icp_res);
-          CDC_Transmit_FS((uint8_t *)buffer, len);
-      }
-  }
-
-  
-  // Initialize 3 IMUs with FSYNC synchronization
-  print("\r\n=== Initializing IMUs ===\r\n");
-  int imu_res = IMU_Init();
-  if (imu_res != 0) {
-    print("IMU initialization failed with code: %d\r\n", imu_res);
-  } else {
-    print("All IMUs initialized successfully!\r\n");
-  }
-  
-  // Start TIM1 CH1 PWM for FSYNC signal at 30kHz (synchronized sensor sampling)
-  // HAL_TIM_PWM_Start(&htim1, TIM_CHANNEL_1);
-  // print("FSYNC signal started on TIM1 CH1 at 30kHz\r\n");
-  
+  icp_ok = (ICP201xx_begin(&icp_device) == 0) && (ICP201xx_start(&icp_device) == 0);
+  print("ICP-20100 %s\r\n", icp_ok ? "ok" : "FAILED");
+  // ponytail: BMP388 left out, its libdriver blocks for seconds; ICP is the primary baro.
+  //           Add it as a second Fusion_Baro() call once a non-blocking read exists.
+  uint32_t last_imu_us = GetTimestamp(), last_mag_us = 0, last_baro_us = 0;
+  uint32_t last_state_us = 0, last_print_us = 0, last_hz_us = 0, loops = 0;
+  uint16_t loop_hz = 0;
   /* USER CODE END 2 */
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
   while (1)
   {
-    // Process IMU interrupts (FSYNC-synchronized)
-    IMU_Process();
-    
-    // Print IMU data when FSYNC event occurs
-    static uint32_t last_print = 0;
     uint32_t now = GetTimestamp();
-    if ((now - last_print) >= 100000) {  // Print every 100ms
-      last_print = now;
-      
-      if (sensor_data.imu1.fsync_event) {
-        print("IMU1: G=[%7.2f %7.2f %7.2f] A=[%6.2f %6.2f %6.2f] T=%5.1fC FSYNC=%u\r\n",
-              sensor_data.imu1.gyro_dps[0], sensor_data.imu1.gyro_dps[1], sensor_data.imu1.gyro_dps[2],
-              sensor_data.imu1.accel_g[0], sensor_data.imu1.accel_g[1], sensor_data.imu1.accel_g[2],
-              sensor_data.imu1.temperature_c, sensor_data.imu1.fsync_tag);
-        sensor_data.imu1.fsync_event = 0;
-      }
-      
-      if (sensor_data.imu2.fsync_event) {
-        print("IMU2: G=[%7.2f %7.2f %7.2f] A=[%6.2f %6.2f %6.2f] T=%5.1fC FSYNC=%u\r\n",
-              sensor_data.imu2.gyro_dps[0], sensor_data.imu2.gyro_dps[1], sensor_data.imu2.gyro_dps[2],
-              sensor_data.imu2.accel_g[0], sensor_data.imu2.accel_g[1], sensor_data.imu2.accel_g[2],
-              sensor_data.imu2.temperature_c, sensor_data.imu2.fsync_tag);
-        sensor_data.imu2.fsync_event = 0;
-      }
-      
-      if (sensor_data.imu3.fsync_event) {
-        print("IMU3: G=[%7.2f %7.2f %7.2f] A=[%6.2f %6.2f %6.2f] T=%5.1fC FSYNC=%u\r\n",
-              sensor_data.imu3.gyro_dps[0], sensor_data.imu3.gyro_dps[1], sensor_data.imu3.gyro_dps[2],
-              sensor_data.imu3.accel_g[0], sensor_data.imu3.accel_g[1], sensor_data.imu3.accel_g[2],
-              sensor_data.imu3.temperature_c, sensor_data.imu3.fsync_tag);
-        sensor_data.imu3.fsync_event = 0;
+
+    /* 1. IMUs: vote the three units, convert to SI, run attitude + dead-reckoning predict */
+    if ((now - last_imu_us) >= (1000000u / IMU_RATE_HZ)) {
+      float dt = (float)(now - last_imu_us) * 1e-6f;
+      last_imu_us = now;
+      IMU_Data d;
+      if (IMU_ReadFused(imu_mask, &d)) {
+        float acc[3], gyr[3];
+        for (int i = 0; i < 3; i++) { acc[i] = d.accel_g[i] * 9.80665f; gyr[i] = d.gyro_dps[i] * 0.017453292f; }
+        Fusion_Imu(&fusion, acc, gyr, dt, now);
+        loops++;
       }
     }
-    
-    // Read ICP201xx sensor
-    if (icp_res == 0) {
-      int icp_res2 = ICP201xx_getData(&icp_device, &icp_pressure_kpa, &icp_temperature_c);
-      if (icp_res2 != 0)
-      {
-          print("ICP201xx: read failed, code: %d\r\n", icp_res);
-      }
-      else
-      {
-        sensor_data.icp201.temperature_c = icp_temperature_c;
-        sensor_data.icp201.pressure_pa = icp_pressure_kpa * 1000;
-        sensor_data.icp201.timestamp = GetTimestamp();
-          print("ICP201xx: T=%0.2fC P=%0.3fPa Time=%lu\r\n", 
-                icp_temperature_c, icp_pressure_kpa * 1000, GetTimestamp());  // Add 1000kPa offset
+
+    /* 2. magnetometer: yaw reference for the attitude filter */
+    if (mag_ok && (now - last_mag_us) >= (1000000u / MAG_POLL_HZ)) {
+      last_mag_us = now;
+      float m[3];
+      if (LIS2MDL_Read(m) == 0) Fusion_Mag(&fusion, m, now);
+    }
+
+    /* 3. barometer: altitude measurement for the Down axis */
+    if (icp_ok && (now - last_baro_us) >= (1000000u / BARO_POLL_HZ)) {
+      last_baro_us = now;
+      float p_kpa, t_c;
+      if (ICP201xx_getData(&icp_device, &p_kpa, &t_c) == 0) Fusion_Baro(&fusion, p_kpa * 1000.f, now);
+    }
+
+    /* 4. GPS fixes relayed by the TPU (handled in on_tpu_packet) */
+    Link_Process(&tpu_link);
+
+    /* 5. publish the navigation state to the TPU */
+    if ((now - last_state_us) >= (1000000u / STATE_RATE_HZ)) {
+      last_state_us = now;
+      if ((now - last_hz_us) >= 1000000u) { loop_hz = (uint16_t)loops; loops = 0; last_hz_us = now; }
+      Fusion_GetState(&fusion, &state, imu_mask, loop_hz);
+      size_t n = Link_Encode(state_frame, LINK_PKT_STATE, &state, sizeof state);
+      CDC_Transmit_FS(state_frame, (uint16_t)n);               // same frame to the USB dashboard (dropped if busy)
+      if (huart4.gState == HAL_UART_STATE_READY) {
+        memcpy(uart_frame, state_frame, n);
+        HAL_UART_Transmit_IT(&huart4, uart_frame, (uint16_t)n);
       }
     }
-    
-    Set_LED_Color(LED_BLUE);
-    // HAL_GPIO_WritePin(MPU_B_GPIO_Port, MPU_B_Pin, GPIO_PIN_SET);
-    // HAL_Delay(1000);
-    // HAL_GPIO_WritePin(MPU_B_GPIO_Port, MPU_B_Pin, GPIO_PIN_RESET);
-    HAL_Delay(100);
-  }
-    
-   
+
+    /* 6. human-readable status over USB */
+    if ((now - last_print_us) >= 200000u) {
+      last_print_us = now;
+      float roll, pitch, yaw;
+      Fusion_QuatToEuler(state.q, &roll, &pitch, &yaw);
+      print("alt %7.1f m  vD %6.1f m/s  baro %7.1f m | rpy %6.1f %6.1f %6.1f | imu 0x%X %u Hz | gps %s n=%lu rx_bad=%lu | %s\r\n",
+            -state.pos_ned[2], state.vel_ned[2], state.baro_alt,
+            roll * 57.2958f, pitch * 57.2958f, yaw * 57.2958f,
+            state.imu_mask, state.loop_hz,
+            (state.flags & STATE_FLAG_GPS_FRESH) ? "fresh" : "DR", (unsigned long)gps_count, (unsigned long)tpu_link.rx_bad,
+            (state.flags & STATE_FLAG_IN_FLIGHT) ? "FLIGHT" : "pad");
+      if (HAL_GetTick() < LED_IDENTITY_MS)          { /* keep showing the identity colour */ }
+      else if (state.flags & STATE_FLAG_IN_FLIGHT) Set_LED_Color(LED_MAGENTA);
+      else if (!imu_mask)                          Set_LED_Color(LED_RED);
+      else if (imu_mask == 0x7 && mag_ok && icp_ok && (state.flags & STATE_FLAG_GPS_FRESH)) Set_LED_Color(LED_GREEN);
+      else                                         Set_LED_Color(LED_YELLOW);
+    }
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
+  }
   /* USER CODE END 3 */
 }
 
@@ -415,7 +401,7 @@ static void MX_SPI1_Init(void)
   hspi1.Init.Direction = SPI_DIRECTION_2LINES;
   hspi1.Init.DataSize = SPI_DATASIZE_8BIT;
   hspi1.Init.CLKPolarity = SPI_POLARITY_LOW;
-  hspi1.Init.CLKPhase = SPI_PHASE_2EDGE;
+  hspi1.Init.CLKPhase = SPI_PHASE_1EDGE;
   hspi1.Init.NSS = SPI_NSS_SOFT;
   hspi1.Init.BaudRatePrescaler = SPI_BAUDRATEPRESCALER_4;
   hspi1.Init.FirstBit = SPI_FIRSTBIT_MSB;
@@ -461,11 +447,11 @@ static void MX_SPI3_Init(void)
   hspi3.Instance = SPI3;
   hspi3.Init.Mode = SPI_MODE_MASTER;
   hspi3.Init.Direction = SPI_DIRECTION_2LINES;
-  hspi3.Init.DataSize = SPI_DATASIZE_4BIT;
-  hspi3.Init.CLKPolarity = SPI_POLARITY_LOW;
-  hspi3.Init.CLKPhase = SPI_PHASE_1EDGE;
+  hspi3.Init.DataSize = SPI_DATASIZE_8BIT;
+  hspi3.Init.CLKPolarity = SPI_POLARITY_HIGH;
+  hspi3.Init.CLKPhase = SPI_PHASE_2EDGE;
   hspi3.Init.NSS = SPI_NSS_SOFT;
-  hspi3.Init.BaudRatePrescaler = SPI_BAUDRATEPRESCALER_2;
+  hspi3.Init.BaudRatePrescaler = SPI_BAUDRATEPRESCALER_8;
   hspi3.Init.FirstBit = SPI_FIRSTBIT_MSB;
   hspi3.Init.TIMode = SPI_TIMODE_DISABLE;
   hspi3.Init.CRCCalculation = SPI_CRCCALCULATION_DISABLE;
@@ -478,7 +464,7 @@ static void MX_SPI3_Init(void)
   hspi3.Init.MasterSSIdleness = SPI_MASTER_SS_IDLENESS_00CYCLE;
   hspi3.Init.MasterInterDataIdleness = SPI_MASTER_INTERDATA_IDLENESS_00CYCLE;
   hspi3.Init.MasterReceiverAutoSusp = SPI_MASTER_RX_AUTOSUSP_DISABLE;
-  hspi3.Init.MasterKeepIOState = SPI_MASTER_KEEP_IO_STATE_DISABLE;
+  hspi3.Init.MasterKeepIOState = SPI_MASTER_KEEP_IO_STATE_ENABLE;
   hspi3.Init.IOSwap = SPI_IO_SWAP_DISABLE;
   if (HAL_SPI_Init(&hspi3) != HAL_OK)
   {
@@ -706,12 +692,14 @@ static void MX_TIM2_Init(void)
   /* USER CODE BEGIN TIM2_Init 2 */
  uint32_t tim_clk = HAL_RCC_GetPCLK1Freq();
 
-// APB1 prescaler check
+// APB1 timer kernel clock (RM0433 8.5.8, TIMPRE = 0): equal to PCLK1 when the APB1
+// prescaler is 1 (D2PPRE1 = 0xx), twice PCLK1 for any division (D2PPRE1 = 1xx, i.e. >= 4).
+// This project runs APB1 at /2 (value 4), so the test must be ">= 4", not "> 4".
 uint32_t ppre = (RCC->D2CFGR & RCC_D2CFGR_D2PPRE1) >> RCC_D2CFGR_D2PPRE1_Pos;
-if (ppre > 4) tim_clk *= 2;
+if (ppre >= 4) tim_clk *= 2;
 
-// Set 1 kHz tick from 80 MHz timer → PSC = 79999
-htim2.Init.Prescaler = (tim_clk / 1000) - 1;
+// 1 MHz tick (1 us resolution, wraps every 71 min) so GetTimestamp() returns microseconds
+htim2.Init.Prescaler = (tim_clk / 1000000) - 1;
 htim2.Init.Period    = 0xFFFFFFFF;
 
 HAL_TIM_Base_Init(&htim2);   // <- THIS IS NOW SAFE
@@ -746,7 +734,7 @@ static void MX_UART4_Init(void)
   huart4.Init.OneBitSampling = UART_ONE_BIT_SAMPLE_DISABLE;
   huart4.Init.ClockPrescaler = UART_PRESCALER_DIV1;
   huart4.AdvancedInit.AdvFeatureInit = UART_ADVFEATURE_NO_INIT;
-  if (HAL_MultiProcessor_Init(&huart4, 0, UART_WAKEUPMETHOD_IDLELINE) != HAL_OK)
+  if (HAL_UART_Init(&huart4) != HAL_OK)
   {
     Error_Handler();
   }
@@ -794,7 +782,7 @@ static void MX_UART8_Init(void)
   huart8.Init.OneBitSampling = UART_ONE_BIT_SAMPLE_DISABLE;
   huart8.Init.ClockPrescaler = UART_PRESCALER_DIV1;
   huart8.AdvancedInit.AdvFeatureInit = UART_ADVFEATURE_NO_INIT;
-  if (HAL_MultiProcessor_Init(&huart8, 0, UART_WAKEUPMETHOD_IDLELINE) != HAL_OK)
+  if (HAL_UART_Init(&huart8) != HAL_OK)
   {
     Error_Handler();
   }
@@ -947,14 +935,38 @@ static void MX_GPIO_Init(void)
   /* USER CODE BEGIN MX_GPIO_Init_2 */
   
   /* Enable NVIC interrupt for EXTI15_10 (handles IMU1_INT on PE10, IMU2_INT on PE12, IMU3_INT on PE14) */
-  HAL_NVIC_SetPriority(EXTI15_10_IRQn, 5, 0);
-  HAL_NVIC_EnableIRQ(EXTI15_10_IRQn);
+  /* IMU INT1 lines are not configured on the sensors and the filter polls the IMUs, so the
+   * EXTI15_10 interrupt stays disabled: a floating INT line would otherwise fire it continuously. */
   
   /* USER CODE END MX_GPIO_Init_2 */
 }
 
 /* USER CODE BEGIN 4 */
+static void on_tpu_packet(uint8_t type, const uint8_t *payload, uint8_t len, void *user)
+{
+  (void)user;
+  if (type == LINK_PKT_GPS && len == sizeof(Athena_GpsFix)) {
+    memcpy(&last_gps, payload, sizeof last_gps);
+    gps_count++;
+    Fusion_Gps(&fusion, &last_gps, GetTimestamp());
+  }
+}
 
+void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart)
+{
+  if (huart->Instance == UART4) {
+    Link_RxPush(&tpu_link, uart4_rx_byte);
+    HAL_UART_Receive_IT(&huart4, &uart4_rx_byte, 1);
+  }
+}
+
+void HAL_UART_ErrorCallback(UART_HandleTypeDef *huart)
+{
+  if (huart->Instance == UART4) {              // an overrun aborts IT reception: re-arm it
+    __HAL_UART_CLEAR_FLAG(huart, UART_CLEAR_OREF | UART_CLEAR_FEF | UART_CLEAR_NEF);
+    HAL_UART_Receive_IT(&huart4, &uart4_rx_byte, 1);
+  }
+}
 /* USER CODE END 4 */
 
  /* MPU Configuration */

@@ -17,7 +17,6 @@
   ******************************************************************************
   */
 /* USER CODE END Header */
-
 /* Includes ------------------------------------------------------------------*/
 #include "main.h"
 /* USER CODE BEGIN Includes */
@@ -665,6 +664,9 @@ void HAL_UART_MspInit(UART_HandleTypeDef* huart)
     GPIO_InitStruct.Alternate = GPIO_AF7_UART7;
     HAL_GPIO_Init(GPIOE, &GPIO_InitStruct);
 
+    /* UART7 interrupt Init */
+    HAL_NVIC_SetPriority(UART7_IRQn, 5, 0);
+    HAL_NVIC_EnableIRQ(UART7_IRQn);
     /* USER CODE BEGIN UART7_MspInit 1 */
 
     /* USER CODE END UART7_MspInit 1 */
@@ -693,12 +695,15 @@ void HAL_UART_MspInit(UART_HandleTypeDef* huart)
     PE1     ------> UART8_TX
     */
     GPIO_InitStruct.Pin = TPU_TX_Pin|TPU_RX_Pin;
-    GPIO_InitStruct.Mode = GPIO_MODE_AF_OD;
+    GPIO_InitStruct.Mode = GPIO_MODE_AF_PP;
     GPIO_InitStruct.Pull = GPIO_NOPULL;
     GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
     GPIO_InitStruct.Alternate = GPIO_AF8_UART8;
     HAL_GPIO_Init(GPIOE, &GPIO_InitStruct);
 
+    /* UART8 interrupt Init */
+    HAL_NVIC_SetPriority(UART8_IRQn, 5, 0);
+    HAL_NVIC_EnableIRQ(UART8_IRQn);
     /* USER CODE BEGIN UART8_MspInit 1 */
 
     /* USER CODE END UART8_MspInit 1 */
@@ -762,6 +767,8 @@ void HAL_UART_MspDeInit(UART_HandleTypeDef* huart)
     */
     HAL_GPIO_DeInit(GPIOE, BT_RX_Pin|BT_TX_Pin);
 
+    /* UART7 interrupt DeInit */
+    HAL_NVIC_DisableIRQ(UART7_IRQn);
     /* USER CODE BEGIN UART7_MspDeInit 1 */
 
     /* USER CODE END UART7_MspDeInit 1 */
@@ -780,6 +787,8 @@ void HAL_UART_MspDeInit(UART_HandleTypeDef* huart)
     */
     HAL_GPIO_DeInit(GPIOE, TPU_TX_Pin|TPU_RX_Pin);
 
+    /* UART8 interrupt DeInit */
+    HAL_NVIC_DisableIRQ(UART8_IRQn);
     /* USER CODE BEGIN UART8_MspDeInit 1 */
 
     /* USER CODE END UART8_MspDeInit 1 */

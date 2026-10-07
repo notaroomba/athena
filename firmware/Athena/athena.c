@@ -7,7 +7,7 @@
 
 /* Forward Declaration Start */
 extern void HAL_GPIO_WritePin(void* GPIOx, uint16_t GPIO_Pin, int PinState);
-extern void CDC_Transmit_FS(uint8_t* Buf, uint16_t Len);
+extern uint8_t CDC_Transmit_FS(uint8_t* Buf, uint16_t Len);   /* USBD_OK = 0, USBD_BUSY = 1 */
 extern void HAL_Delay(uint32_t Delay);
 extern uint32_t HAL_GetTick(void);
 
@@ -113,6 +113,10 @@ void print(const char* format, ...) {
     va_end(args);
     
     if (len > 0 && len < (int)sizeof(buffer)) {
-        CDC_Transmit_FS((uint8_t *)buffer, len);
+        /* The CDC endpoint takes one buffer at a time; back-to-back lines were silently
+         * dropped. Wait a few ms for the previous one to drain. With no host attached the
+         * endpoint stays busy, so this is bounded rather than blocking. */
+        uint32_t t0 = HAL_GetTick();
+        while (CDC_Transmit_FS((uint8_t *)buffer, (uint16_t)len) == 1 /* USBD_BUSY */ && (HAL_GetTick() - t0) < 3) {}
     }
 }

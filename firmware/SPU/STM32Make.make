@@ -254,7 +254,7 @@ CXXFLAGS += $(ASSEMBLER_LIST_OUTPUT_FLAG)
 # LDFLAGS
 #######################################
 # link script
-LDSCRIPT = STM32G474XX_FLASH.ld
+LDSCRIPT = STM32G474xx_FLASH.ld
 
 # libraries
 LIBS = -lc -lm -lnosys 

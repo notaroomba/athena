@@ -28,8 +28,8 @@
         },
         "C_Cpp.default.configurationProvider": "ms-vscode.makefile-tools",
         "terminal.integrated.defaultProfile.windows": "PowerShell",
-        "stm32-for-vscode.openOCDPath": "c:\\Users\\Nathan Alspaugh\\AppData\\Roaming\\Code\\User\\globalStorage\\bmd.stm32-for-vscode\\@xpack-dev-tools\\openocd\\0.12.0-7.1\\.content\\bin\\openocd.EXE",
-        "stm32-for-vscode.armToolchainPath": "c:\\Users\\Nathan Alspaugh\\AppData\\Roaming\\Code\\User\\globalStorage\\bmd.stm32-for-vscode\\@xpack-dev-tools\\arm-none-eabi-gcc\\14.2.1-1.1.1\\.content\\bin",
+        "stm32-for-vscode.openOCDPath": false,
+        "stm32-for-vscode.armToolchainPath": "/opt/homebrew/bin",
         "cortex-debug.armToolchainPath": "c:\\Users\\Nathan Alspaugh\\AppData\\Roaming\\Code\\User\\globalStorage\\bmd.stm32-for-vscode\\@xpack-dev-tools\\arm-none-eabi-gcc\\14.2.1-1.1.1\\.content\\bin",
         "cortex-debug.openocdPath": "c:\\Users\\Nathan Alspaugh\\AppData\\Roaming\\Code\\User\\globalStorage\\bmd.stm32-for-vscode\\@xpack-dev-tools\\openocd\\0.12.0-7.1\\.content\\bin\\openocd.EXE"
     },
