@@ -133,6 +133,7 @@ export default function Dashboard() {
   const isAdminRef = useRef(false);
   const localLinkRef = useRef(false); // a serial/Bluetooth board is open here: relayed bytes would duplicate it
   const decoderRef = useRef<Decoder | null>(null);
+  const stateRef = useRef<AthenaState | null>(null); // mirror of `state` for the frame handler (no setState-updater side effects)
   const consoleRef = useRef<HTMLDivElement>(null);
   const replayRef = useRef<ReplayHandle | null>(null);
   const fileRef = useRef<HTMLInputElement>(null);
@@ -247,6 +248,7 @@ export default function Dashboard() {
         const s = parseState(p);
         if (!s) return;
         countsRef.current.state++;
+        stateRef.current = s;
         setState(s);
         const alt = -s.pos[2];
         setApogee((a) => (alt > a ? alt : a));
@@ -292,14 +294,11 @@ export default function Dashboard() {
         countsRef.current.telem++;
         setTelem(t);
         // TPU port or radio only: the compact frame carries the fused position, build what we can from it
-        setState((cur) => {
-          if (!cur) {
-            pushSample({ t: t.t_ms / 1e3, alt: t.alt, baro: t.baro_alt });
-            setApogee((a) => (t.alt > a ? t.alt : a));
-            if (t.lat || t.lon) pushTrack(setFusedTrack, { lat: t.lat, lon: t.lon, alt: t.alt, t: t.t_ms / 1e3, dr: !(t.flags & STATE_FLAG.GPS_FRESH) });
-          }
-          return cur;
-        });
+        if (!stateRef.current) {
+          pushSample({ t: t.t_ms / 1e3, alt: t.alt, baro: t.baro_alt });
+          setApogee((a) => (t.alt > a ? t.alt : a));
+          if (t.lat || t.lon) pushTrack(setFusedTrack, { lat: t.lat, lon: t.lon, alt: t.alt, t: t.t_ms / 1e3, dr: !(t.flags & STATE_FLAG.GPS_FRESH) });
+        }
       } else if (type === PKT.SPU) {
         const s = parseSpu(p);
         if (!s) return;
@@ -329,7 +328,9 @@ export default function Dashboard() {
   );
 
   const resetData = useCallback(() => {
+    stateRef.current = null;
     setState(null);
+    setLastFrameAt(0);
     setGps(null);
     setTelem(null);
     setSpu(null);
@@ -744,7 +745,10 @@ export default function Dashboard() {
               min={0}
               max={1000}
               value={Math.round(replay.progress * 1000)}
-              onChange={(e) => replayRef.current?.seek(Number(e.target.value) / 1000)}
+              onChange={(e) => {
+                resetData(); // a rewind replays events and tracks from that point; no duplicates from before it
+                replayRef.current?.seek(Number(e.target.value) / 1000);
+              }}
               className="mt-2 w-full"
               title={`${replay.name} · drag to seek`}
             />

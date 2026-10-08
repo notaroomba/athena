@@ -26,6 +26,7 @@ export function startReplay(
   let stopped = false;
   let rate = speed;
   let seekTo: number | null = null;
+  let rebase = false; // speed changed: pace from the next frame instead of rescaling the elapsed log time
   const sleep = (ms: number) => new Promise((r) => setTimeout(r, ms));
 
   (async () => {
@@ -45,6 +46,10 @@ export function startReplay(
         reportedDone = false;
         lastBucket = Math.floor(i / step);
         onProgress(i / data.length, false);
+      }
+      if (rebase) {
+        rebase = false;
+        logT0 = lastClock = null;
       }
       if (i >= data.length) {
         // finished: stay alive so a seek can rewind, until stop()
@@ -95,6 +100,7 @@ export function startReplay(
     },
     setSpeed: (x) => {
       rate = x;
+      rebase = true;
     },
     seek: (f) => {
       seekTo = Math.max(0, Math.min(1, f));

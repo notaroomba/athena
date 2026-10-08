@@ -321,7 +321,7 @@ int main(void)
     if ((now - last_print_us) >= 200000u) {
       last_print_us = now;
       static uint8_t snap_div;
-      if (fusion.in_flight && -state.pos_ned[2] > 20.f && ++snap_div >= 5) {
+      if (fusion.in_flight && spu.phase != SPU_PHASE_LANDED && -state.pos_ned[2] > 20.f && ++snap_div >= 5) {
         snap_div = 0;
         FlightRec r = { FLIGHT_MAGIC, fusion.baro_alt0, fusion.lat0, fusion.lon0, fusion.h0, 0 }; r.sum = flight_sum(&r);
         FLIGHT_REC->baro_alt0 = r.baro_alt0; FLIGHT_REC->lat0 = r.lat0; FLIGHT_REC->lon0 = r.lon0; FLIGHT_REC->h0 = r.h0; FLIGHT_REC->sum = r.sum; FLIGHT_REC->magic = r.magic;
@@ -1110,6 +1110,7 @@ static void on_spu_packet(uint8_t type, const uint8_t *payload, uint8_t len, voi
   if (type == LINK_PKT_SPU && len == sizeof(Athena_SpuStatus)) {
     memcpy(&spu, payload, sizeof spu);
     spu_ms = HAL_GetTick(); spu_count++;
+    if (spu.phase == SPU_PHASE_LANDED) FLIGHT_REC->magic = 0;   // flight over: a later reset must start on the pad again
     size_t n = Link_Encode(spu_usb_frame, LINK_PKT_SPU, payload, len);
     CDC_Transmit_FS(spu_usb_frame, (uint16_t)n);        // USB dashboard on the MPU port
     memcpy(fwd_tpu_pending, spu_usb_frame, n); fwd_tpu_len = (uint8_t)n;   // and on to the TPU: log + radio

@@ -270,12 +270,14 @@ int main(void)
         gps_rate_x10 = gps_rate_count * 10000u / (now - gps_rate_ms);
         gps_rate_count = 0; gps_rate_ms = now;
       }
-      size_t n = Link_Encode(usb_frame, LINK_PKT_GPS, &gps, sizeof gps);
-      Logger_Write(usb_frame, (uint32_t)n);
-      CDC_Transmit_FS(usb_frame, (uint16_t)n);                 // to the USB dashboard (dropped if busy)
-      if (huart8.gState == HAL_UART_STATE_READY) {
-        memcpy(uart_frame, usb_frame, n);
-        HAL_UART_Transmit_IT(&huart8, uart_frame, (uint16_t)n);
+      if (!ground_mode) {                              // a ground board's own fix would pass for the rocket's
+        size_t n = Link_Encode(usb_frame, LINK_PKT_GPS, &gps, sizeof gps);
+        Logger_Write(usb_frame, (uint32_t)n);
+        CDC_Transmit_FS(usb_frame, (uint16_t)n);               // to the USB dashboard (dropped if busy)
+        if (huart8.gState == HAL_UART_STATE_READY) {
+          memcpy(uart_frame, usb_frame, n);
+          HAL_UART_Transmit_IT(&huart8, uart_frame, (uint16_t)n);
+        }
       }
     }
 
@@ -1102,7 +1104,14 @@ static void on_usb_text(uint8_t b, void *user)       /* single characters typed 
     GROUND_BKP_REG = ground_mode ? GROUND_MAGIC : 0;
     print("ground station mode %s\r\n", ground_mode ? "ON: LoRa <-> USB relay, own telemetry off" : "off");
   }
-  else Logger_UsbRx(&b, 1);                            // 'D' dump flash log, 'E' restart it, 'S' sync SD, 'F' format SD
+  else if (b == 'E' || b == 'F') {                     // destructive (erase flash log / format SD): same key twice within 2 s
+    static uint8_t  confirm_ch;                        // a stray byte after a lost frame start must not wipe the card
+    static uint32_t confirm_ms;
+    uint32_t now = HAL_GetTick();
+    if (confirm_ch == b && (now - confirm_ms) < 2000u) { confirm_ch = 0; Logger_UsbRx(&b, 1); }
+    else { confirm_ch = b; confirm_ms = now; print("%c again within 2 s to %s\r\n", b, b == 'F' ? "format the SD card" : "erase the flash log"); }
+  }
+  else Logger_UsbRx(&b, 1);                            // 'D' dump flash log, 'S' sync SD
 }
 
 void Athena_UsbRx(const uint8_t *buf, uint32_t len)   /* USB CDC receive interrupt */

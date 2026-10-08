@@ -831,7 +831,12 @@ static void on_usb_text(uint8_t b, void *user)
   Athena_Cmd c; memset(&c, 0, sizeof c);
   if (b == 'B' || b == 'J') { Athena_DfuRequest(b); return; }
   if (b == 'L') { leds_off = !leds_off; if (leds_off) Set_LED_Color(LED_OFF); print("leds %s\r\n", leds_off ? "off" : "on"); return; }
-  if (b == 'A')      { c.cmd = CMD_ARM; c.key = CMD_KEY; }
+  if (b == 'A') {                                          // arm: 'A' twice within 2 s (a stray byte must not arm)
+    static uint32_t arm_ms;
+    uint32_t now = HAL_GetTick();
+    if (!arm_ms || (now - arm_ms) > 2000u) { arm_ms = now; print("A again within 2 s to arm\r\n"); return; }
+    arm_ms = 0; c.cmd = CMD_ARM; c.key = CMD_KEY;
+  }
   else if (b == 'd') { c.cmd = CMD_DISARM; }
   else if (b >= '1' && b <= '6') { c.cmd = CMD_FIRE; c.arg = (uint8_t)(b - '0'); c.key = CMD_KEY; }
   else if (b == 'r') { c.cmd = CMD_RESET_MPU; }
