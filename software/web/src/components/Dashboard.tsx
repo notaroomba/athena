@@ -117,6 +117,25 @@ export default function Dashboard() {
   });
   const [lastFrameAt, setLastFrameAt] = useState(0);
   const [tMinus, setTMinus] = useState<number | null>(null); // launch countdown, seconds; null = off
+  const [units, setUnits] = useState<"m" | "ft">(() => {
+    try {
+      return localStorage.getItem("athena.units") === "ft" ? "ft" : "m";
+    } catch {
+      return "m";
+    }
+  });
+  useEffect(() => {
+    try {
+      localStorage.setItem("athena.units", units);
+    } catch {
+      /* ignore */
+    }
+  }, [units]);
+  // display conversion only: the link, the SPU's main altitude and the logs stay in metres
+  const ft = units === "ft";
+  const L = (m: number) => (ft ? m * 3.28084 : m); // length
+  const UL = ft ? "ft" : "m",
+    US = ft ? "ft/s" : "m/s";
   const soundRef = useRef(false);
   useEffect(() => {
     soundRef.current = sound;
@@ -693,18 +712,18 @@ export default function Dashboard() {
   ];
   useEffect(() => {
     const phaseName = spu ? SPU_PHASES[spu.phase] : flags & STATE_FLAG.IN_FLIGHT ? "flight" : "";
-    document.title = isLive && (state || telem) ? `${fixed(alt, 0)} m ${phaseName ? "· " + phaseName + " " : ""}· Athena` : "Athena Telemetry";
-  }, [alt, spu, flags, isLive, state, telem]);
+    document.title = isLive && (state || telem) ? `${fixed(L(alt), 0)} ${UL} ${phaseName ? "· " + phaseName + " " : ""}· Athena` : "Athena Telemetry";
+  }, [alt, spu, flags, isLive, state, telem, ft]); // eslint-disable-line react-hooks/exhaustive-deps
   const summary: FlightSummary | null =
     apogee > 0 || events.length
-      ? { apogee, vmax, gmax, flightTime, landingDist: spu?.phase === 5 && cur && pad ? dist : 0, phase: spu ? (SPU_PHASES[spu.phase] ?? "?") : flags & STATE_FLAG.IN_FLIGHT ? "flight" : "pad" }
+      ? { apogee: L(apogee), vmax: L(vmax), gmax, flightTime, landingDist: spu?.phase === 5 && cur && pad ? L(dist) : 0, lengthUnit: UL, speedUnit: US, phase: spu ? (SPU_PHASES[spu.phase] ?? "?") : flags & STATE_FLAG.IN_FLIGHT ? "flight" : "pad" }
       : null;
   const stats: MapStat[] = [
-    { label: "from pad", value: cur && pad ? `${dist.toFixed(0)} m @ ${brg.toFixed(0)}°` : "-" },
-    { label: "apogee", value: apogee > 0 ? `${apogee.toFixed(0)} m` : "-" },
-    { label: "max speed", value: vmax > 0 ? `${vmax.toFixed(0)} m/s` : "-" },
-    { label: predApogee ? "pred. apogee" : "landing in", value: predApogee ? `${predApogee.toFixed(0)} m` : eta ? `${eta.toFixed(0)} s` : "-" },
-    { label: "ground speed", value: cur ? `${Math.hypot(velNE[0], velNE[1]).toFixed(1)} m/s` : "-" },
+    { label: "from pad", value: cur && pad ? `${L(dist).toFixed(0)} ${UL} @ ${brg.toFixed(0)}°` : "-" },
+    { label: "apogee", value: apogee > 0 ? `${L(apogee).toFixed(0)} ${UL}` : "-" },
+    { label: "max speed", value: vmax > 0 ? `${L(vmax).toFixed(0)} ${US}` : "-" },
+    { label: predApogee ? "pred. apogee" : "landing in", value: predApogee ? `${L(predApogee).toFixed(0)} ${UL}` : eta ? `${eta.toFixed(0)} s` : "-" },
+    { label: "ground speed", value: cur ? `${L(Math.hypot(velNE[0], velNE[1])).toFixed(1)} ${US}` : "-" },
     { label: "position", value: cur ? (cur.dr ? "DEAD RECKONING" : "GPS aided") : "-" },
   ];
 
@@ -921,9 +940,9 @@ export default function Dashboard() {
         <Panel className="order-6 flex flex-col justify-center p-4 xl:col-start-1 xl:row-start-3">
           <Title>Flight</Title>
           <div className="grid grid-cols-3 gap-3">
-            <Metric label="Altitude" value={alt} unit="m above pad" />
-            <Metric label="Vertical speed" value={vz} unit="m/s" />
-            <Metric label="Baro altitude" value={baro} unit="m" />
+            <Metric label="Altitude" value={L(alt)} unit={`${UL} above pad`} />
+            <Metric label="Vertical speed" value={L(vz)} unit={US} />
+            <Metric label="Baro altitude" value={L(baro)} unit={UL} />
           </div>
           <div className="mt-3 flex flex-wrap gap-1.5">
             <Flag label="IN FLIGHT" on={!!(flags & STATE_FLAG.IN_FLIGHT)} />
@@ -956,8 +975,8 @@ export default function Dashboard() {
             <KV k="fix" v={fix} />
             <KV k="latitude" v={pos ? pos.lat.toFixed(6) + " °" : "-"} />
             <KV k="longitude" v={pos ? pos.lon.toFixed(6) + " °" : "-"} />
-            <KV k="height MSL" v={gps ? gps.hmsl.toFixed(1) + " m" : "-"} />
-            <KV k="ground speed" v={gps ? Math.hypot(gps.vel[0], gps.vel[1]).toFixed(1) + " m/s" : "-"} />
+            <KV k="height MSL" v={gps ? L(gps.hmsl).toFixed(1) + " " + UL : "-"} />
+            <KV k="ground speed" v={gps ? L(Math.hypot(gps.vel[0], gps.vel[1])).toFixed(1) + " " + US : "-"} />
             <KV k="magnetometer" v={s ? s.mag.map((x) => (x * 1000).toFixed(0)).join(" ") + " mG" : "-"} />
             <KV k="link" v={`${link.ok} frames, ${link.bad} bad` + (s ? ` · ${s.loop_hz} Hz` : "")} />
           </dl>
@@ -1012,6 +1031,9 @@ export default function Dashboard() {
           </button>
           <button onClick={saveReport} className="btn" style={{ padding: "2px 8px" }} title="download a JSON flight report: summary, events, tracks, last frames, console">
             REPORT
+          </button>
+          <button onClick={() => setUnits(ft ? "m" : "ft")} className="btn" style={{ padding: "2px 8px" }} title="display units for altitude, distance and speed (the link and the SPU stay metric)">
+            {ft ? "FT" : "M"}
           </button>
           <a href="https://github.com/NotARoomba/Athena" className="text-ink-2">
             Athena

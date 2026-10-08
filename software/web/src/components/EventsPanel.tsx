@@ -7,6 +7,8 @@ export interface FlightSummary {
   gmax: number; // g
   flightTime: number; // s, launch -> landed (or so far)
   landingDist: number; // m from pad
+  lengthUnit: string; // "m" or "ft": apogee / landingDist are already converted
+  speedUnit: string;
   phase: string;
 }
 
@@ -28,8 +30,8 @@ export default function EventsPanel({ events, summary }: EventsPanelProps) {
         <span className="panel-title">Flight events</span>
         {summary && (
           <span className="font-mono text-[10px] text-ink-2 tabular-nums">
-            {summary.phase} · apogee {summary.apogee.toFixed(0)} m · {summary.vmax.toFixed(0)} m/s · {summary.gmax.toFixed(1)} g · {summary.flightTime.toFixed(0)} s
-            {summary.landingDist > 0 ? ` · ${summary.landingDist.toFixed(0)} m from pad` : ""}
+            {summary.phase} · apogee {summary.apogee.toFixed(0)} {summary.lengthUnit} · {summary.vmax.toFixed(0)} {summary.speedUnit} · {summary.gmax.toFixed(1)} g · {summary.flightTime.toFixed(0)} s
+            {summary.landingDist > 0 ? ` · ${summary.landingDist.toFixed(0)} ${summary.lengthUnit} from pad` : ""}
           </span>
         )}
       </div>

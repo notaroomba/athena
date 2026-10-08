@@ -126,7 +126,7 @@ replayable `.bin`, a **REPORT** button that downloads a JSON flight report (summ
 frames, console), a **pre-flight checklist** (GO/NO-GO read from the live data: IMUs, baro, GPS fix,
 pad origin, SPU link, main altitude, radio, arming, plus a hand-ticked list), **SOUND** alerts on
 launch/apogee/pyro/landing, a **T-60 countdown** (beeps over the last 10 s, cancels itself at launch), a no-data
-banner, the altitude and phase in the tab title, and keyboard shortcuts (`d` demo, `t` countdown, `c` checklist,
+banner, the altitude and phase in the tab title, a metres/feet display toggle, and keyboard shortcuts (`d` demo, `t` countdown, `c` checklist,
 `s` sound, `l` login, `r` record). Data sources:
 
 - **SERIAL**: any of the three USB ports (WebSerial, Chrome/Edge over https or localhost).
