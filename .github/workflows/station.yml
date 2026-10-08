@@ -1,0 +1,39 @@
+# Builds the ground-station desktop app (tools/lora_rx.py + local relay + dashboard files) for the three
+# desktop platforms with PyInstaller. Run it from the Actions tab or push a v* tag; download the artifact
+# for your OS, unzip, and run athena-station (rtl_sdr must be installed separately).
+name: station
+on:
+  workflow_dispatch:
+  push:
+    tags: ["v*"]
+jobs:
+  build:
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - os: macos-latest
+            sep: ":"
+          - os: ubuntu-latest
+            sep: ":"
+          - os: windows-latest
+            sep: ";"
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install -r tools/requirements-station.txt pyinstaller
+      - run: >
+          pyinstaller --noconfirm --onedir --name athena-station --distpath dist/station --workpath dist/build
+          --add-data "tools/lora_conv.json${{ matrix.sep }}."
+          --add-data "docs${{ matrix.sep }}docs"
+          --collect-all webview --hidden-import websockets --hidden-import websocket --hidden-import serial
+          tools/lora_rx.py
+      - run: dist/station/athena-station/athena-station --help
+        shell: bash
+      - uses: actions/upload-artifact@v4
+        with:
+          name: athena-station-${{ runner.os }}
+          path: dist/station/athena-station
