@@ -91,6 +91,7 @@ static int sd_try_mount(void)
     cd_present_level = HAL_GPIO_ReadPin(SD_CD_GPIO_Port, SD_CD_Pin) == GPIO_PIN_SET; cd_learned = 1;
     sd_sync_ms = sd_flush_ms = HAL_GetTick();
     HAL_SD_CardInfoTypeDef ci; HAL_SD_GetCardInfo(&hsd1, &ci);
+    sd_dropped = 0;                                    /* drops before this mount do not count against the new file */
     print("sd: mounted %lu MB card, logging to %s\r\n", (unsigned long)(ci.LogBlockNbr / 2048u), fname);
     return 0;
 }

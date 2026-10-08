@@ -119,6 +119,8 @@ int main(void)
 {
 
   /* USER CODE BEGIN 1 */
+  SCB->VTOR = FLASH_BASE;                                       /* after a DFU "leave" the ROM jumps here without a reset and VTOR still points at its own table */
+  __DSB(); __ISB();
   dfu_boot_magic = *(volatile uint32_t *)DFU_MAGIC_ADDR;        /* printed later: tells whether the word survived the reset */
   DFU_BKP_ENABLE();
   dfu_boot_bkp = DFU_BKP_REG;
@@ -126,6 +128,8 @@ int main(void)
     *(volatile uint32_t *)DFU_MAGIC_ADDR = 0;
     DFU_BKP_REG = 0;
     SysTick->CTRL = 0;
+    __HAL_RCC_SYSCFG_CLK_ENABLE();
+    __HAL_SYSCFG_REMAPMEMORY_SYSTEMFLASH();                     /* G4 ROM expects itself at address 0 (it re-runs its boot selection otherwise) */
     SCB->VTOR = DFU_SYSMEM_ADDR;                                /* ROM vector table; interrupts stay enabled as after a real reset */
     __set_MSP(*(volatile uint32_t *)DFU_SYSMEM_ADDR);
     ((void (*)(void))(*(volatile uint32_t *)(DFU_SYSMEM_ADDR + 4)))();   /* never returns */
@@ -885,6 +889,8 @@ static void Athena_JumpToBootloader(void)
   SCB_DisableICache();
   SCB_DisableDCache();
 #endif
+  __HAL_RCC_SYSCFG_CLK_ENABLE();
+  __HAL_SYSCFG_REMAPMEMORY_SYSTEMFLASH();
   SCB->VTOR = DFU_SYSMEM_ADDR;
   __set_MSP(*(volatile uint32_t *)DFU_SYSMEM_ADDR);
   __enable_irq();

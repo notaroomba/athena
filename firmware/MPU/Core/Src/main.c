@@ -154,6 +154,8 @@ int main(void)
 {
 
   /* USER CODE BEGIN 1 */
+  SCB->VTOR = FLASH_BASE;                                       /* after a DFU "leave" the ROM jumps here without a reset and VTOR still points at its own table */
+  __DSB(); __ISB();
   dfu_boot_magic = *(volatile uint32_t *)DFU_MAGIC_ADDR;        /* printed later: tells whether the word survived the reset */
   DFU_BKP_ENABLE();
   dfu_boot_bkp = DFU_BKP_REG;

@@ -141,6 +141,8 @@ int main(void)
 {
 
   /* USER CODE BEGIN 1 */
+  SCB->VTOR = FLASH_BASE;                                       /* after a DFU "leave" the ROM jumps here without a reset and VTOR still points at its own table */
+  __DSB(); __ISB();
   dfu_boot_magic = *(volatile uint32_t *)DFU_MAGIC_ADDR;        /* printed later: tells whether the word survived the reset */
   DFU_BKP_ENABLE();
   dfu_boot_bkp = DFU_BKP_REG;
@@ -314,7 +316,7 @@ int main(void)
             gps.fix_type, gps.num_sv, (long)gps.lat_1e7, (long)gps.lon_1e7, (long)(gps.h_msl_mm / 1000), (unsigned long)gps_count,
             (unsigned long)(gps_rate_x10 / 10), (unsigned long)(gps_rate_x10 % 10),
             hw->valid ? Ublox_AntStatusStr(hw->ant_status) : "-", hw->ant_power, hw->noise_per_ms, hw->agc_cnt, hw->jam_ind,
-            -mpu_state.pos_ned[2], mpu_state.vel_ned[2], mpu_state.flags, (unsigned long)state_count, (unsigned long)(now - mpu_state_ms), (unsigned long)mpu_link.rx_bad,
+            -mpu_state.pos_ned[2], mpu_state.vel_ned[2], mpu_state.flags, (unsigned long)state_count, (unsigned long)(HAL_GetTick() - mpu_state_ms), (unsigned long)mpu_link.rx_bad,
             (spu_count && (now - spu_ms) < 3000u) ? "ok" : "LOST", spu.phase, spu.flags, spu.pyro_fired, spu.vbat_mv,
             (unsigned long)air_count, last_rssi, logst, (unsigned long)dfu_boot_magic, (unsigned long)dfu_boot_bkp);
       if (ln > (int)sizeof line - 1) ln = sizeof line - 1;
