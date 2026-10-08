@@ -36,6 +36,7 @@ typedef struct {
     float mahony_kp_mag;    /* magnetometer yaw correction gain */
     float launch_acc;       /* m/s^2        kinematic acceleration that declares launch */
     float launch_alt;       /* m            baro altitude above pad that also declares launch */
+    float launch_hold_s;    /* s            either condition must persist this long (a knock lasts ~10 ms, a burn seconds) */
     float still_acc;        /* m/s^2        kinematic accel below which the pad ZUPT runs */
     float still_gyro;       /* rad/s        gyro rate below which the pad ZUPT runs */
     float gps_latency_s;    /* s            NAV-PVT age when it reaches the filter */
@@ -62,6 +63,7 @@ typedef struct {
     /* bookkeeping */
     float    acc_body[3], gyro_body[3], mag_body[3], acc_ned[3];
     int      in_flight, mag_ok, baro_ok;
+    float    launch_t;      /* s the launch condition has held so far */
     uint32_t t_us, last_gps_us, last_baro_us, last_mag_us;
 } Fusion;
 

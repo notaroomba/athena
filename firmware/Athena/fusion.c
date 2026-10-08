@@ -167,6 +167,7 @@ void Fusion_DefaultParams(Fusion_Params *p)
     p->mahony_kp_mag    = 0.5f;
     p->launch_acc       = 1.5f * G0;  /* kinematic (gravity removed): fires for thrust/weight > 2.5 */
     p->launch_alt       = 10.0f;      /* ...or when the barometer says we are clearly off the pad */
+    p->launch_hold_s    = 0.10f;      /* and it must last 100 ms: a knock while handling the board does not count */
     p->still_acc        = 1.0f;       /* m/s^2 kinematic accel below which the pad ZUPT may run */
     p->still_gyro       = 0.05f;      /* rad/s */
     p->gps_latency_s    = 0.15f;      /* NAV-PVT age at the filter: nav epoch + UART relay */
@@ -261,7 +262,10 @@ void Fusion_Imu(Fusion *f, const float acc[3], const float gyro[3], float dt, ui
     qrot(f->q, acc, f->acc_ned);
     f->acc_ned[2] += G0;                                /* remove gravity (NED: g points +D) */
     float a_kin = vnorm3(f->acc_ned);
-    if (!f->in_flight && (a_kin > f->p.launch_acc || f->baro_alt > f->p.launch_alt)) f->in_flight = 1;
+    if (!f->in_flight) {                                /* launch = condition held for launch_hold_s, not a single sample */
+        if (a_kin > f->p.launch_acc || f->baro_alt > f->p.launch_alt) { f->launch_t += dt; if (f->launch_t >= f->p.launch_hold_s) f->in_flight = 1; }
+        else f->launch_t = 0.f;
+    }
 
     /* ---- position KF predict (dead reckoning step) ---- */
     for (int i = 0; i < 3; i++) kf_predict(f, i, f->acc_ned[i], dt);
