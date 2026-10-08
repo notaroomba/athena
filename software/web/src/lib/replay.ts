@@ -4,7 +4,7 @@ import { MAX_PAYLOAD, PKT, SOF, crc16 } from "./protocol";
 
 export interface ReplayHandle {
   stop: () => void;
-  setSpeed: (x: number) => void;
+  setSpeed: (x: number) => void; // 0 pauses
   /** Jump to a position in the file (0..1); the decoder resyncs on the next valid frame. */
   seek: (fraction: number) => void;
 }
@@ -47,6 +47,7 @@ export function startReplay(
         lastBucket = Math.floor(i / step);
         onProgress(i / data.length, false);
       }
+      while (rate <= 0 && !stopped && seekTo === null) await sleep(100); // paused
       if (rebase) {
         rebase = false;
         logT0 = lastClock = null;
@@ -80,6 +81,7 @@ export function startReplay(
               const due = wallT0 + ((t - logT0) * 1000) / rate;
               const ahead = due - performance.now();
               if (ahead > 5) await sleep(Math.min(ahead, 500));
+              if (rate <= 0 || seekTo !== null) continue; // paused or seeked during the wait: this frame stays unplayed
             }
           }
         }

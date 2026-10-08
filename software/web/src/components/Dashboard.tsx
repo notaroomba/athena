@@ -107,6 +107,7 @@ export default function Dashboard() {
   const [recording, setRecording] = useState(false);
   const [recordedBytes, setRecordedBytes] = useState(0);
   const [replaySpeed, setReplaySpeed] = useState(1);
+  const [replayPaused, setReplayPaused] = useState(false);
   const [sound, setSound] = useState(() => {
     try {
       return localStorage.getItem("athena.sound") === "1";
@@ -450,6 +451,7 @@ export default function Dashboard() {
     replayRef.current?.stop();
     replayRef.current = null;
     setReplay(null);
+    setReplayPaused(false);
   }, []);
 
   const handleReplayFile = useCallback(
@@ -467,8 +469,16 @@ export default function Dashboard() {
 
   const changeReplaySpeed = useCallback((x: number) => {
     setReplaySpeed(x);
+    setReplayPaused(false);
     replayRef.current?.setSpeed(x);
   }, []);
+
+  const toggleReplayPause = useCallback(() => {
+    setReplayPaused((p) => {
+      replayRef.current?.setSpeed(p ? replaySpeed : 0);
+      return !p;
+    });
+  }, [replaySpeed]);
 
   // ---- websocket
   const connectWebSocket = useCallback(() => {
@@ -619,12 +629,13 @@ export default function Dashboard() {
       else if (e.key === "l") setShowAdmin((v) => !v);
       else if (e.key === "t") setTMinus((v) => (v === null ? 60 : null));
       else if (e.key === "r") toggleRecording();
+      else if (e.key === " " && replayRef.current) toggleReplayPause();
       else return;
       e.preventDefault();
     };
     window.addEventListener("keydown", onKey);
     return () => window.removeEventListener("keydown", onKey);
-  }, [toggleRecording]);
+  }, [toggleRecording, toggleReplayPause]);
 
   // ---- derived values
   const s = state;
@@ -719,7 +730,7 @@ export default function Dashboard() {
               <div className={`h-1.5 w-1.5 rounded-full ${wsConnected ? "pulse-dot bg-teal" : "bg-orange"}`} />
               <span className="text-[10px] text-ink-3">
                 {viewers} viewer{viewers !== 1 ? "s" : ""}
-                {bleConnected ? ` · ${bleLabel}` : ""}
+                {serialConnected ? ` · ${portLabel}` : bleConnected ? ` · ${bleLabel}` : stationFresh ? " · via ground station" : adminOnline && !demoMode && !replay ? " · via relay" : ""}
               </span>
             </div>
           </div>
@@ -748,6 +759,11 @@ export default function Dashboard() {
             >
               {replay ? "STOP" : "REPLAY"}
             </button>
+            {replay && !replay.done && (
+              <button onClick={toggleReplayPause} className={`btn ${replayPaused ? "active" : ""}`} title="pause / resume the replay (space)">
+                {replayPaused ? "RESUME" : "PAUSE"}
+              </button>
+            )}
             {replay && (
               <select value={replaySpeed} onChange={(e) => changeReplaySpeed(Number(e.target.value))} className="text-[10px]" title="replay speed">
                 {[1, 2, 5, 10, 50].map((x) => (

@@ -133,7 +133,7 @@ banner, the altitude and phase in the tab title, and keyboard shortcuts (`d` dem
 - **BLUETOOTH**: the DA14531 on the TPU over Web Bluetooth (DSPS serial-bridge firmware streams the
   telemetry; the factory CodeLess firmware only answers AT commands).
 - **REPLAY**: an `ATHnnnnn.BIN` from the SD card, a flash dump, a dashboard recording or a ground-station
-  log, paced by its own timestamps, with a speed selector and a seek bar.
+  log, paced by its own timestamps, with a speed selector, pause (space) and a seek bar.
 - **DEMO**: a scripted flight (with a GPS dropout) through the real encoder/decoder.
 - viewers: an admin's serial/Bluetooth bytes (or a ground station's) are relayed through the WebSocket
   server in [software/server](software/server) (axum, on Railway at `api.athena.notaroomba.dev`). A logged-in
@@ -172,7 +172,8 @@ the web dashboard fed live by this process (it serves `docs/` and speaks the rel
 `ws://localhost:3001/ws`, including a `station` message with signal level, carrier offset and packet
 counts that the dashboard shows in its footer, and its own log lines as TEXT frames so they appear in the
 dashboard console; through `--relay` the public site gets both as well). `--app` opens it as a desktop window (pywebview) instead of
-a browser tab, `--uplink /dev/tty...` adds a command path (the rocket's USB console on the bench, or a TPU
+a browser tab, `--gain auto` uses the tuner AGC (the dongle is retried every 3 s when busy or unplugged),
+`--uplink /dev/tty...` adds a command path (the rocket's USB console on the bench, or a TPU
 in ground-station mode: `G` on its console turns a second board into a LoRa<->USB relay), `--tui` gives a
 terminal UI, `--relay wss://api.athena.notaroomba.dev/ws --password ...` also feeds the public site and
 accepts commands from it, `--file cap.cu8` replays a capture. Needs `pip install numpy scipy websockets

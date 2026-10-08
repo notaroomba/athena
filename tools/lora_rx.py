@@ -147,20 +147,31 @@ class Receiver:
             self.process()
             self.eof = True
         else:
-            cmd = ["rtl_sdr", "-f", str(int(self.args.freq + self.args.offset)), "-s", str(self.fs_in), "-g", str(self.args.gain), "-"]
-            try:
-                proc = subprocess.Popen(cmd, stdout=subprocess.PIPE, stderr=subprocess.DEVNULL, bufsize=0)
-            except FileNotFoundError:
-                self.note("rtl_sdr not found (brew install librtlsdr)")
-                return
-            self.note(f"rtl_sdr tuned {self.args.freq + self.args.offset:.0f} Hz, channel {self.args.freq:.3f} MHz" if False else
-                      f"rtl_sdr started: channel {self.args.freq / 1e6:.3f} MHz, gain {self.args.gain} dB")
-            while self.running:
-                chunk = proc.stdout.read(int(self.fs_in * 2 * 0.25))
-                if not chunk:
-                    self.note("rtl_sdr stopped (dongle busy or unplugged?)")
+            gain = "0" if str(self.args.gain).lower() == "auto" else str(self.args.gain)      # rtl_sdr: -g 0 = AGC
+            cmd = ["rtl_sdr", "-f", str(int(self.args.freq + self.args.offset)), "-s", str(self.fs_in), "-g", gain, "-"]
+            last_fail = 0.0
+            while self.running:                       # dongle unplugged, busy (SDR++) or not yet plugged in: keep trying
+                try:
+                    proc = subprocess.Popen(cmd, stdout=subprocess.PIPE, stderr=subprocess.DEVNULL, bufsize=0)
+                except FileNotFoundError:
+                    self.note("rtl_sdr not found (brew install librtlsdr / apt install rtl-sdr)")
                     return
-                yield chunk
+                got = False
+                while self.running:
+                    chunk = proc.stdout.read(int(self.fs_in * 2 * 0.25))
+                    if not chunk:
+                        break
+                    if not got:
+                        got = True
+                        self.note(f"rtl_sdr started: channel {self.args.freq / 1e6:.3f} MHz, gain {'auto' if gain == '0' else gain + ' dB'}")
+                    yield chunk
+                proc.kill()
+                if not self.running:
+                    return
+                if got or time.time() - last_fail > 30:
+                    self.note("rtl_sdr stopped (dongle busy or unplugged?) - retrying every 3 s")
+                    last_fail = time.time()
+                time.sleep(3)
 
     def run(self):
         last_proc = 0.0
@@ -465,7 +476,7 @@ def main():
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     ap.add_argument("--freq", type=float, default=433_000_000, help="LoRa channel in Hz (default 433 MHz)")
     ap.add_argument("--offset", type=float, default=250_000, help="tune this far above the channel to dodge the SDR's DC spike")
-    ap.add_argument("--gain", type=float, default=40)
+    ap.add_argument("--gain", default="40", help="tuner gain in dB, or 'auto'")
     ap.add_argument("--file", help="replay an rtl_sdr .cu8 capture instead of the live dongle")
     ap.add_argument("--fast", action="store_true", help="replay without real-time pacing")
     ap.add_argument("--relay", help="WebSocket relay URL (wss://api.athena.notaroomba.dev/ws)")
