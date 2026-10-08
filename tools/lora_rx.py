@@ -15,7 +15,11 @@ with --relay, pushed to the WebSocket relay so the website shows the flight live
 needs: python3 with numpy, scipy, websockets (pip install numpy scipy websockets websocket-client pyserial pywebview) and
 rtl_sdr from librtlsdr (brew install librtlsdr / apt install rtl-sdr / Windows release zip). macOS, Linux, Windows.
 """
-import argparse, collections, curses, json, math, os, struct, subprocess, sys, threading, time
+import argparse, collections, json, math, os, struct, subprocess, sys, threading, time
+try:
+    import curses                                    # --tui; Windows Python has no curses, the other modes work there
+except ImportError:
+    curses = None
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import numpy as np
@@ -494,6 +498,9 @@ def main():
     ap.add_argument("--uplink", help="serial port that accepts command frames (the rocket's USB console, or a ground LoRa board)")
     ap.add_argument("--app", action="store_true", help="desktop window (pywebview) instead of a browser tab")
     args = ap.parse_args()
+    if args.tui and curses is None:
+        print("curses is not available here (Windows): using the plain text mode; the graphical mode works too", flush=True)
+        args.tui, args.no_tui = False, True
     if args.learn and os.path.exists(L.CONV_FILE):
         os.remove(L.CONV_FILE)
     rx = Receiver(args)
