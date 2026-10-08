@@ -469,7 +469,10 @@ def draw_frame(stdscr, rx, h, w, Y, C, R, G):
             stdscr.addnstr(y + i, 1, ev[i], col2 - 2)
         if i < len(lg):
             stdscr.addnstr(y + i, col2, lg[i], w - col2 - 1)
-    stdscr.addnstr(h - 1, 0, " q quit   log: " + rx.outfile.name + (f"   relay: {'on' if rx.ws else 'connecting'}" if rx.args.relay else ""), w - 1, curses.A_DIM)
+    foot = " q quit   log: " + rx.outfile.name
+    foot += f"   uplink: {rx.args.uplink} ({rx.cmds_sent} cmds)" if rx.uplink else "   uplink: none (--uplink PORT)"
+    foot += f"   relay: {'on' if rx.ws else 'connecting'}" if rx.args.relay else ""
+    stdscr.addnstr(h - 1, 0, foot, w - 1, curses.A_DIM)
 
 
 def main():
