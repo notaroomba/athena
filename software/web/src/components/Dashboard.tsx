@@ -115,6 +115,7 @@ export default function Dashboard() {
     }
   });
   const [lastFrameAt, setLastFrameAt] = useState(0);
+  const [tMinus, setTMinus] = useState<number | null>(null); // launch countdown, seconds; null = off
   const soundRef = useRef(false);
   useEffect(() => {
     soundRef.current = sound;
@@ -191,6 +192,18 @@ export default function Dashboard() {
     }
   }, []);
 
+  useEffect(() => {
+    if (tMinus === null) return;
+    if (tMinus <= 0) {
+      beep(1760, 600);
+      const t = setTimeout(() => setTMinus(null), 3000);
+      return () => clearTimeout(t);
+    }
+    if (tMinus <= 10) beep(tMinus <= 3 ? 1320 : 880, 90);
+    const t = setTimeout(() => setTMinus((x) => (x === null ? null : x - 1)), 1000);
+    return () => clearTimeout(t);
+  }, [tMinus, beep]);
+
   const pushEvent = useCallback((label: string, detail: string, color: string) => {
     const now = Date.now();
     if (label === "LAUNCH") beep(880, 120, 2);
@@ -259,6 +272,7 @@ export default function Dashboard() {
         if (inFlight && !prevFlightRef.current) {
           launchWallRef.current = Date.now();
           landedWallRef.current = 0;
+          setTMinus(null);
           pushEvent("LAUNCH", "MPU launch detector", EVENT_COLOR.launch);
         }
         prevFlightRef.current = inFlight;
@@ -568,6 +582,24 @@ export default function Dashboard() {
   );
   const hasBridge = typeof window !== "undefined" && !!(window as unknown as { pywebview?: unknown }).pywebview;
 
+  // ---- keyboard shortcuts
+  useEffect(() => {
+    const onKey = (e: KeyboardEvent) => {
+      const tag = (e.target as HTMLElement | null)?.tagName;
+      if (e.metaKey || e.ctrlKey || e.altKey || tag === "INPUT" || tag === "SELECT" || tag === "TEXTAREA") return;
+      if (e.key === "d") setDemoMode((v) => !v);
+      else if (e.key === "s") setSound((v) => !v);
+      else if (e.key === "c") setShowChecklist((v) => !v);
+      else if (e.key === "l") setShowAdmin((v) => !v);
+      else if (e.key === "t") setTMinus((v) => (v === null ? 60 : null));
+      else if (e.key === "r") toggleRecording();
+      else return;
+      e.preventDefault();
+    };
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, [toggleRecording]);
+
   // ---- derived values
   const s = state;
   const acc = s ? s.acc.map((a) => a / G0) : [0, 0, 0];
@@ -671,9 +703,17 @@ export default function Dashboard() {
               NO DATA FOR {linkAge.toFixed(0)} s
             </div>
           )}
+          {tMinus !== null && (
+            <div className={`mt-2 font-mono text-3xl font-bold tabular-nums ${tMinus <= 0 ? "text-orange" : tMinus <= 10 ? "text-cream" : "text-teal"}`} title="launch countdown (t to cancel)">
+              {tMinus <= 0 ? "LIFTOFF" : `T-${String(Math.floor(tMinus / 60)).padStart(2, "0")}:${String(tMinus % 60).padStart(2, "0")}`}
+            </div>
+          )}
           <div className="mt-3 flex flex-wrap justify-center gap-2">
-            <button onClick={() => setDemoMode(!demoMode)} className={`btn ${demoMode ? "active" : ""}`}>
+            <button onClick={() => setDemoMode(!demoMode)} className={`btn ${demoMode ? "active" : ""}`} title="simulated flight (d)">
               DEMO
+            </button>
+            <button onClick={() => setTMinus(tMinus === null ? 60 : null)} className={`btn ${tMinus !== null ? "active" : ""}`} title="60 s launch countdown with beeps in the last 10 s; stops itself at launch (t)">
+              {tMinus === null ? "T-60" : "ABORT"}
             </button>
             <button
               onClick={() => (replay ? stopReplay() : fileRef.current?.click())}
@@ -721,7 +761,7 @@ export default function Dashboard() {
             <button onClick={() => setShowAdmin(!showAdmin)} className={`btn ${showAdmin ? "active" : ""}`}>
               {isAdmin ? "ADMIN" : "LOGIN"}
             </button>
-            <button onClick={() => setShowChecklist(!showChecklist)} className={`btn ${showChecklist ? "active" : ""}`} title="pre-flight GO/NO-GO from live data plus a hand-ticked list">
+            <button onClick={() => setShowChecklist(!showChecklist)} className={`btn ${showChecklist ? "active" : ""}`} title="pre-flight GO/NO-GO from live data plus a hand-ticked list (c)">
               {showChecklist ? "CHECKLIST" : checks.every((c) => c.ok) ? "GO" : "CHECKLIST"}
             </button>
             <button
@@ -733,7 +773,7 @@ export default function Dashboard() {
                 }
               }}
               className={`btn ${sound ? "active" : ""}`}
-              title="beep on launch, apogee, pyro firings, landing"
+              title="beep on launch, apogee, pyro firings, landing, countdown (s)"
             >
               {sound ? "SOUND ON" : "SOUND"}
             </button>
@@ -925,7 +965,7 @@ export default function Dashboard() {
           )}
         </span>
         <span className="flex items-center gap-2">
-          <button onClick={toggleRecording} className={`btn ${recording ? "danger" : ""}`} style={{ padding: "2px 8px" }} title="save the raw link stream as a replayable .bin">
+          <button onClick={toggleRecording} className={`btn ${recording ? "danger" : ""}`} style={{ padding: "2px 8px" }} title="save the raw link stream as a replayable .bin (r)">
             {recording ? `STOP · ${(recordedBytes / 1024).toFixed(0)} KB` : "REC"}
           </button>
           <a href="https://github.com/NotARoomba/Athena" className="text-ink-2">

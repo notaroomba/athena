@@ -463,13 +463,15 @@ def main():
     if args.learn and os.path.exists(L.CONV_FILE):
         os.remove(L.CONV_FILE)
     rx = Receiver(args)
+    if args.learn:
+        rx.conv = None                                # also ignore the conventions a packaged build ships with
     th = threading.Thread(target=rx.run, daemon=True)
     th.start()
     if not args.no_tui and not args.tui:
         # graphical mode: this process is the relay, the web dashboard (served locally when the repo is here,
         # otherwise the public site) is the UI. Works wherever Python + rtl_sdr run.
         threading.Thread(target=rx.local_relay, args=(args.port,), daemon=True).start()
-        docs = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "docs")
+        docs = os.path.join(getattr(sys, "_MEIPASS", os.path.dirname(os.path.dirname(os.path.abspath(__file__)))), "docs")
         url = f"{args.dashboard}?ws=ws://localhost:{args.port}/ws"
         if os.path.isfile(os.path.join(docs, "index.html")):
             import functools, http.server, socketserver

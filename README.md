@@ -124,7 +124,9 @@ FIRE / servo / main-altitude commands when a writable link is open, a **flight e
 landing distance), per-type frame rates, a **REC** button that saves the raw link stream as a
 replayable `.bin`, a **pre-flight checklist** (GO/NO-GO read from the live data: IMUs, baro, GPS fix,
 pad origin, SPU link, main altitude, radio, arming, plus a hand-ticked list), **SOUND** alerts on
-launch/apogee/pyro/landing, a no-data banner and the altitude and phase in the tab title. Data sources:
+launch/apogee/pyro/landing, a **T-60 countdown** (beeps over the last 10 s, cancels itself at launch), a no-data
+banner, the altitude and phase in the tab title, and keyboard shortcuts (`d` demo, `t` countdown, `c` checklist,
+`s` sound, `l` login, `r` record). Data sources:
 
 - **SERIAL**: any of the three USB ports (WebSerial, Chrome/Edge over https or localhost).
 - **BLUETOOTH**: the DA14531 on the TPU over Web Bluetooth (DSPS serial-bridge firmware streams the
@@ -172,8 +174,10 @@ a browser tab, `--uplink /dev/tty...` adds a command path (the rocket's USB cons
 in ground-station mode: `G` on its console turns a second board into a LoRa<->USB relay), `--tui` gives a
 terminal UI, `--relay wss://api.athena.notaroomba.dev/ws --password ...` also feeds the public site and
 accepts commands from it, `--file cap.cu8` replays a capture. Needs `pip install numpy scipy websockets
-websocket-client pyserial pywebview` and `rtl_sdr` (`brew install librtlsdr`). `tools/lora_check.py` is the
-quick PHY check (burst period, preamble, sync word).
+websocket-client pyserial pywebview` and `rtl_sdr` (`brew install librtlsdr`). `tools/build_station.sh` packs
+it into one standalone executable (`dist/station/athena-station`, PyInstaller, dashboard files included) so a
+laptop at the range only needs `rtl_sdr` installed. `tools/lora_check.py` is the quick PHY check (burst period,
+preamble, sync word).
 
 USB console characters: all MCUs `B`/`J` (DFU), `L` LEDs off/on; TPU `D` dump flash log, `E` restart it,
 `S` sync SD, `F` format SD, `G` ground-station mode (persistent); SPU `A` arm, `d` disarm, `1`-`6` fire a

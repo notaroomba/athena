@@ -10,8 +10,7 @@ bit orders) are learned once from real traffic with learn(): the Athena link fra
 is the oracle, so no guesswork survives a wrong convention.
 """
 import itertools, json, os
-import numpy as np
-from scipy.signal import resample_poly
+import numpy as np                               # scipy is imported only when a capture needs resampling (slow import)
 
 SF, N, BW = 7, 128, 125e3
 OS = 8                                           # samples per chip: eighth-chip timing alignment
@@ -75,6 +74,7 @@ def to_baseband(iq_u8, fs, offset_hz):
     iq = iq * lo
     if int(fs) == int(FS):
         return iq                                # live: the dongle runs at FS, nothing to resample
+    from scipy.signal import resample_poly
     return resample_poly(iq, int(FS), int(fs)).astype(np.complex64)
 
 
@@ -371,14 +371,20 @@ def learn(x, spans, max_bursts=4):
     return best, best_hits
 
 
-CONV_FILE = os.path.join(os.path.dirname(os.path.abspath(__file__)), "lora_conv.json")
+import sys
+FROZEN = hasattr(sys, "_MEIPASS")                    # packaged by tools/build_station.sh (PyInstaller)
+CONV_FILE = (os.path.join(os.path.expanduser("~"), ".athena_lora_conv.json") if FROZEN
+             else os.path.join(os.path.dirname(os.path.abspath(__file__)), "lora_conv.json"))
+BUNDLED_CONV = os.path.join(sys._MEIPASS, "lora_conv.json") if FROZEN else CONV_FILE
 
 
 def load_conv():
-    try:
-        return json.load(open(CONV_FILE))
-    except Exception:
-        return None
+    for p in (CONV_FILE, BUNDLED_CONV):              # what this machine learned, else what the build shipped
+        try:
+            return json.load(open(p))
+        except Exception:
+            pass
+    return None
 
 
 def save_conv(c):
