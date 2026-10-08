@@ -154,9 +154,16 @@ Links: MPU -> TPU (UART4/UART8, state 20 Hz, GPS back), MPU -> SPU (UART8/UART5,
 SPU status 2 Hz back), TPU -> MPU -> SPU for commands (LoRa uplink, USB, Bluetooth). The TPU
 logs every link frame to the microSD card (one `ATHnnnnn.BIN` per boot, card hot-plug safe) and
 to the W25Q256 flash, sends telemetry + SPU status over LoRa and over UART7 to the Bluetooth module;
-`tools/athlog.py` dumps the flash log over USB and converts logs to CSV; `tools/lora_check.py` checks the
-LoRa downlink with an RTL-SDR capture (`rtl_sdr -f 433250000 -s 1024000 -g 40 -n 10240000 cap.cu8`,
-then `python3 tools/lora_check.py cap.cu8`: burst period, SF7 preamble, 0x12 sync word; needs numpy/scipy).
+`tools/athlog.py` dumps the flash log over USB and converts logs to CSV.
+
+**Ground station on an RTL-SDR** (`tools/lora_rx.py`, macOS/Linux/Windows): a complete LoRa receiver for
+the downlink (SF7, 125 kHz, sync 0x12) written in numpy, no GNU Radio. It decodes the Athena frames
+straight from the IQ stream (the frames' own CRCs verified 92% of packets on the bench), logs them to a
+replayable `athena-lora-*.bin`, and by default opens the web dashboard fed live by this process (it serves
+`docs/` and speaks the relay protocol on `ws://localhost:3001/ws`). `--tui` gives a terminal UI instead,
+`--relay wss://api.athena.notaroomba.dev/ws --password ...` also feeds the public site, `--file cap.cu8`
+replays a capture. Needs `pip install numpy scipy websockets websocket-client` and `rtl_sdr`
+(`brew install librtlsdr`). `tools/lora_check.py` is the quick PHY check (burst period, preamble, sync word).
 
 USB console characters: all MCUs `B`/`J` (DFU); TPU `D` dump flash log, `E` restart it, `S` sync SD,
 `F` format SD; SPU `A` arm, `d` disarm, `1`-`6` fire a channel (armed only), `s` sweep servo 1,

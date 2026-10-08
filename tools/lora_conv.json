@@ -1,0 +1,12 @@
+{
+ "off": -1,
+ "gray": "g1",
+ "gray_first": true,
+ "hdr_reduce": ">>2",
+ "rot": "i-j-1",
+ "msb_first": true,
+ "cw_msb_first": true,
+ "data_high": true,
+ "nib_rev": true,
+ "low_first": true
+}

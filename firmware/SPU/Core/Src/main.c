@@ -65,6 +65,7 @@ UART_HandleTypeDef huart1;
 
 /* USER CODE BEGIN PV */
 static uint32_t dfu_boot_magic, dfu_boot_bkp;
+static uint8_t  leds_off;                      // 'L' on the USB console: dark board (night, bench)
 static uint32_t fault_rec[6];                 // crash record from the previous run (magic, pc, lr, cfsr, hfsr, bfar)
 static Link            mpu_link;                 // UART5 <-> MPU: state frames in, SPU status out, commands relayed from the TPU
 static Link            usb_link;                 // USB console: command frames and single-character commands
@@ -97,6 +98,7 @@ static void MX_FDCAN2_Init(void);
 static void MX_USART1_UART_Init(void);
 /* USER CODE BEGIN PFP */
 static void Athena_DfuPoll(void);
+static void Athena_RestoreBootOptions(void);
 void Athena_DfuRequest(uint8_t c);
 void Athena_UsbRx(const uint8_t *buf, uint32_t len);
 static void on_mpu_packet(uint8_t type, const uint8_t *payload, uint8_t len, void *user);
@@ -167,6 +169,7 @@ int main(void)
   MX_USART1_UART_Init();
   MX_USB_Device_Init();
   /* USER CODE BEGIN 2 */
+  Athena_RestoreBootOptions();                         // resets once if we were booted through DFU
   Set_LED_Color(LED_BLUE);                             // identity colour: SPU = blue (MPU green, TPU red)
   Recovery_Init(&rec, NULL);                           // pyro outputs low, servos without pulse, main chute at 150 m
   HAL_TIM_PWM_Start(&htim1, TIM_CHANNEL_1);            // 50 Hz servo frames, pulse set in Recovery_HwServo()
@@ -237,7 +240,8 @@ int main(void)
             PD_ModeName(pd.mode), pd.status[0] & 1u, pd.pdo_mv, pd.pdo_ma, (unsigned long)pd.resets, pd.vbat_mv, pd.vbus_mv, pd.ibat_ma, pd.iin_ma, pd.chg_status,
             HAL_GPIO_ReadPin(CHRG_OK_GPIO_Port, CHRG_OK_Pin), !HAL_GPIO_ReadPin(SPU_PROCHOT_GPIO_Port, SPU_PROCHOT_Pin), HAL_GPIO_ReadPin(CMPOUT_GPIO_Port, CMPOUT_Pin),
             (unsigned long)cmd_count, (unsigned long)cmd_rejected, (unsigned long)dfu_boot_magic, (unsigned long)dfu_boot_bkp);
-      if (HAL_GetTick() < LED_IDENTITY_MS)          { /* keep showing the identity colour */ }
+      if (leds_off)                                 Set_LED_Color(LED_OFF);
+      else if (HAL_GetTick() < LED_IDENTITY_MS)     { /* keep showing the identity colour */ }
       else if (rec.armed)                           Set_LED_Color((now / 250) & 1 ? LED_RED : LED_OFF);   // armed: blinking red
       else if (rec.phase == SPU_PHASE_LANDED)       Set_LED_Color(LED_CYAN);
       else if (rec.phase != SPU_PHASE_PAD)          Set_LED_Color(LED_MAGENTA);
@@ -826,6 +830,7 @@ static void on_usb_text(uint8_t b, void *user)
   (void)user;
   Athena_Cmd c; memset(&c, 0, sizeof c);
   if (b == 'B' || b == 'J') { Athena_DfuRequest(b); return; }
+  if (b == 'L') { leds_off = !leds_off; if (leds_off) Set_LED_Color(LED_OFF); print("leds %s\r\n", leds_off ? "off" : "on"); return; }
   if (b == 'A')      { c.cmd = CMD_ARM; c.key = CMD_KEY; }
   else if (b == 'd') { c.cmd = CMD_DISARM; }
   else if (b >= '1' && b <= '6') { c.cmd = CMD_FIRE; c.arg = (uint8_t)(b - '0'); c.key = CMD_KEY; }
@@ -865,15 +870,48 @@ extern USBD_HandleTypeDef hUsbDeviceFS;
 static volatile uint8_t dfu_request;
 void Athena_DfuRequest(uint8_t c) { dfu_request = c; }
 
+/* G4: jumping into the ROM re-runs its boot selection and sometimes lands back in the application, so the
+ * option bytes do the job instead: nSWBOOT0=0 + nBOOT0=0 makes the next reset boot system memory exactly like a
+ * BOOT0 press; OB_Launch performs that reset. Athena_RestoreBootOptions() (start of main) undoes it as soon as
+ * the application runs again, i.e. right after dfu-util's leave. */
+#ifndef SPU_DFU_OPTION_BYTES
+#define SPU_DFU_OPTION_BYTES 0     /* 1 = option-byte boot selection (hung once on the bench, untested since); 0 = flag + ROM jump */
+#endif
 static void Athena_ResetToDfu(void)
 {
   USBD_DeInit(&hUsbDeviceFS);                                   /* host sees a disconnect */
   HAL_Delay(100);
+#if !SPU_DFU_OPTION_BYTES
   DFU_BKP_ENABLE();
-  DFU_BKP_REG = DFU_MAGIC;                                      /* backup register: immune to whatever happens to SRAM */
+  DFU_BKP_REG = DFU_MAGIC;                                      /* backup register flag: main() jumps into the ROM after the reset */
   *(volatile uint32_t *)DFU_MAGIC_ADDR = DFU_MAGIC;
   __DSB();
   NVIC_SystemReset();
+#endif
+  FLASH_OBProgramInitTypeDef ob = {0};
+  ob.OptionType = OPTIONBYTE_USER;
+  ob.USERType   = OB_USER_nSWBOOT0 | OB_USER_nBOOT0;
+  ob.USERConfig = OB_BOOT0_FROM_OB | OB_nBOOT0_RESET;
+  HAL_FLASH_Unlock();
+  HAL_FLASH_OB_Unlock();
+  if (HAL_FLASHEx_OBProgram(&ob) == HAL_OK) HAL_FLASH_OB_Launch();   /* never returns: option-byte reload = reset */
+  HAL_FLASH_OB_Lock();
+  HAL_FLASH_Lock();
+  NVIC_SystemReset();                                           /* programming failed: at least restart cleanly */
+}
+
+static void Athena_RestoreBootOptions(void)                     /* back from DFU: boot from the BOOT0 pin again */
+{
+  if (FLASH->OPTR & FLASH_OPTR_nSWBOOT0) return;                /* already normal */
+  FLASH_OBProgramInitTypeDef ob = {0};
+  ob.OptionType = OPTIONBYTE_USER;
+  ob.USERType   = OB_USER_nSWBOOT0 | OB_USER_nBOOT0;
+  ob.USERConfig = OB_BOOT0_FROM_PIN | OB_nBOOT0_SET;
+  HAL_FLASH_Unlock();
+  HAL_FLASH_OB_Unlock();
+  if (HAL_FLASHEx_OBProgram(&ob) == HAL_OK) HAL_FLASH_OB_Launch();   /* resets into a normal boot */
+  HAL_FLASH_OB_Lock();
+  HAL_FLASH_Lock();
 }
 
 static void Athena_JumpToBootloader(void)

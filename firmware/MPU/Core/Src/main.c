@@ -75,6 +75,7 @@ UART_HandleTypeDef huart1;
 
 /* USER CODE BEGIN PV */
 static uint32_t dfu_boot_magic, dfu_boot_bkp;
+static uint8_t  leds_off;                      // 'L' on the USB console: dark board (night, bench)
 static uint32_t fault_rec[6];                 // crash record from the previous run (magic, pc, lr, cfsr, hfsr, bfar)
 Athena_LED_PinConfig led_pins = {
       .port_r = MPU_R_GPIO_Port,
@@ -334,7 +335,8 @@ int main(void)
             (state.flags & STATE_FLAG_GPS_FRESH) ? "fresh" : "DR", (unsigned long)gps_count, (unsigned long)tpu_link.rx_bad,
             (state.flags & STATE_FLAG_IN_FLIGHT) ? "FLIGHT" : "pad",
             (spu_count && HAL_GetTick() - spu_ms < 2000u) ? "ok" : "LOST", spu.phase, spu.flags, spu.vbat_mv, (unsigned long)dfu_boot_magic, (unsigned long)dfu_boot_bkp);
-      if (HAL_GetTick() < LED_IDENTITY_MS)          { /* keep showing the identity colour */ }
+      if (leds_off)                                 Set_LED_Color(LED_OFF);
+      else if (HAL_GetTick() < LED_IDENTITY_MS)     { /* keep showing the identity colour */ }
       else if (state.flags & STATE_FLAG_IN_FLIGHT) Set_LED_Color(LED_MAGENTA);
       else if (!imu_mask)                          Set_LED_Color(LED_RED);
       else if (imu_mask == 0x7 && mag_ok && icp_ok && (state.flags & STATE_FLAG_GPS_FRESH)) Set_LED_Color(LED_GREEN);
@@ -1124,6 +1126,7 @@ static void on_usb_text(uint8_t b, void *user)
 {
   (void)user;
   if (b == 'B' || b == 'J') Athena_DfuRequest(b);
+  else if (b == 'L') { leds_off = !leds_off; if (leds_off) Set_LED_Color(LED_OFF); print("leds %s\r\n", leds_off ? "off" : "on"); }
 }
 
 void Athena_UsbRx(const uint8_t *buf, uint32_t len)      /* USB CDC receive interrupt */

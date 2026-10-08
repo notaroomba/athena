@@ -28,7 +28,10 @@ import { startDemo } from "@/lib/demo";
 const BoardVisualizer = lazy(() => import("./BoardVisualizer"));
 const MapPanel = lazy(() => import("./MapPanel"));
 
-const WS_URL: string = import.meta.env.VITE_WS_URL ?? "wss://api.athena.notaroomba.dev/ws";
+const WS_URL: string =
+  (typeof window !== "undefined" && new URLSearchParams(window.location.search).get("ws")) || // local ground station: ?ws=ws://localhost:3001/ws
+  import.meta.env.VITE_WS_URL ||
+  "wss://api.athena.notaroomba.dev/ws";
 const MAX_LINES = 200;
 const MAX_TRACK = 6000;
 const MAX_EVENTS = 200;

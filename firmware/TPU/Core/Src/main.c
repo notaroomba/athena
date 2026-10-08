@@ -71,6 +71,7 @@ UART_HandleTypeDef huart1;
 
 /* USER CODE BEGIN PV */
 static uint32_t dfu_boot_magic, dfu_boot_bkp;
+static uint8_t  leds_off;                      // 'L' on the USB console: dark board (night, bench)
 static uint32_t fault_rec[6];                 // crash record from the previous run (magic, pc, lr, cfsr, hfsr, bfar)
 static Link             mpu_link;        // UART8 <-> MPU
 static Link             air_link;        // frames received over LoRa (ground -> rocket)
@@ -324,7 +325,8 @@ int main(void)
       static uint8_t text_frame[LINK_MAX_PAYLOAD + LINK_OVERHEAD];
       Logger_Write(text_frame, (uint32_t)Link_Encode(text_frame, LINK_PKT_TEXT, line, (uint8_t)(ln > LINK_MAX_PAYLOAD ? LINK_MAX_PAYLOAD : ln)));
       int mpu_alive = (now - mpu_state_ms) < 1000u && state_count;
-      if (HAL_GetTick() < LED_IDENTITY_MS)            { /* keep showing the identity colour */ }
+      if (leds_off)                                   Set_LED_Color(LED_OFF);
+      else if (HAL_GetTick() < LED_IDENTITY_MS)       { /* keep showing the identity colour */ }
       else if (!lora_ok)                              Set_LED_Color(LED_YELLOW);
       else if (mpu_alive && gps.fix_type >= 3)        Set_LED_Color(LED_GREEN);
       else if (mpu_alive)                             Set_LED_Color(LED_CYAN);
@@ -1071,6 +1073,7 @@ static void on_usb_text(uint8_t b, void *user)       /* single characters typed 
 {
   (void)user;
   if (b == 'B' || b == 'J') Athena_DfuRequest(b);
+  else if (b == 'L') { leds_off = !leds_off; if (leds_off) Set_LED_Color(LED_OFF); print("leds %s\r\n", leds_off ? "off" : "on"); }
   else Logger_UsbRx(&b, 1);                            // 'D' dump flash log, 'E' restart it, 'S' sync SD, 'F' format SD
 }
 
