@@ -409,6 +409,32 @@ export default function Dashboard() {
     if (consoleRef.current) consoleRef.current.scrollTop = consoleRef.current.scrollHeight;
   }, [lines]);
 
+  // ---- flight report: everything the dashboard derived, as one JSON file (events, summary, tracks, last frames)
+  const saveReport = useCallback(() => {
+    const stamp = new Date().toISOString().replace(/[-:]/g, "").slice(0, 15);
+    const report = {
+      generated: new Date().toISOString(),
+      summary: { apogee_m: apogee, vmax_ms: vmax, gmax_g: gmax, flight_time_s: launchWallRef.current ? ((landedWallRef.current || Date.now()) - launchWallRef.current) / 1000 : 0 },
+      pad: state && state.flags & STATE_FLAG.ORIGIN_OK ? { lat: state.origin_lat, lon: state.origin_lon } : fusedTrack[0] ? { lat: fusedTrack[0].lat, lon: fusedTrack[0].lon } : null,
+      last_position: fusedTrack.length ? fusedTrack[fusedTrack.length - 1] : null,
+      events,
+      spu,
+      gps,
+      state,
+      telem,
+      fused_track: fusedTrack,
+      gps_track: gpsTrack,
+      link,
+      console: lines,
+    };
+    const a = document.createElement("a");
+    a.href = URL.createObjectURL(new Blob([JSON.stringify(report, null, 1)], { type: "application/json" }));
+    a.download = `athena-report-${stamp}.json`;
+    a.click();
+    setTimeout(() => URL.revokeObjectURL(a.href), 10000);
+    logLine(`[dashboard] saved ${a.download}`);
+  }, [apogee, vmax, gmax, state, fusedTrack, gpsTrack, events, spu, gps, telem, link, lines, logLine]);
+
   // ---- demo
   useEffect(() => {
     if (!demoMode) return;
@@ -967,6 +993,9 @@ export default function Dashboard() {
         <span className="flex items-center gap-2">
           <button onClick={toggleRecording} className={`btn ${recording ? "danger" : ""}`} style={{ padding: "2px 8px" }} title="save the raw link stream as a replayable .bin (r)">
             {recording ? `STOP · ${(recordedBytes / 1024).toFixed(0)} KB` : "REC"}
+          </button>
+          <button onClick={saveReport} className="btn" style={{ padding: "2px 8px" }} title="download a JSON flight report: summary, events, tracks, last frames, console">
+            REPORT
           </button>
           <a href="https://github.com/NotARoomba/Athena" className="text-ink-2">
             Athena

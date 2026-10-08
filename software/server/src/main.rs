@@ -186,6 +186,11 @@ struct CmdMessage {
     frame: String,
 }
 
+#[derive(Deserialize)]
+struct TypeOnly {
+    r#type: String,
+}
+
 async fn handle_text(client_id: ClientId, text: &str, state: &Arc<RwLock<AppState>>) {
     // {"type":"cmd","frame":"<hex Athena CMD frame>"}: an authenticated client (the website) asks the other
     // authenticated clients (a ground station with a wired uplink) to send a command to the rocket.
@@ -213,6 +218,17 @@ async fn handle_text(client_id: ClientId, text: &str, state: &Arc<RwLock<AppStat
                 let _ = client.tx.send(Message::Text(result.into()));
             }
             println!("[{}] Client {} cmd relayed to {} ({} hex chars)", ts(), client_id, delivered, cmd.frame.len());
+            return;
+        }
+    }
+    // {"type":"station",...}: a ground station's receiver statistics (signal level, packet counts); passed on
+    // unchanged to every other client so the public dashboard shows the same radio readout as the station's.
+    if let Ok(t) = serde_json::from_str::<TypeOnly>(text) {
+        if t.r#type == "station" && text.len() <= 2048 {
+            let s = state.read().await;
+            if s.clients.get(&client_id).map_or(false, |c| c.is_admin) {
+                broadcast_text(&s.clients, text, Some(client_id));
+            }
             return;
         }
     }

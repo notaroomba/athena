@@ -122,7 +122,8 @@ distance/bearing from the pad, apogee and max speed), and the SPU **recovery & p
 FIRE / servo / main-altitude commands when a writable link is open, a **flight event timeline**
 (launch, phases, pyro firings, arming) with a summary line (apogee, max speed, max g, flight time,
 landing distance), per-type frame rates, a **REC** button that saves the raw link stream as a
-replayable `.bin`, a **pre-flight checklist** (GO/NO-GO read from the live data: IMUs, baro, GPS fix,
+replayable `.bin`, a **REPORT** button that downloads a JSON flight report (summary, events, tracks, last
+frames, console), a **pre-flight checklist** (GO/NO-GO read from the live data: IMUs, baro, GPS fix,
 pad origin, SPU link, main altitude, radio, arming, plus a hand-ticked list), **SOUND** alerts on
 launch/apogee/pyro/landing, a **T-60 countdown** (beeps over the last 10 s, cancels itself at launch), a no-data
 banner, the altitude and phase in the tab title, and keyboard shortcuts (`d` demo, `t` countdown, `c` checklist,
@@ -169,7 +170,8 @@ dongle's native 1 MS/s. It decodes the Athena frames straight from the IQ stream
 verified 92% of packets on the bench), logs them to a replayable `athena-lora-*.bin`, and by default opens
 the web dashboard fed live by this process (it serves `docs/` and speaks the relay protocol on
 `ws://localhost:3001/ws`, including a `station` message with signal level, carrier offset and packet
-counts that the dashboard shows in its footer). `--app` opens it as a desktop window (pywebview) instead of
+counts that the dashboard shows in its footer, and its own log lines as TEXT frames so they appear in the
+dashboard console; through `--relay` the public site gets both as well). `--app` opens it as a desktop window (pywebview) instead of
 a browser tab, `--uplink /dev/tty...` adds a command path (the rocket's USB console on the bench, or a TPU
 in ground-station mode: `G` on its console turns a second board into a LoRa<->USB relay), `--tui` gives a
 terminal UI, `--relay wss://api.athena.notaroomba.dev/ws --password ...` also feeds the public site and

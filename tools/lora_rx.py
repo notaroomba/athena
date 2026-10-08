@@ -209,10 +209,17 @@ class Receiver:
                     self.stats["bad_crc"] += 1
             self.done_until = g0 + e
         st = self.stats
-        self.local_send(json.dumps({"type": "station", "freq": self.args.freq, "level_db": round(float(st["level_db"]), 1),
+        self.station_json = json.dumps({"type": "station", "freq": self.args.freq, "level_db": round(float(st["level_db"]), 1),
                                     "noise_db": round(float(st["noise_db"]), 1), "cfo_khz": round(float(st["cfo"]) * L.BW / L.N / 1e3, 2),
                                     "ok": st["ok"], "packets": st["packets"], "last_rx": st["last_rx"],
-                                    "uplink": self.uplink is not None}))      # float(): numpy scalars are not JSON
+                                    "uplink": self.uplink is not None})       # float(): numpy scalars are not JSON
+        self.local_send(self.station_json)
+        ws = self.ws
+        if ws:                                                 # the public site shows it too (server forwards admin station messages)
+            try:
+                ws.send(self.station_json)
+            except Exception:
+                pass
 
     # -- local relay (graphical mode): same protocol as software/server, so the web dashboard is the UI --
     def local_relay(self, port):
@@ -299,13 +306,26 @@ class Receiver:
                             self.event(f"PYRO {ch + 1} FIRED")
                     self.prev_fired = d["fired"]
             elif t == 0x7F:
-                self.note("rocket: " + p.decode("ascii", "replace"))
+                self.note("rocket: " + p.decode("ascii", "replace"), fanout=False)   # the frame itself already went out
 
     def event(self, s):
         self.events.append(time.strftime("%H:%M:%S ") + s)
 
-    def note(self, s):
+    def note(self, s, fanout=True):
+        """Station log line; also sent to the dashboards as a TEXT frame so the browser console shows it."""
         self.log.append(time.strftime("%H:%M:%S ") + s)
+        if not fanout:
+            return
+        b = ("[station] " + s).encode("utf-8", "replace")[:200]
+        body = bytes([0x7F, len(b)]) + b
+        frame = b"\xa5" + body + L.crc16(body).to_bytes(2, "little")
+        self.local_send(frame)
+        ws = self.ws
+        if ws:
+            try:
+                ws.send_binary(frame)
+            except Exception:
+                pass
 
     # -- relay --
     def relay_loop(self):
