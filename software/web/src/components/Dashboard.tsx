@@ -409,6 +409,8 @@ export default function Dashboard() {
           if (!msg.success) savedPasswordRef.current = null;
         } else if (msg.type === "admin_disconnected") {
           setAdminOnline(false);
+        } else if (msg.type === "cmd") {
+          // another admin asked a ground station to send a command; nothing to do in a browser
         }
       } catch {
         /* ignore */
@@ -484,15 +486,27 @@ export default function Dashboard() {
     setBleLabel(label);
   }, [bleConnected, onBoardChunk, resetData, logLine, stopReplay]);
 
-  // ---- commands to the SPU (through whichever MCU port is open; the SPU enforces arming and the key)
+  // ---- commands to the SPU. Paths, in order: a local serial/Bluetooth link, the desktop ground station's
+  // uplink (window.pywebview bridge), or the relay (logged in: the server hands the frame to a ground station).
+  // The SPU enforces arming and the key whatever the path.
   const sendCommand = useCallback(
     async (cmd: number, arg = 0, value = 0, key = 0) => {
       const frame = encodeCmd(cmd, arg, value, key);
-      const ok = serialConnected ? await writeSerial(frame) : bleConnected ? await writeBluetooth(frame) : false;
-      logLine(`[dashboard] command ${cmd} ch=${arg} val=${value} ${ok ? "sent" : "NOT sent (no writable link)"}`);
+      const hex = Array.from(frame, (b) => b.toString(16).padStart(2, "0")).join("");
+      let via = "";
+      const bridge = (window as unknown as { pywebview?: { api?: { send_command?: (h: string) => Promise<boolean> } } }).pywebview?.api?.send_command;
+      if (serialConnected && (await writeSerial(frame))) via = "serial";
+      else if (bleConnected && (await writeBluetooth(frame))) via = "bluetooth";
+      else if (bridge && (await bridge(hex))) via = "ground station";
+      else if (isAdminRef.current && wsRef.current?.readyState === WebSocket.OPEN) {
+        wsRef.current.send(JSON.stringify({ type: "cmd", frame: hex }));
+        via = "relay";
+      }
+      logLine(`[dashboard] command ${cmd} ch=${arg} val=${value} ${via ? "sent via " + via : "NOT sent (no link: connect serial/Bluetooth or log in)"}`);
     },
     [serialConnected, bleConnected, logLine],
   );
+  const hasBridge = typeof window !== "undefined" && !!(window as unknown as { pywebview?: unknown }).pywebview;
 
   // ---- derived values
   const s = state;
@@ -753,7 +767,7 @@ export default function Dashboard() {
 
         {/* (3,4) Recovery & power (SPU) */}
         <Panel className="order-10 flex flex-col xl:col-start-4 xl:row-start-3">
-          <RecoveryPanel spu={spu} fresh={spuFresh} canCommand={serialConnected || bleConnected} onCommand={sendCommand} />
+          <RecoveryPanel spu={spu} fresh={spuFresh} canCommand={serialConnected || bleConnected || isAdmin || hasBridge} onCommand={sendCommand} />
         </Panel>
       </div>
 

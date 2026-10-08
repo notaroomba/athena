@@ -119,4 +119,9 @@ export interface WSAdminDisconnected {
   type: "admin_disconnected";
 }
 
-export type WSMessage = WSStatusMessage | WSAuthResult | WSAdminDisconnected;
+export interface WSCmdMessage {
+  type: "cmd";
+  frame: string; // hex-encoded Athena CMD frame, relayed between authenticated clients
+}
+
+export type WSMessage = WSStatusMessage | WSAuthResult | WSAdminDisconnected | WSCmdMessage;

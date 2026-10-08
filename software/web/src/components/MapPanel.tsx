@@ -54,9 +54,40 @@ function segments(track: TrackPoint[]): { pts: LatLngExpression[]; dr: boolean }
   return out;
 }
 
+function gpx(fused: TrackPoint[], gps: TrackPoint[], landing: [number, number] | null): string {
+  const pt = (p: TrackPoint) => `<trkpt lat="${p.lat.toFixed(7)}" lon="${p.lon.toFixed(7)}"><ele>${p.alt.toFixed(1)}</ele></trkpt>`;
+  const seg = (name: string, pts: TrackPoint[]) => (pts.length ? `<trk><name>${name}</name><trkseg>${pts.map(pt).join("")}</trkseg></trk>` : "");
+  const last = fused[fused.length - 1];
+  const wpt = (name: string, lat: number, lon: number) => `<wpt lat="${lat.toFixed(7)}" lon="${lon.toFixed(7)}"><name>${name}</name></wpt>`;
+  return `<?xml version="1.0" encoding="UTF-8"?><gpx version="1.1" creator="Athena dashboard" xmlns="http://www.topografix.com/GPX/1/1">${
+    fused.length ? wpt("pad", fused[0].lat, fused[0].lon) + wpt("last position", last.lat, last.lon) : ""
+  }${landing ? wpt("landing estimate", landing[0], landing[1]) : ""}${seg("filter", fused)}${seg("gps", gps)}</gpx>`;
+}
+
+function download(name: string, text: string, type: string) {
+  const a = document.createElement("a");
+  a.href = URL.createObjectURL(new Blob([text], { type }));
+  a.download = name;
+  a.click();
+  setTimeout(() => URL.revokeObjectURL(a.href), 10000);
+}
+
 export default function MapPanel({ fused, gps, pad, cur, hacc, landing, stats }: MapPanelProps) {
   const [follow, setFollow] = useState(true);
   const [fitKey, setFitKey] = useState(0);
+  const [copied, setCopied] = useState(false);
+  const here = cur ?? (landing ? { lat: landing[0], lon: landing[1], dr: true } : null);
+  const coords = here ? `${here.lat.toFixed(6)}, ${here.lon.toFixed(6)}` : "";
+  const mapsUrl = here ? `https://www.google.com/maps/search/?api=1&query=${here.lat.toFixed(6)},${here.lon.toFixed(6)}` : "";
+  const copy = async () => {
+    try {
+      await navigator.clipboard.writeText(coords);
+      setCopied(true);
+      setTimeout(() => setCopied(false), 1500);
+    } catch {
+      /* clipboard blocked */
+    }
+  };
   const segs = useMemo(() => segments(fused), [fused]);
   const gpsLine = useMemo<LatLngExpression[]>(() => gps.map((p) => [p.lat, p.lon]), [gps]);
   const target = useMemo<LatLngExpression | null>(() => (cur ? [cur.lat, cur.lon] : pad), [cur, pad]);
@@ -82,6 +113,21 @@ export default function MapPanel({ fused, gps, pad, cur, hacc, landing, stats }:
           </button>
           <button className="btn" style={{ padding: "3px 8px" }} onClick={() => setFitKey((k) => k + 1)} disabled={fused.length + gps.length < 2}>
             FIT
+          </button>
+          <button className="btn" style={{ padding: "3px 8px" }} onClick={copy} disabled={!here} title={coords ? `copy ${coords}` : "no position yet"}>
+            {copied ? "COPIED" : "COPY"}
+          </button>
+          <a className={`btn ${here ? "" : "pointer-events-none opacity-35"}`} style={{ padding: "3px 8px" }} href={mapsUrl || "#"} target="_blank" rel="noreferrer" title="open the last position in Google Maps (walk to the rocket)">
+            MAPS
+          </a>
+          <button
+            className="btn"
+            style={{ padding: "3px 8px" }}
+            onClick={() => download(`athena-track-${new Date().toISOString().slice(0, 19).replace(/[:T]/g, "-")}.gpx`, gpx(fused, gps, landing), "application/gpx+xml")}
+            disabled={!fused.length && !gps.length}
+            title="download the tracks and landing estimate as GPX (Google Earth, phone map apps)"
+          >
+            GPX
           </button>
         </div>
       </div>

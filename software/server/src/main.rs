@@ -179,7 +179,35 @@ async fn handle_socket(socket: WebSocket, state: Arc<RwLock<AppState>>) {
     send_task.abort();
 }
 
+#[derive(Deserialize)]
+struct CmdMessage {
+    r#type: String,
+    frame: String,
+}
+
 async fn handle_text(client_id: ClientId, text: &str, state: &Arc<RwLock<AppState>>) {
+    // {"type":"cmd","frame":"<hex Athena CMD frame>"}: an authenticated client (the website) asks the other
+    // authenticated clients (a ground station with a wired uplink) to send a command to the rocket.
+    if let Ok(cmd) = serde_json::from_str::<CmdMessage>(text) {
+        if cmd.r#type == "cmd" {
+            let s = state.read().await;
+            if !s.clients.get(&client_id).map_or(false, |c| c.is_admin) {
+                println!("[{}] Client {} cmd ignored (not admin)", ts(), client_id);
+                return;
+            }
+            if cmd.frame.len() > 1024 || !cmd.frame.chars().all(|c| c.is_ascii_hexdigit()) {
+                return;
+            }
+            let out = format!(r#"{{"type":"cmd","frame":"{}"}}"#, cmd.frame);
+            for (&id, client) in s.clients.iter() {
+                if id != client_id && client.is_admin {
+                    let _ = client.tx.send(Message::Text(out.clone().into()));
+                }
+            }
+            println!("[{}] Client {} cmd relayed ({} hex chars)", ts(), client_id, cmd.frame.len());
+            return;
+        }
+    }
     if let Ok(auth) = serde_json::from_str::<AuthMessage>(text) {
         if auth.r#type == "auth" {
             let mut s = state.write().await;

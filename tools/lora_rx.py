@@ -6,12 +6,13 @@ to athena-lora-<stamp>.bin (same raw format as the SD/flash logs, replayable in 
 with --relay, pushed to the WebSocket relay so the website shows the flight live.
 
   python3 tools/lora_rx.py                              # live; opens the web dashboard fed by this process
+  python3 tools/lora_rx.py --app --uplink /dev/cu.usbmodem...   # desktop window; commands go out on the serial uplink
   python3 tools/lora_rx.py --tui                        # curses terminal UI instead
   python3 tools/lora_rx.py --relay wss://api.athena.notaroomba.dev/ws --password ...   # also feed the public site
   python3 tools/lora_rx.py --file capture.cu8           # replay an rtl_sdr capture
   python3 tools/lora_rx.py --learn                      # re-learn the PHY bit conventions from live traffic
 
-needs: python3 with numpy, scipy, websockets (pip install numpy scipy websockets websocket-client) and
+needs: python3 with numpy, scipy, websockets (pip install numpy scipy websockets websocket-client pyserial pywebview) and
 rtl_sdr from librtlsdr (brew install librtlsdr / apt install rtl-sdr / Windows release zip). macOS, Linux, Windows.
 """
 import argparse, collections, curses, json, math, os, struct, subprocess, sys, threading, time
@@ -80,8 +81,44 @@ class Receiver:
         stamp = time.strftime("%Y%m%d-%H%M%S")
         self.outfile = open(f"athena-lora-{stamp}.bin", "ab")
         self.ws = None
+        self.uplink = None
+        self.cmds_sent = 0
+        if args.uplink:
+            try:
+                import serial
+                self.uplink = serial.Serial(args.uplink, 115200, timeout=0.2)
+                self.note(f"uplink: {args.uplink}")
+            except Exception as e:
+                self.note(f"uplink {args.uplink}: {e}")
         if args.relay:
             threading.Thread(target=self.relay_loop, daemon=True).start()
+
+    def send_command(self, hexframe):
+        """CMD frame (hex) from the dashboard (bridge or relay) -> uplink serial port. Returns True when written."""
+        try:
+            frame = bytes.fromhex(hexframe)
+        except ValueError:
+            return False
+        if len(frame) < 5 or frame[0] != 0xA5 or frame[1] != 0x05:
+            self.note("uplink: refused a non-command frame")
+            return False
+        if not self.uplink:
+            self.note("uplink: no port (--uplink /dev/tty...)")
+            return False
+        try:
+            self.uplink.reset_input_buffer()                 # only the reply to this command, not minutes of status text
+            self.uplink.write(frame)
+            self.cmds_sent += 1
+            self.note(f"uplink: command {frame[3]} ch={frame[4]} sent")
+            time.sleep(0.3)                                  # the MCU acknowledges on its console; show that line
+            echo = self.uplink.read(4096)
+            for line in echo.decode("ascii", "replace").splitlines():
+                if "cmd" in line:
+                    self.note("uplink reply: " + "".join(ch for ch in line if 32 <= ord(ch) < 127)[:120])
+            return True
+        except Exception as e:
+            self.note(f"uplink write: {e}")
+            return False
 
     # -- input --
     def source(self):
@@ -177,8 +214,16 @@ class Receiver:
             self.local_clients.add(ws)
             try:
                 await ws.send(await status())
-                async for _ in ws:                       # browsers send auth/pings; nothing to do with them here
-                    pass
+                async for m in ws:
+                    if isinstance(m, str):
+                        try:
+                            d = json.loads(m)
+                        except ValueError:
+                            continue
+                        if d.get("type") == "auth":
+                            await ws.send(json.dumps({"type": "auth_result", "success": True}))   # local page is trusted
+                        elif d.get("type") == "cmd":
+                            self.send_command(str(d.get("frame", "")))
             except Exception:
                 pass
             finally:
@@ -262,11 +307,18 @@ class Receiver:
                 while self.running and self.ws is ws:
                     try:
                         ws.settimeout(5)
-                        ws.recv()
+                        m = ws.recv()
                     except Exception as e:
                         if "timed out" in str(e):
                             continue
                         raise
+                    if isinstance(m, str):
+                        try:
+                            d = json.loads(m)
+                        except ValueError:
+                            continue
+                        if d.get("type") == "cmd":
+                            self.send_command(str(d.get("frame", "")))
             except Exception as e:
                 self.ws = None
                 self.note(f"relay: {e}")
@@ -382,6 +434,8 @@ def main():
     ap.add_argument("--http", type=int, default=8787, help="port for the dashboard files (graphical mode)")
     ap.add_argument("--dashboard", default="https://athena.notaroomba.dev/", help="dashboard URL to open when docs/ is not next to this script")
     ap.add_argument("--no-browser", action="store_true", help="graphical mode without opening a browser window")
+    ap.add_argument("--uplink", help="serial port that accepts command frames (the rocket's USB console, or a ground LoRa board)")
+    ap.add_argument("--app", action="store_true", help="desktop window (pywebview) instead of a browser tab")
     args = ap.parse_args()
     if args.learn and os.path.exists(L.CONV_FILE):
         os.remove(L.CONV_FILE)
@@ -410,10 +464,31 @@ def main():
             except OSError as e:
                 rx.note(f"dashboard server: {e}; using {args.dashboard}")
         rx.note("dashboard: " + url)
+        print(f"Athena ground station running. Dashboard: {url}\nLog: {rx.outfile.name}\nCtrl-C to stop.", flush=True)
+        if args.app:
+            try:
+                import webview
+
+                class Api:                                   # window.pywebview.api.send_command(hex) from the dashboard
+                    def send_command(self, hexframe):
+                        return rx.send_command(hexframe)
+
+                def pump():
+                    while rx.running and th.is_alive() and not rx.eof:
+                        time.sleep(0.5)
+                        while rx.log:
+                            print("  " + rx.log.popleft(), flush=True)
+
+                threading.Thread(target=pump, daemon=True).start()
+                webview.create_window("Athena ground station", url, js_api=Api(), width=1500, height=900, background_color="#0c0c0d")
+                webview.start()                              # blocks until the window closes (must be the main thread)
+                rx.running = False
+                return
+            except ImportError:
+                rx.note("pip install pywebview for --app; opening a browser instead")
         if not args.no_browser:
             import webbrowser
             webbrowser.open(url)
-        print(f"Athena ground station running. Dashboard: {url}\nLog: {rx.outfile.name}\nCtrl-C to stop.", flush=True)
         try:
             while rx.running and th.is_alive() and not rx.eof:
                 time.sleep(0.5)
