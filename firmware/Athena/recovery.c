@@ -37,6 +37,8 @@ void Recovery_Init(Recovery *r, const Recovery_Params *p)
 void Recovery_OnState(Recovery *r, const Athena_State *s, uint32_t now)
 {
     r->last_state_ms = now;
+    if (r->phase != SPU_PHASE_PAD && r->phase != SPU_PHASE_LANDED && !(s->flags & STATE_FLAG_IN_FLIGHT))
+        return;                                            /* the MPU only clears IN_FLIGHT by rebooting: its altitude/velocity restarted at zero */
     r->alt = -s->pos_ned[2];
     r->vz  = -s->vel_ned[2];
     r->acc_mag = sqrtf(s->acc_body[0] * s->acc_body[0] + s->acc_body[1] * s->acc_body[1] + s->acc_body[2] * s->acc_body[2]);

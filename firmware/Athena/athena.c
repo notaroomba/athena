@@ -105,14 +105,16 @@ void LED_Test_Sequence() {
 }
 
 void print(const char* format, ...) {
-    char buffer[256];
+    static char slots[2][256];                 /* the CDC endpoint reads the buffer after we return: never a stack buffer */
+    static unsigned slot;
+    char *buffer = slots[slot++ & 1];
     va_list args;
     
     va_start(args, format);
-    int len = vsnprintf(buffer, sizeof(buffer), format, args);
+    int len = vsnprintf(buffer, 256, format, args);
     va_end(args);
     
-    if (len > 0 && len < (int)sizeof(buffer)) {
+    if (len > 0 && len < 256) {
         /* The CDC endpoint takes one buffer at a time; back-to-back lines were silently
          * dropped. Wait a few ms for the previous one to drain. With no host attached the
          * endpoint stays busy, so this is bounded rather than blocking. */

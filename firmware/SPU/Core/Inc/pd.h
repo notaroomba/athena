@@ -39,7 +39,7 @@ typedef struct {
 } PD;
 
 void        PD_Init(PD *pd, I2C_HandleTypeDef *i2c);   /* probe, load the patch if the controller waits for one */
-void        PD_Task(PD *pd, uint32_t now_ms);          /* 1 Hz: mode, PD status, charger ADC */
+void        PD_Task(PD *pd, uint32_t now_ms, int allow_slow);   /* 1 Hz: mode, PD status, charger ADC; allow_slow = patch loading permitted */
 void        PD_Fill(const PD *pd, Athena_SpuStatus *st);
 const char *PD_ModeName(uint8_t mode);
 

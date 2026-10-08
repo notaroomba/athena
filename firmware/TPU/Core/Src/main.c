@@ -70,7 +70,8 @@ UART_HandleTypeDef huart8;
 UART_HandleTypeDef huart1;
 
 /* USER CODE BEGIN PV */
-static uint32_t dfu_boot_magic;
+static uint32_t dfu_boot_magic, dfu_boot_bkp;
+static uint32_t fault_rec[6];                 // crash record from the previous run (magic, pc, lr, cfsr, hfsr, bfar)
 static Link             mpu_link;        // UART8 <-> MPU
 static Link             air_link;        // frames received over LoRa (ground -> rocket)
 static uint8_t          uart8_rx_byte;
@@ -86,6 +87,7 @@ static int16_t          last_rssi; static int8_t last_snr; static uint32_t air_c
 static uint8_t          lora_fail;
 static uint8_t          uart7_rx_byte;                       // DA14531 (CodeLess AT) console
 static char             bt_line[96]; static uint8_t bt_len; static uint32_t bt_rx_bytes;
+static Link             bt_link;         // DA14531 UART: command frames from a phone (DSPS) + AT text (CodeLess)
 static uint32_t         gps_rate_count, gps_rate_ms, gps_rate_x10;   /* measured fix rate, Hz*10 */
 static Link             usb_link;        // USB console: command frames from the dashboard + single-character commands
 static Athena_SpuStatus spu;             // latest SPU status (relayed by the MPU)
@@ -118,6 +120,8 @@ static void on_mpu_packet(uint8_t type, const uint8_t *payload, uint8_t len, voi
 static void on_air_packet(uint8_t type, const uint8_t *payload, uint8_t len, void *user);
 static void on_usb_packet(uint8_t type, const uint8_t *payload, uint8_t len, void *user);
 static void on_usb_text(uint8_t b, void *user);
+static void on_bt_packet(uint8_t type, const uint8_t *payload, uint8_t len, void *user);
+static void on_bt_text(uint8_t b, void *user);
 static void forward_cmd(const uint8_t *payload, uint8_t len, const char *src);
 void Athena_UsbRx(const uint8_t *buf, uint32_t len);
 /* USER CODE END PFP */
@@ -138,14 +142,19 @@ int main(void)
 
   /* USER CODE BEGIN 1 */
   dfu_boot_magic = *(volatile uint32_t *)DFU_MAGIC_ADDR;        /* printed later: tells whether the word survived the reset */
-  if (dfu_boot_magic == DFU_MAGIC) {                            /* 'B' on the USB console asked for DFU */
+  DFU_BKP_ENABLE();
+  dfu_boot_bkp = DFU_BKP_REG;
+  if (dfu_boot_magic == DFU_MAGIC || dfu_boot_bkp == DFU_MAGIC) {   /* 'B' on the USB console asked for DFU */
     *(volatile uint32_t *)DFU_MAGIC_ADDR = 0;
+    DFU_BKP_REG = 0;
     SysTick->CTRL = 0;
     SCB->VTOR = DFU_SYSMEM_ADDR;                                /* ROM vector table; interrupts stay enabled as after a real reset */
     __set_MSP(*(volatile uint32_t *)DFU_SYSMEM_ADDR);
     ((void (*)(void))(*(volatile uint32_t *)(DFU_SYSMEM_ADDR + 4)))();   /* never returns */
   }
 
+  { volatile uint32_t *r = (volatile uint32_t *)(DFU_MAGIC_ADDR + 0x10);   /* left by Athena_FaultSave() / Error_Handler() before their reset */
+    if (r[0] == 0x46415554UL || r[0] == 0x4552524FUL) { for (int i = 0; i < 6; i++) fault_rec[i] = r[i]; r[0] = 0; } }
   /* USER CODE END 1 */
 
   /* MPU Configuration--------------------------------------------------------*/
@@ -195,12 +204,17 @@ int main(void)
   Link_Init(&air_link, on_air_packet, NULL);
   Link_Init(&usb_link, on_usb_packet, NULL);
   usb_link.on_text = on_usb_text;                      // 'B'/'J' DFU, 'D'/'E'/'S'/'F' logger
+  Link_Init(&bt_link, on_bt_packet, NULL);
+  bt_link.on_text = on_bt_text;                        // CodeLess replies collected into lines
   HAL_UART_Receive_IT(&huart8, &uart8_rx_byte, 1);
   HAL_UART_Receive_IT(&huart7, &uart7_rx_byte, 1);     // DA14531 CodeLess replies (needs module J5/P0_6 -> PE7, see INTEGRATION.md)
   HAL_Delay(1000);                                     // USB CDC enumeration
 
   print("\r\n=== Athena TPU ===\r\n");
-  print("dfu: magic word at boot was 0x%08lX\r\n", (unsigned long)dfu_boot_magic);
+  print("dfu: boot magic sram=0x%08lX bkp=0x%08lX\r\n", (unsigned long)dfu_boot_magic, (unsigned long)dfu_boot_bkp);
+  if (fault_rec[0]) print("%s before this reset: pc=0x%08lX lr=0x%08lX cfsr=0x%08lX hfsr=0x%08lX bfar=0x%08lX\r\n",
+                          fault_rec[0] == 0x46415554UL ? "FAULT" : "ERROR_HANDLER", (unsigned long)fault_rec[1], (unsigned long)fault_rec[2],
+                          (unsigned long)fault_rec[3], (unsigned long)fault_rec[4], (unsigned long)fault_rec[5]);
   lora_ok = (SX127x_Init(LORA_FREQ_HZ, LORA_TX_DBM) == 0);
   print("SX1278 %s (RegVersion 0x%02X)\r\n", lora_ok ? "ok" : "FAILED", SX127x_ReadReg(0x42));
   gps_cfg_failed = (uint8_t)Ublox_Init();
@@ -228,6 +242,7 @@ int main(void)
     /* 1. navigation state + SPU status arriving from the MPU (on_mpu_packet), USB console (on_usb_*) */
     Link_Process(&mpu_link);
     Link_Process(&usb_link);
+    Link_Process(&bt_link);
     if (cmd_pending_len && huart8.gState == HAL_UART_STATE_READY) {   // command (uplink or USB) -> MPU -> SPU
       memcpy(cmd_frame, cmd_pending, cmd_pending_len);
       HAL_UART_Transmit_IT(&huart8, cmd_frame, cmd_pending_len); cmd_pending_len = 0;
@@ -295,13 +310,13 @@ int main(void)
       const Ublox_Hw *hw = Ublox_HwStatus();
       char logst[48]; Logger_StatusLine(logst, sizeof logst);
       static char line[320];
-      int ln = snprintf(line, sizeof line, "gps fix=%u sv=%u lat=%ld lon=%ld hmsl=%ld m (n=%lu, %lu.%lu Hz) ant=%s pwr=%u noise=%u agc=%u jam=%u | mpu alt=%.1f vD=%.1f flags=0x%02X (n=%lu, %lu ms ago, bad=%lu) | spu %s ph=%u fl=0x%02X fired=0x%02X vbat=%u | air rx=%lu rssi=%d | %s",
+      int ln = snprintf(line, sizeof line, "gps fix=%u sv=%u lat=%ld lon=%ld hmsl=%ld m (n=%lu, %lu.%lu Hz) ant=%s pwr=%u noise=%u agc=%u jam=%u | mpu alt=%.1f vD=%.1f flags=0x%02X (n=%lu, %lu ms ago, bad=%lu) | spu %s ph=%u fl=0x%02X fired=0x%02X vbat=%u | air rx=%lu rssi=%d | %s | boot=%08lX/%08lX",
             gps.fix_type, gps.num_sv, (long)gps.lat_1e7, (long)gps.lon_1e7, (long)(gps.h_msl_mm / 1000), (unsigned long)gps_count,
             (unsigned long)(gps_rate_x10 / 10), (unsigned long)(gps_rate_x10 % 10),
             hw->valid ? Ublox_AntStatusStr(hw->ant_status) : "-", hw->ant_power, hw->noise_per_ms, hw->agc_cnt, hw->jam_ind,
             -mpu_state.pos_ned[2], mpu_state.vel_ned[2], mpu_state.flags, (unsigned long)state_count, (unsigned long)(now - mpu_state_ms), (unsigned long)mpu_link.rx_bad,
             (spu_count && (now - spu_ms) < 3000u) ? "ok" : "LOST", spu.phase, spu.flags, spu.pyro_fired, spu.vbat_mv,
-            (unsigned long)air_count, last_rssi, logst);
+            (unsigned long)air_count, last_rssi, logst, (unsigned long)dfu_boot_magic, (unsigned long)dfu_boot_bkp);
       if (ln > (int)sizeof line - 1) ln = sizeof line - 1;
       print("%s\r\n", line);
       static uint8_t text_frame[LINK_MAX_PAYLOAD + LINK_OVERHEAD];
@@ -943,6 +958,16 @@ static void MX_GPIO_Init(void)
 }
 
 /* USER CODE BEGIN 4 */
+/* --- crash recorder: fault handlers (it.c) branch here with the exception frame; Error_Handler() records too.
+ * The record sits next to the DFU magic word in RAM that the startup code never touches, survives the
+ * reset and is printed by the next boot. */
+void Athena_FaultSave(uint32_t *sp)
+{
+  volatile uint32_t *r = (volatile uint32_t *)(DFU_MAGIC_ADDR + 0x10);
+  r[1] = sp[6]; r[2] = sp[5]; r[3] = SCB->CFSR; r[4] = SCB->HFSR; r[5] = SCB->BFAR; r[0] = 0x46415554UL;   /* "FAUT" */
+  __DSB();
+  NVIC_SystemReset();
+}
 /* --- software entry into the ST ROM bootloader (USB DFU), two ways ---------------------------
  * 'B': leave a magic word in RAM and reset; main() checks it first thing and jumps (needs the
  *      SRAM word to survive the reset).
@@ -956,6 +981,8 @@ static void Athena_ResetToDfu(void)
 {
   USBD_DeInit(&hUsbDeviceFS);                                   /* host sees a disconnect (>= 30 ms) before the reset */
   HAL_Delay(100);
+  DFU_BKP_ENABLE();
+  DFU_BKP_REG = DFU_MAGIC;                                      /* backup register: immune to whatever happens to SRAM */
   *(volatile uint32_t *)DFU_MAGIC_ADDR = DFU_MAGIC;             /* AXI SRAM, untouched by the startup code (all sections live in DTCM); D-cache is off */
   __DSB();
   NVIC_SystemReset();
@@ -1017,6 +1044,21 @@ static void forward_cmd(const uint8_t *payload, uint8_t len, const char *src)
   print("cmd from %s: %u ch=%u val=%u -> MPU -> SPU\r\n", src, payload[0], payload[1], (unsigned)(payload[2] | payload[3] << 8));
 }
 
+static void on_bt_packet(uint8_t type, const uint8_t *payload, uint8_t len, void *user)
+{
+  (void)user;
+  if (type == LINK_PKT_CMD && len == sizeof(Athena_Cmd)) forward_cmd(payload, len, "bt");   // phone/laptop over the DSPS bridge
+  else if (type == LINK_PKT_TEXT) print("bt: %.*s\r\n", len, (const char *)payload);
+}
+
+static void on_bt_text(uint8_t b, void *user)        /* CodeLess AT replies, one line at a time (main loop context) */
+{
+  (void)user;
+  if (bt_len == 0xFF) return;                          // previous line not printed yet: drop
+  if (b == '\n' || bt_len >= sizeof(bt_line) - 1) { bt_line[bt_len] = 0; bt_len = 0xFF; }
+  else if (b >= 32) bt_line[bt_len++] = (char)b;
+}
+
 static void on_usb_packet(uint8_t type, const uint8_t *payload, uint8_t len, void *user)
 {
   (void)user;
@@ -1048,10 +1090,9 @@ void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart)
   if (huart->Instance == UART8) {
     Link_RxPush(&mpu_link, uart8_rx_byte);
     HAL_UART_Receive_IT(&huart8, &uart8_rx_byte, 1);
-  } else if (huart->Instance == UART7) {                // collect CodeLess lines, printed from the main loop
+  } else if (huart->Instance == UART7) {                // decoded in the main loop (frames and text lines)
     bt_rx_bytes++;
-    if (uart7_rx_byte == '\n' || bt_len >= sizeof(bt_line) - 1) { bt_line[bt_len] = 0; bt_len = 0xFF; }
-    else if (bt_len != 0xFF && uart7_rx_byte >= 32) bt_line[bt_len++] = (char)uart7_rx_byte;
+    Link_RxPush(&bt_link, uart7_rx_byte);
     HAL_UART_Receive_IT(&huart7, &uart7_rx_byte, 1);
   }
 }
@@ -1104,6 +1145,10 @@ void MPU_Config(void)
 void Error_Handler(void)
 {
   /* USER CODE BEGIN Error_Handler_Debug */
+  { volatile uint32_t *r = (volatile uint32_t *)(DFU_MAGIC_ADDR + 0x10);       /* who called us: printed after the reset */
+    r[1] = (uint32_t)__builtin_return_address(0); r[2] = 0; r[3] = r[4] = r[5] = 0; r[0] = 0x4552524FUL;   /* "ERRO" */
+    __DSB();
+    NVIC_SystemReset(); }
   /* User can add his own implementation to report the HAL error return state */
   __disable_irq();
   while (1)

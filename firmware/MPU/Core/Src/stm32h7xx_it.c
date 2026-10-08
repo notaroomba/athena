@@ -61,6 +61,7 @@ extern PCD_HandleTypeDef hpcd_USB_OTG_FS;
 extern UART_HandleTypeDef huart4;
 extern UART_HandleTypeDef huart8;
 /* USER CODE BEGIN EV */
+void Athena_FaultSave(uint32_t *sp);
 
 /* USER CODE END EV */
 
@@ -88,6 +89,7 @@ void NMI_Handler(void)
 void HardFault_Handler(void)
 {
   /* USER CODE BEGIN HardFault_IRQn 0 */
+  __asm volatile("tst lr, #4\n ite eq\n mrseq r0, msp\n mrsne r0, psp\n b Athena_FaultSave");   /* record pc/lr/CFSR in RAM, reset, print at next boot */
 
   /* USER CODE END HardFault_IRQn 0 */
   while (1)
@@ -103,6 +105,7 @@ void HardFault_Handler(void)
 void MemManage_Handler(void)
 {
   /* USER CODE BEGIN MemoryManagement_IRQn 0 */
+  __asm volatile("tst lr, #4\n ite eq\n mrseq r0, msp\n mrsne r0, psp\n b Athena_FaultSave");   /* record pc/lr/CFSR in RAM, reset, print at next boot */
 
   /* USER CODE END MemoryManagement_IRQn 0 */
   while (1)
@@ -118,6 +121,7 @@ void MemManage_Handler(void)
 void BusFault_Handler(void)
 {
   /* USER CODE BEGIN BusFault_IRQn 0 */
+  __asm volatile("tst lr, #4\n ite eq\n mrseq r0, msp\n mrsne r0, psp\n b Athena_FaultSave");   /* record pc/lr/CFSR in RAM, reset, print at next boot */
 
   /* USER CODE END BusFault_IRQn 0 */
   while (1)
@@ -133,6 +137,7 @@ void BusFault_Handler(void)
 void UsageFault_Handler(void)
 {
   /* USER CODE BEGIN UsageFault_IRQn 0 */
+  __asm volatile("tst lr, #4\n ite eq\n mrseq r0, msp\n mrsne r0, psp\n b Athena_FaultSave");   /* record pc/lr/CFSR in RAM, reset, print at next boot */
 
   /* USER CODE END UsageFault_IRQn 0 */
   while (1)

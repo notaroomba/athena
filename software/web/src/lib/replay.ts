@@ -29,7 +29,9 @@ export function startReplay(
     let i = 0;
     let logT0: number | null = null; // first timestamp seen in the log
     let wallT0 = performance.now();
-    let lastClock: number | null = null; // the MPU and TPU clocks differ: pace on whichever appears first
+    let lastClock: number | null = null;
+    let paceType: number | null = null; // MPU, TPU and SPU clocks are unrelated: pace on the first frame type seen only
+    let lastBucket = -1;
     while (i < data.length && !stopped) {
       // frame at i?  [A5][type][len][payload][crc lo][crc hi]
       let end = i + 1;
@@ -42,9 +44,9 @@ export function startReplay(
           if (crc16(data, i + 1, len + 2) === crc) {
             end = fe;
             const t = frameTime(type, data.subarray(i + 3, i + 3 + len));
-            if (t !== null && (lastClock === null || Math.abs(t - lastClock) < 3600)) {
-              if (logT0 === null) {
-                logT0 = t;
+            if (t !== null && (paceType ??= type) === type) {
+              if (logT0 === null || lastClock === null || t < lastClock - 1 || t - lastClock > 3600) {
+                logT0 = t; // start, or the MCU rebooted inside the log: rebase
                 wallT0 = performance.now();
               }
               lastClock = t;
@@ -57,9 +59,13 @@ export function startReplay(
       }
       feed(data.subarray(i, end));
       i = end;
-      if ((i & 0x3ff) === 0) onProgress(i / data.length, false);
+      const bucket = i >> 14;
+      if (bucket !== lastBucket) {
+        lastBucket = bucket;
+        onProgress(i / data.length, false);
+      }
     }
-    onProgress(1, true);
+    if (!stopped) onProgress(1, true);
   })();
 
   return {

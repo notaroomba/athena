@@ -168,6 +168,8 @@ void Error_Handler(void);
 #define DFU_MAGIC_ADDR  0x24000000UL
 #define DFU_SYSMEM_ADDR 0x1FF09800UL   /* ST system memory (AN2606) */
 
+#define DFU_BKP_REG     (RTC->BKP0R)    /* second channel: backup register, survives any reset */
+#define DFU_BKP_ENABLE() do { RCC->APB4ENR |= RCC_APB4ENR_RTCAPBEN; (void)RCC->APB4ENR; PWR->CR1 |= PWR_CR1_DBP; } while (0)
 /* USER CODE END Private defines */
 
 #ifdef __cplusplus

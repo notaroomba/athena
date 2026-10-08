@@ -107,6 +107,13 @@ export default function Dashboard() {
     isAdminRef.current = isAdmin;
   }, [isAdmin]);
 
+  // 1 s tick so freshness checks (SPU live/stale) re-evaluate without new data
+  const [, setTick] = useState(0);
+  useEffect(() => {
+    const id = setInterval(() => setTick((n) => n + 1), 1000);
+    return () => clearInterval(id);
+  }, []);
+
   useEffect(() => {
     try {
       localStorage.setItem("athena.nose", nose);
@@ -126,6 +133,7 @@ export default function Dashboard() {
 
   const pushSample = useCallback((s: Sample) => {
     setHistory((prev) => {
+      if (prev.length && s.t < prev[prev.length - 1].t) return [s]; // MCU clock restarted: start the window over
       const next = [...prev, s];
       let i = 0;
       while (i < next.length && s.t - next[i].t > WINDOW_S) i++;
@@ -160,7 +168,7 @@ export default function Dashboard() {
         if (s.flags & STATE_FLAG.ORIGIN_OK) {
           const t = s.t_us / 1e6;
           const last = lastFusedRef.current;
-          if (!last || t - last.t > 0.25 || Math.hypot(s.pos[0] - last.n, s.pos[1] - last.e) > 1) {
+          if (!last || t < last.t || t - last.t > 0.25 || Math.hypot(s.pos[0] - last.n, s.pos[1] - last.e) > 1) {
             lastFusedRef.current = { t, n: s.pos[0], e: s.pos[1] };
             const [lat, lon] = nedToLatLon(s.origin_lat, s.origin_lon, s.pos[0], s.pos[1]);
             pushTrack(setFusedTrack, { lat, lon, alt, t, dr: !(s.flags & STATE_FLAG.GPS_FRESH) });

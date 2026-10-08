@@ -72,13 +72,13 @@ enter_dfu() {   # $1 = all|mpu|tpu|spu   -- 'B': USB disconnect + magic word + r
     [ -e "$p" ] || continue
     m=$(console_mcu "$p")
     if [ "$1" = all ] || [ "$m" = "$1" ]; then
-      stty -f "$p" raw -echo 2>/dev/null; printf 'B' > "$p" 2>/dev/null && { n=$((n+1)); echo "asking ${m:-?} ($p) to enter DFU"; }
+      stty -f "$p" raw -echo 2>/dev/null || true; printf 'B' > "$p" 2>/dev/null && { n=$((n+1)); echo "asking ${m:-?} ($p) to enter DFU"; }
     fi
   done
   [ $n -eq 0 ] && return 0
   i=0; while [ $i -lt 16 ]; do sleep 0.5; [ "$(devices | wc -l | tr -d ' ')" -ge "$n" ] && break; i=$((i+1)); done
   if [ "$(devices | wc -l | tr -d ' ')" -lt "$n" ]; then           # fall back to the in-place jump
-    for p in /dev/cu.usbmodem*; do [ -e "$p" ] || continue; m=$(console_mcu "$p"); if [ "$1" = all ] || [ "$m" = "$1" ]; then stty -f "$p" raw -echo 2>/dev/null; printf 'J' > "$p" 2>/dev/null; fi; done
+    for p in /dev/cu.usbmodem*; do [ -e "$p" ] || continue; m=$(console_mcu "$p"); if [ "$1" = all ] || [ "$m" = "$1" ]; then stty -f "$p" raw -echo 2>/dev/null || true; printf 'J' > "$p" 2>/dev/null; fi; done
     i=0; while [ $i -lt 16 ]; do sleep 0.5; [ "$(devices | wc -l | tr -d ' ')" -ge "$n" ] && break; i=$((i+1)); done
   fi
   sleep 1

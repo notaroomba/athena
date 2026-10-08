@@ -119,12 +119,9 @@ export async function writeBluetooth(bytes: Uint8Array): Promise<boolean> {
 }
 
 export function disconnectBluetooth(): void {
-  const d = device;
-  device = null;
-  rxChar = null;
-  mode = null;
+  // the gattserverdisconnected listener does the bookkeeping and fires onDisconnect
   try {
-    d?.gatt?.disconnect();
+    device?.gatt?.disconnect();
   } catch {
     /* ignore */
   }

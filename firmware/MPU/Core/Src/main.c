@@ -74,7 +74,8 @@ UART_HandleTypeDef huart8;
 UART_HandleTypeDef huart1;
 
 /* USER CODE BEGIN PV */
-static uint32_t dfu_boot_magic;
+static uint32_t dfu_boot_magic, dfu_boot_bkp;
+static uint32_t fault_rec[6];                 // crash record from the previous run (magic, pc, lr, cfsr, hfsr, bfar)
 Athena_LED_PinConfig led_pins = {
       .port_r = MPU_R_GPIO_Port,
       .pin_r = MPU_R_Pin,
@@ -96,6 +97,13 @@ static Athena_GpsFix  last_gps;
 static uint32_t       gps_count;
 static ICP201xx_t     icp_device;
 static uint8_t        imu_mask, mag_ok, icp_ok;
+/* in-flight reference, saved once a second above 20 m into RAM the startup code never touches, so a reset in
+ * flight resumes with the pad's baro reference and GPS origin instead of re-zeroing at the current altitude */
+typedef struct { uint32_t magic; float baro_alt0; double lat0, lon0; float h0; uint32_t sum; } FlightRec;
+#define FLIGHT_REC ((volatile FlightRec *)(DFU_MAGIC_ADDR + 0x40))
+#define FLIGHT_MAGIC 0x464C5431UL
+static uint32_t flight_sum(const FlightRec *r) { const uint32_t *w = (const uint32_t *)r; uint32_t s = 0x5A5A; for (unsigned i = 1; i < sizeof(FlightRec) / 4 - 1; i++) s = s * 31u + w[i]; return s; }
+static uint8_t flight_restored;
 static Link           spu_link;                 // UART8 <-> SPU: state frames out, SPU status in
 static Link           usb_link;                 // USB console: command frames from the dashboard, 'B'/'J'
 static uint8_t        uart8_rx_byte;
@@ -147,8 +155,11 @@ int main(void)
 
   /* USER CODE BEGIN 1 */
   dfu_boot_magic = *(volatile uint32_t *)DFU_MAGIC_ADDR;        /* printed later: tells whether the word survived the reset */
-  if (dfu_boot_magic == DFU_MAGIC) {                            /* 'B' on the USB console asked for DFU */
+  DFU_BKP_ENABLE();
+  dfu_boot_bkp = DFU_BKP_REG;
+  if (dfu_boot_magic == DFU_MAGIC || dfu_boot_bkp == DFU_MAGIC) {   /* 'B' on the USB console asked for DFU */
     *(volatile uint32_t *)DFU_MAGIC_ADDR = 0;
+    DFU_BKP_REG = 0;
     SysTick->CTRL = 0;
     SCB->VTOR = DFU_SYSMEM_ADDR;                                /* ROM vector table; interrupts stay enabled as after a real reset */
     __set_MSP(*(volatile uint32_t *)DFU_SYSMEM_ADDR);
@@ -157,6 +168,8 @@ int main(void)
   #if (__FPU_PRESENT == 1) && (__FPU_USED == 1)
     SCB->CPACR |= ((3UL << 10*2)|(3UL << 11*2));  /* set CP10 and CP11 Full Access */
   #endif
+  { volatile uint32_t *r = (volatile uint32_t *)(DFU_MAGIC_ADDR + 0x10);   /* left by Athena_FaultSave() / Error_Handler() before their reset */
+    if (r[0] == 0x46415554UL || r[0] == 0x4552524FUL) { for (int i = 0; i < 6; i++) fault_rec[i] = r[i]; r[0] = 0; } }
   /* USER CODE END 1 */
 
   /* MPU Configuration--------------------------------------------------------*/
@@ -208,11 +221,22 @@ int main(void)
   HAL_UART_Receive_IT(&huart4, &uart4_rx_byte, 1);
   HAL_UART_Receive_IT(&huart8, &uart8_rx_byte, 1);
   Fusion_Init(&fusion, NULL);
+  { FlightRec r; r.magic = FLIGHT_REC->magic; r.baro_alt0 = FLIGHT_REC->baro_alt0; r.lat0 = FLIGHT_REC->lat0; r.lon0 = FLIGHT_REC->lon0; r.h0 = FLIGHT_REC->h0; r.sum = FLIGHT_REC->sum;
+    FLIGHT_REC->magic = 0;
+    if (r.magic == FLIGHT_MAGIC && r.sum == flight_sum(&r)) {        /* we were flying when the reset hit */
+      fusion.baro_alt0 = r.baro_alt0; fusion.have_baro0 = 1;
+      fusion.lat0 = r.lat0; fusion.lon0 = r.lon0; fusion.h0 = r.h0; fusion.have_origin = 1;
+      fusion.in_flight = 1; flight_restored = 1;
+    } }
 
   print("\r\n=== Athena MPU ===\r\n");
-  print("dfu: magic word at boot was 0x%08lX\r\n", (unsigned long)dfu_boot_magic);
+  print("dfu: boot magic sram=0x%08lX bkp=0x%08lX\r\n", (unsigned long)dfu_boot_magic, (unsigned long)dfu_boot_bkp);
+  if (fault_rec[0]) print("%s before this reset: pc=0x%08lX lr=0x%08lX cfsr=0x%08lX hfsr=0x%08lX bfar=0x%08lX\r\n",
+                          fault_rec[0] == 0x46415554UL ? "FAULT" : "ERROR_HANDLER", (unsigned long)fault_rec[1], (unsigned long)fault_rec[2],
+                          (unsigned long)fault_rec[3], (unsigned long)fault_rec[4], (unsigned long)fault_rec[5]);
   imu_mask = IMU_Init();
   print("IMU mask 0x%X (bit n = IMU n+1 alive)\r\n", imu_mask);
+  if (flight_restored) print("fusion: in-flight reference restored after a reset (pad baro %.1f m, origin %.5f %.5f)\r\n", fusion.baro_alt0, fusion.lat0, fusion.lon0);
   mag_ok = (LIS2MDL_Init() == 0);
   print("LIS2MDL %s\r\n", mag_ok ? "ok" : "FAILED");
   ICP201xx_init_spi(&icp_device);
@@ -290,18 +314,24 @@ int main(void)
       }
     }
 
-    /* 6. human-readable status over USB */
+    /* 6. human-readable status over USB (+ the in-flight reference snapshot, once a second) */
     if ((now - last_print_us) >= 200000u) {
       last_print_us = now;
+      static uint8_t snap_div;
+      if (fusion.in_flight && -state.pos_ned[2] > 20.f && ++snap_div >= 5) {
+        snap_div = 0;
+        FlightRec r = { FLIGHT_MAGIC, fusion.baro_alt0, fusion.lat0, fusion.lon0, fusion.h0, 0 }; r.sum = flight_sum(&r);
+        FLIGHT_REC->baro_alt0 = r.baro_alt0; FLIGHT_REC->lat0 = r.lat0; FLIGHT_REC->lon0 = r.lon0; FLIGHT_REC->h0 = r.h0; FLIGHT_REC->sum = r.sum; FLIGHT_REC->magic = r.magic;
+      }
       float roll, pitch, yaw;
       Fusion_QuatToEuler(state.q, &roll, &pitch, &yaw);
-      print("alt %7.1f m  vD %6.1f m/s  baro %7.1f m | rpy %6.1f %6.1f %6.1f | imu 0x%X %u Hz | gps %s n=%lu rx_bad=%lu | %s | spu %s ph=%u fl=0x%02X vbat=%u\r\n",
+      print("alt %7.1f m  vD %6.1f m/s  baro %7.1f m | rpy %6.1f %6.1f %6.1f | imu 0x%X %u Hz | gps %s n=%lu rx_bad=%lu | %s | spu %s ph=%u fl=0x%02X vbat=%u | boot=%08lX/%08lX\r\n",
             -state.pos_ned[2], state.vel_ned[2], state.baro_alt,
             roll * 57.2958f, pitch * 57.2958f, yaw * 57.2958f,
             state.imu_mask, state.loop_hz,
             (state.flags & STATE_FLAG_GPS_FRESH) ? "fresh" : "DR", (unsigned long)gps_count, (unsigned long)tpu_link.rx_bad,
             (state.flags & STATE_FLAG_IN_FLIGHT) ? "FLIGHT" : "pad",
-            (spu_count && HAL_GetTick() - spu_ms < 2000u) ? "ok" : "LOST", spu.phase, spu.flags, spu.vbat_mv);
+            (spu_count && HAL_GetTick() - spu_ms < 2000u) ? "ok" : "LOST", spu.phase, spu.flags, spu.vbat_mv, (unsigned long)dfu_boot_magic, (unsigned long)dfu_boot_bkp);
       if (HAL_GetTick() < LED_IDENTITY_MS)          { /* keep showing the identity colour */ }
       else if (state.flags & STATE_FLAG_IN_FLIGHT) Set_LED_Color(LED_MAGENTA);
       else if (!imu_mask)                          Set_LED_Color(LED_RED);
@@ -990,6 +1020,16 @@ static void MX_GPIO_Init(void)
 }
 
 /* USER CODE BEGIN 4 */
+/* --- crash recorder: fault handlers (it.c) branch here with the exception frame; Error_Handler() records too.
+ * The record sits next to the DFU magic word in RAM that the startup code never touches, survives the
+ * reset and is printed by the next boot. */
+void Athena_FaultSave(uint32_t *sp)
+{
+  volatile uint32_t *r = (volatile uint32_t *)(DFU_MAGIC_ADDR + 0x10);
+  r[1] = sp[6]; r[2] = sp[5]; r[3] = SCB->CFSR; r[4] = SCB->HFSR; r[5] = SCB->BFAR; r[0] = 0x46415554UL;   /* "FAUT" */
+  __DSB();
+  NVIC_SystemReset();
+}
 /* --- software entry into the ST ROM bootloader (USB DFU), two ways ---------------------------
  * 'B': leave a magic word in RAM and reset; main() checks it first thing and jumps (needs the
  *      SRAM word to survive the reset).
@@ -1003,6 +1043,8 @@ static void Athena_ResetToDfu(void)
 {
   USBD_DeInit(&hUsbDeviceFS);                                   /* host sees a disconnect (>= 30 ms) before the reset */
   HAL_Delay(100);
+  DFU_BKP_ENABLE();
+  DFU_BKP_REG = DFU_MAGIC;                                      /* backup register: immune to whatever happens to SRAM */
   *(volatile uint32_t *)DFU_MAGIC_ADDR = DFU_MAGIC;             /* AXI SRAM, untouched by the startup code (all sections live in DTCM); D-cache is off */
   __DSB();
   NVIC_SystemReset();
@@ -1142,6 +1184,10 @@ void MPU_Config(void)
 void Error_Handler(void)
 {
   /* USER CODE BEGIN Error_Handler_Debug */
+  { volatile uint32_t *r = (volatile uint32_t *)(DFU_MAGIC_ADDR + 0x10);       /* who called us: printed after the reset */
+    r[1] = (uint32_t)__builtin_return_address(0); r[2] = 0; r[3] = r[4] = r[5] = 0; r[0] = 0x4552524FUL;   /* "ERRO" */
+    __DSB();
+    NVIC_SystemReset(); }
   /* User can add his own implementation to report the HAL error return state */
   __disable_irq();
   while (1)

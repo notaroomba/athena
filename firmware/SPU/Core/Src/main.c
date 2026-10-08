@@ -64,7 +64,8 @@ UART_HandleTypeDef huart5;
 UART_HandleTypeDef huart1;
 
 /* USER CODE BEGIN PV */
-static uint32_t dfu_boot_magic;
+static uint32_t dfu_boot_magic, dfu_boot_bkp;
+static uint32_t fault_rec[6];                 // crash record from the previous run (magic, pc, lr, cfsr, hfsr, bfar)
 static Link            mpu_link;                 // UART5 <-> MPU: state frames in, SPU status out, commands relayed from the TPU
 static Link            usb_link;                 // USB console: command frames and single-character commands
 static uint8_t         uart5_rx_byte;
@@ -119,14 +120,19 @@ int main(void)
 
   /* USER CODE BEGIN 1 */
   dfu_boot_magic = *(volatile uint32_t *)DFU_MAGIC_ADDR;        /* printed later: tells whether the word survived the reset */
-  if (dfu_boot_magic == DFU_MAGIC) {                            /* 'B' on the USB console asked for DFU */
+  DFU_BKP_ENABLE();
+  dfu_boot_bkp = DFU_BKP_REG;
+  if (dfu_boot_magic == DFU_MAGIC || dfu_boot_bkp == DFU_MAGIC) {   /* 'B' on the USB console asked for DFU */
     *(volatile uint32_t *)DFU_MAGIC_ADDR = 0;
+    DFU_BKP_REG = 0;
     SysTick->CTRL = 0;
     SCB->VTOR = DFU_SYSMEM_ADDR;                                /* ROM vector table; interrupts stay enabled as after a real reset */
     __set_MSP(*(volatile uint32_t *)DFU_SYSMEM_ADDR);
     ((void (*)(void))(*(volatile uint32_t *)(DFU_SYSMEM_ADDR + 4)))();   /* never returns */
   }
 
+  { volatile uint32_t *r = (volatile uint32_t *)(DFU_MAGIC_ADDR + 0x10);   /* left by Athena_FaultSave() / Error_Handler() before their reset */
+    if (r[0] == 0x46415554UL || r[0] == 0x4552524FUL) { for (int i = 0; i < 6; i++) fault_rec[i] = r[i]; r[0] = 0; } }
   /* USER CODE END 1 */
 
   /* MCU Configuration--------------------------------------------------------*/
@@ -172,7 +178,10 @@ int main(void)
   HAL_Delay(1000);                                     // USB CDC enumeration
 
   print("\r\n=== Athena SPU ===\r\n");
-  print("dfu: magic word at boot was 0x%08lX\r\n", (unsigned long)dfu_boot_magic);
+  print("dfu: boot magic sram=0x%08lX bkp=0x%08lX\r\n", (unsigned long)dfu_boot_magic, (unsigned long)dfu_boot_bkp);
+  if (fault_rec[0]) print("%s before this reset: pc=0x%08lX lr=0x%08lX cfsr=0x%08lX hfsr=0x%08lX bfar=0x%08lX\r\n",
+                          fault_rec[0] == 0x46415554UL ? "FAULT" : "ERROR_HANDLER", (unsigned long)fault_rec[1], (unsigned long)fault_rec[2],
+                          (unsigned long)fault_rec[3], (unsigned long)fault_rec[4], (unsigned long)fault_rec[5]);
   PD_Init(&pd, &hi2c1);                                // TPS25751: patch it if it waits in PTCH mode, then it owns the charger
   print("init: done, main chute at %u m, disarmed\r\n", (unsigned)rec.p.main_alt_m);
 
@@ -193,7 +202,7 @@ int main(void)
     /* 3. pyro pulse timing, auto-disarm after landing */
     Recovery_Task(&rec, now);
     /* 4. USB-PD controller and charger, 1 Hz */
-    PD_Task(&pd, now);
+    PD_Task(&pd, now, (rec.phase == SPU_PHASE_PAD || rec.phase == SPU_PHASE_LANDED) && !rec.armed);   // no multi-second I2C work in flight or while armed
 
     /* 5. status frame to the MPU (forwarded to the TPU: log + telemetry) and to USB */
     if ((now - last_status_ms) >= SPU_STATUS_MS) {
@@ -217,13 +226,13 @@ int main(void)
     if ((now - last_print_ms) >= STATUS_PRINT_MS) {
       last_print_ms = now;
       int mpu_alive = state_count && (now - mpu_state_ms) < 1000u;
-      print("spu %s%s | mpu %s alt=%.1f vz=%.1f (n=%lu, bad=%lu) | pyro fired=0x%02X on=0x%02X main=%um apogee=%.0fm | pd %s plug=%u vbat=%umV vbus=%umV ibat=%dmA iin=%umA chg=0x%04X | chrg_ok=%u prochot=%u cmpout=%u | cmd ok=%lu rej=%lu\r\n",
+      print("spu %s%s | mpu %s alt=%.1f vz=%.1f (n=%lu, bad=%lu) | pyro fired=0x%02X on=0x%02X main=%um apogee=%.0fm | pd %s plug=%u vbat=%umV vbus=%umV ibat=%dmA iin=%umA chg=0x%04X | chrg_ok=%u prochot=%u cmpout=%u | cmd ok=%lu rej=%lu | boot=%08lX/%08lX\r\n",
             Recovery_PhaseName(rec.phase), rec.armed ? " ARMED" : "",
             mpu_alive ? "ok" : "LOST", -mpu_state.pos_ned[2], -mpu_state.vel_ned[2], (unsigned long)state_count, (unsigned long)mpu_link.rx_bad,
             rec.fired, rec.on, (unsigned)rec.p.main_alt_m, rec.apogee_m,
             PD_ModeName(pd.mode), pd.status[0] & 1u, pd.vbat_mv, pd.vbus_mv, pd.ibat_ma, pd.iin_ma, pd.chg_status,
             HAL_GPIO_ReadPin(CHRG_OK_GPIO_Port, CHRG_OK_Pin), !HAL_GPIO_ReadPin(SPU_PROCHOT_GPIO_Port, SPU_PROCHOT_Pin), HAL_GPIO_ReadPin(CMPOUT_GPIO_Port, CMPOUT_Pin),
-            (unsigned long)cmd_count, (unsigned long)cmd_rejected);
+            (unsigned long)cmd_count, (unsigned long)cmd_rejected, (unsigned long)dfu_boot_magic, (unsigned long)dfu_boot_bkp);
       if (HAL_GetTick() < LED_IDENTITY_MS)          { /* keep showing the identity colour */ }
       else if (rec.armed)                           Set_LED_Color((now / 250) & 1 ? LED_RED : LED_OFF);   // armed: blinking red
       else if (rec.phase == SPU_PHASE_LANDED)       Set_LED_Color(LED_CYAN);
@@ -733,6 +742,16 @@ static void MX_GPIO_Init(void)
 }
 
 /* USER CODE BEGIN 4 */
+/* --- crash recorder: fault handlers (it.c) branch here with the exception frame; Error_Handler() records too.
+ * The record sits next to the DFU magic word in RAM that the startup code never touches, survives the
+ * reset and is printed by the next boot. */
+void Athena_FaultSave(uint32_t *sp)
+{
+  volatile uint32_t *r = (volatile uint32_t *)(DFU_MAGIC_ADDR + 0x10);
+  r[1] = sp[6]; r[2] = sp[5]; r[3] = SCB->CFSR; r[4] = SCB->HFSR; r[5] = SCB->BFAR; r[0] = 0x46415554UL;   /* "FAUT" */
+  __DSB();
+  NVIC_SystemReset();
+}
 /* --- recovery hardware hooks -------------------------------------------------------------------
  * Pyro channels: PYRO_n -> 1 k -> gate of a 2N7002 whose drain sits on the fused pyro bus (ARM terminal
  * in series with the battery) and whose source feeds the igniter terminal, so HIGH = conducting.
@@ -761,6 +780,7 @@ static void handle_cmd(const Athena_Cmd *c, const char *src)
 {
   const char *name = c->cmd < 8 ? cmd_names[c->cmd] : "?";
   if (c->cmd == CMD_RESET_MPU) {                       /* PB9 -> diode -> MPU NRST: a 20 ms low pulse */
+    if (rec.phase != SPU_PHASE_PAD && rec.phase != SPU_PHASE_LANDED) { cmd_rejected++; print("cmd %s: reset-mpu REJECTED in flight\r\n", src); return; }
     HAL_GPIO_WritePin(RESET_MPU_GPIO_Port, RESET_MPU_Pin, GPIO_PIN_RESET);
     HAL_Delay(20);
     HAL_GPIO_WritePin(RESET_MPU_GPIO_Port, RESET_MPU_Pin, GPIO_PIN_SET);
@@ -845,6 +865,8 @@ static void Athena_ResetToDfu(void)
 {
   USBD_DeInit(&hUsbDeviceFS);                                   /* host sees a disconnect */
   HAL_Delay(100);
+  DFU_BKP_ENABLE();
+  DFU_BKP_REG = DFU_MAGIC;                                      /* backup register: immune to whatever happens to SRAM */
   *(volatile uint32_t *)DFU_MAGIC_ADDR = DFU_MAGIC;
   __DSB();
   NVIC_SystemReset();
@@ -888,6 +910,10 @@ static void Athena_DfuPoll(void)                                /* main loop */
 void Error_Handler(void)
 {
   /* USER CODE BEGIN Error_Handler_Debug */
+  { volatile uint32_t *r = (volatile uint32_t *)(DFU_MAGIC_ADDR + 0x10);       /* who called us: printed after the reset */
+    r[1] = (uint32_t)__builtin_return_address(0); r[2] = 0; r[3] = r[4] = r[5] = 0; r[0] = 0x4552524FUL;   /* "ERRO" */
+    __DSB();
+    NVIC_SystemReset(); }
   /* User can add his own implementation to report the HAL error return state */
   __disable_irq();
   while (1)

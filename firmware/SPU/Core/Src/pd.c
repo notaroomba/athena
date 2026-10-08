@@ -82,7 +82,15 @@ static int load_patch(PD *pd)
         HAL_Delay(50);
     }
     uint8_t in[6] = { (uint8_t)size, (uint8_t)(size >> 8), (uint8_t)(size >> 16), (uint8_t)(size >> 24), TPS_BURST_ADDR, 0x32 };
-    int rc = task(pd, "PBMs", in, 6, NULL, 0, 1000);
+    int ok = 0;                                                      /* SLVAFV8 step 5: in PTCH mode the DATA1 write may not take, verify it */
+    for (int i = 0; i < 5 && !ok; i++) {
+        uint8_t chk[6];
+        if (reg_write(pd, REG_DATA1, in, 6) < 0) { HAL_Delay(1); continue; }
+        HAL_Delay(1);
+        ok = reg_read(pd, REG_DATA1, chk, 6) == 6 && !memcmp(chk, in, 6);
+    }
+    if (!ok) { print("pd: DATA1 would not take the PBMs parameters\r\n"); return -1; }
+    int rc = task(pd, "PBMs", NULL, 0, NULL, 0, 1000);
     if (rc != 0) { print("pd: PBMs rejected (%d)\r\n", rc); return -1; }
     const uint8_t *p = (const uint8_t *)tps25750x_lowRegion_i2c_array;
     for (uint32_t off = 0; off < size; ) {
@@ -156,7 +164,7 @@ void PD_Init(PD *pd, I2C_HandleTypeDef *i2c)
     if (pd->mode == PD_MODE_PTCH) load_patch(pd);
 }
 
-void PD_Task(PD *pd, uint32_t now)
+void PD_Task(PD *pd, uint32_t now, int allow_slow)
 {
     if ((int32_t)(now - pd->next_ms) < 0) return;
     pd->next_ms = now + 1000;
@@ -169,7 +177,7 @@ void PD_Task(PD *pd, uint32_t now)
     pd->mode = read_mode(pd);
     if (pd->mode == PD_MODE_PTCH) {                                  /* controller restarted: push the patch again */
         pd->adc_started = 0; pd->bq_ok = 0;
-        if (now - pd->patch_retry_ms >= 10000u) { pd->patch_retry_ms = now; load_patch(pd); }
+        if (allow_slow && now - pd->patch_retry_ms >= 10000u) { pd->patch_retry_ms = now; load_patch(pd); }
         return;
     }
     if (pd->mode != PD_MODE_APP) { pd->bq_ok = 0; return; }

@@ -133,6 +133,7 @@ void Recovery_HwPyro(uint8_t ch, int on) { if (on && !hw_pyro[ch]) pyro_events++
 void Recovery_HwServo(uint8_t ch, uint16_t us) { hw_servo[ch] = us; }
 
 /* Feeds a scripted vertical flight (20 Hz state frames) and returns the time the given channel first fired. */
+static float reboot_at = -1;   /* when > 0: the MPU "reboots" at this time and sends re-zeroed frames for 8 s */
 static float fly(Recovery *r, int armed, float *apogee_t, float *main_t, float *landed_t)
 {
     float alt = 0, vz = 0, t = 0, drogue_t = -1, apogee_true = 0; *apogee_t = *main_t = *landed_t = -1;
@@ -157,6 +158,7 @@ static float fly(Recovery *r, int armed, float *apogee_t, float *main_t, float *
         if (in_flight && thrust == 0.f && alt > 0) s.acc_body[0] = (vz < 0) ? ((r->fired & 1) ? g : 1.5f) : 1.5f;   /* coast: drag only; under canopy ~1 g */
         if (alt <= 0 && t > 6.f) s.acc_body[0] = g;
         s.flags = in_flight ? STATE_FLAG_IN_FLIGHT : 0;
+        if (reboot_at > 0 && t >= reboot_at && t < reboot_at + 8.f) { s.pos_ned[2] = 0; s.vel_ned[2] = 0.05f; s.acc_body[0] = g; s.flags = 0; }   /* MPU restarted: fresh origin, ZUPT */
         Recovery_OnState(r, &s, now);
         Recovery_Task(r, now);
         if (drogue_t < 0 && hw_pyro[0]) drogue_t = t;
@@ -182,6 +184,11 @@ static void test_recovery(void)
     assert(dr > 0 && dr - ap >= 0.f && dr - ap < 0.5f);
     assert(mn > dr && pyro_events == 2 && r.fired == 0x03 && r.on == 0 && !hw_pyro[0] && !hw_pyro[1]);
     assert(ld > 0 && r.phase == SPU_PHASE_LANDED && r.armed == 0);
+    /* MPU reboot under drogue: zeroed frames must not fire the main or declare landing; the flight then finishes normally */
+    Recovery_Init(&r, NULL); pyro_events = 0; reboot_at = 40.f;
+    dr = fly(&r, 1, &ap, &mn, &ld); reboot_at = -1;
+    printf("recovery  with an MPU reboot at 40 s: drogue %.2f s, main %.2f s, landed %.1f s\n", dr, mn, ld);
+    assert(dr > 0 && mn > 48.f && r.fired == 0x03 && ld > 0 && r.phase == SPU_PHASE_LANDED);
     /* commands: FIRE needs key + armed + valid channel; SERVO range; main altitude range */
     Recovery_Init(&r, NULL);
     Athena_Cmd c = { .cmd = CMD_FIRE, .arg = 3, .key = CMD_KEY };
