@@ -254,6 +254,8 @@ export default function Dashboard() {
         prevSpuRef.current = s;
         if (prev) {
           if (s.phase !== prev.phase) {
+            // the SPU's APOGEE phase lasts one 50 ms frame, so a 2 Hz status frame usually jumps COAST -> DESCENT
+            if (prev.phase === 2 && s.phase === 4) pushEvent("APOGEE", `${s.apogee_m.toFixed(0)} m`, EVENT_COLOR.phase);
             pushEvent(SPU_PHASES[s.phase]?.toUpperCase() ?? `PHASE ${s.phase}`, s.phase >= 2 ? `apogee so far ${s.apogee_m.toFixed(0)} m, max ${s.vmax_ms.toFixed(0)} m/s` : "", EVENT_COLOR.phase);
             if (s.phase === 5) landedWallRef.current = Date.now();
           }
