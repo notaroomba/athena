@@ -13,6 +13,7 @@ extern int gSizeLowRegionArray;
 #define REG_INT_CLEAR1    0x18
 #define REG_STATUS        0x1A
 #define REG_POWER_STATUS  0x3F
+#define REG_ACTIVE_PDO    0x34   /* 6 bytes: USB PD sink contract PDO */
 #define I2C_TMO           50
 
 static const char *const mode_names[] = { "none", "PTCH", "APP", "BOOT" };
@@ -113,6 +114,7 @@ static int load_patch(PD *pd)
 }
 
 /* charger register access through the TPS25751's I2Cc port */
+#if PD_CHARGER_BRIDGE
 static int bq_read(PD *pd, uint8_t reg, uint8_t *out, uint8_t n)
 {
     uint8_t in[3] = { BQ25713_ADDR, reg, n };
@@ -125,7 +127,9 @@ static int bq_write(PD *pd, uint8_t reg, const uint8_t *data, uint8_t n)
     memcpy(in + 3, data, n);
     return task(pd, "I2Cw", in, (uint8_t)(3 + n), NULL, 0, 200) == 0 ? 0 : -1;
 }
+#endif
 
+#if PD_CHARGER_BRIDGE
 static int bq_start_adc(PD *pd)
 {
     uint8_t id[2], opt0[2];
@@ -152,6 +156,7 @@ static void bq_poll(PD *pd)
     pd->vsys_mv = vs[1] ? (uint16_t)(2880 + 64 * vs[1]) : 0;                     /* 0x2D VSYS */
     pd->chg_status = (uint16_t)((st[1] << 8) | st[0]);
 }
+#endif /* PD_CHARGER_BRIDGE */
 
 void PD_Init(PD *pd, I2C_HandleTypeDef *i2c)
 {
@@ -174,9 +179,11 @@ void PD_Task(PD *pd, uint32_t now, int allow_slow)
         pd->present = HAL_I2C_IsDeviceReady(pd->i2c, TPS25751_ADDR << 1, 2, 20) == HAL_OK;
         if (!pd->present) return;
     }
+    uint8_t prev = pd->mode;
     pd->mode = read_mode(pd);
+    if (prev == PD_MODE_APP && pd->mode != PD_MODE_APP) { pd->resets++; print("pd: TPS25751 left APP mode (%s), reset #%lu\r\n", PD_ModeName(pd->mode), (unsigned long)pd->resets); }
     if (pd->mode == PD_MODE_PTCH) {                                  /* controller restarted: push the patch again */
-        pd->adc_started = 0; pd->bq_ok = 0;
+        pd->adc_started = 0; pd->bq_ok = 0; pd->pdo_mv = pd->pdo_ma = 0;
         if (allow_slow && now - pd->patch_retry_ms >= 10000u) { pd->patch_retry_ms = now; load_patch(pd); }
         return;
     }
@@ -184,8 +191,15 @@ void PD_Task(PD *pd, uint32_t now, int allow_slow)
     uint8_t ps[2];
     reg_read(pd, REG_STATUS, pd->status, 5);
     if (reg_read(pd, REG_POWER_STATUS, ps, 2) == 2) pd->power_status = (uint16_t)((ps[1] << 8) | ps[0]);
+    uint8_t pdo[6];
+    if (reg_read(pd, REG_ACTIVE_PDO, pdo, 6) == 6) {                /* fixed-supply PDO: bits 19:10 voltage in 50 mV, 9:0 current in 10 mA */
+        uint32_t w = (uint32_t)pdo[0] | (uint32_t)pdo[1] << 8 | (uint32_t)pdo[2] << 16 | (uint32_t)pdo[3] << 24;
+        pd->pdo_mv = (uint16_t)(((w >> 10) & 0x3FF) * 50); pd->pdo_ma = (uint16_t)((w & 0x3FF) * 10);
+    }
+#if PD_CHARGER_BRIDGE
     if (!pd->adc_started) pd->adc_started = bq_start_adc(pd) == 0;
     if (pd->adc_started) bq_poll(pd);
+#endif
 }
 
 void PD_Fill(const PD *pd, Athena_SpuStatus *st)
@@ -194,9 +208,9 @@ void PD_Fill(const PD *pd, Athena_SpuStatus *st)
     st->pd_status = pd->status[0];
     st->vbat_mv = pd->bq_ok ? pd->vbat_mv : 0;
     st->vsys_mv = pd->bq_ok ? pd->vsys_mv : 0;
-    st->vbus_mv = pd->bq_ok ? pd->vbus_mv : 0;
+    st->vbus_mv = pd->bq_ok ? pd->vbus_mv : pd->pdo_mv;    /* no charger data: the negotiated USB-PD contract voltage */
     st->ibat_ma = pd->bq_ok ? pd->ibat_ma : 0;
-    st->iin_ma  = pd->bq_ok ? pd->iin_ma : 0;
+    st->iin_ma  = pd->bq_ok ? pd->iin_ma : pd->pdo_ma;     /* ... and its current limit */
     st->chg_status = pd->bq_ok ? pd->chg_status : 0;
     if (pd->mode == PD_MODE_APP) st->flags |= SPU_FLAG_PD_APP;
     if (pd->bq_ok) st->flags |= SPU_FLAG_BQ_OK;

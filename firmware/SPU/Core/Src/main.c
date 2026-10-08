@@ -230,11 +230,11 @@ int main(void)
     if ((now - last_print_ms) >= STATUS_PRINT_MS) {
       last_print_ms = now;
       int mpu_alive = state_count && (now - mpu_state_ms) < 1000u;
-      print("spu %s%s | mpu %s alt=%.1f vz=%.1f (n=%lu, bad=%lu) | pyro fired=0x%02X on=0x%02X main=%um apogee=%.0fm | pd %s plug=%u vbat=%umV vbus=%umV ibat=%dmA iin=%umA chg=0x%04X | chrg_ok=%u prochot=%u cmpout=%u | cmd ok=%lu rej=%lu | boot=%08lX/%08lX\r\n",
+      print("spu %s%s | mpu %s alt=%.1f vz=%.1f (n=%lu, bad=%lu) | pyro fired=0x%02X on=0x%02X main=%um apogee=%.0fm | pd %s plug=%u pdo=%umV/%umA resets=%lu vbat=%umV vbus=%umV ibat=%dmA iin=%umA chg=0x%04X | chrg_ok=%u prochot=%u cmpout=%u | cmd ok=%lu rej=%lu | boot=%08lX/%08lX\r\n",
             Recovery_PhaseName(rec.phase), rec.armed ? " ARMED" : "",
             mpu_alive ? "ok" : "LOST", -mpu_state.pos_ned[2], -mpu_state.vel_ned[2], (unsigned long)state_count, (unsigned long)mpu_link.rx_bad,
             rec.fired, rec.on, (unsigned)rec.p.main_alt_m, rec.apogee_m,
-            PD_ModeName(pd.mode), pd.status[0] & 1u, pd.vbat_mv, pd.vbus_mv, pd.ibat_ma, pd.iin_ma, pd.chg_status,
+            PD_ModeName(pd.mode), pd.status[0] & 1u, pd.pdo_mv, pd.pdo_ma, (unsigned long)pd.resets, pd.vbat_mv, pd.vbus_mv, pd.ibat_ma, pd.iin_ma, pd.chg_status,
             HAL_GPIO_ReadPin(CHRG_OK_GPIO_Port, CHRG_OK_Pin), !HAL_GPIO_ReadPin(SPU_PROCHOT_GPIO_Port, SPU_PROCHOT_Pin), HAL_GPIO_ReadPin(CMPOUT_GPIO_Port, CMPOUT_Pin),
             (unsigned long)cmd_count, (unsigned long)cmd_rejected, (unsigned long)dfu_boot_magic, (unsigned long)dfu_boot_bkp);
       if (HAL_GetTick() < LED_IDENTITY_MS)          { /* keep showing the identity colour */ }

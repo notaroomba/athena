@@ -17,7 +17,7 @@ static FIL     fil;
 static char    fname[16];
 static uint8_t sd_state, cd_now, cd_stable, cd_learned, cd_present_level, sd_nofs;
 static uint32_t cd_change_ms, sd_retry_ms, sd_sync_ms, sd_flush_ms, sd_bytes, sd_errors, sd_mounts;
-static uint8_t  sdbuf[4096];
+static uint8_t  sdbuf[8192];
 static uint32_t sdbuf_len, sd_dropped;
 
 /* ------------------------------------------------------------------ flash ring */
@@ -231,6 +231,7 @@ void Logger_Init(void)
 void Logger_Write(const uint8_t *data, uint32_t len)
 {
     if (sd_state == SD_MOUNTED) {
+        if (sdbuf_len + len > sizeof sdbuf) sd_flush(0);         /* a burst after a blocking step (format, LoRa, erase) fills it: write now instead of dropping */
         if (sdbuf_len + len <= sizeof sdbuf) { memcpy(sdbuf + sdbuf_len, data, len); sdbuf_len += len; }
         else sd_dropped++;
     }

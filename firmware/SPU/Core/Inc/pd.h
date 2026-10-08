@@ -22,6 +22,12 @@ extern "C" {
 #define TPS25751_ADDR   0x20   /* 7-bit, ADCIN1=7 / ADCIN2=5 -> address index #1 (data sheet table 8-6) */
 #define TPS_BURST_ADDR  0x30   /* second target address used while the patch streams in (TI SLVAFV8 example) */
 #define BQ25713_ADDR    0x6B   /* 7-bit (D6h/D7h) */
+/* The charger hangs off the TPS25751's I2Cc port, and this PCB revision has no pull-up resistors on that bus:
+ * every I2Cr/I2Cw task stalls the controller's I2C engine until its watchdog resets it (APP -> BOOT -> PTCH
+ * every ~15 s). Keep the bridge off until the board has the two resistors, then set this to 1. */
+#ifndef PD_CHARGER_BRIDGE
+#define PD_CHARGER_BRIDGE 0
+#endif
 
 enum { PD_MODE_NONE = 0, PD_MODE_PTCH, PD_MODE_APP, PD_MODE_BOOT };
 
@@ -33,6 +39,8 @@ typedef struct {
     uint8_t  adc_started;
     uint8_t  status[5];        /* TPS25751 STATUS (0x1A) */
     uint16_t power_status;     /* TPS25751 POWER_STATUS (0x3F) */
+    uint16_t pdo_mv, pdo_ma;   /* negotiated sink contract (ACTIVE_CONTRACT_PDO 0x34), 0 = none */
+    uint32_t resets;           /* times the controller was seen back in BOOT/PTCH */
     uint16_t vbat_mv, vsys_mv, vbus_mv, iin_ma, chg_status;
     int16_t  ibat_ma;
     uint32_t errors, next_ms, patch_retry_ms;
