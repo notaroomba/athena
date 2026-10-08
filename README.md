@@ -119,7 +119,10 @@ attitude, accel/gyro/altitude charts, flight flags, GPS, a live **ground-track m
 estimate, dead-reckoned stretches dashed, raw GPS, landing estimate from the current descent,
 distance/bearing from the pad, apogee and max speed), and the SPU **recovery & power** panel
 (flight phase, arming, the six pyro channels, battery/charger/USB-PD state) with ARM / DISARM /
-FIRE / servo / main-altitude commands when a writable link is open. Data sources:
+FIRE / servo / main-altitude commands when a writable link is open, a **flight event timeline**
+(launch, phases, pyro firings, arming) with a summary line (apogee, max speed, max g, flight time,
+landing distance), per-type frame rates, and a **REC** button that saves the raw link stream as a
+replayable `.bin`. Data sources:
 
 - **SERIAL**: any of the three USB ports (WebSerial, Chrome/Edge over https or localhost).
 - **BLUETOOTH**: the DA14531 on the TPU over Web Bluetooth (DSPS serial-bridge firmware streams the

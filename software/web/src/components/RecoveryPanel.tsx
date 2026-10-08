@@ -87,15 +87,21 @@ export default function RecoveryPanel({ spu, fresh, canCommand, onCommand }: Rec
       {/* battery / USB-PD */}
       <dl className="grid grid-cols-[auto_1fr_auto_1fr] gap-x-3 gap-y-0.5 text-[11px]">
         <dt className="text-ink-2">battery</dt>
-        <dd className="font-mono tabular-nums">{spu && spu.vbat_mv ? `${(spu.vbat_mv / 1000).toFixed(2)} V  ${spu.ibat_ma > 0 ? "+" : ""}${(spu.ibat_ma / 1000).toFixed(2)} A` : "-"}</dd>
+        <dd className="font-mono tabular-nums">
+          {spu && spu.flags & SPU_FLAG.BQ_OK && spu.vbat_mv ? `${(spu.vbat_mv / 1000).toFixed(2)} V  ${spu.ibat_ma > 0 ? "+" : ""}${(spu.ibat_ma / 1000).toFixed(2)} A` : spu ? "no charger bus" : "-"}
+        </dd>
         <dt className="text-ink-2">USB-C</dt>
         <dd className="font-mono tabular-nums">
-          {spu ? `${PD_MODES[spu.pd_mode] ?? spu.pd_mode}${spu.pd_status & 1 ? " · plug" : ""}${spu.vbus_mv ? ` · ${(spu.vbus_mv / 1000).toFixed(1)} V` : ""}` : "-"}
+          {spu
+            ? `${PD_MODES[spu.pd_mode] ?? spu.pd_mode}${spu.pd_status & 1 ? " · plug" : ""}${
+                spu.vbus_mv ? (spu.flags & SPU_FLAG.BQ_OK ? ` · ${(spu.vbus_mv / 1000).toFixed(1)} V` : ` · PD ${(spu.vbus_mv / 1000).toFixed(0)} V/${(spu.iin_ma / 1000).toFixed(1)} A`) : ""
+              }`
+            : "-"}
         </dd>
         <dt className="text-ink-2">charger</dt>
         <dd className="font-mono tabular-nums">{spu ? chargerText(spu.chg_status) : "-"}</dd>
         <dt className="text-ink-2">system</dt>
-        <dd className="font-mono tabular-nums">{spu && spu.vsys_mv ? `${(spu.vsys_mv / 1000).toFixed(2)} V · in ${(spu.iin_ma / 1000).toFixed(2)} A` : "-"}</dd>
+        <dd className="font-mono tabular-nums">{spu && spu.flags & SPU_FLAG.BQ_OK && spu.vsys_mv ? `${(spu.vsys_mv / 1000).toFixed(2)} V · in ${(spu.iin_ma / 1000).toFixed(2)} A` : "-"}</dd>
         <dt className="text-ink-2">apogee</dt>
         <dd className="font-mono tabular-nums">{spu ? `${spu.apogee_m.toFixed(0)} m · ${spu.vmax_ms.toFixed(0)} m/s max` : "-"}</dd>
         <dt className="text-ink-2">pins</dt>

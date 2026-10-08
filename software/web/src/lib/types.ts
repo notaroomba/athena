@@ -81,6 +81,15 @@ export interface TrackPoint {
   dr: boolean;
 }
 
+/** A flight event for the timeline (derived from SPU phases, pyro bits and the MPU launch flag). */
+export interface FlightEvent {
+  when: string; // wall clock HH:MM:SS
+  t: number; // seconds since the dashboard saw the first frame
+  label: string;
+  detail: string;
+  color: string;
+}
+
 /** One chart sample: acc in g, gyro in deg/s, altitudes in m. */
 export interface Sample {
   t: number;

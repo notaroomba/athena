@@ -2,11 +2,13 @@ import { useState, useEffect, useRef, useCallback, lazy, Suspense } from "react"
 import AdminPanel from "./AdminPanel";
 import DataCharts, { WINDOW_S } from "./DataCharts";
 import RecoveryPanel from "./RecoveryPanel";
+import EventsPanel, { type FlightSummary } from "./EventsPanel";
 import { AxisValue, Flag, Metric } from "./SensorCard";
 import type { MapStat } from "./MapPanel";
 import {
   NOSE_AXES,
   type AthenaState,
+  type FlightEvent,
   type GpsFix,
   type LinkStats,
   type NoseAxis,
@@ -17,7 +19,7 @@ import {
   type TrackPoint,
   type WSMessage,
 } from "@/lib/types";
-import { Decoder, FIX_NAMES, G0, PKT, R2D, STATE_FLAG, distanceBearing, encodeCmd, nedToLatLon, parseGps, parseSpu, parseState, parseTelem, quatToEuler } from "@/lib/protocol";
+import { Decoder, FIX_NAMES, G0, PKT, R2D, SPU_FLAG, SPU_PHASES, STATE_FLAG, distanceBearing, encodeCmd, nedToLatLon, parseGps, parseSpu, parseState, parseTelem, quatToEuler } from "@/lib/protocol";
 import { connectSerial, disconnectSerial, isSerialSupported, writeSerial } from "@/lib/serial";
 import { connectBluetooth, disconnectBluetooth, isBluetoothSupported, writeBluetooth } from "@/lib/bluetooth";
 import { startReplay, type ReplayHandle } from "@/lib/replay";
@@ -29,6 +31,8 @@ const MapPanel = lazy(() => import("./MapPanel"));
 const WS_URL: string = import.meta.env.VITE_WS_URL ?? "wss://api.athena.notaroomba.dev/ws";
 const MAX_LINES = 200;
 const MAX_TRACK = 6000;
+const MAX_EVENTS = 200;
+const EVENT_COLOR = { phase: "#f3dfb0", pyro: "#f2552a", arm: "#f29a5a", launch: "#1f9aa8" } as const;
 const X = "#ea5a2c",
   Y = "#1f9aa8",
   Z = "#3b5fd0";
@@ -89,6 +93,12 @@ export default function Dashboard() {
   const [gpsTrack, setGpsTrack] = useState<TrackPoint[]>([]);
   const [apogee, setApogee] = useState(0);
   const [vmax, setVmax] = useState(0);
+  const [gmax, setGmax] = useState(0);
+  const [events, setEvents] = useState<FlightEvent[]>([]);
+  const [rates, setRates] = useState({ state: 0, gps: 0, telem: 0, spu: 0, bytes: 0 });
+  const [recording, setRecording] = useState(false);
+  const [recordedBytes, setRecordedBytes] = useState(0);
+  const [replaySpeed, setReplaySpeed] = useState(1);
   const [lines, setLines] = useState<string[]>([]);
   const [link, setLink] = useState<LinkStats>({ ok: 0, bad: 0 });
 
@@ -102,16 +112,41 @@ export default function Dashboard() {
   const fileRef = useRef<HTMLInputElement>(null);
   const lastFusedRef = useRef<{ t: number; n: number; e: number } | null>(null);
   const lastGpsRef = useRef(0);
+  const prevSpuRef = useRef<SpuStatus | null>(null);
+  const prevFlightRef = useRef(false);
+  const launchWallRef = useRef(0);
+  const landedWallRef = useRef(0);
+  const firstFrameWallRef = useRef(0);
+  const countsRef = useRef({ state: 0, gps: 0, telem: 0, spu: 0, bytes: 0 });
+  const lastCountsRef = useRef({ state: 0, gps: 0, telem: 0, spu: 0, bytes: 0 });
+  const recordRef = useRef<Uint8Array[] | null>(null);
+  const recordLenRef = useRef(0);
 
   useEffect(() => {
     isAdminRef.current = isAdmin;
   }, [isAdmin]);
 
-  // 1 s tick so freshness checks (SPU live/stale) re-evaluate without new data
+  // 1 s tick: freshness checks (SPU live/stale) re-evaluate without new data, and per-type frame rates
   const [, setTick] = useState(0);
   useEffect(() => {
-    const id = setInterval(() => setTick((n) => n + 1), 1000);
+    const id = setInterval(() => {
+      setTick((n) => n + 1);
+      const c = countsRef.current,
+        l = lastCountsRef.current;
+      setRates({ state: c.state - l.state, gps: c.gps - l.gps, telem: c.telem - l.telem, spu: c.spu - l.spu, bytes: c.bytes - l.bytes });
+      lastCountsRef.current = { ...c };
+    }, 1000);
     return () => clearInterval(id);
+  }, []);
+
+  const pushEvent = useCallback((label: string, detail: string, color: string) => {
+    const now = Date.now();
+    if (!firstFrameWallRef.current) firstFrameWallRef.current = now;
+    const ev: FlightEvent = { when: new Date(now).toTimeString().slice(0, 8), t: (now - firstFrameWallRef.current) / 1000, label, detail, color };
+    setEvents((prev) => {
+      const next = [...prev, ev];
+      return next.length > MAX_EVENTS ? next.slice(-MAX_EVENTS) : next;
+    });
   }, []);
 
   useEffect(() => {
@@ -150,13 +185,24 @@ export default function Dashboard() {
 
   const onFrame = useCallback(
     (type: number, p: Uint8Array) => {
+      if (!firstFrameWallRef.current) firstFrameWallRef.current = Date.now();
       if (type === PKT.STATE) {
         const s = parseState(p);
         if (!s) return;
+        countsRef.current.state++;
         setState(s);
         const alt = -s.pos[2];
         setApogee((a) => (alt > a ? alt : a));
         setVmax((v) => (Math.abs(s.vel[2]) > v ? Math.abs(s.vel[2]) : v));
+        const g = Math.hypot(s.acc[0], s.acc[1], s.acc[2]) / G0;
+        setGmax((m) => (g > m ? g : m));
+        const inFlight = !!(s.flags & STATE_FLAG.IN_FLIGHT);
+        if (inFlight && !prevFlightRef.current) {
+          launchWallRef.current = Date.now();
+          landedWallRef.current = 0;
+          pushEvent("LAUNCH", "MPU launch detector", EVENT_COLOR.launch);
+        }
+        prevFlightRef.current = inFlight;
         pushSample({
           t: s.t_us / 1e6,
           acc: [s.acc[0] / G0, s.acc[1] / G0, s.acc[2] / G0],
@@ -177,6 +223,7 @@ export default function Dashboard() {
       } else if (type === PKT.GPS) {
         const g = parseGps(p);
         if (!g) return;
+        countsRef.current.gps++;
         setGps(g);
         if (g.fix >= 2 && g.ok && g.itow !== lastGpsRef.current) {
           lastGpsRef.current = g.itow;
@@ -185,6 +232,7 @@ export default function Dashboard() {
       } else if (type === PKT.TELEM) {
         const t = parseTelem(p);
         if (!t) return;
+        countsRef.current.telem++;
         setTelem(t);
         // TPU port or radio only: the compact frame carries the fused position, build what we can from it
         setState((cur) => {
@@ -198,13 +246,27 @@ export default function Dashboard() {
       } else if (type === PKT.SPU) {
         const s = parseSpu(p);
         if (!s) return;
+        countsRef.current.spu++;
         setSpu(s);
         setSpuAt(Date.now());
+        // events: phase changes, pyro firings, arming
+        const prev = prevSpuRef.current;
+        prevSpuRef.current = s;
+        if (prev) {
+          if (s.phase !== prev.phase) {
+            pushEvent(SPU_PHASES[s.phase]?.toUpperCase() ?? `PHASE ${s.phase}`, s.phase >= 2 ? `apogee so far ${s.apogee_m.toFixed(0)} m, max ${s.vmax_ms.toFixed(0)} m/s` : "", EVENT_COLOR.phase);
+            if (s.phase === 5) landedWallRef.current = Date.now();
+          }
+          const newlyFired = s.pyro_fired & ~prev.pyro_fired;
+          for (let ch = 0; ch < 6; ch++)
+            if (newlyFired & (1 << ch)) pushEvent(`PYRO ${ch + 1} FIRED`, ch === 0 ? "drogue" : ch === 1 ? "main" : "manual", EVENT_COLOR.pyro);
+          if ((s.flags & SPU_FLAG.ARMED) !== (prev.flags & SPU_FLAG.ARMED)) pushEvent(s.flags & SPU_FLAG.ARMED ? "ARMED" : "DISARMED", "", EVENT_COLOR.arm);
+        }
       } else if (type === PKT.TEXT) {
         logLine(new TextDecoder().decode(p));
       }
     },
-    [pushSample, pushTrack, logLine],
+    [pushSample, pushTrack, logLine, pushEvent],
   );
 
   const resetData = useCallback(() => {
@@ -217,8 +279,13 @@ export default function Dashboard() {
     setGpsTrack([]);
     setApogee(0);
     setVmax(0);
+    setGmax(0);
+    setEvents([]);
     lastFusedRef.current = null;
     lastGpsRef.current = 0;
+    prevSpuRef.current = null;
+    prevFlightRef.current = false;
+    launchWallRef.current = landedWallRef.current = firstFrameWallRef.current = 0;
     setLink({ ok: 0, bad: 0 });
     decoderRef.current = new Decoder(onFrame, logLine);
   }, [onFrame, logLine]);
@@ -231,9 +298,38 @@ export default function Dashboard() {
   const feed = useCallback((bytes: Uint8Array) => {
     const d = decoderRef.current;
     if (!d) return;
+    countsRef.current.bytes += bytes.length;
+    if (recordRef.current) {
+      recordRef.current.push(bytes.slice());
+      recordLenRef.current += bytes.length;
+      setRecordedBytes(recordLenRef.current);
+    }
     d.feed(bytes);
     setLink({ ok: d.ok, bad: d.bad });
   }, []);
+
+  // ---- recording: everything fed to the decoder, in the same raw format as the SD/flash logs (replayable)
+  const toggleRecording = useCallback(() => {
+    if (recordRef.current) {
+      const parts = recordRef.current;
+      recordRef.current = null;
+      setRecording(false);
+      const blob = new Blob(parts as BlobPart[], { type: "application/octet-stream" });
+      const a = document.createElement("a");
+      const stamp = new Date().toISOString().replace(/[-:]/g, "").slice(0, 15);
+      a.href = URL.createObjectURL(blob);
+      a.download = `athena-${stamp}.bin`;
+      a.click();
+      setTimeout(() => URL.revokeObjectURL(a.href), 10000);
+      logLine(`[dashboard] saved ${a.download} (${(recordLenRef.current / 1024).toFixed(0)} KB)`);
+    } else {
+      recordRef.current = [];
+      recordLenRef.current = 0;
+      setRecordedBytes(0);
+      setRecording(true);
+      logLine("[dashboard] recording raw link bytes");
+    }
+  }, [logLine]);
 
   useEffect(() => {
     if (consoleRef.current) consoleRef.current.scrollTop = consoleRef.current.scrollHeight;
@@ -264,10 +360,15 @@ export default function Dashboard() {
       resetData();
       logLine(`[dashboard] replay ${file.name} (${(data.length / 1024).toFixed(0)} KB) at real-time pace`);
       setReplay({ name: file.name, progress: 0, done: false });
-      replayRef.current = startReplay(data, feed, (progress, done) => setReplay((r) => (r ? { ...r, progress, done } : r)));
+      replayRef.current = startReplay(data, feed, (progress, done) => setReplay((r) => (r ? { ...r, progress, done } : r)), replaySpeed);
     },
-    [stopReplay, resetData, logLine, feed],
+    [stopReplay, resetData, logLine, feed, replaySpeed],
   );
+
+  const changeReplaySpeed = useCallback((x: number) => {
+    setReplaySpeed(x);
+    replayRef.current?.setSpeed(x);
+  }, []);
 
   // ---- websocket
   const connectWebSocket = useCallback(() => {
@@ -422,6 +523,11 @@ export default function Dashboard() {
   }
   const predApogee = vz > 0.5 ? alt + (vz * vz) / (2 * G0) : 0;
   const [dist, brg] = cur && pad ? distanceBearing(pad[0], pad[1], cur.lat, cur.lon) : [0, 0];
+  const flightTime = launchWallRef.current ? ((landedWallRef.current || Date.now()) - launchWallRef.current) / 1000 : 0;
+  const summary: FlightSummary | null =
+    apogee > 0 || events.length
+      ? { apogee, vmax, gmax, flightTime, landingDist: spu?.phase === 5 && cur && pad ? dist : 0, phase: spu ? (SPU_PHASES[spu.phase] ?? "?") : flags & STATE_FLAG.IN_FLIGHT ? "flight" : "pad" }
+      : null;
   const stats: MapStat[] = [
     { label: "from pad", value: cur && pad ? `${dist.toFixed(0)} m @ ${brg.toFixed(0)}°` : "-" },
     { label: "apogee", value: apogee > 0 ? `${apogee.toFixed(0)} m` : "-" },
@@ -465,10 +571,19 @@ export default function Dashboard() {
             <button
               onClick={() => (replay && !replay.done ? stopReplay() : fileRef.current?.click())}
               className={`btn ${replay && !replay.done ? "active" : ""}`}
-              title="replay an ATHnnnnn.BIN from the SD card or a flash dump"
+              title="replay an ATHnnnnn.BIN from the SD card, a flash dump or a dashboard recording"
             >
               {replay && !replay.done ? "STOP" : "REPLAY"}
             </button>
+            {replay && !replay.done && (
+              <select value={replaySpeed} onChange={(e) => changeReplaySpeed(Number(e.target.value))} className="text-[10px]" title="replay speed">
+                {[1, 2, 5, 10, 50].map((x) => (
+                  <option key={x} value={x}>
+                    {x}×
+                  </option>
+                ))}
+              </select>
+            )}
             <input
               ref={fileRef}
               type="file"
@@ -637,24 +752,36 @@ export default function Dashboard() {
         </Panel>
       </div>
 
-      {/* Console: text lines from the link */}
-      <div ref={consoleRef} className="console h-24 shrink-0 md:h-28">
-        {lines.length ? (
-          lines.map((l, i) => (
-            <div key={i}>
-              <span className="t">{l.slice(0, 8)}</span>
-              {l.slice(8)}
-            </div>
-          ))
-        ) : (
-          <span className="t">console — text from the link appears here</span>
-        )}
+      {/* Bottom strip: console text from the link (left) and the flight event timeline (right) */}
+      <div className="grid h-28 shrink-0 grid-cols-1 gap-2 md:h-32 md:grid-cols-[3fr_2fr]">
+        <div ref={consoleRef} className="console h-full min-h-0">
+          {lines.length ? (
+            lines.map((l, i) => (
+              <div key={i}>
+                <span className="t">{l.slice(0, 8)}</span>
+                {l.slice(8)}
+              </div>
+            ))
+          ) : (
+            <span className="t">console — text from the link appears here</span>
+          )}
+        </div>
+        <div className="panel h-full min-h-0">
+          <EventsPanel events={events} summary={summary} />
+        </div>
       </div>
-      <div className="flex justify-between text-[10px] tracking-wider text-ink-3">
-        <span>MPU: STATE 20 Hz · TPU: GPS + TELEM · SPU: recovery status 2 Hz · framing from firmware/Athena/athena_link.h</span>
-        <a href="https://github.com/NotARoomba/Athena" className="text-ink-2">
-          Athena
-        </a>
+      <div className="flex items-center justify-between text-[10px] tracking-wider text-ink-3">
+        <span className="font-mono tabular-nums">
+          state {rates.state}/s · gps {rates.gps}/s · telem {rates.telem}/s · spu {rates.spu}/s · {(rates.bytes / 1024).toFixed(1)} kB/s · {link.bad} bad
+        </span>
+        <span className="flex items-center gap-2">
+          <button onClick={toggleRecording} className={`btn ${recording ? "danger" : ""}`} style={{ padding: "2px 8px" }} title="save the raw link stream as a replayable .bin">
+            {recording ? `STOP · ${(recordedBytes / 1024).toFixed(0)} KB` : "REC"}
+          </button>
+          <a href="https://github.com/NotARoomba/Athena" className="text-ink-2">
+            Athena
+          </a>
+        </span>
       </div>
     </div>
   );
