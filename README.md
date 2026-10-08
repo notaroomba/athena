@@ -179,7 +179,9 @@ terminal UI, `--relay wss://api.athena.notaroomba.dev/ws --password ...` also fe
 accepts commands from it, `--file cap.cu8` replays a capture. Needs `pip install numpy scipy websockets
 websocket-client pyserial pywebview` and `rtl_sdr` (`brew install librtlsdr`). `tools/build_station.sh` packs
 it into one standalone executable (`dist/station/athena-station`, PyInstaller, dashboard files included) so a
-laptop at the range only needs `rtl_sdr` installed. `tools/lora_check.py` is the quick PHY check (burst period,
+laptop at the range only needs `rtl_sdr` installed; the `station` GitHub Actions workflow builds it for
+macOS, Windows and Linux (run it from the Actions tab or push a `v*` tag, then download the artifact).
+`tools/lora_check.py` is the quick PHY check (burst period,
 preamble, sync word).
 
 USB console characters: all MCUs `B`/`J` (DFU), `L` LEDs off/on; TPU `D` dump flash log, `E` restart it,
