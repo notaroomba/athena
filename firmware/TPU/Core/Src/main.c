@@ -98,6 +98,16 @@ static uint8_t          cmd_frame[sizeof(Athena_Cmd) + LINK_OVERHEAD], cmd_pendi
 static uint8_t          cmd_pending_len; // command waiting for UART8 (-> MPU -> SPU)
 static uint32_t         cmd_count;
 static uint8_t          bt_frame[sizeof(Athena_SpuStatus) + LINK_OVERHEAD];    // owned by the UART7 IT transfer (-> DA14531 -> phone/laptop)
+/* Ground-station mode ('G' on the console, remembered in backup register 1): this board sits on the ground
+ * with the laptop. It stops transmitting its own telemetry, hands every LoRa frame it hears to USB (and the
+ * Bluetooth UART) as-is, and transmits command frames that arrive on USB/Bluetooth over LoRa. */
+static uint8_t          ground_mode;
+static uint8_t          air_frame[LINK_MAX_PAYLOAD + LINK_OVERHEAD];
+static uint8_t          uplink_frame[sizeof(Athena_Cmd) + LINK_OVERHEAD];
+static uint8_t          uplink_len;      // command waiting for the radio (ground mode)
+static uint32_t         uplink_count;
+#define GROUND_BKP_REG  (RTC->BKP1R)
+#define GROUND_MAGIC    0x47524E44UL     /* "GRND" */
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
@@ -209,12 +219,14 @@ int main(void)
   usb_link.on_text = on_usb_text;                      // 'B'/'J' DFU, 'D'/'E'/'S'/'F' logger
   Link_Init(&bt_link, on_bt_packet, NULL);
   bt_link.on_text = on_bt_text;                        // CodeLess replies collected into lines
+  ground_mode = (GROUND_BKP_REG == GROUND_MAGIC);      // survives resets and reflashes until 'G' again
   HAL_UART_Receive_IT(&huart8, &uart8_rx_byte, 1);
   HAL_UART_Receive_IT(&huart7, &uart7_rx_byte, 1);     // DA14531 CodeLess replies (needs module J5/P0_6 -> PE7, see INTEGRATION.md)
   HAL_Delay(1000);                                     // USB CDC enumeration
 
   print("\r\n=== Athena TPU ===\r\n");
   print("dfu: boot magic sram=0x%08lX bkp=0x%08lX\r\n", (unsigned long)dfu_boot_magic, (unsigned long)dfu_boot_bkp);
+  if (ground_mode) print("GROUND STATION MODE: relaying LoRa <-> USB, no telemetry of my own ('G' to leave)\r\n");
   if (fault_rec[0]) print("%s before this reset: pc=0x%08lX lr=0x%08lX cfsr=0x%08lX hfsr=0x%08lX bfar=0x%08lX\r\n",
                           fault_rec[0] == 0x46415554UL ? "FAULT" : "ERROR_HANDLER", (unsigned long)fault_rec[1], (unsigned long)fault_rec[2],
                           (unsigned long)fault_rec[3], (unsigned long)fault_rec[4], (unsigned long)fault_rec[5]);
@@ -267,8 +279,13 @@ int main(void)
       }
     }
 
-    /* 3. telemetry downlink: fused estimate + raw fix quality */
-    if (lora_ok && (now - last_telem_ms) >= (1000u / TELEM_RATE_HZ)) {
+    /* 3. telemetry downlink: fused estimate + raw fix quality (not when this board is the ground station) */
+    if (ground_mode && lora_ok && uplink_len) {                 // command from the laptop -> rocket
+      if (SX127x_Send(uplink_frame, uplink_len) == 0) uplink_count++;
+      else print("uplink: TxDone timeout\r\n");
+      uplink_len = 0;
+    }
+    if (!ground_mode && lora_ok && (now - last_telem_ms) >= (1000u / TELEM_RATE_HZ)) {
       last_telem_ms = now;
       Athena_Telemetry t;
       Link_MakeTelemetry(&t, &mpu_state, (now - gps_ms) < 2000u ? &gps : NULL, now);
@@ -313,13 +330,13 @@ int main(void)
       const Ublox_Hw *hw = Ublox_HwStatus();
       char logst[48]; Logger_StatusLine(logst, sizeof logst);
       static char line[320];
-      int ln = snprintf(line, sizeof line, "gps fix=%u sv=%u lat=%ld lon=%ld hmsl=%ld m (n=%lu, %lu.%lu Hz) ant=%s pwr=%u noise=%u agc=%u jam=%u | mpu alt=%.1f vD=%.1f flags=0x%02X (n=%lu, %lu ms ago, bad=%lu) | spu %s ph=%u fl=0x%02X fired=0x%02X vbat=%u | air rx=%lu rssi=%d | %s | boot=%08lX/%08lX",
+      int ln = snprintf(line, sizeof line, "gps fix=%u sv=%u lat=%ld lon=%ld hmsl=%ld m (n=%lu, %lu.%lu Hz) ant=%s pwr=%u noise=%u agc=%u jam=%u | mpu alt=%.1f vD=%.1f flags=0x%02X (n=%lu, %lu ms ago, bad=%lu) | spu %s ph=%u fl=0x%02X fired=0x%02X vbat=%u | air rx=%lu rssi=%d%s up=%lu | %s | boot=%08lX/%08lX",
             gps.fix_type, gps.num_sv, (long)gps.lat_1e7, (long)gps.lon_1e7, (long)(gps.h_msl_mm / 1000), (unsigned long)gps_count,
             (unsigned long)(gps_rate_x10 / 10), (unsigned long)(gps_rate_x10 % 10),
             hw->valid ? Ublox_AntStatusStr(hw->ant_status) : "-", hw->ant_power, hw->noise_per_ms, hw->agc_cnt, hw->jam_ind,
             -mpu_state.pos_ned[2], mpu_state.vel_ned[2], mpu_state.flags, (unsigned long)state_count, (unsigned long)(HAL_GetTick() - mpu_state_ms), (unsigned long)mpu_link.rx_bad,
             (spu_count && (now - spu_ms) < 3000u) ? "ok" : "LOST", spu.phase, spu.flags, spu.pyro_fired, spu.vbat_mv,
-            (unsigned long)air_count, last_rssi, logst, (unsigned long)dfu_boot_magic, (unsigned long)dfu_boot_bkp);
+            (unsigned long)air_count, last_rssi, ground_mode ? " GROUND" : "", (unsigned long)uplink_count, logst, (unsigned long)dfu_boot_magic, (unsigned long)dfu_boot_bkp);
       if (ln > (int)sizeof line - 1) ln = sizeof line - 1;
       print("%s\r\n", line);
       static uint8_t text_frame[LINK_MAX_PAYLOAD + LINK_OVERHEAD];
@@ -1044,6 +1061,11 @@ static void on_mpu_packet(uint8_t type, const uint8_t *payload, uint8_t len, voi
 static void forward_cmd(const uint8_t *payload, uint8_t len, const char *src)
 {
   cmd_count++;
+  if (ground_mode && strcmp(src, "air") != 0) {        // laptop -> this ground board -> LoRa -> rocket
+    uplink_len = (uint8_t)Link_Encode(uplink_frame, LINK_PKT_CMD, payload, len);
+    print("cmd from %s: %u ch=%u -> LoRa uplink\r\n", src, payload[0], payload[1]);
+    return;
+  }
   cmd_pending_len = (uint8_t)Link_Encode(cmd_pending, LINK_PKT_CMD, payload, len);
   print("cmd from %s: %u ch=%u val=%u -> MPU -> SPU\r\n", src, payload[0], payload[1], (unsigned)(payload[2] | payload[3] << 8));
 }
@@ -1074,6 +1096,12 @@ static void on_usb_text(uint8_t b, void *user)       /* single characters typed 
   (void)user;
   if (b == 'B' || b == 'J') Athena_DfuRequest(b);
   else if (b == 'L') { leds_off = !leds_off; if (leds_off) Set_LED_Color(LED_OFF); print("leds %s\r\n", leds_off ? "off" : "on"); }
+  else if (b == 'G') {                                 // toggle ground-station mode, remembered across resets
+    ground_mode = !ground_mode;
+    DFU_BKP_ENABLE();
+    GROUND_BKP_REG = ground_mode ? GROUND_MAGIC : 0;
+    print("ground station mode %s\r\n", ground_mode ? "ON: LoRa <-> USB relay, own telemetry off" : "off");
+  }
   else Logger_UsbRx(&b, 1);                            // 'D' dump flash log, 'E' restart it, 'S' sync SD, 'F' format SD
 }
 
@@ -1086,6 +1114,13 @@ static void on_air_packet(uint8_t type, const uint8_t *payload, uint8_t len, voi
 {
   (void)user;
   air_count++;
+  if (ground_mode) {                                   // ground board: everything heard goes to the laptop as-is
+    size_t n = Link_Encode(air_frame, type, payload, len);
+    Logger_Write(air_frame, (uint32_t)n);
+    CDC_Transmit_FS(air_frame, (uint16_t)n);
+    if (huart7.gState == HAL_UART_STATE_READY && n <= sizeof bt_frame) { memcpy(bt_frame, air_frame, n); HAL_UART_Transmit_IT(&huart7, bt_frame, (uint16_t)n); }
+    return;
+  }
   if (type == LINK_PKT_TEXT) print("air: %.*s\r\n", len, (const char *)payload);
   else if (type == LINK_PKT_CMD && len == sizeof(Athena_Cmd)) forward_cmd(payload, len, "air");   // ground station uplink
 }

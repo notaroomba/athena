@@ -102,6 +102,23 @@ export default function Dashboard() {
   const [recording, setRecording] = useState(false);
   const [recordedBytes, setRecordedBytes] = useState(0);
   const [replaySpeed, setReplaySpeed] = useState(1);
+  const [sound, setSound] = useState(() => {
+    try {
+      return localStorage.getItem("athena.sound") === "1";
+    } catch {
+      return false;
+    }
+  });
+  const [lastFrameAt, setLastFrameAt] = useState(0);
+  const soundRef = useRef(false);
+  useEffect(() => {
+    soundRef.current = sound;
+    try {
+      localStorage.setItem("athena.sound", sound ? "1" : "0");
+    } catch {
+      /* ignore */
+    }
+  }, [sound]);
   const [lines, setLines] = useState<string[]>([]);
   const [link, setLink] = useState<LinkStats>({ ok: 0, bad: 0 });
 
@@ -142,8 +159,35 @@ export default function Dashboard() {
     return () => clearInterval(id);
   }, []);
 
+  const beep = useCallback((freq: number, ms: number, times = 1) => {
+    if (!soundRef.current) return;
+    try {
+      const Ctx = window.AudioContext || (window as unknown as { webkitAudioContext: typeof AudioContext }).webkitAudioContext;
+      const ctx = new Ctx();
+      for (let i = 0; i < times; i++) {
+        const o = ctx.createOscillator();
+        const g = ctx.createGain();
+        o.frequency.value = freq;
+        o.type = "square";
+        g.gain.value = 0.08;
+        o.connect(g).connect(ctx.destination);
+        const t0 = ctx.currentTime + i * (ms / 1000 + 0.08);
+        o.start(t0);
+        o.stop(t0 + ms / 1000);
+      }
+      setTimeout(() => void ctx.close(), times * (ms + 120) + 200);
+    } catch {
+      /* no audio */
+    }
+  }, []);
+
   const pushEvent = useCallback((label: string, detail: string, color: string) => {
     const now = Date.now();
+    if (label === "LAUNCH") beep(880, 120, 2);
+    else if (label === "APOGEE") beep(1320, 180);
+    else if (label.startsWith("PYRO")) beep(660, 250, 3);
+    else if (label === "LANDED") beep(440, 400);
+    else if (label === "ARMED") beep(1760, 80, 2);
     if (!firstFrameWallRef.current) firstFrameWallRef.current = now;
     const ev: FlightEvent = { when: new Date(now).toTimeString().slice(0, 8), t: (now - firstFrameWallRef.current) / 1000, label, detail, color };
     setEvents((prev) => {
@@ -184,11 +228,12 @@ export default function Dashboard() {
       const next = [...prev, p];
       return next.length > MAX_TRACK ? next.slice(-MAX_TRACK) : next;
     });
-  }, []);
+  }, [beep]);
 
   const onFrame = useCallback(
     (type: number, p: Uint8Array) => {
       if (!firstFrameWallRef.current) firstFrameWallRef.current = Date.now();
+      setLastFrameAt(Date.now());
       if (type === PKT.STATE) {
         const s = parseState(p);
         if (!s) return;
@@ -543,6 +588,12 @@ export default function Dashboard() {
   const predApogee = vz > 0.5 ? alt + (vz * vz) / (2 * G0) : 0;
   const [dist, brg] = cur && pad ? distanceBearing(pad[0], pad[1], cur.lat, cur.lon) : [0, 0];
   const flightTime = launchWallRef.current ? ((landedWallRef.current || Date.now()) - launchWallRef.current) / 1000 : 0;
+  const linkAge = lastFrameAt ? (Date.now() - lastFrameAt) / 1000 : 0;
+  const linkLost = isLive && !demoMode && !replay && lastFrameAt > 0 && linkAge > 5;
+  useEffect(() => {
+    const phaseName = spu ? SPU_PHASES[spu.phase] : flags & STATE_FLAG.IN_FLIGHT ? "flight" : "";
+    document.title = isLive && (state || telem) ? `${alt.toFixed(0)} m ${phaseName ? "· " + phaseName + " " : ""}· Athena` : "Athena Telemetry";
+  }, [alt, spu, flags, isLive, state, telem]);
   const summary: FlightSummary | null =
     apogee > 0 || events.length
       ? { apogee, vmax, gmax, flightTime, landingDist: spu?.phase === 5 && cur && pad ? dist : 0, phase: spu ? (SPU_PHASES[spu.phase] ?? "?") : flags & STATE_FLAG.IN_FLIGHT ? "flight" : "pad" }
@@ -583,6 +634,11 @@ export default function Dashboard() {
             </div>
           </div>
 
+          {linkLost && (
+            <div className="mt-2 rounded border border-orange bg-[#2a120c] px-3 py-1 text-xs font-semibold tracking-wider text-orange">
+              NO DATA FOR {linkAge.toFixed(0)} s
+            </div>
+          )}
           <div className="mt-3 flex flex-wrap justify-center gap-2">
             <button onClick={() => setDemoMode(!demoMode)} className={`btn ${demoMode ? "active" : ""}`}>
               DEMO
@@ -632,6 +688,19 @@ export default function Dashboard() {
             </button>
             <button onClick={() => setShowAdmin(!showAdmin)} className={`btn ${showAdmin ? "active" : ""}`}>
               {isAdmin ? "ADMIN" : "LOGIN"}
+            </button>
+            <button
+              onClick={() => {
+                setSound(!sound);
+                if (!sound) {
+                  soundRef.current = true;
+                  beep(880, 80);
+                }
+              }}
+              className={`btn ${sound ? "active" : ""}`}
+              title="beep on launch, apogee, pyro firings, landing"
+            >
+              {sound ? "SOUND ON" : "SOUND"}
             </button>
           </div>
 

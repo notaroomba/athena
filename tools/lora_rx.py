@@ -110,8 +110,14 @@ class Receiver:
             self.uplink.write(frame)
             self.cmds_sent += 1
             self.note(f"uplink: command {frame[3]} ch={frame[4]} sent")
-            time.sleep(0.3)                                  # the MCU acknowledges on its console; show that line
-            echo = self.uplink.read(4096)
+            echo = b""                                       # the MCU acknowledges on its console within a few ms: show that line
+            t0 = time.time()
+            while time.time() - t0 < 0.8:
+                chunk = self.uplink.read(self.uplink.in_waiting or 1)
+                if chunk:
+                    echo += chunk
+                    if b"cmd" in echo and b"\n" in echo[echo.find(b"cmd"):]:
+                        break
             for line in echo.decode("ascii", "replace").splitlines():
                 if "cmd" in line:
                     self.note("uplink reply: " + "".join(ch for ch in line if 32 <= ord(ch) < 127)[:120])
