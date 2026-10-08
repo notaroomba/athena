@@ -5,6 +5,8 @@ import { MAX_PAYLOAD, PKT, SOF, crc16 } from "./protocol";
 export interface ReplayHandle {
   stop: () => void;
   setSpeed: (x: number) => void;
+  /** Jump to a position in the file (0..1); the decoder resyncs on the next valid frame. */
+  seek: (fraction: number) => void;
 }
 
 /** Timestamp (seconds) carried by a frame, or null for frames without one. */
@@ -23,6 +25,7 @@ export function startReplay(
 ): ReplayHandle {
   let stopped = false;
   let rate = speed;
+  let seekTo: number | null = null;
   const sleep = (ms: number) => new Promise((r) => setTimeout(r, ms));
 
   (async () => {
@@ -31,8 +34,27 @@ export function startReplay(
     let wallT0 = performance.now();
     let lastClock: number | null = null;
     let paceType: number | null = null; // MPU, TPU and SPU clocks are unrelated: pace on the first frame type seen only
+    const step = Math.max(512, Math.floor(data.length / 200)); // ~200 progress updates whatever the file size
     let lastBucket = -1;
-    while (i < data.length && !stopped) {
+    let reportedDone = false;
+    while (!stopped) {
+      if (seekTo !== null) {
+        i = Math.min(data.length, Math.floor(seekTo * data.length));
+        seekTo = null;
+        logT0 = lastClock = null; // pace from the first timestamp after the jump
+        reportedDone = false;
+        lastBucket = Math.floor(i / step);
+        onProgress(i / data.length, false);
+      }
+      if (i >= data.length) {
+        // finished: stay alive so a seek can rewind, until stop()
+        if (!reportedDone) {
+          reportedDone = true;
+          onProgress(1, true);
+        }
+        await sleep(200);
+        continue;
+      }
       // frame at i?  [A5][type][len][payload][crc lo][crc hi]
       let end = i + 1;
       if (data[i] === SOF && i + 2 < data.length) {
@@ -59,13 +81,12 @@ export function startReplay(
       }
       feed(data.subarray(i, end));
       i = end;
-      const bucket = i >> 14;
+      const bucket = Math.floor(i / step);
       if (bucket !== lastBucket) {
         lastBucket = bucket;
         onProgress(i / data.length, false);
       }
     }
-    if (!stopped) onProgress(1, true);
   })();
 
   return {
@@ -74,6 +95,9 @@ export function startReplay(
     },
     setSpeed: (x) => {
       rate = x;
+    },
+    seek: (f) => {
+      seekTo = Math.max(0, Math.min(1, f));
     },
   };
 }

@@ -1,5 +1,11 @@
 // Value tiles and X/Y/Z readouts shared by the dashboard panels.
 
+/** toFixed without the "-0.0" that a tiny negative value produces. */
+export function fixed(v: number, decimals: number): string {
+  const s = v.toFixed(decimals);
+  return /^-0(\.0+)?$/.test(s) ? s.slice(1) : s;
+}
+
 export function Metric({
   label,
   value,
@@ -30,7 +36,7 @@ export function Metric({
         className={`font-mono font-bold tabular-nums leading-none ${textSize}`}
         style={{ color }}
       >
-        {value.toFixed(decimals)}
+        {fixed(value, decimals)}
       </span>
       <span className="text-[11px] text-ink-3">{unit}</span>
     </div>
@@ -57,7 +63,7 @@ export function AxisValue({
         {axis}
       </span>
       <span className="text-right font-mono text-2xl font-bold tabular-nums xl:text-3xl" style={{ color }}>
-        {value.toFixed(decimals)}
+        {fixed(value, decimals)}
       </span>
       <span className="text-xs text-ink-3">{unit}</span>
     </div>

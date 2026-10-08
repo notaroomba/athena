@@ -57,6 +57,10 @@ body {
   overflow: hidden;
 }
 
+.panel.scroll {
+  overflow-y: auto; /* hero: the admin/checklist drawers can be taller than the grid cell */
+}
+
 .panel::before {
   content: "";
   position: absolute;

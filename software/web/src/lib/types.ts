@@ -124,4 +124,22 @@ export interface WSCmdMessage {
   frame: string; // hex-encoded Athena CMD frame, relayed between authenticated clients
 }
 
-export type WSMessage = WSStatusMessage | WSAuthResult | WSAdminDisconnected | WSCmdMessage;
+/** Receiver statistics from a local ground station (tools/lora_rx.py), every 0.5 s. */
+export interface WSStationMessage {
+  type: "station";
+  freq: number; // Hz
+  level_db: number; // last burst over the noise floor
+  noise_db: number;
+  cfo_khz: number; // carrier offset of the last packet
+  ok: number; // packets with a good CRC
+  packets: number;
+  last_rx: number; // unix seconds, 0 before the first packet
+  uplink: boolean; // a serial uplink for commands is open
+}
+
+export interface WSCmdResult {
+  type: "cmd_result";
+  delivered: number; // how many other authenticated clients (ground stations) received the command
+}
+
+export type WSMessage = WSStatusMessage | WSAuthResult | WSAdminDisconnected | WSCmdMessage | WSStationMessage | WSCmdResult;

@@ -164,8 +164,9 @@ async fn handle_socket(socket: WebSocket, state: Arc<RwLock<AppState>>) {
         let was_admin = s.clients.get(&client_id).map_or(false, |c| c.is_admin);
         s.clients.remove(&client_id);
 
-        if was_admin {
-            s.admin_connected = false;
+        // a ground station and an operator's browser are both admins: only report when the last one leaves
+        s.admin_connected = s.clients.values().any(|c| c.is_admin);
+        if was_admin && !s.admin_connected {
             println!("[{}] Admin {} disconnected", ts(), client_id);
             let msg = r#"{"type":"admin_disconnected"}"#.to_string();
             broadcast_text(&s.clients, &msg, None);
@@ -199,12 +200,19 @@ async fn handle_text(client_id: ClientId, text: &str, state: &Arc<RwLock<AppStat
                 return;
             }
             let out = format!(r#"{{"type":"cmd","frame":"{}"}}"#, cmd.frame);
+            let mut delivered = 0;
             for (&id, client) in s.clients.iter() {
                 if id != client_id && client.is_admin {
                     let _ = client.tx.send(Message::Text(out.clone().into()));
+                    delivered += 1;
                 }
             }
-            println!("[{}] Client {} cmd relayed ({} hex chars)", ts(), client_id, cmd.frame.len());
+            // tell the sender whether anyone was there to carry it (a station mid-reconnect means nobody)
+            if let Some(client) = s.clients.get(&client_id) {
+                let result = format!(r#"{{"type":"cmd_result","delivered":{}}}"#, delivered);
+                let _ = client.tx.send(Message::Text(result.into()));
+            }
+            println!("[{}] Client {} cmd relayed to {} ({} hex chars)", ts(), client_id, delivered, cmd.frame.len());
             return;
         }
     }

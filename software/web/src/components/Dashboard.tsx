@@ -2,8 +2,9 @@ import { useState, useEffect, useRef, useCallback, lazy, Suspense } from "react"
 import AdminPanel from "./AdminPanel";
 import DataCharts, { WINDOW_S } from "./DataCharts";
 import RecoveryPanel from "./RecoveryPanel";
+import ChecklistPanel, { type AutoCheck } from "./ChecklistPanel";
 import EventsPanel, { type FlightSummary } from "./EventsPanel";
-import { AxisValue, Flag, Metric } from "./SensorCard";
+import { AxisValue, Flag, Metric, fixed } from "./SensorCard";
 import type { MapStat } from "./MapPanel";
 import {
   NOSE_AXES,
@@ -18,6 +19,7 @@ import {
   type Telemetry,
   type TrackPoint,
   type WSMessage,
+  type WSStationMessage,
 } from "@/lib/types";
 import { Decoder, FIX_NAMES, G0, PKT, R2D, SPU_FLAG, SPU_PHASES, STATE_FLAG, distanceBearing, encodeCmd, nedToLatLon, parseGps, parseSpu, parseState, parseTelem, quatToEuler } from "@/lib/protocol";
 import { connectSerial, disconnectSerial, isSerialSupported, writeSerial } from "@/lib/serial";
@@ -82,6 +84,9 @@ export default function Dashboard() {
   const [viewers, setViewers] = useState(0);
   const [adminOnline, setAdminOnline] = useState(false);
   const [showAdmin, setShowAdmin] = useState(false);
+  const [showChecklist, setShowChecklist] = useState(false);
+  const [station, setStation] = useState<WSStationMessage | null>(null);
+  const [stationAt, setStationAt] = useState(0);
   const [demoMode, setDemoMode] = useState(false);
   const [replay, setReplay] = useState<{ name: string; progress: number; done: boolean } | null>(null);
   const [nose, setNose] = useState<NoseAxis>(loadNose);
@@ -126,6 +131,7 @@ export default function Dashboard() {
   const reconnectRef = useRef<ReturnType<typeof setTimeout>>(undefined);
   const savedPasswordRef = useRef<string | null>(null);
   const isAdminRef = useRef(false);
+  const localLinkRef = useRef(false); // a serial/Bluetooth board is open here: relayed bytes would duplicate it
   const decoderRef = useRef<Decoder | null>(null);
   const consoleRef = useRef<HTMLDivElement>(null);
   const replayRef = useRef<ReplayHandle | null>(null);
@@ -145,6 +151,9 @@ export default function Dashboard() {
   useEffect(() => {
     isAdminRef.current = isAdmin;
   }, [isAdmin]);
+  useEffect(() => {
+    localLinkRef.current = serialConnected || bleConnected;
+  }, [serialConnected, bleConnected]);
 
   // 1 s tick: freshness checks (SPU live/stale) re-evaluate without new data, and per-type frame rates
   const [, setTick] = useState(0);
@@ -440,8 +449,8 @@ export default function Dashboard() {
 
     ws.onmessage = (event) => {
       if (event.data instanceof ArrayBuffer) {
-        // relayed raw link bytes from the admin's board; the decoder resyncs on any chunk boundary
-        if (!isAdminRef.current) feed(new Uint8Array(event.data));
+        // relayed raw link bytes from a ground station or another admin's board; the decoder resyncs on any chunk boundary
+        if (!localLinkRef.current) feed(new Uint8Array(event.data));
         return;
       }
       try {
@@ -454,6 +463,11 @@ export default function Dashboard() {
           if (!msg.success) savedPasswordRef.current = null;
         } else if (msg.type === "admin_disconnected") {
           setAdminOnline(false);
+        } else if (msg.type === "station") {
+          setStation(msg);
+          setStationAt(Date.now());
+        } else if (msg.type === "cmd_result") {
+          logLine(msg.delivered ? `[relay] command handed to ${msg.delivered} ground station${msg.delivered > 1 ? "s" : ""}` : "[relay] NO ground station connected: command dropped");
         } else if (msg.type === "cmd") {
           // another admin asked a ground station to send a command; nothing to do in a browser
         }
@@ -461,7 +475,7 @@ export default function Dashboard() {
         /* ignore */
       }
     };
-  }, [feed]);
+  }, [feed, logLine]);
 
   useEffect(() => {
     connectWebSocket();
@@ -590,9 +604,26 @@ export default function Dashboard() {
   const flightTime = launchWallRef.current ? ((landedWallRef.current || Date.now()) - launchWallRef.current) / 1000 : 0;
   const linkAge = lastFrameAt ? (Date.now() - lastFrameAt) / 1000 : 0;
   const linkLost = isLive && !demoMode && !replay && lastFrameAt > 0 && linkAge > 5;
+  const stationFresh = !!station && Date.now() - stationAt < 5000;
+  const fixNum = gps ? gps.fix : telem ? telem.fix : 0;
+  // pre-flight checks read from the live data (the hand-ticked half lives in ChecklistPanel)
+  const checks: AutoCheck[] = [
+    { label: "flight computer data", ok: !!(state || telem) && linkAge < 5, detail: state ? `${rates.state}/s` : telem ? `${rates.telem}/s` : "none" },
+    { label: "3 IMUs", ok: imuMask === 7, detail: `${[0, 1, 2].filter((i) => imuMask & (1 << i)).length}/3` },
+    { label: "barometer", ok: !!(flags & STATE_FLAG.BARO_OK) },
+    { label: "magnetometer", ok: !!(flags & STATE_FLAG.MAG_OK) },
+    { label: "GPS 3D fix", ok: fixNum >= 3 && (!gps || gps.hacc < 10), detail: gps ? `${gps.sv} sv ±${gps.hacc.toFixed(0)} m` : telem ? `${telem.sv} sv` : undefined },
+    { label: "pad origin set", ok: !!(flags & STATE_FLAG.ORIGIN_OK) },
+    { label: "SPU status live", ok: spuFresh },
+    { label: "SPU sees the MPU", ok: !!(spu && spu.flags & SPU_FLAG.MPU_LINK) },
+    { label: "on the pad", ok: !!spu && spu.phase === 0, detail: spu ? SPU_PHASES[spu.phase] : undefined },
+    { label: "main altitude set", ok: !!spu && spu.main_alt_m > 0, detail: spu ? `${spu.main_alt_m} m` : undefined },
+    { label: "radio link", ok: rates.telem > 0 || stationFresh, detail: stationFresh ? `${station!.level_db.toFixed(0)} dB` : rates.telem ? `${rates.telem}/s` : "no TPU frames" },
+    { label: "armed", ok: !!(spu && spu.flags & SPU_FLAG.ARMED) },
+  ];
   useEffect(() => {
     const phaseName = spu ? SPU_PHASES[spu.phase] : flags & STATE_FLAG.IN_FLIGHT ? "flight" : "";
-    document.title = isLive && (state || telem) ? `${alt.toFixed(0)} m ${phaseName ? "· " + phaseName + " " : ""}· Athena` : "Athena Telemetry";
+    document.title = isLive && (state || telem) ? `${fixed(alt, 0)} m ${phaseName ? "· " + phaseName + " " : ""}· Athena` : "Athena Telemetry";
   }, [alt, spu, flags, isLive, state, telem]);
   const summary: FlightSummary | null =
     apogee > 0 || events.length
@@ -612,7 +643,7 @@ export default function Dashboard() {
       {/* 4x3 grid on wide screens (16:9 viewport), 3 columns on tablets, single column on phones */}
       <div className="grid grid-cols-1 gap-2 md:grid-cols-3 xl:min-h-0 xl:flex-1 xl:grid-cols-4 xl:grid-rows-3 xl:gap-3">
         {/* ═══ HERO — center (top on mobile) ═══ */}
-        <Panel className="order-0 flex flex-col items-center justify-center p-4 xl:col-start-2 xl:row-start-2">
+        <Panel className="scroll order-0 flex flex-col items-center justify-center-safe p-4 xl:col-start-2 xl:row-start-2 xl:min-h-0">
           <img src="/logo.png" alt="Athena logo" className="h-16 w-16" />
           <div className="wordmark mt-1">ATHENA</div>
           <div className="stripebar mt-2 w-40" />
@@ -644,13 +675,13 @@ export default function Dashboard() {
               DEMO
             </button>
             <button
-              onClick={() => (replay && !replay.done ? stopReplay() : fileRef.current?.click())}
-              className={`btn ${replay && !replay.done ? "active" : ""}`}
+              onClick={() => (replay ? stopReplay() : fileRef.current?.click())}
+              className={`btn ${replay ? "active" : ""}`}
               title="replay an ATHnnnnn.BIN from the SD card, a flash dump or a dashboard recording"
             >
-              {replay && !replay.done ? "STOP" : "REPLAY"}
+              {replay ? "STOP" : "REPLAY"}
             </button>
-            {replay && !replay.done && (
+            {replay && (
               <select value={replaySpeed} onChange={(e) => changeReplaySpeed(Number(e.target.value))} className="text-[10px]" title="replay speed">
                 {[1, 2, 5, 10, 50].map((x) => (
                   <option key={x} value={x}>
@@ -689,6 +720,9 @@ export default function Dashboard() {
             <button onClick={() => setShowAdmin(!showAdmin)} className={`btn ${showAdmin ? "active" : ""}`}>
               {isAdmin ? "ADMIN" : "LOGIN"}
             </button>
+            <button onClick={() => setShowChecklist(!showChecklist)} className={`btn ${showChecklist ? "active" : ""}`} title="pre-flight GO/NO-GO from live data plus a hand-ticked list">
+              {showChecklist ? "CHECKLIST" : checks.every((c) => c.ok) ? "GO" : "CHECKLIST"}
+            </button>
             <button
               onClick={() => {
                 setSound(!sound);
@@ -704,6 +738,22 @@ export default function Dashboard() {
             </button>
           </div>
 
+          {replay && (
+            <input
+              type="range"
+              min={0}
+              max={1000}
+              value={Math.round(replay.progress * 1000)}
+              onChange={(e) => replayRef.current?.seek(Number(e.target.value) / 1000)}
+              className="mt-2 w-full"
+              title={`${replay.name} · drag to seek`}
+            />
+          )}
+          {showChecklist && (
+            <div className="mt-3 w-full border-t border-line pt-3">
+              <ChecklistPanel auto={checks} />
+            </div>
+          )}
           {showAdmin && (
             <div className="mt-3 w-full border-t border-line pt-3">
               <AdminPanel
@@ -861,6 +911,14 @@ export default function Dashboard() {
       <div className="flex items-center justify-between text-[10px] tracking-wider text-ink-3">
         <span className="font-mono tabular-nums">
           state {rates.state}/s · gps {rates.gps}/s · telem {rates.telem}/s · spu {rates.spu}/s · {(rates.bytes / 1024).toFixed(1)} kB/s · {link.bad} bad
+          {stationFresh && (
+            <span className="text-teal" title="RTL-SDR ground station: signal over noise, carrier offset, good packets / decoded, command uplink">
+              {" "}
+              · RF {station!.level_db.toFixed(0)} dB · cfo {station!.cfo_khz >= 0 ? "+" : ""}
+              {station!.cfo_khz.toFixed(1)} kHz · {station!.ok}/{station!.packets} pkts
+              {station!.last_rx ? ` · rx ${Math.max(0, Date.now() / 1000 - station!.last_rx).toFixed(0)} s ago` : ""} · uplink {station!.uplink ? "yes" : "no"}
+            </span>
+          )}
         </span>
         <span className="flex items-center gap-2">
           <button onClick={toggleRecording} className={`btn ${recording ? "danger" : ""}`} style={{ padding: "2px 8px" }} title="save the raw link stream as a replayable .bin">

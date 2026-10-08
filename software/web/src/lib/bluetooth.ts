@@ -45,7 +45,24 @@ export async function connectBluetooth(cb: BluetoothCallbacks): Promise<string> 
   });
   const server = await dev.gatt!.connect();
   const name = dev.name || "DA14531";
+  try {
+    return await setup(dev, server, name, cb);
+  } catch (e) {
+    // neither service, or a characteristic failed: do not leave a half-configured link open
+    device = null;
+    rxChar = null;
+    mode = null;
+    try {
+      dev.gatt?.disconnect();
+    } catch {
+      /* ignore */
+    }
+    throw e;
+  }
+}
 
+async function setup(dev: BluetoothDevice, server: BluetoothRemoteGATTServer, name: string, cb: BluetoothCallbacks): Promise<string> {
+  void dev;
   let svc: BluetoothRemoteGATTService;
   try {
     svc = await server.getPrimaryService(DSPS_SERVICE);

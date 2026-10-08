@@ -58,11 +58,23 @@ def athena_frames(payload):
 
 
 # ---------------------------------------------------------------- front end
+_LUT = np.arange(256, dtype=np.float32) - 127.5
+_LO = {}                                         # mixer table, reused while the window length is constant
+
+
 def to_baseband(iq_u8, fs, offset_hz):
-    """RTL-SDR cu8 bytes -> complex at 125 kS/s with the LoRa channel at DC (tuned `offset_hz` away from it)."""
-    raw = np.frombuffer(iq_u8, dtype=np.uint8).astype(np.float32)
-    iq = (raw[0::2] - 127.5) + 1j * (raw[1::2] - 127.5)
-    iq *= np.exp(2j * np.pi * offset_hz / fs * np.arange(len(iq)))
+    """RTL-SDR cu8 bytes -> complex at FS (8 samples/chip) with the LoRa channel at DC (tuned `offset_hz` away)."""
+    raw = np.frombuffer(iq_u8, dtype=np.uint8)
+    raw = raw[: len(raw) & ~1]                   # a truncated file can end mid-pair
+    iq = _LUT[raw].view(np.complex64)            # interleaved float32 I,Q pairs are complex64 already
+    key = (len(iq), fs, offset_hz)
+    lo = _LO.get(key)
+    if lo is None:
+        _LO.clear()
+        lo = _LO[key] = np.exp(2j * np.pi * offset_hz / fs * np.arange(len(iq))).astype(np.complex64)
+    iq = iq * lo
+    if int(fs) == int(FS):
+        return iq                                # live: the dongle runs at FS, nothing to resample
     return resample_poly(iq, int(FS), int(fs)).astype(np.complex64)
 
 

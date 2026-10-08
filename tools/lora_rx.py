@@ -60,7 +60,7 @@ def rpy(q):
 class Receiver:
     def __init__(self, args):
         self.args = args
-        self.fs_in = 1_024_000
+        self.fs_in = 1_024_000 if args.file else int(L.FS)   # captures are 1.024 MS/s (resampled); live runs at FS, no resampler
         self.window_s = 4.0
         self.raw = bytearray()                       # rolling raw IQ (u8 pairs)
         self.raw_global0 = 0                         # global input-sample index of raw[0]
@@ -82,6 +82,7 @@ class Receiver:
         self.outfile = open(f"athena-lora-{stamp}.bin", "ab")
         self.ws = None
         self.uplink = None
+        self.uplink_lock = threading.Lock()          # commands arrive from the local relay, the cloud relay and the app window
         self.cmds_sent = 0
         if args.uplink:
             try:
@@ -105,6 +106,10 @@ class Receiver:
         if not self.uplink:
             self.note("uplink: no port (--uplink /dev/tty...)")
             return False
+        with self.uplink_lock:
+            return self._uplink_write(frame)
+
+    def _uplink_write(self, frame):
         try:
             self.uplink.reset_input_buffer()                 # only the reply to this command, not minutes of status text
             self.uplink.write(frame)
@@ -203,6 +208,11 @@ class Receiver:
                 else:
                     self.stats["bad_crc"] += 1
             self.done_until = g0 + e
+        st = self.stats
+        self.local_send(json.dumps({"type": "station", "freq": self.args.freq, "level_db": round(float(st["level_db"]), 1),
+                                    "noise_db": round(float(st["noise_db"]), 1), "cfo_khz": round(float(st["cfo"]) * L.BW / L.N / 1e3, 2),
+                                    "ok": st["ok"], "packets": st["packets"], "last_rx": st["last_rx"],
+                                    "uplink": self.uplink is not None}))      # float(): numpy scalars are not JSON
 
     # -- local relay (graphical mode): same protocol as software/server, so the web dashboard is the UI --
     def local_relay(self, port):
@@ -228,8 +238,8 @@ class Receiver:
                             continue
                         if d.get("type") == "auth":
                             await ws.send(json.dumps({"type": "auth_result", "success": True}))   # local page is trusted
-                        elif d.get("type") == "cmd":
-                            self.send_command(str(d.get("frame", "")))
+                        elif d.get("type") == "cmd":   # waits up to 0.8 s for the MCU's reply: keep it off the fanout loop
+                            await asyncio.get_running_loop().run_in_executor(None, self.send_command, str(d.get("frame", "")))
             except Exception:
                 pass
             finally:
@@ -351,77 +361,84 @@ def draw(stdscr, rx):
             pass
         stdscr.erase()
         h, w = stdscr.getmaxyx()
-        st = rx.stats
-        age = time.time() - st["last_rx"] if st["last_rx"] else None
-        head = f" ATHENA ground station  {rx.args.freq / 1e6:.3f} MHz SF7/125k  |  packets {st['ok']}/{st['packets']}  bad {st['bad_crc']}  |  level {st['level_db']:.0f} dB  cfo {st['cfo'] * L.BW / L.N / 1e3:+.2f} kHz  |  last rx {('%.1f s' % age) if age is not None else '-'}"
-        stdscr.addnstr(0, 0, head.ljust(w), w - 1, curses.A_REVERSE)
-        with rx.lock:
-            t, s = rx.telem, rx.spu
-        col2 = w // 2
-        y = 2
-        stdscr.addstr(y, 1, "FLIGHT", Y | curses.A_BOLD)
-        stdscr.addstr(y, col2, "RECOVERY / POWER (SPU)", Y | curses.A_BOLD)
-        y += 1
-        if t:
-            r, p, yw = rpy(t["q"])
-            rows = [
-                ("altitude", f"{t['alt']:9.1f} m above pad", G if t['alt'] > 20 else 0),
-                ("baro alt", f"{t['baro']:9.1f} m", 0),
-                ("vertical", f"{-t['vel'][2]:9.1f} m/s", 0),
-                ("ground", f"{math.hypot(t['vel'][0], t['vel'][1]):9.1f} m/s", 0),
-                ("roll/pitch/yaw", f"{r:6.1f} {p:6.1f} {yw:6.1f} deg", 0),
-                ("position", f"{t['lat']:.6f}  {t['lon']:.6f}", 0),
-                ("gps", f"{FIX[t['fix']] if t['fix'] < 6 else t['fix']}  {t['sv']} sv", 0),
-                ("flags", " ".join(n for b, n in ((1, "FLIGHT"), (2, "GPS"), (4, "BARO"), (8, "MAG"), (16, "ORIGIN")) if t["flags"] & b) + ("" if t["flags"] & 2 else "  DEAD-RECKONING"), 0),
-                ("imus", "".join(str(i + 1) if t["imu"] & (1 << i) else "-" for i in range(3)), 0),
-                ("rocket time", f"{t['t_ms'] / 1000:9.1f} s", 0),
-            ]
-            for k, v, attr in rows:
-                stdscr.addnstr(y, 1, f"{k:>15}  ", col2 - 2)
-                stdscr.addnstr(y, 18, v, col2 - 19, attr)
-                y += 1
-        else:
-            stdscr.addstr(y, 1, "waiting for telemetry frames...", C)
-        y2 = 3
-        if s:
-            ph = PHASES[s["phase"]] if s["phase"] < 6 else str(s["phase"])
-            armed = bool(s["flags"] & 1)
-            pyro = " ".join(("*" if s["on"] & (1 << i) else "F" if s["fired"] & (1 << i) else ".") + str(i + 1) for i in range(6))
-            pdm = PD_MODES[s["pd_mode"]] if s["pd_mode"] < 4 else str(s["pd_mode"])
-            bq = bool(s["flags"] & 64)
-            rows = [
-                ("phase", ph.upper(), G if s["phase"] else 0),
-                ("armed", "ARMED" if armed else "safe", R | curses.A_BOLD if armed else 0),
-                ("pyros", pyro + "   (F fired, * firing)", 0),
-                ("main at", f"{s['main_alt']} m", 0),
-                ("apogee / vmax", f"{s['apogee']:.0f} m / {s['vmax']:.0f} m/s", 0),
-                ("mpu link", "ok" if s["flags"] & 2 else "LOST", 0 if s["flags"] & 2 else R),
-                ("usb-pd", pdm + (f"  {s['vbus'] / 1000:.0f} V/{s['iin'] / 1000:.1f} A contract" if s["vbus"] and not bq else ""), 0),
-                ("battery", f"{s['vbat'] / 1000:.2f} V {s['ibat'] / 1000:+.2f} A" if bq and s["vbat"] else "no charger bus", 0),
-                ("servos", " ".join(str(v) for v in s["servo"]), 0),
-            ]
-            for k, v, attr in rows:
-                stdscr.addnstr(y2, col2, f"{k:>14}  ", w - col2 - 1)
-                stdscr.addnstr(y2, col2 + 16, v, w - col2 - 17, attr)
-                y2 += 1
-        else:
-            stdscr.addstr(y2, col2, "waiting for SPU status frames...", C)
-        y = max(y, y2) + 1
-        stdscr.addstr(y, 1, "EVENTS", Y | curses.A_BOLD)
-        stdscr.addstr(y, col2, "LOG", Y | curses.A_BOLD)
-        y += 1
-        ev = list(rx.events)[-(h - y - 1):]
-        lg = list(rx.log)[-(h - y - 1):]
-        for i in range(max(len(ev), len(lg))):
-            if y + i >= h - 1:
-                break
-            if i < len(ev):
-                stdscr.addnstr(y + i, 1, ev[i], col2 - 2)
-            if i < len(lg):
-                stdscr.addnstr(y + i, col2, lg[i], w - col2 - 1)
-        stdscr.addnstr(h - 1, 0, " q quit   log: " + rx.outfile.name + (f"   relay: {'on' if rx.ws else 'connecting'}" if rx.args.relay else ""), w - 1, curses.A_DIM)
+        try:
+            draw_frame(stdscr, rx, h, w, Y, C, R, G)
+        except curses.error:                                 # terminal too small for the layout: show what fits
+            pass
         stdscr.refresh()
         time.sleep(0.2)
+
+
+def draw_frame(stdscr, rx, h, w, Y, C, R, G):
+    st = rx.stats
+    age = time.time() - st["last_rx"] if st["last_rx"] else None
+    head = f" ATHENA ground station  {rx.args.freq / 1e6:.3f} MHz SF7/125k  |  packets {st['ok']}/{st['packets']}  bad {st['bad_crc']}  |  level {st['level_db']:.0f} dB  cfo {st['cfo'] * L.BW / L.N / 1e3:+.2f} kHz  |  last rx {('%.1f s' % age) if age is not None else '-'}"
+    stdscr.addnstr(0, 0, head.ljust(w), w - 1, curses.A_REVERSE)
+    with rx.lock:
+        t, s = rx.telem, rx.spu
+    col2 = w // 2
+    y = 2
+    stdscr.addstr(y, 1, "FLIGHT", Y | curses.A_BOLD)
+    stdscr.addstr(y, col2, "RECOVERY / POWER (SPU)", Y | curses.A_BOLD)
+    y += 1
+    if t:
+        r, p, yw = rpy(t["q"])
+        rows = [
+            ("altitude", f"{t['alt']:9.1f} m above pad", G if t['alt'] > 20 else 0),
+            ("baro alt", f"{t['baro']:9.1f} m", 0),
+            ("vertical", f"{-t['vel'][2]:9.1f} m/s", 0),
+            ("ground", f"{math.hypot(t['vel'][0], t['vel'][1]):9.1f} m/s", 0),
+            ("roll/pitch/yaw", f"{r:6.1f} {p:6.1f} {yw:6.1f} deg", 0),
+            ("position", f"{t['lat']:.6f}  {t['lon']:.6f}", 0),
+            ("gps", f"{FIX[t['fix']] if t['fix'] < 6 else t['fix']}  {t['sv']} sv", 0),
+            ("flags", " ".join(n for b, n in ((1, "FLIGHT"), (2, "GPS"), (4, "BARO"), (8, "MAG"), (16, "ORIGIN")) if t["flags"] & b) + ("" if t["flags"] & 2 else "  DEAD-RECKONING"), 0),
+            ("imus", "".join(str(i + 1) if t["imu"] & (1 << i) else "-" for i in range(3)), 0),
+            ("rocket time", f"{t['t_ms'] / 1000:9.1f} s", 0),
+        ]
+        for k, v, attr in rows:
+            stdscr.addnstr(y, 1, f"{k:>15}  ", col2 - 2)
+            stdscr.addnstr(y, 18, v, col2 - 19, attr)
+            y += 1
+    else:
+        stdscr.addstr(y, 1, "waiting for telemetry frames...", C)
+    y2 = 3
+    if s:
+        ph = PHASES[s["phase"]] if s["phase"] < 6 else str(s["phase"])
+        armed = bool(s["flags"] & 1)
+        pyro = " ".join(("*" if s["on"] & (1 << i) else "F" if s["fired"] & (1 << i) else ".") + str(i + 1) for i in range(6))
+        pdm = PD_MODES[s["pd_mode"]] if s["pd_mode"] < 4 else str(s["pd_mode"])
+        bq = bool(s["flags"] & 64)
+        rows = [
+            ("phase", ph.upper(), G if s["phase"] else 0),
+            ("armed", "ARMED" if armed else "safe", R | curses.A_BOLD if armed else 0),
+            ("pyros", pyro + "   (F fired, * firing)", 0),
+            ("main at", f"{s['main_alt']} m", 0),
+            ("apogee / vmax", f"{s['apogee']:.0f} m / {s['vmax']:.0f} m/s", 0),
+            ("mpu link", "ok" if s["flags"] & 2 else "LOST", 0 if s["flags"] & 2 else R),
+            ("usb-pd", pdm + (f"  {s['vbus'] / 1000:.0f} V/{s['iin'] / 1000:.1f} A contract" if s["vbus"] and not bq else ""), 0),
+            ("battery", f"{s['vbat'] / 1000:.2f} V {s['ibat'] / 1000:+.2f} A" if bq and s["vbat"] else "no charger bus", 0),
+            ("servos", " ".join(str(v) for v in s["servo"]), 0),
+        ]
+        for k, v, attr in rows:
+            stdscr.addnstr(y2, col2, f"{k:>14}  ", w - col2 - 1)
+            stdscr.addnstr(y2, col2 + 16, v, w - col2 - 17, attr)
+            y2 += 1
+    else:
+        stdscr.addstr(y2, col2, "waiting for SPU status frames...", C)
+    y = max(y, y2) + 1
+    stdscr.addstr(y, 1, "EVENTS", Y | curses.A_BOLD)
+    stdscr.addstr(y, col2, "LOG", Y | curses.A_BOLD)
+    y += 1
+    ev = list(rx.events)[-(h - y - 1):]
+    lg = list(rx.log)[-(h - y - 1):]
+    for i in range(max(len(ev), len(lg))):
+        if y + i >= h - 1:
+            break
+        if i < len(ev):
+            stdscr.addnstr(y + i, 1, ev[i], col2 - 2)
+        if i < len(lg):
+            stdscr.addnstr(y + i, col2, lg[i], w - col2 - 1)
+    stdscr.addnstr(h - 1, 0, " q quit   log: " + rx.outfile.name + (f"   relay: {'on' if rx.ws else 'connecting'}" if rx.args.relay else ""), w - 1, curses.A_DIM)
 
 
 def main():
@@ -503,6 +520,8 @@ def main():
         except KeyboardInterrupt:
             pass
         rx.running = False
+        while rx.log:
+            print("  " + rx.log.popleft(), flush=True)
     elif args.no_tui:
         seen = 0
         try:
@@ -525,6 +544,8 @@ def main():
         except KeyboardInterrupt:
             pass
         rx.running = False
+        while rx.log:
+            print("   " + rx.log.popleft(), flush=True)
     else:
         curses.wrapper(draw, rx)
         rx.running = False

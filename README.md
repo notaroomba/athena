@@ -121,16 +121,21 @@ distance/bearing from the pad, apogee and max speed), and the SPU **recovery & p
 (flight phase, arming, the six pyro channels, battery/charger/USB-PD state) with ARM / DISARM /
 FIRE / servo / main-altitude commands when a writable link is open, a **flight event timeline**
 (launch, phases, pyro firings, arming) with a summary line (apogee, max speed, max g, flight time,
-landing distance), per-type frame rates, and a **REC** button that saves the raw link stream as a
-replayable `.bin`. Data sources:
+landing distance), per-type frame rates, a **REC** button that saves the raw link stream as a
+replayable `.bin`, a **pre-flight checklist** (GO/NO-GO read from the live data: IMUs, baro, GPS fix,
+pad origin, SPU link, main altitude, radio, arming, plus a hand-ticked list), **SOUND** alerts on
+launch/apogee/pyro/landing, a no-data banner and the altitude and phase in the tab title. Data sources:
 
 - **SERIAL**: any of the three USB ports (WebSerial, Chrome/Edge over https or localhost).
 - **BLUETOOTH**: the DA14531 on the TPU over Web Bluetooth (DSPS serial-bridge firmware streams the
   telemetry; the factory CodeLess firmware only answers AT commands).
-- **REPLAY**: an `ATHnnnnn.BIN` from the SD card or a flash dump, paced by its own timestamps.
+- **REPLAY**: an `ATHnnnnn.BIN` from the SD card, a flash dump, a dashboard recording or a ground-station
+  log, paced by its own timestamps, with a speed selector and a seek bar.
 - **DEMO**: a scripted flight (with a GPS dropout) through the real encoder/decoder.
-- viewers: an admin's serial/Bluetooth bytes are relayed through the WebSocket server in
-  [software/server](software/server) (axum, on Railway at `api.athena.notaroomba.dev`).
+- viewers: an admin's serial/Bluetooth bytes (or a ground station's) are relayed through the WebSocket
+  server in [software/server](software/server) (axum, on Railway at `api.athena.notaroomba.dev`). A logged-in
+  viewer can also send commands: the server hands them to the connected ground station, which writes them
+  to its uplink port, and reports whether anyone was there to carry them.
 
 Locally: `cd software/web && npm install && npm run dev` (or `python3 -m http.server 8787 --directory docs`).
 
@@ -157,17 +162,22 @@ to the W25Q256 flash, sends telemetry + SPU status over LoRa and over UART7 to t
 `tools/athlog.py` dumps the flash log over USB and converts logs to CSV.
 
 **Ground station on an RTL-SDR** (`tools/lora_rx.py`, macOS/Linux/Windows): a complete LoRa receiver for
-the downlink (SF7, 125 kHz, sync 0x12) written in numpy, no GNU Radio. It decodes the Athena frames
-straight from the IQ stream (the frames' own CRCs verified 92% of packets on the bench), logs them to a
-replayable `athena-lora-*.bin`, and by default opens the web dashboard fed live by this process (it serves
-`docs/` and speaks the relay protocol on `ws://localhost:3001/ws`). `--tui` gives a terminal UI instead,
-`--relay wss://api.athena.notaroomba.dev/ws --password ...` also feeds the public site, `--file cap.cu8`
-replays a capture. Needs `pip install numpy scipy websockets websocket-client` and `rtl_sdr`
-(`brew install librtlsdr`). `tools/lora_check.py` is the quick PHY check (burst period, preamble, sync word).
+the downlink (SF7, 125 kHz, sync 0x12) written in numpy, no GNU Radio, about 15% of one core at the
+dongle's native 1 MS/s. It decodes the Athena frames straight from the IQ stream (the frames' own CRCs
+verified 92% of packets on the bench), logs them to a replayable `athena-lora-*.bin`, and by default opens
+the web dashboard fed live by this process (it serves `docs/` and speaks the relay protocol on
+`ws://localhost:3001/ws`, including a `station` message with signal level, carrier offset and packet
+counts that the dashboard shows in its footer). `--app` opens it as a desktop window (pywebview) instead of
+a browser tab, `--uplink /dev/tty...` adds a command path (the rocket's USB console on the bench, or a TPU
+in ground-station mode: `G` on its console turns a second board into a LoRa<->USB relay), `--tui` gives a
+terminal UI, `--relay wss://api.athena.notaroomba.dev/ws --password ...` also feeds the public site and
+accepts commands from it, `--file cap.cu8` replays a capture. Needs `pip install numpy scipy websockets
+websocket-client pyserial pywebview` and `rtl_sdr` (`brew install librtlsdr`). `tools/lora_check.py` is the
+quick PHY check (burst period, preamble, sync word).
 
-USB console characters: all MCUs `B`/`J` (DFU); TPU `D` dump flash log, `E` restart it, `S` sync SD,
-`F` format SD; SPU `A` arm, `d` disarm, `1`-`6` fire a channel (armed only), `s` sweep servo 1,
-`r` reset the MPU. Pyros only get power when the external ARM terminal is closed.
+USB console characters: all MCUs `B`/`J` (DFU), `L` LEDs off/on; TPU `D` dump flash log, `E` restart it,
+`S` sync SD, `F` format SD, `G` ground-station mode (persistent); SPU `A` arm, `d` disarm, `1`-`6` fire a
+channel (armed only), `s` sweep servo 1, `r` reset the MPU. Pyros only get power when the external ARM terminal is closed.
 
 ## Credits
 
