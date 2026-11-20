@@ -6470,7 +6470,7 @@
 	(footprint "TestPoint:TestPoint_Pad_1.0x1.0mm"
 		(layer "F.Cu")
 		(uuid "40216584-1a12-4fd1-8db6-11a685264d7b")
-		(at 198.3 71.6)
+		(at 161.8 93.6)
 		(descr "SMD rectangular pad as test Point, square 1.0mm side length")
 		(tags "test point SMD pad rectangle square")
 		(property "Reference" "TP2"
@@ -10621,7 +10621,7 @@
 	(footprint "lcsc:FILTER-SMD_6P-L1.6-W1.0-P0.50-BL"
 		(layer "F.Cu")
 		(uuid "628e2929-0b4d-40b2-b238-cb4263f2719e")
-		(at 232.5675 66.51)
+		(at 152.3 67.5)
 		(property "Reference" "FL1"
 			(at 0 -4.25 0)
 			(layer "F.SilkS")
@@ -21740,7 +21740,7 @@
 	(footprint "TestPoint:TestPoint_Pad_1.0x1.0mm"
 		(layer "F.Cu")
 		(uuid "cda30f71-b7b6-4974-ad14-59f8982b2800")
-		(at 198.3 74.65)
+		(at 161.8 96.65)
 		(descr "SMD rectangular pad as test Point, square 1.0mm side length")
 		(tags "test point SMD pad rectangle square")
 		(property "Reference" "TP3"
@@ -27164,7 +27164,7 @@
 	(footprint "TestPoint:TestPoint_Pad_1.0x1.0mm"
 		(layer "F.Cu")
 		(uuid "fdf04d47-fcba-4927-ae35-a4b6f6b41f08")
-		(at 198.3 68.55)
+		(at 161.8 90.55)
 		(descr "SMD rectangular pad as test Point, square 1.0mm side length")
 		(tags "test point SMD pad rectangle square")
 		(property "Reference" "TP1"
