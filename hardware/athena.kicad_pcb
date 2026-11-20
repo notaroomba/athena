@@ -16983,7 +16983,7 @@
 			(roundrect_rratio 0.25)
 			(net "unconnected-(U10-AT0-Pad36)")
 			(pinfunction "AT0_36")
-			(pintype "no_connect")
+			(pintype "no_connect+no_connect")
 			(uuid "ce2c70a1-c493-4525-a289-00158df65690")
 		)
 		(pad "37" smd roundrect
@@ -16993,7 +16993,7 @@
 			(roundrect_rratio 0.25)
 			(net "unconnected-(U10-AT1-Pad37)")
 			(pinfunction "AT1_37")
-			(pintype "no_connect")
+			(pintype "no_connect+no_connect")
 			(uuid "2f68a201-6204-46cf-962f-feacabbf054f")
 		)
 		(pad "38" smd roundrect
@@ -41452,6 +41452,321 @@
 		(uuid "511fdefc-b539-4d5a-be11-81a0ab0db0e3")
 		(members "5e2a7f1c-2218-4f1c-91b2-a2b0e781960d" "8d764cb9-be61-4449-b49b-15d3d1266ecf"
 			"ad1714a9-c953-4d38-9874-3767bd78227d" "deefd4de-bd41-4dd5-ac43-5f7ec0a4c4a2"
+		)
+	)
+	(footprint "LCSC:CONN-SMD_2P-P1.25_BM02B-GHS-TBT-LF-SN"
+		(layer "F.Cu")
+		(uuid "f9d458e8-07ee-4894-b483-8383071728ad")
+		(at 150.5 146.6)
+		(descr "-25℃~+85℃ 1 1.25mm 1A 1x2P 2 2P 4.05mm 4.32mm 5.75mm 50V Auxiliary Solder Pin GH PA9T Phosphor bronze Surface Mount,Vertical Tin UL94V-0 White SMD,P=1.25mm Wire To Board Connector ROHS")
+		(tags "C161690 BM02B-GHS-TBT(LF)(SN)")
+		(property "Reference" "CN2"
+			(at 0 -4.0251 0)
+			(layer "F.SilkS")
+			(uuid "d68b68a2-48b4-4bcd-b23b-6b139e9cfa03")
+			(effects
+				(font
+					(size 1 1)
+					(thickness 0.15)
+				)
+			)
+		)
+		(property "Value" "BM02B-GHS-TBT(LF)(SN)"
+			(at 0 4.5751 0)
+			(layer "F.Fab")
+			(uuid "abb7e94b-c650-45db-a0cc-2ee506e3804f")
+			(effects
+				(font
+					(size 1 1)
+					(thickness 0.15)
+				)
+			)
+		)
+		(property "Datasheet" "https://www.lcsc.com/datasheet/lcsc_datasheet_2304140030_JST-BM02B-GHS-TBT-LF-SN_C161690.pdf"
+			(at 0 0 0)
+			(layer "F.Fab")
+			(hide yes)
+			(uuid "d403c1d0-4484-467c-8d91-e0e4c453bc9a")
+			(effects
+				(font
+					(size 1 1)
+					(thickness 0.15)
+				)
+			)
+		)
+		(property "Description" "-25℃~+85℃ 1 1.25mm 1A 1x2P 2 2P 4.05mm 4.32mm 5.75mm 50V Auxiliary Solder Pin GH PA9T Phosphor bronze Surface Mount,Vertical Tin UL94V-0 White SMD,P=1.25mm Wire To Board Connector ROHS"
+			(at 0 0 0)
+			(layer "F.Fab")
+			(hide yes)
+			(uuid "61891dd2-00ff-4e09-bfcd-435efc842d17")
+			(effects
+				(font
+					(size 1 1)
+					(thickness 0.15)
+				)
+			)
+		)
+		(property "MPN" "BM02B-GHS-TBT(LF)(SN)"
+			(at 0 0)
+			(layer "F.Fab")
+			(hide yes)
+			(uuid "d9ccb7b0-06a1-4f87-bbac-c754df46dd8a")
+			(effects
+				(font
+					(size 1 1)
+					(thickness 0.15)
+				)
+			)
+		)
+		(property "Manufacturer" "JST"
+			(at 0 0)
+			(layer "F.Fab")
+			(hide yes)
+			(uuid "330948a1-ab9d-4fa3-a01d-f0e373ad52b1")
+			(effects
+				(font
+					(size 1 1)
+					(thickness 0.15)
+				)
+			)
+		)
+		(property "LCSC" "C161690"
+			(at 0 0)
+			(layer "F.Fab")
+			(hide yes)
+			(uuid "5ad108c0-4065-47da-92f9-3c8fdb47c1bd")
+			(effects
+				(font
+					(size 1 1)
+					(thickness 0.15)
+				)
+			)
+		)
+		(path "/ecf6954e-5844-4d1e-b7b6-fd86312af247")
+		(sheetname "/")
+		(sheetfile "athena.kicad_sch")
+		(attr smd)
+		(fp_circle
+			(center 2.875 -2.0752)
+			(end 2.905 -2.0752)
+			(stroke
+				(width 0.06)
+				(type solid)
+			)
+			(fill no)
+			(layer "F.Fab")
+			(uuid "9dcae59a-480e-445c-8ff9-f84acd2ca401")
+		)
+		(fp_circle
+			(center 1.016 -2.159)
+			(end 1.143 -2.159)
+			(stroke
+				(width 0.254)
+				(type solid)
+			)
+			(fill no)
+			(layer "Cmts.User")
+			(uuid "0df596c2-1ea4-417e-8fef-f894a2feb66f")
+		)
+		(fp_poly
+			(pts
+				(xy -2.8749 -1.39) (xy 2.8751 -1.39) (xy 2.8751 2.86) (xy -2.8749 2.86) (xy -2.8749 -1.39)
+			)
+			(stroke
+				(width 0)
+				(type solid)
+			)
+			(fill yes)
+			(layer "F.Fab")
+			(uuid "a8db40a1-2a21-4636-8b43-56e8cd6de3f4")
+		)
+		(fp_line
+			(start -0.0937 -1.397)
+			(end 0.0943 -1.397)
+			(stroke
+				(width 0.254)
+				(type solid)
+			)
+			(layer "F.SilkS")
+			(uuid "347bfddb-7575-4d78-8121-1272b687a77c")
+		)
+		(fp_line
+			(start -2.921 0.127)
+			(end -2.921 -1.397)
+			(stroke
+				(width 0.254)
+				(type solid)
+			)
+			(layer "F.SilkS")
+			(uuid "8543e05b-de74-43fc-98eb-5a9affbdfe20")
+		)
+		(fp_line
+			(start -2.921 -1.397)
+			(end -1.143 -1.397)
+			(stroke
+				(width 0.254)
+				(type solid)
+			)
+			(layer "F.SilkS")
+			(uuid "75bbc1cb-112b-4c6d-b6a0-bc02fabb7c84")
+		)
+		(fp_line
+			(start -1.7439 2.921)
+			(end 1.778 2.921)
+			(stroke
+				(width 0.254)
+				(type solid)
+			)
+			(layer "F.SilkS")
+			(uuid "0894ed42-5849-4d7d-b88f-f899eec0e0e7")
+		)
+		(fp_line
+			(start 1.156 -1.397)
+			(end 2.921 -1.397)
+			(stroke
+				(width 0.254)
+				(type solid)
+			)
+			(layer "F.SilkS")
+			(uuid "2fd17c66-4241-423d-a62b-a68ec24e0e91")
+		)
+		(fp_line
+			(start 2.921 -1.397)
+			(end 2.921 0.0445)
+			(stroke
+				(width 0.254)
+				(type solid)
+			)
+			(layer "F.SilkS")
+			(uuid "4d9d5f72-5a38-4b5e-9773-44bd5082bcb0")
+		)
+		(fp_circle
+			(center 2.032 -1.27)
+			(end 2.159 -1.27)
+			(stroke
+				(width 0.254)
+				(type solid)
+			)
+			(fill no)
+			(layer "F.SilkS")
+			(uuid "7bbe15ce-61ec-4dec-aae4-055312522c34")
+		)
+		(fp_poly
+			(pts
+				(xy -0.7246 -2.0751) (xy -0.5246 -2.0751) (xy -0.5246 -1.2751) (xy -0.7246 -1.2751) (xy -0.7246 -2.0751)
+			)
+			(stroke
+				(width 0)
+				(type solid)
+			)
+			(fill yes)
+			(layer "F.Fab")
+			(uuid "e72e9752-647d-4790-91bd-49e70d45f46d")
+		)
+		(fp_poly
+			(pts
+				(xy 0.5251 -2.0751) (xy 0.7251 -2.0751) (xy 0.7251 -1.2751) (xy 0.5251 -1.2751) (xy 0.5251 -2.0751)
+			)
+			(stroke
+				(width 0)
+				(type solid)
+			)
+			(fill yes)
+			(layer "F.Fab")
+			(uuid "5ec4a6cb-cb72-43c8-9bfb-4721036e55cf")
+		)
+		(fp_poly
+			(pts
+				(xy -2.65 0.86) (xy -2.3 0.86) (xy -2.3 2.86) (xy -2.65 2.86) (xy -2.65 0.86)
+			)
+			(stroke
+				(width 0)
+				(type solid)
+			)
+			(fill yes)
+			(layer "F.Fab")
+			(uuid "65f40f3c-0361-49fb-9048-fca4597ee524")
+		)
+		(fp_poly
+			(pts
+				(xy 2.65 2.86) (xy 2.3 2.86) (xy 2.3 0.86) (xy 2.65 0.86) (xy 2.65 2.86)
+			)
+			(stroke
+				(width 0)
+				(type solid)
+			)
+			(fill yes)
+			(layer "F.Fab")
+			(uuid "dcdf8da4-99f2-47de-ad73-d9a8172549be")
+		)
+		(pad "3" smd rect
+			(at 2.475 1.6751)
+			(size 1 2.8)
+			(layers "F.Cu" "F.Paste" "F.Mask")
+			(net "GND")
+			(pinfunction "3_3")
+			(pintype "passive")
+			(uuid "a4fe3a41-145c-4aec-b996-6b639900af75")
+		)
+		(pad "4" smd rect
+			(at -2.475 1.6749)
+			(size 1 2.8)
+			(layers "F.Cu" "F.Paste" "F.Mask")
+			(net "GND")
+			(pinfunction "4_4")
+			(pintype "passive")
+			(uuid "3b707a22-e33e-4402-bee5-945cb4f1e2c6")
+		)
+		(pad "2" smd rect
+			(at -0.6246 -1.6751)
+			(size 0.6 1.7)
+			(layers "F.Cu" "F.Paste" "F.Mask")
+			(net "+BATT")
+			(pinfunction "2_2")
+			(pintype "passive")
+			(uuid "bdb9dc74-6336-4f70-96af-50062618e072")
+		)
+		(pad "1" smd rect
+			(at 0.6251 -1.6751)
+			(size 0.6 1.7)
+			(layers "F.Cu" "F.Paste" "F.Mask")
+			(net "GND")
+			(pinfunction "1_1")
+			(pintype "passive")
+			(uuid "f58dfa51-74ee-4a67-930a-46f2db74815e")
+		)
+		(fp_rect
+			(start -3.2 -2.8)
+			(end 3.2 3.35)
+			(stroke
+				(width 0.05)
+				(type solid)
+			)
+			(fill no)
+			(layer "F.CrtYd")
+			(uuid "59f9c3b3-e0a5-4caf-a204-b0661474622f")
+		)
+		(fp_text user "${REFERENCE}"
+			(at 0 0 0)
+			(layer "F.Fab")
+			(uuid "20bb2465-9b9c-447a-87f9-a66e485c68ca")
+			(effects
+				(font
+					(size 0.8 0.8)
+					(thickness 0.12)
+				)
+			)
+		)
+		(model "${KICAD_COLLAB_3DMODELS}/LCSC.3dshapes/CONN-SMD_GH1.25-LS-2P.step"
+			(offset
+				(xyz 0 -0.39 0)
+			)
+			(scale
+				(xyz 1 1 1)
+			)
+			(rotate
+				(xyz 0 0 0)
+			)
 		)
 	)
 	(embedded_fonts no)

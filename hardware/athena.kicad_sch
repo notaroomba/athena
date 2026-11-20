@@ -5031,6 +5031,169 @@
 				)
 			)
 		)
+		(symbol "LCSC:BM02B-GHS-TBT_(LF)(SN)"
+			(pin_names
+				(offset 1.016)
+			)
+			(exclude_from_sim no)
+			(in_bom yes)
+			(on_board yes)
+			(property "Reference" "CN"
+				(at 0 8.89 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Value" "BM02B-GHS-TBT(LF)(SN)"
+				(at 0 -8.89 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Footprint" "LCSC:CONN-SMD_2P-P1.25_BM02B-GHS-TBT-LF-SN"
+				(at 0 -11.43 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "Datasheet" "https://www.lcsc.com/datasheet/lcsc_datasheet_2304140030_JST-BM02B-GHS-TBT-LF-SN_C161690.pdf"
+				(at 0 -13.97 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "Description" "-25℃~+85℃ 1 1.25mm 1A 1x2P 2 2P 4.05mm 4.32mm 5.75mm 50V Auxiliary Solder Pin GH PA9T Phosphor bronze Surface Mount,Vertical Tin UL94V-0 White SMD,P=1.25mm Wire To Board Connector ROHS"
+				(at 0 -16.51 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "MPN" "BM02B-GHS-TBT(LF)(SN)"
+				(at 0 -19.05 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "Manufacturer" "JST"
+				(at 0 -21.59 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "LCSC" "C161690"
+				(at 0 -24.13 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(symbol "BM02B-GHS-TBT_(LF)(SN)_1_1"
+				(rectangle
+					(start -3.81 6.35)
+					(end 3.81 -1.27)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(pin passive line
+					(at 1.27 -6.35 90)
+					(length 5.08)
+					(name "1"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "1"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin passive line
+					(at -1.27 -6.35 90)
+					(length 5.08)
+					(name "2"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "2"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin passive line
+					(at -8.89 3.81 0)
+					(length 5.08)
+					(name "3"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "3"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin passive line
+					(at 8.89 3.81 180)
+					(length 5.08)
+					(name "4"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "4"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+			)
+		)
 	)
 	(junction
 		(at 43.18 210.82)
@@ -21844,128 +22007,9 @@
 			)
 		)
 	)
-	(symbol
-		(lib_id "LCSC:XT30PW-M")
-		(at 170.18 176.53 90)
-		(unit 1)
-		(body_style 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(in_pos_files yes)
-		(dnp no)
-		(fields_autoplaced yes)
-		(uuid "00c5914c-6772-4768-b9c0-2610f668173a")
-		(property "Reference" "CN1"
-			(at 177.8 176.53 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Value" "XT30PW-M30.G.Y"
-			(at 180.34 176.53 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" "LCSC:CONN-TH_XT30PW-M"
-			(at 180.34 176.53 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Datasheet" "https://www.lcsc.com/datasheet/lcsc_datasheet_2304140030_Changzhou-Amass-Elec-XT30PW-M30-G-Y_C431092.pdf"
-			(at 182.88 176.53 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Description" "-、Aviation model plug 1.2mΩ 15A 16/18/20AWG 2pin DC 500V Male - Power connector / plug connector ROHS"
-			(at 185.42 176.53 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "MPN" "XT30PW-M30.G.Y"
-			(at 187.96 176.53 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Manufacturer" "AMASS"
-			(at 190.5 176.53 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "LCSC" "C431092"
-			(at 193.04 176.53 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(pin "1"
-			(uuid "622d0592-4074-444c-93c6-4e375fb19d32")
-		)
-		(pin "2"
-			(uuid "bf556802-fe0e-4b7a-900c-f0fbfc539623")
-		)
-		(pin "3"
-			(uuid "55904e83-e427-4044-a612-3ee5512aaf1e")
-		)
-		(pin "4"
-			(uuid "b4cbdf5d-d82e-4eb6-8d1b-a203796b2867")
-		)
-		(instances
-			(project "athena"
-				(path "/01c85755-07ec-438a-94a6-33f4e3b67821"
-					(reference "CN1")
-					(unit 1)
-				)
-			)
-		)
-	)
 	(wire
 		(pts
-			(xy 162.56 175.26) (xy 165.1 175.26)
+			(xy 156.21 144.78) (xy 158.75 144.78)
 		)
 		(stroke
 			(width 0)
@@ -21975,7 +22019,7 @@
 	)
 	(wire
 		(pts
-			(xy 162.56 177.8) (xy 165.1 177.8)
+			(xy 156.21 147.32) (xy 158.75 147.32)
 		)
 		(stroke
 			(width 0)
@@ -21985,7 +22029,7 @@
 	)
 	(symbol
 		(lib_id "power:GND")
-		(at 173.99 184.15 0)
+		(at 168.91 156.21 0)
 		(unit 1)
 		(body_style 1)
 		(exclude_from_sim no)
@@ -21995,7 +22039,7 @@
 		(dnp no)
 		(uuid "611902cb-78cc-47f5-835e-7d4f95656b5c")
 		(property "Reference" "#PWR163"
-			(at 173.99 190.5 0)
+			(at 168.91 162.56 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -22006,7 +22050,7 @@
 			)
 		)
 		(property "Value" "GND"
-			(at 173.99 187.96 0)
+			(at 168.91 160.02 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -22016,7 +22060,7 @@
 			)
 		)
 		(property "Footprint" ""
-			(at 173.99 184.15 0)
+			(at 168.91 156.21 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -22027,7 +22071,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 173.99 184.15 0)
+			(at 168.91 156.21 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -22038,7 +22082,7 @@
 			)
 		)
 		(property "Description" "Power symbol creates a global label with name \"GND\" , ground"
-			(at 173.99 184.15 0)
+			(at 168.91 156.21 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -22054,7 +22098,7 @@
 	)
 	(symbol
 		(lib_id "power:GND")
-		(at 162.56 184.15 0)
+		(at 156.21 156.21 0)
 		(unit 1)
 		(body_style 1)
 		(exclude_from_sim no)
@@ -22064,7 +22108,7 @@
 		(dnp no)
 		(uuid "3ef00b49-9e79-428f-be20-7fbd9dc467b9")
 		(property "Reference" "#PWR45"
-			(at 162.56 190.5 0)
+			(at 156.21 162.56 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -22075,7 +22119,7 @@
 			)
 		)
 		(property "Value" "GND"
-			(at 162.56 187.96 0)
+			(at 156.21 160.02 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -22085,7 +22129,7 @@
 			)
 		)
 		(property "Footprint" ""
-			(at 162.56 184.15 0)
+			(at 156.21 156.21 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -22096,7 +22140,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 162.56 184.15 0)
+			(at 156.21 156.21 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -22107,7 +22151,7 @@
 			)
 		)
 		(property "Description" "Power symbol creates a global label with name \"GND\" , ground"
-			(at 162.56 184.15 0)
+			(at 156.21 156.21 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -22123,7 +22167,7 @@
 	)
 	(wire
 		(pts
-			(xy 173.99 182.88) (xy 173.99 184.15)
+			(xy 168.91 154.94) (xy 168.91 156.21)
 		)
 		(stroke
 			(width 0)
@@ -22133,7 +22177,7 @@
 	)
 	(wire
 		(pts
-			(xy 162.56 184.15) (xy 162.56 177.8)
+			(xy 156.21 156.21) (xy 156.21 147.32)
 		)
 		(stroke
 			(width 0)
@@ -22143,7 +22187,7 @@
 	)
 	(symbol
 		(lib_id "power:GND")
-		(at 173.99 167.64 180)
+		(at 168.91 134.62 180)
 		(unit 1)
 		(body_style 1)
 		(exclude_from_sim no)
@@ -22153,7 +22197,7 @@
 		(dnp no)
 		(uuid "5502d8a6-2745-4376-b002-84426e134479")
 		(property "Reference" "#PWR164"
-			(at 173.99 161.29 0)
+			(at 168.91 128.27 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -22164,7 +22208,7 @@
 			)
 		)
 		(property "Value" "GND"
-			(at 173.99 163.83 0)
+			(at 168.91 130.81 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -22174,7 +22218,7 @@
 			)
 		)
 		(property "Footprint" ""
-			(at 173.99 167.64 0)
+			(at 168.91 134.62 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -22185,7 +22229,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 173.99 167.64 0)
+			(at 168.91 134.62 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -22196,7 +22240,7 @@
 			)
 		)
 		(property "Description" "Power symbol creates a global label with name \"GND\" , ground"
-			(at 173.99 167.64 0)
+			(at 168.91 134.62 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -22212,7 +22256,7 @@
 	)
 	(wire
 		(pts
-			(xy 173.99 170.18) (xy 173.99 167.64)
+			(xy 168.91 137.16) (xy 168.91 134.62)
 		)
 		(stroke
 			(width 0)
@@ -22222,7 +22266,7 @@
 	)
 	(symbol
 		(lib_id "power:+BATT")
-		(at 162.56 167.64 0)
+		(at 156.21 134.62 0)
 		(unit 1)
 		(body_style 1)
 		(exclude_from_sim no)
@@ -22232,7 +22276,7 @@
 		(dnp no)
 		(uuid "717c5564-6cef-4073-8454-1e971dabe9f2")
 		(property "Reference" "#PWR44"
-			(at 162.56 171.45 0)
+			(at 156.21 138.43 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -22243,7 +22287,7 @@
 			)
 		)
 		(property "Value" "+BATT"
-			(at 162.56 163.83 0)
+			(at 156.21 130.81 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -22253,7 +22297,7 @@
 			)
 		)
 		(property "Footprint" ""
-			(at 162.56 167.64 0)
+			(at 156.21 134.62 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -22264,7 +22308,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 162.56 167.64 0)
+			(at 156.21 134.62 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -22275,7 +22319,7 @@
 			)
 		)
 		(property "Description" "Power symbol creates a global label with name \"+BATT\""
-			(at 162.56 167.64 0)
+			(at 156.21 134.62 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -22291,13 +22335,132 @@
 	)
 	(wire
 		(pts
-			(xy 162.56 175.26) (xy 162.56 167.64)
+			(xy 156.21 144.78) (xy 156.21 134.62)
 		)
 		(stroke
 			(width 0)
 			(type default)
 		)
 		(uuid "fdb65b14-6f76-4474-8c12-d6b5547e13b2")
+	)
+	(symbol
+		(lib_id "LCSC:BM02B-GHS-TBT_(LF)(SN)")
+		(at 165.1 146.05 270)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(in_pos_files yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "ecf6954e-5844-4d1e-b7b6-fd86312af247")
+		(property "Reference" "CN2"
+			(at 176.53 146.05 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "BM02B-GHS-TBT(LF)(SN)"
+			(at 173.99 146.05 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" "LCSC:CONN-SMD_2P-P1.25_BM02B-GHS-TBT-LF-SN"
+			(at 153.67 146.05 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" "https://www.lcsc.com/datasheet/lcsc_datasheet_2304140030_JST-BM02B-GHS-TBT-LF-SN_C161690.pdf"
+			(at 151.13 146.05 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" "-25℃~+85℃ 1 1.25mm 1A 1x2P 2 2P 4.05mm 4.32mm 5.75mm 50V Auxiliary Solder Pin GH PA9T Phosphor bronze Surface Mount,Vertical Tin UL94V-0 White SMD,P=1.25mm Wire To Board Connector ROHS"
+			(at 148.59 146.05 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "MPN" "BM02B-GHS-TBT(LF)(SN)"
+			(at 146.05 146.05 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Manufacturer" "JST"
+			(at 143.51 146.05 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "LCSC" "C161690"
+			(at 140.97 146.05 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "1"
+			(uuid "5150cf7e-59fc-42a9-b6e3-edf4eaaff05e")
+		)
+		(pin "2"
+			(uuid "e97f9915-c3e5-4baa-a435-b028d1b9d257")
+		)
+		(pin "3"
+			(uuid "b26195ce-76e7-41a3-8b63-80e357bd11b3")
+		)
+		(pin "4"
+			(uuid "6de242f3-2df6-49a5-88b4-f8b2ca3f86d5")
+		)
+		(instances
+			(project "athena"
+				(path "/01c85755-07ec-438a-94a6-33f4e3b67821"
+					(reference "CN2")
+					(unit 1)
+				)
+			)
+		)
 	)
 	(sheet_instances
 		(path "/"
